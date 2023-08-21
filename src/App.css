@@ -10,14 +10,14 @@ body {
   font-family: "Mulish", 'sans-serif';
 }
 
-.nav.visible {
+.nav.visible  {
   transform: translateY(0);
   opacity: 1;
   }
 
 .nav.hidden {
-transform: translateY(-100%);
-opacity: 0;
+  transform: translateY(-100%);
+  opacity: 0;
 }
 
 /* #root {

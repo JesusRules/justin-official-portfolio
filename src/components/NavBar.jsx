@@ -9,16 +9,6 @@ const Container = styled.div`
     right: 0;
     z-index: 2;
     transition: transform 0.3s ease, opacity 0.3s ease;
-
-    .visible {
-    transform: translateY(0);
-    opacity: 1;
-    }
-
-    .hidden {
-    transform: translateY(-100%);
-    opacity: 0;
-    }
 `
 
 const Image = styled.img`
@@ -35,7 +25,8 @@ const DarkBG = styled.div`
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     cursor: pointer;
-    `
+    transition: transform 0.3s ease, opacity 0.3s ease;
+`
 
 const MenuContainer = styled.div`
     position: fixed;
@@ -77,29 +68,33 @@ const MenuItems = styled.ul`
 function NavBar() {
     //FLAG
     const [menuEnabled, setMenuEnabled] = useState(false);
-
     const [prevScrollPos, setPrevScrollPos] = useState(0);
     const [visible, setVisible] = useState(true);
 
       
-      useEffect(() => {
-        window.addEventListener('scroll', handleScroll, true);
-        // Remove the event listener
-        return () => {
-            window.removeEventListener('scroll', handleScroll, true);
-        };
-    }, [menuEnabled]);
-    
-
     const handleScroll = () => {
         const currentScrollPos = window.scrollY;
-    
-        setVisible((prevScrollPos > currentScrollPos && prevScrollPos - currentScrollPos > 70) || currentScrollPos < 10);
+        // setVisible(prevScrollPos > currentScrollPos || currentScrollPos < 10); //GOOD
+        
+        if (prevScrollPos > currentScrollPos) {
+            // UP
+            setVisible(true);
+        } else {
+            // DON
+            setMenuEnabled(false);
+            setVisible(false);
+        }
 
-        setMenuEnabled(false);
-    
         setPrevScrollPos(currentScrollPos);
     };
+    
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [prevScrollPos]);
 
       
     const handleClick = () => {
@@ -114,9 +109,9 @@ function NavBar() {
 
     {menuEnabled && (
     <>
-        <DarkBG onClick={() => handleClick()} />
-        <MenuContainer>
-            <MenuImage src="/img/jesus-flag.png" />
+        <DarkBG onClick={() => setMenuEnabled(false)} />
+        <MenuContainer >
+            <MenuImage src="/img/Jesus-Banner.png" />
             <MenuItems>
                 <li>
                     <a href="#">Home</a>
@@ -134,6 +129,7 @@ function NavBar() {
         </MenuContainer>
     </>
     )}
+
     </>
   )
 }

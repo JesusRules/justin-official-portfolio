@@ -12,6 +12,7 @@ import Projects from './components/Projects'
 import NavBar from './components/NavBar'
 
 const Container = styled.div`
+  position: relative;
   width: 100vw;
   min-height: 100vh;
   overflow-x: hidden;
