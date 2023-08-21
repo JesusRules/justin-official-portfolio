@@ -208,6 +208,16 @@ body {
   top: calc(50% + 232px);
   left: calc(50% + 278px);
   /* top: 100px; */
-  z-index: 16;
+  z-index: 18;
+  transform: translate(-50%, -50%);
+}
+
+.pikachu {
+  position: absolute;
+  width: 180px;
+  top: calc(50% + 235px);
+  left: calc(50% - 286px);
+  /* top: 100px; */
+  z-index: 19;
   transform: translate(-50%, -50%);
 }
