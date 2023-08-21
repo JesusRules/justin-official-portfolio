@@ -302,7 +302,6 @@ const Vignette = styled.div`
 `
 
 function Hero() {
-
     let parallex_el;
 
     let xValue = 0, yValue = 0;
