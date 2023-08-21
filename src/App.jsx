@@ -9,9 +9,12 @@ import Education from './components/Education'
 import Contact from './components/Contact'
 import { styled } from 'styled-components'
 import Projects from './components/Projects'
+import NavBar from './components/NavBar'
 
 const Container = styled.div`
+  width: 100vw;
   height: 100vh;
+  overflow-x: hidden;
   background-color: lightblue;
 `
 
@@ -20,6 +23,7 @@ function App() {
 
   return (
     <Container>
+      <NavBar />
       <Hero />
       <Skills />
       <Who />
