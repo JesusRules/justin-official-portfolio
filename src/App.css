@@ -115,7 +115,7 @@ body {
 .jesus-flag {
   position: absolute;
   width: 144px;
-  top: calc(50% + 127px);
+  top: calc(50% + 100px);
   left: calc(50% - 345px);
   /* top: 100px; */
   z-index: 9;
@@ -175,7 +175,7 @@ body {
 .hello-kitty {
   position: absolute;
   width: 147px;
-  top: calc(50% + 166px);
+  top: calc(50% + 150px);
   left: calc(50% - 512px);
   /* top: 100px; */
   z-index: 15;
@@ -189,5 +189,15 @@ body {
   left: calc(50% + 380px);
   /* top: 100px; */
   z-index: 16;
+  transform: translate(-50%, -50%);
+}
+
+.kart {
+  position: absolute;
+  width: 298px;
+  top: calc(50% + 218px);
+  left: calc(50% - 437px);
+  /* top: 100px; */
+  z-index: 17;
   transform: translate(-50%, -50%);
 }
