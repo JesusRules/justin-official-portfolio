@@ -286,6 +286,7 @@ const HeroText = styled.h1`
     font-weight: 700;
     font-style: normal;
     top: 10rem;
+    opacity: 0;
     @media only screen and (max-width: 700px) {
         top: 9rem;
         font-size: 28px;
@@ -309,7 +310,9 @@ function Hero() {
     let rotateDegree = 0;
     //refs
     const durationLoad = 2.5;
+    const startDelay = 1;
     const easeLoad = "power3.out";
+
     const skyRef = useRef(null);
     const cloudMainBackRef = useRef(null);
     const cloudMainFrontRef = useRef(null);
@@ -363,10 +366,136 @@ function Hero() {
 
       const gsapBeginning = () => {
         gsap.to(skyRef.current, {
-        top: '50%',
-        duration: durationLoad,
-        ease: easeLoad
-        }, 0);
+            top: '50%',
+            duration: durationLoad,
+            ease: easeLoad
+        }, startDelay);
+
+        gsap.to(cloudMainBackRef.current, {
+            top: 'calc(50% + 271px)',
+            duration: durationLoad,
+            ease: easeLoad
+        }, startDelay);
+
+        gsap.to(cloudMainFrontRef.current, {
+            top: 'calc(50% + 286px)',
+            duration: durationLoad,
+            ease: easeLoad
+        }, startDelay);
+
+        gsap.to(cloudBG4.current, {
+            top: 'calc(50% - 99px)',
+            duration: durationLoad,
+            ease: easeLoad
+        }, startDelay);
+
+        gsap.to(cloudBG3.current, {
+            top: 'calc(50% - 250px)',
+            duration: durationLoad,
+            ease: easeLoad
+        }, startDelay);
+
+        gsap.to(cloudBG2.current, {
+            top: 'calc(50% - 225px)',
+            duration: durationLoad,
+            ease: easeLoad
+        }, startDelay);
+
+        gsap.to(cloudBG1.current, {
+            top: 'calc(50% - 125px)',
+            duration: durationLoad,
+            ease: easeLoad
+        }, startDelay);
+
+        gsap.to(haunterRef.current, {
+            top: 'calc(50% - 110px)',
+            duration: durationLoad,
+            ease: easeLoad
+        }, startDelay);
+        
+        gsap.to(booRef.current, {
+            top: 'calc(50% - 122px)',
+            duration: durationLoad,
+            ease: easeLoad
+        }, startDelay);
+        
+        gsap.to(bernardTxtRef.current, {
+            top: 'calc(50% - 65px)',
+            duration: durationLoad,
+            ease: easeLoad
+        }, startDelay);
+        
+        gsap.to(justinTxtRef.current, {
+            top: 'calc(50% - 208px)',
+            duration: durationLoad,
+            ease: easeLoad
+        }, startDelay);
+        
+        gsap.to(subtitleTxtRef.current, {
+            duration: durationLoad,
+            ease: easeLoad,
+            opacity: 1
+        }, startDelay);
+        
+        gsap.to(jesusFlagRef.current, {
+            top: 'calc(50% + 102px)',
+            duration: durationLoad,
+            ease: easeLoad
+        }, startDelay);
+        
+        gsap.to(pipeRef.current, {
+            top: 'calc(50% + 140px)',
+            duration: durationLoad,
+            ease: easeLoad
+        }, startDelay);
+        
+        gsap.to(helloKittyRef.current, {
+            top: 'calc(50% + 150px)',
+            duration: durationLoad,
+            ease: easeLoad
+        }, startDelay);
+        
+        gsap.to(toadRef.current, {
+            top: 'calc(50% + 180px)',
+            duration: durationLoad,
+            ease: easeLoad
+        }, startDelay);
+       
+        gsap.to(kartRef.current, {
+            top: 'calc(50% + 218px)',
+            duration: durationLoad,
+            ease: easeLoad
+        }, startDelay);
+        
+        gsap.to(joyRef.current, {
+            top: 'calc(50% + 232px)',
+            duration: durationLoad,
+            ease: easeLoad
+        }, startDelay);
+        
+        gsap.to(pikachuRef.current, {
+            top: 'calc(50% + 235px)',
+            duration: durationLoad,
+            ease: easeLoad
+        }, startDelay);
+        
+        gsap.to(marioRef.current, {
+            top: 'calc(50% + 245px)',
+            duration: durationLoad,
+            ease: easeLoad
+        }, startDelay);
+        
+        gsap.to(miniJesusRef.current, {
+            top: 'calc(50% + 160px)',
+            duration: durationLoad,
+            ease: easeLoad
+        }, startDelay);
+        
+        gsap.to(justinRef.current, {
+            top: 'calc(50% + 157px)',
+            duration: durationLoad,
+            ease: easeLoad
+        }, startDelay);
       }
 
     
@@ -385,7 +514,7 @@ function Hero() {
     <Container>
 
       {/* <Vignette /> */}
-    <HeroText>Passionate. Professional. Reliable.</HeroText>
+    <HeroText ref={subtitleTxtRef}>Passionate. Professional. Reliable.</HeroText>
 
       <Sky ref={skyRef} src="/img/Sky.png" data-speedx="0.33" data-speedy="0.33" data-speedz="0" data-rotation="0" className='parallax bg-img'/>
       {/* <Dove src="/img/Dove.png" className='parallax dove'/> */}
@@ -423,6 +552,9 @@ function Hero() {
 }
 
 export default Hero
+
+
+
 
 {/* <img src="/img/Sky.png" className='parallax bg-img'/>
       <img src="/img/Dove.png" className='parallax dove'/>
