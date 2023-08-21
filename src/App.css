@@ -228,7 +228,7 @@ body {
   top: calc(50% + 255px);
   left: calc(50% - 182px);
   /* top: 100px; */
-  z-index: 19;
+  z-index: 20;
   transform: translate(-50%, -50%);
 }
 
@@ -238,6 +238,16 @@ body {
   top: calc(50% + 170px);
   left: calc(50% + 163px);
   /* top: 100px; */
-  z-index: 18;
+  z-index: 21;
+  transform: translate(-50%, -50%);
+}
+
+.justin {
+  position: absolute;
+  width: 253px;
+  top: calc(50% + 170px);
+  left: calc(50% + 0px);
+  /* top: 100px; */
+  z-index: 22;
   transform: translate(-50%, -50%);
 }
