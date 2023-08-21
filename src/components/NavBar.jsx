@@ -43,7 +43,6 @@ const MenuImage = styled.img`
     object-fit: cover;
     `
 const MenuItems = styled.ul`
-    background-color: rgba(0, 0, 0, .27);
     position: absolute;
     top: 0;
     bottom: 0;

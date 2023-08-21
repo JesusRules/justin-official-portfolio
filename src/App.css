@@ -154,8 +154,8 @@ body {
 
 .bernard-txt {
   position: absolute;
-  width: 700px;
-  top: calc(50% - 55px);
+  width: 730px;
+  top: calc(50% - 75px);
   left: calc(50% + 0px);
   /* top: 100px; */
   z-index: 13;
@@ -164,8 +164,8 @@ body {
 
 .justin-txt {
   position: absolute;
-  width: 700px;
-  top: calc(50% - 208px);
+  width: 730px;
+  top: calc(50% - 228px);
   left: calc(50% + 0px);
   /* top: 100px; */
   z-index: 14;
@@ -186,7 +186,7 @@ body {
   position: absolute;
   width: 149px;
   top: calc(50% + 180px);
-  left: calc(50% + 380px);
+  left: calc(50% + 400px);
   /* top: 100px; */
   z-index: 16;
   transform: translate(-50%, -50%);
@@ -206,7 +206,7 @@ body {
   position: absolute;
   width: 149px;
   top: calc(50% + 232px);
-  left: calc(50% + 278px);
+  left: calc(50% + 308px);
   /* top: 100px; */
   z-index: 18;
   transform: translate(-50%, -50%);
@@ -236,7 +236,7 @@ body {
   position: absolute;
   width: 233px;
   top: calc(50% + 170px);
-  left: calc(50% + 163px);
+  left: calc(50% + 200px);
   /* top: 100px; */
   z-index: 21;
   transform: translate(-50%, -50%);
