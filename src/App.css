@@ -43,8 +43,8 @@ body {
 .dove {
   position: absolute;
   width: 130px;
-  top: calc(50% - 240px);
-  left: calc(50% - 726px);
+  top: calc(50% - 230px);
+  left: calc(50% - 706px);
   /* top: 100px; */
   z-index: 2;
   transform: translate(-50%, -50%);
@@ -52,10 +52,22 @@ body {
 
 .cloud-main-back {
   position: absolute;
-  width: 1570px;
-  top: calc(50% + 288px);
+  width: 1700px;
+  top: calc(50% + 271px);
   left: calc(50% - 0px);
   /* top: 100px; */
-  z-index: 2;
+  /* background-color: blue; */
+  z-index: 3;
+  transform: translate(-50%, -50%);
+}
+
+.cloud-main-front {
+  position: absolute;
+  width: 1410px;
+  top: calc(50% + 286px);
+  left: calc(50% - 0px);
+  /* top: 100px; */
+  /* background-color: red;  */
+  z-index: 4;
   transform: translate(-50%, -50%);
 }
