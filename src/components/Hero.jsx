@@ -188,6 +188,9 @@ const HelloKitty = styled.img`
     /* top: 100px; */
     z-index: 15;
     transform: translate(-50%, -50%);
+    @media only screen and (max-width: 700px) {
+        left: calc(50% - 495px + 290px);
+    }
 `
   
 const Toad = styled.img`
@@ -198,6 +201,9 @@ const Toad = styled.img`
     /* top: 100px; */
     z-index: 16;
     transform: translate(-50%, -50%);
+    @media only screen and (max-width: 700px) {
+        left: calc(50% + 383px - 160px);
+    }
 `
   
 const Kart = styled.img`
@@ -208,6 +214,9 @@ const Kart = styled.img`
     /* top: 100px; */
     z-index: 17;
     transform: translate(-50%, -50%);
+    @media only screen and (max-width: 700px) {
+        left: calc(50% - 420px + 240px);
+    }
 `
   
 const Joy = styled.img`
@@ -218,6 +227,9 @@ const Joy = styled.img`
     /* top: 100px; */
     z-index: 18;
     transform: translate(-50%, -50%);
+    @media only screen and (max-width: 700px) {
+        left: calc(50% + 291px - 120px);
+    }
 `
   
 const Pikachu = styled.img`
@@ -228,6 +240,9 @@ const Pikachu = styled.img`
     /* top: 100px; */
     z-index: 19;
     transform: translate(-50%, -50%);
+    @media only screen and (max-width: 700px) {
+        left: calc(50% - 269px + 130px);
+    }
 `
   
 const Mario = styled.img`
@@ -239,6 +254,7 @@ const Mario = styled.img`
     z-index: 20;
     transform: translate(-50%, -50%);
     @media only screen and (max-width: 700px) {
+        left: calc(50% - 165px + 65px);
     }
 `
   
@@ -251,6 +267,7 @@ const MiniJesus = styled.img`
     z-index: 21;
     transform: translate(-50%, -50%);
     @media only screen and (max-width: 700px) {
+        left: calc(50% + 183px - 55px);
     }
 `
   
@@ -290,7 +307,6 @@ const Vignette = styled.div`
     left: 0;
     background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0) 65%, rgba(255, 255, 255, 0.7));
     pointer-events: none;
-}
 `
 
 function Hero() {
