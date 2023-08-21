@@ -308,9 +308,30 @@ function Hero() {
     let xValue = 0, yValue = 0;
     let rotateDegree = 0;
     //refs
-    const skyRef = useRef(null);
     const durationLoad = 2.5;
     const easeLoad = "power3.out";
+    const skyRef = useRef(null);
+    const cloudMainBackRef = useRef(null);
+    const cloudMainFrontRef = useRef(null);
+    const cloudBG4 = useRef(null);
+    const cloudBG3 = useRef(null);
+    const cloudBG2 = useRef(null);
+    const cloudBG1 = useRef(null);
+    const haunterRef = useRef(null);
+    const booRef = useRef(null);
+    const bernardTxtRef = useRef(null);
+    const justinTxtRef = useRef(null);
+    const subtitleTxtRef = useRef(null);
+    const jesusFlagRef = useRef(null);
+    const pipeRef = useRef(null);
+    const helloKittyRef = useRef(null);
+    const toadRef = useRef(null);
+    const kartRef = useRef(null);
+    const joyRef = useRef(null);
+    const pikachuRef = useRef(null);
+    const marioRef = useRef(null);
+    const miniJesusRef = useRef(null);
+    const justinRef = useRef(null);
 
     const update = (cursorPosition) => {
         parallex_el = document.querySelectorAll(".parallax");
@@ -341,9 +362,7 @@ function Hero() {
       }, []);
 
       const gsapBeginning = () => {
-        const element = skyRef.current;
-
-        gsap.to(element, {
+        gsap.to(skyRef.current, {
         top: '50%',
         duration: durationLoad,
         ease: easeLoad
@@ -365,7 +384,47 @@ function Hero() {
   return (
     <Container>
 
-      {/* <img src="/img/Sky.png" className='parallax bg-img'/>
+      {/* <Vignette /> */}
+    <HeroText>Passionate. Professional. Reliable.</HeroText>
+
+      <Sky ref={skyRef} src="/img/Sky.png" data-speedx="0.33" data-speedy="0.33" data-speedz="0" data-rotation="0" className='parallax bg-img'/>
+      {/* <Dove src="/img/Dove.png" className='parallax dove'/> */}
+      {/* <Dove2 src="/img/Dove.gif" className='parallax dove'/> */}
+      {/* Cloud Main */}
+      <CloudMain_Back ref={cloudMainBackRef} src="/img/CloudMain-Back.png" data-speedx="0.15" data-speedy="0.16" data-speedz="0.125" data-rotation="0.01" className='parallax cloud-main-back'/>
+      <CloudMain_Front ref={cloudMainFrontRef} src="/img/CloudMain-Front.png" data-speedx="0.01" data-speedy="0.02" data-speedz="0.53" data-rotation="0.2" className='parallax cloud-main-front'/>
+      {/* Cloud Backgrounds */}
+      <CloudBG_4 ref={cloudBG4} src="/img/CloudBG-4.png" data-speedx="0.287" data-speedy="0.305" data-speedz="0.03" data-rotation="0" className='parallax cloud-bg-4'/>
+      <CloudBG_3 ref={cloudBG3} src="/img/CloudBG-3.png" data-speedx="0.285" data-speedy="0.299" data-speedz="0.045" data-rotation="0" className='parallax cloud-bg-3'/>
+      <CloudBG_2 ref={cloudBG2} src="/img/CloudBG-2.png" data-speedx="0.271" data-speedy="0.284" data-speedz="0.033" data-rotation="0" className='parallax cloud-bg-2'/>
+      <CloudBG_1 ref={cloudBG1} src="/img/CloudBG-1.png" data-speedx="0.282" data-speedy="0.3" data-speedz="0.041" data-rotation="0" className='parallax cloud-bg-1'/>
+        {/* Items/Characters */}
+      {/* <JesusFlag src="/img/JesusFlag.png" className='parallax jesus-flag'/> */}
+      <Haunter ref={haunterRef} src="/img/Haunter.png" data-speedx="0.215" data-speedy="0.301" data-speedz="0.1" data-rotation="0.01" className='parallax haunter'/>
+      <Boo ref={booRef} src="/img/Boo.png" data-speedx="0.215" data-speedy="0.276" data-speedz="0.1" data-rotation="0.01" className='parallax boo'/>
+
+      <Bernard_Txt ref={bernardTxtRef} src="/img/Bernard-Text.png" data-speedx="0.1" data-speedy="0.134" data-speedz="0.25" data-rotation="0.02" className='parallax bernard-txt'/>
+      <Justin_Txt ref={justinTxtRef} src="/img/Justin-Text.png" data-speedx="0.1" data-speedy="0.125" data-speedz="0.25" data-rotation="0.02"  className='parallax justin-txt'/>
+      
+      <JesusFlag2 ref={jesusFlagRef} src="/img/JesusFlag.gif" data-speedx="0.125" data-speedy="0.137" data-speedz="0.175" data-rotation="0.09" className='parallax jesus-flag'/>
+      <Pipe ref={pipeRef} src="/img/Pipe.png" data-speedx="0.11" data-speedy="0.134" data-speedz="0.3" data-rotation="0.1" className='parallax pipe'/>
+      <HelloKitty ref={helloKittyRef} src="/img/HelloKitty.png" data-speedx="0.11" data-speedy="0.15" data-speedz="0.3" data-rotation="0.1" className='parallax hello-kitty'/>
+      <Toad ref={toadRef} src="/img/Toad.png" data-speedx="0.08" data-speedy="0.09" data-speedz="0.35" data-rotation="0.125" className='parallax toad'/>
+      <Kart ref={kartRef} src="/img/Kart.png" data-speedx="0.08" data-speedy="0.088" data-speedz="0.35" data-rotation="0.125" className='parallax kart'/>
+      <Joy ref={joyRef} src="/img/Joy.png" data-speedx="0.05" data-speedy="0.06" data-speedz="0.4" data-rotation="0.15" className='parallax joy'/>
+      <Pikachu ref={pikachuRef} src="/img/Pikachu.png" data-speedx="0.05" data-speedy="0.064" data-speedz="0.4" data-rotation="0.15" className='parallax pikachu'/>
+      <Mario ref={marioRef} src="/img/Mario.png" data-speedx="0.03" data-speedy="0.032" data-speedz="0.45" data-rotation="0.175" className='parallax mario'/>
+      <MiniJesus ref={miniJesusRef} src="/img/MiniJesus.png" data-speedx="0.03" data-speedy="0.03" data-speedz="0.45" data-rotation="0.175" className='parallax mini-jesus'/>
+      <Justin ref={justinRef} src="/img/Justin.png" data-speedx="0.01" data-speedy="0.02" data-speedz="0.53" data-rotation="0.2" className='parallax justin'/>
+
+
+    </Container>
+  )
+}
+
+export default Hero
+
+{/* <img src="/img/Sky.png" className='parallax bg-img'/>
       <img src="/img/Dove.png" className='parallax dove'/>
 
       <img src="/img/CloudMain-Back.png" className='parallax cloud-main-back'/>
@@ -390,43 +449,3 @@ function Hero() {
       <img src="/img/Mario.png" className='parallax mario'/>
       <img src="/img/MiniJesus.png" className='parallax mini-jesus'/>
     <img src="/img/Justin.png" className='parallax justin'/> */}
-
-      {/* <Vignette /> */}
-    <HeroText>Passionate. Professional. Reliable.</HeroText>
-
-      <Sky ref={skyRef} src="/img/Sky.png" data-speedx="0.33" data-speedy="0.33" data-speedz="0" data-rotation="0" className='parallax bg-img'/>
-      {/* <Dove src="/img/Dove.png" className='parallax dove'/> */}
-      {/* <Dove2 src="/img/Dove.gif" className='parallax dove'/> */}
-      {/* Cloud Main */}
-      <CloudMain_Back src="/img/CloudMain-Back.png" data-speedx="0.15" data-speedy="0.16" data-speedz="0.125" data-rotation="0.01" className='parallax cloud-main-back'/>
-      <CloudMain_Front src="/img/CloudMain-Front.png" data-speedx="0.01" data-speedy="0.02" data-speedz="0.53" data-rotation="0.2" className='parallax cloud-main-front'/>
-      {/* Cloud Backgrounds */}
-      <CloudBG_4 src="/img/CloudBG-4.png" data-speedx="0.287" data-speedy="0.305" data-speedz="0.03" data-rotation="0" className='parallax cloud-bg-4'/>
-      <CloudBG_3 src="/img/CloudBG-3.png" data-speedx="0.285" data-speedy="0.299" data-speedz="0.045" data-rotation="0" className='parallax cloud-bg-3'/>
-      <CloudBG_2 src="/img/CloudBG-2.png" data-speedx="0.271" data-speedy="0.284" data-speedz="0.033" data-rotation="0" className='parallax cloud-bg-2'/>
-      <CloudBG_1 src="/img/CloudBG-1.png" data-speedx="0.282" data-speedy="0.3" data-speedz="0.041" data-rotation="0" className='parallax cloud-bg-1'/>
-        {/* Items/Characters */}
-      {/* <JesusFlag src="/img/JesusFlag.png" className='parallax jesus-flag'/> */}
-      <Haunter src="/img/Haunter.png" data-speedx="0.215" data-speedy="0.301" data-speedz="0.1" data-rotation="0.01" className='parallax haunter'/>
-      <Boo src="/img/Boo.png" data-speedx="0.215" data-speedy="0.276" data-speedz="0.1" data-rotation="0.01" className='parallax boo'/>
-
-      <Bernard_Txt src="/img/Bernard-Text.png" data-speedx="0.1" data-speedy="0.134" data-speedz="0.25" data-rotation="0.02" className='parallax bernard-txt'/>
-      <Justin_Txt src="/img/Justin-Text.png" data-speedx="0.1" data-speedy="0.125" data-speedz="0.25" data-rotation="0.02"  className='parallax justin-txt'/>
-      
-      <JesusFlag2 src="/img/JesusFlag.gif" data-speedx="0.125" data-speedy="0.137" data-speedz="0.175" data-rotation="0.09" className='parallax jesus-flag'/>
-      <Pipe src="/img/Pipe.png" data-speedx="0.11" data-speedy="0.134" data-speedz="0.3" data-rotation="0.1" className='parallax pipe'/>
-      <HelloKitty src="/img/HelloKitty.png" data-speedx="0.11" data-speedy="0.15" data-speedz="0.3" data-rotation="0.1" className='parallax hello-kitty'/>
-      <Toad src="/img/Toad.png" data-speedx="0.08" data-speedy="0.09" data-speedz="0.35" data-rotation="0.125" className='parallax toad'/>
-      <Kart src="/img/Kart.png" data-speedx="0.08" data-speedy="0.088" data-speedz="0.35" data-rotation="0.125" className='parallax kart'/>
-      <Joy src="/img/Joy.png" data-speedx="0.05" data-speedy="0.06" data-speedz="0.4" data-rotation="0.15" className='parallax joy'/>
-      <Pikachu src="/img/Pikachu.png" data-speedx="0.05" data-speedy="0.064" data-speedz="0.4" data-rotation="0.15" className='parallax pikachu'/>
-      <Mario src="/img/Mario.png" data-speedx="0.03" data-speedy="0.032" data-speedz="0.45" data-rotation="0.175" className='parallax mario'/>
-      <MiniJesus src="/img/MiniJesus.png" data-speedx="0.03" data-speedy="0.03" data-speedz="0.45" data-rotation="0.175" className='parallax mini-jesus'/>
-      <Justin src="/img/Justin.png" data-speedx="0.01" data-speedy="0.02" data-speedz="0.53" data-rotation="0.2" className='parallax justin'/>
-
-
-    </Container>
-  )
-}
-
-export default Hero
