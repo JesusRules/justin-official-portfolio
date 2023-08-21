@@ -7,7 +7,7 @@ const Container = styled.div`
     position: fixed;
     left: 0;
     right: 0;
-    z-index: 2;
+    z-index: 9999;
     transition: transform 0.3s ease, opacity 0.3s ease;
 `
 
@@ -19,7 +19,7 @@ const Image = styled.img`
     `
 
 const DarkBG = styled.div`
-    z-index: 1;
+    z-index: 9997;
     position: fixed;
     width: 100%;
     height: 100%;
@@ -33,9 +33,9 @@ const MenuContainer = styled.div`
     top: 40px;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 1;
-    width: 200px;
-    height: 280px;
+    z-index: 9998;
+    width: 270px;
+    height: 320px;
     `
 const MenuImage = styled.img`
     width: inherit;
@@ -43,7 +43,7 @@ const MenuImage = styled.img`
     object-fit: cover;
     `
 const MenuItems = styled.ul`
-    background-color: rgba(0, 0, 0, .3);
+    background-color: rgba(0, 0, 0, .27);
     position: absolute;
     top: 0;
     bottom: 0;
@@ -61,7 +61,8 @@ const MenuItems = styled.ul`
         font-weight:bold;
         color: #fff;
         font-size: 1.4rem;
-
+        text-decoration: none;
+        line-height: 2.3rem;
     }
 `
 
