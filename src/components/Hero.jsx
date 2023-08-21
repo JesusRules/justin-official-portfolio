@@ -310,11 +310,12 @@ function Hero() {
         parallex_el.forEach(el => {
             let speedx = el.dataset.speedx;
             let speedy = el.dataset.speedy;
+            let speedz = el.dataset.speedz;
 
             let isInLeft = parseFloat(getComputedStyle(el).left) < innerWidth / 2 ? 1 : -1;
             let zValue = (event.clientX - parseFloat(getComputedStyle(el).left)) * isInLeft * 0.1;
 
-            el.style.transform = `translateX(calc(-50% + ${-xValue * speedx / 1}px)) translateY(calc(-50% + ${yValue * speedy}px)) perspective(2300px) translateZ(${zValue}px)`;
+            el.style.transform = `translateX(calc(-50% + ${-xValue * speedx / 1}px)) translateY(calc(-50% + ${yValue * speedy}px)) perspective(2300px) translateZ(${zValue * speedz}px)`;
         })
     }
 
@@ -360,33 +361,33 @@ function Hero() {
 
       {/* <Vignette /> */}
 
-      <Sky src="/img/Sky.png" data-speedx="0.3" data-speedy="0.37" className='parallax bg-img'/>
+      <Sky src="/img/Sky.png" data-speedx="0.3" data-speedy="0.37" data-speedz="0" className='parallax bg-img'/>
       {/* <Dove src="/img/Dove.png" className='parallax dove'/> */}
       {/* <Dove2 src="/img/Dove.gif" className='parallax dove'/> */}
       {/* Cloud Main */}
-      <CloudMain_Back src="/img/CloudMain-Back.png" data-speedx="0.15" data-speedy="0.16" className='parallax cloud-main-back'/>
-      <CloudMain_Front src="/img/CloudMain-Front.png" data-speedx="0.01" data-speedy="0.097" className='parallax cloud-main-front'/>
+      <CloudMain_Back src="/img/CloudMain-Back.png" data-speedx="0.15" data-speedy="0.16" data-speedz="0.125" className='parallax cloud-main-back'/>
+      <CloudMain_Front src="/img/CloudMain-Front.png" data-speedx="0.01" data-speedy="0.097" data-speedz="0.345" className='parallax cloud-main-front'/>
       {/* Cloud Backgrounds */}
-      <CloudBG_4 src="/img/CloudBG-4.png" data-speedx="0.287" data-speedy="0.305" className='parallax cloud-bg-4'/>
-      <CloudBG_3 src="/img/CloudBG-3.png" data-speedx="0.285" data-speedy="0.299" className='parallax cloud-bg-3'/>
-      <CloudBG_2 src="/img/CloudBG-2.png" data-speedx="0.271" data-speedy="0.284" className='parallax cloud-bg-2'/>
-      <CloudBG_1 src="/img/CloudBG-1.png" data-speedx="0.282" data-speedy="0.3" className='parallax cloud-bg-1'/>
+      <CloudBG_4 src="/img/CloudBG-4.png" data-speedx="0.287" data-speedy="0.305" data-speedz="0.03" className='parallax cloud-bg-4'/>
+      <CloudBG_3 src="/img/CloudBG-3.png" data-speedx="0.285" data-speedy="0.299" data-speedz="0.045" className='parallax cloud-bg-3'/>
+      <CloudBG_2 src="/img/CloudBG-2.png" data-speedx="0.271" data-speedy="0.284" data-speedz="0.033" className='parallax cloud-bg-2'/>
+      <CloudBG_1 src="/img/CloudBG-1.png" data-speedx="0.282" data-speedy="0.3" data-speedz="0.041" className='parallax cloud-bg-1'/>
         {/* Items/Characters */}
       {/* <JesusFlag src="/img/JesusFlag.png" className='parallax jesus-flag'/> */}
-      <JesusFlag2 src="/img/JesusFlag.gif" data-speedx="0.125" data-speedy="0.137" className='parallax jesus-flag'/>
-      <Pipe src="/img/Pipe.png" data-speedx="0.11" data-speedy="0.134" className='parallax pipe'/>
-      <Haunter src="/img/Haunter.png" data-speedx="0.215" data-speedy="0.301" className='parallax haunter'/>
-      <Boo src="/img/Boo.png" data-speedx="0.215" data-speedy="0.276" className='parallax boo'/>
-      <Bernard_Txt src="/img/Bernard-Text.png" data-speedx="0.1" data-speedy="0.134" className='parallax bernard-txt'/>
-      <Justin_Txt src="/img/Justin-Text.png" data-speedx="0.1" data-speedy="0.125" className='parallax justin-txt'/>
-      <HelloKitty src="/img/HelloKitty.png" data-speedx="0.11" data-speedy="0.15" className='parallax hello-kitty'/>
-      <Toad src="/img/Toad.png" data-speedx="0.08" data-speedy="0.09" className='parallax toad'/>
-      <Kart src="/img/Kart.png" data-speedx="0.08" data-speedy="0.088" className='parallax kart'/>
-      <Joy src="/img/Joy.png" data-speedx="0.05" data-speedy="0.06" className='parallax joy'/>
-      <Pikachu src="/img/Pikachu.png" data-speedx="0.05" data-speedy="0.064" className='parallax pikachu'/>
-      <Mario src="/img/Mario.png" data-speedx="0.03" data-speedy="0.032" className='parallax mario'/>
-      <MiniJesus src="/img/MiniJesus.png" data-speedx="0.03" data-speedy="0.03" className='parallax mini-jesus'/>
-      <Justin src="/img/Justin.png" data-speedx="0.01" data-speedy="0.02" className='parallax justin'/>
+      <JesusFlag2 src="/img/JesusFlag.gif" data-speedx="0.125" data-speedy="0.137" data-speedz="0.175" className='parallax jesus-flag'/>
+      <Haunter src="/img/Haunter.png" data-speedx="0.215" data-speedy="0.301" data-speedz="0.1" className='parallax haunter'/>
+      <Boo src="/img/Boo.png" data-speedx="0.215" data-speedy="0.276" data-speedz="0.1" className='parallax boo'/>
+      <Bernard_Txt src="/img/Bernard-Text.png" data-speedx="0.1" data-speedy="0.134" data-speedz="0.25" className='parallax bernard-txt'/>
+      <Justin_Txt src="/img/Justin-Text.png" data-speedx="0.1" data-speedy="0.125" data-speedz="0.25" className='parallax justin-txt'/>
+      <Pipe src="/img/Pipe.png" data-speedx="0.11" data-speedy="0.134" data-speedz="0.3" className='parallax pipe'/>
+      <HelloKitty src="/img/HelloKitty.png" data-speedx="0.11" data-speedy="0.15" data-speedz="0.3" className='parallax hello-kitty'/>
+      <Toad src="/img/Toad.png" data-speedx="0.08" data-speedy="0.09" data-speedz="0.35" className='parallax toad'/>
+      <Kart src="/img/Kart.png" data-speedx="0.08" data-speedy="0.088" data-speedz="0.35" className='parallax kart'/>
+      <Joy src="/img/Joy.png" data-speedx="0.05" data-speedy="0.06" data-speedz="0.4" className='parallax joy'/>
+      <Pikachu src="/img/Pikachu.png" data-speedx="0.05" data-speedy="0.064" data-speedz="0.4" className='parallax pikachu'/>
+      <Mario src="/img/Mario.png" data-speedx="0.03" data-speedy="0.032" data-speedz="0.45" className='parallax mario'/>
+      <MiniJesus src="/img/MiniJesus.png" data-speedx="0.03" data-speedy="0.03" data-speedz="0.45" className='parallax mini-jesus'/>
+      <Justin src="/img/Justin.png" data-speedx="0.01" data-speedy="0.02" data-speedz="0.53" className='parallax justin'/>
 
       <HeroText>Passionate. Professional. Reliable.</HeroText>
 
