@@ -44,7 +44,7 @@ body {
   position: absolute;
   width: 130px;
   top: calc(50% - 230px);
-  left: calc(50% - 706px);
+  left: calc(50% - 676px);
   /* top: 100px; */
   z-index: 2;
   transform: translate(-50%, -50%);
@@ -63,7 +63,7 @@ body {
 
 .cloud-main-front {
   position: absolute;
-  width: 1410px;
+  width: 1460px;
   top: calc(50% + 286px);
   left: calc(50% - 0px);
   /* top: 100px; */
@@ -114,9 +114,19 @@ body {
 
 .jesus-flag {
   position: absolute;
-  width: 151px;
+  width: 144px;
   top: calc(50% + 129px);
-  left: calc(50% - 391px);
+  left: calc(50% - 345px);
+  /* top: 100px; */
+  z-index: 9;
+  transform: translate(-50%, -50%);
+}
+
+.pipe {
+  position: absolute;
+  width: 151px;
+  top: calc(50% + 140px);
+  left: calc(50% + 460px);
   /* top: 100px; */
   z-index: 9;
   transform: translate(-50%, -50%);
