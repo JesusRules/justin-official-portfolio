@@ -128,7 +128,7 @@ body {
   top: calc(50% + 140px);
   left: calc(50% + 460px);
   /* top: 100px; */
-  z-index: 9;
+  z-index: 10;
   transform: translate(-50%, -50%);
 }
 
@@ -138,6 +138,16 @@ body {
   top: calc(50% - 110px);
   left: calc(50% - 509px);
   /* top: 100px; */
-  z-index: 9;
+  z-index: 11;
+  transform: translate(-50%, -50%);
+}
+
+.boo {
+  position: absolute;
+  width: 129px;
+  top: calc(50% - 122px);
+  left: calc(50% + 586px);
+  /* top: 100px; */
+  z-index: 12;
   transform: translate(-50%, -50%);
 }
