@@ -311,7 +311,10 @@ function Hero() {
             let speedx = el.dataset.speedx;
             let speedy = el.dataset.speedy;
 
-            el.style.transform = `translateX(calc(-50% + ${-xValue * speedx / 1}px)) translateY(calc(-50% + ${yValue * speedy}px))`;
+            let isInLeft = parseFloat(getComputedStyle(el).left) < innerWidth / 2 ? 1 : -1;
+            let zValue = (event.clientX - parseFloat(getComputedStyle(el).left)) * isInLeft * 0.1;
+
+            el.style.transform = `translateX(calc(-50% + ${-xValue * speedx / 1}px)) translateY(calc(-50% + ${yValue * speedy}px)) perspective(2300px) translateZ(${zValue}px)`;
         })
     }
 
