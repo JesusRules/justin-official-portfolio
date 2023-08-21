@@ -4,7 +4,7 @@ import gsap from 'gsap';
 
 const Container = styled.div`
     position: relative;
-    background-color: #dff8e3;
+    background-color: #a7e6ff;
     height: 100vh;
     scroll-snap-align: start;
     overflow: hidden;
@@ -17,7 +17,8 @@ const Sky = styled.img`
     /* width: 1920px; */
     height: 1420px;
     /* top: 50%; */
-    top: 2000px;
+    // top: 2000px; (OLD)
+    top: 600px;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1;
@@ -67,7 +68,8 @@ const CloudBG_4 = styled.img`
     width: 190px;
     /* top: calc(50% - 99px); */
     left: calc(50% - 536px);
-    top: 2000px;
+    top: 1600px;
+    //top: 2000px; LIKE SKY OLD
     z-index: 5;
 `
   
@@ -76,7 +78,8 @@ const CloudBG_3 = styled.img`
     width: 250px;
     /* top: calc(50% - 250px); */
     left: calc(50% - 150px);
-    top: 2000px;
+    top: 1600px;
+    //top: 2000px; LIKE SKY OLD
     z-index: 6;
 `
   
@@ -85,7 +88,8 @@ const CloudBG_2 = styled.img`
     width: 185px;
     /* top: calc(50% - 225px); */
     left: calc(50% + 530px);
-    top: 2000px;
+    top: 1600px;
+    //top: 2000px; LIKE SKY OLD
     z-index: 7;
 `
   
@@ -94,7 +98,8 @@ const CloudBG_1 = styled.img`
     width: 380px;
     /* top: calc(50% - 125px); */
     left: calc(50% - 950px);
-    top: 2000px;
+    top: 1600px;
+    //top: 2000px; LIKE SKY OLD
     z-index: 8;
 `
   
