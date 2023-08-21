@@ -201,3 +201,13 @@ body {
   z-index: 17;
   transform: translate(-50%, -50%);
 }
+
+.joy {
+  position: absolute;
+  width: 149px;
+  top: calc(50% + 232px);
+  left: calc(50% + 278px);
+  /* top: 100px; */
+  z-index: 16;
+  transform: translate(-50%, -50%);
+}
