@@ -23,7 +23,7 @@ const Sky = styled.img`
   
 const Dove = styled.img`
     position: absolute;
-    width: 126px;
+    width: 106px;
     top: calc(50% - 230px);
     left: calc(50% - 676px);
     /* top: 100px; */
@@ -95,9 +95,9 @@ const CloudBG_1 = styled.img`
   
 const JesusFlag = styled.img`
     position: absolute;
-    width: 144px;
+    width: 124px;
     top: calc(50% + 100px);
-    left: calc(50% - 345px);
+    left: calc(50% - 335px);
     /* top: 100px; */
     z-index: 9;
     transform: translate(-50%, -50%);
@@ -105,9 +105,9 @@ const JesusFlag = styled.img`
   
 const Pipe = styled.img`
     position: absolute;
-    width: 151px;
+    width: 124px;
     top: calc(50% + 140px);
-    left: calc(50% + 460px);
+    left: calc(50% + 443px);
     /* top: 100px; */
     z-index: 10;
     transform: translate(-50%, -50%);
@@ -115,7 +115,7 @@ const Pipe = styled.img`
   
 const Haunter = styled.img`
     position: absolute;
-    width: 206px;
+    width: 179px;
     top: calc(50% - 110px);
     left: calc(50% - 509px);
     /* top: 100px; */
@@ -125,9 +125,9 @@ const Haunter = styled.img`
   
 const Boo = styled.img`
     position: absolute;
-    width: 129px;
+    width: 99px;
     top: calc(50% - 122px);
-    left: calc(50% + 586px);
+    left: calc(50% + 485px);
     /* top: 100px; */
     z-index: 12;
     transform: translate(-50%, -50%);
@@ -135,8 +135,8 @@ const Boo = styled.img`
   
 const Bernard_Txt = styled.img`
     position: absolute;
-    width: 730px;
-    top: calc(50% - 70px);
+    width: 700px;
+    top: calc(50% - 60px);
     left: calc(50% + 0px);
     /* top: 100px; */
     z-index: 13;
@@ -149,8 +149,8 @@ const Bernard_Txt = styled.img`
   
 const Justin_Txt = styled.img`
     position: absolute;
-    width: 730px;
-    top: calc(50% - 223px);
+    width: 700px;
+    top: calc(50% - 203px);
     left: calc(50% + 0px);
     /* top: 100px; */
     z-index: 14;
@@ -163,9 +163,9 @@ const Justin_Txt = styled.img`
   
 const HelloKitty = styled.img`
     position: absolute;
-    width: 147px;
+    width: 120px;
     top: calc(50% + 150px);
-    left: calc(50% - 512px);
+    left: calc(50% - 495px);
     /* top: 100px; */
     z-index: 15;
     transform: translate(-50%, -50%);
@@ -173,9 +173,9 @@ const HelloKitty = styled.img`
   
 const Toad = styled.img`
     position: absolute;
-    width: 149px;
+    width: 122px;
     top: calc(50% + 180px);
-    left: calc(50% + 400px);
+    left: calc(50% + 383px);
     /* top: 100px; */
     z-index: 16;
     transform: translate(-50%, -50%);
@@ -183,9 +183,9 @@ const Toad = styled.img`
   
 const Kart = styled.img`
     position: absolute;
-    width: 298px;
+    width: 271px;
     top: calc(50% + 218px);
-    left: calc(50% - 437px);
+    left: calc(50% - 420px);
     /* top: 100px; */
     z-index: 17;
     transform: translate(-50%, -50%);
@@ -193,9 +193,9 @@ const Kart = styled.img`
   
 const Joy = styled.img`
     position: absolute;
-    width: 149px;
+    width: 122px;
     top: calc(50% + 232px);
-    left: calc(50% + 308px);
+    left: calc(50% + 291px);
     /* top: 100px; */
     z-index: 18;
     transform: translate(-50%, -50%);
@@ -203,9 +203,9 @@ const Joy = styled.img`
   
 const Pikachu = styled.img`
     position: absolute;
-    width: 180px;
+    width: 153px;
     top: calc(50% + 235px);
-    left: calc(50% - 286px);
+    left: calc(50% - 269px);
     /* top: 100px; */
     z-index: 19;
     transform: translate(-50%, -50%);
@@ -213,9 +213,9 @@ const Pikachu = styled.img`
   
 const Mario = styled.img`
     position: absolute;
-    width: 180px;
+    width: 153px;
     top: calc(50% + 255px);
-    left: calc(50% - 182px);
+    left: calc(50% - 165px);
     /* top: 100px; */
     z-index: 20;
     transform: translate(-50%, -50%);
@@ -225,9 +225,9 @@ const Mario = styled.img`
   
 const MiniJesus = styled.img`
     position: absolute;
-    width: 233px;
+    width: 206px;
     top: calc(50% + 170px);
-    left: calc(50% + 200px);
+    left: calc(50% + 183px);
     /* top: 100px; */
     z-index: 21;
     transform: translate(-50%, -50%);
@@ -237,8 +237,8 @@ const MiniJesus = styled.img`
   
 const Justin = styled.img`
     position: absolute;
-    width: 253px;
-    top: calc(50% + 170px);
+    width: 235px;
+    top: calc(50% + 167px);
     left: calc(50% + 0px);
     /* top: 100px; */
     z-index: 22;
@@ -255,7 +255,7 @@ const HeroText = styled.h1`
     font-family: "myriad-pro", sans-serif;
     font-weight: 700;
     font-style: normal;
-    top: 9rem;
+    top: 10rem;
     @media only screen and (max-width: 700px) {
         font-size: 28px;
     }
