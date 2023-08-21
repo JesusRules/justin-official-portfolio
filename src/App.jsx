@@ -15,8 +15,10 @@ const Container = styled.div`
   position: relative;
   width: 100vw;
   min-height: 100vh;
-  overflow-x: hidden;
+  overflow: hidden;
   background-color: lightblue;
+  display: flex;
+  flex-direction: column;
 `
 
 function App() {

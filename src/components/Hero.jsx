@@ -2,15 +2,18 @@ import React from 'react'
 import { styled } from 'styled-components'
 
 const Container = styled.div`
+    position: relative;
+    background-color: #dff8e3;
     height: 100vh;
+    scroll-snap-align: start;
 `
 
 function Hero() {
 
-    
+
   return (
     <Container>
-      <img src="/img/Sky.png" className='parallax bg-sky'/>
+      <img src="/img/Sky.png" className='parallax bg-img'/>
       <img src="/img/Dove.png" className='parallax dove'/>
       {/* Cloud Main */}
       <img src="/img/CloudMain-Back.png" className='parallax cloud-main-back'/>
