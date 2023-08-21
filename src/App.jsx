@@ -13,13 +13,14 @@ import NavBar from './components/NavBar'
 
 const Container = styled.div`
   width: 100vw;
-  /* min-height: 100vh; */
   height: 100vh;
+  /* height: 100vh; */
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
   overflow-y: auto; 
   background-color: lightblue;
   place-items: center;
+  position: relative;
 `
 
 function App() {
@@ -32,7 +33,6 @@ function App() {
       <Projects />
       <Education />
       <Contact />
-      <Container />
     </Container>
   )
 }

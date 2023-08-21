@@ -4,7 +4,7 @@ import { styled } from 'styled-components'
 const Container = styled.div`
     display: flex;
     justify-content: center;
-    position: fixed;
+    position: absolute;
     left: 0;
     right: 0;
     z-index: 9999;
