@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { styled } from 'styled-components'
 
 const Container = styled.div`
@@ -49,7 +49,6 @@ const CloudMain_Back = styled.img`
     /* top: 100px; */
     /* background-color: blue; */
     z-index: 3;
-    transform: translate(-50%, -50%);
 `
   
 const CloudMain_Front = styled.img`
@@ -60,7 +59,6 @@ const CloudMain_Front = styled.img`
     /* top: 100px; */
     /* background-color: red;  */
     z-index: 4;
-    transform: translate(-50%, -50%);
 `
   
 const CloudBG_4 = styled.img`
@@ -70,7 +68,6 @@ const CloudBG_4 = styled.img`
     left: calc(50% - 536px);
     /* top: 100px; */
     z-index: 5;
-    transform: translate(-50%, -50%);
 `
   
 const CloudBG_3 = styled.img`
@@ -80,7 +77,6 @@ const CloudBG_3 = styled.img`
     left: calc(50% - 150px);
     /* top: 100px; */
     z-index: 6;
-    transform: translate(-50%, -50%);
 `
   
 const CloudBG_2 = styled.img`
@@ -90,7 +86,6 @@ const CloudBG_2 = styled.img`
     left: calc(50% + 530px);
     /* top: 100px; */
     z-index: 7;
-    transform: translate(-50%, -50%);
 `
   
 const CloudBG_1 = styled.img`
@@ -100,7 +95,6 @@ const CloudBG_1 = styled.img`
     left: calc(50% - 950px);
     /* top: 100px; */
     z-index: 8;
-    transform: translate(-50%, -50%);
 `
   
 // const JesusFlag = styled.img`
@@ -119,7 +113,6 @@ const JesusFlag2 = styled.img`
     left: calc(50% - 340px);
     /* top: 100px; */
     z-index: 9;
-    transform: translate(-50%, -50%);
     @media only screen and (max-width: 700px) {
         left: calc(50% - 340px + 135px);
         top: calc(50% + 102px + 10px);
@@ -133,7 +126,6 @@ const Pipe = styled.img`
     left: calc(50% + 433px);
     /* top: 100px; */
     z-index: 10;
-    transform: translate(-50%, -50%);
 `
   
 const Haunter = styled.img`
@@ -143,7 +135,6 @@ const Haunter = styled.img`
     left: calc(50% - 509px);
     /* top: 100px; */
     z-index: 11;
-    transform: translate(-50%, -50%);
 `
   
 const Boo = styled.img`
@@ -153,7 +144,6 @@ const Boo = styled.img`
     left: calc(50% + 485px);
     /* top: 100px; */
     z-index: 12;
-    transform: translate(-50%, -50%);
 `
   
 const Bernard_Txt = styled.img`
@@ -163,7 +153,6 @@ const Bernard_Txt = styled.img`
     left: calc(50% + 0px);
     /* top: 100px; */
     z-index: 13;
-    transform: translate(-50%, -50%);
     @media only screen and (max-width: 700px) {
         width: 530px;
         top: calc(50% - 118px);
@@ -177,7 +166,6 @@ const Justin_Txt = styled.img`
     left: calc(50% + 0px);
     /* top: 100px; */
     z-index: 14;
-    transform: translate(-50%, -50%);
     @media only screen and (max-width: 700px) {
         top: calc(50% - 233px);
         width: 530px;
@@ -191,7 +179,6 @@ const HelloKitty = styled.img`
     left: calc(50% - 485px);
     /* top: 100px; */
     z-index: 15;
-    transform: translate(-50%, -50%);
     @media only screen and (max-width: 700px) {
         left: calc(50% - 495px + 290px);
         display: none;
@@ -205,7 +192,6 @@ const Toad = styled.img`
     left: calc(50% + 373px);
     /* top: 100px; */
     z-index: 16;
-    transform: translate(-50%, -50%);
     @media only screen and (max-width: 700px) {
         left: calc(50% + 383px - 160px);
         display: none;
@@ -219,7 +205,6 @@ const Kart = styled.img`
     left: calc(50% - 410px);
     /* top: 100px; */
     z-index: 17;
-    transform: translate(-50%, -50%);
     @media only screen and (max-width: 700px) {
         left: calc(50% - 420px + 240px);
         display: none;
@@ -233,7 +218,6 @@ const Joy = styled.img`
     left: calc(50% + 281px);
     /* top: 100px; */
     z-index: 18;
-    transform: translate(-50%, -50%);
     @media only screen and (max-width: 700px) {
         left: calc(50% + 291px - 100px);
     }
@@ -246,7 +230,6 @@ const Pikachu = styled.img`
     left: calc(50% - 259px);
     /* top: 100px; */
     z-index: 19;
-    transform: translate(-50%, -50%);
     @media only screen and (max-width: 700px) {
         left: calc(50% - 269px + 115px);
     }
@@ -259,7 +242,6 @@ const Mario = styled.img`
     left: calc(50% - 155px);
     /* top: 100px; */
     z-index: 20;
-    transform: translate(-50%, -50%);
     @media only screen and (max-width: 700px) {
         left: calc(50% - 165px + 60px);
     }
@@ -272,7 +254,6 @@ const MiniJesus = styled.img`
     left: calc(50% + 173px);
     /* top: 100px; */
     z-index: 21;
-    transform: translate(-50%, -50%);
     @media only screen and (max-width: 700px) {
         left: calc(50% + 183px - 55px);
     }
@@ -285,7 +266,6 @@ const Justin = styled.img`
     left: calc(50% + 0px);
     /* top: 100px; */
     z-index: 22;
-    transform: translate(-50%, -50%);
 `    
 
 const HeroText = styled.h1`
@@ -317,6 +297,31 @@ const Vignette = styled.div`
 `
 
 function Hero() {
+
+    const parallex_el = document.querySelectorAll(".parallax");
+
+    let xValue = 0, yValue = 0;
+
+    const handleMouseMove = (event) => {
+        xValue = event.clientX - innerWidth / 2;
+        yValue = event.clientY - innerHeight / 2;
+
+        parallex_el.forEach(el => {
+            el.style.transform = `translateX(calc(-50% + ${-xValue}px)) translateY(calc(-50% + ${yValue}px))`;
+        })
+    }
+
+    useEffect(() => {
+        // Add event listener when the component mounts
+        document.addEventListener('mousemove', handleMouseMove);
+    
+        // Clean up by removing event listener when the component unmounts
+        return () => {
+          document.removeEventListener('mousemove', handleMouseMove);
+        };
+      }, []); // Empty dependency array means this effect runs once on mount
+    
+
   return (
     <Container>
 

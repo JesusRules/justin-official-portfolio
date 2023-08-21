@@ -27,3 +27,7 @@ body {
   transform: translateY(-100%);
   opacity: 0;
 }
+
+.parallax {
+  pointer-events: none;
+}
