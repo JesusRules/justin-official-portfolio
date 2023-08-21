@@ -16,7 +16,7 @@ const Sky = styled.img`
     /* width: 1920px; */
     /* width: 2500px; */
     /* width: 3200px; */
-    height: 1320px;
+    height: 1420px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -56,7 +56,7 @@ const CloudMain_Back = styled.img`
   
 const CloudMain_Front = styled.img`
     position: absolute;
-    width: 1460px;
+    width: 1560px;
     top: calc(50% + 286px);
     left: calc(50% - 0px);
     /* top: 100px; */
@@ -223,6 +223,7 @@ const Joy = styled.img`
     z-index: 18;
     @media only screen and (max-width: 700px) {
         left: calc(50% + 291px - 100px);
+        display: none;
     }
 `
   
@@ -235,6 +236,7 @@ const Pikachu = styled.img`
     z-index: 19;
     @media only screen and (max-width: 700px) {
         left: calc(50% - 269px + 115px);
+        display: none;
     }
 `
   
@@ -246,7 +248,7 @@ const Mario = styled.img`
     /* top: 100px; */
     z-index: 20;
     @media only screen and (max-width: 700px) {
-        left: calc(50% - 165px + 60px);
+        left: calc(50% - 165px + 30px);
     }
 `
   
@@ -258,7 +260,7 @@ const MiniJesus = styled.img`
     /* top: 100px; */
     z-index: 21;
     @media only screen and (max-width: 700px) {
-        left: calc(50% + 183px - 55px);
+        left: calc(50% + 183px - 35px);
     }
 `
   
@@ -383,7 +385,7 @@ function Hero() {
       {/* <Dove2 src="/img/Dove.gif" className='parallax dove'/> */}
       {/* Cloud Main */}
       <CloudMain_Back src="/img/CloudMain-Back.png" data-speedx="0.15" data-speedy="0.16" data-speedz="0.125" data-rotation="0.01" className='parallax cloud-main-back'/>
-      <CloudMain_Front src="/img/CloudMain-Front.png" data-speedx="0.01" data-speedy="0.097" data-speedz="0.345" data-rotation="0.082" className='parallax cloud-main-front'/>
+      <CloudMain_Front src="/img/CloudMain-Front.png" data-speedx="0.01" data-speedy="0.02" data-speedz="0.53" data-rotation="0.2" className='parallax cloud-main-front'/>
       {/* Cloud Backgrounds */}
       <CloudBG_4 src="/img/CloudBG-4.png" data-speedx="0.287" data-speedy="0.305" data-speedz="0.03" data-rotation="0" className='parallax cloud-bg-4'/>
       <CloudBG_3 src="/img/CloudBG-3.png" data-speedx="0.285" data-speedy="0.299" data-speedz="0.045" data-rotation="0" className='parallax cloud-bg-3'/>
