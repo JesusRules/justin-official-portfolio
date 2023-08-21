@@ -12,7 +12,8 @@ const Container = styled.div`
 const Sky = styled.img`
     object-fit: cover;
     position: absolute;
-    width: 1920px;
+    /* width: 1920px; */
+    width: 2500px;
     height: 100%;
     top: 50%;
     left: 50%;
@@ -238,7 +239,7 @@ const Pikachu = styled.img`
 const Mario = styled.img`
     position: absolute;
     width: 153px;
-    top: calc(50% + 255px);
+    top: calc(50% + 245px);
     left: calc(50% - 155px);
     /* top: 100px; */
     z-index: 20;
@@ -250,7 +251,7 @@ const Mario = styled.img`
 const MiniJesus = styled.img`
     position: absolute;
     width: 206px;
-    top: calc(50% + 170px);
+    top: calc(50% + 160px);
     left: calc(50% + 173px);
     /* top: 100px; */
     z-index: 21;
@@ -262,7 +263,7 @@ const MiniJesus = styled.img`
 const Justin = styled.img`
     position: absolute;
     width: 235px;
-    top: calc(50% + 167px);
+    top: calc(50% + 157px);
     left: calc(50% + 0px);
     /* top: 100px; */
     z-index: 22;
@@ -308,7 +309,9 @@ function Hero() {
 
         parallex_el.forEach(el => {
             let speedx = el.dataset.speedx;
-            el.style.transform = `translateX(calc(-50% + ${-xValue * speedx / 2}px)) translateY(calc(-50% + ${yValue}px))`;
+            let speedy = el.dataset.speedy;
+
+            el.style.transform = `translateX(calc(-50% + ${-xValue * speedx / 1}px)) translateY(calc(-50% + ${yValue * speedy}px))`;
         })
     }
 
@@ -354,33 +357,33 @@ function Hero() {
 
       {/* <Vignette /> */}
 
-      <Sky src="/img/Sky.png" data-speedx="0.3" className='parallax bg-img'/>
+      <Sky src="/img/Sky.png" data-speedx="0.3" data-speedy="0.37" className='parallax bg-img'/>
       {/* <Dove src="/img/Dove.png" className='parallax dove'/> */}
       {/* <Dove2 src="/img/Dove.gif" className='parallax dove'/> */}
       {/* Cloud Main */}
-      <CloudMain_Back src="/img/CloudMain-Back.png" data-speedx="0.15" className='parallax cloud-main-back'/>
-      <CloudMain_Front src="/img/CloudMain-Front.png" data-speedx="0.07" className='parallax cloud-main-front'/>
+      <CloudMain_Back src="/img/CloudMain-Back.png" data-speedx="0.15" data-speedy="0.16" className='parallax cloud-main-back'/>
+      <CloudMain_Front src="/img/CloudMain-Front.png" data-speedx="0.01" data-speedy="0.097" className='parallax cloud-main-front'/>
       {/* Cloud Backgrounds */}
-      <CloudBG_4 src="/img/CloudBG-4.png" data-speedx="0.287" className='parallax cloud-bg-4'/>
-      <CloudBG_3 src="/img/CloudBG-3.png" data-speedx="0.285" className='parallax cloud-bg-3'/>
-      <CloudBG_2 src="/img/CloudBG-2.png" data-speedx="0.271" className='parallax cloud-bg-2'/>
-      <CloudBG_1 src="/img/CloudBG-1.png" data-speedx="0.282" className='parallax cloud-bg-1'/>
+      <CloudBG_4 src="/img/CloudBG-4.png" data-speedx="0.287" data-speedy="0.305" className='parallax cloud-bg-4'/>
+      <CloudBG_3 src="/img/CloudBG-3.png" data-speedx="0.285" data-speedy="0.299" className='parallax cloud-bg-3'/>
+      <CloudBG_2 src="/img/CloudBG-2.png" data-speedx="0.271" data-speedy="0.284" className='parallax cloud-bg-2'/>
+      <CloudBG_1 src="/img/CloudBG-1.png" data-speedx="0.282" data-speedy="0.3" className='parallax cloud-bg-1'/>
         {/* Items/Characters */}
       {/* <JesusFlag src="/img/JesusFlag.png" className='parallax jesus-flag'/> */}
-      <JesusFlag2 src="/img/JesusFlag.gif" data-speedx="0.125" className='parallax jesus-flag'/>
-      <Pipe src="/img/Pipe.png" data-speedx="0.11" className='parallax pipe'/>
-      <Haunter src="/img/Haunter.png" data-speedx="0.215" className='parallax haunter'/>
-      <Boo src="/img/Boo.png" data-speedx="0.215" className='parallax boo'/>
-      <Bernard_Txt src="/img/Bernard-Text.png" data-speedx="0.1" className='parallax bernard-txt'/>
-      <Justin_Txt src="/img/Justin-Text.png" data-speedx="0.1" className='parallax justin-txt'/>
-      <HelloKitty src="/img/HelloKitty.png" data-speedx="0.11" className='parallax hello-kitty'/>
-      <Toad src="/img/Toad.png" data-speedx="0.08" className='parallax toad'/>
-      <Kart src="/img/Kart.png" data-speedx="0.08" className='parallax kart'/>
-      <Joy src="/img/Joy.png" data-speedx="0.05" className='parallax joy'/>
-      <Pikachu src="/img/Pikachu.png" data-speedx="0.05" className='parallax pikachu'/>
-      <Mario src="/img/Mario.png" data-speedx="0.03" className='parallax mario'/>
-      <MiniJesus src="/img/MiniJesus.png" data-speedx="0.03" className='parallax mini-jesus'/>
-      <Justin src="/img/Justin.png" data-speedx="0.01" className='parallax justin'/>
+      <JesusFlag2 src="/img/JesusFlag.gif" data-speedx="0.125" data-speedy="0.137" className='parallax jesus-flag'/>
+      <Pipe src="/img/Pipe.png" data-speedx="0.11" data-speedy="0.134" className='parallax pipe'/>
+      <Haunter src="/img/Haunter.png" data-speedx="0.215" data-speedy="0.301" className='parallax haunter'/>
+      <Boo src="/img/Boo.png" data-speedx="0.215" data-speedy="0.276" className='parallax boo'/>
+      <Bernard_Txt src="/img/Bernard-Text.png" data-speedx="0.1" data-speedy="0.134" className='parallax bernard-txt'/>
+      <Justin_Txt src="/img/Justin-Text.png" data-speedx="0.1" data-speedy="0.125" className='parallax justin-txt'/>
+      <HelloKitty src="/img/HelloKitty.png" data-speedx="0.11" data-speedy="0.15" className='parallax hello-kitty'/>
+      <Toad src="/img/Toad.png" data-speedx="0.08" data-speedy="0.09" className='parallax toad'/>
+      <Kart src="/img/Kart.png" data-speedx="0.08" data-speedy="0.088" className='parallax kart'/>
+      <Joy src="/img/Joy.png" data-speedx="0.05" data-speedy="0.06" className='parallax joy'/>
+      <Pikachu src="/img/Pikachu.png" data-speedx="0.05" data-speedy="0.064" className='parallax pikachu'/>
+      <Mario src="/img/Mario.png" data-speedx="0.03" data-speedy="0.032" className='parallax mario'/>
+      <MiniJesus src="/img/MiniJesus.png" data-speedx="0.03" data-speedy="0.03" className='parallax mini-jesus'/>
+      <Justin src="/img/Justin.png" data-speedx="0.01" data-speedy="0.02" className='parallax justin'/>
 
       <HeroText>Passionate. Professional. Reliable.</HeroText>
 
