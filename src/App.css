@@ -71,3 +71,43 @@ body {
   z-index: 4;
   transform: translate(-50%, -50%);
 }
+
+.cloud-bg-4 {
+  position: absolute;
+  width: 190px;
+  top: calc(50% - 99px);
+  left: calc(50% - 536px);
+  /* top: 100px; */
+  z-index: 5;
+  transform: translate(-50%, -50%);
+}
+
+.cloud-bg-3 {
+  position: absolute;
+  width: 250px;
+  top: calc(50% - 250px);
+  left: calc(50% - 150px);
+  /* top: 100px; */
+  z-index: 6;
+  transform: translate(-50%, -50%);
+}
+
+.cloud-bg-2 {
+  position: absolute;
+  width: 185px;
+  top: calc(50% - 225px);
+  left: calc(50% + 530px);
+  /* top: 100px; */
+  z-index: 6;
+  transform: translate(-50%, -50%);
+}
+
+.cloud-bg-1 {
+  position: absolute;
+  width: 380px;
+  top: calc(50% - 125px);
+  left: calc(50% - 950px);
+  /* top: 100px; */
+  z-index: 6;
+  transform: translate(-50%, -50%);
+}
