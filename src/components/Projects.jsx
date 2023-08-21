@@ -1,11 +1,11 @@
 import React from 'react'
 
-function Skills() {
+function Projects() {
   return (
     <div>
-      Skills
+      Projects
     </div>
   )
 }
 
-export default Skills
+export default Projects
