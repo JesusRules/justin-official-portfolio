@@ -171,3 +171,23 @@ body {
   z-index: 14;
   transform: translate(-50%, -50%);
 }
+
+.hello-kitty {
+  position: absolute;
+  width: 147px;
+  top: calc(50% + 166px);
+  left: calc(50% - 512px);
+  /* top: 100px; */
+  z-index: 15;
+  transform: translate(-50%, -50%);
+}
+
+.toad {
+  position: absolute;
+  width: 149px;
+  top: calc(50% + 180px);
+  left: calc(50% + 380px);
+  /* top: 100px; */
+  z-index: 16;
+  transform: translate(-50%, -50%);
+}
