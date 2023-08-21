@@ -21,14 +21,24 @@ const Sky = styled.img`
     z-index: 1;
 `
   
-const Dove = styled.img`
+// const Dove = styled.img`
+//     position: absolute;
+//     width: 106px;
+//     top: calc(50% - 230px);
+//     left: calc(50% - 676px);
+//     /* top: 100px; */
+//     z-index: 2;
+//     transform: translate(-50%, -50%);
+// `
+const Dove2 = styled.img`
+    /* -webkit-transform: scaleX(-1); */
     position: absolute;
-    width: 106px;
+    width: 156px;
     top: calc(50% - 230px);
-    left: calc(50% - 676px);
+    left: calc(50% - 686px);
     /* top: 100px; */
     z-index: 2;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) scaleX(-1);
 `
   
 const CloudMain_Back = styled.img`
@@ -93,11 +103,20 @@ const CloudBG_1 = styled.img`
     transform: translate(-50%, -50%);
 `
   
-const JesusFlag = styled.img`
+// const JesusFlag = styled.img`
+//     position: absolute;
+//     width: 124px;
+//     top: calc(50% + 100px);
+//     left: calc(50% - 335px);
+//     /* top: 100px; */
+//     z-index: 9;
+//     transform: translate(-50%, -50%);
+// `
+const JesusFlag2 = styled.img`
     position: absolute;
-    width: 124px;
-    top: calc(50% + 100px);
-    left: calc(50% - 335px);
+    width: 360px;
+    top: calc(50% + 102px);
+    left: calc(50% - 350px);
     /* top: 100px; */
     z-index: 9;
     transform: translate(-50%, -50%);
@@ -257,6 +276,7 @@ const HeroText = styled.h1`
     font-style: normal;
     top: 10rem;
     @media only screen and (max-width: 700px) {
+        top: 9rem;
         font-size: 28px;
     }
 `
@@ -306,7 +326,8 @@ function Hero() {
       {/* <Vignette /> */}
 
       <Sky src="/img/Sky.png" className='parallax bg-img'/>
-      <Dove src="/img/Dove.png" className='parallax dove'/>
+      {/* <Dove src="/img/Dove.png" className='parallax dove'/> */}
+      <Dove2 src="/img/Dove.gif" className='parallax dove'/>
       {/* Cloud Main */}
       <CloudMain_Back src="/img/CloudMain-Back.png" className='parallax cloud-main-back'/>
       <CloudMain_Front src="/img/CloudMain-Front.png" className='parallax cloud-main-front'/>
@@ -316,7 +337,8 @@ function Hero() {
       <CloudBG_2 src="/img/CloudBG-2.png" className='parallax cloud-bg-2'/>
       <CloudBG_1 src="/img/CloudBG-1.png" className='parallax cloud-bg-1'/>
         {/* Items/Characters */}
-      <JesusFlag src="/img/JesusFlag.png" className='parallax jesus-flag'/>
+      {/* <JesusFlag src="/img/JesusFlag.png" className='parallax jesus-flag'/> */}
+      <JesusFlag2 src="/img/JesusFlag.gif" className='parallax jesus-flag'/>
       <Pipe src="/img/Pipe.png" className='parallax pipe'/>
       <Haunter src="/img/Haunter.png" className='parallax haunter'/>
       <Boo src="/img/Boo.png" className='parallax boo'/>
