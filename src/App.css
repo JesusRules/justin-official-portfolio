@@ -42,7 +42,7 @@ body {
 
 .dove {
   position: absolute;
-  width: 130px;
+  width: 126px;
   top: calc(50% - 230px);
   left: calc(50% - 676px);
   /* top: 100px; */
@@ -115,7 +115,7 @@ body {
 .jesus-flag {
   position: absolute;
   width: 144px;
-  top: calc(50% + 129px);
+  top: calc(50% + 127px);
   left: calc(50% - 345px);
   /* top: 100px; */
   z-index: 9;
@@ -127,6 +127,16 @@ body {
   width: 151px;
   top: calc(50% + 140px);
   left: calc(50% + 460px);
+  /* top: 100px; */
+  z-index: 9;
+  transform: translate(-50%, -50%);
+}
+
+.haunter {
+  position: absolute;
+  width: 200px;
+  top: calc(50% - 110px);
+  left: calc(50% - 509px);
   /* top: 100px; */
   z-index: 9;
   transform: translate(-50%, -50%);
