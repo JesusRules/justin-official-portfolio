@@ -148,25 +148,26 @@ const Boo = styled.img`
 const Bernard_Txt = styled.img`
     position: absolute;
     width: 700px;
-    top: calc(50% - 65px);
+    /* top: calc(50% - 65px); */
     left: calc(50% + 0px);
-    /* top: 100px; */
+    top: 1200px;
     z-index: 13;
     @media only screen and (max-width: 700px) {
         width: 530px;
-        top: calc(50% - 118px);
+        top: 1200px;
+        /* top: calc(50% - 118px); */
     }
 `
-  
 const Justin_Txt = styled.img`
     position: absolute;
     width: 700px;
-    top: calc(50% - 208px);
+    /* top: calc(50% - 208px); */
     left: calc(50% + 0px);
-    /* top: 100px; */
+    top: -100px;
     z-index: 14;
     @media only screen and (max-width: 700px) {
-        top: calc(50% - 233px);
+        top: -100px;
+        /* top: calc(50% - 233px); */
         width: 530px;
     }
 `
@@ -422,17 +423,37 @@ function Hero() {
             ease: easeLoad
         }, startDelay);
         
-        gsap.to(bernardTxtRef.current, {
-            top: 'calc(50% - 65px)',
-            duration: durationLoad,
-            ease: easeLoad
-        }, startDelay);
-        
-        gsap.to(justinTxtRef.current, {
-            top: 'calc(50% - 208px)',
-            duration: durationLoad,
-            ease: easeLoad
-        }, startDelay);
+
+        // NAME BERNARD JUSTIN
+        if (window.innerWidth > 700) 
+        {
+            gsap.to(bernardTxtRef.current, {
+                top: 'calc(50% - 65px)',
+                duration: durationLoad,
+                ease: easeLoad
+            }, startDelay);
+            
+            gsap.to(justinTxtRef.current, {
+                top: 'calc(50% - 208px)',
+                duration: durationLoad,
+                ease: easeLoad
+            }, startDelay);
+        } 
+         else 
+        {
+            gsap.to(bernardTxtRef.current, {
+                top: 'calc(50% - 118px)',
+                duration: durationLoad,
+                ease: easeLoad
+            }, startDelay);
+
+            gsap.to(justinTxtRef.current, {
+                top: 'calc(50% - 233px)',
+                duration: durationLoad,
+                ease: easeLoad
+            }, startDelay);
+        }
+
         
         gsap.to(subtitleTxtRef.current, {
             duration: durationLoad,
@@ -499,6 +520,44 @@ function Hero() {
             duration: durationLoad,
             ease: easeLoad
         }, startDelay);
+      }
+
+      useEffect(() => {
+        window.addEventListener('resize', checkScreenSizesNames);
+        return () => {
+          window.removeEventListener('resize', checkScreenSizesNames);
+        };
+      }, []);
+
+      const checkScreenSizesNames = () => {
+        if (window.innerWidth > 700) 
+        {
+            gsap.to(bernardTxtRef.current, {
+                top: 'calc(50% - 65px)',
+                duration: durationLoad,
+                ease: easeLoad
+            }, startDelay);
+            
+            gsap.to(justinTxtRef.current, {
+                top: 'calc(50% - 208px)',
+                duration: durationLoad,
+                ease: easeLoad
+            }, startDelay);
+        } 
+         else 
+        {
+            gsap.to(bernardTxtRef.current, {
+                top: 'calc(50% - 118px)',
+                duration: durationLoad,
+                ease: easeLoad
+            }, startDelay);
+
+            gsap.to(justinTxtRef.current, {
+                top: 'calc(50% - 233px)',
+                duration: durationLoad,
+                ease: easeLoad
+            }, startDelay);
+        }
       }
 
     
