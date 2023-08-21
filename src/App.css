@@ -221,3 +221,23 @@ body {
   z-index: 19;
   transform: translate(-50%, -50%);
 }
+
+.mario {
+  position: absolute;
+  width: 180px;
+  top: calc(50% + 255px);
+  left: calc(50% - 182px);
+  /* top: 100px; */
+  z-index: 19;
+  transform: translate(-50%, -50%);
+}
+
+.mini-jesus {
+  position: absolute;
+  width: 233px;
+  top: calc(50% + 170px);
+  left: calc(50% + 163px);
+  /* top: 100px; */
+  z-index: 18;
+  transform: translate(-50%, -50%);
+}
