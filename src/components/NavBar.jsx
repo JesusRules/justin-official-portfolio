@@ -35,7 +35,7 @@ const MenuContainer = styled.div`
     transform: translateX(-50%);
     z-index: 9998;
     width: 270px;
-    height: 320px;
+    height: 400px;
     `
 const MenuImage = styled.img`
     width: inherit;
@@ -60,9 +60,9 @@ const MenuItems = styled.ul`
     a {
         font-weight:bold;
         color: #fff;
-        font-size: 1.4rem;
+        font-size: 1.5rem;
         text-decoration: none;
-        line-height: 2.3rem;
+        line-height: 2.6rem;
     }
 `
 
