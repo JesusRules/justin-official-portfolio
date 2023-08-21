@@ -1,4 +1,4 @@
-import React, { useState }from 'react'
+import React, { useState, useEffect }from 'react'
 import { styled } from 'styled-components'
 
 const Container = styled.div`
@@ -8,7 +8,19 @@ const Container = styled.div`
     left: 0;
     right: 0;
     z-index: 2;
-    `
+    transition: transform 0.3s ease, opacity 0.3s ease;
+
+    .visible {
+    transform: translateY(0);
+    opacity: 1;
+    }
+
+    .hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    }
+`
+
 const Image = styled.img`
     width: 100%;
     min-width: 1500px;
@@ -63,15 +75,40 @@ const MenuItems = styled.ul`
 `
 
 function NavBar() {
+    //FLAG
     const [menuEnabled, setMenuEnabled] = useState(false);
 
+    const [prevScrollPos, setPrevScrollPos] = useState(0);
+    const [visible, setVisible] = useState(true);
+
+      
+      useEffect(() => {
+        window.addEventListener('scroll', handleScroll, true);
+        // Remove the event listener
+        return () => {
+            window.removeEventListener('scroll', handleScroll, true);
+        };
+    }, [menuEnabled]);
+    
+
+    const handleScroll = () => {
+        const currentScrollPos = window.scrollY;
+    
+        setVisible((prevScrollPos > currentScrollPos && prevScrollPos - currentScrollPos > 70) || currentScrollPos < 10);
+
+        setMenuEnabled(false);
+    
+        setPrevScrollPos(currentScrollPos);
+    };
+
+      
     const handleClick = () => {
         setMenuEnabled(!menuEnabled);
     }
 
   return (
     <>
-    <Container>
+    <Container className={`nav ${visible ? 'visible' : 'hidden'}`}>
         <Image src="/img/NavBar.png" onClick={() => handleClick()}/>
     </Container>
 

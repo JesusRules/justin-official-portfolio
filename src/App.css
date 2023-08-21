@@ -10,6 +10,16 @@ body {
   font-family: "Mulish", 'sans-serif';
 }
 
+.nav.visible {
+  transform: translateY(0);
+  opacity: 1;
+  }
+
+.nav.hidden {
+transform: translateY(-100%);
+opacity: 0;
+}
+
 /* #root {
   max-width: 1280px;
   margin: 0 auto;
