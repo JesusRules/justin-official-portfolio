@@ -120,6 +120,10 @@ const JesusFlag2 = styled.img`
     /* top: 100px; */
     z-index: 9;
     transform: translate(-50%, -50%);
+    @media only screen and (max-width: 700px) {
+        left: calc(50% - 340px + 135px);
+        top: calc(50% + 102px + 10px);
+    }
 `
   
 const Pipe = styled.img`
@@ -155,7 +159,7 @@ const Boo = styled.img`
 const Bernard_Txt = styled.img`
     position: absolute;
     width: 700px;
-    top: calc(50% - 60px);
+    top: calc(50% - 65px);
     left: calc(50% + 0px);
     /* top: 100px; */
     z-index: 13;
@@ -169,7 +173,7 @@ const Bernard_Txt = styled.img`
 const Justin_Txt = styled.img`
     position: absolute;
     width: 700px;
-    top: calc(50% - 203px);
+    top: calc(50% - 208px);
     left: calc(50% + 0px);
     /* top: 100px; */
     z-index: 14;
@@ -190,6 +194,7 @@ const HelloKitty = styled.img`
     transform: translate(-50%, -50%);
     @media only screen and (max-width: 700px) {
         left: calc(50% - 495px + 290px);
+        display: none;
     }
 `
   
@@ -203,6 +208,7 @@ const Toad = styled.img`
     transform: translate(-50%, -50%);
     @media only screen and (max-width: 700px) {
         left: calc(50% + 383px - 160px);
+        display: none;
     }
 `
   
@@ -216,6 +222,7 @@ const Kart = styled.img`
     transform: translate(-50%, -50%);
     @media only screen and (max-width: 700px) {
         left: calc(50% - 420px + 240px);
+        display: none;
     }
 `
   
@@ -228,7 +235,7 @@ const Joy = styled.img`
     z-index: 18;
     transform: translate(-50%, -50%);
     @media only screen and (max-width: 700px) {
-        left: calc(50% + 291px - 120px);
+        left: calc(50% + 291px - 100px);
     }
 `
   
@@ -241,7 +248,7 @@ const Pikachu = styled.img`
     z-index: 19;
     transform: translate(-50%, -50%);
     @media only screen and (max-width: 700px) {
-        left: calc(50% - 269px + 130px);
+        left: calc(50% - 269px + 115px);
     }
 `
   
@@ -254,7 +261,7 @@ const Mario = styled.img`
     z-index: 20;
     transform: translate(-50%, -50%);
     @media only screen and (max-width: 700px) {
-        left: calc(50% - 165px + 65px);
+        left: calc(50% - 165px + 60px);
     }
 `
   
