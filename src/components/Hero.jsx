@@ -6,6 +6,7 @@ const Container = styled.div`
     background-color: #dff8e3;
     height: 100vh;
     scroll-snap-align: start;
+    overflow: hidden;
 `
 
 /* HERO LAYERS */
@@ -13,8 +14,9 @@ const Sky = styled.img`
     object-fit: cover;
     position: absolute;
     /* width: 1920px; */
-    width: 2500px;
-    height: 100%;
+    /* width: 2500px; */
+    /* width: 3200px; */
+    height: 1320px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -299,17 +301,13 @@ const Vignette = styled.div`
 
 function Hero() {
 
-    const parallex_el = document.querySelectorAll(".parallax");
+    let parallex_el;
 
     let xValue = 0, yValue = 0;
     let rotateDegree = 0;
 
-    const handleMouseMove = (event) => {
-        xValue = event.clientX - innerWidth / 2;
-        yValue = event.clientY - innerHeight / 2;
-
-        rotateDegree = (xValue / (innerWidth / 2)) * 20;
-        console.log(rotateDegree);
+    const update = (cursorPosition) => {
+        parallex_el = document.querySelectorAll(".parallax");
 
         parallex_el.forEach(el => {
             let speedx = el.dataset.speedx;
@@ -318,21 +316,34 @@ function Hero() {
             let rotateSpeed = el.dataset.rotation;
 
             let isInLeft = parseFloat(getComputedStyle(el).left) < innerWidth / 2 ? 1 : -1;
-            let zValue = (event.clientX - parseFloat(getComputedStyle(el).left)) * isInLeft * 0.1;
+            let zValue = (cursorPosition - parseFloat(getComputedStyle(el).left)) * isInLeft * 0.1;
 
             el.style.transform = `translateX(calc(-50% + ${-xValue * speedx / 1}px)) translateY(calc(-50% + ${yValue * speedy}px)) perspective(2300px) translateZ(${zValue * speedz}px) rotateY(${rotateDegree * rotateSpeed}deg)`;
         })
     }
 
     useEffect(() => {
+        
+        scrollTo(0, 0);
+        update(0);
         // Add event listener when the component mounts
         document.addEventListener('mousemove', handleMouseMove);
-    
         // Clean up by removing event listener when the component unmounts
         return () => {
-          document.removeEventListener('mousemove', handleMouseMove);
+            document.removeEventListener('mousemove', handleMouseMove);
         };
-      }, []); // Empty dependency array means this effect runs once on mount
+      }, []);
+
+    
+    const handleMouseMove = (event) => {
+        xValue = event.clientX - innerWidth / 2;
+        yValue = event.clientY - innerHeight / 2;
+        
+        rotateDegree = (xValue / (innerWidth / 2)) * 20;
+        
+        update(event.clientX);
+    }
+    
     
 
   return (
@@ -362,11 +373,12 @@ function Hero() {
       <img src="/img/Pikachu.png" className='parallax pikachu'/>
       <img src="/img/Mario.png" className='parallax mario'/>
       <img src="/img/MiniJesus.png" className='parallax mini-jesus'/>
-      <img src="/img/Justin.png" className='parallax justin'/> */}
+    <img src="/img/Justin.png" className='parallax justin'/> */}
 
       {/* <Vignette /> */}
+    <HeroText>Passionate. Professional. Reliable.</HeroText>
 
-      <Sky src="/img/Sky.png" data-speedx="0.3" data-speedy="0.37" data-speedz="0" data-rotation="0" className='parallax bg-img'/>
+      <Sky src="/img/Sky.png" data-speedx="0.33" data-speedy="0.33" data-speedz="0" data-rotation="0" className='parallax bg-img'/>
       {/* <Dove src="/img/Dove.png" className='parallax dove'/> */}
       {/* <Dove2 src="/img/Dove.gif" className='parallax dove'/> */}
       {/* Cloud Main */}
@@ -396,7 +408,6 @@ function Hero() {
       <MiniJesus src="/img/MiniJesus.png" data-speedx="0.03" data-speedy="0.03" data-speedz="0.45" data-rotation="0.175" className='parallax mini-jesus'/>
       <Justin src="/img/Justin.png" data-speedx="0.01" data-speedy="0.02" data-speedz="0.53" data-rotation="0.2" className='parallax justin'/>
 
-      <HeroText>Passionate. Professional. Reliable.</HeroText>
 
     </Container>
   )
