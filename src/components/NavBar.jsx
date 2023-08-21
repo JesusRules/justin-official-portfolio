@@ -30,7 +30,7 @@ const DarkBG = styled.div`
 
 const MenuContainer = styled.div`
     position: fixed;
-    top: 40px;
+    top: 32px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 9998;

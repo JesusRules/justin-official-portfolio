@@ -136,21 +136,29 @@ const Boo = styled.img`
 const Bernard_Txt = styled.img`
     position: absolute;
     width: 730px;
-    top: calc(50% - 75px);
+    top: calc(50% - 70px);
     left: calc(50% + 0px);
     /* top: 100px; */
     z-index: 13;
     transform: translate(-50%, -50%);
+    @media only screen and (max-width: 700px) {
+        width: 530px;
+        top: calc(50% - 118px);
+    }
 `
   
 const Justin_Txt = styled.img`
     position: absolute;
     width: 730px;
-    top: calc(50% - 228px);
+    top: calc(50% - 223px);
     left: calc(50% + 0px);
     /* top: 100px; */
     z-index: 14;
     transform: translate(-50%, -50%);
+    @media only screen and (max-width: 700px) {
+        top: calc(50% - 233px);
+        width: 530px;
+    }
 `
   
 const HelloKitty = styled.img`
@@ -211,6 +219,8 @@ const Mario = styled.img`
     /* top: 100px; */
     z-index: 20;
     transform: translate(-50%, -50%);
+    @media only screen and (max-width: 700px) {
+    }
 `
   
 const MiniJesus = styled.img`
@@ -221,6 +231,8 @@ const MiniJesus = styled.img`
     /* top: 100px; */
     z-index: 21;
     transform: translate(-50%, -50%);
+    @media only screen and (max-width: 700px) {
+    }
 `
   
 const Justin = styled.img`
@@ -232,6 +244,34 @@ const Justin = styled.img`
     z-index: 22;
     transform: translate(-50%, -50%);
 `    
+
+const HeroText = styled.h1`
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    color: #520000;
+    z-index: 1000;
+    font-size: 33px;
+    font-family: "myriad-pro", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    top: 9rem;
+    @media only screen and (max-width: 700px) {
+        font-size: 28px;
+    }
+`
+
+const Vignette = styled.div`
+    position: absolute;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0) 65%, rgba(255, 255, 255, 0.7));
+    pointer-events: none;
+}
+`
 
 function Hero() {
   return (
@@ -263,6 +303,8 @@ function Hero() {
       <img src="/img/MiniJesus.png" className='parallax mini-jesus'/>
       <img src="/img/Justin.png" className='parallax justin'/> */}
 
+      {/* <Vignette /> */}
+
       <Sky src="/img/Sky.png" className='parallax bg-img'/>
       <Dove src="/img/Dove.png" className='parallax dove'/>
       {/* Cloud Main */}
@@ -288,6 +330,8 @@ function Hero() {
       <Mario src="/img/Mario.png" className='parallax mario'/>
       <MiniJesus src="/img/MiniJesus.png" className='parallax mini-jesus'/>
       <Justin src="/img/Justin.png" className='parallax justin'/>
+
+      <HeroText>Passionate. Professional. Reliable.</HeroText>
 
     </Container>
   )
