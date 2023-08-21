@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { styled } from 'styled-components'
+import gsap from 'gsap';
 
 const Container = styled.div`
     position: relative;
@@ -17,7 +18,8 @@ const Sky = styled.img`
     /* width: 2500px; */
     /* width: 3200px; */
     height: 1420px;
-    top: 50%;
+    /* top: 50%; */
+    top: 2000px;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: red;
@@ -303,9 +305,12 @@ const Vignette = styled.div`
 
 function Hero() {
     let parallex_el;
-
     let xValue = 0, yValue = 0;
     let rotateDegree = 0;
+    //refs
+    const skyRef = useRef(null);
+    const durationLoad = 2.5;
+    const easeLoad = "power3.out";
 
     const update = (cursorPosition) => {
         parallex_el = document.querySelectorAll(".parallax");
@@ -324,9 +329,9 @@ function Hero() {
     }
 
     useEffect(() => {
-        
         scrollTo(0, 0);
         update(0);
+        gsapBeginning();
         // Add event listener when the component mounts
         document.addEventListener('mousemove', handleMouseMove);
         // Clean up by removing event listener when the component unmounts
@@ -334,6 +339,16 @@ function Hero() {
             document.removeEventListener('mousemove', handleMouseMove);
         };
       }, []);
+
+      const gsapBeginning = () => {
+        const element = skyRef.current;
+
+        gsap.to(element, {
+        top: '50%',
+        duration: durationLoad,
+        ease: easeLoad
+        }, 0);
+      }
 
     
     const handleMouseMove = (event) => {
@@ -379,7 +394,7 @@ function Hero() {
       {/* <Vignette /> */}
     <HeroText>Passionate. Professional. Reliable.</HeroText>
 
-      <Sky src="/img/Sky.png" data-speedx="0.33" data-speedy="0.33" data-speedz="0" data-rotation="0" className='parallax bg-img'/>
+      <Sky ref={skyRef} src="/img/Sky.png" data-speedx="0.33" data-speedy="0.33" data-speedz="0" data-rotation="0" className='parallax bg-img'/>
       {/* <Dove src="/img/Dove.png" className='parallax dove'/> */}
       {/* <Dove2 src="/img/Dove.gif" className='parallax dove'/> */}
       {/* Cloud Main */}

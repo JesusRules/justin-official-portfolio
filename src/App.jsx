@@ -18,6 +18,7 @@ const Container = styled.div`
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
   overflow-y: auto; 
+  overflow-x: hidden;
   background-color: lightblue;
   place-items: center;
   position: relative;
