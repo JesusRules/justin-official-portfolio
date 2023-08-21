@@ -116,7 +116,7 @@ const JesusFlag2 = styled.img`
     position: absolute;
     width: 360px;
     top: calc(50% + 102px);
-    left: calc(50% - 350px);
+    left: calc(50% - 340px);
     /* top: 100px; */
     z-index: 9;
     transform: translate(-50%, -50%);
@@ -126,7 +126,7 @@ const Pipe = styled.img`
     position: absolute;
     width: 124px;
     top: calc(50% + 140px);
-    left: calc(50% + 443px);
+    left: calc(50% + 433px);
     /* top: 100px; */
     z-index: 10;
     transform: translate(-50%, -50%);
@@ -134,7 +134,7 @@ const Pipe = styled.img`
   
 const Haunter = styled.img`
     position: absolute;
-    width: 179px;
+    width: 169px;
     top: calc(50% - 110px);
     left: calc(50% - 509px);
     /* top: 100px; */
@@ -144,7 +144,7 @@ const Haunter = styled.img`
   
 const Boo = styled.img`
     position: absolute;
-    width: 99px;
+    width: 89px;
     top: calc(50% - 122px);
     left: calc(50% + 485px);
     /* top: 100px; */
@@ -184,7 +184,7 @@ const HelloKitty = styled.img`
     position: absolute;
     width: 120px;
     top: calc(50% + 150px);
-    left: calc(50% - 495px);
+    left: calc(50% - 485px);
     /* top: 100px; */
     z-index: 15;
     transform: translate(-50%, -50%);
@@ -197,7 +197,7 @@ const Toad = styled.img`
     position: absolute;
     width: 122px;
     top: calc(50% + 180px);
-    left: calc(50% + 383px);
+    left: calc(50% + 373px);
     /* top: 100px; */
     z-index: 16;
     transform: translate(-50%, -50%);
@@ -210,7 +210,7 @@ const Kart = styled.img`
     position: absolute;
     width: 271px;
     top: calc(50% + 218px);
-    left: calc(50% - 420px);
+    left: calc(50% - 410px);
     /* top: 100px; */
     z-index: 17;
     transform: translate(-50%, -50%);
@@ -223,7 +223,7 @@ const Joy = styled.img`
     position: absolute;
     width: 122px;
     top: calc(50% + 232px);
-    left: calc(50% + 291px);
+    left: calc(50% + 281px);
     /* top: 100px; */
     z-index: 18;
     transform: translate(-50%, -50%);
@@ -236,7 +236,7 @@ const Pikachu = styled.img`
     position: absolute;
     width: 153px;
     top: calc(50% + 235px);
-    left: calc(50% - 269px);
+    left: calc(50% - 259px);
     /* top: 100px; */
     z-index: 19;
     transform: translate(-50%, -50%);
@@ -249,7 +249,7 @@ const Mario = styled.img`
     position: absolute;
     width: 153px;
     top: calc(50% + 255px);
-    left: calc(50% - 165px);
+    left: calc(50% - 155px);
     /* top: 100px; */
     z-index: 20;
     transform: translate(-50%, -50%);
@@ -262,7 +262,7 @@ const MiniJesus = styled.img`
     position: absolute;
     width: 206px;
     top: calc(50% + 170px);
-    left: calc(50% + 183px);
+    left: calc(50% + 173px);
     /* top: 100px; */
     z-index: 21;
     transform: translate(-50%, -50%);
@@ -284,7 +284,7 @@ const Justin = styled.img`
 const HeroText = styled.h1`
     width: 100%;
     text-align: center;
-    position: absolute;
+    position: relative;
     color: #520000;
     z-index: 1000;
     font-size: 33px;
@@ -343,7 +343,7 @@ function Hero() {
 
       <Sky src="/img/Sky.png" className='parallax bg-img'/>
       {/* <Dove src="/img/Dove.png" className='parallax dove'/> */}
-      <Dove2 src="/img/Dove.gif" className='parallax dove'/>
+      {/* <Dove2 src="/img/Dove.gif" className='parallax dove'/> */}
       {/* Cloud Main */}
       <CloudMain_Back src="/img/CloudMain-Back.png" className='parallax cloud-main-back'/>
       <CloudMain_Front src="/img/CloudMain-Front.png" className='parallax cloud-main-front'/>
