@@ -36,6 +36,9 @@
 }
 
 
+
+
+
 /* LOGOS OF PROFICIENCIES */
 
 @keyframes slideLeft {
@@ -92,7 +95,7 @@
 
 .logos:hover .logos-slide,
 .logos-2:hover .logos-slide-2 {
-  animation-play-state: paused;
+  /* animation-play-state: paused; */
 }
 
 .logos-slide,
@@ -102,7 +105,8 @@
 }
 
 .logos-slide img,
-.logos-slide-2 img {
+.logos-slide-2 img,
+.image-slider img {
   height: 50px;
   margin: 0 40px;
 }
@@ -113,6 +117,7 @@
 .logos-slide-opposite-2 {
   animation: 32s slideRight2 infinite linear;
 }
+
 .logos-opposite {
   /* idk */
   overflow: hidden;
@@ -154,56 +159,4 @@
 .logos-slide-opposite {
   display: inline-block;
   animation: 32s slideRight infinite linear;
-}
-
-/* Carousel.css */
-.carousel-container {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-}
-
-.carousel-track {
-  display: flex;
-  animation: scrollAnimation 20s linear infinite; /* Adjust animation duration as needed */
-}
-
-.carousel-item {
-  flex: 0 0 100%; /* Adjust the width as needed */
-  padding: 0 10px;
-}
-
-@keyframes scrollAnimation {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
-
-
-
-
-
-.slider-container {
-  width: 300px;
-  overflow: hidden;
-  position: relative;
-}
-
-.slider-track {
-  display: flex;
-  width: fit-content;
-  transition: transform 0.3s ease;
-}
-
-.slider-track img {
-  width: 300px;
-  height: 200px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: lightgray;
-  font-size: 24px;
 }

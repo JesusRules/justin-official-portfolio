@@ -1,6 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { styled } from 'styled-components'
 import '../App.css'
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 const Container = styled.div`
     background-color: #ceeeff;
@@ -36,37 +39,56 @@ function Skills() {
 }
 
 function InfiniteScrollerApps() {
-    // const sliderItems = document.querySelectorAll('.slider-item');
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const sliderItemsRef = useRef([]);
-    const sliderTrackRef = useRef(null);
-    const itemWidth = sliderTrackRef.current ? sliderTrackRef.current.offsetWidth : 0;
-    let startPosX = 0;
-    let deltaX = 0;
-    let isDragging = false;
+    // const settings = {
+    //     dots: false,
+    //     infinite: true,
+    //     speed: 500,
+    //     slidesToShow: 3,
+    //     slidesToScroll: 1,
+    //     autoplay: true,
+    //     autoplaySpeed: 1, 
+    //     easing: 'ease-in-out',
+    //   };
+
+    const logosSlideRef = useRef(null);
+    const [isDraggable, setIsDraggable] = useState(false);
 
     useEffect(() => {
-        sliderItemsRef.current = Array.from(document.querySelectorAll('.slider-item'));
         // var copy = document.querySelector(".logos-slide").cloneNode(true);
         // document.querySelector('.logos').appendChild(copy);
     }, [])
 
-    const updateSliderPosition = () => {
-        const position = -currentIndex * itemWidth;
-        sliderTrackRef.current.style.transform = `translateX(${position}px)`;
-    };
-
-    const loopSlider = () => {
-        setCurrentIndex((currentIndex + 1) % sliderItemsRef.current.length);
-        updateSliderPosition();
-    };
+    const mouseDown = () => {
+        setIsDraggable(true);
+    }
     
-    
+    const mouseUp = () => {
+        setIsDraggable(false);
+    }
 
- 
+    const mouseMove = (event) => {
+        if (isDraggable) {
+            console.log('Mouse moved:', event.clientX, event.clientY);
+        }
+    }
+
+
+
+    useEffect(() => {
+        if (isDraggable) {
+            logosSlideRef.current.style.animationPlayState = "paused";
+        }
+        if (!isDraggable) {
+            logosSlideRef.current.style.animationPlayState = "running";
+        }
+    }, [isDraggable])
+    
     return (
-        <div className='slider-container'>
-            <div className='slider-track' ref={sliderTrackRef} >
+        <div className='logos' 
+            onMouseDown={mouseDown}
+            onMouseUp={mouseUp}
+            onMouseMove={mouseMove} >
+            <div className='logos-slide' ref={logosSlideRef}>
                 <img src="/logos/app-development/adobe-xd.png" />
                 <img src="/logos/app-development/amplify.png" />
                 <img src="/logos/app-development/android-studio.jpg" />
@@ -96,7 +118,7 @@ function InfiniteScrollerApps() {
                 <img src="/logos/app-development/vercel.jpg" />
                 <img src="/logos/app-development/vite.jpg" />
             </div>
-        </div>
+    </div>
     )
 }
 
