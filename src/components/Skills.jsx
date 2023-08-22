@@ -15,4 +15,14 @@ function Skills() {
   )
 }
 
+function InfiniteScroller() {
+    return (
+        <div className='logos'>
+            <div className='logos-slide'>
+                
+            </div>
+        </div>
+    )
+}
+
 export default Skills
