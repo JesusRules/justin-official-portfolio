@@ -309,14 +309,17 @@ const Vignette = styled.div`
 `
 
 function Hero({ scrollYGlobal }) { 
+    // PARALLAX VARS
     let parallex_el;
     let xValue = 0, yValue = 0;
     let rotateDegree = 0;
-    //refs
+    
+    //TRANSFROM BEGINNING
     const durationLoad = 2.5;
     const startDelay = 1;
     const easeLoad = "power3.out";
 
+    // ALL OBJECT REFS
     const skyRef = useRef(null);
     const cloudMainBackRef = useRef(null);
     const cloudMainFrontRef = useRef(null);
@@ -339,6 +342,21 @@ function Hero({ scrollYGlobal }) {
     const marioRef = useRef(null);
     const miniJesusRef = useRef(null);
     const justinRef = useRef(null);
+
+    // INITIAL POSITIONS
+    const [scrollY, setScrollY] = useState(0);
+    const [justinPos, setJustinPos] = useState();
+    const [miniJesusPos, setMiniJesusPos] = useState();
+    const [pikachuPos, setPikachuPos] = useState();
+    const [marioPos, setMarioPos] = useState();
+    const [toadPos, setToadPos] = useState();
+    const [joyPos, setJoyPos] = useState();
+    const [kartPos, setKartPos] = useState();
+    const [flagPos, setFlagPos] = useState();
+    const [helloKittyPos, setHelloKittyPos] = useState();
+    const [pipePos, setPipePos] = useState();
+    const [haunterPos, setHaunterPos] = useState();
+    const [booPos, setBooPos] = useState();
 
     const update = (cursorPosition) => {
         parallex_el = document.querySelectorAll(".parallax");
@@ -573,14 +591,21 @@ function Hero({ scrollYGlobal }) {
         }
       }
 
-      const [justinPos, setJustinPos] = useState();
-      const [miniJesusPos, setMiniJesusPos] = useState();
-      const [scrollY, setScrollY] = useState(0);
 
       
       useEffect(() => {
             setJustinPos(window.getComputedStyle(justinRef.current).getPropertyValue('left'));
             setMiniJesusPos(window.getComputedStyle(miniJesusRef.current).getPropertyValue('left'));
+            setMarioPos(window.getComputedStyle(marioRef.current).getPropertyValue('left'));
+            setPikachuPos(window.getComputedStyle(pikachuRef.current).getPropertyValue('left'));
+            setJoyPos(window.getComputedStyle(joyRef.current).getPropertyValue('left'));
+            setKartPos(window.getComputedStyle(kartRef.current).getPropertyValue('left'));
+            setToadPos(window.getComputedStyle(toadRef.current).getPropertyValue('left'));
+            setPipePos(window.getComputedStyle(pipeRef.current).getPropertyValue('left'));
+            setHelloKittyPos(window.getComputedStyle(helloKittyRef.current).getPropertyValue('left'));
+            setFlagPos(window.getComputedStyle(jesusFlagRef.current).getPropertyValue('left'));
+            setHaunterPos(window.getComputedStyle(haunterRef.current).getPropertyValue('left'));
+            setBooPos(window.getComputedStyle(booRef.current).getPropertyValue('left'));
         }, [])
 
 
@@ -596,10 +621,30 @@ function Hero({ scrollYGlobal }) {
         if (currentScrollY > scrollY) { //down
             justinRef.current.style.left = parseFloat(justinPos) + scrollYGlobal * -1 + 'px';
             miniJesusRef.current.style.left = parseFloat(miniJesusPos) + scrollYGlobal * 1 + 'px';
+            marioRef.current.style.left = parseFloat(marioPos) + scrollYGlobal * 1 + 'px';
+            pikachuRef.current.style.left = parseFloat(pikachuPos) + scrollYGlobal * 1 + 'px';
+            joyRef.current.style.left = parseFloat(joyPos) + scrollYGlobal * -1 + 'px';
+            kartRef.current.style.left = parseFloat(kartPos) + scrollYGlobal * -1 + 'px';
+            toadRef.current.style.left = parseFloat(toadPos) + scrollYGlobal * 1 + 'px';
+            pipeRef.current.style.left = parseFloat(pipePos) + scrollYGlobal * 1 + 'px';
+            helloKittyRef.current.style.left = parseFloat(helloKittyPos) + scrollYGlobal * 1 + 'px';
+            jesusFlagRef.current.style.left = parseFloat(flagPos) + scrollYGlobal * 1 + 'px';
+            haunterRef.current.style.left = parseFloat(haunterPos) + scrollYGlobal * 1 + 'px';
+            booRef.current.style.left = parseFloat(booPos) + scrollYGlobal * 1 + 'px';
         }
          else if (currentScrollY < scrollY && scrollYGlobal < '600') { //up
             justinRef.current.style.left = "";
             miniJesusRef.current.style.left = "";
+            marioRef.current.style.left = "";
+            pikachuRef.current.style.left = "";
+            joyRef.current.style.left = "";
+            kartRef.current.style.left = "";
+            toadRef.current.style.left = "";
+            pipeRef.current.style.left = "";
+            helloKittyRef.current.style.left = "";
+            jesusFlagRef.current.style.left = "";
+            haunterRef.current.style.left = "";
+            booRef.current.style.left = "";
         }
 
         setScrollY(currentScrollY);
