@@ -95,7 +95,7 @@
 
 .logos:hover .logos-slide,
 .logos-2:hover .logos-slide-2 {
-  /* animation-play-state: paused; */
+  animation-play-state: paused;
 }
 
 .logos-slide,
@@ -109,6 +109,7 @@
 .image-slider img {
   height: 50px;
   margin: 0 40px;
+  user-select: none;
 }
 
 

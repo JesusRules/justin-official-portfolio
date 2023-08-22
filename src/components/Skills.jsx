@@ -50,45 +50,14 @@ function InfiniteScrollerApps() {
     //     easing: 'ease-in-out',
     //   };
 
-    const logosSlideRef = useRef(null);
-    const [isDraggable, setIsDraggable] = useState(false);
-
     useEffect(() => {
-        // var copy = document.querySelector(".logos-slide").cloneNode(true);
-        // document.querySelector('.logos').appendChild(copy);
+        var copy = document.querySelector(".logos-slide").cloneNode(true);
+        document.querySelector('.logos').appendChild(copy);
     }, [])
 
-    const mouseDown = () => {
-        setIsDraggable(true);
-    }
-    
-    const mouseUp = () => {
-        setIsDraggable(false);
-    }
-
-    const mouseMove = (event) => {
-        if (isDraggable) {
-            console.log('Mouse moved:', event.clientX, event.clientY);
-        }
-    }
-
-
-
-    useEffect(() => {
-        if (isDraggable) {
-            logosSlideRef.current.style.animationPlayState = "paused";
-        }
-        if (!isDraggable) {
-            logosSlideRef.current.style.animationPlayState = "running";
-        }
-    }, [isDraggable])
-    
     return (
-        <div className='logos' 
-            onMouseDown={mouseDown}
-            onMouseUp={mouseUp}
-            onMouseMove={mouseMove} >
-            <div className='logos-slide' ref={logosSlideRef}>
+        <div className='logos' >
+            <div className='logos-slide'>
                 <img src="/logos/app-development/adobe-xd.png" />
                 <img src="/logos/app-development/amplify.png" />
                 <img src="/logos/app-development/android-studio.jpg" />
