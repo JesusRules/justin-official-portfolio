@@ -4,7 +4,7 @@ import { styled } from 'styled-components'
 const Container = styled.div`
     display: flex;
     justify-content: center;
-    position: absolute;
+    position: fixed;
     left: 0;
     right: 0;
     z-index: 9999;
@@ -65,21 +65,25 @@ const MenuItems = styled.ul`
     }
 `
 
-function NavBar() {
+function NavBar({ scrollYGlobal }) {
     //FLAG
     const [menuEnabled, setMenuEnabled] = useState(false);
     const [prevScrollPos, setPrevScrollPos] = useState(0);
     const [visible, setVisible] = useState(true);
 
+
+    useEffect(() => {
+        handleScroll();
+    }, [scrollYGlobal])
       
     const handleScroll = () => {
-        const currentScrollPos = window.scrollY;
+        const currentScrollPos = scrollYGlobal;
         // setVisible(prevScrollPos > currentScrollPos || currentScrollPos < 10); //GOOD
         
         if (prevScrollPos > currentScrollPos) {
             // UP
             setVisible(true);
-        } else {
+        } else if (prevScrollPos < currentScrollPos) {
             // DON
             setMenuEnabled(false);
             setVisible(false);
@@ -87,15 +91,6 @@ function NavBar() {
 
         setPrevScrollPos(currentScrollPos);
     };
-    
-
-    useEffect(() => {
-        window.addEventListener('scroll', handleScroll);
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, [prevScrollPos]);
-
       
     const handleClick = () => {
         setMenuEnabled(!menuEnabled);

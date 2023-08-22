@@ -34,7 +34,7 @@ function App() {
 
   return (
     <Container onScroll={handleScroll}>
-      <NavBar />
+      <NavBar scrollYGlobal={scrollY} />
       <Hero scrollYGlobal={scrollY} />
       <Skills />
       <Who />

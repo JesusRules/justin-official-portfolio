@@ -621,7 +621,7 @@ function Hero({ scrollYGlobal }) {
         if (currentScrollY > scrollY) { //down
             justinRef.current.style.left = parseFloat(justinPos) + scrollYGlobal * -1 + 'px';
             miniJesusRef.current.style.left = parseFloat(miniJesusPos) + scrollYGlobal * 1 + 'px';
-            marioRef.current.style.left = parseFloat(marioPos) + scrollYGlobal * 1 + 'px';
+            marioRef.current.style.left = parseFloat(marioPos) + scrollYGlobal * -1 + 'px';
             pikachuRef.current.style.left = parseFloat(pikachuPos) + scrollYGlobal * 1 + 'px';
             joyRef.current.style.left = parseFloat(joyPos) + scrollYGlobal * -1 + 'px';
             kartRef.current.style.left = parseFloat(kartPos) + scrollYGlobal * -1 + 'px';
@@ -629,7 +629,7 @@ function Hero({ scrollYGlobal }) {
             pipeRef.current.style.left = parseFloat(pipePos) + scrollYGlobal * 1 + 'px';
             helloKittyRef.current.style.left = parseFloat(helloKittyPos) + scrollYGlobal * 1 + 'px';
             jesusFlagRef.current.style.left = parseFloat(flagPos) + scrollYGlobal * 1 + 'px';
-            haunterRef.current.style.left = parseFloat(haunterPos) + scrollYGlobal * 1 + 'px';
+            haunterRef.current.style.left = parseFloat(haunterPos) + scrollYGlobal * -1 + 'px';
             booRef.current.style.left = parseFloat(booPos) + scrollYGlobal * 1 + 'px';
         }
          else if (currentScrollY < scrollY && scrollYGlobal < '600') { //up
