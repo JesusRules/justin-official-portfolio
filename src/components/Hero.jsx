@@ -150,11 +150,11 @@ const Bernard_Txt = styled.img`
     width: 700px;
     /* top: calc(50% - 65px); */
     left: calc(50% + 0px);
-    top: 1200px;
+    top: 1400px;
     z-index: 13;
     @media only screen and (max-width: 700px) {
         width: 530px;
-        top: 1200px;
+        top: 1400px;
         /* top: calc(50% - 118px); */
     }
 `
@@ -163,10 +163,12 @@ const Justin_Txt = styled.img`
     width: 700px;
     /* top: calc(50% - 208px); */
     left: calc(50% + 0px);
-    top: -100px;
+    /* top: -100px; */
+    top: 1200px;
     z-index: 14;
     @media only screen and (max-width: 700px) {
-        top: -100px;
+        /* top: -100px; */
+        top: 1200px;
         /* top: calc(50% - 233px); */
         width: 530px;
     }

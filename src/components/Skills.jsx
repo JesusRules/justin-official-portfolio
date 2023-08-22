@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { styled } from 'styled-components'
 import '../App.css'
 
@@ -29,21 +29,44 @@ function Skills() {
       <Title>I have a long list of technologies I've used over the years!</Title>
       <Subtitle>Check them out!</Subtitle>
       <InfiniteScrollerApps />
-      <InfiniteScrollerLanguages />
-      <InfiniteScrollerMedia />
+      {/* <InfiniteScrollerLanguages /> */}
+      {/* <InfiniteScrollerMedia /> */}
     </Container>
   )
 }
 
 function InfiniteScrollerApps() {
+    // const sliderItems = document.querySelectorAll('.slider-item');
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const sliderItemsRef = useRef([]);
+    const sliderTrackRef = useRef(null);
+    const itemWidth = sliderTrackRef.current ? sliderTrackRef.current.offsetWidth : 0;
+    let startPosX = 0;
+    let deltaX = 0;
+    let isDragging = false;
+
     useEffect(() => {
-        var copy = document.querySelector(".logos-slide").cloneNode(true);
-        document.querySelector('.logos').appendChild(copy);
+        sliderItemsRef.current = Array.from(document.querySelectorAll('.slider-item'));
+        // var copy = document.querySelector(".logos-slide").cloneNode(true);
+        // document.querySelector('.logos').appendChild(copy);
     }, [])
 
+    const updateSliderPosition = () => {
+        const position = -currentIndex * itemWidth;
+        sliderTrackRef.current.style.transform = `translateX(${position}px)`;
+    };
+
+    const loopSlider = () => {
+        setCurrentIndex((currentIndex + 1) % sliderItemsRef.current.length);
+        updateSliderPosition();
+    };
+    
+    
+
+ 
     return (
-        <div className='logos'>
-            <div className='logos-slide'>
+        <div className='slider-container'>
+            <div className='slider-track' ref={sliderTrackRef} >
                 <img src="/logos/app-development/adobe-xd.png" />
                 <img src="/logos/app-development/amplify.png" />
                 <img src="/logos/app-development/android-studio.jpg" />
