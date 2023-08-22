@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { styled } from 'styled-components'
 import gsap from 'gsap';
 
@@ -6,7 +6,7 @@ const Container = styled.div`
     position: relative;
     background-color: #a7e6ff;
     height: 100vh;
-    scroll-snap-align: start;
+    scroll-snap-align: center;
     overflow: hidden;
 `
 
@@ -308,7 +308,7 @@ const Vignette = styled.div`
     pointer-events: none;
 `
 
-function Hero() {
+function Hero({ scrollYGlobal }) { 
     let parallex_el;
     let xValue = 0, yValue = 0;
     let rotateDegree = 0;
@@ -367,6 +367,15 @@ function Hero() {
             document.removeEventListener('mousemove', handleMouseMove);
         };
       }, []);
+
+      const handleMouseMove = (event) => {
+        xValue = event.clientX - innerWidth / 2;
+        yValue = event.clientY - innerHeight / 2;
+        
+        rotateDegree = (xValue / (innerWidth / 2)) * 20;
+            
+        update(event.clientX);
+    }
 
       const gsapBeginning = () => {
         gsap.to(skyRef.current, {
@@ -522,6 +531,8 @@ function Hero() {
         }, startDelay);
       }
 
+
+      // RESIZING NAMES
       useEffect(() => {
         window.addEventListener('resize', checkScreenSizesNames);
         return () => {
@@ -530,6 +541,8 @@ function Hero() {
       }, []);
 
       const checkScreenSizesNames = () => {
+        justinRef.current.style.left = "";
+
         if (window.innerWidth > 700) 
         {
             gsap.to(bernardTxtRef.current, {
@@ -560,21 +573,44 @@ function Hero() {
         }
       }
 
-    
-    const handleMouseMove = (event) => {
-        xValue = event.clientX - innerWidth / 2;
-        yValue = event.clientY - innerHeight / 2;
+      const [justinPos, setJustinPos] = useState();
+      const [miniJesusPos, setMiniJesusPos] = useState();
+      const [scrollY, setScrollY] = useState(0);
+
+      
+      useEffect(() => {
+            setJustinPos(window.getComputedStyle(justinRef.current).getPropertyValue('left'));
+            setMiniJesusPos(window.getComputedStyle(miniJesusRef.current).getPropertyValue('left'));
+        }, [])
+
+
         
-        rotateDegree = (xValue / (innerWidth / 2)) * 20;
-        
-        update(event.clientX);
-    }
-    
-    
+        useEffect(() => {
+            handleScroll();
+      }, [scrollYGlobal])
+
+      
+      const handleScroll = () => {
+        const currentScrollY = scrollYGlobal;
+
+        if (currentScrollY > scrollY) { //down
+            justinRef.current.style.left = parseFloat(justinPos) + scrollYGlobal * -1 + 'px';
+            miniJesusRef.current.style.left = parseFloat(miniJesusPos) + scrollYGlobal * 1 + 'px';
+        }
+         else if (currentScrollY < scrollY && scrollYGlobal < '600') { //up
+            justinRef.current.style.left = "";
+            miniJesusRef.current.style.left = "";
+        }
+
+        setScrollY(currentScrollY);
+
+        // mountain_2.style.left = parseFloat(mountain2Pos) + value * 1 + 'px';
+        // mountain_3.style.left = parseFloat(mountain3Pos) + value * -0.75 + 'px';
+      }
+
 
   return (
-    <Container>
-
+    <Container >
       {/* <Vignette /> */}
     <HeroText ref={subtitleTxtRef}>Passionate. Professional. Reliable.</HeroText>
 

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -17,18 +17,25 @@ const Container = styled.div`
   /* height: 100vh; */
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
-  overflow-y: auto; 
-  overflow-x: hidden;
   background-color: lightblue;
   place-items: center;
   position: relative;
+  overflow-y: auto; 
+  overflow-x: hidden;
 `
 
 function App() {
+  const [scrollY, setScrollY] = useState(0);
+
+  const handleScroll = (event) => {
+    const scrollTop = event.target.scrollTop;
+    setScrollY(scrollTop);
+  };
+
   return (
-    <Container>
+    <Container onScroll={handleScroll}>
       <NavBar />
-      <Hero />
+      <Hero scrollYGlobal={scrollY} />
       <Skills />
       <Who />
       <Projects />
