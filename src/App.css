@@ -33,3 +33,117 @@
   pointer-events: none;
   transition: 0.45s cubic-bezier(.2, .49, .32, .99);
 }
+
+
+/* LOGOS OF PROFICIENCIES */
+
+@keyframes slideLeft {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes slideRight {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.logos {
+  /* idk */
+  overflow: hidden;
+  padding: 60px 0;
+  background: #fff;
+  white-space: nowrap;
+  position: relative;
+}
+
+.logos:before,
+.logos:after {
+  position: absolute;
+  top: 0;
+  width: 250px;
+  height: 100%;
+  content: "";
+  z-index: 2;
+}
+
+.logos:before {
+  left: 0;
+  background: linear-gradient(to left, rgba(255,255,255, 0), #fff);
+}
+
+.logos:after {
+  right: 0;
+  background: linear-gradient(to right, rgba(255,255,255, 0), #fff);
+}
+
+.logos:hover .logos-slide {
+  animation-play-state: paused;
+}
+
+.logos-slide {
+  display: inline-block;
+  animation: 32s slideLeft infinite linear;
+}
+
+
+.logos-slide img {
+  height: 50px;
+  margin: 0 40px;
+}
+
+
+/* ALL LOGOS OPPOSITE */
+
+.logos-slide-opposite-2 {
+  animation: 32s slideRight2 infinite linear;
+}
+.logos-opposite {
+  /* idk */
+  overflow: hidden;
+  padding: 60px 0;
+  background: #fff;
+  white-space: nowrap;
+  position: relative;
+}
+
+.logos-opposite:before,
+.logos-opposite:after {
+  position: absolute;
+  top: 0;
+  width: 250px;
+  height: 100%;
+  content: "";
+  z-index: 2;
+}
+
+.logos-opposite:before {
+  left: 0;
+  background: linear-gradient(to left, rgba(255,255,255, 0), #fff);
+}
+
+.logos-opposite:after {
+  right: 0;
+  background: linear-gradient(to right, rgba(255,255,255, 0), #fff);
+}
+
+.logos-opposite:hover .logos-slide-opposite {
+  animation-play-state: paused;
+}
+
+.logos-slide-opposite img {
+  height: 50px;
+  margin: 0 40px;
+}
+
+.logos-slide-opposite {
+  display: inline-block;
+  animation: 32s slideRight infinite linear;
+}
