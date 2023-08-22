@@ -29,8 +29,8 @@ function Skills() {
       <Title>I have a long list of technologies I've used over the years!</Title>
       <Subtitle>Check them out!</Subtitle>
       <InfiniteScrollerApps />
-      <InfiniteScrollerMedia />
       <InfiniteScrollerLanguages />
+      <InfiniteScrollerMedia />
     </Container>
   )
 }
@@ -77,7 +77,7 @@ function InfiniteScrollerApps() {
     )
 }
 
-function InfiniteScrollerMedia() {
+function InfiniteScrollerLanguages() {
     useEffect(() => {
         var copy = document.querySelector(".logos-slide-opposite").cloneNode(true);
         document.querySelector('.logos-opposite').appendChild(copy);
@@ -86,40 +86,24 @@ function InfiniteScrollerMedia() {
     return (
         <div className='logos-opposite'>
             <div className='logos-slide-opposite'>
-                <img src="/logos/app-development/adobe-xd.png" />
-                <img src="/logos/app-development/amplify.png" />
-                <img src="/logos/app-development/android-studio.jpg" />
-                <img src="/logos/app-development/asp.net.png" />
-                <img src="/logos/app-development/aws-ec2.png" />
-                <img src="/logos/app-development/aws-lambda.png" />
-                <img src="/logos/app-development/aws-logo.png" />
-                <img src="/logos/app-development/figma.png" />
-                <img src="/logos/app-development/firebase.jpg" />
-                <img src="/logos/app-development/flutter.png" />
-                <img src="/logos/app-development/gsap.png" />
-                <img src="/logos/app-development/hostinger.png" />
-                <img src="/logos/app-development/knockoutjs.png" />
-                <img src="/logos/app-development/mongodb.jpg" />
-                <img src="/logos/app-development/mysql.png" />
-                <img src="/logos/app-development/net.maui.jpg" />
-                <img src="/logos/app-development/netlify.png" />
-                <img src="/logos/app-development/nextjs.jpg" />
-                <img src="/logos/app-development/nodejs-express.webp" />
-                <img src="/logos/app-development/postgres.png" />
-                <img src="/logos/app-development/react-native.png" />
-                <img src="/logos/app-development/react-redux.png" />
-                <img src="/logos/app-development/react.jpg" />
-                <img src="/logos/app-development/supabase.png" />
-                <img src="/logos/app-development/tailwindcss.jpg" />
-                <img src="/logos/app-development/threejs.png" />
-                <img src="/logos/app-development/vercel.jpg" />
-                <img src="/logos/app-development/vite.jpg" />
+                <img src="/logos/languages/csharp.png" />
+                <img src="/logos/languages/c++.png" />
+                <img src="/logos/languages/css.jpg" />
+                <img src="/logos/languages/dart.jpg" />
+                <img src="/logos/languages/html.jpg" />
+                <img src="/logos/languages/javascript.png" />
+                <img src="/logos/languages/kotlin.png" />
+                <img src="/logos/languages/php.png" />
+                <img src="/logos/languages/solidity.png" />
+                <img src="/logos/languages/swift.png" />
+                <img src="/logos/languages/typescript.png" />
+                
             </div>
         </div>
     )
 }
 
-function InfiniteScrollerLanguages() {
+function InfiniteScrollerMedia() {
     useEffect(() => {
         var copy = document.querySelector(".logos-slide-2").cloneNode(true);
         document.querySelector('.logos-2').appendChild(copy);
