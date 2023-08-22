@@ -3,7 +3,7 @@ import { styled } from 'styled-components'
 import '../App.css'
 
 const Container = styled.div`
-    background-color: #f2f2f2;
+    background-color: #ceeeff;
     height: 100vh;
     scroll-snap-align: start;
     display: flex;
@@ -11,14 +11,23 @@ const Container = styled.div`
     justify-content: center;
 `
 
-const LogoImage = styled.img`
-    height: 50px;
-`
+const Title = styled.h1`
+    color: black;
+    text-align: center;
+    margin: 1rem;
+    `;
+
+const Subtitle = styled.h2`
+    color: #0011ff;
+    text-align: center;
+    margin: 0rem 0rem 1rem 0rem;
+`;
 
 function Skills() {
   return (
     <Container>
-      Skills!!
+      <Title>I have a long list of technologies I've used over the years!</Title>
+      <Subtitle>Check them out!</Subtitle>
       <InfiniteScrollerApps />
       <InfiniteScrollerMedia />
       <InfiniteScrollerLanguages />
