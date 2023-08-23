@@ -45,12 +45,12 @@ function Skills() {
     <Container>
       <Title>I have a long list of technologies I've used over the years!</Title>
       <Subtitle>Check them out!</Subtitle>
-      <Canvas>
+      {/* <Canvas>
         <InfiniteImageScroller images={images}/>
-      </Canvas>
-      {/* <InfiniteScrollerApps /> */}
-      {/* <InfiniteScrollerLanguages /> */}
-      {/* <InfiniteScrollerMedia /> */}
+      </Canvas> */}
+      <InfiniteScrollerApps />
+      <InfiniteScrollerLanguages />
+      <InfiniteScrollerMedia />
     </Container>
   )
 }

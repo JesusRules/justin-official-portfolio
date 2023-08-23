@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-// import { useDrag } from 'react-use-gesture';
+import { useDrag } from 'react-use-gesture';
 import { TextureLoader } from 'three';
 
 
@@ -9,6 +9,7 @@ const InfiniteImageScroller = ({ images }) => {
     const groupRef2 = useRef();
     const groupRef3 = useRef();
     const groupRef4 = useRef();
+    const scrollContainerRef = useRef();
   
     // Calculate the width of a single image based on the image dimensions
     const imageWidth = 3; // Adjust to your image dimensions
@@ -41,10 +42,16 @@ const InfiniteImageScroller = ({ images }) => {
             groupRef4.current.position.x = (imageWidth * numImages) * 2;
         }
     });
+
+    const bind = useDrag(({ offset: [x], vxvy: [vx], down }) => {
+        if (down) {
+            groupRef1.current.position.x += x / window.innerWidth;
+        }
+      });
   
     return (
-    <group>
-      <group ref={groupRef1} >
+    <group ref={scrollContainerRef} >
+      <group ref={groupRef1} {...bind()}>
         {images.map((image, index) => (
           <mesh
             key={index}
