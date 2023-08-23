@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { styled } from 'styled-components'
 import '../App.css'
-import { Canvas, useFrame } from '@react-three/fiber';
-import { TextureLoader } from 'three';
 // import Slider from 'react-slick';
 // import 'slick-carousel/slick/slick.css';
 // import 'slick-carousel/slick/slick-theme.css';
+import InfiniteImageScroller from './InfiniteImageScroller'
+import { Canvas } from '@react-three/fiber'
 
 const Container = styled.div`
     background-color: #ceeeff;
@@ -29,11 +29,25 @@ const Subtitle = styled.h2`
 `;
 
 function Skills() {
+    const images = [
+        '/logos/app-development/adobe-xd.png',
+        '/logos/app-development/amplify.png',
+        '/logos/app-development/android-studio.jpg',
+        '/logos/app-development/asp.net.png',
+        '/logos/app-development/aws-logo.png',
+        '/logos/app-development/express.png',
+        '/logos/app-development/figma.png',
+        '/logos/app-development/firebase.jpg',
+        '/logos/app-development/flutter.png',
+    ];
+
   return (
     <Container>
       <Title>I have a long list of technologies I've used over the years!</Title>
-      <InfiniteScrollerThreeJS />
       <Subtitle>Check them out!</Subtitle>
+      <Canvas>
+        <InfiniteImageScroller images={images}/>
+      </Canvas>
       {/* <InfiniteScrollerApps /> */}
       {/* <InfiniteScrollerLanguages /> */}
       {/* <InfiniteScrollerMedia /> */}
@@ -97,91 +111,91 @@ function InfiniteScrollerApps() {
 
 
 
-const ImagePlane = ({ imageUrl, position }) => {
-    const texture = new TextureLoader().load(imageUrl);
+// const ImagePlane = ({ imageUrl, position }) => {
+//     const texture = new TextureLoader().load(imageUrl);
     
-    return (
-      <mesh position={position}>
-        <planeBufferGeometry args={[1, 1]} />
-        <meshBasicMaterial map={texture} />
-      </mesh>
-    );
-  };
+//     return (
+//       <mesh position={position}>
+//         <planeBufferGeometry args={[1, 1]} />
+//         <meshBasicMaterial map={texture} />
+//       </mesh>
+//     );
+//   };
 
-function InfiniteScrollerThreeJS() {
-    const scrollContainer = useRef(null);
+// function InfiniteScrollerThreeJS() {
+//     const scrollContainer = useRef(null);
 
-    useFrame(() => {
-        // Slowly move the scroll container
-        if (scrollContainer.current) {
-          scrollContainer.current.position.x += 0.001;
+//     useFrame(() => {
+//         // Slowly move the scroll container
+//         if (scrollContainer.current) {
+//           scrollContainer.current.position.x += 0.001;
           
-          // Reset position to create an infinite loop
-          if (scrollContainer.current.position.x > 1) {
-            scrollContainer.current.position.x = -1;
-          }
-        }
-      });
+//           // Reset position to create an infinite loop
+//           if (scrollContainer.current.position.x > 1) {
+//             scrollContainer.current.position.x = -1;
+//           }
+//         }
+//       });
 
-      return (
-        <Canvas>
-          <scene>
-            <group ref={scrollContainer}>
-              <ImagePlane imageUrl="/logos/app-development/adobe-xd.png" position={[0, 0, 0]} />
-              <ImagePlane imageUrl="/logos/app-development/amplify.png" position={[1, 0, 0]} />
-              <ImagePlane imageUrl="/logos/app-development/android-studio.jpg" position={[2, 0, 0]} />
-              <ImagePlane imageUrl="/logos/app-development/asp.net.png" position={[3, 0, 0]} />
-              <ImagePlane imageUrl="/logos/app-development/aws-logo.png" position={[4, 0, 0]} />
-              <ImagePlane imageUrl="/logos/app-development/express.png" position={[5, 0, 0]} />
-              <ImagePlane imageUrl="/logos/app-development/figma.png" position={[6, 0, 0]} />
-              <ImagePlane imageUrl="/logos/app-development/firebase.jpg" position={[7, 0, 0]} />
-              <ImagePlane imageUrl="/logos/app-development/flutter.png" position={[8, 0, 0]} />
-              <ImagePlane imageUrl="/logos/app-development/gsap.png" position={[9, 0, 0]} />
-              <ImagePlane imageUrl="/logos/app-development/hostinger.png" position={[10, 0, 0]} />
-              <ImagePlane imageUrl="/logos/app-development/knockoutjs.png" position={[11, 0, 0]} />
-              <ImagePlane imageUrl="/logos/app-development/mongodb.jpg" position={[12, 0, 0]} />
-              {/* Add more image planes here */}
-            </group>
-            <perspectiveCamera fov={75} aspect={window.innerWidth / window.innerHeight} position={[0, 0, 3]} />
-          </scene>
-        </Canvas>
-      );
+//       return (
+//         <Canvas>
+//           <scene>
+//             <group ref={scrollContainer}>
+//               <ImagePlane imageUrl="/logos/app-development/adobe-xd.png" position={[0, 0, 0]} />
+//               <ImagePlane imageUrl="/logos/app-development/amplify.png" position={[1, 0, 0]} />
+//               <ImagePlane imageUrl="/logos/app-development/android-studio.jpg" position={[2, 0, 0]} />
+//               <ImagePlane imageUrl="/logos/app-development/asp.net.png" position={[3, 0, 0]} />
+//               <ImagePlane imageUrl="/logos/app-development/aws-logo.png" position={[4, 0, 0]} />
+//               <ImagePlane imageUrl="/logos/app-development/express.png" position={[5, 0, 0]} />
+//               <ImagePlane imageUrl="/logos/app-development/figma.png" position={[6, 0, 0]} />
+//               <ImagePlane imageUrl="/logos/app-development/firebase.jpg" position={[7, 0, 0]} />
+//               <ImagePlane imageUrl="/logos/app-development/flutter.png" position={[8, 0, 0]} />
+//               <ImagePlane imageUrl="/logos/app-development/gsap.png" position={[9, 0, 0]} />
+//               <ImagePlane imageUrl="/logos/app-development/hostinger.png" position={[10, 0, 0]} />
+//               <ImagePlane imageUrl="/logos/app-development/knockoutjs.png" position={[11, 0, 0]} />
+//               <ImagePlane imageUrl="/logos/app-development/mongodb.jpg" position={[12, 0, 0]} />
+//               {/* Add more image planes here */}
+//             </group>
+//             <perspectiveCamera fov={75} aspect={window.innerWidth / window.innerHeight} position={[0, 0, 3]} />
+//           </scene>
+//         </Canvas>
+//       );
 
-    // return (
-    //     <div className='logos' >
-    //         <div className='logos-slide'>
-    //             <img src="/logos/app-development/adobe-xd.png" />
-    //             <img src="/logos/app-development/amplify.png" />
-    //             <img src="/logos/app-development/android-studio.jpg" />
-    //             <img src="/logos/app-development/asp.net.png" />
-    //             <img src="/logos/app-development/aws-logo.png" />
-    //             <img src="/logos/app-development/express.png" />
-    //             <img src="/logos/app-development/figma.png" />
-    //             <img src="/logos/app-development/firebase.jpg" />
-    //             <img src="/logos/app-development/flutter.png" />
-    //             <img src="/logos/app-development/gsap.png" />
-    //             <img src="/logos/app-development/hostinger.png" />
-    //             <img src="/logos/app-development/knockoutjs.png" />
-    //             <img src="/logos/app-development/mongodb.jpg" />
-    //             <img src="/logos/app-development/mysql.png" />
-    //             <img src="/logos/app-development/net-maui-logo.webp" />
-    //             <img src="/logos/app-development/netlify.png" />
-    //             <img src="/logos/app-development/nextjs.jpg" />
-    //             <img src="/logos/app-development/nodejs.png" />
-    //             <img src="/logos/app-development/postgres.png" />
-    //             <img src="/logos/app-development/react-native.png" />
-    //             <img src="/logos/app-development/react-redux.png" />
-    //             <img src="/logos/app-development/react.jpg" />
-    //             <img src="/logos/app-development/styled-components.png" />
-    //             <img src="/logos/app-development/supabase.png" />
-    //             <img src="/logos/app-development/tailwindcss.jpg" />
-    //             <img src="/logos/app-development/threejs.png" />
-    //             <img src="/logos/app-development/vercel.jpg" />
-    //             <img src="/logos/app-development/vite.jpg" />
-    //         </div>
-    // </div>
-    // )
-}
+//     // return (
+//     //     <div className='logos' >
+//     //         <div className='logos-slide'>
+//     //             <img src="/logos/app-development/adobe-xd.png" />
+//     //             <img src="/logos/app-development/amplify.png" />
+//     //             <img src="/logos/app-development/android-studio.jpg" />
+//     //             <img src="/logos/app-development/asp.net.png" />
+//     //             <img src="/logos/app-development/aws-logo.png" />
+//     //             <img src="/logos/app-development/express.png" />
+//     //             <img src="/logos/app-development/figma.png" />
+//     //             <img src="/logos/app-development/firebase.jpg" />
+//     //             <img src="/logos/app-development/flutter.png" />
+//     //             <img src="/logos/app-development/gsap.png" />
+//     //             <img src="/logos/app-development/hostinger.png" />
+//     //             <img src="/logos/app-development/knockoutjs.png" />
+//     //             <img src="/logos/app-development/mongodb.jpg" />
+//     //             <img src="/logos/app-development/mysql.png" />
+//     //             <img src="/logos/app-development/net-maui-logo.webp" />
+//     //             <img src="/logos/app-development/netlify.png" />
+//     //             <img src="/logos/app-development/nextjs.jpg" />
+//     //             <img src="/logos/app-development/nodejs.png" />
+//     //             <img src="/logos/app-development/postgres.png" />
+//     //             <img src="/logos/app-development/react-native.png" />
+//     //             <img src="/logos/app-development/react-redux.png" />
+//     //             <img src="/logos/app-development/react.jpg" />
+//     //             <img src="/logos/app-development/styled-components.png" />
+//     //             <img src="/logos/app-development/supabase.png" />
+//     //             <img src="/logos/app-development/tailwindcss.jpg" />
+//     //             <img src="/logos/app-development/threejs.png" />
+//     //             <img src="/logos/app-development/vercel.jpg" />
+//     //             <img src="/logos/app-development/vite.jpg" />
+//     //         </div>
+//     // </div>
+//     // )
+// }
 
 
 // OTHERS !!!!!!!!!!!!
