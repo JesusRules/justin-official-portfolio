@@ -95,6 +95,8 @@
   margin: 0rem 0 2rem 0;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, .45);
   border: 2px solid black;
+  border-left: none;
+  border-right: none;
 }
 
 .wrapper:before,

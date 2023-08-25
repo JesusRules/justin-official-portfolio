@@ -99,10 +99,11 @@ const imagesApps = [
 ];
 
 const imagesMedia = [
+    '/logos/media-development/3dsmax.png',
     '/logos/media-development/adobe-dimension.webp',
     '/logos/media-development/audition.webp',
     '/logos/media-development/blender.png',
-    '/logos/media-development/flstudio.jpg',
+    '/logos/media-development/flstudio.png',
     '/logos/media-development/gamemaker2.png',
     '/logos/media-development/illustrator.jpg',
     '/logos/media-development/maya.png',

@@ -37,8 +37,8 @@ function App() {
       <NavBar scrollYGlobal={scrollY} />
       <Hero scrollYGlobal={scrollY} />
       <Skills />
-      <Who />
       <Projects />
+      <Who />
       <Education />
       <Contact />
     </Container>
