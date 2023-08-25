@@ -122,9 +122,9 @@ const HorizontalLoopComponent = () => {
         sliderWrapper.current.addEventListener('mousemove', handleMouseMove);
         sliderWrapper.current.addEventListener('mouseup', handleMouseUp);
 
-        sliderWrapper.current.addEventListener('touchstart', handleMouseDown);
-        sliderWrapper.current.addEventListener('touchmove', handleMouseMove);
-        sliderWrapper.current.addEventListener('touchend', handleMouseUp);
+        sliderWrapper.current.addEventListener('touchstart', handleTouchDown);
+        sliderWrapper.current.addEventListener('touchmove', handleTouchMove);
+        sliderWrapper.current.addEventListener('touchend', handleTouchUp);
         
         // Cleanup function
         return () => {
@@ -132,14 +132,17 @@ const HorizontalLoopComponent = () => {
             sliderWrapper.current.removeEventListener('mousemove', handleMouseMove);
             sliderWrapper.current.removeEventListener('mouseup', handleMouseUp);
 
-            sliderWrapper.current.removeEventListener('touchstart', handleMouseDown);
-            sliderWrapper.current.removeEventListener('touchmove', handleMouseMove);
-            sliderWrapper.current.removeEventListener('touchend', handleMouseUp);
+            sliderWrapper.current.removeEventListener('touchstart', handleTouchDown);
+            sliderWrapper.current.removeEventListener('touchmove', handleTouchMove);
+            sliderWrapper.current.removeEventListener('touchend', handleTouchUp);
         // Pause and clear the animation when the component unmounts
         timeline.pause(0);
         timeline.kill();
       };
     }, []);
+
+
+    // MOUSE MOVEMENTS
 
     const handleMouseDown = (event) => {
         isMouseDown = true;
@@ -175,6 +178,56 @@ const HorizontalLoopComponent = () => {
         timeline.play()
         if (isReversed) {
             timeline.timeScale(-1)
+        }
+    }
+
+
+    // TOUCH MOVEMENTS
+
+    const handleTouchDown = (event) => {
+        isTouching = true;
+        timeline.pause();
+        
+        // Get the first touch
+        const touch = event.touches[0];
+        
+        // Calculate cursor position as a percentage of the slider width
+        const cursorPosition = (touch.clientX - sliderWrapper.current.getBoundingClientRect().left) / sliderWrapper.current.offsetWidth;
+        
+        // Store the time where scrubbing started
+        scrubStartAt = timeline.time() - (cursorPosition * timeline.duration());
+        
+        // If the cursor position is greater than 0.5, it means you're dragging to the left
+        if (cursorPosition > 0.5) {
+            scrubStartAt += timeline.duration();
+        }
+    }
+    
+    const handleTouchMove = (event) => {
+        if (isTouching) {
+            const touch = event.touches[0]; // Get the first touch
+            const cursorPosition = (touch.clientX - sliderWrapper.current.getBoundingClientRect().left) / sliderWrapper.current.offsetWidth;
+            
+            // Calculate time relative to the start time and loop duration
+            let time = scrubStartAt + cursorPosition * timeline.duration();
+            
+            // Allow the time to wrap around and loop
+            if (time < 0) {
+                time = timeline.duration() + (time % timeline.duration());
+            } else if (time > timeline.duration()) {
+                time = time % timeline.duration();
+            }
+            
+            timeline.seek(time, false);
+        }
+    }
+
+    const handleTouchUp = () => {
+        isTouching = false;
+        scrubStartAt = 0; // Reset the start time when scrubbing is done
+        timeline.play();
+        if (isReversed) {
+            timeline.timeScale(-1);
         }
     }
 
