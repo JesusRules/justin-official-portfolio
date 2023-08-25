@@ -39,7 +39,7 @@ function Skills() {
       {/* <Canvas>
         <InfiniteImageScroller images={images}/>
       </Canvas> */}
-    <HorizontalLoopComponent />
+    <HorizontalImageLoopComponent _images={imagesMedia} _isReversed={true} />
       {/* <InfiniteScrollerApps /> */}
       {/* <InfiniteScrollerLanguages />
       <InfiniteScrollerMedia /> */}
@@ -80,21 +80,50 @@ const imagesApps = [
     '/logos/app-development/vite.jpg'
 ];
 
+const imagesMedia = [
+    '/logos/media-development/adobe-dimension.webp',
+    '/logos/media-development/audition.webp',
+    '/logos/media-development/blender.png',
+    '/logos/media-development/flstudio.jpg',
+    '/logos/media-development/gamemaker2.png',
+    '/logos/media-development/illustrator.jpg',
+    '/logos/media-development/maya.png',
+    '/logos/media-development/mirror.jpg',
+    '/logos/media-development/photon-fusion.webp',
+    '/logos/media-development/photoshop.png',
+    '/logos/media-development/pun2.jpg',
+    '/logos/media-development/unity.jpg',
+    '/logos/media-development/unreal-engine.png',
+    '/logos/media-development/zbrush.png',
+];
 
-const HorizontalLoopComponent = () => {
+const imagesLanguages = [
+    '/logos/languages/c++.png',
+    '/logos/languages/css.jpg',
+    '/logos/languages/dart.jpg',
+    '/logos/languages/html.jpg',
+    '/logos/languages/javascript.png',
+    '/logos/languages/kotlin.png',
+    '/logos/languages/php.png',
+    '/logos/languages/solidity.png',
+    '/logos/languages/swift.png',
+    '/logos/languages/typescript.png',
+];
+
+const HorizontalImageLoopComponent = ({ _images, _isReversed }) => {
     const sliderWrapper = useRef(null);
     let isMouseDown = false;
-    let isTouching = false;
     let scrubStartAt = 0; // Store the time where scrubbing started
     let initialCursorPosition = 0; // Store the initial cursor position
-    const isReversed = false;
+    const isReversed = _isReversed;
     let timeline;
 
     useEffect(() => {
         const boxes = gsap.utils.toArray(".box");
         
         // Create array of colors
-        const colors = ["#f38630","#6fb936", "#ccc", "#6fb936"];
+        // const colors = ["#f38630","#6fb936", "#ccc", "#6fb936"];
+        const colors = ["#f2f2f2"];
         
         // Apply colors to boxes - one after the other
         gsap.set(boxes , {
@@ -181,11 +210,10 @@ const HorizontalLoopComponent = () => {
         }
     }
 
-
     // TOUCH MOVEMENTS
 
     const handleTouchDown = (event) => {
-        isTouching = true;
+        isMouseDown = true;
         timeline.pause();
         
         // Get the first touch
@@ -204,7 +232,7 @@ const HorizontalLoopComponent = () => {
     }
     
     const handleTouchMove = (event) => {
-        if (isTouching) {
+        if (isMouseDown) {
             const touch = event.touches[0]; // Get the first touch
             const cursorPosition = (touch.clientX - sliderWrapper.current.getBoundingClientRect().left) / sliderWrapper.current.offsetWidth;
             
@@ -223,7 +251,7 @@ const HorizontalLoopComponent = () => {
     }
 
     const handleTouchUp = () => {
-        isTouching = false;
+        isMouseDown = false;
         scrubStartAt = 0; // Reset the start time when scrubbing is done
         timeline.play();
         if (isReversed) {
@@ -233,7 +261,7 @@ const HorizontalLoopComponent = () => {
 
     return (
     <div class="wrapper no-select" id="sliderWrapper" ref={sliderWrapper}>
-            {imagesApps.map((imageUrl, index) => (
+            {_images.map((imageUrl, index) => (
                 <img
                     draggable="false"
                     className="box default"
@@ -250,6 +278,7 @@ const HorizontalLoopComponent = () => {
       </div>
     );
   };
+
 
 
 function horizontalLoop(items, config) {
