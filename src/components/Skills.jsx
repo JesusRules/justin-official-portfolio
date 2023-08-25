@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { styled } from 'styled-components'
+import gsap from 'gsap';
 import '../App.css'
 // import Slider from 'react-slick';
 // import 'slick-carousel/slick/slick.css';
 // import 'slick-carousel/slick/slick-theme.css';
-import InfiniteImageScroller from './InfiniteImageScroller'
+import InfiniteImageScroller from './threejsscripts/InfiniteImageScroller'
 import { Canvas } from '@react-three/fiber'
 
 const Container = styled.div`
@@ -28,18 +29,8 @@ const Subtitle = styled.h2`
     margin: 0rem 0rem 1rem 0rem;
 `;
 
+
 function Skills() {
-    const images = [
-        '/logos/app-development/adobe-xd.png',
-        '/logos/app-development/amplify.png',
-        '/logos/app-development/android-studio.jpg',
-        '/logos/app-development/asp.net.png',
-        '/logos/app-development/aws-logo.png',
-        '/logos/app-development/express.png',
-        '/logos/app-development/figma.png',
-        '/logos/app-development/firebase.jpg',
-        '/logos/app-development/flutter.png',
-    ];
 
   return (
     <Container>
@@ -49,64 +40,305 @@ function Skills() {
         <InfiniteImageScroller images={images}/>
       </Canvas> */}
       <InfiniteScrollerApps />
-      <InfiniteScrollerLanguages />
-      <InfiniteScrollerMedia />
+      {/* <InfiniteScrollerLanguages />
+      <InfiniteScrollerMedia /> */}
     </Container>
   )
 }
 
+
+
+const imagesApps = [
+    '/logos/app-development/adobe-xd.png',
+    '/logos/app-development/amplify.png',
+    '/logos/app-development/android-studio.jpg',
+    '/logos/app-development/asp.net.png',
+    '/logos/app-development/aws-logo.png',
+    '/logos/app-development/express.png',
+    '/logos/app-development/figma.png',
+    '/logos/app-development/firebase.jpg',
+    '/logos/app-development/flutter.png',
+    '/logos/app-development/gsap.png',
+    '/logos/app-development/hostinger.png',
+    '/logos/app-development/knockoutjs.png',
+    '/logos/app-development/mongodb.jpg',
+    '/logos/app-development/mysql.png',
+    '/logos/app-development/net-maui-logo.webp',
+    '/logos/app-development/netlify.png',
+    '/logos/app-development/nextjs.jpg',
+    '/logos/app-development/nodejs.png',
+    '/logos/app-development/postgres.png',
+    '/logos/app-development/react-native.png',
+    '/logos/app-development/react-redux.png',
+    '/logos/app-development/react.jpg',
+    '/logos/app-development/styled-components.png',
+    '/logos/app-development/supabase.png',
+    '/logos/app-development/tailwindcss.jpg',
+    '/logos/app-development/threejs.png',
+    '/logos/app-development/vercel.jpg',
+    '/logos/app-development/vite.jpg',
+];
+
+const Section = styled.div`
+    padding: 0;
+    margin: 0 auto;
+    min-width: 100%;
+    height: 100%;
+    
+    /*   display: flex;
+    justify-content: center;
+    align-items: center; */
+`;
+
+const Wrapper = styled.div`
+    /* height: 30%; */
+    height: 9rem;
+    width: 100%;
+    background: #fff;
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    user-select: none;
+    @media only screen and (max-width: 700px) {
+        height: 8rem;
+    }
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    flex-shrink: 0;
+`;
+
+const BoxImage = styled.img`
+    /* height: 9vw; */
+    max-height: 30px;
+    margin: 0 30px;
+    user-select: none;
+`;
+
 function InfiniteScrollerApps() {
-    // const settings = {
-    //     dots: false,
-    //     infinite: true,
-    //     speed: 500,
-    //     slidesToShow: 3,
-    //     slidesToScroll: 1,
-    //     autoplay: true,
-    //     autoplaySpeed: 1, 
-    //     easing: 'ease-in-out',
-    //   };
+    const sliderWrapper = useRef(null);
+    let isMouseDown = false;
+    // let isTouching = false;
+    let scrubStartAt = 0; // Store the time where scrubbing started
+    let initialCursorPosition = 0; // Store the initial cursor position
+    const isReversed = false;
+    let loop;
 
     useEffect(() => {
-        var copy = document.querySelector(".logos-slide").cloneNode(true);
-        document.querySelector('.logos').appendChild(copy);
+        sliderWrapper.current.addEventListener("mousedown", handleMouseDown);
+        sliderWrapper.current.addEventListener("mousemove", handleMouseMove);
+        sliderWrapper.current.addEventListener("mouseup", handleMouseUp);
+
+        sliderWrapper.current.addEventListener("touchstart", handleMouseDown);
+        sliderWrapper.current.addEventListener("touchmove", handleMouseMove);
+        sliderWrapper.current.addEventListener("touchend", handleMouseUp);
+
+        const boxes = gsap.utils.toArray(".box");
+        // Setup the tween
+        loop = horizontalLoop(boxes, {
+            paused: true, // Sets the tween to be paused initially
+            repeat: -1, // Makes sure the tween runs infinitely
+        });
+
+        if (isReversed) {
+            loop.timeScale(-1)
+        }
+
+        loop.play();
+
+        return () => {
+            // Clean up the event listener when the component unmounts
+            sliderWrapper.current.removeEventListener("mousedown", handleMouseDown);
+            sliderWrapper.current.removeEventListener("mousemove", handleMouseMove);
+            sliderWrapper.current.removeEventListener("mouseup", handleMouseUp);
+
+            sliderWrapper.current.removeEventListener("touchstart", handleMouseDown);
+            sliderWrapper.current.removeEventListener("touchmove", handleMouseMove);
+            sliderWrapper.current.removeEventListener("touchend", handleMouseUp);
+        };
     }, [])
 
+    const handleMouseDown = () => {
+        isMouseDown = true;
+        loop.pause();
+
+        // Calculate cursor position as a percentage of the slider width
+        const cursorPosition = (event.clientX - sliderWrapper.current.getBoundingClientRect().left) / sliderWrapper.current.offsetWidth;
+
+        // Store the time where scrubbing started
+        scrubStartAt = loop.time() - (cursorPosition * loop.duration());
+
+        // If the cursor position is greater than 0.5, it means you're dragging to the left
+        if (cursorPosition > 0.5) {
+            scrubStartAt += loop.duration();
+        }
+    }
+
+    const handleMouseMove = () => {
+        if (isMouseDown) {
+            const cursorPosition = (event.clientX - sliderWrapper.current.getBoundingClientRect().left) / sliderWrapper.current.offsetWidth;
+        
+            // Calculate time relative to the start time and loop duration
+            let time = scrubStartAt + cursorPosition * loop.duration();
+        
+            // Allow the time to wrap around and loop
+            if (time < 0) {
+              time = loop.duration() + (time % loop.duration());
+            } else if (time > loop.duration()) {
+              time = time % loop.duration();
+            }
+        
+            loop.seek(time, false);
+          }
+    }
+    
+    const handleMouseUp = () => {
+        isMouseDown = false;
+        scrubStartAt = 0; // Reset the start time when scrubbing is done
+        loop.play()
+        if (isReversed) {
+            loop.timeScale(-1)
+        }
+    }
+
+
+    function horizontalLoop(items, config) {
+        items = gsap.utils.toArray(items);
+        config = config || {};
+        let tl = gsap.timeline({repeat: config.repeat, paused: config.paused, defaults: {ease: "none"}, onReverseComplete: () => tl.totalTime(tl.rawTime() + tl.duration() * 100)}),
+            length = items.length,
+            startX = items[0].offsetLeft,
+            times = [],
+            widths = [],
+            xPercents = [],
+            curIndex = 0,
+            pixelsPerSecond = (config.speed || 1) * 100,
+            snap = config.snap === false ? v => v : gsap.utils.snap(config.snap || 1), // some browsers shift by a pixel to accommodate flex layouts, so for example if width is 20% the first element's width might be 242px, and the next 243px, alternating back and forth. So we snap to 5 percentage points to make things look more natural
+            totalWidth, curX, distanceToStart, distanceToLoop, item, i;
+        gsap.set(items, { // convert "x" to "xPercent" to make things responsive, and populate the widths/xPercents Arrays to make lookups faster.
+            xPercent: (i, el) => {
+                let w = widths[i] = parseFloat(gsap.getProperty(el, "width", "px"));
+                xPercents[i] = snap(parseFloat(gsap.getProperty(el, "x", "px")) / w * 100 + gsap.getProperty(el, "xPercent"));
+                return xPercents[i];
+            }
+        });
+        gsap.set(items, {x: 0});
+        totalWidth = items[length-1].offsetLeft + xPercents[length-1] / 100 * widths[length-1] - startX + items[length-1].offsetWidth * gsap.getProperty(items[length-1], "scaleX") + (parseFloat(config.paddingRight) || 0);
+        for (i = 0; i < length; i++) {
+            item = items[i];
+            curX = xPercents[i] / 100 * widths[i];
+            distanceToStart = item.offsetLeft + curX - startX;
+            distanceToLoop = distanceToStart + widths[i] * gsap.getProperty(item, "scaleX");
+            tl.to(item, {xPercent: snap((curX - distanceToLoop) / widths[i] * 100), duration: distanceToLoop / pixelsPerSecond}, 0)
+              .fromTo(item, {xPercent: snap((curX - distanceToLoop + totalWidth) / widths[i] * 100)}, {xPercent: xPercents[i], duration: (curX - distanceToLoop + totalWidth - curX) / pixelsPerSecond, immediateRender: false}, distanceToLoop / pixelsPerSecond)
+              .add("label" + i, distanceToStart / pixelsPerSecond);
+            times[i] = distanceToStart / pixelsPerSecond;
+        }
+        function toIndex(index, vars) {
+            vars = vars || {};
+            (Math.abs(index - curIndex) > length / 2) && (index += index > curIndex ? -length : length); // always go in the shortest direction
+            let newIndex = gsap.utils.wrap(0, length, index),
+                time = times[newIndex];
+            if (time > tl.time() !== index > curIndex) { // if we're wrapping the timeline's playhead, make the proper adjustments
+                vars.modifiers = {time: gsap.utils.wrap(0, tl.duration())};
+                time += tl.duration() * (index > curIndex ? 1 : -1);
+            }
+            curIndex = newIndex;
+            vars.overwrite = true;
+            return tl.tweenTo(time, vars);
+        }
+        tl.next = vars => toIndex(curIndex+1, vars);
+        tl.previous = vars => toIndex(curIndex-1, vars);
+        tl.current = () => curIndex;
+        tl.toIndex = (index, vars) => toIndex(index, vars);
+        tl.times = times;
+      tl.progress(1, true).progress(0, true); // pre-render for performance
+      if (config.reversed) {
+        tl.vars.onReverseComplete();
+        tl.reverse();
+      }
+        return tl;
+    }
+
     return (
-        <div className='logos' >
-            <div className='logos-slide'>
-                <img src="/logos/app-development/adobe-xd.png" />
-                <img src="/logos/app-development/amplify.png" />
-                <img src="/logos/app-development/android-studio.jpg" />
-                <img src="/logos/app-development/asp.net.png" />
-                <img src="/logos/app-development/aws-logo.png" />
-                <img src="/logos/app-development/express.png" />
-                <img src="/logos/app-development/figma.png" />
-                <img src="/logos/app-development/firebase.jpg" />
-                <img src="/logos/app-development/flutter.png" />
-                <img src="/logos/app-development/gsap.png" />
-                <img src="/logos/app-development/hostinger.png" />
-                <img src="/logos/app-development/knockoutjs.png" />
-                <img src="/logos/app-development/mongodb.jpg" />
-                <img src="/logos/app-development/mysql.png" />
-                <img src="/logos/app-development/net-maui-logo.webp" />
-                <img src="/logos/app-development/netlify.png" />
-                <img src="/logos/app-development/nextjs.jpg" />
-                <img src="/logos/app-development/nodejs.png" />
-                <img src="/logos/app-development/postgres.png" />
-                <img src="/logos/app-development/react-native.png" />
-                <img src="/logos/app-development/react-redux.png" />
-                <img src="/logos/app-development/react.jpg" />
-                <img src="/logos/app-development/styled-components.png" />
-                <img src="/logos/app-development/supabase.png" />
-                <img src="/logos/app-development/tailwindcss.jpg" />
-                <img src="/logos/app-development/threejs.png" />
-                <img src="/logos/app-development/vercel.jpg" />
-                <img src="/logos/app-development/vite.jpg" />
-            </div>
-    </div>
+        <Section>
+            <Wrapper ref={sliderWrapper} >
+            {imagesApps.map((imageUrl, index) => (
+                <BoxImage
+                    className="box"
+                    key={index}
+                    src={imageUrl}
+                    alt={`Image ${index}`}
+                />
+            ))}
+        </Wrapper>
+    </Section>
     )
 }
+
+
+// function InfiniteScrollerApps() {
+//     // const settings = {
+//     //     dots: false,
+//     //     infinite: true,
+//     //     speed: 500,
+//     //     slidesToShow: 3,
+//     //     slidesToScroll: 1,
+//     //     autoplay: true,
+//     //     autoplaySpeed: 1, 
+//     //     easing: 'ease-in-out',
+//     //   };
+
+//     const logosRef = useRef();
+
+//     useEffect(() => {
+//         var copy = document.querySelector(".logos-slide").cloneNode(true);
+//         document.querySelector('.logos').appendChild(copy);
+//     }, [])
+
+//     const getStyleInfo = () => {
+//         console.log(logosRef.current.style);
+//         // logosRef.current.style.animationDuration = "-6s";
+//         logosRef.current.classList.add('reverse-animation');
+//     }
+
+//     return (
+//         <div className='logos' onClick={(e) => getStyleInfo()}>
+//             <div className='logos-slide' ref={logosRef} >
+//                 <img src="/logos/app-development/adobe-xd.png" />
+//                 <img src="/logos/app-development/amplify.png" />
+//                 <img src="/logos/app-development/android-studio.jpg" />
+//                 <img src="/logos/app-development/asp.net.png" />
+//                 <img src="/logos/app-development/aws-logo.png" />
+//                 <img src="/logos/app-development/express.png" />
+//                 <img src="/logos/app-development/figma.png" />
+//                 <img src="/logos/app-development/firebase.jpg" />
+//                 <img src="/logos/app-development/flutter.png" />
+//                 <img src="/logos/app-development/gsap.png" />
+//                 <img src="/logos/app-development/hostinger.png" />
+//                 <img src="/logos/app-development/knockoutjs.png" />
+//                 <img src="/logos/app-development/mongodb.jpg" />
+//                 <img src="/logos/app-development/mysql.png" />
+//                 <img src="/logos/app-development/net-maui-logo.webp" />
+//                 <img src="/logos/app-development/netlify.png" />
+//                 <img src="/logos/app-development/nextjs.jpg" />
+//                 <img src="/logos/app-development/nodejs.png" />
+//                 <img src="/logos/app-development/postgres.png" />
+//                 <img src="/logos/app-development/react-native.png" />
+//                 <img src="/logos/app-development/react-redux.png" />
+//                 <img src="/logos/app-development/react.jpg" />
+//                 <img src="/logos/app-development/styled-components.png" />
+//                 <img src="/logos/app-development/supabase.png" />
+//                 <img src="/logos/app-development/tailwindcss.jpg" />
+//                 <img src="/logos/app-development/threejs.png" />
+//                 <img src="/logos/app-development/vercel.jpg" />
+//                 <img src="/logos/app-development/vite.jpg" />
+//             </div>
+//     </div>
+//     )
+// }
 
 
 

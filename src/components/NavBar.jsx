@@ -92,14 +92,16 @@ function NavBar({ scrollYGlobal }) {
         setPrevScrollPos(currentScrollPos);
     };
       
-    const handleClick = () => {
+    const handleClick = (e) => {
+        e.stopPropagation();
+        e.preventDefault();
         setMenuEnabled(!menuEnabled);
     }
 
   return (
     <>
     <Container className={`nav ${visible ? 'visible' : 'hidden'}`}>
-        <Image src="/img/NavBar.png" onClick={() => handleClick()}/>
+        <Image  src="/img/NavBar.png" onClick={(e) => handleClick(e)}/>
     </Container>
 
     {menuEnabled && (

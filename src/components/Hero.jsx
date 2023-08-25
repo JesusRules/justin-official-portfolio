@@ -15,7 +15,7 @@ const Sky = styled.img`
     object-fit: cover;
     position: absolute;
     /* width: 1920px; */
-    height: 1420px;
+    height: 1720px; //1420px
     /* top: 50%; */
     // top: 2000px; (OLD)
     top: 600px;
@@ -150,11 +150,11 @@ const Bernard_Txt = styled.img`
     width: 700px;
     /* top: calc(50% - 65px); */
     left: calc(50% + 0px);
-    top: 1400px;
+    top: 1450px;
     z-index: 13;
     @media only screen and (max-width: 700px) {
         width: 530px;
-        top: 1400px;
+        top: 1450px;
         /* top: calc(50% - 118px); */
     }
 `
@@ -164,11 +164,11 @@ const Justin_Txt = styled.img`
     /* top: calc(50% - 208px); */
     left: calc(50% + 0px);
     /* top: -100px; */
-    top: 1200px;
+    top: 1300px;
     z-index: 14;
     @media only screen and (max-width: 700px) {
         /* top: -100px; */
-        top: 1200px;
+        top: 1300px;
         /* top: calc(50% - 233px); */
         width: 530px;
     }
@@ -291,11 +291,14 @@ const HeroText = styled.h1`
     font-family: "myriad-pro", sans-serif;
     font-weight: 700;
     font-style: normal;
-    top: 10rem;
+    /* top: 10rem; */
+    top: 15%;
     opacity: 0;
     @media only screen and (max-width: 700px) {
         top: 9rem;
-        font-size: 28px;
+        padding: 0;
+        margin: 0;
+        /* font-size: 43px; */
     }
 `
 
@@ -360,6 +363,8 @@ function Hero({ scrollYGlobal }) {
     const [haunterPos, setHaunterPos] = useState();
     const [booPos, setBooPos] = useState();
 
+    let navElement;
+
     const update = (cursorPosition) => {
         parallex_el = document.querySelectorAll(".parallax");
 
@@ -377,24 +382,41 @@ function Hero({ scrollYGlobal }) {
     }
 
     useEffect(() => {
+        navElement = document.querySelector('.nav');
+
         scrollTo(0, 0);
         update(0);
         gsapBeginning();
         // Add event listener when the component mounts
         document.addEventListener('mousemove', handleMouseMove);
+        document.addEventListener('touchmove', handleTouchMove);
         // Clean up by removing event listener when the component unmounts
         return () => {
             document.removeEventListener('mousemove', handleMouseMove);
+            document.removeEventListener('touchmove', handleTouchMove);
         };
       }, []);
 
       const handleMouseMove = (event) => {
-        xValue = event.clientX - innerWidth / 2;
-        yValue = event.clientY - innerHeight / 2;
+        const isCursorOverNav = navElement.contains(event.target); //??? works
+        if (!isCursorOverNav)
+        {
+            xValue = event.clientX - innerWidth / 2;
+            yValue = event.clientY - innerHeight / 2;
+            
+            rotateDegree = (xValue / (innerWidth / 2)) * 20;
+                
+            update(event.clientX);
+        }
+    }
+
+    const handleTouchMove = (event) => {
+        xValue = event.touches[0].clientX - innerWidth / 2;
+        yValue = event.touches[0].clientY - innerHeight / 2;
         
         rotateDegree = (xValue / (innerWidth / 2)) * 20;
-            
-        update(event.clientX);
+        
+        update(event.touches[0].clientX);
     }
 
       const gsapBeginning = () => {
