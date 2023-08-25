@@ -193,8 +193,10 @@
   }
 
   .box.default {
-    width: 10rem;
-    min-width: 10rem;
+    width: 9rem;
+    min-width: 9rem;
+    /* width: 10rem;
+    min-width: 10rem; */
   }
   .box.empty {
     width: 0rem;
@@ -207,13 +209,14 @@
   
   .wrapper {
   width: 100%;
-  height: 14rem;
+  height: 10rem;
   background: #f2f2f2;
   position: relative;
   display: flex;
   align-items: center;
   overflow: hidden;
   cursor: pointer;
+  margin: 1rem 0;
 }
 
 .wrapper:before,
