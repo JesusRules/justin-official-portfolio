@@ -80,164 +80,6 @@ const imagesApps = [
     '/logos/app-development/vite.jpg',
 ];
 
-const Section = styled.div`
-    padding: 0;
-    margin: 0 auto;
-    min-width: 100%;
-    height: 100%;
-    
-    /*   display: flex;
-    justify-content: center;
-    align-items: center; */
-`;
-
-const Wrapper = styled.div`
-    /* height: 30%; */
-    /* height: 9rem;
-    width: 100%;
-    background: #fff;
-    position: relative;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    user-select: none;
-    @media only screen and (max-width: 700px) {
-        height: 8rem;
-    }
-    cursor: pointer;
-    margin: 0;
-    padding: 0;
-    position: relative;
-    flex-shrink: 0; */
-    height: 30%;
-    width: 100%;
-    background: #555;
-    position: relative;
-    display: flex;
-    align-items: center;
-  /* overflow: hidden; */
-`;
-
-const BoxImage = styled.img`
-    /* height: 9vw; */
-    /* max-height: 30px;
-    user-select: none; */
-    
-`;
-
-
-function InfiniteScrollerApps() {
-    const sliderWrapper = useRef(null);
-    const [isMouseDown, setIsMouseDown] = useState(false);
-    // let isTouching = false;
-    let scrubStartAt = 0;
-    let initialCursorPosition = 0; // Store the initial cursor position
-    const isReversed = false;
-    const [loop, setLoop] = useState(null);
-    let loopTimeline;
-
-    useEffect(() => {
-
-        const boxes = gsap.utils.toArray(".box");
-        // Setup the tween
-        loopTimeline = horizontalLoop(boxes, {
-            paused: true,
-            repeat: -1,
-        });
-
-        console.log('looptimeline', loopTimeline);
-        setLoop(loopTimeline);
-          
-        // if (isReversed) {
-        //     loop.timeScale(-1)
-        // }
-
-        sliderWrapper.current.addEventListener("mousedown", handleMouseDown);
-        sliderWrapper.current.addEventListener("mousemove", handleMouseMove);
-        sliderWrapper.current.addEventListener("mouseup", handleMouseUp);
-
-        sliderWrapper.current.addEventListener("touchstart", handleMouseDown);
-        sliderWrapper.current.addEventListener("touchmove", handleMouseMove);
-        sliderWrapper.current.addEventListener("touchend", handleMouseUp);
-
-        return () => {
-            // Clean up the event listener when the component unmounts
-            sliderWrapper.current.removeEventListener("mousedown", handleMouseDown);
-            sliderWrapper.current.removeEventListener("mousemove", handleMouseMove);
-            sliderWrapper.current.removeEventListener("mouseup", handleMouseUp);
-
-            sliderWrapper.current.removeEventListener("touchstart", handleMouseDown);
-            sliderWrapper.current.removeEventListener("touchmove", handleMouseMove);
-            sliderWrapper.current.removeEventListener("touchend", handleMouseUp);
-        };
-    }, [])
-
-    const handleMouseDown = () => {
-        setIsMouseDown(true);
-        // loop.pause();
-        console.log(loop);
-        loopTimeline.play();
-        console.log('looptimeline', loopTimeline);
-        if (loop) { // Check if loop is initialized
-            loop.play();
-
-            // Calculate cursor position as a percentage of the slider width
-            const cursorPosition = (event.clientX - sliderWrapper.current.getBoundingClientRect().left) / sliderWrapper.current.offsetWidth;
-    
-            // Store the time where scrubbing started
-            scrubStartAt = loop.time() - (cursorPosition * loop.duration());
-    
-            // If the cursor position is greater than 0.5, it means you're dragging to the left
-            if (cursorPosition > 0.5) {
-                scrubStartAt += loop.duration();
-            }
-        }
-
-    }
-
-    const handleMouseMove = () => {
-        if (isMouseDown) {
-            const cursorPosition = (event.clientX - sliderWrapper.current.getBoundingClientRect().left) / sliderWrapper.current.offsetWidth;
-        
-            // Calculate time relative to the start time and loop duration
-            let time = scrubStartAt + cursorPosition * loop.duration();
-        
-            // Allow the time to wrap around and loop
-            if (time < 0) {
-              time = loop.duration() + (time % loop.duration());
-            } else if (time > loop.duration()) {
-              time = time % loop.duration();
-            }
-        
-            loop.seek(time, false);
-          }
-    }
-    
-    const handleMouseUp = () => {
-        setIsMouseDown(false);
-        scrubStartAt = 0;
-        loop.play()
-        if (isReversed) {
-            loop.timeScale(-1)
-        }
-    }
-
-    return (
-        <Section>
-            <Wrapper ref={sliderWrapper} >
-            {imagesApps.map((imageUrl, index) => (
-                <BoxImage
-                    className="box"
-                    key={index}
-                    src={imageUrl}
-                    alt={`Image ${index}`}
-                />
-            ))}
-        </Wrapper>
-    </Section>
-    )
-}
-
 
 const HorizontalLoopComponent = () => {
     const sliderWrapper = useRef(null);
@@ -245,11 +87,10 @@ const HorizontalLoopComponent = () => {
     let isTouching = false;
     let scrubStartAt = 0; // Store the time where scrubbing started
     let initialCursorPosition = 0; // Store the initial cursor position
-    const isReversed = true;
+    const isReversed = false;
     let timeline;
 
     useEffect(() => {
-        
         const boxes = gsap.utils.toArray(".box");
         
         // Create array of colors
@@ -270,6 +111,12 @@ const HorizontalLoopComponent = () => {
         };
         
         timeline = horizontalLoop(items, config);
+
+        setTimeout(() => {
+            if (isReversed) {
+                timeline.timeScale(-1)
+            }
+          }, "0");
         
         sliderWrapper.current.addEventListener('mousedown', handleMouseDown);
         sliderWrapper.current.addEventListener('mousemove', handleMouseMove);
@@ -335,7 +182,7 @@ const HorizontalLoopComponent = () => {
     //   <div ref={itemsRef}>
     <div class="wrapper no-select" id="sliderWrapper" ref={sliderWrapper}>
             {imagesApps.map((imageUrl, index) => (
-                <BoxImage
+                <img
                     draggable="false"
                     className="box"
                     key={index}
@@ -343,7 +190,7 @@ const HorizontalLoopComponent = () => {
                     alt={`Image ${index}`}
                 />
             ))}
-            <div 
+            <img 
                 className='box' 
                 draggable="false"
                 style={{minWidth: '0px', background: 'transparent'}}
