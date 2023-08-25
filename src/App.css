@@ -41,130 +41,6 @@
 
 /* LOGOS OF PROFICIENCIES */
 
-@keyframes slideLeft {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-100%);
-  }
-}
-
-@keyframes slideRight {
-  from {
-    transform: translateX(-100%);
-  }
-  to {
-    transform: translateX(0);
-  }
-}
-
-.logos,
-.logos-2 {
-  /* idk */
-  overflow: hidden;
-  padding: 60px 0;
-  background: #fff;
-  white-space: nowrap;
-  position: relative;
-}
-
-.logos:before,
-.logos:after,
-.logos-2:before,
-.logos-2:after {
-  position: absolute;
-  top: 0;
-  width: 250px;
-  height: 100%;
-  content: "";
-  z-index: 2;
-}
-
-.logos:before,
-.logos-2:before {
-  left: 0;
-  background: linear-gradient(to left, rgba(255,255,255, 0), #fff);
-}
-
-.logos:after,
-.logos-2:after {
-  right: 0;
-  background: linear-gradient(to right, rgba(255,255,255, 0), #fff);
-}
-
-.logos:hover .logos-slide,
-.logos-2:hover .logos-slide-2 {
-  /* animation-play-state: paused; */
-}
-
-.logos-slide,
-.logos-slide-2 {
-  display: inline-block;
-  animation: 32s slideLeft infinite linear;
-}
-
-.logos-slide img,
-.logos-slide-2 img,
-.image-slider img {
-  height: 50px;
-  margin: 0 40px;
-  user-select: none;
-}
-
-
-/* ALL LOGOS OPPOSITE */
-
-.logos-slide-opposite-2 {
-  animation: 32s slideRight2 infinite linear;
-}
-
-.logos-opposite {
-  /* idk */
-  overflow: hidden;
-  padding: 60px 0;
-  background: #fff;
-  white-space: nowrap;
-  position: relative;
-}
-
-.logos-opposite:before,
-.logos-opposite:after {
-  position: absolute;
-  top: 0;
-  width: 250px;
-  height: 100%;
-  content: "";
-  z-index: 2;
-}
-
-.logos-opposite:before {
-  left: 0;
-  background: linear-gradient(to left, rgba(255,255,255, 0), #fff);
-}
-
-.logos-opposite:after {
-  right: 0;
-  background: linear-gradient(to right, rgba(255,255,255, 0), #fff);
-}
-
-.logos-opposite:hover .logos-slide-opposite {
-  animation-play-state: paused;
-}
-
-.logos-slide-opposite img {
-  height: 50px;
-  margin: 0 40px;
-}
-
-.logos-slide-opposite {
-  display: inline-block;
-  animation: 32s slideRight infinite linear;
-}
-
-
-
-
 .box {
     display: flex;
     align-items: center;
@@ -189,7 +65,7 @@
     -webkit-user-select: none;
     -ms-user-select: none;
 
-    margin: 0 1rem;
+    margin: 0 2rem;
   }
 
   .box.default {
@@ -216,7 +92,9 @@
   align-items: center;
   overflow: hidden;
   cursor: pointer;
-  margin: 1rem 0;
+  margin: 0rem 0 2rem 0;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, .45);
+  border: 2px solid black;
 }
 
 .wrapper:before,

@@ -15,6 +15,11 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.0)),
+                  url("/img/blue-sky-4.jpg");
+    /* background-image: url("/img/blue-sky-2.jpg"); */
+    background-repeat: no-repeat;
+    background-size: cover;
 `
 
 const Title = styled.h1`
@@ -22,15 +27,20 @@ const Title = styled.h1`
     text-align: center;
     margin: 1rem;
     font-style: italic;
+    margin-bottom: 3rem;
+    font-weight: 800;
 `;
 
 const Subtitle = styled.h2`
-    color: #0011ff;
-    text-align: start;
-    margin: 2rem 0 1rem 0;
-    padding-left: 1rem;
-    font-size: 1rem;
+    color: black;
+    text-align: center;
+    font-size: 1.1rem;
     text-transform: uppercase;
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto 0.2rem auto;
+    padding-left: .5rem;
+    font-weight: 800;
 `;
 
 
@@ -43,13 +53,13 @@ function Skills() {
         <InfiniteImageScroller images={images}/>
     </Canvas> */}
 
-    {/* <Subtitle>Application/Web development</Subtitle> */}
+    <Subtitle>Coding Languages</Subtitle>
     <HorizontalImageLoopComponent1 _images={imagesLanguages} _isReversed={false} />
     
-    {/* <Subtitle>Media/Game development</Subtitle> */}
+    <Subtitle>App development</Subtitle>
     <HorizontalImageLoopComponent2 _images={imagesApps} _isReversed={true} />
     
-    {/* <Subtitle>Coding Languages</Subtitle> */}
+    <Subtitle>Media/Game creation</Subtitle>
     <HorizontalImageLoopComponent3 _images={imagesMedia} _isReversed={false} />
     </Container>
   )
@@ -60,32 +70,32 @@ function Skills() {
 const imagesApps = [
     '/logos/app-development/adobe-xd.png',
     '/logos/app-development/amplify.png',
-    '/logos/app-development/android-studio.jpg',
+    '/logos/app-development/android-studio.png',
     '/logos/app-development/asp.net.png',
     '/logos/app-development/aws-logo.png',
     '/logos/app-development/express.png',
     '/logos/app-development/figma.png',
-    '/logos/app-development/firebase.jpg',
+    '/logos/app-development/firebase.png',
     '/logos/app-development/flutter.png',
     '/logos/app-development/gsap.png',
     '/logos/app-development/hostinger.png',
     '/logos/app-development/knockoutjs.png',
-    '/logos/app-development/mongodb.jpg',
+    '/logos/app-development/mongodb.png',
     '/logos/app-development/mysql.png',
-    '/logos/app-development/net-maui-logo.webp',
+    '/logos/app-development/net-maui-logo.png',
     '/logos/app-development/netlify.png',
-    '/logos/app-development/nextjs.jpg',
+    '/logos/app-development/nextjs.png',
     '/logos/app-development/nodejs.png',
     '/logos/app-development/postgres.png',
     '/logos/app-development/react-native.png',
     '/logos/app-development/react-redux.png',
-    '/logos/app-development/react.jpg',
+    '/logos/app-development/react.png',
     '/logos/app-development/styled-components.png',
     '/logos/app-development/supabase.png',
-    '/logos/app-development/tailwindcss.jpg',
+    '/logos/app-development/tailwindcss.png',
     '/logos/app-development/threejs.png',
-    '/logos/app-development/vercel.jpg',
-    '/logos/app-development/vite.jpg'
+    '/logos/app-development/vercel.png',
+    '/logos/app-development/vite-react.png'
 ];
 
 const imagesMedia = [
@@ -107,9 +117,9 @@ const imagesMedia = [
 
 const imagesLanguages = [
     '/logos/languages/c++.png',
-    '/logos/languages/css.jpg',
-    '/logos/languages/dart.jpg',
-    '/logos/languages/html.jpg',
+    '/logos/languages/css.png',
+    '/logos/languages/dart.png',
+    '/logos/languages/html.png',
     '/logos/languages/javascript.png',
     '/logos/languages/kotlin.png',
     '/logos/languages/php.png',
@@ -157,6 +167,7 @@ const HorizontalImageLoopComponent1 = ({ _images, _isReversed }) => {
           }, "0");
         
         sliderWrapper.current.addEventListener('mousedown', handleMouseDown);
+        sliderWrapper.current.addEventListener('mouseleave', handleMouseUp);
         sliderWrapper.current.addEventListener('mousemove', handleMouseMove);
         sliderWrapper.current.addEventListener('mouseup', handleMouseUp);
 
@@ -167,6 +178,7 @@ const HorizontalImageLoopComponent1 = ({ _images, _isReversed }) => {
         // Cleanup function
         return () => {
             sliderWrapper.current.removeEventListener('mousedown', handleMouseDown);
+            sliderWrapper.current.removeEventListener('mouseleave', handleMouseUp);
             sliderWrapper.current.removeEventListener('mousemove', handleMouseMove);
             sliderWrapper.current.removeEventListener('mouseup', handleMouseUp);
 
@@ -345,6 +357,7 @@ const HorizontalImageLoopComponent1 = ({ _images, _isReversed }) => {
           }, "0");
         
         sliderWrapper.current.addEventListener('mousedown', handleMouseDown);
+        sliderWrapper.current.addEventListener('mouseleave', handleMouseUp);
         sliderWrapper.current.addEventListener('mousemove', handleMouseMove);
         sliderWrapper.current.addEventListener('mouseup', handleMouseUp);
 
@@ -355,6 +368,7 @@ const HorizontalImageLoopComponent1 = ({ _images, _isReversed }) => {
         // Cleanup function
         return () => {
             sliderWrapper.current.removeEventListener('mousedown', handleMouseDown);
+            sliderWrapper.current.removeEventListener('mouseleave', handleMouseUp);
             sliderWrapper.current.removeEventListener('mousemove', handleMouseMove);
             sliderWrapper.current.removeEventListener('mouseup', handleMouseUp);
 
@@ -534,6 +548,7 @@ const HorizontalImageLoopComponent1 = ({ _images, _isReversed }) => {
           }, "0");
         
         sliderWrapper.current.addEventListener('mousedown', handleMouseDown);
+        sliderWrapper.current.addEventListener('mouseleave', handleMouseUp);
         sliderWrapper.current.addEventListener('mousemove', handleMouseMove);
         sliderWrapper.current.addEventListener('mouseup', handleMouseUp);
 
@@ -544,6 +559,7 @@ const HorizontalImageLoopComponent1 = ({ _images, _isReversed }) => {
         // Cleanup function
         return () => {
             sliderWrapper.current.removeEventListener('mousedown', handleMouseDown);
+            sliderWrapper.current.removeEventListener('mouseleave', handleMouseUp);
             sliderWrapper.current.removeEventListener('mousemove', handleMouseMove);
             sliderWrapper.current.removeEventListener('mouseup', handleMouseUp);
 
