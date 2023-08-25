@@ -227,9 +227,14 @@ function horizontalLoop(items, config) {
         item = items[i];
         curX = xPercents[i] / 100 * widths[i];
         distanceToStart = item.offsetLeft + curX - startX + (parseFloat(config.paddingBetween) || 0) * i;
-distanceToLoop = distanceToStart + widths[i] * gsap.getProperty(item, "scaleX");
+distanceToLoop = (distanceToStart) + widths[i] * gsap.getProperty(item, "scaleX");
 
-        tl.to(item, {xPercent: snap((curX - distanceToLoop) / widths[i] * 100), duration: distanceToLoop / pixelsPerSecond}, 0)
+        // Adjust the xPercent value calculation
+        let adjustedXPercent = snap((curX - distanceToLoop - 15) / widths[i] * 100);
+
+        tl.to(item, {xPercent: adjustedXPercent, duration: distanceToLoop / pixelsPerSecond}, 0)
+        // tl.to(item, {xPercent: snap((curX - distanceToLoop) / widths[i] * 100), duration: distanceToLoop / pixelsPerSecond}, 0)
+
           .fromTo(item, {xPercent: snap((curX - distanceToLoop + totalWidth) / widths[i] * 100)}, {xPercent: xPercents[i], duration: (curX - distanceToLoop + totalWidth - curX) / pixelsPerSecond, immediateRender: false}, distanceToLoop / pixelsPerSecond)
           .add("label" + i, distanceToStart / pixelsPerSecond);
         times[i] = distanceToStart / pixelsPerSecond;

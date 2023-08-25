@@ -200,7 +200,7 @@
     width: 0rem;
     min-width: 0rem;
   }
-  
+
   .no-select {
     user-select: none;
   }
@@ -214,4 +214,24 @@
   align-items: center;
   overflow: hidden;
   cursor: pointer;
+}
+
+.wrapper:before,
+.wrapper:after {
+  position: absolute;
+  top: 0;
+  width: 75px;
+  height: 100%;
+  content: "";
+  z-index: 2;
+}
+
+.wrapper:before {
+  left: 0;
+  background: linear-gradient(to left, rgba(255,255,255, 0), #fff);
+}
+
+.wrapper:after {
+  right: 0;
+  background: linear-gradient(to right, rgba(255,255,255, 0), #fff);
 }
