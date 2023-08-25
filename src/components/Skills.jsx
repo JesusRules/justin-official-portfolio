@@ -77,7 +77,7 @@ const imagesApps = [
     '/logos/app-development/tailwindcss.jpg',
     '/logos/app-development/threejs.png',
     '/logos/app-development/vercel.jpg',
-    '/logos/app-development/vite.jpg',
+    '/logos/app-development/vite.jpg'
 ];
 
 
@@ -179,21 +179,20 @@ const HorizontalLoopComponent = () => {
     }
 
     return (
-    //   <div ref={itemsRef}>
     <div class="wrapper no-select" id="sliderWrapper" ref={sliderWrapper}>
             {imagesApps.map((imageUrl, index) => (
                 <img
                     draggable="false"
-                    className="box"
+                    className="box default"
                     key={index}
                     src={imageUrl}
                     alt={`Image ${index}`}
                 />
             ))}
-            <img 
-                className='box' 
+            <img
                 draggable="false"
-                style={{minWidth: '0px', background: 'transparent'}}
+                className="box empty"
+                src={'/logos/empty.png'}
             />
       </div>
     );
@@ -220,8 +219,9 @@ function horizontalLoop(items, config) {
             return xPercents[i];
         }
     });
+    
     gsap.set(items, {x: 0});
-    totalWidth = items[length-1].offsetLeft + xPercents[length-1] / 100 * widths[length-1] - startX + items[length-1].offsetWidth * gsap.getProperty(items[length-1], "scaleX") + (parseFloat(config.paddingRight) || 0) + (parseFloat(config.paddingBetween) || 0) * (length - 1);
+    totalWidth = items[length-1].offsetLeft + xPercents[length-1] / 100 * widths[length-1] - startX + items[length-1].offsetWidth * gsap.getProperty(items[length-1], "scaleX") + (parseFloat(config.paddingBetween) || 0) + (parseFloat(config.paddingBetween) || 0) * (length - 1);
 
     for (i = 0; i < length; i++) {
         item = items[i];
@@ -234,6 +234,7 @@ distanceToLoop = distanceToStart + widths[i] * gsap.getProperty(item, "scaleX");
           .add("label" + i, distanceToStart / pixelsPerSecond);
         times[i] = distanceToStart / pixelsPerSecond;
     }
+
     function toIndex(index, vars) {
         vars = vars || {};
         (Math.abs(index - curIndex) > length / 2) && (index += index > curIndex ? -length : length); // always go in the shortest direction
