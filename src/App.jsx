@@ -10,6 +10,7 @@ import Contact from './components/Contact'
 import { styled } from 'styled-components'
 import Projects from './components/Projects'
 import NavBar from './components/NavBar'
+import Lenis from '@studio-freight/lenis'
 
 const Container = styled.div`
   width: 100vw;
@@ -67,7 +68,7 @@ function App() {
               />
       <Hero scrollYGlobal={scrollY} />
       <Who myRef={whoRef}/>
-      <Skills myRef={skillsRef} />
+      <Skills myRef={skillsRef} scrollYGlobal={scrollY}/>
       <Projects myRef={portfolioRef}/>
       <Education myRef={educationRef}/>
       <Contact myRef={contactRef}/>

@@ -313,6 +313,18 @@ const Vignette = styled.div`
     pointer-events: none;
 `
 
+const ContactBtn = styled.button`
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 7rem;
+    height: 3rem;
+    bottom: 3rem;
+    z-index: 9999;
+
+`
+
 function Hero({ scrollYGlobal }) { 
     // PARALLAX VARS
     let parallex_el;
@@ -682,6 +694,29 @@ function Hero({ scrollYGlobal }) {
     <Container >
       {/* <Vignette /> */}
     <HeroText ref={subtitleTxtRef}>Passionate. Professional. Reliable.</HeroText>
+
+    <ContactBtn>Contact Now</ContactBtn>
+    <div className="box2">
+        <span className='borderLine'></span>
+        <form>
+            <h2>Sign in</h2>
+            <div className='inputBox'>
+                <input type='text' required="required"/>
+                <span>Username</span>
+                <i></i>
+            </div>
+            <div className='inputBox'>
+                <input type='password' required="required"/>
+                <span>Password</span>
+                <i></i>
+            </div>
+            <div className="links">
+                <a href="#">Forgot Password</a>    
+                <a href="#">Signup</a>    
+            </div> 
+            <input type="submit" value="login" />
+        </form>
+    </div>
 
       <Sky ref={skyRef} src="/img/Sky.png" data-speedx="0.33" data-speedy="0.33" data-speedz="0" data-rotation="0" className='parallax bg-img'/>
       {/* <Dove src="/img/Dove.png" className='parallax dove'/> */}

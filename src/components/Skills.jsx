@@ -44,22 +44,22 @@ const Subtitle = styled.h2`
 `;
 
 
-function Skills({ myRef }) {
+function Skills({ myRef, scrollYGlobal }) {
     let tl = gsap.timeline();
 
     useEffect(() => {
-        tl.to(".first-div", {
-            opacity: 0,
-            x: 0,
-            duration: 1,
-            scrollTrigger: {
-              trigger: ".trigger",
-              start: "center",
-              end: "center",
-              toggleActions: "play none none none",
-            },
-          });
-    }, [])
+        const divElement = myRef.current;
+        const halfwayPoint = divElement.scrollHeight / 5;
+
+        if (scrollYGlobal >= divElement.scrollHeight + halfwayPoint) {
+          tl.to(".first-div", {
+                transform: 'translateY(0)',
+                opacity: 1,
+                duration:1,
+            });
+        }
+
+      }, [scrollYGlobal])
 
   return (
     <Container className="trigger" ref={myRef}>
@@ -70,15 +70,15 @@ function Skills({ myRef }) {
         <InfiniteImageScroller images={images}/>
     </Canvas> */}
     
-    <div className="first-div">
+    <div className="first-div" style={{opacity: 0, transform: 'translateY(40px)'}}>
         <Subtitle>Coding Languages</Subtitle>
         <HorizontalImageLoopComponent1 _images={imagesLanguages} _isReversed={false} />
     </div>
-    <div className="second-div">
+    <div className="first-div" style={{opacity: 0, transform: 'translateY(40px)'}}>
         <Subtitle>App development</Subtitle>
         <HorizontalImageLoopComponent2 _images={imagesApps} _isReversed={true} />
     </div>
-    <div className="third-div">
+    <div className="first-div" style={{opacity: 0, transform: 'translateY(40px)'}}>
         <Subtitle>Media/Game creation</Subtitle>
         <HorizontalImageLoopComponent3 _images={imagesMedia} _isReversed={false} />
     </div>
