@@ -2,11 +2,44 @@ import React from 'react'
 import { styled } from 'styled-components'
 import downloadSvg from '../../public/svg/download-solid.svg';
 
-const Container = styled.div`
+const Section = styled.div`
     background-color: lightblue;
     height: 100vh;
     scroll-snap-align: start;
+    display: flex;
+    justify-content: center;
 `
+
+const Container = styled.div`
+  width: 1400px;
+  display: flex;
+  justify-content: space-between;
+`
+
+const Left = styled.div`
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  /* @media only screen and (max-width: 768px) {
+    display: none;
+  } */
+`
+const Right = styled.div`
+  flex: 4;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+
+  /* @media only screen and (max-width: 768px) {
+    align-items: center;
+    text-align: center;
+} */
+`
+
 
 const ResumeButton = styled.a`
       color: #fff;
@@ -58,14 +91,33 @@ const ResumeButton = styled.a`
 
 function Who({ myRef }) {
   return (
-    <Container ref={myRef}>
-        <ResumeButton href="#" target="_blank">
+    <Section ref={myRef}>
+      <Container>
+        <Left>
+        </Left>
+        <Right className='about-me'>
+          <h1>About Me</h1>
+          <h2>There's nothing I can't do!</h2>
+          <p>Communicative, strong, and resilient are some of the many keywords that can be used to describe me. I love to learn, I love culture, and I love life! I believe that the things that are most difficult are the things most worth doing in life! I want to travel the world and experience life to the fullest! Leave me a message, I'm always happy to meet new people!</p>
+          <p>Add me on social media! I'm always on Facebook :)</p>
+          <div>
+            <img src="/svg/facebook.svg"/>
+            <img src="/svg/youtube.svg"/>
+            <img src="/svg/github.svg"/>
+            <img src="/svg/linkedin.svg"/>
+            <img src="/svg/instagram.svg"/>
+          </div>
+        </Right>
+      </Container>
+
+        {/* <ResumeButton href="#" target="_blank">
           <div class="btn-resume">
             <img src={downloadSvg} alt="Logo" />
             <span>Download my resume</span>
           </div>
-        </ResumeButton>
-    </Container>
+        </ResumeButton> */}
+
+    </Section>
   )
 }
 
