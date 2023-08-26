@@ -359,6 +359,7 @@ function Hero({ scrollYGlobal }) {
     const marioRef = useRef(null);
     const miniJesusRef = useRef(null);
     const justinRef = useRef(null);
+    const contactBtnRef = useRef(null);
 
     // INITIAL POSITIONS
     const [scrollY, setScrollY] = useState(0);
@@ -374,6 +375,7 @@ function Hero({ scrollYGlobal }) {
     const [pipePos, setPipePos] = useState();
     const [haunterPos, setHaunterPos] = useState();
     const [booPos, setBooPos] = useState();
+    const [contactBtnPos, setContactBtnPos] = useState();
 
     let navElement;
 
@@ -583,6 +585,11 @@ function Hero({ scrollYGlobal }) {
             duration: durationLoad,
             ease: easeLoad
         }, startDelay);
+        
+        gsap.to(contactBtnRef.current, {
+            opacity: 1,
+            duration: 1,
+        }, '3');
       }
 
 
@@ -642,6 +649,7 @@ function Hero({ scrollYGlobal }) {
             setFlagPos(window.getComputedStyle(jesusFlagRef.current).getPropertyValue('left'));
             setHaunterPos(window.getComputedStyle(haunterRef.current).getPropertyValue('left'));
             setBooPos(window.getComputedStyle(booRef.current).getPropertyValue('left'));
+            // setContactBtnPos(window.getComputedStyle(contactBtnRef.current).getPropertyValue('bottom'));
         }, [])
 
 
@@ -667,6 +675,7 @@ function Hero({ scrollYGlobal }) {
             jesusFlagRef.current.style.left = parseFloat(flagPos) + scrollYGlobal * 1 + 'px';
             haunterRef.current.style.left = parseFloat(haunterPos) + scrollYGlobal * -1 + 'px';
             booRef.current.style.left = parseFloat(booPos) + scrollYGlobal * 1 + 'px';
+            // contactBtnRef.current.style.bottom = parseFloat(contactBtnPos) + scrollYGlobal * 1 + 'px';
         }
          else if (currentScrollY < scrollY && scrollYGlobal < '600') { //up
             justinRef.current.style.left = "";
@@ -681,6 +690,7 @@ function Hero({ scrollYGlobal }) {
             jesusFlagRef.current.style.left = "";
             haunterRef.current.style.left = "";
             booRef.current.style.left = "";
+            // contactBtnRef.current.style.bottom = "";
         }
 
         setScrollY(currentScrollY);
@@ -695,8 +705,14 @@ function Hero({ scrollYGlobal }) {
       {/* <Vignette /> */}
     <HeroText ref={subtitleTxtRef}>Passionate. Professional. Reliable.</HeroText>
 
-    <ContactBtn>Contact Now</ContactBtn>
-    <div className="box2">
+    <div ref={contactBtnRef} id="button-8" className="contact-btn">
+        <span className='borderLine'></span>
+        <div id="button- 3" style={{padding: 0}}>
+            <span className='contact'>Contact Me!</span>
+        </div>
+    </div>
+
+    {/* <div className="box2">
         <span className='borderLine'></span>
         <form>
             <h2>Sign in</h2>
@@ -716,7 +732,7 @@ function Hero({ scrollYGlobal }) {
             </div> 
             <input type="submit" value="login" />
         </form>
-    </div>
+    </div> */}
 
       <Sky ref={skyRef} src="/img/Sky.png" data-speedx="0.33" data-speedy="0.33" data-speedz="0" data-rotation="0" className='parallax bg-img'/>
       {/* <Dove src="/img/Dove.png" className='parallax dove'/> */}

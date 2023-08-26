@@ -121,45 +121,60 @@
 
 
 
+
 /* COOL BUTTON */
-.box2 {
-  margin: auto;
+
+.contact-btn {
+  opacity: 0;
   z-index: 191199;
-  position: relative;
-  width: 380px;
-  height: 420px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  bottom: 1rem;
+  z-index: 9999;
+  width: 110px;
+  height: 90px;
   background: #1c1c1c;
   border-radius: 8px;
   overflow: hidden;
+  cursor: pointer;
 }
 
-.box2::before {
+.contact-btn span {
+  color: #fff;
+  margin: auto;
+  text-align:center;
+  font-size: 1.23rem;
+}
+
+.contact-btn::before {
   content: '';
   position: absolute;
   top: -50%;
   left: -50%;
-  width: 380px;
-  height: 420px;
+  width: 110px;
+  height: 90px;
   background: linear-gradient(0deg, transparent, transparent, #45f3ff, #45f3ff, #45f3ff);
   z-index: 1;
   transform-origin: bottom right;
-  animation: animate 6s linear infinite;
+  animation: animate 2s linear infinite;
 }
-.box2::after {
+.contact-btn::after {
   content: '';
   position: absolute;
   top: -50%;
   left: -50%;
-  width: 380px;
-  height: 420px;
+  width: 110px;
+  height: 90px;
   background: linear-gradient(0deg, transparent, transparent, #45f3ff, #45f3ff, #45f3ff);
   z-index: 1;
   transform-origin: bottom right;
-  animation: animate 6s linear infinite;
-  animation-delay: -3s;
+  animation: animate 2s linear infinite;
+  animation-delay: -1s;
 }
 
-.borderLine {
+/* .borderLine {
   position: absolute;
   top: 0;
   inset: 0;
@@ -169,8 +184,8 @@
   position: absolute;
   top: -50%;
   left: -50%;
-  width: 380px;
-  height: 420px;
+  width: 150px;
+  height: 80px;
   background: linear-gradient(0deg, transparent, transparent, #ff2770, #ff2770, #ff2770);
   z-index: 1;
   transform-origin: bottom right;
@@ -182,14 +197,14 @@
   position: absolute;
   top: -50%;
   left: -50%;
-  width: 380px;
-  height: 420px;
+  width: 150px;
+  height: 80px;
   background: linear-gradient(0deg, transparent, transparent, #ff2770, #ff2770, #ff2770);
   z-index: 1;
   transform-origin: bottom right;
   animation: animate 6s linear infinite;
   animation-delay: -4.5s;
-}
+} */
 
 @keyframes animate {
   0% {
@@ -200,10 +215,11 @@
   }
 }
 
-.box2 form {
+.contact-btn div {
   position: absolute;
-  inset: 4px;
-  background: #222;
+  inset: 5px;
+  background: #444;
+  /* background: #222; */
   padding: 50px 40px;
   border-radius: 8px;
   z-index: 111112;
@@ -211,6 +227,65 @@
   flex-direction: column;
 }
 
+
+
+/* BUTTON 3 */
+
+#button-3{
+  border: 2px solid #34495e;
+  color: #34495e;
+  overflow: hidden;
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+#button-3:before, #button-3:after{
+  content: "";
+  z-index: -1;
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  top: 0;
+  left: -50%;
+  background-color: #45f3ff;
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+#button-3:after{
+  left: 100%;
+}
+
+#button-3:hover .contact{
+  color: #fff;
+}
+
+#button-3:hover:before{
+  left: 0;
+}
+
+#button-3:hover:after{
+  left: 50%;
+}
+
+
+
+#button-8{
+  background-color: #34495e;
+  overflow: hidden;
+  -webkit-transition: all 0.15s ease-in-out;
+  -o-transition: all 0.15s ease-in-out;
+  transition: all 0.15s ease-in-out;
+}
+
+#button-8:hover{
+  -webkit-box-shadow: 0px 0px 20px #45f3ff;
+  box-shadow: 0px 0px 20px #45f3ff;
+}
+
+/* 
 .box2 form h2 {
   color: #fff;
   font-weight: 500;
@@ -307,4 +382,4 @@
 
 .box2 form input[type="submit"]:active {
   opacity: 0.8;
-}
+} */
