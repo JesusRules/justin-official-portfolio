@@ -44,7 +44,7 @@ const MenuImage = styled.img`
     `
 const MenuItems = styled.ul`
     position: absolute;
-    top: 0;
+    top: 2vw;
     bottom: 0;
     left: 0;
     right: 0;
@@ -56,16 +56,18 @@ const MenuItems = styled.ul`
     color: #fff;
     text-decoration: none;
     list-style: none;
-    a {
+    p {
         font-weight:bold;
         color: #fff;
         font-size: 1.5rem;
         text-decoration: none;
         line-height: 2.6rem;
+        cursor: pointer;
     }
 `
 
-function NavBar({ scrollYGlobal }) {
+function NavBar({ scrollYGlobal, 
+                clickToWho, clickToSkills, clickToPortfolio, clickToEducation, clickToContact}) {
     //FLAG
     const [menuEnabled, setMenuEnabled] = useState(false);
     const [prevScrollPos, setPrevScrollPos] = useState(0);
@@ -111,16 +113,19 @@ function NavBar({ scrollYGlobal }) {
             <MenuImage src="/img/Jesus-Banner.png" />
             <MenuItems>
                 <li>
-                    <a href="#">Home</a>
+                    <p onClick={() => clickToWho()} >Who</p>
                 </li>
                 <li>
-                    <a href="#">Works</a>
+                    <p onClick={() => clickToSkills()} >Skills</p>
                 </li>
                 <li>
-                    <a href="#">Projects</a>
+                    <p onClick={() => clickToPortfolio()} >Portfolio</p>
                 </li>
                 <li>
-                    <a href="#">Contact</a>
+                    <p onClick={() => clickToEducation()} >Education</p>
+                </li>
+                <li>
+                    <p onClick={() => clickToContact()} >Contact</p>
                 </li>
             </MenuItems>
         </MenuContainer>

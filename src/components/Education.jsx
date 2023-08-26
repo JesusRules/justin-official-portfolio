@@ -7,9 +7,9 @@ const Container = styled.div`
     scroll-snap-align: start;
 `
 
-function Education() {
+function Education({ myRef }) {
   return (
-    <Container>
+    <Container ref={myRef}>
       Education
     </Container>
   )

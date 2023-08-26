@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -26,21 +26,51 @@ const Container = styled.div`
 
 function App() {
   const [scrollY, setScrollY] = useState(0);
+  const [clickMe, setClickMe] = useState(false);
+
+  const whoRef = useRef(null);
+  const skillsRef = useRef(null);
+  const portfolioRef = useRef(null);
+  const educationRef = useRef(null);
+  const contactRef = useRef(null);
 
   const handleScroll = (event) => {
     const scrollTop = event.target.scrollTop;
     setScrollY(scrollTop);
   };
 
+  const scrollToWho = () => {
+    whoRef.current.scrollIntoView({ behavior: 'smooth' });
+  }
+  const scrollToSkills = () => {
+    skillsRef.current.scrollIntoView({ behavior: 'smooth' });
+  }
+  const scrollToPortfolio = () => {
+    portfolioRef.current.scrollIntoView({ behavior: 'smooth' });
+  }
+  const scrollToEducation = () => {
+    educationRef.current.scrollIntoView({ behavior: 'smooth' });
+  }
+  const scrollToContact = () => {
+    contactRef.current.scrollIntoView({ behavior: 'smooth' });
+  }
+
   return (
     <Container onScroll={handleScroll}>
-      <NavBar scrollYGlobal={scrollY} />
+
+      <NavBar scrollYGlobal={scrollY} 
+              clickToWho={scrollToWho}
+              clickToSkills={scrollToSkills}
+              clickToPortfolio={scrollToPortfolio}
+              clickToEducation={scrollToEducation}
+              clickToContact={scrollToContact}
+              />
       <Hero scrollYGlobal={scrollY} />
-      <Skills />
-      <Projects />
-      <Who />
-      <Education />
-      <Contact />
+      <Who myRef={whoRef}/>
+      <Skills myRef={skillsRef} />
+      <Projects myRef={portfolioRef}/>
+      <Education myRef={educationRef}/>
+      <Contact myRef={contactRef}/>
     </Container>
   )
 }

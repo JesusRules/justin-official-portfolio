@@ -44,10 +44,10 @@ const Subtitle = styled.h2`
 `;
 
 
-function Skills() {
+function Skills({ myRef }) {
 
   return (
-    <Container>
+    <Container ref={myRef}>
       <Title>All the languages, software, technologies I know!</Title>
       {/* <Canvas>
         <InfiniteImageScroller images={images}/>

@@ -7,9 +7,9 @@ const Container = styled.div`
     scroll-snap-align: start;
 `
 
-function Contact() {
+function Contact({ myRef }) {
   return (
-    <Container>
+    <Container ref={myRef}>
       Contact
     </Container>
   )
