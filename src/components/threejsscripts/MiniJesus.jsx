@@ -10,7 +10,7 @@ import { useGLTF, useAnimations, useFBX } from '@react-three/drei'
 export function MiniJesus(props) {
   const group = useRef()
   const { nodes, materials, animations } = useGLTF('/models/mini-jesus/MiniJesus-transformed.glb')
-  const { animations: runningAnim } = useFBX("/models/mini-jesus/MiniJesusRun.fbx");
+  const { animations: runningAnim } = useFBX("/models/mini-jesus/MiniJesusWalk.fbx");
   runningAnim[0].name = "Running";
 
   const { actions } = useAnimations(runningAnim, group)
