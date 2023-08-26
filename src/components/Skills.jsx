@@ -2,11 +2,11 @@ import React, { useEffect, useRef, useState } from 'react'
 import { styled } from 'styled-components'
 import gsap from 'gsap';
 import '../App.css'
-// import Slider from 'react-slick';
-// import 'slick-carousel/slick/slick.css';
-// import 'slick-carousel/slick/slick-theme.css';
 import InfiniteImageScroller from './threejsscripts/InfiniteImageScroller'
 import { Canvas } from '@react-three/fiber'
+import ScrollTrigger from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Container = styled.div`
     background-color: #ceeeff;
@@ -45,22 +45,43 @@ const Subtitle = styled.h2`
 
 
 function Skills({ myRef }) {
+    let tl = gsap.timeline();
+
+    useEffect(() => {
+        tl.to(".first-div", {
+            opacity: 0,
+            x: 0,
+            duration: 1,
+            scrollTrigger: {
+              trigger: ".trigger",
+              start: "center",
+              end: "center",
+              toggleActions: "play none none none",
+            },
+          });
+    }, [])
 
   return (
-    <Container ref={myRef}>
+    <Container className="trigger" ref={myRef}>
+      
       <Title>All the languages, software, technologies I know!</Title>
+      
       {/* <Canvas>
         <InfiniteImageScroller images={images}/>
     </Canvas> */}
-
-    <Subtitle>Coding Languages</Subtitle>
-    <HorizontalImageLoopComponent1 _images={imagesLanguages} _isReversed={false} />
     
-    <Subtitle>App development</Subtitle>
-    <HorizontalImageLoopComponent2 _images={imagesApps} _isReversed={true} />
-    
-    <Subtitle>Media/Game creation</Subtitle>
-    <HorizontalImageLoopComponent3 _images={imagesMedia} _isReversed={false} />
+    <div className="first-div">
+        <Subtitle>Coding Languages</Subtitle>
+        <HorizontalImageLoopComponent1 _images={imagesLanguages} _isReversed={false} />
+    </div>
+    <div className="second-div">
+        <Subtitle>App development</Subtitle>
+        <HorizontalImageLoopComponent2 _images={imagesApps} _isReversed={true} />
+    </div>
+    <div className="third-div">
+        <Subtitle>Media/Game creation</Subtitle>
+        <HorizontalImageLoopComponent3 _images={imagesMedia} _isReversed={false} />
+    </div>
     </Container>
   )
 }

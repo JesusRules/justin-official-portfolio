@@ -16,7 +16,7 @@ const ResumeButton = styled.a`
         display: inline-block;
         font-size: 1.1em;
         padding: 20px;
-        background: rgba(0, 0, 0, 1);
+        background: #4d4d4d;
         position:relative;
         border:2px solid #fff;
         border-radius: 5px;

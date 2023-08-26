@@ -63,6 +63,13 @@ const MenuItems = styled.ul`
         text-decoration: none;
         line-height: 2.6rem;
         cursor: pointer;
+
+        text-decoration: none;
+        transition: text-decoration 0.3s ease-in-out;
+
+    }
+    p:hover {
+    text-decoration: underline;
     }
 `
 
@@ -113,13 +120,16 @@ function NavBar({ scrollYGlobal,
             <MenuImage src="/img/Jesus-Banner.png" />
             <MenuItems>
                 <li>
-                    <p onClick={() => clickToWho()} >Who</p>
+                    <p onClick={() => clickToWho()} >Who Am I?</p>
                 </li>
                 <li>
                     <p onClick={() => clickToSkills()} >Skills</p>
                 </li>
                 <li>
                     <p onClick={() => clickToPortfolio()} >Portfolio</p>
+                </li>
+                <li>
+                    <p onClick={() => clickToPortfolio()} >Services</p>
                 </li>
                 <li>
                     <p onClick={() => clickToEducation()} >Education</p>
