@@ -65,10 +65,6 @@ function Skills({ myRef, scrollYGlobal }) {
     <Container className="trigger" ref={myRef}>
       
       <Title>All the languages, software, technologies I know!</Title>
-      
-      {/* <Canvas>
-        <InfiniteImageScroller images={images}/>
-    </Canvas> */}
     
     <div className="first-div" style={{opacity: 0, transform: 'translateY(40px)'}}>
         <Subtitle>Coding Languages</Subtitle>
