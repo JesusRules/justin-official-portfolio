@@ -13,8 +13,8 @@ import { Canvas, useFrame } from '@react-three/fiber'
 export function JustinFace(props) {
   const { nodes, materials } = useGLTF('/models/JustinHead-transformed.glb')
   return (
-    <group {...props} dispose={null}>
-      <mesh geometry={nodes.Group1.geometry} material={materials['default']} rotation={[0, 0, 0]} scale={.4} >
+    <group position={[0, 0.7, 0]} {...props} dispose={null}>
+      <mesh geometry={nodes.Group1.geometry} material={materials['default']} rotation={[0.25, 0.6, 0]} scale={.4} >
         <meshNormalMaterial />
       </mesh>
     </group>
@@ -26,10 +26,10 @@ export function JustinHead(props) {
   const [dummy] = useState(() => new THREE.Object3D());
 
   useFrame((state, dt) => {
-      mesh.current.position.set(0, 0.1, 0); // Set the pivot position
+      mesh.current.position.set(-1, -0.2, 0); // Set the pivot position
       mesh.current.updateMatrix(); // not really needed
 
-      dummy.lookAt(state.pointer.x, state.pointer.y, 1);
+      dummy.lookAt(state.pointer.x, state.pointer.y, .5);
       easing.dampQ(mesh.current.quaternion, dummy.quaternion, 0.15, dt);
   })
 

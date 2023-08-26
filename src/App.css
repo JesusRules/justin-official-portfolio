@@ -35,12 +35,13 @@ h1, h2, h3, h4, h5 {
   font-size: 3.052rem;
 }
 
-.about-me img {
+.about-me .social-media-icons img {
   box-shadow: 3px 3px 3px gray;
 }
 .about-me img:hover {
   box-shadow: 5px 5px 5px gray;
 }
+
 
 
 h2 {
