@@ -4,16 +4,42 @@ Command: npx gltfjsx@6.2.12 JustinHead.gltf --transform
 Files: JustinHead.gltf [6.85MB] > JustinHead-transformed.glb [314.84KB] (95%)
 */
 
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
+import * as THREE from 'three';
 import { useGLTF } from '@react-three/drei'
+import { easing } from 'maath';
+import { Canvas, useFrame } from '@react-three/fiber'
 
-export function Model(props) {
-  const { nodes, materials } = useGLTF('/JustinHead-transformed.glb')
+export function JustinFace(props) {
+  const { nodes, materials } = useGLTF('/models/JustinHead-transformed.glb')
   return (
     <group {...props} dispose={null}>
-      <mesh geometry={nodes.Group1.geometry} material={materials['default']} scale={0.025} />
+      <mesh geometry={nodes.Group1.geometry} material={materials['default']} rotation={[0, 0, 0]} scale={.4} >
+        <meshNormalMaterial />
+      </mesh>
     </group>
   )
 }
 
-useGLTF.preload('/JustinHead-transformed.glb')
+export function JustinHead(props) {
+  const mesh = useRef();
+  const [dummy] = useState(() => new THREE.Object3D());
+
+  useFrame((state, dt) => {
+      mesh.current.position.set(0, 0.1, 0); // Set the pivot position
+      mesh.current.updateMatrix(); // not really needed
+
+      dummy.lookAt(state.pointer.x, state.pointer.y, 1);
+      easing.dampQ(mesh.current.quaternion, dummy.quaternion, 0.15, dt);
+  })
+
+  return (
+      <group ref={mesh} {...props} dispose={null}>
+      <JustinFace />
+      {/* <HeadPhones scale={[0.06, 0.06, 0.06]} rotation={[0.3, 0, 0]}
+          position={[0.1, -1.9, -0.9]} /> */}
+      </group>
+  )
+}
+
+useGLTF.preload('/models/JustinHead-transformed.glb')

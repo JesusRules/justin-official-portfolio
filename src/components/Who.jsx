@@ -1,6 +1,9 @@
 import React from 'react'
 import { styled } from 'styled-components'
 import downloadSvg from '../../public/svg/download-solid.svg';
+import { JustinHead } from './threejsscripts/JustinHead';
+import { Canvas } from '@react-three/fiber'
+import { OrbitControls } from '@react-three/drei';
 
 const Section = styled.div`
     background-color: lightblue;
@@ -94,18 +97,25 @@ function Who({ myRef }) {
     <Section ref={myRef}>
       <Container>
         <Left>
+            <Canvas camera={{fov: 25, position: [0, 0, 5]}}>
+                <JustinHead />
+                {/* <OrbitControls enablePan={false} autoRotate enableZoom={false} /> */}
+                <ambientLight intensity={1}/>
+                <directionalLight position={[1, 2, 3]} />
+            </Canvas>
         </Left>
+        
         <Right className='about-me'>
           <h1>About Me</h1>
           <h2>There's nothing I can't do!</h2>
           <p>Communicative, strong, and resilient are some of the many keywords that can be used to describe me. I love to learn, I love culture, and I love life! I believe that the things that are most difficult are the things most worth doing in life! I want to travel the world and experience life to the fullest! Leave me a message, I'm always happy to meet new people!</p>
-          <p>Add me on social media! I'm always on Facebook :)</p>
-          <div>
-            <img src="/svg/facebook.svg"/>
-            <img src="/svg/youtube.svg"/>
-            <img src="/svg/github.svg"/>
-            <img src="/svg/linkedin.svg"/>
-            <img src="/svg/instagram.svg"/>
+          <p style={{marginTop: '1rem', fontStyle: 'italic'}}>Add me on social media! I'm always on Facebook  <span>🥰🙏🙌</span></p>
+          <div style={{display: 'flex', gap: '.6rem'}}>
+            <a href="https://www.facebook.com/justin.bernard320"><img src="/svg/facebook.svg"/></a>
+            <a href="https://www.youtube.com/channel/UCx8Il9AsAJZnIs9BwXY_M7g"><img src="/svg/youtube.svg"/></a>
+            <a href="https://github.com/bern0241"><img src="/svg/github.svg"/></a>
+            <a href="https://www.linkedin.com/in/justin-bernard32/"><img src="/svg/linkedin.svg"/></a>
+            <a href="https://www.instagram.com/justin.bernard320/"><img src="/svg/instagram.svg"/></a>
           </div>
         </Right>
       </Container>
