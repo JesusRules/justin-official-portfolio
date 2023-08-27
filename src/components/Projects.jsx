@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react'
+import React, { useRef, useEffect, useState, Suspense } from 'react'
 import { styled } from 'styled-components'
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls, Html, Environment, Sky } from '@react-three/drei';
@@ -18,23 +18,18 @@ function Projects({ myRef }) {
   let startX;
   const [animation, setAnimation] = useState("Standing");
 
-    // useEffect(() => {
-    //   const canvas = canvasRef.current;
-    //   const renderer = new THREE.WebGLRenderer({ canvas });
+    useEffect(() => {
+      // Your Three.js scene setup
+      myRef.current.addEventListener("touchstart", handleTouchStart);
+      myRef.current.addEventListener("touchmove", handleTouchMove);
+      myRef.current.addEventListener("touchend", handleTouchEnd);
 
-    //   // Your Three.js scene setup
-    //   setAnimation("Standing");
-      
-    //   myRef.current.addEventListener("touchstart", handleTouchStart);
-    //   myRef.current.addEventListener("touchmove", handleTouchMove);
-    //   myRef.current.addEventListener("touchend", handleTouchEnd);
-
-    //   return () => {
-    //     myRef.current.removeEventListener("touchstart", handleTouchStart);
-    //     myRef.current.removeEventListener("touchmove", handleTouchMove);
-    //     myRef.current.removeEventListener("touchend", handleTouchEnd);
-    //   };
-    // }, []);
+      return () => {
+        myRef.current.removeEventListener("touchstart", handleTouchStart);
+        myRef.current.removeEventListener("touchmove", handleTouchMove);
+        myRef.current.removeEventListener("touchend", handleTouchEnd);
+      };
+    }, []);
 
     const handleTouchStart = (event) => {
       startX = event.touches[0].clientX;
@@ -63,19 +58,20 @@ function Projects({ myRef }) {
   return (
     <Container ref={myRef}>
       <Canvas shadows camera={{fov: 45, far: 1000, near: 0.1, position: [0, 1.75, 5]}}>
-                <mesh rotation={[-Math.PI / 2, 0, 0]}>
-                  <planeGeometry args={[10, 10, 10]} />
-                  <meshStandardMaterial color="green" />
-                </mesh>
                 <group>
-                  <MiniJesus scale={10} animation={animation} />
+                  <Suspense fallback={null}>
+                    <MiniJesus scale={10} />
+                  </Suspense>
                 </group>
                 {/* <OrbitControls /> */}
                 <OrbitControls enableZoom={false} enableRotate={false} enablePan={false} />
-                <Sky color="blue" />
                 <Environment preset="city"/>
                 <ambientLight intensity={1} />
-                <directionalLight position={[1, 2, 3]} />
+                <directionalLight castShadow shadow-mapSize={1024} position={[-5, 5, 5]} />
+                <mesh receiveShadow rotation={[-Math.PI / 2, 0, 0]}>
+                  <planeGeometry args={[10, 10, 10]} />
+                  <meshStandardMaterial color="green" />
+                </mesh>
             </Canvas>
     </Container>
   )
