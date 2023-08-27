@@ -11,13 +11,13 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three-stdlib'
 
 export function MiniJesus(props) {
+  const { animIndex, setAnimIndex } = props;
   const group = useRef()
   const { nodes, materials, animations } = useGLTF('/models/MiniJesus-transformed.glb')
   const { actions, names, ref, mixer } = useAnimations(animations, group)
 
   //MINE
   const [hovered, setHovered] = useState(false);
-  const [index, setIndex] = useState(3); //IDLE
 
   const [activeAnimationIndex, setActiveAnimationIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
@@ -26,7 +26,10 @@ export function MiniJesus(props) {
   // const mixer = new THREE.AnimationMixer();
 
   useEffect(() => {
-    // actions['FirstPlaceWin'].setDuration(.6);
+    actions['FirstPlaceWin'].setDuration(1.8);
+    actions['Walk'].setDuration(1.1);
+    actions['Run'].setDuration(.6);
+
     actions['FirstPlaceWin'].loop = THREE.LoopOnce;
     console.log("ANIMATIONS", animations);
 
@@ -37,21 +40,34 @@ export function MiniJesus(props) {
         // setIndex(3); //idle
       }
     });
+
+    //Control keys
+    document.addEventListener('keydown', (event) => {
+      if (event.shiftKey) {
+        //TOGGLE
+      } else {
+        // [event.key.toLowerCase()] = true;
+        console.log(event.key.toLowerCase());
+      }
+    }, false);
+    document.addEventListener('keyup', (event) => {
+      // [event.key.toLowerCase()] = false;
+      console.log(event.key.toLowerCase());
+    }, false);
   }, [])
 
   
-
   useEffect(() => {
     console.log('ACTIONS', actions);
-    actions[names[index]].reset().fadeIn(0.5).play();
-    return () => actions[names[index]].fadeOut(0.5);
-  }, [index, actions, names])
+    actions[names[animIndex]].reset().fadeIn(0.5).play();
+    return () => actions[names[animIndex]].fadeOut(0.5);
+  }, [animIndex, actions, names])
   
   useFrame((state) => {
   })
   
   const clickedJesus = () => {
-    setIndex(2);
+    setAnimIndex(2);
   }
 
   return (

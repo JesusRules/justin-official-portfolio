@@ -12,7 +12,7 @@ const Container = styled.div`
 `
 
 function Projects({ myRef }) {
-  // const canvasRef = useRef(null);
+  const [animIndex, setAnimIndex] = useState(3); //IDLE
   const [swipeDirection, setSwipeDirection] = useState(null);
   // const [startX, setStartX] = useState();
   let startX;
@@ -41,10 +41,10 @@ function Projects({ myRef }) {
         const deltaX = currentX - startX;
         if (deltaX > 0) {
           console.log('right');
-          setSwipeDirection("right");
+          setAnimIndex(6);
         } else if (deltaX < 0) {
           console.log('left');
-          setSwipeDirection("left");
+          setAnimIndex(5);
         }
         startX = currentX;
       }
@@ -60,7 +60,7 @@ function Projects({ myRef }) {
       <Canvas shadows camera={{fov: 45, far: 1000, near: 0.1, position: [0, 1.75, 5]}}>
                 <group>
                   <Suspense fallback={null}>
-                    <MiniJesus scale={10} />
+                    <MiniJesus scale={10} animIndex={animIndex} setAnimIndex={setAnimIndex} />
                   </Suspense>
                 </group>
                 {/* <OrbitControls /> */}
