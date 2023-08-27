@@ -6,25 +6,50 @@ Files: MiniJesus.gltf [6.85MB] > MiniJesus-transformed.glb [358.58KB] (95%)
 
 import React, { useEffect, useRef } from 'react'
 import { useGLTF, useAnimations, useFBX } from '@react-three/drei'
+import { useFrame } from '@react-three/fiber';
+import * as THREE from 'three';
 
 export function MiniJesus(props) {
   const group = useRef()
   const { nodes, materials, animations } = useGLTF('/models/mini-jesus/MiniJesus-transformed.glb')
-  const { animations: runningAnim } = useFBX("/models/mini-jesus/MiniJesusWalk.fbx");
+  const { animations: walkAnim } = useFBX("/models/mini-jesus/MiniJesusWalk.fbx");
+  const { animations: runningAnim } = useFBX("/models/mini-jesus/MiniJesusRun.fbx");
+  const { animations: idleAnim } = useFBX("/models/mini-jesus/MiniJesusIdle.fbx");
+  
+  idleAnim[0].name = "Standing";
+  walkAnim[0].name = "Walking";
   runningAnim[0].name = "Running";
-
-  const { actions } = useAnimations(runningAnim, group)
+  
+  const { actions } = useAnimations([walkAnim[0], runningAnim[0], idleAnim[0]], group)
   // const { actions } = useAnimations(animations, group)
-
+  
   useEffect(() => {
-    actions["Running"].setDuration(0.6);
-    actions["Running"].reset().play();
+    // actions["Standing"].setDuration(1);
+    // actions["Walking"].setDuration(1);
+    // actions["Running"].setDuration(1);
+    actions['Standing'].play();
+    // setTimeout(() => {
+    // }, "200");
   }, [])
 
-  return (
-    <group rotation-x={-Math.PI / 2}>
+  // useEffect(() => {
+  //   actions['Standing'].reset().play();
+  //   return () => {
+  //     actions['Standing'].reset().stop();
+  //   }
+  // }, [animation])
 
+  useFrame((state) => {
+    // const boneParent = group.current.getObjectByName("Head_J");
+    // boneParent.lookAt(state.camera.position);
+    // const target = new THREE.Vector3(state.mouse.x, state.mouse.y, 1);
+    // group.current.getObjectByName("Head_J").lookAt(target);
+  })
+
+  return (
+    
     <group ref={group} {...props} dispose={null}>
+      <group rotation-x={-Math.PI / 2}>
       <group name="Scene">
         <group name="Armature" rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
           <primitive object={nodes.Hip_J} />
