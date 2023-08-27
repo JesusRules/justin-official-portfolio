@@ -6,53 +6,39 @@ Files: MiniJesus.gltf [8.25MB] > MiniJesus-transformed.glb [499.31KB] (94%)
 
 import React, { useRef, useState, useEffect } from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
-import { useFrame } from '@react-three/fiber';
+import { useFrame, useLoader } from '@react-three/fiber';
 import * as THREE from 'three';
+import { GLTFLoader } from 'three-stdlib'
 
 export function MiniJesus(props) {
   const group = useRef()
   const { nodes, materials, animations } = useGLTF('/models/MiniJesus-transformed.glb')
-  const { actions, names, ref } = useAnimations(animations, group)
+  const { actions, names, ref, mixer } = useAnimations(animations, group)
 
   //MINE
   const [hovered, setHovered] = useState(false);
   const [index, setIndex] = useState(3); //IDLE
-  const mixer = new THREE.AnimationMixer();
+
+  const [activeAnimationIndex, setActiveAnimationIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const animationsSequence = [0, 1, 2];
+  // const gltf = useLoader(GLTFLoader, '/models/MiniJesus-transformed.glb');
+  // const mixer = new THREE.AnimationMixer();
 
   useEffect(() => {
     // actions['FirstPlaceWin'].setDuration(.6);
     actions['FirstPlaceWin'].loop = THREE.LoopOnce;
-
     console.log("ANIMATIONS", animations);
 
-    if (animations && animations.length > 0) {
-      animations.forEach((clip) => {
-        mixer.clipAction(clip);
-      })
-      // playAnimationInSequence(0);
-    }
+    actions['FirstPlaceWin'].clampWhenFinished = true;
+
+    mixer.addEventListener('finished', (e) => {
+      if (e.action._clip.name === "FirstPlaceWin") {
+        // setIndex(3); //idle
+      }
+    });
   }, [])
 
-  const playAnimationInSequence = (index) => {
-    if (index >= animationsSequence.length) {
-      setIsAnimating(false);
-      return;
-    }
-
-    setIsAnimating(true);
-    const animationIndex = animationsSequence[index];
-    const action = mixer.clipAction(animations[animationIndex]);
-    action.reset();
-    action.play();
-    action.clampWhenFinished = true;
-    action.timeScale = 1;
-
-    action.finished.then(() => {
-      setActiveAnimationIndex(index + 1);
-    })
-  }
   
 
   useEffect(() => {
