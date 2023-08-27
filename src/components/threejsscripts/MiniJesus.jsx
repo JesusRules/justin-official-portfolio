@@ -19,11 +19,9 @@ export function MiniJesus(props) {
   const { actions, names, ref, mixer } = useAnimations(animations, character)
 
   //MINE
+  const [keyDown, setKeyDown] = useState(false);
+  const [moveDir, setMoveDir] = useState(false);
   const [hovered, setHovered] = useState(false);
-
-  const [activeAnimationIndex, setActiveAnimationIndex] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
-  const animationsSequence = [0, 1, 2];
   // const gltf = useLoader(GLTFLoader, '/models/MiniJesus-transformed.glb');
   // const mixer = new THREE.AnimationMixer();
 
@@ -44,34 +42,43 @@ export function MiniJesus(props) {
     });
 
     //Control keys
-    document.addEventListener('keydown', keyDown, false);
-    document.addEventListener('keyup', keyUp, false);
+    document.addEventListener('keydown', handleKeyDown, false);
+    document.addEventListener('keyup', handleKeyUp, false);
 
     return () => {
-      document.removeEventListener('keydown', keyDown);
-      document.removeEventListener('keyup', keyUp);
+      document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener('keyup', handleKeyUp);
     };
   }, [])
 
-  const keyDown = (event) => {
+  const handleKeyDown = (event) => {
     if (event.shiftKey) {
       //TOGGLE
     } else {
       if (event.key.toLowerCase() === 'a') {
-        character.current.translateX(-0.1);
+        setKeyDown(true);
+        setMoveDir('left');
         gsap.to(model.current.rotation, {duration: .5, repeat: 0, y: -Math.PI / 2});
       }
       if (event.key.toLowerCase() === 'd') {
-        character.current.translateX(+0.1);
+        setKeyDown(true);
+        setMoveDir('right');
         gsap.to(model.current.rotation, {duration: .5, repeat: 0, y: Math.PI / 2});
       }
       console.log(event.key.toLowerCase());
     }
   }
 
-  const keyUp = () => {
+  const handleKeyUp = (event) => {
+    if (event.key.toLowerCase() === 'a' || event.key.toLowerCase() === 'd') {
+      setKeyDown(false);
+    }
   }
 
+  useEffect(() => {
+    if (keyDown) setAnimIndex(5); //RUN
+    if (!keyDown) setAnimIndex(3); //IDLE
+  }, [keyDown])
   
   useEffect(() => {
     console.log('ACTIONS', actions);
@@ -80,10 +87,16 @@ export function MiniJesus(props) {
   }, [animIndex, actions, names])
   
   useFrame((state) => {
+    if (keyDown) {
+      if (moveDir === 'left') character.current.translateX(-0.082);
+      if (moveDir === 'right') character.current.translateX(+0.082);
+    }
   })
   
   const clickedJesus = () => {
+    if (keyDown) return;
     setAnimIndex(2);
+    gsap.to(model.current.rotation, {duration: .5, repeat: 0, y: 0});
   }
 
   return (
