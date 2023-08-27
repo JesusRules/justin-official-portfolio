@@ -86,14 +86,14 @@ export function MiniJesus(props) {
     return () => actions[names[animIndex]].fadeOut(0.5);
   }, [animIndex, actions, names])
   
-  useFrame((state ) => {
+  useFrame((state, delta ) => {
     if (keyDown) {
       if (moveDir === 'left') playerRef.current.translateX(-0.082);
       if (moveDir === 'right') playerRef.current.translateX(+0.082);
     }
     const playerPos = playerRef.current.position;
-    
-    state.camera.position.set(playerPos.x, 1.75, 5);
+
+    // 1 
     // gsap.to(state.camera.position, {
     //   x: playerPos.x,
     //   y: 1.75,
@@ -101,7 +101,22 @@ export function MiniJesus(props) {
     //   duration: 0.5, // Animation duration in seconds
     // });
 
+   //2
+    const angle = Date.now() * 0.001 * 1;
+    const x = Math.cos(angle) * 5;
+    const z = Math.sin(angle) * 5;
+    // Update the player's position
+    playerRef.current.position.x = x;
+    playerRef.current.position.z = z;
+    // Rotate the player to face the center while moving
+    playerRef.current.rotation.y = -angle;
+
+
+    // KEEP
+    state.camera.position.set(playerPos.x, playerPos.y + 1.75, playerPos.z + 5);
+
     state.camera.lookAt(playerPos);
+
   })
 
   
@@ -112,7 +127,7 @@ export function MiniJesus(props) {
   }
 
   return (
-    <group ref={playerRef} {...props} dispose={null}>
+    <group ref={playerRef} {...props} dispose={null} position={[0,0,0]}>
       <group ref={model} name="Scene">
         <group name="MiniJesus" rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
           <primitive object={nodes.Hip_J} />
