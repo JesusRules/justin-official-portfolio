@@ -6,19 +6,19 @@ Files: MiniJesus.gltf [8.25MB] > MiniJesus-transformed.glb [499.31KB] (94%)
 
 import React, { useRef, useState, useEffect } from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
-import { useFrame, useLoader } from '@react-three/fiber';
+import { useFrame, useLoader, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three-stdlib'
 import gsap from 'gsap';
 
 export function MiniJesus(props) {
-  const { animIndex, setAnimIndex } = props;
-  const character = useRef();
+  const { playerRef } = props;
   const model = useRef();
   const { nodes, materials, animations } = useGLTF('/models/MiniJesus-transformed.glb')
-  const { actions, names, ref, mixer } = useAnimations(animations, character)
-
+  const { actions, names, ref, mixer } = useAnimations(animations, playerRef)
+  
   //MINE
+  const { animIndex, setAnimIndex } = props;
   const [keyDown, setKeyDown] = useState(false);
   const [moveDir, setMoveDir] = useState(false);
   const [hovered, setHovered] = useState(false);
@@ -86,12 +86,24 @@ export function MiniJesus(props) {
     return () => actions[names[animIndex]].fadeOut(0.5);
   }, [animIndex, actions, names])
   
-  useFrame((state) => {
+  useFrame((state ) => {
     if (keyDown) {
-      if (moveDir === 'left') character.current.translateX(-0.082);
-      if (moveDir === 'right') character.current.translateX(+0.082);
+      if (moveDir === 'left') playerRef.current.translateX(-0.082);
+      if (moveDir === 'right') playerRef.current.translateX(+0.082);
     }
+    const playerPos = playerRef.current.position;
+    
+    state.camera.position.set(playerPos.x, 1.75, 5);
+    // gsap.to(state.camera.position, {
+    //   x: playerPos.x,
+    //   y: 1.75,
+    //   z: 5,
+    //   duration: 0.5, // Animation duration in seconds
+    // });
+
+    state.camera.lookAt(playerPos);
   })
+
   
   const clickedJesus = () => {
     if (keyDown) return;
@@ -100,7 +112,7 @@ export function MiniJesus(props) {
   }
 
   return (
-    <group ref={character} {...props} dispose={null}>
+    <group ref={playerRef} {...props} dispose={null}>
       <group ref={model} name="Scene">
         <group name="MiniJesus" rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
           <primitive object={nodes.Hip_J} />
