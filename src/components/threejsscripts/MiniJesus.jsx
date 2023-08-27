@@ -9,12 +9,14 @@ import { useGLTF, useAnimations } from '@react-three/drei'
 import { useFrame, useLoader } from '@react-three/fiber';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three-stdlib'
+import gsap from 'gsap';
 
 export function MiniJesus(props) {
   const { animIndex, setAnimIndex } = props;
-  const group = useRef()
+  const character = useRef();
+  const model = useRef();
   const { nodes, materials, animations } = useGLTF('/models/MiniJesus-transformed.glb')
-  const { actions, names, ref, mixer } = useAnimations(animations, group)
+  const { actions, names, ref, mixer } = useAnimations(animations, character)
 
   //MINE
   const [hovered, setHovered] = useState(false);
@@ -42,19 +44,33 @@ export function MiniJesus(props) {
     });
 
     //Control keys
-    document.addEventListener('keydown', (event) => {
-      if (event.shiftKey) {
-        //TOGGLE
-      } else {
-        // [event.key.toLowerCase()] = true;
-        console.log(event.key.toLowerCase());
-      }
-    }, false);
-    document.addEventListener('keyup', (event) => {
-      // [event.key.toLowerCase()] = false;
-      console.log(event.key.toLowerCase());
-    }, false);
+    document.addEventListener('keydown', keyDown, false);
+    document.addEventListener('keyup', keyUp, false);
+
+    return () => {
+      document.removeEventListener('keydown', keyDown);
+      document.removeEventListener('keyup', keyUp);
+    };
   }, [])
+
+  const keyDown = (event) => {
+    if (event.shiftKey) {
+      //TOGGLE
+    } else {
+      if (event.key.toLowerCase() === 'a') {
+        character.current.translateX(-0.1);
+        gsap.to(model.current.rotation, {duration: .5, repeat: 0, y: -Math.PI / 2});
+      }
+      if (event.key.toLowerCase() === 'd') {
+        character.current.translateX(+0.1);
+        gsap.to(model.current.rotation, {duration: .5, repeat: 0, y: Math.PI / 2});
+      }
+      console.log(event.key.toLowerCase());
+    }
+  }
+
+  const keyUp = () => {
+  }
 
   
   useEffect(() => {
@@ -71,8 +87,8 @@ export function MiniJesus(props) {
   }
 
   return (
-    <group ref={group} {...props} dispose={null}>
-      <group name="Scene">
+    <group ref={character} {...props} dispose={null}>
+      <group ref={model} name="Scene">
         <group name="MiniJesus" rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
           <primitive object={nodes.Hip_J} />
         </group>
