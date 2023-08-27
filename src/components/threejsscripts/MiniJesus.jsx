@@ -102,18 +102,24 @@ export function MiniJesus(props) {
     // });
 
    //2
+    const radius = 5; // Adjust the radius of the circle
     const angle = Date.now() * 0.001 * 1;
-    const x = Math.cos(angle) * 5;
-    const z = Math.sin(angle) * 5;
+    const x = Math.cos(angle) * radius;
+    const z = Math.sin(angle) * radius;
     // Update the player's position
     playerRef.current.position.x = x;
     playerRef.current.position.z = z;
     // Rotate the player to face the center while moving
     playerRef.current.rotation.y = -angle;
 
+    // 2 - Cam Spinner
+    const playerPosition = playerRef.current.position;
+    const cameraX = playerPosition.x + Math.cos(angle) * radius;
+    const cameraZ = playerPosition.z + Math.sin(angle) * radius;
+    state.camera.position.set(cameraX, 1.75, cameraZ);
 
-    // KEEP
-    state.camera.position.set(playerPos.x, playerPos.y + 1.75, playerPos.z + 5);
+    // KEEP - DIRECT CAM 1
+    // state.camera.position.set(playerPos.x, playerPos.y + 1.75, playerPos.z + 5);
 
     state.camera.lookAt(playerPos);
 
