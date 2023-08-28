@@ -38,7 +38,7 @@ h1, h2, h3, h4, h5 {
 .about-me .social-media-icons img {
   box-shadow: 3px 3px 3px gray;
 }
-.about-me img:hover {
+.about-me .social-media-icons img:hover {
   box-shadow: 5px 5px 5px gray;
 }
 

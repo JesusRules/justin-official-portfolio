@@ -74,6 +74,7 @@ const ResumeButton = styled.a`
           -webkit-transition: opacity 1.2s;
           -moz-transition: opacity 1.2s;
           transition: opacity 1.2s;
+          border-width: 0px;
         }
         
         img {
@@ -137,7 +138,7 @@ function Who({ myRef }) {
                     <a href="https://www.instagram.com/justin.bernard320/"><img src="/svg/instagram.svg"/></a>
                   </div>
 
-                <ResumeButton href="#" target="_blank">
+                <ResumeButton href="/justin-bernard-resume.docx" target="_blank">
                   <div class="btn-resume">
                     <img src={downloadSvg} alt="Logo" />
                     <span>Download my resume</span>
