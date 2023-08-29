@@ -49,13 +49,11 @@ function Skills({ myRef, scrollYGlobal }) {
 
     useEffect(() => {
         const divElement = myRef.current;
-        const halfwayPoint = divElement.scrollHeight / 5;
-
-        if (scrollYGlobal >= divElement.scrollHeight + halfwayPoint) {
+        if (scrollYGlobal >= divElement.offsetTop) {
           tl.to(".first-div", {
                 transform: 'translateY(0)',
                 opacity: 1,
-                duration:1,
+                duration:0.33, //say 1
             });
         }
 

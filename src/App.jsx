@@ -67,7 +67,7 @@ function App() {
       <Hero scrollYGlobal={scrollY} />
       <Who myRef={whoRef}/>
       <Skills myRef={skillsRef} scrollYGlobal={scrollY}/>
-      <Projects myRef={portfolioRef}/>
+      <Projects myRef={portfolioRef} scrollYGlobal={scrollY} />
       <Education myRef={educationRef}/>
       <Contact myRef={contactRef}/>
     </Container>

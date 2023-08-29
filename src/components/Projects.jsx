@@ -11,11 +11,30 @@ const Container = styled.div`
     scroll-snap-align: start;
 `
 
-function Projects({ myRef }) {
+function Projects({ myRef, scrollYGlobal }) {
   const [animIndex, setAnimIndex] = useState(3); //IDLE
   const [swipeDirection, setSwipeDirection] = useState(null);
   let startX;
   const playerRef = useRef();
+
+  // SCROLLING
+    useEffect(() => {
+      const divElement = myRef.current;
+      const halfwayPoint = divElement.scrollHeight / 5;
+      console.log(scrollYGlobal);
+      console.log(divElement.offsetTop)
+      if (scrollYGlobal >= divElement.offsetTop) {
+        // tl.to(".first-div", {
+        //       transform: 'translateY(0)',
+        //       opacity: 1,
+        //       duration:1,
+        //   });
+        setAnimIndex(2); //7 alt
+        console.log("CALLED")
+        console.log(scrollYGlobal);
+      }
+
+  }, [scrollYGlobal])
 
     useEffect(() => {
       // Your Three.js scene setup

@@ -25,9 +25,11 @@ export function MiniJesus(props) {
   const [moveDelta, setMoveDelta] = useState(0);
   const [hovered, setHovered] = useState(false);
   let cameraPosition;
-  const [targetPosition, setTargetPosition] = useState(new Vector3(0, 0, 0));
+  const [startUpCam, setStartUpCam] = useState(false);
+  const [targetPosition, setTargetPosition] = useState(new Vector3(0, 0, 5));
   // const gltf = useLoader(GLTFLoader, '/models/MiniJesus-transformed.glb');
   // const mixer = new THREE.AnimationMixer();
+
 
   useEffect(() => {
     actions['FirstPlaceWin'].setDuration(1.8);
@@ -35,13 +37,18 @@ export function MiniJesus(props) {
     actions['Run'].setDuration(.6);
 
     actions['FirstPlaceWin'].loop = THREE.LoopOnce;
+    actions['Win'].loop = THREE.LoopOnce;
     console.log("ANIMATIONS", animations);
 
     actions['FirstPlaceWin'].clampWhenFinished = true;
+    actions['Win'].clampWhenFinished = true;
 
     mixer.addEventListener('finished', (e) => {
       if (e.action._clip.name === "FirstPlaceWin") {
         // setIndex(3); //idle
+      }
+      if (e.action._clip.name === "Win") {
+        setIndex(3); //idle
       }
     });
 
@@ -54,6 +61,7 @@ export function MiniJesus(props) {
       document.removeEventListener('keyup', handleKeyUp);
     };
   }, [])
+
 
   const handleKeyDown = (event) => {
     if (event.shiftKey) {
@@ -83,6 +91,7 @@ export function MiniJesus(props) {
     if (keyDown) setAnimIndex(5); //RUN
     if (!keyDown) setAnimIndex(3); //IDLE
   }, [keyDown])
+
   
   useEffect(() => {
     console.log('ACTIONS', actions);
@@ -90,8 +99,14 @@ export function MiniJesus(props) {
     return () => actions[names[animIndex]].fadeOut(0.5);
   }, [animIndex, actions, names])
 
+
   
   useFrame((state, delta ) => {
+    // if (!startUpCam) 
+    {
+      // setStartUpCam(true);
+      setTargetPosition(new Vector3(state.camera.position.x, 0, state.camera.position.z));
+    }
     const radius = 5; // Adjust the radius of the circle
     let angle;
     
@@ -161,9 +176,10 @@ export function MiniJesus(props) {
   }
   
 
+
   const clickedJesus = () => {
     if (keyDown) return;
-    setAnimIndex(2);
+    setAnimIndex(7); //2 alt
     setTargetPosition(new Vector3(cameraPosition.x, 0, cameraPosition.z));
     // gsap.to(modelRef.current, {duration: .5, repeat: 0, lookAt: (cameraPosition.x, 0, cameraPosition.z)});
     // model.current.lookAt(cameraPos.x, 0, cameraPos.z);
