@@ -62,6 +62,10 @@ function Projects({ myRef }) {
                     <MiniJesus scale={10} animIndex={animIndex} setAnimIndex={setAnimIndex} playerRef={playerRef}/>
                   </Suspense>
                 </group>
+                <mesh position={[0, 0, 0]}>
+                  <boxGeometry args={[1, 1, 1]} />
+                  <meshStandardMaterial />
+                </mesh>
                 {/* <OrbitControls /> */}
                 <OrbitControls enableZoom={false} enableRotate={false} enablePan={false} />
                 <Environment preset="city"/>

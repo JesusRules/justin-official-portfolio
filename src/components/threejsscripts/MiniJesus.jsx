@@ -8,12 +8,13 @@ import React, { useRef, useState, useEffect } from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
 import { useFrame, useLoader, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
+import { Vector3, Quaternion, MathUtils  } from 'three';
 import { GLTFLoader } from 'three-stdlib'
 import gsap from 'gsap';
 
 export function MiniJesus(props) {
   const { playerRef } = props;
-  const model = useRef();
+  const modelRef = useRef();
   const { nodes, materials, animations } = useGLTF('/models/MiniJesus-transformed.glb')
   const { actions, names, ref, mixer } = useAnimations(animations, playerRef)
   
@@ -21,7 +22,10 @@ export function MiniJesus(props) {
   const { animIndex, setAnimIndex } = props;
   const [keyDown, setKeyDown] = useState(false);
   const [moveDir, setMoveDir] = useState(false);
+  const [moveDelta, setMoveDelta] = useState(0);
   const [hovered, setHovered] = useState(false);
+  let cameraPosition;
+  const [targetPosition, setTargetPosition] = useState(new Vector3(0, 0, 0));
   // const gltf = useLoader(GLTFLoader, '/models/MiniJesus-transformed.glb');
   // const mixer = new THREE.AnimationMixer();
 
@@ -58,12 +62,12 @@ export function MiniJesus(props) {
       if (event.key.toLowerCase() === 'a') {
         setKeyDown(true);
         setMoveDir('left');
-        gsap.to(model.current.rotation, {duration: .5, repeat: 0, y: -Math.PI / 2});
+        // gsap.to(model.current.rotation, {duration: .25, repeat: 0, y: -Math.PI / 2});
       }
       if (event.key.toLowerCase() === 'd') {
         setKeyDown(true);
         setMoveDir('right');
-        gsap.to(model.current.rotation, {duration: .5, repeat: 0, y: Math.PI / 2});
+        // gsap.to(model.current.rotation, {duration: .25, repeat: 0, y: Math.PI / 2});
       }
       console.log(event.key.toLowerCase());
     }
@@ -85,56 +89,89 @@ export function MiniJesus(props) {
     actions[names[animIndex]].reset().fadeIn(0.5).play();
     return () => actions[names[animIndex]].fadeOut(0.5);
   }, [animIndex, actions, names])
+
   
   useFrame((state, delta ) => {
-    if (keyDown) {
-      if (moveDir === 'left') playerRef.current.translateX(-0.082);
-      if (moveDir === 'right') playerRef.current.translateX(+0.082);
-    }
-    const playerPos = playerRef.current.position;
-
-    // 1 
-    // gsap.to(state.camera.position, {
-    //   x: playerPos.x,
-    //   y: 1.75,
-    //   z: 5,
-    //   duration: 0.5, // Animation duration in seconds
-    // });
-
-   //2
     const radius = 5; // Adjust the radius of the circle
-    const angle = Date.now() * 0.001 * 1;
+    let angle;
+    
+    if (keyDown) {
+      if (moveDir === 'left') {
+        setMoveDelta(moveDelta + delta);
+        faceMovementDir(1.5, state.camera, angle, radius);
+      }
+      if (moveDir === 'right') {
+        setMoveDelta(moveDelta - delta);
+        faceMovementDir(-1.5, state.camera, angle, radius);
+      };
+      // if (moveDir === 'left') playerRef.current.translateX(-0.082);
+    }
+
+    cameraPosition = state.camera.position;
+    const playerPosition = playerRef.current.position;
+
+    //MISC
+    angle = moveDelta * 1.00;
+    // const angle = Date.now() * 0.001 * 1;
+
+    // Update the player's position
     const x = Math.cos(angle) * radius;
     const z = Math.sin(angle) * radius;
-    // Update the player's position
     playerRef.current.position.x = x;
     playerRef.current.position.z = z;
-    // Rotate the player to face the center while moving
-    playerRef.current.rotation.y = -angle;
+
+    //LERPING
+    // Calculate the direction from the model to the target
+    const lookAtDirection = new Vector3().subVectors(targetPosition, playerRef.current.position).normalize();
+    // Calculate the quaternion rotation to look at the target
+    const targetQuaternion = new Quaternion().setFromUnitVectors(new Vector3(0, 0, 1), lookAtDirection);
+    // Interpolate the current rotation towards the target rotation
+    const lerpFactor = 0.1; // Adjust the lerp factor for desired smoothness
+    playerRef.current.quaternion.slerp(targetQuaternion, lerpFactor);
+
 
     // 2 - Cam Spinner
-    const playerPosition = playerRef.current.position;
     const cameraX = playerPosition.x + Math.cos(angle) * radius;
     const cameraZ = playerPosition.z + Math.sin(angle) * radius;
     state.camera.position.set(cameraX, 1.75, cameraZ);
 
-    // KEEP - DIRECT CAM 1
+    // OLD - DIRECT CAM 1
     // state.camera.position.set(playerPos.x, playerPos.y + 1.75, playerPos.z + 5);
 
-    state.camera.lookAt(playerPos);
-
+    state.camera.lookAt(playerPosition);
   })
 
+
+
+  const faceMovementDir = (offsetDistance, camera, angle, radius) => {
+    const cameraX2 = playerRef.current.position.x + Math.cos(angle) * radius;
+    const cameraZ2 = playerRef.current.position.z + Math.sin(angle) * radius;
+    camera.position.set(cameraX2, 1.75, cameraZ2);
+
+    // Calculate the rotation angle based on player's rotation
+    const playerRotation = Math.atan2(playerRef.current.position.z, playerRef.current.position.x);
+
+    // Calculate the offset direction by adding 90 degrees (pi/2 radians) to the player's rotation
+    const offsetDirection = playerRotation + Math.PI / 2;
+
+    // Calculate the offset position based on the offset direction and distance
+    const offsetX = playerRef.current.position.x + Math.cos(offsetDirection) * offsetDistance;
+    const offsetZ = playerRef.current.position.z + Math.sin(offsetDirection) * offsetDistance;
+    setTargetPosition(new Vector3(offsetX, 0, offsetZ));
+  }
   
+
   const clickedJesus = () => {
     if (keyDown) return;
     setAnimIndex(2);
-    gsap.to(model.current.rotation, {duration: .5, repeat: 0, y: 0});
+    setTargetPosition(new Vector3(cameraPosition.x, 0, cameraPosition.z));
+    // gsap.to(modelRef.current, {duration: .5, repeat: 0, lookAt: (cameraPosition.x, 0, cameraPosition.z)});
+    // model.current.lookAt(cameraPos.x, 0, cameraPos.z);
   }
 
   return (
     <group ref={playerRef} {...props} dispose={null} position={[0,0,0]}>
-      <group ref={model} name="Scene">
+      <group ref={modelRef} name="Scene">
         <group name="MiniJesus" rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
           <primitive object={nodes.Hip_J} />
         </group>
