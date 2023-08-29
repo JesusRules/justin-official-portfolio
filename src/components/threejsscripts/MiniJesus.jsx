@@ -149,17 +149,17 @@ export function MiniJesus(props) {
       setTargetPosition(new Vector3(state.camera.position.x, 0, state.camera.position.z));
     }
 
-    const radius = 18; // Adjust the radius of the circle
+    const radius = 32; // Adjust the radius of the circle
     let angle;
     
     if (keyDown) {
       if (moveDir === 'left') {
         setMoveDelta(moveDelta + delta);
-        faceMovementDir(1.5, state.camera, angle, radius);
+        faceMovementDir(2.5, state.camera, angle, radius);
       }
       if (moveDir === 'right') {
         setMoveDelta(moveDelta - delta);
-        faceMovementDir(-1.5, state.camera, angle, radius);
+        faceMovementDir(-2.5, state.camera, angle, radius);
       };
       // if (moveDir === 'left') playerRef.current.translateX(-0.082);
     }
@@ -188,8 +188,8 @@ export function MiniJesus(props) {
 
 
     // 2 - Cam Spinner
-    const cameraX = playerPosition.x + Math.cos(angle) * radius / 2;
-    const cameraZ = playerPosition.z + Math.sin(angle) * radius / 2;
+    const cameraX = playerPosition.x + Math.cos(angle) * radius / 2.2;
+    const cameraZ = playerPosition.z + Math.sin(angle) * radius / 2.2;
     // state.camera.position.set(cameraX, 1.75, cameraZ);
     state.camera.position.x = cameraX;
     state.camera.position.z = cameraZ;

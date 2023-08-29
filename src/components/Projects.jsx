@@ -88,7 +88,7 @@ function Projects({ myRef, scrollYGlobal }) {
       <Canvas shadows camera={{fov: 45, far: 1000, near: 0.1, position: [0, 1.75, 5]}}>
                 <group>
                   <Suspense fallback={null}>
-                    <MiniJesus scale={10} animIndex={animIndex} setAnimIndex={setAnimIndex} playerRef={playerRef} canvasRef={myRef}/>
+                    <MiniJesus scale={20} animIndex={animIndex} setAnimIndex={setAnimIndex} playerRef={playerRef} canvasRef={myRef}/>
                   </Suspense>
                 </group>
                 <mesh position={[0, .5, 0]}>
