@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState, Suspense } from 'react'
 import { styled } from 'styled-components'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { OrbitControls, Html, Environment, Sky } from '@react-three/drei';
+import { OrbitControls, Html, Environment, Sky, PerspectiveCamera } from '@react-three/drei';
 import { MiniJesus } from './threejsscripts/MiniJesus';
 import * as THREE from "three";
 
@@ -16,6 +16,7 @@ function Projects({ myRef, scrollYGlobal }) {
   const [swipeDirection, setSwipeDirection] = useState(null);
   let startX;
   const playerRef = useRef();
+  const cameraRef = useRef();
 
   // SCROLLING
     useEffect(() => {
@@ -51,9 +52,15 @@ function Projects({ myRef, scrollYGlobal }) {
 
     const handleTouchStart = (event) => {
       startX = event.touches[0].clientX;
+      cameraRef.current.translateX(-3);
+      cameraRef.current.updateMatrixWorld();
     };
     
     const handleTouchMove = (event) => {
+      console.log('???', cameraRef.current);
+      cameraRef.current.translateY(5);
+      cameraRef.current.updateMatrixWorld();
+
       if (startX !== null) {
         const currentX = event.touches[0].clientX;
         const deltaX = currentX - startX;
@@ -71,33 +78,37 @@ function Projects({ myRef, scrollYGlobal }) {
     const handleTouchEnd = () => {
       startX = null;
       setSwipeDirection(null);
+      cameraRef.current.translateX(2);
+      cameraRef.current.updateMatrixWorld();
     };
+
 
   return (
     <Container ref={myRef}>
       <Canvas shadows camera={{fov: 45, far: 1000, near: 0.1, position: [0, 1.75, 5]}}>
                 <group>
                   <Suspense fallback={null}>
-                    <MiniJesus scale={10} animIndex={animIndex} setAnimIndex={setAnimIndex} playerRef={playerRef}/>
+                    <MiniJesus scale={10} animIndex={animIndex} setAnimIndex={setAnimIndex} playerRef={playerRef} canvasRef={myRef}/>
                   </Suspense>
                 </group>
-                <mesh position={[0, 0, 0]}>
+                <mesh position={[0, .5, 0]}>
                   <boxGeometry args={[1, 1, 1]} />
                   <meshStandardMaterial />
                 </mesh>
                 {/* <OrbitControls /> */}
                 <OrbitControls
-                  minPolarAngle={0}           // Minimum angle (radians) for vertical rotation (0 is looking down, Math.PI is looking up)
-                  maxPolarAngle={Math.PI}     // Maximum angle (radians) for vertical rotation (0 is looking down, Math.PI is looking up)
-                  enableZoom={true}           // Allow zooming
-                  enableRotate={true}         // Allow rotation
-                  enablePan={true}            // Allow panning
+                  enableDamping
+                  dampingFactor={0.005} // Adjust to control rotation speed (0 - 1)
+                  enableZoom={false}
+                  minPolarAngle={1.3962634} // Minimum rotation angle (80 degrees) // TOP
+                  maxPolarAngle={1.50098316} // Maximum rotation angle (86 degrees) // BOTTOM
+                  target={[0, 0, 0]} // Lock the camera to the center
                 />
                 <Environment preset="city"/>
                 <ambientLight intensity={1} />
                 <directionalLight castShadow shadow-mapSize={1024} position={[-5, 5, 5]} />
                 <mesh receiveShadow rotation={[-Math.PI / 2, 0, 0]}>
-                  <planeGeometry args={[10, 10, 10]} />
+                  <planeGeometry args={[64, 64, 64]} />
                   <meshStandardMaterial color="green" />
                 </mesh>
             </Canvas>

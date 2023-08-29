@@ -13,7 +13,7 @@ import { GLTFLoader } from 'three-stdlib'
 import gsap from 'gsap';
 
 export function MiniJesus(props) {
-  const { playerRef } = props;
+  const { playerRef, canvasRef } = props;
   const modelRef = useRef();
   const { nodes, materials, animations } = useGLTF('/models/MiniJesus-transformed.glb')
   const { actions, names, ref, mixer } = useAnimations(animations, playerRef)
@@ -29,6 +29,12 @@ export function MiniJesus(props) {
   const [targetPosition, setTargetPosition] = useState(new Vector3(0, 0, 5));
   // const gltf = useLoader(GLTFLoader, '/models/MiniJesus-transformed.glb');
   // const mixer = new THREE.AnimationMixer();
+
+  // MOUSE MOVE STUFF CAMERA
+  let dragging = false;
+  const [initialMouseY, setInitialMouseY] = useState(0);
+  const [initialCameraY, setInitialCameraY] = useState(0);
+  const [cameraYPos, setCameraYPos] = useState(1.75);
 
 
   useEffect(() => {
@@ -56,9 +62,17 @@ export function MiniJesus(props) {
     document.addEventListener('keydown', handleKeyDown, false);
     document.addEventListener('keyup', handleKeyUp, false);
 
+    // canvasRef.current.addEventListener('mousedown', handleMouseDown);
+    // canvasRef.current.addEventListener('mousemove', handleMouseMove);
+    // canvasRef.current.addEventListener('mouseup', handleMouseUp);
+
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
       document.removeEventListener('keyup', handleKeyUp);
+
+      // canvasRef.current.removeEventListener('mousedown', handleMouseDown);
+      // canvasRef.current.removeEventListener('mousemove', handleMouseMove);
+      // canvasRef.current.removeEventListener('mouseup', handleMouseUp);
     };
   }, [])
 
@@ -87,6 +101,7 @@ export function MiniJesus(props) {
     }
   }
 
+
   useEffect(() => {
     if (keyDown) setAnimIndex(5); //RUN
     if (!keyDown) setAnimIndex(3); //IDLE
@@ -100,6 +115,32 @@ export function MiniJesus(props) {
   }, [animIndex, actions, names])
 
 
+  // MOUSE INPUT
+
+  // const handleMouseDown = (event) => {
+  //   dragging = true;
+  //   setInitialMouseY(event.clientY);
+  //   setInitialCameraY(cameraPosition.y);
+  //   console.log("DOEN");
+  // };
+  
+  // const handleMouseMove = (event) => {
+  //   if (dragging) 
+  //   {
+  //     const deltaY = event.clientY - initialMouseY;
+  //     console.log(deltaY);
+  //     const newCameraY = initialCameraY - deltaY * 0.01; // Adjust the factor for sensitivity
+  //     setCameraYPos(newCameraY);
+  //   }
+  // };
+  
+  // const handleMouseUp = () => {
+  //   console.log("UP");
+  //   dragging = false;
+  // };
+
+
+
   
   useFrame((state, delta ) => {
     // if (!startUpCam) 
@@ -107,6 +148,7 @@ export function MiniJesus(props) {
       // setStartUpCam(true);
       setTargetPosition(new Vector3(state.camera.position.x, 0, state.camera.position.z));
     }
+
     const radius = 18; // Adjust the radius of the circle
     let angle;
     
@@ -148,12 +190,11 @@ export function MiniJesus(props) {
     // 2 - Cam Spinner
     const cameraX = playerPosition.x + Math.cos(angle) * radius / 2;
     const cameraZ = playerPosition.z + Math.sin(angle) * radius / 2;
-    state.camera.position.set(cameraX, 1.75, cameraZ);
+    // state.camera.position.set(cameraX, 1.75, cameraZ);
+    state.camera.position.x = cameraX;
+    state.camera.position.z = cameraZ;
 
-    // OLD - DIRECT CAM 1
-    // state.camera.position.set(playerPos.x, playerPos.y + 1.75, playerPos.z + 5);
-
-    state.camera.lookAt(playerPosition);
+    state.camera.lookAt(0, 0, 0);
   })
 
 
@@ -161,7 +202,9 @@ export function MiniJesus(props) {
   const faceMovementDir = (offsetDistance, camera, angle, radius) => {
     const cameraX2 = playerRef.current.position.x + Math.cos(angle) * radius;
     const cameraZ2 = playerRef.current.position.z + Math.sin(angle) * radius;
-    camera.position.set(cameraX2, 1.75, cameraZ2);
+    // camera.position.set(cameraX2, 1.75, cameraZ2);
+    camera.position.x = cameraX2;
+    camera.position.z = cameraZ2;
 
     // Calculate the rotation angle based on player's rotation
     const playerRotation = Math.atan2(playerRef.current.position.z, playerRef.current.position.x);
