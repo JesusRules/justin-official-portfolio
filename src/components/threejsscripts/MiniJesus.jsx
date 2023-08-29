@@ -107,7 +107,7 @@ export function MiniJesus(props) {
       // setStartUpCam(true);
       setTargetPosition(new Vector3(state.camera.position.x, 0, state.camera.position.z));
     }
-    const radius = 5; // Adjust the radius of the circle
+    const radius = 18; // Adjust the radius of the circle
     let angle;
     
     if (keyDown) {
@@ -146,8 +146,8 @@ export function MiniJesus(props) {
 
 
     // 2 - Cam Spinner
-    const cameraX = playerPosition.x + Math.cos(angle) * radius;
-    const cameraZ = playerPosition.z + Math.sin(angle) * radius;
+    const cameraX = playerPosition.x + Math.cos(angle) * radius / 2;
+    const cameraZ = playerPosition.z + Math.sin(angle) * radius / 2;
     state.camera.position.set(cameraX, 1.75, cameraZ);
 
     // OLD - DIRECT CAM 1

@@ -86,7 +86,13 @@ function Projects({ myRef, scrollYGlobal }) {
                   <meshStandardMaterial />
                 </mesh>
                 {/* <OrbitControls /> */}
-                <OrbitControls enableZoom={false} enableRotate={false} enablePan={false} />
+                <OrbitControls
+                  minPolarAngle={0}           // Minimum angle (radians) for vertical rotation (0 is looking down, Math.PI is looking up)
+                  maxPolarAngle={Math.PI}     // Maximum angle (radians) for vertical rotation (0 is looking down, Math.PI is looking up)
+                  enableZoom={true}           // Allow zooming
+                  enableRotate={true}         // Allow rotation
+                  enablePan={true}            // Allow panning
+                />
                 <Environment preset="city"/>
                 <ambientLight intensity={1} />
                 <directionalLight castShadow shadow-mapSize={1024} position={[-5, 5, 5]} />
