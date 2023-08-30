@@ -13,7 +13,7 @@ import { GLTFLoader } from 'three-stdlib'
 import gsap from 'gsap';
 
 export function MiniJesus(props) {
-  const { playerRef, canvasRef } = props;
+  const { playerRef, canvasRef, speechBubbleRef } = props;
   const modelRef = useRef();
   const { nodes, materials, animations } = useGLTF('/models/MiniJesus-transformed.glb')
   const { actions, names, ref, mixer } = useAnimations(animations, playerRef)
@@ -138,7 +138,6 @@ export function MiniJesus(props) {
         setMoveDir('right');
         setTargetRotation(-1.5708);
       }
-      
       startX = currentX;
     }
   };
@@ -147,9 +146,6 @@ export function MiniJesus(props) {
     startX = null;
     setSwipeDirection(null);
   };
-
-
-
 
   // const handleKeyDown = (event) => {
   //   if (event.shiftKey) {
@@ -190,12 +186,19 @@ export function MiniJesus(props) {
 
   useEffect(() => {
     if (idleStance) setAnimIndex(3);
-    if (!idleStance) setAnimIndex(5);
+    if (!idleStance) {
+      setAnimIndex(5);
+      //Hide bubble
+      gsap.to(speechBubbleRef.current, {
+        duration:0.5,
+        opacity: 0,
+        transform: 'translateY(-30px)',
+      }); 
+    }
   }, [idleStance])
 
 
   const camSpeedFunc = (speed) => {
-    
     setSpeedDifference(20 - speed);
     
     if (speedDifference < 0.2) setSpeedDifference(0.2);
@@ -211,7 +214,6 @@ export function MiniJesus(props) {
       if (moveDir === 'right') setTargetRotation(-3.14159);
     }
   }
-
 
   useFrame((state, delta ) => {
     const radius = 32; // Adjust the radius of the circle
@@ -236,7 +238,6 @@ export function MiniJesus(props) {
     const deltaTime = currentTime - startTime.current;
     const speed = distanceMoved / deltaTime;
     camSpeedFunc(speed);
-    // console.log('Camera speed:', speed);
     //update
     prevPosition.current = currentPosition;
     startTime.current = currentTime;
@@ -319,13 +320,12 @@ export function MiniJesus(props) {
   //   const offsetZ = playerRef.current.position.z + Math.sin(offsetDirection) * offsetDistance;
   //   setTargetRotation(new Vector3(offsetX, 0, offsetZ));
   // }
-  
-
 
   const clickedJesus = () => {
     // if (keyDown) return;
     setAnimIndex(7); //2 alt
-    setTargetRotation(3.14159);
+    if (moveDir === 'left') setTargetRotation(-3.14159);
+      if (moveDir === 'right') setTargetRotation(-3.14159);
   }
 
   return (
