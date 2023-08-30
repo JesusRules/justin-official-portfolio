@@ -23,6 +23,7 @@ export function MiniJesus(props) {
   const [keyDown, setKeyDown] = useState(false);
   const [moveDir, setMoveDir] = useState(false);
   const [moveDelta, setMoveDelta] = useState(0);
+  const [camSpeed, setCamSpeed] = useState(0);
   const [hovered, setHovered] = useState(false);
   let cameraPosition;
   const [startUpCam, setStartUpCam] = useState(false);
@@ -30,11 +31,13 @@ export function MiniJesus(props) {
   // const gltf = useLoader(GLTFLoader, '/models/MiniJesus-transformed.glb');
   // const mixer = new THREE.AnimationMixer();
 
-  // MOUSE MOVE STUFF CAMERA
-  let dragging = false;
-  const [initialMouseY, setInitialMouseY] = useState(0);
-  const [initialCameraY, setInitialCameraY] = useState(0);
-  const [cameraYPos, setCameraYPos] = useState(1.75);
+  //DISTANCE FROM CAM
+  const playerPositionNew = new THREE.Vector3();
+  //ROTATION DIRECTION
+  const prevRotation = useRef({ x: 0, y: 0 });
+  //SPEED CAM
+  const prevPosition = useRef(0);
+  const startTime = useRef(0);
 
 
   useEffect(() => {
@@ -139,43 +142,112 @@ export function MiniJesus(props) {
   //   dragging = false;
   // };
 
+  const [speedDifference, setSpeedDifference] = useState(10);
+  const [idleStance, setIdleStance] = useState(true);
 
+  useEffect(() => {
+    if (idleStance) setAnimIndex(3);
+    if (!idleStance) setAnimIndex(5);
+  }, [idleStance])
 
-  
-  useFrame((state, delta ) => {
-    // if (!startUpCam) 
-    {
-      // setStartUpCam(true);
-      setTargetPosition(new Vector3(state.camera.position.x, 0, state.camera.position.z));
+  const camSpeedFunc = (speed) => {
+    
+    setSpeedDifference(20 - speed);
+    
+    if (speedDifference < 0.2) setSpeedDifference(0.2);
+    
+    actions['Run'].setDuration(speedDifference);
+    
+    if (speedDifference < 5) {
+      setIdleStance(false);
     }
+    else if (speedDifference > 18) {
+      setIdleStance(true);
+    }
+  }
+  
 
+  const [previousPosition, setPreviousPosition] = useState(new THREE.Vector3());
+
+
+  useFrame((state, delta ) => {
     const radius = 32; // Adjust the radius of the circle
     let angle;
     
-    if (keyDown) {
-      if (moveDir === 'left') {
-        setMoveDelta(moveDelta + delta);
-        faceMovementDir(2.5, state.camera, angle, radius);
-      }
-      if (moveDir === 'right') {
-        setMoveDelta(moveDelta - delta);
-        faceMovementDir(-2.5, state.camera, angle, radius);
-      };
-      // if (moveDir === 'left') playerRef.current.translateX(-0.082);
-    }
+    // KEY DOWN METHOD
+    // if (keyDown) {
+    //   if (moveDir === 'left') {
+    //     setMoveDelta(moveDelta + delta);
+    //     faceMovementDir(2.5, state.camera, angle, radius);
+    //   }
+    //   if (moveDir === 'right') {
+    //     setMoveDelta(moveDelta - delta);
+    //     faceMovementDir(-2.5, state.camera, angle, radius);
+    //   };
+    // }
+
+    
+    // NEW ROTATION METHOD
+    // const currentRotation = state.camera.rotation.clone();
+    // // Compare current rotation with previous rotation to detect left or right rotation
+    // const rotationDelta = {
+    //   x: currentRotation.x - prevRotation.current.x,
+    //   y: currentRotation.y - prevRotation.current.y,
+    // };
+    // // Detect rotation direction based on rotationDelta values
+    // if (rotationDelta.y > 0) {
+    //   setMoveDir('left');
+    // } else if (rotationDelta.y < 0) {
+    //   setMoveDir('right');
+    // }
+    // // Update the previous rotation
+    // prevRotation.current = currentRotation.clone();
+    
+
+    //SPEED CAPTURE
+    const currentTime = state.clock.getElapsedTime();
+    const currentPosition = state.camera.position.clone();
+     // Calculate distance moved since last frame
+    const distanceMoved = currentPosition.distanceTo(prevPosition.current);
+    // Calculate time difference since last frame
+    const deltaTime = currentTime - startTime.current;
+    // Calculate speed based on distance and time
+    const speed = distanceMoved / deltaTime;
+    camSpeedFunc(speed);
+    // console.log('Camera speed:', speed);
+    // Update previous position and start time
+    prevPosition.current = currentPosition;
+    startTime.current = currentTime;
+
+
+    //ROTATION
+    // Calculate the current position
+    const currentPosition2 = playerRef.current.position.clone();
+    // Calculate the movement direction
+    const movementDirection = currentPosition2.clone().sub(previousPosition);
+    // Calculate the angle between the movement direction and the forward direction
+    const angle2 = Math.atan2(movementDirection.x, movementDirection.z);
+    // Apply the rotation
+    playerMesh.rotation.y = angle;
+    setTargetPosition(new Vector3(targetPosition.x, angle, targetPosition));
+    // Update the previous position for the next frame
+    setPreviousPosition(currentPosition);
+
+
 
     cameraPosition = state.camera.position;
     const playerPosition = playerRef.current.position;
 
+
     //MISC
-    angle = moveDelta * 1.00;
+    // angle = moveDelta * 1.00;
     // const angle = Date.now() * 0.001 * 1;
 
     // Update the player's position
-    const x = Math.cos(angle) * radius;
-    const z = Math.sin(angle) * radius;
-    playerRef.current.position.x = x;
-    playerRef.current.position.z = z;
+    // const x = Math.cos(angle) * radius;
+    // const z = Math.sin(angle) * radius;
+    // playerRef.current.position.x = x;
+    // playerRef.current.position.z = z;
 
     //LERPING
     // Calculate the direction from the model to the target
@@ -188,13 +260,39 @@ export function MiniJesus(props) {
 
 
     // 2 - Cam Spinner
-    const cameraX = playerPosition.x + Math.cos(angle) * radius / 2.2;
-    const cameraZ = playerPosition.z + Math.sin(angle) * radius / 2.2;
+    // const cameraX = playerPosition.x + Math.cos(angle) * radius / 2.2;
+    // const cameraZ = playerPosition.z + Math.sin(angle) * radius / 2.2;
     // state.camera.position.set(cameraX, 1.75, cameraZ);
-    state.camera.position.x = cameraX;
-    state.camera.position.z = cameraZ;
+    // state.camera.position.x = cameraX;
+    // state.camera.position.z = cameraZ;
 
     state.camera.lookAt(0, 0, 0);
+
+    if (!startUpCam) 
+    {
+      // state.camera.position.set(cameraX, 1.75, cameraZ);
+      prevPosition.current = state.camera.position.clone();
+      
+      const x = Math.cos(0) * radius;
+      const z = Math.sin(0) * radius;
+      playerRef.current.position.x = x;
+      playerRef.current.position.z = z;
+
+      const cameraX = playerRef.current.position.x + Math.cos(0) * radius / 2.2;
+      const cameraZ = playerRef.current.position.z + Math.sin(0) * radius / 2.2;
+      state.camera.position.x = cameraX;
+      state.camera.position.z = cameraZ;
+
+      setStartUpCam(true);
+      setTargetPosition(new Vector3(state.camera.position.x, 0, state.camera.position.z));
+    }
+
+    const distance = 14.5; // Distance from the camera
+    playerPositionNew.copy(state.camera.position);
+    state.camera.getWorldDirection(playerPositionNew);
+    playerPositionNew.multiplyScalar(distance).add(state.camera.position);
+    playerPositionNew.y = 0;
+    playerRef.current.position.copy(playerPositionNew);
   })
 
 
