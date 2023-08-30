@@ -95,10 +95,10 @@ export function MiniJesus(props) {
       const deltaX = currentX - startX;
       if (deltaX > 0) {
         setMoveDir('left');
-        setTargetRotation(Math.PI / 2);
+        setTargetRotation(-4.71239);
       } else if (deltaX < 0) {
         setMoveDir('right');
-        setTargetRotation(-Math.PI / 2);
+        setTargetRotation(-1.5708);
       }
       startX = currentX;
     }
@@ -180,8 +180,8 @@ export function MiniJesus(props) {
     }
     else if (speedDifference > 18) {
       setIdleStance(true);
-      if (moveDir === 'left') setTargetRotation(Math.PI);
-      if (moveDir === 'right') setTargetRotation(-Math.PI);
+      if (moveDir === 'left') setTargetRotation(-3.14159);
+      if (moveDir === 'right') setTargetRotation(-3.14159);
     }
   }
 
@@ -298,7 +298,7 @@ export function MiniJesus(props) {
   const clickedJesus = () => {
     // if (keyDown) return;
     setAnimIndex(7); //2 alt
-    setTargetRotation(-Math.PI);
+    setTargetRotation(3.14159);
   }
 
   return (
