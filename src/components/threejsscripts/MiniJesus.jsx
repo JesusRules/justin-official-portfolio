@@ -234,8 +234,10 @@ export function MiniJesus(props) {
       console.log('Left Movement Direction:', leftDirection.x, leftDirection.y, leftDirection.z);
       playerRef.current.lookAt(leftDirection.x, leftDirection.y, leftDirection.z);
 
-      modelRef.current.rotation.y = Math.PI / 2;
+      // modelRef.current.rotation.y = -Math.PI / 2;
       // modelRef.current.lookAt(0,0,0);
+      // setTargetPosition(new Vector3( -Math.PI / 2, 0, 0));
+
 
     // WORKS 2 !!
     // const previousPosition2 = previousPositionRef.current.clone();
@@ -246,6 +248,8 @@ export function MiniJesus(props) {
     // const leftDirection = new THREE.Vector3(direction.z, direction.y, -direction.x).normalize();
     // // Make the player face the left direction
     // playerRef.current.lookAt(playerPosition2.clone().add(leftDirection));
+    // let pos2 = playerPosition2.clone().add(leftDirection);
+    // // setTargetPosition(new Vector3(pos2.x, pos2.y, pos2.z))
     // // Update the previous position for the next frame
     // previousPosition2.copy(playerPosition2);
 
@@ -267,12 +271,12 @@ export function MiniJesus(props) {
 
     //LERPING
     // Calculate the direction from the model to the target
-    const lookAtDirection = new Vector3().subVectors(targetPosition, playerRef.current.position).normalize();
+    const lookAtDirection = new Vector3().subVectors(targetPosition, modelRef.current.position).normalize();
     // Calculate the quaternion rotation to look at the target
     const targetQuaternion = new Quaternion().setFromUnitVectors(new Vector3(0, 0, 1), lookAtDirection);
     // Interpolate the current rotation towards the target rotation
     const lerpFactor = 0.1; // Adjust the lerp factor for desired smoothness
-    playerRef.current.quaternion.slerp(targetQuaternion, lerpFactor);
+    modelRef.current.quaternion.slerp(targetQuaternion, lerpFactor);
 
 
     // 2 - Cam Spinner
@@ -348,7 +352,7 @@ export function MiniJesus(props) {
   const clickedJesus = () => {
     if (keyDown) return;
     setAnimIndex(7); //2 alt
-    setTargetPosition(new Vector3(cameraPosition.x, 0, cameraPosition.z));
+    setTargetPosition(new Vector3(0, 0, 0));
     // gsap.to(modelRef.current, {duration: .5, repeat: 0, lookAt: (cameraPosition.x, 0, cameraPosition.z)});
     // model.current.lookAt(cameraPos.x, 0, cameraPos.z);
   }
