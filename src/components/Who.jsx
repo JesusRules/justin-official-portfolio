@@ -11,6 +11,11 @@ const Section = styled.div`
     scroll-snap-align: start;
     display: flex;
     justify-content: center;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.0), rgba(255, 255, 255, 0.6)),
+                  url("/img/blue-sky-2.jpg");
+    /* background-image: url("/img/blue-sky-2.jpg"); */
+    background-repeat: no-repeat;
+    background-size: cover;
 `
 
 const Container = styled.div`
@@ -33,7 +38,7 @@ const Left = styled.div`
   } */
 `
 const Right = styled.div`
-  /* flex: 4; */
+  /* flex: 1; */
   position: absolute;
   top: 0;
   bottom: 0;
@@ -42,6 +47,12 @@ const Right = styled.div`
   justify-content: center;
   gap: 20px;
   pointer-events: none;
+
+  width:50vw;
+  max-width: 33rem;
+  left: 50%;
+
+
 
   //-webkit-user-select: none; /* Safari */
   //-ms-user-select: none; /* IE 10 and IE 11 */
@@ -121,32 +132,28 @@ function Who({ myRef }) {
                 />
                 <ambientLight intensity={1}/>
                 <directionalLight position={[1, 2, 3]} />
-                
-                <Html style={{width: '100vw'}}>
-                <Right className='about-me'>
-                  <h1>About Me</h1>
-                  <h2>There's nothing I can't do!</h2>
-                  <p>Communicative, strong, and resilient are some of the many keywords that can be used to describe me. I love to learn, I love culture, and I love life! I believe that the things that are most difficult are the things most worth doing in life! I want to travel the world and experience life to the fullest! Leave me a message, I'm always happy to meet new people!</p>
-                  
-                  <p style={{marginTop: '1rem', fontStyle: 'italic'}}>Add me on social media! I'm always on Facebook  <span>🥰🙏🙌</span></p>
-                  
-                  <div className='social-media-icons' style={{display: 'flex', gap: '.6rem', pointerEvents: 'auto'}}>
-                    <a href="https://www.facebook.com/justin.bernard320"><img src="/svg/facebook.svg"/></a>
-                    <a href="https://www.youtube.com/channel/UCx8Il9AsAJZnIs9BwXY_M7g"><img src="/svg/youtube.svg"/></a>
-                    <a href="https://github.com/bern0241"><img src="/svg/github.svg"/></a>
-                    <a href="https://www.linkedin.com/in/justin-bernard32/"><img src="/svg/linkedin.svg"/></a>
-                    <a href="https://www.instagram.com/justin.bernard320/"><img src="/svg/instagram.svg"/></a>
-                  </div>
-
-                <ResumeButton href="/justin-bernard-resume.docx" target="_blank">
-                  <div class="btn-resume">
-                    <img src={downloadSvg} alt="Logo" />
-                    <span>Download my resume</span>
-                  </div>
-                </ResumeButton>
-                </Right>
-                </Html>
             </Canvas>
+            <Right className='about-me'>
+              <h1>About Me</h1>
+              <h2>There's nothing I can't do!</h2>
+              <p>Communicative, strong, and resilient! I love to learn, I love culture, and I love life! </p>
+              
+              
+              <div className='social-media-icons' style={{display: 'flex', gap: '.6rem', pointerEvents: 'auto'}}>
+                <a href="https://www.facebook.com/justin.bernard320"><img src="/svg/facebook.svg"/></a>
+                <a href="https://www.youtube.com/channel/UCx8Il9AsAJZnIs9BwXY_M7g"><img src="/svg/youtube.svg"/></a>
+                <a href="https://github.com/bern0241"><img src="/svg/github.svg"/></a>
+                <a href="https://www.linkedin.com/in/justin-bernard32/"><img src="/svg/linkedin.svg"/></a>
+                <a href="https://www.instagram.com/justin.bernard320/"><img src="/svg/instagram.svg"/></a>
+              </div>
+
+            <ResumeButton href="/justin-bernard-resume.docx" target="_blank">
+              <div class="btn-resume">
+                <img src={downloadSvg} alt="Logo" />
+                <span>Download my resume</span>
+              </div>
+            </ResumeButton>
+            </Right>
         
       </Container>
 

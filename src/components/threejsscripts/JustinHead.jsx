@@ -35,7 +35,7 @@ export function JustinHead(props) {
 
   return (
       <group ref={mesh} {...props} dispose={null}>
-      {/* <JustinFace /> */}
+      <JustinFace />
       {/* <HeadPhones scale={[0.06, 0.06, 0.06]} rotation={[0.3, 0, 0]}
           position={[0.1, -1.9, -0.9]} /> */}
       </group>

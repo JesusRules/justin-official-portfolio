@@ -205,7 +205,7 @@ export function MiniJesus(props) {
     if (speedDifference < 5) {
       setIdleStance(false);
     }
-    else if (speedDifference > 18) {
+    else if (speedDifference > 14) { //18
       setIdleStance(true);
       if (moveDir === 'left') setTargetRotation(-3.14159);
       if (moveDir === 'right') setTargetRotation(-3.14159);

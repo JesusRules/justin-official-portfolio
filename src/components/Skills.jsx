@@ -16,7 +16,7 @@ const Container = styled.div`
     flex-direction: column;
     justify-content: center;
     background-image: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.0)),
-                  url("/img/blue-sky-4.jpg");
+                  url("/img/blue-sky-2.jpg");
     /* background-image: url("/img/blue-sky-2.jpg"); */
     background-repeat: no-repeat;
     background-size: cover;
@@ -50,11 +50,11 @@ function Skills({ myRef, scrollYGlobal }) {
     useEffect(() => {
         const divElement = myRef.current;
         if (scrollYGlobal >= divElement.offsetTop) {
-          tl.to(".first-div", {
-                transform: 'translateY(0)',
-                opacity: 1,
-                duration:0.33, //say 1
-            });
+        //   tl.to(".first-div", {
+        //         transform: 'translateY(0)',
+        //         opacity: 1,
+        //         duration:0.33, //say 1
+        //     });
         }
 
       }, [scrollYGlobal])
@@ -64,15 +64,16 @@ function Skills({ myRef, scrollYGlobal }) {
       
       <Title>All the languages, software, technologies I know!</Title>
     
-    <div className="first-div" style={{opacity: 0, transform: 'translateY(40px)'}}>
+    {/* <div className="first-div" style={{opacity: 0, transform: 'translateY(40px)'}}> */}
+    <div className="first-div" >
         <Subtitle>Coding Languages</Subtitle>
         <HorizontalImageLoopComponent1 _images={imagesLanguages} _isReversed={false} />
     </div>
-    <div className="first-div" style={{opacity: 0, transform: 'translateY(40px)'}}>
+    <div className="first-div" >
         <Subtitle>App development</Subtitle>
         <HorizontalImageLoopComponent2 _images={imagesApps} _isReversed={true} />
     </div>
-    <div className="first-div" style={{opacity: 0, transform: 'translateY(40px)'}}>
+    <div className="first-div" >
         <Subtitle>Media/Game creation</Subtitle>
         <HorizontalImageLoopComponent3 _images={imagesMedia} _isReversed={false} />
     </div>
@@ -935,59 +936,59 @@ distanceToLoop = (distanceToStart) + widths[i] * gsap.getProperty(item, "scaleX"
 
 // OTHERS !!!!!!!!!!!!
 
-function InfiniteScrollerLanguages() {
-    useEffect(() => {
-        var copy = document.querySelector(".logos-slide-opposite").cloneNode(true);
-        document.querySelector('.logos-opposite').appendChild(copy);
-    }, [])
+// function InfiniteScrollerLanguages() {
+//     useEffect(() => {
+//         var copy = document.querySelector(".logos-slide-opposite").cloneNode(true);
+//         document.querySelector('.logos-opposite').appendChild(copy);
+//     }, [])
 
-    return (
-        <div className='logos-opposite'>
-            <div className='logos-slide-opposite'>
-                <img src="/logos/languages/csharp.png" />
-                <img src="/logos/languages/c++.png" />
-                <img src="/logos/languages/css.jpg" />
-                <img src="/logos/languages/dart.jpg" />
-                <img src="/logos/languages/html.jpg" />
-                <img src="/logos/languages/javascript.png" />
-                <img src="/logos/languages/kotlin.png" />
-                <img src="/logos/languages/php.png" />
-                <img src="/logos/languages/solidity.png" />
-                <img src="/logos/languages/swift.png" />
-                <img src="/logos/languages/typescript.png" />
+//     return (
+//         <div className='logos-opposite'>
+//             <div className='logos-slide-opposite'>
+//                 <img src="/logos/languages/csharp.png" />
+//                 <img src="/logos/languages/c++.png" />
+//                 <img src="/logos/languages/css.jpg" />
+//                 <img src="/logos/languages/dart.jpg" />
+//                 <img src="/logos/languages/html.jpg" />
+//                 <img src="/logos/languages/javascript.png" />
+//                 <img src="/logos/languages/kotlin.png" />
+//                 <img src="/logos/languages/php.png" />
+//                 <img src="/logos/languages/solidity.png" />
+//                 <img src="/logos/languages/swift.png" />
+//                 <img src="/logos/languages/typescript.png" />
                 
-            </div>
-        </div>
-    )
-}
+//             </div>
+//         </div>
+//     )
+// }
 
-function InfiniteScrollerMedia() {
-    useEffect(() => {
-        var copy = document.querySelector(".logos-slide-2").cloneNode(true);
-        document.querySelector('.logos-2').appendChild(copy);
-    }, [])
+// function InfiniteScrollerMedia() {
+//     useEffect(() => {
+//         var copy = document.querySelector(".logos-slide-2").cloneNode(true);
+//         document.querySelector('.logos-2').appendChild(copy);
+//     }, [])
 
-    return (
-        <div className='logos-2'>
-            <div className='logos-slide-2'>
-                <img src="/logos/media-development/3dsmax.jpg" />
-                <img src="/logos/media-development/adobe-dimension.webp" />
-                <img src="/logos/media-development/audition.webp" />
-                <img src="/logos/media-development/blender.png" />
-                <img src="/logos/media-development/flstudio.jpg" />
-                <img src="/logos/media-development/gamemaker2.png" />
-                <img src="/logos/media-development/illustrator.jpg" />
-                <img src="/logos/media-development/maya.png" />
-                <img src="/logos/media-development/mirror.jpg" />
-                <img src="/logos/media-development/photon-fusion.webp" />
-                <img src="/logos/media-development/photoshop.png" />
-                <img src="/logos/media-development/pun2.jpg" />
-                <img src="/logos/media-development/unity.jpg" />
-                <img src="/logos/media-development/unreal-engine.png" />
-                <img src="/logos/media-development/zbrush.png" />
-            </div>
-        </div>
-    )
-}
+//     return (
+//         <div className='logos-2'>
+//             <div className='logos-slide-2'>
+//                 <img src="/logos/media-development/3dsmax.jpg" />
+//                 <img src="/logos/media-development/adobe-dimension.webp" />
+//                 <img src="/logos/media-development/audition.webp" />
+//                 <img src="/logos/media-development/blender.png" />
+//                 <img src="/logos/media-development/flstudio.jpg" />
+//                 <img src="/logos/media-development/gamemaker2.png" />
+//                 <img src="/logos/media-development/illustrator.jpg" />
+//                 <img src="/logos/media-development/maya.png" />
+//                 <img src="/logos/media-development/mirror.jpg" />
+//                 <img src="/logos/media-development/photon-fusion.webp" />
+//                 <img src="/logos/media-development/photoshop.png" />
+//                 <img src="/logos/media-development/pun2.jpg" />
+//                 <img src="/logos/media-development/unity.jpg" />
+//                 <img src="/logos/media-development/unreal-engine.png" />
+//                 <img src="/logos/media-development/zbrush.png" />
+//             </div>
+//         </div>
+//     )
+// }
 
 export default Skills
