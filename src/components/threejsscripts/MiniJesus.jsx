@@ -68,22 +68,32 @@ export function MiniJesus(props) {
     });
 
     //Control keys
-    document.addEventListener('keydown', handleKeyDown, false);
-    document.addEventListener('keyup', handleKeyUp, false);
+    // document.addEventListener('keydown', handleKeyDown, false);
+    // document.addEventListener('keyup', handleKeyUp, false);
 
     canvasRef.current.addEventListener("touchstart", handleTouchStart);
     canvasRef.current.addEventListener("touchmove", handleTouchMove);
     canvasRef.current.addEventListener("touchend", handleTouchEnd);
 
+    canvasRef.current.addEventListener('mousedown', handleMouseDown);
+    canvasRef.current.addEventListener('mousemove', handleMouseMove);
+    canvasRef.current.addEventListener('mouseup', handleMouseUp);
+
     return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-      document.removeEventListener('keyup', handleKeyUp);
+      // document.removeEventListener('keydown', handleKeyDown);
+      // document.removeEventListener('keyup', handleKeyUp);
 
       canvasRef.current.removeEventListener("touchstart", handleTouchStart);
       canvasRef.current.removeEventListener("touchmove", handleTouchMove);
       canvasRef.current.removeEventListener("touchend", handleTouchEnd);
+
+      canvasRef.current.removeEventListener('mousedown', handleMouseDown);
+      canvasRef.current.removeEventListener('mousemove', handleMouseMove);
+      canvasRef.current.removeEventListener('mouseup', handleMouseUp);
     };
   }, [])
+
+  // TOUCH
 
   const handleTouchStart = (event) => {
     startX = event.touches[0].clientX;
@@ -108,50 +118,67 @@ export function MiniJesus(props) {
     startX = null;
     setSwipeDirection(null);
   };
+  
 
+  // MOUSE 
 
-
-
-
-
-  const handleKeyDown = (event) => {
-    if (event.shiftKey) {
-      //TOGGLE
-    } else {
-      if (event.key.toLowerCase() === 'a') {
-        setKeyDown(true);
+  const handleMouseDown = (event) => {
+    startX = event.clientX;
+  };
+  
+  const handleMouseMove = (event) => {
+    if (startX !== null) {
+      const currentX = event.clientX;
+      const deltaX = currentX - startX;
+      
+      if (deltaX > 0) {
         setMoveDir('left');
-        // gsap.to(model.current.rotation, {duration: .25, repeat: 0, y: -Math.PI / 2});
-      }
-      if (event.key.toLowerCase() === 'd') {
-        setKeyDown(true);
+        setTargetRotation(-4.71239);
+      } else if (deltaX < 0) {
         setMoveDir('right');
+        setTargetRotation(-1.5708);
       }
-      console.log(event.key.toLowerCase());
+      
+      startX = currentX;
     }
-  }
-
-  const handleKeyUp = (event) => {
-    if (event.key.toLowerCase() === 'a' || event.key.toLowerCase() === 'd') {
-      setKeyDown(false);
-    }
-  }
-
+  };
+  
+  const handleMouseUp = () => {
+    startX = null;
+    setSwipeDirection(null);
+  };
 
 
-  useEffect(() => {
-    if (keyDown) setAnimIndex(5); //RUN
-    if (!keyDown) setAnimIndex(3); //IDLE
-  }, [keyDown])
+
+
+  // const handleKeyDown = (event) => {
+  //   if (event.shiftKey) {
+  //     //TOGGLE
+  //   } else {
+  //     if (event.key.toLowerCase() === 'a') {
+  //       setKeyDown(true);
+  //       setMoveDir('left');
+  //     }
+  //     if (event.key.toLowerCase() === 'd') {
+  //       setKeyDown(true);
+  //       setMoveDir('right');
+  //     }
+  //     console.log(event.key.toLowerCase());
+  //   }
+  // }
+
+  // const handleKeyUp = (event) => {
+  //   if (event.key.toLowerCase() === 'a' || event.key.toLowerCase() === 'd') {
+  //     setKeyDown(false);
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   if (keyDown) setAnimIndex(5); //RUN
+  //   if (!keyDown) setAnimIndex(3); //IDLE
+  // }, [keyDown])
 
   
-  // useEffect(() => {
-  //   console.log('ACTIONS', actions);
-  //   actions[names[animIndex]].reset().fadeIn(0.5).play();
-  //   return () => {
-  //     actions[names[animIndex]].fadeOut(0.5);
-  //   };
-  // }, [animIndex, actions, names])
   useEffect(() => {
     console.log('ACTIONS', actions);
     actions[names[animIndex]].reset().fadeIn(0.5).play();
@@ -274,24 +301,24 @@ export function MiniJesus(props) {
     playerRef.current.position.copy(playerPositionNew);
   })
 
-  const faceMovementDir = (offsetDistance, camera, angle, radius) => {
-    // const cameraX2 = playerRef.current.position.x + Math.cos(angle) * radius;
-    // const cameraZ2 = playerRef.current.position.z + Math.sin(angle) * radius;
-    // // camera.position.set(cameraX2, 1.75, cameraZ2);
-    // camera.position.x = cameraX2;
-    // camera.position.z = cameraZ2;
+  // const faceMovementDir = (offsetDistance, camera, angle, radius) => {
+  //   // const cameraX2 = playerRef.current.position.x + Math.cos(angle) * radius;
+  //   // const cameraZ2 = playerRef.current.position.z + Math.sin(angle) * radius;
+  //   // // camera.position.set(cameraX2, 1.75, cameraZ2);
+  //   // camera.position.x = cameraX2;
+  //   // camera.position.z = cameraZ2;
 
-    // Calculate the rotation angle based on player's rotation
-    const playerRotation = Math.atan2(playerRef.current.position.z, playerRef.current.position.x);
+  //   // Calculate the rotation angle based on player's rotation
+  //   const playerRotation = Math.atan2(playerRef.current.position.z, playerRef.current.position.x);
 
-    // Calculate the offset direction by adding 90 degrees (pi/2 radians) to the player's rotation
-    const offsetDirection = playerRotation + Math.PI / 2;
+  //   // Calculate the offset direction by adding 90 degrees (pi/2 radians) to the player's rotation
+  //   const offsetDirection = playerRotation + Math.PI / 2;
 
-    // Calculate the offset position based on the offset direction and distance
-    const offsetX = playerRef.current.position.x + Math.cos(offsetDirection) * offsetDistance;
-    const offsetZ = playerRef.current.position.z + Math.sin(offsetDirection) * offsetDistance;
-    setTargetRotation(new Vector3(offsetX, 0, offsetZ));
-  }
+  //   // Calculate the offset position based on the offset direction and distance
+  //   const offsetX = playerRef.current.position.x + Math.cos(offsetDirection) * offsetDistance;
+  //   const offsetZ = playerRef.current.position.z + Math.sin(offsetDirection) * offsetDistance;
+  //   setTargetRotation(new Vector3(offsetX, 0, offsetZ));
+  // }
   
 
 

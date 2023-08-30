@@ -9,6 +9,7 @@ const Container = styled.div`
     background-color: lightblue;
     height: 100vh;
     scroll-snap-align: start;
+    cursor: grab;
 `
 
 function Projects({ myRef, scrollYGlobal }) {
