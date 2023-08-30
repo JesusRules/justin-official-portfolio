@@ -13,28 +13,29 @@ import { GLTFLoader } from 'three-stdlib'
 import gsap from 'gsap';
 
 export function MiniJesus(props) {
-  const { playerRef, canvasRef, swipeDirection } = props;
+  const { playerRef, canvasRef } = props;
   const modelRef = useRef();
   const { nodes, materials, animations } = useGLTF('/models/MiniJesus-transformed.glb')
   const { actions, names, ref, mixer } = useAnimations(animations, playerRef)
   
   //MINE
   const { animIndex, setAnimIndex } = props;
+
   const [keyDown, setKeyDown] = useState(false);
   const [moveDir, setMoveDir] = useState(false);
   const [moveDelta, setMoveDelta] = useState(0);
   const [camSpeed, setCamSpeed] = useState(0);
   const [hovered, setHovered] = useState(false);
+  const [swipeDirection, setSwipeDirection] = useState(0);
+  let startX;
   let cameraPosition;
   const [startUpCam, setStartUpCam] = useState(false);
-  const [targetPosition, setTargetPosition] = useState(new Vector3(0, 0, 5));
+  const [targetRotation, setTargetRotation] = useState(-Math.PI);
   // const gltf = useLoader(GLTFLoader, '/models/MiniJesus-transformed.glb');
   // const mixer = new THREE.AnimationMixer();
 
   //DISTANCE FROM CAM
   const playerPositionNew = new THREE.Vector3();
-  //ROTATION DIRECTION
-  const prevRotation = useRef({ x: 0, y: 0 });
   //SPEED CAM
   const prevPosition = useRef(0);
   const startTime = useRef(0);
@@ -50,14 +51,15 @@ export function MiniJesus(props) {
     console.log("ANIMATIONS", animations);
 
     actions['FirstPlaceWin'].clampWhenFinished = true;
-    actions['Win'].clampWhenFinished = true;
+    // actions['Win'].clampWhenFinished = true;
 
     mixer.addEventListener('finished', (e) => {
       if (e.action._clip.name === "FirstPlaceWin") {
         // setIndex(3); //idle
       }
       if (e.action._clip.name === "Win") {
-        setIndex(3); //idle
+        setAnimIndex(3); //idle
+        console.log("CALLEasdaD???")
       }
     });
 
@@ -65,19 +67,45 @@ export function MiniJesus(props) {
     document.addEventListener('keydown', handleKeyDown, false);
     document.addEventListener('keyup', handleKeyUp, false);
 
-    // canvasRef.current.addEventListener('mousedown', handleMouseDown);
-    // canvasRef.current.addEventListener('mousemove', handleMouseMove);
-    // canvasRef.current.addEventListener('mouseup', handleMouseUp);
+    canvasRef.current.addEventListener("touchstart", handleTouchStart);
+    canvasRef.current.addEventListener("touchmove", handleTouchMove);
+    canvasRef.current.addEventListener("touchend", handleTouchEnd);
 
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
       document.removeEventListener('keyup', handleKeyUp);
 
-      // canvasRef.current.removeEventListener('mousedown', handleMouseDown);
-      // canvasRef.current.removeEventListener('mousemove', handleMouseMove);
-      // canvasRef.current.removeEventListener('mouseup', handleMouseUp);
+      canvasRef.current.removeEventListener("touchstart", handleTouchStart);
+      canvasRef.current.removeEventListener("touchmove", handleTouchMove);
+      canvasRef.current.removeEventListener("touchend", handleTouchEnd);
     };
   }, [])
+
+  const handleTouchStart = (event) => {
+    startX = event.touches[0].clientX;
+  };
+  
+  const handleTouchMove = (event) => {
+    if (startX !== null) {
+      const currentX = event.touches[0].clientX;
+      const deltaX = currentX - startX;
+      if (deltaX > 0) {
+        setTargetRotation(Math.PI / 2);
+      } else if (deltaX < 0) {
+        setTargetRotation(-Math.PI / 2);
+      }
+      startX = currentX;
+    }
+  };
+
+  const handleTouchEnd = () => {
+    startX = null;
+    setSwipeDirection(null);
+  };
+
+
+
+
 
 
   const handleKeyDown = (event) => {
@@ -114,33 +142,13 @@ export function MiniJesus(props) {
   useEffect(() => {
     console.log('ACTIONS', actions);
     actions[names[animIndex]].reset().fadeIn(0.5).play();
-    return () => actions[names[animIndex]].fadeOut(0.5);
+    return () => {
+      actions[names[animIndex]].fadeOut(0.5);
+    };
   }, [animIndex, actions, names])
 
-
-  // MOUSE INPUT
-
-  // const handleMouseDown = (event) => {
-  //   dragging = true;
-  //   setInitialMouseY(event.clientY);
-  //   setInitialCameraY(cameraPosition.y);
-  //   console.log("DOEN");
-  // };
   
-  // const handleMouseMove = (event) => {
-  //   if (dragging) 
-  //   {
-  //     const deltaY = event.clientY - initialMouseY;
-  //     console.log(deltaY);
-  //     const newCameraY = initialCameraY - deltaY * 0.01; // Adjust the factor for sensitivity
-  //     setCameraYPos(newCameraY);
-  //   }
-  // };
-  
-  // const handleMouseUp = () => {
-  //   console.log("UP");
-  //   dragging = false;
-  // };
+
 
   const [speedDifference, setSpeedDifference] = useState(10);
   const [idleStance, setIdleStance] = useState(true);
@@ -150,6 +158,7 @@ export function MiniJesus(props) {
     if (idleStance) setAnimIndex(3);
     if (!idleStance) setAnimIndex(5);
   }, [idleStance])
+
 
   const camSpeedFunc = (speed) => {
     
@@ -172,7 +181,6 @@ export function MiniJesus(props) {
     const radius = 32; // Adjust the radius of the circle
     let angle;
     
-
     // KEY DOWN METHOD
     // if (keyDown) {
     //   if (moveDir === 'left') {
@@ -184,90 +192,30 @@ export function MiniJesus(props) {
     //     faceMovementDir(-2.5, state.camera, angle, radius);
     //   };
     // }
-
     
-    // NEW ROTATION METHOD
-    // const currentRotation = state.camera.rotation.clone();
-    // // Compare current rotation with previous rotation to detect left or right rotation
-    // const rotationDelta = {
-    //   x: currentRotation.x - prevRotation.current.x,
-    //   y: currentRotation.y - prevRotation.current.y,
-    // };
-    // // Detect rotation direction based on rotationDelta values
-    // if (rotationDelta.y > 0) {
-    //   setMoveDir('left');
-    // } else if (rotationDelta.y < 0) {
-    //   setMoveDir('right');
-    // }
-    // // Update the previous rotation
-    // prevRotation.current = currentRotation.clone();
-    
-
     //SPEED CAPTURE
     const currentTime = state.clock.getElapsedTime();
     const currentPosition = state.camera.position.clone();
-     // Calculate distance moved since last frame
     const distanceMoved = currentPosition.distanceTo(prevPosition.current);
-    // Calculate time difference since last frame
     const deltaTime = currentTime - startTime.current;
-    // Calculate speed based on distance and time
     const speed = distanceMoved / deltaTime;
     camSpeedFunc(speed);
     // console.log('Camera speed:', speed);
-    // Update previous position and start time
+    //update
     prevPosition.current = currentPosition;
     startTime.current = currentTime;
 
 
 
-    // WORKS 1 !! 
-    // const playerPosition2 = playerRef.current.position.clone();
-    //   const previousPosition2 = previousPositionRef.current.clone();
-    //   // Calculate the movement vector
-    //   const movementVector = playerPosition2.clone().sub(previousPosition2);
-    //   // Calculate the direction by normalizing the movement vector
-    //   const direction = movementVector.clone().normalize();
-    //   // Rotate the direction vector 90 degrees to the left
-    //   const leftDirection = new THREE.Vector3(-direction.z, direction.y, direction.x).normalize();
-    //   // Update the previous position for the next frame
-    //   previousPositionRef.current.copy(playerPosition2);
-    //   console.log('Left Movement Direction:', leftDirection.x, leftDirection.y, leftDirection.z);
-      // playerRef.current.lookAt(leftDirection.x, leftDirection.y, leftDirection.z);
-
-      // modelRef.current.rotation.y = -Math.PI / 2;
-      // modelRef.current.lookAt(state.camera.position.x,state.camera.position.y,state.camera.position.z);
-      // setTargetPosition(new Vector3( state.camera.position.x,state.camera.position.y,state.camera.position.z));
-
-      const lerpFactor = 0.05;
-
-      playerRef.current.lookAt(0, 0, 0);
-      // modelRef.current.rotation.y = -Math.PI;
-
-      const currentRotation = modelRef.current.rotation.y;
-      const targetRotation = -Math.PI / 2;
-      const lerpedRotation = THREE.MathUtils.lerp(currentRotation, targetRotation, lerpFactor);
-      modelRef.current.rotation.y = lerpedRotation;
+    const lerpFactor = 0.05;
+    playerRef.current.lookAt(0, 0, 0); //stays
+    const currentRotation = modelRef.current.rotation.y;
+    const lerpedRotation = THREE.MathUtils.lerp(currentRotation, targetRotation, lerpFactor);
+    modelRef.current.rotation.y = lerpedRotation;
       // -Math.PI = FRONT
-      // -Math.PI / 2 = RIGHT
       // Math.PI / 2 = LEFT
+      // -Math.PI / 2 = RIGHT
       // 0 = BACK
-
-
-    // WORKS 2 !!
-    // const previousPosition2 = previousPositionRef.current.clone();
-    // const playerPosition2 = playerRef.current.position.clone();
-    // const movementVector = playerPosition2.clone().sub(previousPosition2);
-    // const direction = movementVector.clone().normalize();
-    // // Calculate the left direction by rotating the direction 90 degrees around the up axis
-    // const leftDirection = new THREE.Vector3(direction.z, direction.y, -direction.x).normalize();
-    // // Make the player face the left direction
-    // playerRef.current.lookAt(playerPosition2.clone().add(leftDirection));
-    // let pos2 = playerPosition2.clone().add(leftDirection);
-    // // setTargetPosition(new Vector3(pos2.x, pos2.y, pos2.z))
-    // // Update the previous position for the next frame
-    // previousPosition2.copy(playerPosition2);
-
-
 
     cameraPosition = state.camera.position;
     const playerPosition = playerRef.current.position;
@@ -280,13 +228,6 @@ export function MiniJesus(props) {
     // const z = Math.sin(angle) * radius;
     // playerRef.current.position.x = x;
     // playerRef.current.position.z = z;
-
-    //LERPING
-    // const lookAtDirection = new Vector3().subVectors(targetPosition, playerRef.current.position).normalize();
-    // const targetQuaternion = new Quaternion().setFromUnitVectors(new Vector3(0, 0, 1), lookAtDirection);
-    // const lerpFactor = 0.1; // Adjust the lerp factor for desired smoothness
-    // modelRef.current.quaternion.slerp(targetQuaternion, lerpFactor);
-
 
     // 2 - Cam Spinner
     // const cameraX = playerPosition.x + Math.cos(angle) * radius / 2.2;
@@ -324,19 +265,6 @@ export function MiniJesus(props) {
     playerRef.current.position.copy(playerPositionNew);
   })
 
-  const faceMovementDirScroll = (offsetDistance) => {
-    // Calculate the rotation angle based on player's rotation
-    const playerRotation = Math.atan2(playerRef.current.position.z, playerRef.current.position.x);
-
-    // Calculate the offset direction by adding 90 degrees (pi/2 radians) to the player's rotation
-    const offsetDirection = playerRotation + Math.PI / 2;
-
-    // Calculate the offset position based on the offset direction and distance
-    const offsetX = playerRef.current.position.x + Math.cos(offsetDirection) * offsetDistance;
-    const offsetZ = playerRef.current.position.z + Math.sin(offsetDirection) * offsetDistance;
-    setTargetPosition(new Vector3(offsetX, 0, offsetZ));
-  }
-
   const faceMovementDir = (offsetDistance, camera, angle, radius) => {
     // const cameraX2 = playerRef.current.position.x + Math.cos(angle) * radius;
     // const cameraZ2 = playerRef.current.position.z + Math.sin(angle) * radius;
@@ -353,15 +281,15 @@ export function MiniJesus(props) {
     // Calculate the offset position based on the offset direction and distance
     const offsetX = playerRef.current.position.x + Math.cos(offsetDirection) * offsetDistance;
     const offsetZ = playerRef.current.position.z + Math.sin(offsetDirection) * offsetDistance;
-    setTargetPosition(new Vector3(offsetX, 0, offsetZ));
+    setTargetRotation(new Vector3(offsetX, 0, offsetZ));
   }
   
 
 
   const clickedJesus = () => {
-    if (keyDown) return;
+    // if (keyDown) return;
     setAnimIndex(7); //2 alt
-    setTargetPosition(new Vector3(cameraPosition.x, 0, cameraPosition.z));
+    setTargetRotation(-Math.PI);
   }
 
   return (
