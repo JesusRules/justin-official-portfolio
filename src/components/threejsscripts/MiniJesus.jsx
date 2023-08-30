@@ -221,22 +221,36 @@ export function MiniJesus(props) {
 
 
     // WORKS 1 !! 
-    const playerPosition2 = playerRef.current.position.clone();
-      const previousPosition2 = previousPositionRef.current.clone();
-      // Calculate the movement vector
-      const movementVector = playerPosition2.clone().sub(previousPosition2);
-      // Calculate the direction by normalizing the movement vector
-      const direction = movementVector.clone().normalize();
-      // Rotate the direction vector 90 degrees to the left
-      const leftDirection = new THREE.Vector3(-direction.z, direction.y, direction.x).normalize();
-      // Update the previous position for the next frame
-      previousPositionRef.current.copy(playerPosition2);
-      console.log('Left Movement Direction:', leftDirection.x, leftDirection.y, leftDirection.z);
-      playerRef.current.lookAt(leftDirection.x, leftDirection.y, leftDirection.z);
+    // const playerPosition2 = playerRef.current.position.clone();
+    //   const previousPosition2 = previousPositionRef.current.clone();
+    //   // Calculate the movement vector
+    //   const movementVector = playerPosition2.clone().sub(previousPosition2);
+    //   // Calculate the direction by normalizing the movement vector
+    //   const direction = movementVector.clone().normalize();
+    //   // Rotate the direction vector 90 degrees to the left
+    //   const leftDirection = new THREE.Vector3(-direction.z, direction.y, direction.x).normalize();
+    //   // Update the previous position for the next frame
+    //   previousPositionRef.current.copy(playerPosition2);
+    //   console.log('Left Movement Direction:', leftDirection.x, leftDirection.y, leftDirection.z);
+      // playerRef.current.lookAt(leftDirection.x, leftDirection.y, leftDirection.z);
 
       // modelRef.current.rotation.y = -Math.PI / 2;
-      // modelRef.current.lookAt(0,0,0);
-      // setTargetPosition(new Vector3( -Math.PI / 2, 0, 0));
+      // modelRef.current.lookAt(state.camera.position.x,state.camera.position.y,state.camera.position.z);
+      // setTargetPosition(new Vector3( state.camera.position.x,state.camera.position.y,state.camera.position.z));
+
+      const lerpFactor = 0.05;
+
+      playerRef.current.lookAt(0, 0, 0);
+      // modelRef.current.rotation.y = -Math.PI;
+
+      const currentRotation = modelRef.current.rotation.y;
+      const targetRotation = -Math.PI / 2;
+      const lerpedRotation = THREE.MathUtils.lerp(currentRotation, targetRotation, lerpFactor);
+      modelRef.current.rotation.y = lerpedRotation;
+      // -Math.PI = FRONT
+      // -Math.PI / 2 = RIGHT
+      // Math.PI / 2 = LEFT
+      // 0 = BACK
 
 
     // WORKS 2 !!
@@ -255,8 +269,6 @@ export function MiniJesus(props) {
 
 
 
-
-
     cameraPosition = state.camera.position;
     const playerPosition = playerRef.current.position;
     //MISC
@@ -270,13 +282,10 @@ export function MiniJesus(props) {
     // playerRef.current.position.z = z;
 
     //LERPING
-    // Calculate the direction from the model to the target
-    const lookAtDirection = new Vector3().subVectors(targetPosition, modelRef.current.position).normalize();
-    // Calculate the quaternion rotation to look at the target
-    const targetQuaternion = new Quaternion().setFromUnitVectors(new Vector3(0, 0, 1), lookAtDirection);
-    // Interpolate the current rotation towards the target rotation
-    const lerpFactor = 0.1; // Adjust the lerp factor for desired smoothness
-    modelRef.current.quaternion.slerp(targetQuaternion, lerpFactor);
+    // const lookAtDirection = new Vector3().subVectors(targetPosition, playerRef.current.position).normalize();
+    // const targetQuaternion = new Quaternion().setFromUnitVectors(new Vector3(0, 0, 1), lookAtDirection);
+    // const lerpFactor = 0.1; // Adjust the lerp factor for desired smoothness
+    // modelRef.current.quaternion.slerp(targetQuaternion, lerpFactor);
 
 
     // 2 - Cam Spinner
@@ -304,7 +313,7 @@ export function MiniJesus(props) {
       state.camera.position.z = cameraZ;
 
       setStartUpCam(true);
-      setTargetPosition(new Vector3(state.camera.position.x, 0, state.camera.position.z));
+      // setTargetPosition(new Vector3(state.camera.position.x, 0, state.camera.position.z));
     }
 
     const distance = 14.5; // Distance from the camera
@@ -352,9 +361,7 @@ export function MiniJesus(props) {
   const clickedJesus = () => {
     if (keyDown) return;
     setAnimIndex(7); //2 alt
-    setTargetPosition(new Vector3(0, 0, 0));
-    // gsap.to(modelRef.current, {duration: .5, repeat: 0, lookAt: (cameraPosition.x, 0, cameraPosition.z)});
-    // model.current.lookAt(cameraPos.x, 0, cameraPos.z);
+    setTargetPosition(new Vector3(cameraPosition.x, 0, cameraPosition.z));
   }
 
   return (
