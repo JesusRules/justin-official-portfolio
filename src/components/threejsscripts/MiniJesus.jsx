@@ -13,7 +13,7 @@ import { GLTFLoader } from 'three-stdlib'
 import gsap from 'gsap';
 
 export function MiniJesus(props) {
-  const { playerRef, canvasRef } = props;
+  const { playerRef, canvasRef, swipeDirection } = props;
   const modelRef = useRef();
   const { nodes, materials, animations } = useGLTF('/models/MiniJesus-transformed.glb')
   const { actions, names, ref, mixer } = useAnimations(animations, playerRef)
@@ -144,6 +144,7 @@ export function MiniJesus(props) {
 
   const [speedDifference, setSpeedDifference] = useState(10);
   const [idleStance, setIdleStance] = useState(true);
+  const previousPositionRef = useRef(new THREE.Vector3())
 
   useEffect(() => {
     if (idleStance) setAnimIndex(3);
@@ -167,13 +168,11 @@ export function MiniJesus(props) {
   }
   
 
-  const [previousPosition, setPreviousPosition] = useState(new THREE.Vector3());
-
-
   useFrame((state, delta ) => {
     const radius = 32; // Adjust the radius of the circle
     let angle;
     
+
     // KEY DOWN METHOD
     // if (keyDown) {
     //   if (moveDir === 'left') {
@@ -220,25 +219,42 @@ export function MiniJesus(props) {
     startTime.current = currentTime;
 
 
-    //ROTATION
-    // Calculate the current position
-    const currentPosition2 = playerRef.current.position.clone();
-    // Calculate the movement direction
-    const movementDirection = currentPosition2.clone().sub(previousPosition);
-    // Calculate the angle between the movement direction and the forward direction
-    const angle2 = Math.atan2(movementDirection.x, movementDirection.z);
-    // Apply the rotation
-    playerMesh.rotation.y = angle;
-    setTargetPosition(new Vector3(targetPosition.x, angle, targetPosition));
-    // Update the previous position for the next frame
-    setPreviousPosition(currentPosition);
+
+    // WORKS 1 !! 
+    const playerPosition2 = playerRef.current.position.clone();
+      const previousPosition2 = previousPositionRef.current.clone();
+      // Calculate the movement vector
+      const movementVector = playerPosition2.clone().sub(previousPosition2);
+      // Calculate the direction by normalizing the movement vector
+      const direction = movementVector.clone().normalize();
+      // Rotate the direction vector 90 degrees to the left
+      const leftDirection = new THREE.Vector3(-direction.z, direction.y, direction.x).normalize();
+      // Update the previous position for the next frame
+      previousPositionRef.current.copy(playerPosition2);
+      console.log('Left Movement Direction:', leftDirection.x, leftDirection.y, leftDirection.z);
+      playerRef.current.lookAt(leftDirection.x, leftDirection.y, leftDirection.z);
+
+      modelRef.current.rotation.y = Math.PI / 2;
+      // modelRef.current.lookAt(0,0,0);
+
+    // WORKS 2 !!
+    // const previousPosition2 = previousPositionRef.current.clone();
+    // const playerPosition2 = playerRef.current.position.clone();
+    // const movementVector = playerPosition2.clone().sub(previousPosition2);
+    // const direction = movementVector.clone().normalize();
+    // // Calculate the left direction by rotating the direction 90 degrees around the up axis
+    // const leftDirection = new THREE.Vector3(direction.z, direction.y, -direction.x).normalize();
+    // // Make the player face the left direction
+    // playerRef.current.lookAt(playerPosition2.clone().add(leftDirection));
+    // // Update the previous position for the next frame
+    // previousPosition2.copy(playerPosition2);
+
+
 
 
 
     cameraPosition = state.camera.position;
     const playerPosition = playerRef.current.position;
-
-
     //MISC
     // angle = moveDelta * 1.00;
     // const angle = Date.now() * 0.001 * 1;
@@ -295,14 +311,25 @@ export function MiniJesus(props) {
     playerRef.current.position.copy(playerPositionNew);
   })
 
+  const faceMovementDirScroll = (offsetDistance) => {
+    // Calculate the rotation angle based on player's rotation
+    const playerRotation = Math.atan2(playerRef.current.position.z, playerRef.current.position.x);
 
+    // Calculate the offset direction by adding 90 degrees (pi/2 radians) to the player's rotation
+    const offsetDirection = playerRotation + Math.PI / 2;
+
+    // Calculate the offset position based on the offset direction and distance
+    const offsetX = playerRef.current.position.x + Math.cos(offsetDirection) * offsetDistance;
+    const offsetZ = playerRef.current.position.z + Math.sin(offsetDirection) * offsetDistance;
+    setTargetPosition(new Vector3(offsetX, 0, offsetZ));
+  }
 
   const faceMovementDir = (offsetDistance, camera, angle, radius) => {
-    const cameraX2 = playerRef.current.position.x + Math.cos(angle) * radius;
-    const cameraZ2 = playerRef.current.position.z + Math.sin(angle) * radius;
-    // camera.position.set(cameraX2, 1.75, cameraZ2);
-    camera.position.x = cameraX2;
-    camera.position.z = cameraZ2;
+    // const cameraX2 = playerRef.current.position.x + Math.cos(angle) * radius;
+    // const cameraZ2 = playerRef.current.position.z + Math.sin(angle) * radius;
+    // // camera.position.set(cameraX2, 1.75, cameraZ2);
+    // camera.position.x = cameraX2;
+    // camera.position.z = cameraZ2;
 
     // Calculate the rotation angle based on player's rotation
     const playerRotation = Math.atan2(playerRef.current.position.z, playerRef.current.position.x);

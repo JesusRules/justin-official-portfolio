@@ -16,7 +16,6 @@ function Projects({ myRef, scrollYGlobal }) {
   const [swipeDirection, setSwipeDirection] = useState(null);
   let startX;
   const playerRef = useRef();
-  const cameraRef = useRef();
 
   // SCROLLING
     useEffect(() => {
@@ -46,26 +45,19 @@ function Projects({ myRef, scrollYGlobal }) {
       };
     }, []);
 
+
     // const handleTouchStart = (event) => {
     //   startX = event.touches[0].clientX;
-    //   cameraRef.current.translateX(-3);
-    //   cameraRef.current.updateMatrixWorld();
     // };
     
     // const handleTouchMove = (event) => {
-    //   console.log('???', cameraRef.current);
-    //   cameraRef.current.translateY(5);
-    //   cameraRef.current.updateMatrixWorld();
-
     //   if (startX !== null) {
     //     const currentX = event.touches[0].clientX;
     //     const deltaX = currentX - startX;
     //     if (deltaX > 0) {
-    //       console.log('right');
-    //       setAnimIndex(6);
+    //       setSwipeDirection('left');
     //     } else if (deltaX < 0) {
-    //       console.log('left');
-    //       setAnimIndex(5);
+    //       setSwipeDirection('right');
     //     }
     //     startX = currentX;
     //   }
@@ -74,8 +66,6 @@ function Projects({ myRef, scrollYGlobal }) {
     // const handleTouchEnd = () => {
     //   startX = null;
     //   setSwipeDirection(null);
-    //   cameraRef.current.translateX(2);
-    //   cameraRef.current.updateMatrixWorld();
     // };
 
 
@@ -84,7 +74,7 @@ function Projects({ myRef, scrollYGlobal }) {
       <Canvas shadows camera={{fov: 45, far: 1000, near: 0.1, position: [0, 1.75, 5]}}>
                 <group>
                   <Suspense fallback={null}>
-                    <MiniJesus scale={20} animIndex={animIndex} setAnimIndex={setAnimIndex} playerRef={playerRef} canvasRef={myRef}/>
+                    <MiniJesus scale={20} animIndex={animIndex} setAnimIndex={setAnimIndex} playerRef={playerRef} swipeDirection={swipeDirection}/>
                   </Suspense>
                 </group>
                 <mesh position={[0, .5, 0]}>
