@@ -31,6 +31,8 @@ export function MiniJesus(props) {
   let cameraPosition;
   const [startUpCam, setStartUpCam] = useState(false);
   const [targetRotation, setTargetRotation] = useState(-Math.PI);
+  const [speedDifference, setSpeedDifference] = useState(10);
+  const [idleStance, setIdleStance] = useState(true);
   // const gltf = useLoader(GLTFLoader, '/models/MiniJesus-transformed.glb');
   // const mixer = new THREE.AnimationMixer();
 
@@ -51,7 +53,7 @@ export function MiniJesus(props) {
     console.log("ANIMATIONS", animations);
 
     actions['FirstPlaceWin'].clampWhenFinished = true;
-    // actions['Win'].clampWhenFinished = true;
+    actions['Win'].clampWhenFinished = true;
 
     mixer.addEventListener('finished', (e) => {
       if (e.action._clip.name === "FirstPlaceWin") {
@@ -59,7 +61,9 @@ export function MiniJesus(props) {
       }
       if (e.action._clip.name === "Win") {
         setAnimIndex(3); //idle
-        console.log("CALLEasdaD???")
+      }
+      if (e.action._clip.name === "Run") {
+        // setTargetRotation(-Math.PI);
       }
     });
 
@@ -90,8 +94,10 @@ export function MiniJesus(props) {
       const currentX = event.touches[0].clientX;
       const deltaX = currentX - startX;
       if (deltaX > 0) {
+        setMoveDir('left');
         setTargetRotation(Math.PI / 2);
       } else if (deltaX < 0) {
+        setMoveDir('right');
         setTargetRotation(-Math.PI / 2);
       }
       startX = currentX;
@@ -120,7 +126,6 @@ export function MiniJesus(props) {
       if (event.key.toLowerCase() === 'd') {
         setKeyDown(true);
         setMoveDir('right');
-        // gsap.to(model.current.rotation, {duration: .25, repeat: 0, y: Math.PI / 2});
       }
       console.log(event.key.toLowerCase());
     }
@@ -133,12 +138,20 @@ export function MiniJesus(props) {
   }
 
 
+
   useEffect(() => {
     if (keyDown) setAnimIndex(5); //RUN
     if (!keyDown) setAnimIndex(3); //IDLE
   }, [keyDown])
 
   
+  // useEffect(() => {
+  //   console.log('ACTIONS', actions);
+  //   actions[names[animIndex]].reset().fadeIn(0.5).play();
+  //   return () => {
+  //     actions[names[animIndex]].fadeOut(0.5);
+  //   };
+  // }, [animIndex, actions, names])
   useEffect(() => {
     console.log('ACTIONS', actions);
     actions[names[animIndex]].reset().fadeIn(0.5).play();
@@ -147,12 +160,6 @@ export function MiniJesus(props) {
     };
   }, [animIndex, actions, names])
 
-  
-
-
-  const [speedDifference, setSpeedDifference] = useState(10);
-  const [idleStance, setIdleStance] = useState(true);
-  const previousPositionRef = useRef(new THREE.Vector3())
 
   useEffect(() => {
     if (idleStance) setAnimIndex(3);
@@ -173,9 +180,11 @@ export function MiniJesus(props) {
     }
     else if (speedDifference > 18) {
       setIdleStance(true);
+      if (moveDir === 'left') setTargetRotation(Math.PI);
+      if (moveDir === 'right') setTargetRotation(-Math.PI);
     }
   }
-  
+
 
   useFrame((state, delta ) => {
     const radius = 32; // Adjust the radius of the circle
