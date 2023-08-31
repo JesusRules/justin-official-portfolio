@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState, Suspense } from 'react'
 import { styled } from 'styled-components'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { OrbitControls, Html, Environment, Sky, PerspectiveCamera } from '@react-three/drei';
+import { OrbitControls, Html, Environment, Sky, PerspectiveCamera, Circle } from '@react-three/drei';
 import { MiniJesus } from './threejsscripts/MiniJesus';
 import * as THREE from "three";
 import gsap from 'gsap';
@@ -28,19 +28,34 @@ function Projects({ myRef, scrollYGlobal }) {
   const [animIndex, setAnimIndex] = useState(3); //IDLE
   const playerRef = useRef();
   const speechBubbleRef = useRef();
+  const [showBubbleOnce, setShowBubbleOnce] = useState(false);
+  
+  const circleRadius = 32;
+  const numObjects = 27;
+  const objects = [];
+
+  for (let i = 0; i < numObjects; i++) {
+    const angle = (i / numObjects) * Math.PI * 2;
+    const x = Math.cos(angle) * circleRadius;
+    const z = Math.sin(angle) * circleRadius;
+    objects.push(<CircleObject key={i} position={[x, 0.1, z]} />);
+  }
 
   // SCROLLING
     useEffect(() => {
       const divElement = myRef.current;
       const halfwayPoint = divElement.scrollHeight / 5;
       if (scrollYGlobal >= divElement.offsetTop) {
-        gsap.to(speechBubbleRef.current, {
-          duration:0.66,
-          opacity: 1,
-              transform: 'translateY(0px)',
-        });
+        if (!showBubbleOnce) {
+          setShowBubbleOnce(true);
+          gsap.to(speechBubbleRef.current, {
+            duration:0.66,
+            opacity: 1,
+                transform: 'translateY(0px)',
+          });
+        }
 
-        setAnimIndex(2); //7 alt
+        setAnimIndex(2); //7 alt Jumping happy
       }
 
   }, [scrollYGlobal])
@@ -65,7 +80,7 @@ function Projects({ myRef, scrollYGlobal }) {
       <Canvas shadows camera={{fov: 45, far: 1000, near: 0.1, position: [0, 1.75, 5]}}>
                 <group>
                   <Suspense fallback={null}>
-                    <MiniJesus scale={20} animIndex={animIndex} setAnimIndex={setAnimIndex} playerRef={playerRef} canvasRef={myRef} speechBubbleRef={speechBubbleRef} />
+                    <MiniJesus scale={20} animIndex={animIndex} setAnimIndex={setAnimIndex} playerRef={playerRef} canvasRef={myRef} speechBubbleRef={speechBubbleRef} touchObjects={objects} />
                   </Suspense>
                 </group>
                 <mesh position={[0, .5, 0]}>
@@ -87,11 +102,32 @@ function Projects({ myRef, scrollYGlobal }) {
                 <directionalLight castShadow shadow-mapSize={1024} position={[-5, 5, 5]} />
                 <mesh receiveShadow rotation={[-Math.PI / 2, 0, 0]}>
                   <planeGeometry args={[64, 64, 64]} />
-                  <meshStandardMaterial color="green" />
+                  <meshStandardMaterial color="blue" />
                 </mesh>
+                <mesh position={[0, 0.01, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+                  <circleGeometry args={[32, 32, 32]} />
+                  <meshStandardMaterial color="red" />
+                </mesh>
+                <mesh position={[0, 0.02, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+                  <circleGeometry args={[31, 31, 31]} />
+                  <meshStandardMaterial color="blue" />
+                </mesh>
+                {objects}
             </Canvas>
     </Container>
   )
 }
+
+const CircleObject = ({ position }) => {
+  return (
+    <mesh position={position}>
+      {/* Your object's geometry and appearance */}
+      <sphereGeometry args={[1, 16, 16]} />
+      <meshBasicMaterial color="red" />
+    </mesh>
+  );
+}
+
+
 
 export default Projects

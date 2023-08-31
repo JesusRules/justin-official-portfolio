@@ -13,7 +13,7 @@ import { GLTFLoader } from 'three-stdlib'
 import gsap from 'gsap';
 
 export function MiniJesus(props) {
-  const { playerRef, canvasRef, speechBubbleRef } = props;
+  const { playerRef, canvasRef, speechBubbleRef, touchObjects } = props;
   const modelRef = useRef();
   const { nodes, materials, animations } = useGLTF('/models/MiniJesus-transformed.glb')
   const { actions, names, ref, mixer } = useAnimations(animations, playerRef)
@@ -66,6 +66,7 @@ export function MiniJesus(props) {
         // setTargetRotation(-Math.PI);
       }
     });
+    console.log('OBJECTS', touchObjects[0].props.position[2]); //[0]x,[1]y,[2]z
 
     //Control keys
     // document.addEventListener('keydown', handleKeyDown, false);
@@ -176,7 +177,7 @@ export function MiniJesus(props) {
 
   
   useEffect(() => {
-    console.log('ACTIONS', actions);
+    // console.log('ACTIONS', actions);
     actions[names[animIndex]].reset().fadeIn(0.5).play();
     return () => {
       actions[names[animIndex]].fadeOut(0.5);
@@ -256,6 +257,7 @@ export function MiniJesus(props) {
 
     cameraPosition = state.camera.position;
     const playerPosition = playerRef.current.position;
+    
     //MISC
     // angle = moveDelta * 1.00;
     // const angle = Date.now() * 0.001 * 1;
@@ -274,6 +276,16 @@ export function MiniJesus(props) {
     // state.camera.position.z = cameraZ;
 
     state.camera.lookAt(0, 0, 0);
+
+    // Touch sphere interaction
+    touchObjects.forEach(sphere => {
+      const distance = playerPosition.distanceTo(sphere);
+      if (distance < 1.5) {
+        // console.log(`Player touched sphere ${sphere.number}`);
+        // Perform any other logic you need here
+      }
+    })
+
 
     if (!startUpCam) 
     {
