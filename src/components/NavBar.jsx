@@ -80,6 +80,20 @@ function NavBar({ scrollYGlobal,
     const [prevScrollPos, setPrevScrollPos] = useState(0);
     const [visible, setVisible] = useState(true);
 
+    useEffect(() => {
+        window.addEventListener('mousemove', handleMouseMove);
+        return () => {
+            window.removeEventListener('mousemove', handleMouseMove);
+        }
+    }, [])
+
+    const handleMouseMove = (event) => {
+        const mouseY = event.clientY;
+        if (mouseY <= 10) {
+            setVisible(true);
+        }
+    }
+
 
     useEffect(() => {
         handleScroll();

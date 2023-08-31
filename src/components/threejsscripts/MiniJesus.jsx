@@ -20,6 +20,7 @@ export function MiniJesus(props) {
   
   //MINE
   const { animIndex, setAnimIndex } = props;
+  const radius = 41; // Adjust the radius of the circle
 
   const [keyDown, setKeyDown] = useState(false);
   const [moveDir, setMoveDir] = useState(false);
@@ -217,7 +218,6 @@ export function MiniJesus(props) {
   }
 
   useFrame((state, delta ) => {
-    const radius = 32; // Adjust the radius of the circle
     let angle;
     
     // KEY DOWN METHOD
@@ -298,8 +298,8 @@ export function MiniJesus(props) {
       playerRef.current.position.x = x;
       playerRef.current.position.z = z;
 
-      const cameraX = playerRef.current.position.x + Math.cos(0) * radius / 2.2;
-      const cameraZ = playerRef.current.position.z + Math.sin(0) * radius / 2.2;
+      const cameraX = playerRef.current.position.x + Math.cos(0) * radius; //2.2
+      const cameraZ = playerRef.current.position.z + Math.sin(0) * radius; //2.2      
       state.camera.position.x = cameraX;
       state.camera.position.z = cameraZ;
 
@@ -307,7 +307,7 @@ export function MiniJesus(props) {
       // setTargetPosition(new Vector3(state.camera.position.x, 0, state.camera.position.z));
     }
 
-    const distance = 14.5; // Distance from the camera
+    const distance = 21.5; // Distance from the camera // 14.5
     playerPositionNew.copy(state.camera.position);
     state.camera.getWorldDirection(playerPositionNew);
     playerPositionNew.multiplyScalar(distance).add(state.camera.position);
@@ -337,7 +337,7 @@ export function MiniJesus(props) {
   const clickedJesus = () => {
     // if (keyDown) return;
     console.log('OBJECT 2', touchObjects);
-    
+
     setAnimIndex(7); //2 alt
     if (moveDir === 'left') setTargetRotation(-3.14159);
       if (moveDir === 'right') setTargetRotation(-3.14159);

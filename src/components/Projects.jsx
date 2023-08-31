@@ -78,9 +78,7 @@ function Projects({ myRef, scrollYGlobal }) {
   const [showBubbleOnce, setShowBubbleOnce] = useState(false);
   const [displayContentTxt, setDisplayContentTxt] = useState("");
   
-  const circleRadius = 32;
-  const numObjects = 27;
-  // const objects = [];
+  const radius = 60;
   const [objectPoints, setObjectPoints] = useState([]);
 
   // SCROLLING
@@ -120,8 +118,8 @@ function Projects({ myRef, scrollYGlobal }) {
     const setupPositionSpots = () => {
       for (let i = 0; i < contentTitlesArray.length; i++) {
         const angle = (i / contentTitlesArray.length) * Math.PI * 2;
-        const x = Math.cos(-angle) * circleRadius;
-        const z = Math.sin(-angle) * circleRadius;
+        const x = Math.cos(-angle) * radius;
+        const z = Math.sin(-angle) * radius;
         const newObj = <CircleObject content={contentTitlesArray[i]} key={i} position={[x, 0.1, z]} />; 
         // setObjectPoints(objectPoints => [...objectPoints, newObj]);
         setObjectPoints(objectPoints => {
@@ -150,10 +148,10 @@ function Projects({ myRef, scrollYGlobal }) {
       </ProjectPopup>
 
       <SpeechBubble ref={speechBubbleRef} src="/img/speech-bubble-portfolio.png"/>
-      <Canvas shadows camera={{fov: 45, far: 1000, near: 0.1, position: [0, 1.75, 5]}}>
+      <Canvas shadows camera={{fov: 58, far: 1000, near: 0.1, position: [0, 1.75, 5]}}>
                 <group>
                   <Suspense fallback={null}>
-                    <MiniJesus scale={20} animIndex={animIndex} setAnimIndex={setAnimIndex} playerRef={playerRef} canvasRef={myRef} speechBubbleRef={speechBubbleRef} touchObjects={objectPoints} setDisplayContentTxt={setDisplayContentTxt} />
+                    <MiniJesus scale={34} animIndex={animIndex} setAnimIndex={setAnimIndex} playerRef={playerRef} canvasRef={myRef} speechBubbleRef={speechBubbleRef} touchObjects={objectPoints} setDisplayContentTxt={setDisplayContentTxt} />
                   </Suspense>
                 </group>
                 <mesh position={[0, .5, 0]}>
@@ -163,26 +161,26 @@ function Projects({ myRef, scrollYGlobal }) {
                 {/* <OrbitControls /> */}
                 <OrbitControls
                   enableDamping
-                  dampingFactor={0.05} // Adjust to control rotation speed (0 - 1)
+                  dampingFactor={0.07} // Adjust to control rotation speed (0 - 1)
                   enableZoom={false}
                   minPolarAngle={1.3962634} // Minimum rotation angle (80 degrees) // TOP
-                  maxPolarAngle={1.50098316} // Maximum rotation angle (86 degrees) // BOTTOM
-                  rotateSpeed={0.2}
+                  maxPolarAngle={1.5097098} // Maximum rotation angle (86.5 degrees) // BOTTOM
+                  rotateSpeed={0.16}
                   target={[0, 0, 0]} // Lock the camera to the center
                 />
                 <Environment preset="city"/>
                 <ambientLight intensity={1} />
                 <directionalLight castShadow shadow-mapSize={1024} position={[-5, 5, 5]} />
                 <mesh receiveShadow rotation={[-Math.PI / 2, 0, 0]}>
-                  <planeGeometry args={[64, 64, 64]} />
+                  <planeGeometry args={[164, 164, 164]} />
                   <meshStandardMaterial color="blue" />
                 </mesh>
                 <mesh position={[0, 0.01, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-                  <circleGeometry args={[32, 32, 32]} />
+                  <circleGeometry args={[radius, radius, radius]} />
                   <meshStandardMaterial color="red" />
                 </mesh>
                 <mesh position={[0, 0.02, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-                  <circleGeometry args={[31, 31, 31]} />
+                  <circleGeometry args={[radius - 1, radius - 1, radius - 1]} />
                   <meshStandardMaterial color="blue" />
                 </mesh>
                 {objectPoints}
