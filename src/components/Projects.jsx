@@ -27,13 +27,21 @@ const SpeechBubble = styled.img`
 const ProjectPopup = styled.div`
   position: absolute;
   display: flex;
+  flex-direction: column;
   margin: auto;
   justify-content: center;
+  align-items: center;
   left: 0;
   right: 0;
   font-size: 32px;
   font-weight: bold;
-  top: 10rem;
+  top: 6rem;
+  z-index: 9990;
+  pointer-events: none;
+
+  img {
+    width: 360px;
+  }
 `;
 
 var contentTitlesArray = [
@@ -144,7 +152,8 @@ function Projects({ myRef, scrollYGlobal }) {
     <Container ref={myRef}>
 
       <ProjectPopup>
-          {displayContentTxt}
+          {/* {displayContentTxt} */}
+          <img src="/img/projects/ultimate-jesus-game-display.png"/>
       </ProjectPopup>
 
       <SpeechBubble ref={speechBubbleRef} src="/img/speech-bubble-portfolio.png"/>

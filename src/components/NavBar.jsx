@@ -7,6 +7,7 @@ const Container = styled.div`
     position: fixed;
     left: 0;
     right: 0;
+    top: -1rem;
     z-index: 9999;
     transition: transform 0.3s ease, opacity 0.3s ease;
 `

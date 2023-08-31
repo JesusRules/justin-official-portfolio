@@ -27,18 +27,22 @@ const Container = styled.div`
 `
 
 const Left = styled.div`
-  flex: 3;
+  flex: 1;
+  position: absolute;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 10px;
+  width: 100%;
+  height: 100%;
+  left: -16rem;
   /* @media only screen and (max-width: 768px) {
     display: none;
   } */
 `
 const Right = styled.div`
-  /* flex: 1; */
+  flex: 1;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -120,6 +124,7 @@ function Who({ myRef }) {
   return (
     <Section ref={myRef}>
       <Container>
+        <Left>
             <Canvas camera={{fov: 25, position: [0, 0, 6]}}>
                 <JustinHead />
                 <OrbitControls
@@ -133,6 +138,7 @@ function Who({ myRef }) {
                 <ambientLight intensity={1}/>
                 <directionalLight position={[1, 2, 3]} />
             </Canvas>
+            </Left>
             <Right className='about-me'>
               <h1>About Me</h1>
               <h2>There's nothing I can't do!</h2>
