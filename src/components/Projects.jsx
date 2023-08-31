@@ -11,6 +11,7 @@ const Container = styled.div`
     height: 100vh;
     scroll-snap-align: start;
     cursor: grab;
+    position: relative;
 `
 
 const SpeechBubble = styled.img`
@@ -23,26 +24,68 @@ const SpeechBubble = styled.img`
   transform: translateY(-30px);
 `;
 
+const ProjectPopup = styled.div`
+  position: absolute;
+  display: flex;
+  margin: auto;
+  justify-content: center;
+  left: 0;
+  right: 0;
+  font-size: 32px;
+  font-weight: bold;
+  top: 10rem;
+`;
+
+var contentTitlesArray = [
+  "",
+  "PokiTheDog", 
+  "My Portfolio (Older)", 
+  "Ottawa Rec Sports",
+  "Daily Worshipper",
+  "Memories",
+  "SocialPup",
+  "My Weather App",
+  "Other Projects (Links)",
+
+  "Church Party",
+  "Saviour - The Final Frontier",
+  "Ultimate Jesus Game",
+  "Mama Mia",
+  "Stellar Fever",
+  "Graveyard Smash",
+  "St. Joseph Model Games",
+  "Fusion FPS",
+  "SaySike Project",
+
+  "GuitarKing (Design)",
+  "Justin's Spotify App",
+  "My Music Player",
+  "Live Performances (Bluesfest)",
+  "YouTube Guitar Covers",
+  "SoundCloud Songs",
+
+  "Grey Rock Adventure Tour",
+  "Spirit Video 2009",
+  "Nesquik Neighborhood (Entry Video)",
+  "MiniDoom 2 Trailer"
+];
+
 
 function Projects({ myRef, scrollYGlobal }) {
   const [animIndex, setAnimIndex] = useState(3); //IDLE
   const playerRef = useRef();
   const speechBubbleRef = useRef();
   const [showBubbleOnce, setShowBubbleOnce] = useState(false);
+  const [displayContentTxt, setDisplayContentTxt] = useState("");
   
   const circleRadius = 32;
   const numObjects = 27;
-  const objects = [];
-
-  for (let i = 0; i < numObjects; i++) {
-    const angle = (i / numObjects) * Math.PI * 2;
-    const x = Math.cos(angle) * circleRadius;
-    const z = Math.sin(angle) * circleRadius;
-    objects.push(<CircleObject key={i} position={[x, 0.1, z]} />);
-  }
+  // const objects = [];
+  const [objectPoints, setObjectPoints] = useState([]);
 
   // SCROLLING
     useEffect(() => {
+      
       const divElement = myRef.current;
       const halfwayPoint = divElement.scrollHeight / 5;
       if (scrollYGlobal >= divElement.offsetTop) {
@@ -61,6 +104,7 @@ function Projects({ myRef, scrollYGlobal }) {
   }, [scrollYGlobal])
 
     useEffect(() => {
+      setupPositionSpots();
       // Your Three.js scene setup
       // myRef.current.addEventListener("touchstart", handleTouchStart);
       // myRef.current.addEventListener("touchmove", handleTouchMove);
@@ -73,14 +117,43 @@ function Projects({ myRef, scrollYGlobal }) {
       };
     }, []);
 
+    const setupPositionSpots = () => {
+      for (let i = 0; i < contentTitlesArray.length; i++) {
+        const angle = (i / contentTitlesArray.length) * Math.PI * 2;
+        const x = Math.cos(-angle) * circleRadius;
+        const z = Math.sin(-angle) * circleRadius;
+        const newObj = <CircleObject content={contentTitlesArray[i]} key={i} position={[x, 0.1, z]} />; 
+        // setObjectPoints(objectPoints => [...objectPoints, newObj]);
+        setObjectPoints(objectPoints => {
+          return uniqueByKey([...objectPoints, newObj]);
+        });
+      }
+    }
+
+    const uniqueByKey = (items) => {
+      const set = new Set();
+      return items.filter((item) => {
+        const isDuplicate = set.has(item?.key);
+        set.add(item?.key);
+        return !isDuplicate;
+      })
+    }
+
 
   return (
+    <>
+
     <Container ref={myRef}>
+
+      <ProjectPopup>
+          {displayContentTxt}
+      </ProjectPopup>
+
       <SpeechBubble ref={speechBubbleRef} src="/img/speech-bubble-portfolio.png"/>
       <Canvas shadows camera={{fov: 45, far: 1000, near: 0.1, position: [0, 1.75, 5]}}>
                 <group>
                   <Suspense fallback={null}>
-                    <MiniJesus scale={20} animIndex={animIndex} setAnimIndex={setAnimIndex} playerRef={playerRef} canvasRef={myRef} speechBubbleRef={speechBubbleRef} touchObjects={objects} />
+                    <MiniJesus scale={20} animIndex={animIndex} setAnimIndex={setAnimIndex} playerRef={playerRef} canvasRef={myRef} speechBubbleRef={speechBubbleRef} touchObjects={objectPoints} setDisplayContentTxt={setDisplayContentTxt} />
                   </Suspense>
                 </group>
                 <mesh position={[0, .5, 0]}>
@@ -112,9 +185,10 @@ function Projects({ myRef, scrollYGlobal }) {
                   <circleGeometry args={[31, 31, 31]} />
                   <meshStandardMaterial color="blue" />
                 </mesh>
-                {objects}
+                {objectPoints}
             </Canvas>
     </Container>
+    </>
   )
 }
 

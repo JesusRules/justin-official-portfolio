@@ -13,7 +13,7 @@ import { GLTFLoader } from 'three-stdlib'
 import gsap from 'gsap';
 
 export function MiniJesus(props) {
-  const { playerRef, canvasRef, speechBubbleRef, touchObjects } = props;
+  const { playerRef, canvasRef, speechBubbleRef, touchObjects, setDisplayContentTxt } = props;
   const modelRef = useRef();
   const { nodes, materials, animations } = useGLTF('/models/MiniJesus-transformed.glb')
   const { actions, names, ref, mixer } = useAnimations(animations, playerRef)
@@ -66,8 +66,7 @@ export function MiniJesus(props) {
         // setTargetRotation(-Math.PI);
       }
     });
-    console.log('OBJECT 1', playerRef.current.position); //[0]x,[1]y,[2]z
-    console.log('OBJECT 2', touchObjects[1]); //[0]x,[1]y,[2]z
+    console.log('OBJECT 2', touchObjects); //[0]x,[1]y,[2]z
 
     //Control keys
     // document.addEventListener('keydown', handleKeyDown, false);
@@ -283,8 +282,8 @@ export function MiniJesus(props) {
       const distance = playerPosition.distanceTo(new Vector3(sphere.props.position[0], sphere.props.position[1], sphere.props.position[2])); //sphere.position, sphere.content
       // const distance = playerPosition.distanceTo(sphere); //sphere.position, sphere.content
       if (distance < 1.5) {
-        console.log(`Player touched sphere ${sphere.key}`);
-        // Perform any other logic you need here
+        // setDisplayContentTxt(sphere.key);
+        setDisplayContentTxt(sphere.props.content);
       }
     })
 
@@ -337,6 +336,8 @@ export function MiniJesus(props) {
 
   const clickedJesus = () => {
     // if (keyDown) return;
+    console.log('OBJECT 2', touchObjects);
+    
     setAnimIndex(7); //2 alt
     if (moveDir === 'left') setTargetRotation(-3.14159);
       if (moveDir === 'right') setTargetRotation(-3.14159);
