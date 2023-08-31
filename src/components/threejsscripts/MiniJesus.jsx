@@ -66,7 +66,8 @@ export function MiniJesus(props) {
         // setTargetRotation(-Math.PI);
       }
     });
-    console.log('OBJECTS', touchObjects[0].props.position[2]); //[0]x,[1]y,[2]z
+    console.log('OBJECT 1', playerRef.current.position); //[0]x,[1]y,[2]z
+    console.log('OBJECT 2', touchObjects[1]); //[0]x,[1]y,[2]z
 
     //Control keys
     // document.addEventListener('keydown', handleKeyDown, false);
@@ -279,9 +280,10 @@ export function MiniJesus(props) {
 
     // Touch sphere interaction
     touchObjects.forEach(sphere => {
-      const distance = playerPosition.distanceTo(sphere);
+      const distance = playerPosition.distanceTo(new Vector3(sphere.props.position[0], sphere.props.position[1], sphere.props.position[2])); //sphere.position, sphere.content
+      // const distance = playerPosition.distanceTo(sphere); //sphere.position, sphere.content
       if (distance < 1.5) {
-        // console.log(`Player touched sphere ${sphere.number}`);
+        console.log(`Player touched sphere ${sphere.key}`);
         // Perform any other logic you need here
       }
     })
