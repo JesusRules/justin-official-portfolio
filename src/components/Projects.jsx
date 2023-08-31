@@ -102,8 +102,8 @@ const StyledButton = styled.button`
   font-size: 1.2rem;
   font-weight: 500;
   font-family: 'poppins';
-  pointer-events: auto;
-  cursor: pointer;
+  /* pointer-events: auto;
+  user-select: none; */
   
   &:hover,
   &:focus {
@@ -160,6 +160,7 @@ function Projects({ myRef, scrollYGlobal }) {
   
   const radius = 60;
   const [objectPoints, setObjectPoints] = useState([]);
+  const [idleStance, setIdleStance] = useState(true);
 
   // SCROLLING
     useEffect(() => {
@@ -225,20 +226,22 @@ function Projects({ myRef, scrollYGlobal }) {
         gsap.to(projectRef.current, {
           opacity: 0,       // Fade out
           duration: 0.3,
-          onComplete: () => {
-            projectRef.current.style.display = 'none'; // Hide when faded out
-          },
         });
       } else {
         projectRef.current.style.display = 'inline-block'; // Show before fading in
         gsap.to(projectRef.current, {
           opacity: 1,       // Fade in
-          visibility: 'visible',
           duration: 0.3,
         });
 
       }
-    }, [currentProject, withinProject])
+    }, [withinProject, currentProject])
+
+    const clickProject = () => {
+      if (idleStance && withinProject) {
+        console.log("yea!")
+      }
+    }
 
 
   return (
@@ -252,14 +255,15 @@ function Projects({ myRef, scrollYGlobal }) {
             <h2>Ultimate Jesus Game</h2>
             <p>Epic 3D platformer of ultimate proportions!</p>
           </div>
-          <StyledButton>Learn More</StyledButton>
+          <StyledButton style={{pointerEvents: idleStance ? 'auto' : 'none', cursor: withinProject ? 'pointer' : 'grab'}} onClick={() => clickProject()}>Learn More</StyledButton>
       </ProjectPopup>
 
       <SpeechBubble ref={speechBubbleRef} src="/img/speech-bubble-portfolio.png"/>
       <Canvas shadows camera={{fov: 58, far: 1000, near: 0.1, position: [0, 1.75, 5]}}>
                 <group>
                   <Suspense fallback={null}>
-                    <MiniJesus scale={34} animIndex={animIndex} setAnimIndex={setAnimIndex} playerRef={playerRef} canvasRef={myRef} speechBubbleRef={speechBubbleRef} touchObjects={objectPoints} setCurrentProject={setCurrentProject} setWithinProject={setWithinProject} />
+                    <MiniJesus scale={34} animIndex={animIndex} setAnimIndex={setAnimIndex} playerRef={playerRef} canvasRef={myRef} speechBubbleRef={speechBubbleRef} touchObjects={objectPoints} setCurrentProject={setCurrentProject} setWithinProject={setWithinProject} 
+                    idleStance={idleStance} setIdleStance={setIdleStance}/>
                   </Suspense>
                 </group>
                 <mesh position={[0, .5, 0]}>

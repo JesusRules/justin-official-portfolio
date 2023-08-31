@@ -13,7 +13,8 @@ import { GLTFLoader } from 'three-stdlib'
 import gsap from 'gsap';
 
 export function MiniJesus(props) {
-  const { playerRef, canvasRef, speechBubbleRef, touchObjects, setCurrentProject, setWithinProject } = props;
+  const { playerRef, canvasRef, speechBubbleRef, touchObjects, setCurrentProject, setWithinProject,
+          idleStance, setIdleStance } = props;
   const modelRef = useRef();
   const { nodes, materials, animations } = useGLTF('/models/MiniJesus-transformed.glb')
   const { actions, names, ref, mixer } = useAnimations(animations, playerRef)
@@ -33,10 +34,11 @@ export function MiniJesus(props) {
   const [startUpCam, setStartUpCam] = useState(false);
   const [targetRotation, setTargetRotation] = useState(-Math.PI);
   const [speedDifference, setSpeedDifference] = useState(10);
-  const [idleStance, setIdleStance] = useState(true);
+  // const [idleStance, setIdleStance] = useState(true); //outside! (Projects)
   // const gltf = useLoader(GLTFLoader, '/models/MiniJesus-transformed.glb');
   // const mixer = new THREE.AnimationMixer();
-
+  
+  const [isTouchingAnySphere, setIsTouchingAnySphere] = useState(true);
   //DISTANCE FROM CAM
   const playerPositionNew = new THREE.Vector3();
   //SPEED CAM
@@ -277,20 +279,20 @@ export function MiniJesus(props) {
 
     state.camera.lookAt(0, 0, 0);
 
-    let isTouchingAnySphere = false;
+    let isTouchingAnySphere2 = false;
 
     // Touch sphere interaction
     touchObjects.forEach(sphere => {
       const distance = playerPosition.distanceTo(new Vector3(sphere.props.position[0], sphere.props.position[1], sphere.props.position[2])); //sphere.position, sphere.content
       // const distance = playerPosition.distanceTo(sphere); //sphere.position, sphere.content
-      if (distance < 2.5) {
+      if (distance < 2) {
         setCurrentProject(sphere.props.content);
         if (sphere.props.content !== "") setWithinProject(true);
-        isTouchingAnySphere = true;
+        isTouchingAnySphere2 = true;
       }
     })
 
-    if (!isTouchingAnySphere) {
+    if (!isTouchingAnySphere2) {
       // setCurrentProject("");
       setWithinProject(false);
     }
