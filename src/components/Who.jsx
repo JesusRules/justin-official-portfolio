@@ -36,10 +36,10 @@ const Left = styled.div`
   gap: 10px;
   width: 100%;
   height: 100%;
-  left: -16rem;
-  /* @media only screen and (max-width: 768px) {
+  left: -17rem;
+  @media only screen and (max-width: 700px) {
     display: none;
-  } */
+  }
 `
 const Right = styled.div`
   flex: 1;
@@ -56,6 +56,16 @@ const Right = styled.div`
   max-width: 33rem;
   left: 50%;
 
+  @media only screen and (max-width: 700px) {
+    margin: auto;
+    text-align: center;
+    width:95vw;
+    left: 0;
+    right: 0;
+    .social-media-icons {
+      justify-content: center;
+    }
+  }
 
 
   //-webkit-user-select: none; /* Safari */
@@ -140,7 +150,7 @@ function Who({ myRef }) {
             </Canvas>
             </Left>
             <Right className='about-me'>
-              <h1>About Me</h1>
+              <h1><span style={{color: 'blue'}}>About</span> <span style={{color: 'blue'}}>Me</span></h1>
               <h2>There's nothing I can't do!</h2>
               <p>Communicative, strong, and resilient! I love to learn, I love culture, and I love life! </p>
               
