@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState, Suspense } from 'react'
-import { styled } from 'styled-components'
+import { styled, keyframes  } from 'styled-components'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { OrbitControls, Html, Environment, Sky, PerspectiveCamera, Circle } from '@react-three/drei';
 import { MiniJesus } from './threejsscripts/MiniJesus';
@@ -38,11 +38,80 @@ const ProjectPopup = styled.div`
   top: 6rem;
   z-index: 9990;
   pointer-events: none;
+  width: 100%;
+  max-width: 30rem;
+  text-align: center;
 
+  .content {
+    position: relative;
+    bottom: 0.8rem;
+    background-color: rgba(0, 0, 0, 0.66);
+    border-radius: 15px;
+    margin: 0.5rem;
+    padding: 0.5rem;
+  }
+  h2 {
+    color: #fff;
+    margin-bottom: 5px;
+  }
+  p {
+    padding: 1rem;
+    color: #fff;
+    font-weight: 200;
+    font-size: 1.5rem;
+  }
   img {
-    width: 360px;
+    width: 300px;
   }
 `;
+
+const gelatineAnimation = keyframes`
+  from, to {
+    transform: scale(1, 1);
+  }
+  25% {
+    transform: scale(0.9, 1.1);
+  }
+  50% {
+    transform: scale(1.1, 0.9);
+  }
+  75% {
+    transform: scale(0.95, 1.05);
+  }
+  from, to {
+    transform: scale(1, 1);
+  }
+  25% {
+    transform: scale(0.9, 1.1);
+  }
+  50% {
+    transform: scale(1.1, 0.9);
+  }
+  75% {
+    transform: scale(0.95, 1.05);
+  }
+`;
+
+const StyledButton = styled.button`
+  border: none;
+  outline: none;
+  color: #fefefe;
+  background-color: #b99d00;
+  border-radius: 3px;
+  padding: .7rem 1rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  font-family: 'poppins';
+  pointer-events: auto;
+  cursor: pointer;
+  
+  &:hover,
+  &:focus {
+    transition-timing-function: cubic-bezier(0.6, 4, 0.3, 0.8);
+    animation: ${gelatineAnimation} 0.5s 1;
+  }
+`;
+
 
 var contentTitlesArray = [
   "",
@@ -154,6 +223,11 @@ function Projects({ myRef, scrollYGlobal }) {
       <ProjectPopup>
           {/* {displayContentTxt} */}
           <img src="/img/projects/ultimate-jesus-game-display.png"/>
+          <div className='content'>
+            <h2>Ultimate Jesus Game</h2>
+            <p>Epic 3D platformer of ultimate proportions!</p>
+          </div>
+          <StyledButton>Learn More</StyledButton>
       </ProjectPopup>
 
       <SpeechBubble ref={speechBubbleRef} src="/img/speech-bubble-portfolio.png"/>
