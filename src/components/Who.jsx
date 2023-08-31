@@ -3,7 +3,8 @@ import { styled } from 'styled-components'
 import downloadSvg from '../../public/svg/download-solid.svg';
 import { JustinHead } from './threejsscripts/JustinHead';
 import { Canvas } from '@react-three/fiber'
-import { OrbitControls, Html } from '@react-three/drei';
+import { OrbitControls, Html, Environment } from '@react-three/drei';
+import PikaRun from './threejsscripts/PikaRun';
 
 const Section = styled.div`
     background-color: lightblue;
@@ -26,6 +27,18 @@ const Container = styled.div`
   
 `
 
+const LeftMobile = styled.div`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  margin: auto;
+  top: 35%;
+  bottom: 0;
+  @media only screen and (min-width: 700px) {
+      display: none;
+    }
+`;
+
 const Left = styled.div`
   flex: 1;
   position: absolute;
@@ -41,6 +54,7 @@ const Left = styled.div`
     display: none;
   }
 `
+
 const Right = styled.div`
   flex: 1;
   position: absolute;
@@ -62,6 +76,8 @@ const Right = styled.div`
     width:95vw;
     left: 0;
     right: 0;
+    top: 15%;
+    bottom: 50%;
     .social-media-icons {
       justify-content: center;
     }
@@ -148,7 +164,16 @@ function Who({ myRef }) {
                 <ambientLight intensity={1}/>
                 <directionalLight position={[1, 2, 3]} />
             </Canvas>
-            </Left>
+          </Left>
+          <LeftMobile>
+          <Canvas camera={{fov: 25, position: [0, 0, 1]}}>
+              <PikaRun scale={1.75}/>
+              <OrbitControls enableZoom={false} />
+              <Environment preset="lobby"/>
+                <ambientLight intensity={1} />
+                <directionalLight intensity={2} position={[1, 1, -2]} />
+          </Canvas>
+          </LeftMobile>
             <Right className='about-me'>
               <h1><span style={{color: 'blue'}}>About</span> <span style={{color: 'blue'}}>Me</span></h1>
               <h2>There's nothing I can't do!</h2>

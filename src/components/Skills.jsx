@@ -375,7 +375,7 @@ const HorizontalImageLoopComponent1 = ({ _images, _isReversed }) => {
         
         sliderWrapper.current.addEventListener('mousedown', handleMouseDown);
         sliderWrapper.current.addEventListener('mouseleave', handleMouseUp);
-        sliderWrapper.current.addEventListener('mousemove', handleMouseMove);
+        sliderWrapper.current.addEventListener('3', handleMouseMove);
         sliderWrapper.current.addEventListener('mouseup', handleMouseUp);
 
         sliderWrapper.current.addEventListener('touchstart', handleTouchDown);
