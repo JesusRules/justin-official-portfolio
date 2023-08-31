@@ -13,7 +13,7 @@ import { GLTFLoader } from 'three-stdlib'
 import gsap from 'gsap';
 
 export function MiniJesus(props) {
-  const { playerRef, canvasRef, speechBubbleRef, touchObjects, setDisplayContentTxt } = props;
+  const { playerRef, canvasRef, speechBubbleRef, touchObjects, setCurrentProject, setWithinProject } = props;
   const modelRef = useRef();
   const { nodes, materials, animations } = useGLTF('/models/MiniJesus-transformed.glb')
   const { actions, names, ref, mixer } = useAnimations(animations, playerRef)
@@ -277,15 +277,23 @@ export function MiniJesus(props) {
 
     state.camera.lookAt(0, 0, 0);
 
+    let isTouchingAnySphere = false;
+
     // Touch sphere interaction
     touchObjects.forEach(sphere => {
       const distance = playerPosition.distanceTo(new Vector3(sphere.props.position[0], sphere.props.position[1], sphere.props.position[2])); //sphere.position, sphere.content
       // const distance = playerPosition.distanceTo(sphere); //sphere.position, sphere.content
-      if (distance < 1.5) {
-        // setDisplayContentTxt(sphere.key);
-        setDisplayContentTxt(sphere.props.content);
+      if (distance < 2.5) {
+        setCurrentProject(sphere.props.content);
+        if (sphere.props.content !== "") setWithinProject(true);
+        isTouchingAnySphere = true;
       }
     })
+
+    if (!isTouchingAnySphere) {
+      // setCurrentProject("");
+      setWithinProject(false);
+    }
 
 
     if (!startUpCam) 

@@ -152,8 +152,11 @@ function Projects({ myRef, scrollYGlobal }) {
   const [animIndex, setAnimIndex] = useState(3); //IDLE
   const playerRef = useRef();
   const speechBubbleRef = useRef();
+  const projectRef = useRef();
+
   const [showBubbleOnce, setShowBubbleOnce] = useState(false);
-  const [displayContentTxt, setDisplayContentTxt] = useState("");
+  const [currentProject, setCurrentProject] = useState("");
+  const [withinProject, setWithinProject] = useState(false);
   
   const radius = 60;
   const [objectPoints, setObjectPoints] = useState([]);
@@ -215,12 +218,34 @@ function Projects({ myRef, scrollYGlobal }) {
     }
 
 
+    useEffect(() => {
+      const h2Element = projectRef.current.querySelector('h2');
+      h2Element.textContent = currentProject;
+      if (withinProject === false) {
+        gsap.to(projectRef.current, {
+          opacity: 0,       // Fade out
+          duration: 0.3,
+          onComplete: () => {
+            projectRef.current.style.display = 'none'; // Hide when faded out
+          },
+        });
+      } else {
+        projectRef.current.style.display = 'inline-block'; // Show before fading in
+        gsap.to(projectRef.current, {
+          opacity: 1,       // Fade in
+          visibility: 'visible',
+          duration: 0.3,
+        });
+
+      }
+    }, [currentProject, withinProject])
+
+
   return (
     <>
-
     <Container ref={myRef}>
 
-      <ProjectPopup>
+      <ProjectPopup ref={projectRef}>
           {/* {displayContentTxt} */}
           <img src="/img/projects/ultimate-jesus-game-display.png"/>
           <div className='content'>
@@ -234,7 +259,7 @@ function Projects({ myRef, scrollYGlobal }) {
       <Canvas shadows camera={{fov: 58, far: 1000, near: 0.1, position: [0, 1.75, 5]}}>
                 <group>
                   <Suspense fallback={null}>
-                    <MiniJesus scale={34} animIndex={animIndex} setAnimIndex={setAnimIndex} playerRef={playerRef} canvasRef={myRef} speechBubbleRef={speechBubbleRef} touchObjects={objectPoints} setDisplayContentTxt={setDisplayContentTxt} />
+                    <MiniJesus scale={34} animIndex={animIndex} setAnimIndex={setAnimIndex} playerRef={playerRef} canvasRef={myRef} speechBubbleRef={speechBubbleRef} touchObjects={objectPoints} setCurrentProject={setCurrentProject} setWithinProject={setWithinProject} />
                   </Suspense>
                 </group>
                 <mesh position={[0, .5, 0]}>
