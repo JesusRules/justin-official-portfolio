@@ -163,6 +163,8 @@ function Projects({ myRef, scrollYGlobal }) {
   const [objectPoints, setObjectPoints] = useState([]);
   const [idleStance, setIdleStance] = useState(true);
 
+  const [openModal, setOpenModal] = useState(false);
+
   // SCROLLING
     useEffect(() => {
       
@@ -240,7 +242,7 @@ function Projects({ myRef, scrollYGlobal }) {
 
     const clickProject = () => {
       if (idleStance && withinProject) {
-        console.log("yea!")
+        setOpenModal(true);
       }
     }
 
@@ -249,7 +251,9 @@ function Projects({ myRef, scrollYGlobal }) {
     <>
     <Container ref={myRef}>
 
-      <ProjectInfoModal />
+      {openModal && (
+        <ProjectInfoModal openModal={openModal} setOpenModal={setOpenModal} />
+      )}
       
       <ProjectPopup ref={projectRef}>
           {/* {displayContentTxt} */}

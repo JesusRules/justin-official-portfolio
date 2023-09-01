@@ -450,6 +450,7 @@ p {
   right: 2.55rem;
   top: 2px;
   z-index: 9999;
+  cursor: pointer;
 }
 
 .close-button > div {
