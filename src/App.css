@@ -173,7 +173,7 @@ p {
 
 /* COOL BUTTON */
 
-.contact-btn {
+.contact-btn-main {
   opacity: 0;
   z-index: 9998;
   position: absolute;
@@ -189,14 +189,14 @@ p {
   cursor: pointer;
 }
 
-.contact-btn span {
-  color: black;
+.contact-btn-main span {
+  color: #fff;
   margin: auto;
   text-align:center;
   font-size: 1.23rem;
 }
 
-.contact-btn::before {
+.contact-btn-main::before {
   content: '';
   position: absolute;
   top: -50%;
@@ -208,7 +208,7 @@ p {
   transform-origin: bottom right;
   animation: animate 2s linear infinite;
 }
-.contact-btn::after {
+.contact-btn-main::after {
   content: '';
   position: absolute;
   top: -50%;
@@ -263,7 +263,7 @@ p {
   }
 }
 
-.contact-btn div {
+.contact-btn-main div {
   position: absolute;
   inset: 5px;
   background: #444;

@@ -251,9 +251,7 @@ function Projects({ myRef, scrollYGlobal }) {
     <>
     <Container ref={myRef}>
 
-      {openModal && (
-        <ProjectInfoModal openModal={openModal} setOpenModal={setOpenModal} />
-      )}
+      <ProjectInfoModal currentProject={currentProject} openModal={openModal} setOpenModal={setOpenModal} />
       
       <ProjectPopup ref={projectRef}>
           {/* {displayContentTxt} */}

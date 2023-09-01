@@ -705,7 +705,7 @@ function Hero({ scrollYGlobal }) {
       {/* <Vignette /> */}
     <HeroText ref={subtitleTxtRef}>Passionate. Professional. Reliable.</HeroText>
 
-    <div ref={contactBtnRef} id="button-8" className="contact-btn">
+    <div ref={contactBtnRef} id="button-8" className="contact-btn-main">
         <span className='borderLine'></span>
         <div id="button- 3" style={{padding: 0}}>
             <span className='contact'>Contact Me!</span>
