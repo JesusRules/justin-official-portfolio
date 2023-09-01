@@ -50,6 +50,8 @@ const ProjectPopup = styled.div`
     border-radius: 15px;
     margin: 0.5rem;
     padding: 0.5rem;
+    pointer-events: none;
+    user-select: none;
   }
   h2 {
     color: #fff;
@@ -63,6 +65,8 @@ const ProjectPopup = styled.div`
   }
   img {
     width: 300px;
+    pointer-events: none;
+    user-select: none;
   }
 `;
 
@@ -103,8 +107,8 @@ const StyledButton = styled.button`
   font-size: 1.2rem;
   font-weight: 500;
   font-family: 'poppins';
-  /* pointer-events: auto;
-  user-select: none; */
+  /* pointer-events: auto; */
+  user-select: none;
   
   &:hover,
   &:focus {
@@ -154,6 +158,7 @@ function Projects({ myRef, scrollYGlobal }) {
   const playerRef = useRef();
   const speechBubbleRef = useRef();
   const projectRef = useRef();
+  const learnButtonRef = useRef();
 
   const [showBubbleOnce, setShowBubbleOnce] = useState(false);
   const [currentProject, setCurrentProject] = useState("");
@@ -229,8 +234,30 @@ function Projects({ myRef, scrollYGlobal }) {
         gsap.to(projectRef.current, {
           opacity: 0,       // Fade out
           duration: 0.3,
+          onComplete: () => {
+            learnButtonRef.current.style.pointerEvents = "none";
+          }
         });
       } else {
+        projectRef.current.style.display = 'inline-block'; // Show before fading in
+        gsap.to(projectRef.current, {
+          opacity: 1,       // Fade in
+          duration: 0.3,
+          onComplete: () => {
+            learnButtonRef.current.style.pointerEvents = 'auto';
+          }
+        });
+      }
+    }, [withinProject, currentProject])
+
+    useEffect(() => {
+      if (openModal) {
+        gsap.to(projectRef.current, {
+          opacity: 0,       // Fade out
+          duration: 0.3,
+        });
+      } 
+      if (!openModal && currentProject !== "") {
         projectRef.current.style.display = 'inline-block'; // Show before fading in
         gsap.to(projectRef.current, {
           opacity: 1,       // Fade in
@@ -238,7 +265,8 @@ function Projects({ myRef, scrollYGlobal }) {
         });
 
       }
-    }, [withinProject, currentProject])
+    }, [openModal])
+
 
     const clickProject = () => {
       if (idleStance && withinProject) {
@@ -260,7 +288,7 @@ function Projects({ myRef, scrollYGlobal }) {
             <h2>Ultimate Jesus Game</h2>
             <p>Epic 3D platformer of ultimate proportions!</p>
           </div>
-          <StyledButton style={{pointerEvents: idleStance ? 'auto' : 'none', cursor: withinProject ? 'pointer' : 'grab'}} onClick={() => clickProject()}>Learn More</StyledButton>
+          <StyledButton ref={learnButtonRef} style={{cursor: withinProject ? 'pointer' : 'grab'}} onClick={() => clickProject()}>Learn More</StyledButton>
       </ProjectPopup>
 
       <SpeechBubble ref={speechBubbleRef} src="/img/speech-bubble-portfolio.png"/>

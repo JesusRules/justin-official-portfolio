@@ -50,10 +50,17 @@ function ProjectInfoModal(props) {
         if (openModal) {
             closeButtonRef.current.style.display = 'block';
             gsap.to(projectModalRef.current, {
-                x: 0, // Final x position (center)
+                x: '0%', // Final x position (center)
                 opacity: 1, // Final opacity
                 duration: 0.5, // Animation duration in seconds
                 ease: '"elastic.out(1, 0.3)"', // Easing function (you can choose a different one)
+                onStart: () => {
+                    projectModalRef.current.style.display = 'block';
+                },
+                onComplete: () => {
+                    projectModalRef.current.style.pointerEvents = 'auto';
+                    projectModalRef.current.style.userSelect = 'auto';
+                }
               });
         }
         if (!openModal) {
@@ -63,7 +70,12 @@ function ProjectInfoModal(props) {
                 opacity: 0, // Final opacity
                 duration: 0.5, // Animation duration in seconds
                 ease: 'power1.in', // Easing function (you can choose a different one)
+                onStart: () => {
+                    projectModalRef.current.style.pointerEvents = 'none';
+                    projectModalRef.current.style.userSelect = 'none';
+                },
                 onComplete: () => {
+                    projectModalRef.current.style.display = 'none';
                 },
               });
         }
