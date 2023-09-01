@@ -5,6 +5,7 @@ import { OrbitControls, Html, Environment, Sky, PerspectiveCamera, Circle } from
 import { MiniJesus } from './threejsscripts/MiniJesus';
 import * as THREE from "three";
 import gsap from 'gsap';
+import ProjectInfoModal from './smaller-components/ProjectInfoModal';
 
 const Container = styled.div`
     background-color: lightblue;
@@ -248,6 +249,8 @@ function Projects({ myRef, scrollYGlobal }) {
     <>
     <Container ref={myRef}>
 
+      <ProjectInfoModal />
+      
       <ProjectPopup ref={projectRef}>
           {/* {displayContentTxt} */}
           <img src="/img/projects/ultimate-jesus-game-display.png"/>
