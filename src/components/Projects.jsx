@@ -1,11 +1,13 @@
 import React, { useRef, useEffect, useState, Suspense } from 'react'
 import { styled, keyframes  } from 'styled-components'
-import { Canvas, useFrame } from '@react-three/fiber'
+import { Canvas, useFrame, useLoader } from '@react-three/fiber'
 import { OrbitControls, Html, Environment, Sky, PerspectiveCamera, Circle } from '@react-three/drei';
 import { MiniJesus } from './threejsscripts/MiniJesus';
 import * as THREE from "three";
 import gsap from 'gsap';
 import ProjectInfoModal from './smaller-components/ProjectInfoModal';
+import { PortfolioEnvironment } from './threejsscripts/PortfolioEnvironment';
+import { FBXLoader } from 'three/addons/loaders/FBXLoader';
 
 const Container = styled.div`
     background-color: lightblue;
@@ -36,7 +38,7 @@ const ProjectPopup = styled.div`
   right: 0;
   font-size: 32px;
   font-weight: bold;
-  top: 6rem;
+  top: 16vh;
   z-index: 9990;
   pointer-events: none;
   width: 100%;
@@ -198,7 +200,7 @@ function Projects({ myRef, scrollYGlobal }) {
   const [currentProject, setCurrentProject] = useState("");
   const [withinProject, setWithinProject] = useState(false);
   
-  const radius = 60;
+  const radius = 120;
   const [objectPoints, setObjectPoints] = useState([]);
   const [idleStance, setIdleStance] = useState(true);
 
@@ -312,8 +314,7 @@ function Projects({ myRef, scrollYGlobal }) {
     <Container ref={myRef}>
 
       <ProjectPopup ref={projectRef}>
-          {/* {displayContentTxt} */}
-          <img src="/img/projects/ultimate-jesus-game-display.png"/>
+          {/* <img src="/img/projects/ultimate-jesus-game-display.png"/> */}
           <div className='content'>
             <h2>{currentProject.name}</h2>
             <p>{currentProject.description}</p>
@@ -337,18 +338,19 @@ function Projects({ myRef, scrollYGlobal }) {
                 </mesh>
                 {/* <OrbitControls /> */}
                 <OrbitControls
+                  enablePan={false}
                   enableDamping
                   dampingFactor={0.07} // Adjust to control rotation speed (0 - 1)
                   enableZoom={false}
-                  minPolarAngle={1.3962634} // Minimum rotation angle (80 degrees) // TOP
-                  maxPolarAngle={1.5097098} // Maximum rotation angle (86.5 degrees) // BOTTOM
+                  minPolarAngle={1.4704399} // Minimum rotation angle (85.5 degPrees) // TOP
+                  maxPolarAngle={1.53589} // Maximum rotation angle (88 degrees) // BOTTOM
                   rotateSpeed={0.16}
                   target={[0, 0, 0]} // Lock the camera to the center
                 />
                 <Environment preset="city"/>
-                <ambientLight intensity={1} />
+                <ambientLight intensity={3} />
                 <directionalLight castShadow shadow-mapSize={1024} position={[-5, 5, 5]} />
-                <mesh receiveShadow rotation={[-Math.PI / 2, 0, 0]}>
+                {/* <mesh receiveShadow rotation={[-Math.PI / 2, 0, 0]}>
                   <planeGeometry args={[164, 164, 164]} />
                   <meshStandardMaterial color="blue" />
                 </mesh>
@@ -359,7 +361,9 @@ function Projects({ myRef, scrollYGlobal }) {
                 <mesh position={[0, 0.02, 0]} rotation={[-Math.PI / 2, 0, 0]}>
                   <circleGeometry args={[radius - 1, radius - 1, radius - 1]} />
                   <meshStandardMaterial color="blue" />
-                </mesh>
+                </mesh> */}
+                <MyFbxModel scale={0.369} rotation={[0, 0, 0]}/>
+                {/* <PortfolioEnvironment scale={18.2} rotation={[0, 0, 0]}/> */}
                 {objectPoints}
             </Canvas>
     </Container>
@@ -372,9 +376,14 @@ const CircleObject = ({ position }) => {
     <mesh position={position}>
       {/* Your object's geometry and appearance */}
       <sphereGeometry args={[1, 16, 16]} />
-      <meshBasicMaterial color="red" />
+      <meshPhongMaterial color="#ff0000" opacity={0.0} transparent />
     </mesh>
   );
+}
+
+function MyFbxModel(props) {
+  const fbx = useLoader(FBXLoader, '/models/portfolio-environment.fbx');
+  return <primitive  {...props} object={fbx} />;
 }
 
 
