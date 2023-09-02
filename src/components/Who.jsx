@@ -177,7 +177,7 @@ function Who({ myRef }) {
             <Right className='about-me'>
               <h1><span style={{color: 'blue'}}>About</span> <span style={{color: 'blue'}}>Me</span></h1>
               <h2>There's nothing I can't do!</h2>
-              <p>Communicative, strong, and resilient! I love to learn, I love culture, and I love life! </p>
+              <p>Communicative, strong, and resilient! I love to learn, I love culture, and I love life! Coding is my favourite thing to do!</p>
               
               
               <div className='social-media-icons' style={{display: 'flex', gap: '.6rem', pointerEvents: 'auto'}}>

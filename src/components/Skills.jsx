@@ -134,6 +134,7 @@ const imagesMedia = [
 
 const imagesLanguages = [
     '/logos/languages/c++.png',
+    '/logos/languages/csharp.png',
     '/logos/languages/css.png',
     '/logos/languages/dart.png',
     '/logos/languages/html.png',

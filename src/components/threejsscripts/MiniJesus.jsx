@@ -287,7 +287,7 @@ export function MiniJesus(props) {
       // const distance = playerPosition.distanceTo(sphere); //sphere.position, sphere.content
       if (distance < 2) {
         setCurrentProject(sphere.props.content);
-        if (sphere.props.content !== "") setWithinProject(true);
+        if (sphere.props.content.name !== "") setWithinProject(true);
         isTouchingAnySphere2 = true;
       }
     })

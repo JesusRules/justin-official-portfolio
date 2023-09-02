@@ -98,8 +98,8 @@ function ProjectInfoModal(props) {
         </div>
         </a>
 
-        <h2>{currentProject}</h2>
-        <p>JESUS!</p>
+        <h2>{currentProject.name}</h2>
+        <p>{currentProject.description}</p>
     </ProjectInfoModalDiv>
     </>
   )

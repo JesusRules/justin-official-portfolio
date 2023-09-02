@@ -118,39 +118,73 @@ const StyledButton = styled.button`
 `;
 
 
+// var contentTitlesArray = [
+//   "",
+//   "PokiTheDog", 
+//   "My Portfolio (Older)", 
+//   "Ottawa Rec Sports",
+//   "Daily Worshipper",
+//   "Memories",
+//   "SocialPup",
+//   "My Weather App",
+//   "Other Projects (Links)",
+
+//   "Church Party",
+//   "Saviour - The Final Frontier",
+//   "Ultimate Jesus Game",
+//   "Mama Mia",
+//   "Stellar Fever",
+//   "Graveyard Smash",
+//   "St. Joseph Model Games",
+//   "Fusion FPS",
+//   "SaySike Project",
+
+//   "GuitarKing (Design)",
+//   "Justin's Spotify App",
+//   "My Music Player",
+//   "Live Performances (Bluesfest)",
+//   "YouTube Guitar Covers",
+//   "SoundCloud Songs",
+
+//   "Grey Rock Adventure Tour",
+//   "Spirit Video 2009",
+//   "Nesquik Neighborhood (Entry Video)",
+//   "MiniDoom 2 Trailer"
+// ];
+
 var contentTitlesArray = [
-  "",
-  "PokiTheDog", 
-  "My Portfolio (Older)", 
-  "Ottawa Rec Sports",
-  "Daily Worshipper",
-  "Memories",
-  "SocialPup",
-  "My Weather App",
-  "Other Projects (Links)",
+  { name: "", description: "", id: '' },
+  { name: "PokiTheDog", description: "A game company startup website featuring some games I’ve made.", id: 'pokithedog' },
+  { name: "My Portfolio (Old)", description: "A website made to promote me and some early apps I’ve done.", id: 'my-portfolio-old' },
+  { name: "Ottawa Rec Sports", description: "An award winning website intended to improve the currently existing Ottawa Rec Sports.", id: 'ottawa-rec-sports' },
+  { name: "Daily Worshipper", description: "An app that can search the entire Bible.", id: 'daily-worshipper' },
+  { name: "Memories", description: "A sharing, picture-posting blogging website.", id: 'memories' },
+  { name: "SocialPup", description: "A social media clone.", id: 'socialpup' },
+  { name: "My Weather App", description: "An app that can determine the weather anywhere in the world.", id: 'my-weather=app' },
+  { name: "Other Projects (Links)", description: "Other YouTube videos and app prototypes I've done.", id: 'other-projects' },
 
-  "Church Party",
-  "Saviour - The Final Frontier",
-  "Ultimate Jesus Game",
-  "Mama Mia",
-  "Stellar Fever",
-  "Graveyard Smash",
-  "St. Joseph Model Games",
-  "Fusion FPS",
-  "SaySike Project",
+  { name: "Church Party", description: "A 5 player mini-game extravaganza.", id: 'church-party' },
+  { name: "Saviour - The Final Frontier", description: "A single player 2D adventure game.", id: 'saviour-tff' },
+  { name: "Ultimate Jesus Game", description: "A single player 3D adventure game.", id: 'ultimate-jesus-game' },
+  { name: "Mama Mia", description: "A multiplayer mayhem of cat vs mice gameplay.", id: 'mama-mia' },
+  { name: "Stellar Fever", description: "A 4 player co-op action game.", id: 'stellar-fever' },
+  { name: "Graveyard Smash", description: "A single player shoot-em-up styled game.", id: 'graveyard-smash' },
+  { name: "St. Joseph Model Games", description: "The 3d model of my entire high school (I made) which can be played in.", id: 'stjoes-games' },
+  { name: "Fusion FPS", description: "Game project made for learning the multiplayer solution Photon Fusion.", id: 'fusion-fps' },
+  { name: "SaySike Project", description: "Game prototype that was made in college.", id: 'saysike-project' },
 
-  "GuitarKing (Design)",
-  "Justin's Spotify App",
-  "My Music Player",
-  "Live Performances (Bluesfest)",
-  "YouTube Guitar Covers",
-  "SoundCloud Songs",
+  { name: "GuitarKing (Design)", description: "An Adobe XD design of a guitar playing app.", id: 'guitarking' },
+  { name: "Justin's Spotify App", description: "A Spotify clone I made for mobile.", id: 'my-spotify-app' },
+  { name: "My Music Player", description: "A music player featuring songs I like.", id: 'my-music-player' },
+  { name: "Live Performances (Bluesfest)", description: "Live performances of me playing on stage.", id: 'bluesfest' },
+  { name: "YouTube Guitar Covers", description: "Videos of guitar song covers.", id: 'guitar-covers' },
+  { name: "SoundCloud Songs", description: "Music I’ve made with friends and I.", id: 'soundcloud-songs' },
 
-  "Grey Rock Adventure Tour",
-  "Spirit Video 2009",
-  "Nesquik Neighborhood (Entry Video)",
-  "MiniDoom 2 Trailer"
-];
+  { name: "Grey Rock Adventure Tour", description: "A commercial video I made for Grey Rock Adventure Tours.", id: 'greyrock-video' },
+  { name: "Spirit Video 2009", description: "An annual end-of-the-year video I was assigned to make that the whole school watched.", id: 'spirit-video' },
+  { name: "Nesquik Neighborhood (Entry Video)", description: "A silly video entry I did with my friends for a video contest.", id: 'nesquik-video' },
+  { name: "MiniDoom 2 Trailer", description: "A video trailer I made in college.", id: 'minidoom2-video' },
+]
 
 
 function Projects({ myRef, scrollYGlobal }) {
@@ -228,8 +262,6 @@ function Projects({ myRef, scrollYGlobal }) {
 
 
     useEffect(() => {
-      const h2Element = projectRef.current.querySelector('h2');
-      h2Element.textContent = currentProject;
       if (withinProject === false) {
         gsap.to(projectRef.current, {
           opacity: 0,       // Fade out
@@ -279,17 +311,17 @@ function Projects({ myRef, scrollYGlobal }) {
     <>
     <Container ref={myRef}>
 
-      <ProjectInfoModal currentProject={currentProject} openModal={openModal} setOpenModal={setOpenModal} />
-      
       <ProjectPopup ref={projectRef}>
           {/* {displayContentTxt} */}
           <img src="/img/projects/ultimate-jesus-game-display.png"/>
           <div className='content'>
-            <h2>Ultimate Jesus Game</h2>
-            <p>Epic 3D platformer of ultimate proportions!</p>
+            <h2>{currentProject.name}</h2>
+            <p>{currentProject.description}</p>
           </div>
           <StyledButton ref={learnButtonRef} style={{cursor: withinProject ? 'pointer' : 'grab'}} onClick={() => clickProject()}>Learn More</StyledButton>
       </ProjectPopup>
+      
+      <ProjectInfoModal currentProject={currentProject} openModal={openModal} setOpenModal={setOpenModal} />
 
       <SpeechBubble ref={speechBubbleRef} src="/img/speech-bubble-portfolio.png"/>
       <Canvas shadows camera={{fov: 58, far: 1000, near: 0.1, position: [0, 1.75, 5]}}>
