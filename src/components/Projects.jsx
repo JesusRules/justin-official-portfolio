@@ -25,6 +25,7 @@ const SpeechBubble = styled.img`
   margin: auto;
   opacity: 0;
   transform: translateY(-30px);
+  z-index: 1000;
 `;
 
 const ProjectPopup = styled.div`
@@ -200,7 +201,7 @@ function Projects({ myRef, scrollYGlobal }) {
   const [currentProject, setCurrentProject] = useState("");
   const [withinProject, setWithinProject] = useState(false);
   
-  const radius = 120;
+  const radius = 140;
   const [objectPoints, setObjectPoints] = useState([]);
   const [idleStance, setIdleStance] = useState(true);
 
@@ -328,7 +329,7 @@ function Projects({ myRef, scrollYGlobal }) {
       <Canvas shadows camera={{fov: 58, far: 1000, near: 0.1, position: [0, 1.75, 5]}}>
                 <group>
                   <Suspense fallback={null}>
-                    <MiniJesus scale={34} animIndex={animIndex} setAnimIndex={setAnimIndex} playerRef={playerRef} canvasRef={myRef} speechBubbleRef={speechBubbleRef} touchObjects={objectPoints} setCurrentProject={setCurrentProject} setWithinProject={setWithinProject} 
+                    <MiniJesus scale={37} animIndex={animIndex} setAnimIndex={setAnimIndex} playerRef={playerRef} canvasRef={myRef} speechBubbleRef={speechBubbleRef} touchObjects={objectPoints} setCurrentProject={setCurrentProject} setWithinProject={setWithinProject} 
                     idleStance={idleStance} setIdleStance={setIdleStance}/>
                   </Suspense>
                 </group>
@@ -342,9 +343,9 @@ function Projects({ myRef, scrollYGlobal }) {
                   enableDamping
                   dampingFactor={0.07} // Adjust to control rotation speed (0 - 1)
                   enableZoom={false}
-                  minPolarAngle={1.4704399} // Minimum rotation angle (85.5 degPrees) // TOP
+                  minPolarAngle={1.48353} // Minimum rotation angle (85.5 degPrees) // TOP
                   maxPolarAngle={1.53589} // Maximum rotation angle (88 degrees) // BOTTOM
-                  rotateSpeed={0.16}
+                  rotateSpeed={0.145}
                   target={[0, 0, 0]} // Lock the camera to the center
                 />
                 <Environment preset="city"/>

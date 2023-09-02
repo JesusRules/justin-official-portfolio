@@ -21,7 +21,7 @@ export function MiniJesus(props) {
   
   //MINE
   const { animIndex, setAnimIndex } = props;
-  const radius = 71; // Adjust the radius of the circle
+  const radius = 81; // Adjust the radius of the circle
 
   const [keyDown, setKeyDown] = useState(false);
   const [moveDir, setMoveDir] = useState(false);
@@ -285,7 +285,7 @@ export function MiniJesus(props) {
     touchObjects.forEach(sphere => {
       const distance = playerPosition.distanceTo(new Vector3(sphere.props.position[0], sphere.props.position[1], sphere.props.position[2])); //sphere.position, sphere.content
       // const distance = playerPosition.distanceTo(sphere); //sphere.position, sphere.content
-      if (distance < 2) {
+      if (distance < 4) {
         setCurrentProject(sphere.props.content);
         if (sphere.props.content.name !== "") setWithinProject(true);
         isTouchingAnySphere2 = true;
