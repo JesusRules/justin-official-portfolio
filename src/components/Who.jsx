@@ -168,7 +168,7 @@ function Who({ myRef }) {
           <LeftMobile>
           <Canvas camera={{fov: 25, position: [0, 0, 1]}}>
               <PikaRun scale={1.75}/>
-              <OrbitControls enableZoom={false} />
+              <OrbitControls enableZoom={false} enablePan={false} />
               <Environment preset="lobby"/>
                 <ambientLight intensity={1} />
                 <directionalLight intensity={2} position={[1, 1, -2]} />

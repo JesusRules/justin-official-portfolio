@@ -21,7 +21,7 @@ export function MiniJesus(props) {
   
   //MINE
   const { animIndex, setAnimIndex } = props;
-  const radius = 81; // Adjust the radius of the circle
+  const radius = 83; // Adjust the radius of the circle
 
   const [keyDown, setKeyDown] = useState(false);
   const [moveDir, setMoveDir] = useState(false);
@@ -317,7 +317,7 @@ export function MiniJesus(props) {
       // setTargetPosition(new Vector3(state.camera.position.x, 0, state.camera.position.z));
     }
 
-    const distance = 21.5; // Distance from the camera // 14.5
+    const distance = 25.2; // Distance from the camera // 14.5
     playerPositionNew.copy(state.camera.position);
     state.camera.getWorldDirection(playerPositionNew);
     playerPositionNew.multiplyScalar(distance).add(state.camera.position);
