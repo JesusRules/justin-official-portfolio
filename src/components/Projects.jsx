@@ -204,7 +204,7 @@ function Projects({ myRef, scrollYGlobal }) {
   const [currentProject, setCurrentProject] = useState("");
   const [withinProject, setWithinProject] = useState(false);
   
-  const radius = 140;
+  const radius = 170;
   const [objectPoints, setObjectPoints] = useState([]);
   const [idleStance, setIdleStance] = useState(true);
 
@@ -391,7 +391,7 @@ const CircleObject = ({ position }) => {
     <mesh position={position}>
       {/* Your object's geometry and appearance */}
       <sphereGeometry args={[1, 16, 16]} />
-      <meshPhongMaterial color="#ff0000" opacity={0.0} transparent />
+      <meshPhongMaterial color="#ff0000" opacity={1.0} transparent />
     </mesh>
   );
 }

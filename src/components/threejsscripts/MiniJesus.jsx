@@ -21,7 +21,7 @@ export function MiniJesus(props) {
   
   //MINE
   const { animIndex, setAnimIndex } = props;
-  const radius = 83; // Adjust the radius of the circle
+  const radius = 98; // Adjust the radius of the circle
 
   const [keyDown, setKeyDown] = useState(false);
   const [moveDir, setMoveDir] = useState(false);
