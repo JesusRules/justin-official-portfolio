@@ -9,6 +9,7 @@ import ProjectInfoModal from './smaller-components/ProjectInfoModal';
 import { PortfolioEnvironment } from './threejsscripts/PortfolioEnvironment';
 import { FBXLoader } from 'three/addons/loaders/FBXLoader';
 import Skybox from './threejsscripts/Skybox';
+import { Bloom, DepthOfField, EffectComposer, Noise, Vignette } from '@react-three/postprocessing'
 
 const Container = styled.div`
     background-color: lightblue;
@@ -347,7 +348,7 @@ function Projects({ myRef, scrollYGlobal }) {
                   dampingFactor={0.07} // Adjust to control rotation speed (0 - 1)
                   enableZoom={false}
                   minPolarAngle={1.48353} // Minimum rotation angle (85.5 degPrees) // TOP
-                  maxPolarAngle={1.54164933} // Maximum rotation angle (88 degrees) // BOTTOM
+                  maxPolarAngle={1.53589} // Maximum rotation angle (88 degrees) // BOTTOM
                   rotateSpeed={0.145}
                   target={[0, 0, 0]} // Lock the camera to the center
                 />
@@ -373,6 +374,12 @@ function Projects({ myRef, scrollYGlobal }) {
                 {/* <PortfolioEnvironment scale={18.2} rotation={[0, 0, 0]}/> */}'
                 <Skybox /> 
                 {objectPoints}
+                <EffectComposer>
+                {/* <DepthOfField focusDistance={0} focalLength={0.02} bokehScale={2} height={480} /> */}
+                <Bloom luminanceThreshold={0} luminanceSmoothing={2.4} height={300} />
+                <Noise opacity={0.02} />
+                {/* <Vignette eskil={false} offset={0.1} darkness={1.1} /> */}
+              </EffectComposer>
             </Canvas>
     </Container>
     </>
