@@ -359,7 +359,7 @@ export function MiniJesus(props) {
         <group name="MiniJesus" rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
           <primitive object={nodes.Hip_J} />
         </group>
-        <group castShadow name="Mini_Jesus" rotation={[Math.PI / 2, 0, 0]} scale={0.01}
+        <group name="Mini_Jesus" rotation={[Math.PI / 2, 0, 0]} scale={0.01}
            onPointerOver={() => setHovered(true)} 
            onPointerOut={() => setHovered(false)} 
            onClick={() => clickedJesus()}

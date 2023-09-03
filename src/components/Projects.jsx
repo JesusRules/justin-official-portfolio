@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState, Suspense } from 'react'
 import { styled, keyframes  } from 'styled-components'
 import { Canvas, useFrame, useLoader } from '@react-three/fiber'
-import { OrbitControls, Html, Environment, Sky, PerspectiveCamera, Circle } from '@react-three/drei';
+import { OrbitControls, Html, Environment, Sky, PerspectiveCamera, Circle, useEnvironment } from '@react-three/drei';
 import { MiniJesus } from './threejsscripts/MiniJesus';
 import * as THREE from "three";
 import gsap from 'gsap';
@@ -27,6 +27,8 @@ const SpeechBubble = styled.img`
   opacity: 0;
   transform: translateY(-30px);
   z-index: 1000;
+  pointer-events: none;
+    user-select: none;
 `;
 
 const ProjectPopup = styled.div`
@@ -110,9 +112,8 @@ const StyledButton = styled.button`
   padding: .7rem 1rem;
   font-size: 1.2rem;
   font-weight: 500;
-  font-family: 'poppins';
-  /* pointer-events: auto; */
   user-select: none;
+  font-family: 'Poppins', sans-serif;
   
   &:hover,
   &:focus {
@@ -207,7 +208,8 @@ function Projects({ myRef, scrollYGlobal }) {
   const [idleStance, setIdleStance] = useState(true);
 
   const [openModal, setOpenModal] = useState(false);
-
+  const envMap = useEnvironment({ files: '/sunflowers_puresky_1k.hdr'});
+  envMap.intensity = 2;
   // SCROLLING
     useEffect(() => {
       
@@ -349,9 +351,12 @@ function Projects({ myRef, scrollYGlobal }) {
                   rotateSpeed={0.145}
                   target={[0, 0, 0]} // Lock the camera to the center
                 />
-                <Environment preset="city"/>
-                <ambientLight intensity={3} />
-                <directionalLight castShadow shadow-mapSize={1024} position={[-5, 5, 5]} />
+                <Environment map={envMap} background={envMap} />
+                {/* ade4ff */}
+                <ambientLight color='white' intensity={3} />
+                <directionalLight intensity={1.2} castShadow shadow-mapSize={1024} position={[0, 30, 50]} />
+                <directionalLight intensity={2.2} castShadow shadow-mapSize={1024} position={[-52, 30, -10]} />
+                
                 {/* <mesh receiveShadow rotation={[-Math.PI / 2, 0, 0]}>
                   <planeGeometry args={[164, 164, 164]} />
                   <meshStandardMaterial color="blue" />
@@ -366,7 +371,7 @@ function Projects({ myRef, scrollYGlobal }) {
                 </mesh> */}
                 <MyFbxModel scale={0.369} rotation={[0, 0, 0]}/>
                 {/* <PortfolioEnvironment scale={18.2} rotation={[0, 0, 0]}/> */}'
-                <Skybox />
+                <Skybox /> 
                 {objectPoints}
             </Canvas>
     </Container>
@@ -386,7 +391,7 @@ const CircleObject = ({ position }) => {
 
 function MyFbxModel(props) {
   const fbx = useLoader(FBXLoader, '/models/portfolio-environment.fbx');
-  return <primitive  {...props} object={fbx} />;
+  return <primitive shadows castShadow  {...props} object={fbx} />;
 }
 
 
