@@ -353,6 +353,16 @@ export function MiniJesus(props) {
       if (moveDir === 'right') setTargetRotation(-3.14159);
   }
 
+  const ribbonMat = new THREE.MeshStandardMaterial({
+    color: '#49c7ff', // Set your desired color here (hex value).
+  });
+  const skinMat = new THREE.MeshStandardMaterial({
+    color: '#ff8e56', // Set your desired color here (hex value).
+  });
+  const hairMat = new THREE.MeshStandardMaterial({
+    color: '#351805', // Set your desired color here (hex value).
+  });
+
   return (
     <group ref={playerRef} {...props} dispose={null} position={[0,0,0]}>
       <group ref={modelRef} name="Scene">
@@ -365,11 +375,17 @@ export function MiniJesus(props) {
            onClick={() => clickedJesus()}
           >
           <skinnedMesh name="Mesh" geometry={nodes.Mesh.geometry} material={materials.PaletteMaterial001} skeleton={nodes.Mesh.skeleton} />
+          <skinnedMesh name="Mesh_1" geometry={nodes.Mesh_1.geometry} material={skinMat} skeleton={nodes.Mesh_1.skeleton} />
+          <skinnedMesh name="Mesh_2" geometry={nodes.Mesh_2.geometry}  skeleton={nodes.Mesh_2.skeleton} />
+          <skinnedMesh name="Mesh_3" geometry={nodes.Mesh_3.geometry} material={ribbonMat} skeleton={nodes.Mesh_3.skeleton} />
+          <skinnedMesh name="Mesh_4" geometry={nodes.Mesh_4.geometry} material={hairMat} skeleton={nodes.Mesh_4.skeleton} />
+          <skinnedMesh name="Mesh_5" geometry={nodes.Mesh_5.geometry} material={materials.PaletteMaterial001} skeleton={nodes.Mesh_5.skeleton} />
+          {/* <skinnedMesh name="Mesh" geometry={nodes.Mesh.geometry} material={materials.PaletteMaterial001} skeleton={nodes.Mesh.skeleton} />
           <skinnedMesh name="Mesh_1" geometry={nodes.Mesh_1.geometry} material={materials.PaletteMaterial001} skeleton={nodes.Mesh_1.skeleton} />
           <skinnedMesh name="Mesh_2" geometry={nodes.Mesh_2.geometry} material={materials.PaletteMaterial001} skeleton={nodes.Mesh_2.skeleton} />
           <skinnedMesh name="Mesh_3" geometry={nodes.Mesh_3.geometry} material={materials.PaletteMaterial001} skeleton={nodes.Mesh_3.skeleton} />
           <skinnedMesh name="Mesh_4" geometry={nodes.Mesh_4.geometry} material={materials.PaletteMaterial001} skeleton={nodes.Mesh_4.skeleton} />
-          <skinnedMesh name="Mesh_5" geometry={nodes.Mesh_5.geometry} material={materials.PaletteMaterial001} skeleton={nodes.Mesh_5.skeleton} />
+          <skinnedMesh name="Mesh_5" geometry={nodes.Mesh_5.geometry} material={materials.PaletteMaterial001} skeleton={nodes.Mesh_5.skeleton} /> */}
         </group>
       </group>
     </group>

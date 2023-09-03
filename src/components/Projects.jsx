@@ -355,8 +355,8 @@ function Projects({ myRef, scrollYGlobal }) {
                 <Environment map={envMap} background={envMap} />
                 {/* ade4ff */}
                 <ambientLight color='white' intensity={3} />
-                <directionalLight intensity={1.2}  shadow-mapSize={1024} position={[0, 30, 50]} />
-                <directionalLight intensity={2.2}  shadow-mapSize={1024} position={[-52, 30, -10]} />
+                <directionalLight intensity={2}  shadow-mapSize={1024} position={[-100, 30, 50]} />
+                <directionalLight intensity={2}  shadow-mapSize={1024} position={[62, 40, -20]} />
                 
                 {/* <mesh receiveShadow rotation={[-Math.PI / 2, 0, 0]}>
                   <planeGeometry args={[164, 164, 164]} />
@@ -376,7 +376,7 @@ function Projects({ myRef, scrollYGlobal }) {
                 {objectPoints}
                 <EffectComposer>
                 {/* <DepthOfField focusDistance={0} focalLength={0.02} bokehScale={2} height={480} /> */}
-                <Bloom luminanceThreshold={0} luminanceSmoothing={2.4} height={300} />
+                <Bloom luminanceThreshold={0} luminanceSmoothing={2.86} height={300} />
                 <Noise opacity={0.02} />
                 {/* <Vignette eskil={false} offset={0.1} darkness={1.1} /> */}
               </EffectComposer>
