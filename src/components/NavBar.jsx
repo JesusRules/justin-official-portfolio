@@ -10,6 +10,7 @@ const Container = styled.div`
     top: -1rem;
     z-index: 9999;
     transition: transform 0.3s ease, opacity 0.3s ease;
+    user-select: none;
 `
 
 const Image = styled.img`

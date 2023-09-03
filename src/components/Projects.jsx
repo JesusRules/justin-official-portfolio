@@ -8,6 +8,7 @@ import gsap from 'gsap';
 import ProjectInfoModal from './smaller-components/ProjectInfoModal';
 import { PortfolioEnvironment } from './threejsscripts/PortfolioEnvironment';
 import { FBXLoader } from 'three/addons/loaders/FBXLoader';
+import Skybox from './threejsscripts/Skybox';
 
 const Container = styled.div`
     background-color: lightblue;
@@ -364,7 +365,8 @@ function Projects({ myRef, scrollYGlobal }) {
                   <meshStandardMaterial color="blue" />
                 </mesh> */}
                 <MyFbxModel scale={0.369} rotation={[0, 0, 0]}/>
-                {/* <PortfolioEnvironment scale={18.2} rotation={[0, 0, 0]}/> */}
+                {/* <PortfolioEnvironment scale={18.2} rotation={[0, 0, 0]}/> */}'
+                <Skybox />
                 {objectPoints}
             </Canvas>
     </Container>
