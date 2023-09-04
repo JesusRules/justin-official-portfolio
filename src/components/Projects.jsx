@@ -376,7 +376,7 @@ function Projects({ myRef, scrollYGlobal }) {
                 {objectPoints}
                 <EffectComposer>
                 {/* <DepthOfField focusDistance={0} focalLength={0.02} bokehScale={2} height={480} /> */}
-                <Bloom luminanceThreshold={0} luminanceSmoothing={2.86} height={300} />
+                <Bloom luminanceThreshold={0} luminanceSmoothing={3.3} height={300} />
                 <Noise opacity={0.02} />
                 {/* <Vignette eskil={false} offset={0.1} darkness={1.1} /> */}
               </EffectComposer>

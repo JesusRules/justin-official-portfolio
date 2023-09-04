@@ -22,7 +22,6 @@ const ProjectInfoModalDiv = styled.div`
   h2 {
     padding: 1rem;
     text-align: center;
-    border-bottom: 1px solid black;
   }
 `;
 
@@ -36,6 +35,16 @@ const DarkBG = styled.div`
     display:  none;
     /* transition: transform 0.3s ease, opacity 0.3s ease; */
 `
+
+const BackgroundBanner = styled.div`
+    background-image: url('/img/projects/pokithedog/pokithedog-2.png'); 
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+    background-position: center center;
+    height: 17rem;
+    border: 1px solid black;
+`;
 
 function ProjectInfoModal(props) {
     const { currentProject, openModal, setOpenModal} = props;
@@ -98,11 +107,28 @@ function ProjectInfoModal(props) {
         </div>
         </a>
 
-        <h2>{currentProject.name}</h2>
-        <p>{currentProject.description}</p>
+        <PokiTheDog/>
+
     </ProjectInfoModalDiv>
     </>
   )
+}
+
+function PokiTheDog() {
+    return (
+        <>
+        <h2>PokiTheDog</h2>
+        <div style={{textAlign: 'center'}}>
+            <p>A website designed to practice and promote my development abilities!</p>
+            <p>Features some early games I've designed!</p>
+        </div>
+        <div style={{textAlign: 'center', margin: '1rem'}}>
+            <a style={{fontSize: '1.2rem'}} href='https://pokithedog.com/' target="_blank">https://pokithedog.com/</a>
+        </div>
+        <BackgroundBanner></BackgroundBanner>
+        <p style={{color: 'blue', margin: '0.5rem .8rem', fontStyle: 'italic', fontWeight: 400}}>Made using vanilla <b>JavaScript, CSS and HTML.</b></p>
+        </>
+    )
 }
 
 export default ProjectInfoModal
