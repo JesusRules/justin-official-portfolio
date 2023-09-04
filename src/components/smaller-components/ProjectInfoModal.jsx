@@ -31,7 +31,6 @@ const ProjectInfoModalDiv = styled.div`
     border-bottom: 1px solid black;
     padding: 1rem;
     text-align: center;
-    margin-bottom: 1rem;
   }
 `;
 
@@ -52,7 +51,7 @@ const BackgroundBanner = styled.div`
     background-repeat: no-repeat;
     background-attachment: fixed; 
     background-position: center center;
-    height: 17rem;
+    height: 15rem;
     border: 1px solid black;
 `;
 
@@ -126,6 +125,13 @@ function ProjectInfoModal(props) {
 
 
 
+const ContentContainer = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
 // import slide_image_1 from '/img/sky/sky-back.jpg';
 // import slide_image_2 from '/img/sky/sky-down.jpg';
 // import slide_image_3 from '/img/projects/ultimate-jesus-game-display.png';
@@ -142,18 +148,15 @@ import slide_image_6 from '/img/projects/pokithedog/pokithedog-2.png';
 
 function PokiTheDog() {
     return (
-        <>
+      <ContentContainer>
+      <div>
         <h2>PokiTheDog</h2>
-        <div style={{textAlign: 'center'}}>
-            <p>This website was designed to practice and promote my development abilities!</p>
-            <p>It features some early games I've designed!</p>
-        </div>
-        <div style={{textAlign: 'center', margin: '1rem'}}>
-            <a style={{fontSize: '1.2rem'}} href='https://pokithedog.com/' target="_blank">https://pokithedog.com/</a>
-        </div>
-        
+
+      {/* METHOD 2 */}
         {/* <BackgroundBanner></BackgroundBanner> */}
-        <div className='swiper_container1'>
+
+      {/* METHOD 1 */}
+        {/* <div className='swiper_container1'>
         <Swiper
         effect={'coverflow'}
         grabCursor={true}
@@ -193,20 +196,33 @@ function PokiTheDog() {
         <SwiperSlide>
           <img src={slide_image_6} alt="slide_image" />
         </SwiperSlide>
-
         <div className="slider-controler">
-                {/* <div className="swiper-button-prev slider-arrow">
+                <div className="swiper-button-prev slider-arrow">
                     <img className='arrow-svg' src="/svg/arrow-left.svg" />
                 </div>
                 <div className="swiper-button-next slider-arrow">
                     <img className='arrow-svg' src="/svg/arrow-right.svg" />
-                </div> */}
+                </div>
                 <div className="swiper-pagination"></div>
             </div>
       </Swiper>
+      </div> */}
+
+        <div style={{textAlign: 'center', margin: '1rem'}}>
+            <h4>Try it out!</h4>
+            <a style={{fontSize: '1.2rem'}} href='https://pokithedog.com/' target="_blank">https://pokithedog.com/</a>
         </div>
-        <p style={{textAlign: 'center', color: 'blue', margin: '0.5rem .8rem', fontStyle: 'italic', fontWeight: 400}}>Website was made using vanilla <b>JavaScript, CSS and HTML.</b></p>
-        </>
+        
+
+      {/* <div style={{textAlign: 'center'}}>
+            <p>This website was designed to practice and promote my development abilities!</p>
+            <p>It features some early games I've designed!</p>
+      </div> */}
+
+      </div>
+      <p style={{textAlign: 'left', color: 'blue', margin: '1rem', fontStyle: 'italic', fontWeight: 400}}>Project was made using vanilla <b>JavaScript, CSS and HTML.</b></p>
+
+      </ContentContainer>
     )
 }
 
