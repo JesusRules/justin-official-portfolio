@@ -107,7 +107,6 @@ p {
     font-size: 21px;
     cursor: pointer;
 
-    user-drag: none;
     user-select: none;
     -moz-user-select: none;
     -webkit-user-drag: none;
@@ -512,7 +511,7 @@ p {
 .close-button:hover .out .close-button-block:before {
   transform: translateX(-20px) translateY(20px) rotate(45deg);
 }
-
+s
 .close-button:hover .out .close-button-block:after {
   transform: translateX(20px) translateY(20px) rotate(-45deg);
 }

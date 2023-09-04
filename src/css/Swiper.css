@@ -35,7 +35,8 @@
     }
   } */
   
-  .swiper-slide img {
+  .swiper-slide img,
+  .swiper-slide iframe {
       border-radius: 8px;
       object-fit: cover;
       position: absolute;
@@ -107,7 +108,7 @@
   }
   
   .slider-controler .slider-arrow {
-    background: var(--white);
+    /* background: var(--white); */
     width: 3.2rem;
     height: 3.2rem;
     border-radius: 50%;
@@ -120,6 +121,8 @@
     font-size: 2rem;
     width: 2rem;
     color: #222224;
+    position: relative;
+    background-color: #fff;
   }
   
   .slider-controler .slider-arrow::after {
@@ -127,7 +130,7 @@
   }
   
   .swiper-pagination {
-      margin: 0 auto;
+    margin: 0 auto;
     position: relative;
     left: 0;
     right: 0;
@@ -141,4 +144,101 @@
   
   .swiper-pagination .swiper-pagination-bullet-active {
     background: var(--primary);
+  }
+
+  /* MINE */
+  .arrow-projects-left img,
+  .arrow-projects-right img {
+    position: absolute;
+    z-index: 10000;
+    bottom: 0rem;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 2.1rem;
+    height: 2.1rem;
+  }
+
+  .arrow-projects-left img {
+    right: 11rem;
+  }
+  .arrow-projects-right img {
+    left: 11rem;
+  }
+
+
+
+
+  /* WRAPPER PROJECTS MODALS */
+
+  .wrapperProjects {
+    width: 100%;
+    background: #f2f2f2;
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    cursor: pointer;
+    margin: 0rem 0 2rem 0;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, .45);
+    border: 2px solid black;
+    border-left: none;
+    border-right: none;
+  }
+  
+  .wrapperProjects:before,
+  .wrapperProjects:after {
+    position: absolute;
+    top: 0;
+    width: 0px;
+    height: 100%;
+    content: "";
+    z-index: 2;
+  }
+  
+  .wrapperProjects:before {
+    left: 0;
+    background: linear-gradient(to left, rgba(255,255,255, 0), #fff);
+  }
+  
+  .wrapperProjects:after {
+    right: 0;
+    background: linear-gradient(to right, rgba(255,255,255, 0), #fff);
+  }
+
+
+  /* IMAGES */
+
+  .boxProjects {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: green;
+    /* width: 10rem;
+    min-width: 10rem; */
+    /* 10 BIG */
+    /* 30 SMALL */
+    margin: 0;
+    padding: 0;
+    position: relative;
+    flex-shrink: 0;
+    color: black;
+    font-size: 21px;
+    cursor: pointer;
+
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+  }
+
+  .boxProjects.default {
+    height: 10rem;
+    /* width: 10rem;
+    min-width: 10rem; */
+  }
+  .boxProjects.empty {
+    width: 0rem;
+    min-width: 0rem;
   }

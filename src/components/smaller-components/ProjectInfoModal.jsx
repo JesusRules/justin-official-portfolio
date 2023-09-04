@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { styled, keyframes  } from 'styled-components'
 import gsap from 'gsap';
+import { HorizontalImageLoopProjects } from '../../utils';
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import 'swiper/css';
@@ -146,17 +147,28 @@ import slide_image_4 from '/img/projects/pokithedog/pokithedog-2.png';
 import slide_image_5 from '/img/projects/pokithedog/pokithedog-2.png';
 import slide_image_6 from '/img/projects/pokithedog/pokithedog-2.png';
 
+const pokiTheDogImages = [
+  '/img/projects/pokithedog/pokithedog-2.png',
+  '/img/projects/pokithedog/pokithedog-2.png',
+  '/img/projects/pokithedog/pokithedog-2.png',
+  '/img/projects/pokithedog/pokithedog-2.png',
+  '/img/projects/pokithedog/pokithedog-2.png',
+];
+
 function PokiTheDog() {
     return (
       <ContentContainer>
       <div>
         <h2>PokiTheDog</h2>
 
+        {/* METHOD 3 */}
+        {/* <HorizontalImageLoopProjects _images={pokiTheDogImages} _isReversed={false} _uniqueClassName={"images4"} /> */}
+
       {/* METHOD 2 */}
         {/* <BackgroundBanner></BackgroundBanner> */}
 
       {/* METHOD 1 */}
-        {/* <div className='swiper_container1'>
+        <div className='swiper_container1'>
         <Swiper
         effect={'coverflow'}
         grabCursor={true}
@@ -171,8 +183,8 @@ function PokiTheDog() {
         }}
         pagination={{ el: '.swiper-pagination', clickable: true }}
         navigation={{
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
+          nextEl: '.arrow-projects-right',
+          prevEl: '.arrow-projects-left',
           clickable: true,
         }}
         modules={[EffectCoverflow, Pagination, Navigation]}
@@ -188,7 +200,7 @@ function PokiTheDog() {
           <img src={slide_image_3} alt="slide_image" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={slide_image_4} alt="slide_image" />
+          <iframe src="https://www.youtube.com/embed/gD_hHXYEsxc?si=TaAz-pDpn8OzYUf2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </SwiperSlide>
         <SwiperSlide>
           <img src={slide_image_5} alt="slide_image" />
@@ -197,16 +209,25 @@ function PokiTheDog() {
           <img src={slide_image_6} alt="slide_image" />
         </SwiperSlide>
         <div className="slider-controler">
-                <div className="swiper-button-prev slider-arrow">
+                {/* <div className="swiper-button-prev slider-arrow">
                     <img className='arrow-svg' src="/svg/arrow-left.svg" />
                 </div>
                 <div className="swiper-button-next slider-arrow">
                     <img className='arrow-svg' src="/svg/arrow-right.svg" />
-                </div>
+                  </div> */}
                 <div className="swiper-pagination"></div>
             </div>
       </Swiper>
-      </div> */}
+      <div className='arrows'>
+        <div className='arrow-projects-left'>
+          <img src="/img/projects/left-arrow.png" />
+        </div>
+        <div className='arrow-projects-right' >
+          <img src="/img/projects/right-arrow.png" />
+        </div>
+      </div>
+
+      </div>
 
         <div style={{textAlign: 'center', margin: '1rem'}}>
             <h4>Try it out!</h4>
@@ -221,7 +242,6 @@ function PokiTheDog() {
 
       </div>
       <p style={{textAlign: 'left', color: 'blue', margin: '1rem', fontStyle: 'italic', fontWeight: 400}}>Project was made using vanilla <b>JavaScript, CSS and HTML.</b></p>
-
       </ContentContainer>
     )
 }

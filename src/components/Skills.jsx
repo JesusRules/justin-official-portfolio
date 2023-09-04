@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { styled } from 'styled-components'
 import gsap from 'gsap';
-import '../App.css'
 import InfiniteImageScroller from './threejsscripts/InfiniteImageScroller'
 import { Canvas } from '@react-three/fiber'
 import ScrollTrigger from 'gsap/ScrollTrigger';
