@@ -28,6 +28,9 @@ const ProjectInfoModalDiv = styled.div`
   color: black;
   overflow-y: auto;
 
+  .close-button {
+    z-index: 1010;
+  }
   h2 {
     border-bottom: 1px solid black;
     padding: 1rem;
@@ -47,7 +50,7 @@ const DarkBG = styled.div`
 `
 
 const BackgroundBanner = styled.div`
-    background-image: url('/img/projects/pokithedog/pokithedog-2.png'); 
+    background-image: url(${props => props.imageUrl}); 
     background-size: cover; 
     background-repeat: no-repeat;
     background-attachment: fixed; 
@@ -165,15 +168,16 @@ function PokiTheDog() {
         {/* <HorizontalImageLoopProjects _images={pokiTheDogImages} _isReversed={false} _uniqueClassName={"images4"} /> */}
 
       {/* METHOD 2 */}
-        {/* <BackgroundBanner></BackgroundBanner> */}
+        <BackgroundBanner imageUrl="/img/projects/pokithedog/pokithedog-2.png">
+        </BackgroundBanner>
 
       {/* METHOD 1 */}
-        <div className='swiper_container1'>
+        {/* <div className='swiper_container1'>
         <Swiper
         effect={'coverflow'}
         grabCursor={true}
         centeredSlides={true}
-        loop={true}
+        loop={false}
         slidesPerView={'4'}
         coverflowEffect={{
           rotate: 0,
@@ -209,14 +213,8 @@ function PokiTheDog() {
           <img src={slide_image_6} alt="slide_image" />
         </SwiperSlide>
         <div className="slider-controler">
-                {/* <div className="swiper-button-prev slider-arrow">
-                    <img className='arrow-svg' src="/svg/arrow-left.svg" />
-                </div>
-                <div className="swiper-button-next slider-arrow">
-                    <img className='arrow-svg' src="/svg/arrow-right.svg" />
-                  </div> */}
-                <div className="swiper-pagination"></div>
-            </div>
+              <div className="swiper-pagination"></div>
+          </div>
       </Swiper>
       <div className='arrows'>
         <div className='arrow-projects-left'>
@@ -226,19 +224,19 @@ function PokiTheDog() {
           <img src="/img/projects/right-arrow.png" />
         </div>
       </div>
+      </div> */}
 
-      </div>
 
         <div style={{textAlign: 'center', margin: '1rem'}}>
-            <h4>Try it out!</h4>
+            <h4 style={{fontWeight: 800}}>Try it out!</h4>
             <a style={{fontSize: '1.2rem'}} href='https://pokithedog.com/' target="_blank">https://pokithedog.com/</a>
         </div>
         
 
-      {/* <div style={{textAlign: 'center'}}>
+      <div style={{textAlign: 'center', marginTop: '1.25rem'}}>
             <p>This website was designed to practice and promote my development abilities!</p>
             <p>It features some early games I've designed!</p>
-      </div> */}
+      </div>
 
       </div>
       <p style={{textAlign: 'left', color: 'blue', margin: '1rem', fontStyle: 'italic', fontWeight: 400}}>Project was made using vanilla <b>JavaScript, CSS and HTML.</b></p>

@@ -224,9 +224,9 @@ function Projects({ myRef, scrollYGlobal }) {
             opacity: 1,
                 transform: 'translateY(0px)',
           });
+          setAnimIndex(2); //7 alt Jumping happy
         }
 
-        setAnimIndex(2); //7 alt Jumping happy
       }
 
   }, [scrollYGlobal])
