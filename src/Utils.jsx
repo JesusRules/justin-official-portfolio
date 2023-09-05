@@ -3,7 +3,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 
-export const HorizontalImageLoopProjects = ({ _images, _isReversed, _uniqueClassName }) => {
+export const HorizontalImageLoopProjects = ({ _images, _isReversed, openModal, _uniqueClassName }) => {
     const sliderWrapper = useRef(null);
     let isMouseDown = false;
     let scrubStartAt = 0; // Store the time where scrubbing started
@@ -11,59 +11,69 @@ export const HorizontalImageLoopProjects = ({ _images, _isReversed, _uniqueClass
     let timeline;
   
     useEffect(() => {
-        const boxes = gsap.utils.toArray("." + _uniqueClassName);
-        const items = document.querySelectorAll("." + _uniqueClassName);
-        
-        // Create array of colors
-        // const colors = ["#f38630","#6fb936", "#ccc", "#6fb936"];
-        const colors = ["#f2f2f2"];
-        
-        // Apply colors to boxes - one after the other
-        gsap.set(boxes , {
-            backgroundColor: gsap.utils.wrap(colors)
-        });
-        
-        // const items = document.querySelectorAll(".box");
-      const config = {
-          repeat: -1,
-          speed: 1,
-          snap: 1,
-          reversed: false,
-          // Add the paddingBetween property here
-        };
-        
-        timeline = horizontalLoop(items, config);
-  
         setTimeout(() => {
-            if (isReversed) {
-                timeline.timeScale(-1)
-            }
-          }, "0");
-        
-        sliderWrapper.current.addEventListener('mousedown', handleMouseDown);
-        sliderWrapper.current.addEventListener('mouseleave', handleMouseUp);
-        sliderWrapper.current.addEventListener('mousemove', handleMouseMove);
-        sliderWrapper.current.addEventListener('mouseup', handleMouseUp);
-  
-        sliderWrapper.current.addEventListener('touchstart', handleTouchDown);
-        sliderWrapper.current.addEventListener('touchmove', handleTouchMove);
-        sliderWrapper.current.addEventListener('touchend', handleTouchUp);
-        
-        // Cleanup function
-        return () => {
-            sliderWrapper.current.removeEventListener('mousedown', handleMouseDown);
-            sliderWrapper.current.removeEventListener('mouseleave', handleMouseUp);
-            sliderWrapper.current.removeEventListener('mousemove', handleMouseMove);
-            sliderWrapper.current.removeEventListener('mouseup', handleMouseUp);
-  
-            sliderWrapper.current.removeEventListener('touchstart', handleTouchDown);
-            sliderWrapper.current.removeEventListener('touchmove', handleTouchMove);
-            sliderWrapper.current.removeEventListener('touchend', handleTouchUp);
-        // Pause and clear the animation when the component unmounts
-        timeline.pause(0);
-        timeline.kill();
-      };
-    }, []);
+            giantTimeout();
+          }, "500");
+
+        function giantTimeout() {
+            const boxes = gsap.utils.toArray("." + _uniqueClassName);
+            const items = document.querySelectorAll("." + _uniqueClassName);
+            
+            // Create array of colors
+            // const colors = ["#f38630","#6fb936", "#ccc", "#6fb936"];
+            const colors = ["#f2f2f2"];
+            
+            // Apply colors to boxes - one after the other
+            gsap.set(boxes , {
+                backgroundColor: gsap.utils.wrap(colors)
+            });
+            
+            // const items = document.querySelectorAll(".box");
+          const config = {
+              repeat: -1,
+              speed: 1,
+              snap: 1,
+              reversed: false,
+              // Add the paddingBetween property here
+            };
+            
+            timeline = horizontalLoop(items, config);
+      
+            setTimeout(() => {
+                if (isReversed) {
+                    timeline.timeScale(-1)
+                }
+              }, "0");
+    
+              if (sliderWrapper.current) {
+                  sliderWrapper.current.addEventListener('mousedown', handleMouseDown);
+                  sliderWrapper.current.addEventListener('mouseleave', handleMouseUp);
+                  sliderWrapper.current.addEventListener('mousemove', handleMouseMove);
+                  sliderWrapper.current.addEventListener('mouseup', handleMouseUp);
+            
+                  sliderWrapper.current.addEventListener('touchstart', handleTouchDown);
+                  sliderWrapper.current.addEventListener('touchmove', handleTouchMove);
+                  sliderWrapper.current.addEventListener('touchend', handleTouchUp);
+              }
+            
+            // Cleanup function
+            return () => {
+                if (sliderWrapper.current) {
+                    sliderWrapper.current.removeEventListener('mousedown', handleMouseDown);
+                    sliderWrapper.current.removeEventListener('mouseleave', handleMouseUp);
+                    sliderWrapper.current.removeEventListener('mousemove', handleMouseMove);
+                    sliderWrapper.current.removeEventListener('mouseup', handleMouseUp);
+          
+                    sliderWrapper.current.removeEventListener('touchstart', handleTouchDown);
+                    sliderWrapper.current.removeEventListener('touchmove', handleTouchMove);
+                    sliderWrapper.current.removeEventListener('touchend', handleTouchUp);
+                }
+            // Pause and clear the animation when the component unmounts
+            timeline.pause(0);
+            timeline.kill();
+          };
+        }
+    }, [openModal]);
   
   
     // MOUSE MOVEMENTS

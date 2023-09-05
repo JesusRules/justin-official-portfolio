@@ -119,7 +119,7 @@ function ProjectInfoModal(props) {
           </div>
           </a>
 
-        <PokiTheDog/>
+        <PokiTheDog openModal={openModal} />
 
     </ProjectInfoModalDiv>
     </>
@@ -158,14 +158,14 @@ const pokiTheDogImages = [
   '/img/projects/pokithedog/preview-6.jpg',
 ];
 
-function PokiTheDog() {
+function PokiTheDog({ openModal }) {
     return (
       <ContentContainer>
       <div>
         <h2>PokiTheDog</h2>
 
         {/* METHOD 3 */}
-        <HorizontalImageLoopProjects _images={pokiTheDogImages} _isReversed={false} _uniqueClassName={"images4"} />
+        <HorizontalImageLoopProjects _images={pokiTheDogImages} _isReversed={false} openModal={openModal} _uniqueClassName={"images4"} />
 
       {/* METHOD 2 */}
         {/* <BackgroundBanner imageUrl="/img/projects/pokithedog/pokithedog-2.png">
