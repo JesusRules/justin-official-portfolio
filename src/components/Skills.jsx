@@ -11,6 +11,7 @@ const Container = styled.div`
     background-color: #ceeeff;
     height: 100vh;
     scroll-snap-align: start;
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -20,6 +21,9 @@ const Container = styled.div`
     background-repeat: no-repeat;
     background-size: cover;
 `
+const Container2 = styled.div`
+    height: 100%;
+`
 
 const Title = styled.h1`
     color: black;
@@ -28,6 +32,7 @@ const Title = styled.h1`
     font-style: italic;
     margin-bottom: 3rem;
     font-weight: 800;
+    position: relative;
 `;
 
 const Subtitle = styled.h2`
@@ -60,7 +65,7 @@ function Skills({ myRef, scrollYGlobal }) {
 
   return (
     <Container className="trigger" ref={myRef}>
-      
+      <Container2>
       <Title>All the languages, software, technologies I know!</Title>
     
     {/* <div className="first-div" style={{opacity: 0, transform: 'translateY(40px)'}}> */}
@@ -76,6 +81,8 @@ function Skills({ myRef, scrollYGlobal }) {
         <Subtitle>Media/Game creation</Subtitle>
         <HorizontalImageLoopComponent3 _images={imagesMedia} _isReversed={false} />
     </div>
+
+      </Container2>
     </Container>
   )
 }

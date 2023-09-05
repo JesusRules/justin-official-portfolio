@@ -11,7 +11,7 @@ import 'swiper/css/navigation';
 import { EffectCoverflow, Pagination, Navigation } from 'swiper/modules';
 
 const ProjectInfoModalDiv = styled.div`
-  height: 85%;
+  height: 92%;
   width: 92%;
   max-width: 900px;
   margin: auto;
@@ -19,27 +19,26 @@ const ProjectInfoModalDiv = styled.div`
   position: absolute;
   left: 0;
   right: 0;
-  top: 2.2rem;
+  top: 0;
   bottom: 0;
   box-shadow: 5px 5px 5px black;
-  z-index: 9995;
+  z-index: 10010;
   cursor: auto;
   background-color: #e6fbff;
   color: black;
   overflow-y: auto;
 
-  .close-button {
-    z-index: 1010;
-  }
   h2 {
     border-bottom: 1px solid black;
     padding: 1rem;
     text-align: center;
   }
+
+
 `;
 
 const DarkBG = styled.div`
-    z-index: 9970;
+    z-index: 10005;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.56);
@@ -109,16 +108,16 @@ function ProjectInfoModal(props) {
     
     <ProjectInfoModalDiv ref={projectModalRef}>
         {/* Close Button */}
-        <a onClick={() => setOpenModal(false)} className="close-button">
-        <div className="in">
-        <div className="close-button-block"></div>
-        <div className="close-button-block"></div>
-        </div>
-        <div className="out">
-        <div className="close-button-block"></div>
-        <div className="close-button-block"></div>
-        </div>
-        </a>
+          <a onClick={() => setOpenModal(false)} className="close-button">
+          <div className="in">
+          <div className="close-button-block"></div>
+          <div className="close-button-block"></div>
+          </div>
+          <div className="out">
+          <div className="close-button-block"></div>
+          <div className="close-button-block"></div>
+          </div>
+          </a>
 
         <PokiTheDog/>
 
@@ -143,19 +142,20 @@ const ContentContainer = styled.div`
 // import slide_image_5 from '/img/sky/sky-right.jpg';
 // import slide_image_6 from '/img/sky/sky-up.jpg';
 
-import slide_image_1 from '/img/projects/pokithedog/pokithedog-2.png';
-import slide_image_2 from '/img/projects/pokithedog/pokithedog-2.png';
-import slide_image_3 from '/img/projects/pokithedog/pokithedog-2.png';
-import slide_image_4 from '/img/projects/pokithedog/pokithedog-2.png';
-import slide_image_5 from '/img/projects/pokithedog/pokithedog-2.png';
-import slide_image_6 from '/img/projects/pokithedog/pokithedog-2.png';
+// import slide_image_1 from '/img/projects/pokithedog/pokithedog-2.png';
+// import slide_image_2 from '/img/projects/pokithedog/pokithedog-2.png';
+// import slide_image_3 from '/img/projects/pokithedog/pokithedog-2.png';
+// import slide_image_4 from '/img/projects/pokithedog/pokithedog-2.png';
+// import slide_image_5 from '/img/projects/pokithedog/pokithedog-2.png';
+// import slide_image_6 from '/img/projects/pokithedog/pokithedog-2.png';
 
 const pokiTheDogImages = [
-  '/img/projects/pokithedog/pokithedog-2.png',
-  '/img/projects/pokithedog/pokithedog-2.png',
-  '/img/projects/pokithedog/pokithedog-2.png',
-  '/img/projects/pokithedog/pokithedog-2.png',
-  '/img/projects/pokithedog/pokithedog-2.png',
+  '/img/projects/pokithedog/preview-1.jpg',
+  '/img/projects/pokithedog/preview-2.jpg',
+  '/img/projects/pokithedog/preview-3.jpg',
+  '/img/projects/pokithedog/preview-4.jpg',
+  '/img/projects/pokithedog/preview-5.jpg',
+  '/img/projects/pokithedog/preview-6.jpg',
 ];
 
 function PokiTheDog() {
@@ -165,11 +165,11 @@ function PokiTheDog() {
         <h2>PokiTheDog</h2>
 
         {/* METHOD 3 */}
-        {/* <HorizontalImageLoopProjects _images={pokiTheDogImages} _isReversed={false} _uniqueClassName={"images4"} /> */}
+        <HorizontalImageLoopProjects _images={pokiTheDogImages} _isReversed={false} _uniqueClassName={"images4"} />
 
       {/* METHOD 2 */}
-        <BackgroundBanner imageUrl="/img/projects/pokithedog/pokithedog-2.png">
-        </BackgroundBanner>
+        {/* <BackgroundBanner imageUrl="/img/projects/pokithedog/pokithedog-2.png">
+        </BackgroundBanner> */}
 
       {/* METHOD 1 */}
         {/* <div className='swiper_container1'>
@@ -227,13 +227,13 @@ function PokiTheDog() {
       </div> */}
 
 
+        
         <div style={{textAlign: 'center', margin: '1rem'}}>
-            <h4 style={{fontWeight: 800}}>Try it out!</h4>
+            {/* <h4 style={{fontWeight: 800}}>Try it out!</h4> */}
             <a style={{fontSize: '1.2rem'}} href='https://pokithedog.com/' target="_blank">https://pokithedog.com/</a>
         </div>
-        
 
-      <div style={{textAlign: 'center', marginTop: '1.25rem'}}>
+      <div style={{textAlign: 'center', fontStyle: 'italic', marginTop: '1.35rem'}}>
             <p>This website was designed to practice and promote my development abilities!</p>
             <p>It features some early games I've designed!</p>
       </div>
