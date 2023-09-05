@@ -1,7 +1,7 @@
-import React, { useRef, useEffect, useState, Suspense } from 'react'
+import React, { useRef, useEffect, useState, Suspense, useMemo } from 'react'
 import { styled, keyframes  } from 'styled-components'
-import { Canvas, useFrame, useLoader } from '@react-three/fiber'
-import { OrbitControls, Html, Environment, Sky, PerspectiveCamera, Circle, useEnvironment } from '@react-three/drei';
+import { Canvas, useFrame, useLoader, useThree, extend  } from '@react-three/fiber'
+import { OrbitControls, Html, Environment, Sky, PerspectiveCamera, Circle, useEnvironment, shaderMaterial } from '@react-three/drei';
 import { MiniJesus } from './threejsscripts/MiniJesus';
 import * as THREE from "three";
 import gsap from 'gsap';
@@ -10,13 +10,16 @@ import { PortfolioEnvironment } from './threejsscripts/PortfolioEnvironment';
 import { FBXLoader } from 'three/addons/loaders/FBXLoader';
 import Skybox from './threejsscripts/Skybox';
 import { Bloom, DepthOfField, EffectComposer, Noise, Vignette } from '@react-three/postprocessing'
+import { Water } from 'three-stdlib';
+
+extend({ Water })
 
 const Container = styled.div`
     background-color: lightblue;
     height: 100vh;
     scroll-snap-align: start;
     cursor: grab;
-    position: relative;
+    position: relative;s
 `
 
 const SpeechBubble = styled.img`
@@ -361,11 +364,8 @@ function Projects({ myRef, scrollYGlobal }) {
                 <directionalLight intensity={2}  shadow-mapSize={1024} position={[-100, 30, 50]} />
                 <directionalLight intensity={2}  shadow-mapSize={1024} position={[62, 40, -20]} />
                 
-                {/* <mesh receiveShadow rotation={[-Math.PI / 2, 0, 0]}>
-                  <planeGeometry args={[164, 164, 164]} />
-                  <meshStandardMaterial color="blue" />
-                </mesh>
-                <mesh position={[0, 0.01, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+                <Ocean />
+                {/* <mesh position={[0, 0.01, 0]} rotation={[-Math.PI / 2, 0, 0]}>
                   <circleGeometry args={[radius, radius, radius]} />
                   <meshStandardMaterial color="red" />
                 </mesh>
@@ -394,7 +394,7 @@ const CircleObject = ({ position }) => {
     <mesh position={position}>
       {/* Your object's geometry and appearance */}
       <sphereGeometry args={[1, 16, 16]} />
-      <meshPhongMaterial color="#ff0000" opacity={1.0} transparent />
+      <meshPhongMaterial color="#ff0000" opacity={0.0} transparent />
     </mesh>
   );
 }
@@ -404,6 +404,28 @@ function MyFbxModel(props) {
   return <primitive shadows castShadow  {...props} object={fbx} />;
 }
 
-
+function Ocean() {
+  const ref = useRef();
+  const gl = useThree((state) => state.gl);
+  const waterNormals = useLoader(THREE.TextureLoader, '/img/projects/waternormals.jpg')
+  waterNormals.wrapS = waterNormals.wrapT = THREE.RepeatWrapping;
+  const geom = useMemo(() => new THREE.PlaneGeometry(400, 400), []);
+  const config = useMemo(
+    () => ({
+      textureWidth: 512, //512
+      textureHeight: 512, //512
+      waterNormals,
+      sunDirection: new THREE.Vector3(),
+      sunColor: 0xffffff,
+      waterColor: 0x00acf0, //001e0f
+      distortionScale: 0.7, //3.7
+      fog: false,
+      format: gl.encoding
+    }),
+    [waterNormals]
+  )
+  useFrame((state, delta) => (ref.current.material.uniforms.time.value += delta))
+  return <water ref={ref} args={[geom, config]} position={[0, 0.01, 0]} rotation-x={-Math.PI / 2} />
+}
 
 export default Projects
