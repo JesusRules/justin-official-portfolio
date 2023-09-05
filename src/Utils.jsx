@@ -81,9 +81,10 @@ export const HorizontalImageLoopProjects = ({ _images, _isReversed, openModal, _
     const handleMouseDown = (event) => {
         isMouseDown = true;
         timeline.pause();
-        // Calculate cursor position as a percentage of the slider width
-        const cursorPosition = (event.clientX - sliderWrapper.current.getBoundingClientRect().left) / sliderWrapper.current.offsetWidth;
-        // Store the time where scrubbing started
+        // ADDED 1 -
+        const cursorPosition = 1 - (event.clientX - sliderWrapper.current.getBoundingClientRect().left) / sliderWrapper.current.offsetWidth;
+        // const cursorPosition = (event.clientX - sliderWrapper.current.getBoundingClientRect().left) / sliderWrapper.current.offsetWidth;
+
         scrubStartAt = timeline.time() - (cursorPosition * timeline.duration());
         // If the cursor position is greater than 0.5, it means you're dragging to the left
         if (cursorPosition > 0.5) {
@@ -94,9 +95,12 @@ export const HorizontalImageLoopProjects = ({ _images, _isReversed, openModal, _
     const handleMouseMove = (event) => {
         if (isMouseDown) {
             const cursorPosition = (event.clientX - sliderWrapper.current.getBoundingClientRect().left) / sliderWrapper.current.offsetWidth;
-            // Calculate time relative to the start time and loop duration
-            let time = scrubStartAt + cursorPosition * timeline.duration();
-            // Allow the time to wrap around and loop
+
+            const reversedCursorPosition = 1 - cursorPosition;
+
+            let time = scrubStartAt + reversedCursorPosition * timeline.duration();
+            // let time = scrubStartAt + cursorPosition * timeline.duration();
+
             if (isReversed) {
                 if (time < 0) {
                     time = timeline.duration() + (time % timeline.duration());
