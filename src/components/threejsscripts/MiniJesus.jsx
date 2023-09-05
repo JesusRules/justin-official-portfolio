@@ -86,14 +86,16 @@ export function MiniJesus(props) {
     return () => {
       // document.removeEventListener('keydown', handleKeyDown);
       // document.removeEventListener('keyup', handleKeyUp);
-
-      canvasRef.current.removeEventListener("touchstart", handleTouchStart);
-      canvasRef.current.removeEventListener("touchmove", handleTouchMove);
-      canvasRef.current.removeEventListener("touchend", handleTouchEnd);
-
-      canvasRef.current.removeEventListener('mousedown', handleMouseDown);
-      canvasRef.current.removeEventListener('mousemove', handleMouseMove);
-      canvasRef.current.removeEventListener('mouseup', handleMouseUp);
+      if (canvasRef.current)
+      {
+        canvasRef.current.removeEventListener("touchstart", handleTouchStart);
+        canvasRef.current.removeEventListener("touchmove", handleTouchMove);
+        canvasRef.current.removeEventListener("touchend", handleTouchEnd);
+  
+        canvasRef.current.removeEventListener('mousedown', handleMouseDown);
+        canvasRef.current.removeEventListener('mousemove', handleMouseMove);
+        canvasRef.current.removeEventListener('mouseup', handleMouseUp);
+      }
     };
   }, [])
 
@@ -181,9 +183,13 @@ export function MiniJesus(props) {
   
   useEffect(() => {
     // console.log('ACTIONS', actions);
-    actions[names[animIndex]].reset().fadeIn(0.5).play();
+    if (actions[names[animIndex]]) {
+      actions[names[animIndex]].reset().fadeIn(0.5).play();
+    }
     return () => {
-      actions[names[animIndex]].fadeOut(0.5);
+      if (actions[names[animIndex]]) {
+        actions[names[animIndex]].fadeOut(0.5);
+      }
     };
   }, [animIndex, actions, names])
 

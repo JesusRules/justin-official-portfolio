@@ -233,10 +233,12 @@ function PokiTheDog() {
             <a style={{fontSize: '1.2rem'}} href='https://pokithedog.com/' target="_blank">https://pokithedog.com/</a>
         </div>
 
-      <div style={{textAlign: 'center', fontStyle: 'italic', marginTop: '1.35rem'}}>
+      <div style={{padding: '0 1rem', textAlign: 'center', fontStyle: 'italic', marginTop: '1.35rem'}}>
             <p>This website was designed to practice and promote my development abilities!</p>
             <p>It features some early games I've designed!</p>
       </div>
+
+      {/* <img style={{display: 'flex', padding: '1.5rem', width: '160px', margin: '0 auto'}} src="img/projects/pokithedog/me-and-pokes.jpg"/> */}
 
       </div>
       <p style={{textAlign: 'left', color: 'blue', margin: '1rem', fontStyle: 'italic', fontWeight: 400}}>Project was made using vanilla <b>JavaScript, CSS and HTML.</b></p>

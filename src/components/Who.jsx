@@ -1,6 +1,6 @@
 import React from 'react'
 import { styled } from 'styled-components'
-import downloadSvg from '../../public/svg/download-solid.svg';
+import downloadSvg from "/svg/download-solid.svg?url";
 import { JustinHead } from './threejsscripts/JustinHead';
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls, Html, Environment } from '@react-three/drei';

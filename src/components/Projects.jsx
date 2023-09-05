@@ -168,7 +168,8 @@ var contentTitlesArray = [
   { name: "SocialPup", description: "A social media clone.", id: 'socialpup' },
   { name: "My Weather App", description: "An app that can determine the weather anywhere in the world.", id: 'my-weather=app' },
   { name: "Other Projects (Links)", description: "Other YouTube videos and app prototypes I've done.", id: 'other-projects' },
-
+  
+  { name: "", description: "", id: '' },
   { name: "Church Party", description: "A 5 player mini-game extravaganza.", id: 'church-party' },
   { name: "Saviour - The Final Frontier", description: "A single player 2D adventure game.", id: 'saviour-tff' },
   { name: "Ultimate Jesus Game", description: "A single player 3D adventure game.", id: 'ultimate-jesus-game' },
@@ -178,14 +179,16 @@ var contentTitlesArray = [
   { name: "St. Joseph Model Games", description: "The 3d model of my entire high school (I made) which can be played in.", id: 'stjoes-games' },
   { name: "Fusion FPS", description: "Game project made for learning the multiplayer solution Photon Fusion.", id: 'fusion-fps' },
   { name: "SaySike Project", description: "Game prototype that was made in college.", id: 'saysike-project' },
-
+  
+  { name: "", description: "", id: '' },
   { name: "GuitarKing (Design)", description: "An Adobe XD design of a guitar playing app.", id: 'guitarking' },
   { name: "Justin's Spotify App", description: "A Spotify clone I made for mobile.", id: 'my-spotify-app' },
   { name: "My Music Player", description: "A music player featuring songs I like.", id: 'my-music-player' },
   { name: "Live Performances (Bluesfest)", description: "Live performances of me playing on stage.", id: 'bluesfest' },
   { name: "YouTube Guitar Covers", description: "Videos of guitar song covers.", id: 'guitar-covers' },
   { name: "SoundCloud Songs", description: "Music I’ve made with friends and I.", id: 'soundcloud-songs' },
-
+  
+  { name: "", description: "", id: '' },
   { name: "Grey Rock Adventure Tour", description: "A commercial video I made for Grey Rock Adventure Tours.", id: 'greyrock-video' },
   { name: "Spirit Video 2009", description: "An annual end-of-the-year video I was assigned to make that the whole school watched.", id: 'spirit-video' },
   { name: "Nesquik Neighborhood (Entry Video)", description: "A silly video entry I did with my friends for a video contest.", id: 'nesquik-video' },
