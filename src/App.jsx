@@ -26,7 +26,6 @@ const Container = styled.div`
 
 function App() {
   const [scrollY, setScrollY] = useState(0);
-  const [clickMe, setClickMe] = useState(false);
   const [showProjects, setShowProjects] = useState(false);
 
   const whoRef = useRef(null);

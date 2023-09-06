@@ -226,22 +226,27 @@ function Projects({ myRef, scrollYGlobal }) {
 
   // SCROLLING
     useEffect(() => {
-      
       const divElement = myRef.current;
       const halfwayPoint = divElement.scrollHeight / 5;
-      if (scrollYGlobal >= divElement.offsetTop) {
+     
+      if (scrollYGlobal == divElement.offsetTop) {
         setShowComponent(true);
         if (!showBubbleOnce) {
           setShowBubbleOnce(true);
           gsap.to(speechBubbleRef.current, {
             duration:0.66,
             opacity: 1,
-                transform: 'translateY(0px)',
+            transform: 'translateY(0px)',
           });
           setAnimIndex(2); //7 alt Jumping happy
         }
-
       }
+      if (scrollYGlobal > divElement.offsetTop || scrollYGlobal < divElement.offsetTop) {
+        setShowComponent(false);
+      }
+      // console.log('1', window.innerHeight);
+      console.log('2', scrollYGlobal);
+      // console.log('3', divElement.offsetTop);
 
   }, [scrollYGlobal])
 
@@ -364,27 +369,26 @@ function Projects({ myRef, scrollYGlobal }) {
                     target={[0, 0, 0]} // Lock the camera to the center
                     />
                   <Environment map={envMap} background={envMap} />
-                  {/* ade4ff */}
                   <ambientLight color='white' intensity={3} />
                   <directionalLight intensity={2}  castShadow  position={[-100, 30, 50]} />
                   <directionalLight intensity={2}  castShadow position={[62, 40, -20]} />
                   
                   <Ocean />
                   <MyFbxModel scale={0.369} rotation={[0, 0, 0]}/>
-                  {/* <PortfolioEnvironment scale={18.2} rotation={[0, 0, 0]}/> */}'
                   <Skybox /> 
-                  {/* <Sky /> */}
                   {objectPoints}
 
                   <EffectComposer>
                   <Bloom luminanceThreshold={0} luminanceSmoothing={3.3} height={300} />
-                  {/* <Noise opacity={0.02} /> */}
                   </EffectComposer>
                     </Suspense>
               </Canvas>
               </>
           )}
     </Container>
+        {/* <PortfolioEnvironment scale={18.2} rotation={[0, 0, 0]}/> */}'
+        {/* <Sky /> */}
+        {/* <Noise opacity={0.02} /> */}
     </>
   )
 }
