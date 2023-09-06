@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState, Suspense, useMemo } from 'react'
 import { styled, keyframes  } from 'styled-components'
 import { Canvas, useFrame, useLoader, useThree, extend  } from '@react-three/fiber'
-import { OrbitControls, Html, Environment, Sky, PerspectiveCamera, Circle, useEnvironment, shaderMaterial } from '@react-three/drei';
+import { OrbitControls, Html, Environment, Sky, PerspectiveCamera, Circle, useEnvironment, shaderMaterial, useProgress  } from '@react-three/drei';
 import { MiniJesus } from './threejsscripts/MiniJesus';
 import * as THREE from "three";
 import gsap from 'gsap';
@@ -19,7 +19,11 @@ const Container = styled.div`
     height: 100vh;
     scroll-snap-align: start;
     cursor: grab;
-    position: relative;s
+    position: relative;
+    background-image: url('/img/projects/misc/background.jpg'); 
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-position: center center;
 `
 
 const SpeechBubble = styled.img`
@@ -52,6 +56,7 @@ const ProjectPopup = styled.div`
   width: 100%;
   max-width: 30rem;
   text-align: center;
+  display: none;
 
   .content {
     position: relative;
@@ -217,12 +222,15 @@ function Projects({ myRef, scrollYGlobal }) {
   const [openModal, setOpenModal] = useState(false);
   const envMap = useEnvironment({ files: '/sunflowers_puresky_1k.hdr'});
   envMap.intensity = 2;
+  const [showComponent, setShowComponent] = useState(false);
+
   // SCROLLING
     useEffect(() => {
       
       const divElement = myRef.current;
       const halfwayPoint = divElement.scrollHeight / 5;
       if (scrollYGlobal >= divElement.offsetTop) {
+        setShowComponent(true);
         if (!showBubbleOnce) {
           setShowBubbleOnce(true);
           gsap.to(speechBubbleRef.current, {
@@ -323,56 +331,59 @@ function Projects({ myRef, scrollYGlobal }) {
   return (
     <>
     <Container ref={myRef}>
+      {showComponent && (
+        <>
+        <ProjectPopup ref={projectRef}>
+            {/* <img src="/img/projects/ultimate-jesus-game-display.png"/> */}
+            <div className='content'>
+              <h2>{currentProject.name}</h2>
+              <p>{currentProject.description}</p>
+            </div>
+            <StyledButton ref={learnButtonRef} style={{cursor: withinProject ? 'pointer' : 'grab'}} onClick={() => clickProject()}>Learn More</StyledButton>
+        </ProjectPopup>
+        
+        <ProjectInfoModal currentProject={currentProject} openModal={openModal} setOpenModal={setOpenModal} />
 
-      <ProjectPopup ref={projectRef}>
-          {/* <img src="/img/projects/ultimate-jesus-game-display.png"/> */}
-          <div className='content'>
-            <h2>{currentProject.name}</h2>
-            <p>{currentProject.description}</p>
-          </div>
-          <StyledButton ref={learnButtonRef} style={{cursor: withinProject ? 'pointer' : 'grab'}} onClick={() => clickProject()}>Learn More</StyledButton>
-      </ProjectPopup>
-      
-      <ProjectInfoModal currentProject={currentProject} openModal={openModal} setOpenModal={setOpenModal} />
+        <SpeechBubble ref={speechBubbleRef} src="/img/speech-bubble-portfolio.png"/>
+        <Canvas shadows camera={{fov: 58, far: 1000, near: 0.1, position: [0, 1.75, 5]}}
+                  gl={{
+                    toneMapping: THREE.ReinhardToneMapping,
+                    toneMappingExposure: 1.0, // Adjust this value
+                  }}>
+                    <Suspense fallback={<Loader />}>
+                      <MiniJesus scale={37} animIndex={animIndex} setAnimIndex={setAnimIndex} playerRef={playerRef} canvasRef={myRef} speechBubbleRef={speechBubbleRef} touchObjects={objectPoints} setCurrentProject={setCurrentProject} setWithinProject={setWithinProject} 
+                      idleStance={idleStance} setIdleStance={setIdleStance}/>
+                  <OrbitControls
+                    enablePan={false}
+                    enableDamping
+                    dampingFactor={0.07} // Adjust to control rotation speed (0 - 1)
+                    enableZoom={false}
+                    minPolarAngle={1.45735} // Minimum rotation angle (85.5 degPrees) // TOP
+                    maxPolarAngle={1.53589} // Maximum rotation angle (88 degrees) // BOTTOM
+                    rotateSpeed={0.145}
+                    target={[0, 0, 0]} // Lock the camera to the center
+                    />
+                  <Environment map={envMap} background={envMap} />
+                  {/* ade4ff */}
+                  <ambientLight color='white' intensity={3} />
+                  <directionalLight intensity={2}  castShadow  position={[-100, 30, 50]} />
+                  <directionalLight intensity={2}  castShadow position={[62, 40, -20]} />
+                  
+                  <Ocean />
+                  <MyFbxModel scale={0.369} rotation={[0, 0, 0]}/>
+                  {/* <PortfolioEnvironment scale={18.2} rotation={[0, 0, 0]}/> */}'
+                  <Skybox /> 
+                  {/* <Sky /> */}
+                  {objectPoints}
 
-      <SpeechBubble ref={speechBubbleRef} src="/img/speech-bubble-portfolio.png"/>
-      <Canvas shadows camera={{fov: 58, far: 1000, near: 0.1, position: [0, 1.75, 5]}}
-                gl={{
-                  toneMapping: THREE.ReinhardToneMapping,
-                  toneMappingExposure: 1.0, // Adjust this value
-                }}>
-                  <Suspense fallback={null}>
-                    <MiniJesus scale={37} animIndex={animIndex} setAnimIndex={setAnimIndex} playerRef={playerRef} canvasRef={myRef} speechBubbleRef={speechBubbleRef} touchObjects={objectPoints} setCurrentProject={setCurrentProject} setWithinProject={setWithinProject} 
-                    idleStance={idleStance} setIdleStance={setIdleStance}/>
-                <OrbitControls
-                  enablePan={false}
-                  enableDamping
-                  dampingFactor={0.07} // Adjust to control rotation speed (0 - 1)
-                  enableZoom={false}
-                  minPolarAngle={1.45735} // Minimum rotation angle (85.5 degPrees) // TOP
-                  maxPolarAngle={1.53589} // Maximum rotation angle (88 degrees) // BOTTOM
-                  rotateSpeed={0.145}
-                  target={[0, 0, 0]} // Lock the camera to the center
-                  />
-                <Environment map={envMap} background={envMap} />
-                {/* ade4ff */}
-                <ambientLight color='white' intensity={2} />
-                <directionalLight intensity={2}  castShadow  position={[-100, 30, 50]} />
-                <directionalLight intensity={2}  castShadow position={[62, 40, -20]} />
-                
-                {/* <Ocean /> */}
-                <MyFbxModel scale={0.369} rotation={[0, 0, 0]}/>
-                {/* <PortfolioEnvironment scale={18.2} rotation={[0, 0, 0]}/> */}'
-                {/* <Skybox />  */}
-                {/* <Sky /> */}
-                {objectPoints}
-
-                {/* <EffectComposer> */}
-                {/* <Bloom luminanceThreshold={0} luminanceSmoothing={3.3} height={300} /> */}
-                {/* <Noise opacity={0.02} /> */}
-                {/* </EffectComposer> */}
-                  </Suspense>
-            </Canvas>
+                  <EffectComposer>
+                  <Bloom luminanceThreshold={0} luminanceSmoothing={3.3} height={300} />
+                  {/* <Noise opacity={0.02} /> */}
+                  </EffectComposer>
+                    </Suspense>
+              </Canvas>
+              </>
+          )}
     </Container>
     </>
   )
@@ -397,13 +408,13 @@ function MyFbxModel(props) {
 function Ocean() {
   const ref = useRef();
   const gl = useThree((state) => state.gl);
-  const waterNormals = useLoader(THREE.TextureLoader, '/img/projects/waternormals.jpg')
+  const waterNormals = useLoader(THREE.TextureLoader, '/img/projects/misc/waternormals.jpg')
   waterNormals.wrapS = waterNormals.wrapT = THREE.RepeatWrapping;
   const geom = useMemo(() => new THREE.PlaneGeometry(400, 400), []);
   const config = useMemo(
     () => ({
       textureWidth: 512, //512
-      textureHeight: 512, //512
+      textureHeight: 512, //512s
       waterNormals,
       sunDirection: new THREE.Vector3(),
       sunColor: 0xffffff,
@@ -416,6 +427,15 @@ function Ocean() {
   )
   useFrame((state, delta) => (ref.current.material.uniforms.time.value += delta))
   return <water ref={ref} args={[geom, config]} position={[0, 0.01, 0]} rotation-x={-Math.PI / 2} />
+}
+
+function Loader() {
+  const { progress } = useProgress()
+  return <Html center>
+    <div style={{width: '100vw', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center',  margin: 'auto'}}>
+    <p style={{textAlign: 'center', fontSize: '2.2rem'}}>{progress} % Loaded</p>
+    </div>
+    </Html>
 }
 
 export default Projects

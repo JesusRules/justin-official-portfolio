@@ -86,10 +86,10 @@ function PokiTheDog({ openModal }) {
       </Swiper>
       <div className='arrows'>
         <div className='arrow-projects-left'>
-          <img src="/img/projects/left-arrow.png" />
+          <img src="/img/projects/misc/left-arrow.png" />
         </div>
         <div className='arrow-projects-right' >
-          <img src="/img/projects/right-arrow.png" />
+          <img src="/img/projects/misc/right-arrow.png" />
         </div>
       </div>
       </div> */}

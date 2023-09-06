@@ -23,6 +23,7 @@ const ProjectInfoModalDiv = styled.div`
   background-color: #e6fbff;
   color: black;
   overflow-y: auto;
+  display: none;
 
   h2 {
     border-bottom: 1px solid black;
