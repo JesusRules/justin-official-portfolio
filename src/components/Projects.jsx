@@ -353,7 +353,7 @@ function Projects({ myRef, scrollYGlobal }) {
                   enableDamping
                   dampingFactor={0.07} // Adjust to control rotation speed (0 - 1)
                   enableZoom={false}
-                  minPolarAngle={1.48353} // Minimum rotation angle (85.5 degPrees) // TOP
+                  minPolarAngle={1.45735} // Minimum rotation angle (85.5 degPrees) // TOP
                   maxPolarAngle={1.53589} // Maximum rotation angle (88 degrees) // BOTTOM
                   rotateSpeed={0.145}
                   target={[0, 0, 0]} // Lock the camera to the center
@@ -361,8 +361,8 @@ function Projects({ myRef, scrollYGlobal }) {
                 <Environment map={envMap} background={envMap} />
                 {/* ade4ff */}
                 <ambientLight color='white' intensity={3} />
-                <directionalLight intensity={2}  shadow-mapSize={1024} position={[-100, 30, 50]} />
-                <directionalLight intensity={2}  shadow-mapSize={1024} position={[62, 40, -20]} />
+                <directionalLight intensity={2}  shadow-mapSize={0} position={[-100, 30, 50]} />
+                <directionalLight intensity={2}  shadow-mapSize={0} position={[62, 40, -20]} />
                 
                 <Ocean />
                 {/* <mesh position={[0, 0.01, 0]} rotation={[-Math.PI / 2, 0, 0]}>
@@ -401,7 +401,8 @@ const CircleObject = ({ position }) => {
 
 function MyFbxModel(props) {
   const fbx = useLoader(FBXLoader, '/models/portfolio-environment.fbx');
-  return <primitive shadows castShadow  {...props} object={fbx} />;
+  return <primitive {...props} object={fbx} />;
+  // return <primitive shadows castShadow  {...props} object={fbx} />;
 }
 
 function Ocean() {
