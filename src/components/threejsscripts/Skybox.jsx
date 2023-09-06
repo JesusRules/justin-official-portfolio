@@ -30,7 +30,7 @@ function Skybox() {
     function createMaterialArray() {
       const materialArray = skyboxImagepaths.map(image => {
           let texture = new THREE.TextureLoader().load(image);
-          return new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide, color: 0xffffff }); // <---
+          return new THREE.MeshBasicMaterial({ map: texture, side: THREE.BackSide, color: 0xffffff }); // <---
       });
       return materialArray;
     }

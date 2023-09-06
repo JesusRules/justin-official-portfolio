@@ -336,18 +336,14 @@ function Projects({ myRef, scrollYGlobal }) {
       <ProjectInfoModal currentProject={currentProject} openModal={openModal} setOpenModal={setOpenModal} />
 
       <SpeechBubble ref={speechBubbleRef} src="/img/speech-bubble-portfolio.png"/>
-      <Canvas shadows camera={{fov: 58, far: 1000, near: 0.1, position: [0, 1.75, 5]}}>
-                <group>
+      <Canvas shadows camera={{fov: 58, far: 1000, near: 0.1, position: [0, 1.75, 5]}}
+                gl={{
+                  toneMapping: THREE.ReinhardToneMapping,
+                  toneMappingExposure: 1.0, // Adjust this value
+                }}>
                   <Suspense fallback={null}>
                     <MiniJesus scale={37} animIndex={animIndex} setAnimIndex={setAnimIndex} playerRef={playerRef} canvasRef={myRef} speechBubbleRef={speechBubbleRef} touchObjects={objectPoints} setCurrentProject={setCurrentProject} setWithinProject={setWithinProject} 
                     idleStance={idleStance} setIdleStance={setIdleStance}/>
-                  </Suspense>
-                </group>
-                <mesh position={[0, .5, 0]}>
-                  <boxGeometry args={[1, 1, 1]} />
-                  <meshStandardMaterial />
-                </mesh>
-                {/* <OrbitControls /> */}
                 <OrbitControls
                   enablePan={false}
                   enableDamping
@@ -357,32 +353,25 @@ function Projects({ myRef, scrollYGlobal }) {
                   maxPolarAngle={1.53589} // Maximum rotation angle (88 degrees) // BOTTOM
                   rotateSpeed={0.145}
                   target={[0, 0, 0]} // Lock the camera to the center
-                />
+                  />
                 <Environment map={envMap} background={envMap} />
                 {/* ade4ff */}
-                <ambientLight color='white' intensity={3} />
-                <directionalLight intensity={2}  shadow-mapSize={0} position={[-100, 30, 50]} />
-                <directionalLight intensity={2}  shadow-mapSize={0} position={[62, 40, -20]} />
+                <ambientLight color='white' intensity={2} />
+                <directionalLight intensity={2}  castShadow  position={[-100, 30, 50]} />
+                <directionalLight intensity={2}  castShadow position={[62, 40, -20]} />
                 
-                <Ocean />
-                {/* <mesh position={[0, 0.01, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-                  <circleGeometry args={[radius, radius, radius]} />
-                  <meshStandardMaterial color="red" />
-                </mesh>
-                <mesh position={[0, 0.02, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-                  <circleGeometry args={[radius - 1, radius - 1, radius - 1]} />
-                  <meshStandardMaterial color="blue" />
-                </mesh> */}
+                {/* <Ocean /> */}
                 <MyFbxModel scale={0.369} rotation={[0, 0, 0]}/>
                 {/* <PortfolioEnvironment scale={18.2} rotation={[0, 0, 0]}/> */}'
-                <Skybox /> 
+                {/* <Skybox />  */}
+                {/* <Sky /> */}
                 {objectPoints}
-                <EffectComposer>
-                {/* <DepthOfField focusDistance={0} focalLength={0.02} bokehScale={2} height={480} /> */}
-                <Bloom luminanceThreshold={0} luminanceSmoothing={3.3} height={300} />
-                <Noise opacity={0.02} />
-                {/* <Vignette eskil={false} offset={0.1} darkness={1.1} /> */}
-              </EffectComposer>
+
+                {/* <EffectComposer> */}
+                {/* <Bloom luminanceThreshold={0} luminanceSmoothing={3.3} height={300} /> */}
+                {/* <Noise opacity={0.02} /> */}
+                {/* </EffectComposer> */}
+                  </Suspense>
             </Canvas>
     </Container>
     </>

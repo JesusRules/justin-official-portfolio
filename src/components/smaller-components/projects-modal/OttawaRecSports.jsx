@@ -17,6 +17,17 @@ const ContentContainer = styled.div`
   justify-content: space-between;
 `;
 
+const TitleDiv = styled.div`
+  @media only screen and (max-width: 500px) {
+    h2 {
+      font-size: 2rem;
+    }
+    img {
+      display: none;
+    }
+  }
+`
+
 const images = [
   '/img/projects/ottawarecsports/preview-1.jpg',
   '/img/projects/ottawarecsports/preview-2.jpg',
@@ -30,7 +41,10 @@ function OttawaRecSports({ openModal }) {
     return (
       <ContentContainer>
       <div>
-        <h2>Ottawa Rec Sports</h2>
+        <TitleDiv style={{justifyContent: 'center', display: 'flex', alignItems: 'center'}}>
+           <h2>Ottawa Rec Sports</h2>
+           <img style={{width: '60px', height: '60px'}} src="/img/projects/ottawarecsports/ORS-Logo.png" />
+        </TitleDiv>
         <HorizontalImageLoopProjects _images={images} _isReversed={false} openModal={openModal} _uniqueClassName={"images5"} />
         
         <div style={{textAlign: 'center', margin: '1rem'}}>
