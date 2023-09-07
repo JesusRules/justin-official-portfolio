@@ -11,6 +11,7 @@ import { FBXLoader } from 'three/addons/loaders/FBXLoader';
 import Skybox from './threejsscripts/Skybox';
 import { Bloom, DepthOfField, EffectComposer, Noise, Vignette } from '@react-three/postprocessing'
 import { Water } from 'three-stdlib';
+import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader.js'
 
 extend({ Water })
 
@@ -220,12 +221,13 @@ function Projects({ myRef, scrollYGlobal }) {
   const [idleStance, setIdleStance] = useState(true);
 
   const [openModal, setOpenModal] = useState(false);
-  const envMap = useEnvironment({ files: '/sunflowers_puresky_1k.hdr'});
+  const envMap = useEnvironment({ files: 'hdri/sunflowers_puresky_1k.hdr'});
   envMap.intensity = 2;
 
   const [showComponent, setShowComponent] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [cameraPosition, setCameraPosition] = useState([1, 2, 1]);
+  const [qualityCheck, setQualityCheck] = useState(false);
 
   // SCROLLING
     useEffect(() => {
@@ -347,7 +349,6 @@ function Projects({ myRef, scrollYGlobal }) {
       }
     }
 
-
   return (
     <>
     <Container ref={myRef}>
@@ -368,8 +369,10 @@ function Projects({ myRef, scrollYGlobal }) {
         <Canvas camera={{fov: 58, far: 1000, near: 0.1, position: [0, 1.75, 5]}}
                   style={{ background: 'lightblue' }} 
                   gl={{
-                    toneMapping: THREE.ReinhardToneMapping,
-                    toneMappingExposure: 1.0, // Adjust this value
+                    outputColorSpace: THREE.SRGBColorSpace,
+                    // toneMapping: THREE.ReinhardToneMapping,
+                    toneMapping: THREE.ACESFilmicToneMapping,
+                    toneMappingExposure: 1, // Adjust this value
                   }}>
                     <Suspense fallback={<Loader />}>
                       <MiniJesus scale={37} 
@@ -398,9 +401,10 @@ function Projects({ myRef, scrollYGlobal }) {
                     target={[0, 0, 0]} // Lock the camera to the center
                     />
                   
-                  <Environment map={envMap} background={envMap} />
-                  {/* <Ocean /> */}
-                  {/* <Skybox />  */}
+                  <Environment map={envMap} />
+                  {/* <HDRIBackground /> */}
+                  <Ocean />
+                  <Skybox /> 
                    {/* <Sky /> */}
                   
                   <ambientLight color='white' intensity={3} />
@@ -410,10 +414,14 @@ function Projects({ myRef, scrollYGlobal }) {
                   {/* <PortfolioEnvironment scale={36.9} rotation={[0, 0, 0]} position={[0,0,0]}/>' */}
                   <MyFbxModel scale={0.369} rotation={[0, 0, 0]}/>
                   {objectPoints}
-
-                  {/* <EffectComposer> */}
-                  {/* <Bloom luminanceThreshold={0} luminanceSmoothing={3.3} height={300} /> */}
-                  {/* </EffectComposer> */}
+                  
+                  {qualityCheck && (
+                    <>
+                    <EffectComposer>
+                    <Bloom luminanceThreshold={0} luminanceSmoothing={3.3} height={300} />
+                    </EffectComposer>
+                    </>
+                  )}
                     </Suspense>
               </Canvas>
               </>
@@ -472,6 +480,23 @@ function Loader() {
     <p style={{textAlign: 'center', fontSize: '2.2rem'}}>{progress} % Loaded</p>
     </div>
     </Html>
+}
+
+function HDRIBackground() {
+  const { scene, gl } = useThree(); // Access the scene from the three.js context
+  
+  useEffect(() => {
+    gl.outputColorSpace = THREE.SRGBColorSpace;
+  }, [gl]);
+
+  const hdrTextureURL = '/hdri/sunflowers_puresky_1k.hdr';
+  const loader = new RGBELoader();
+  loader.load(hdrTextureURL, function (texture) {
+    texture.mapping = THREE.EquirectangularReflectionMapping;
+    scene.background = texture;
+    scene.environment = texture;
+  });
+  return null;
 }
 
 
