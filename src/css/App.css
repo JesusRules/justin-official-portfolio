@@ -174,7 +174,7 @@ p {
 
 .contact-btn-main {
   opacity: 0;
-  z-index: 9998;
+  z-index: 9990;
   position: absolute;
   left: 0;
   right: 0;

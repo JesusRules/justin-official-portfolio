@@ -367,7 +367,7 @@ function Projects({ myRef, scrollYGlobal }) {
 
         <SpeechBubble ref={speechBubbleRef} src="/img/projects/misc/speech-bubble-portfolio.png"/>
         <Canvas camera={{fov: 58, far: 1000, near: 0.1, position: [0, 1.75, 5]}}
-                  style={{ background: 'lightblue' }} 
+                  style={{ background: 'lightblue'}} 
                   gl={{
                     outputColorSpace: THREE.SRGBColorSpace,
                     // toneMapping: THREE.ReinhardToneMapping,

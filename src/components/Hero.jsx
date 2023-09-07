@@ -46,16 +46,16 @@ const Sky = styled.img`
   
 const CloudMain_Back = styled.img`
     position: absolute;
-    width: 1700px;
+    width: 1673px;
     /* top: calc(50% + 271px); */
     left: calc(50% - 0px);
     top: 2000px;
     z-index: 3;
-`
-  
-const CloudMain_Front = styled.img`
+    `
+    
+    const CloudMain_Front = styled.img`
     position: absolute;
-    width: 1560px;
+    width: 1390px;
     /* top: calc(50% + 286px); */
     left: calc(50% - 0px);
     top: 3600px;
@@ -120,7 +120,7 @@ const JesusFlag2 = styled.img`
     top: 3000px;
     z-index: 9;
     @media only screen and (max-width: 700px) {
-        left: calc(50% - 340px + 135px);
+        left: calc(50% - 316px + 150px);
         /* top: calc(50% + 102px + 10px); */
         top: 3000px;
     }
@@ -187,7 +187,7 @@ const HelloKitty = styled.img`
     position: absolute;
     width: 105px;
     /* top: calc(50% + 150px); */
-    left: calc(50% - 424px);
+    left: calc(50% - 415px);
     top: 2000px;
     z-index: 15;
     @media only screen and (max-width: 700px) {
@@ -256,8 +256,8 @@ const Mario = styled.img`
     top: 3200px;
     z-index: 20;
     @media only screen and (max-width: 700px) {
-        left: calc(50% - 165px + 30px);
-        width: 140px;
+        left: calc(50% - 165px + 42px);
+        width: 132px;
     }
 `
   
@@ -269,8 +269,8 @@ const MiniJesus = styled.img`
     left: calc(50% + 173px);
     z-index: 21;
     @media only screen and (max-width: 700px) {
-        left: calc(50% + 183px - 35px);
-        width: 180px;
+        left: calc(50% + 183px - 40px);
+        width: 163px;
     }
 `
   
@@ -281,6 +281,9 @@ const Justin = styled.img`
     top: 3600px;
     left: calc(50% + 0px);
     z-index: 22;
+    @media only screen and (max-width: 700px) {
+        width: 215px;
+    }
 `    
 
 const HeroText = styled.h1`
@@ -444,13 +447,13 @@ function Hero({ scrollYGlobal }) {
         }, startDelay);
 
         gsap.to(cloudMainBackRef.current, {
-            top: 'calc(50% + 271px)',
+            top: 'calc(50% + 265px)',
             duration: durationLoad,
             ease: easeLoad
         }, startDelay);
 
         gsap.to(cloudMainFrontRef.current, {
-            top: 'calc(50% + 286px)',
+            top: 'calc(50% + 266px)',
             duration: durationLoad,
             ease: easeLoad
         }, startDelay);
@@ -510,13 +513,13 @@ function Hero({ scrollYGlobal }) {
          else 
         {
             gsap.to(bernardTxtRef.current, {
-                top: 'calc(50% - 110px)',
+                top: 'calc(50% - 128px)',
                 duration: durationLoad,
                 ease: easeLoad
             }, startDelay);
 
             gsap.to(justinTxtRef.current, {
-                top: 'calc(50% - 210px)',
+                top: 'calc(50% - 229px)',
                 duration: durationLoad,
                 ease: easeLoad
             }, startDelay);
@@ -542,7 +545,7 @@ function Hero({ scrollYGlobal }) {
         }, startDelay);
         
         gsap.to(helloKittyRef.current, {
-            top: 'calc(50% + 150px)',
+            top: 'calc(50% + 155px)',
             duration: durationLoad,
             ease: easeLoad
         }, startDelay);

@@ -15,7 +15,7 @@ const Container = styled.div`
 
 const Image = styled.img`
     width: 100%;
-    min-width: 1500px;
+    min-width: 1200px; //1500px
     text-align: center;
     cursor: pointer;
     `
@@ -98,7 +98,9 @@ function NavBar({ scrollYGlobal,
 
 
     useEffect(() => {
-        handleScroll();
+        if (window.innerWidth > 700) {
+            handleScroll();
+        }
     }, [scrollYGlobal])
       
     const handleScroll = () => {
@@ -136,22 +138,37 @@ function NavBar({ scrollYGlobal,
             <MenuImage src="/img/hero-banner/Jesus-Banner.png" />
             <MenuItems>
                 <li>
-                    <p onClick={() => clickToWho()} >Who Am I?</p>
+                    <p onClick={() => {
+                        clickToWho();
+                        setMenuEnabled(false);
+                    }} >Who Am I?</p>
                 </li>
                 <li>
-                    <p onClick={() => clickToSkills()} >Skills</p>
+                    <p onClick={() => {
+                        clickToSkills();
+                        setMenuEnabled(false);
+                    }} >Skills</p>
                 </li>
                 <li>
-                    <p onClick={() => clickToPortfolio()} >Portfolio</p>
+                    <p onClick={() => {
+                        clickToPortfolio();
+                        setMenuEnabled(false);
+                    }} >Portfolio</p>
                 </li>
                 {/* <li>
                     <p onClick={() => clickToPortfolio()} >Services</p>
                 </li> */}
                 <li>
-                    <p onClick={() => clickToEducation()} >Education</p>
+                    <p onClick={() => {
+                        clickToEducation();
+                        setMenuEnabled(false);
+                    }} >Education</p>
                 </li>
                 <li>
-                    <p onClick={() => clickToContact()} >Contact</p>
+                    <p onClick={() => {
+                        clickToContact();
+                        setMenuEnabled(false);
+                    }} >Contact</p>
                 </li>
             </MenuItems>
         </MenuContainer>

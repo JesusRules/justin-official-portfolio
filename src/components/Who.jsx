@@ -32,7 +32,7 @@ const LeftMobile = styled.div`
   height: 100%;
   position: absolute;
   margin: auto;
-  top: 40%;
+  top: 55%;
   bottom: 0;
   @media only screen and (min-width: 700px) {
       display: none;
@@ -73,11 +73,17 @@ const Right = styled.div`
   @media only screen and (max-width: 700px) {
     margin: auto;
     text-align: center;
-    width:95vw;
+    width: 95vw;
     left: 0;
     right: 0;
-    top: 25%;
+    top: 250px;
     bottom: 50%;
+    h1 {
+      font-size: 2.1rem;
+    }
+    h2 {
+      font-size: 1.9rem;
+    }
     .social-media-icons {
       justify-content: center;
     }
@@ -166,9 +172,9 @@ function Who({ myRef }) {
             </Canvas>
           </Left>
           <LeftMobile>
-          <Canvas camera={{fov: 25, position: [0, 0, 1]}}>
-              <PikaRun scale={1.75}/>
-              <OrbitControls enableZoom={false} enablePan={false} />
+          <Canvas style={{pointerEvents: 'none'}} camera={{fov: 25, position: [0, 0, 1]}}>
+              <PikaRun scale={1.25}/>
+              <OrbitControls autoRotate={true} enableZoom={false} enablePan={false} enableRotate={false} />
               <Environment preset="lobby"/>
                 <ambientLight intensity={1} />
                 <directionalLight intensity={2} position={[1, 1, -2]} />
