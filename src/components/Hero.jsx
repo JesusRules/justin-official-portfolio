@@ -114,9 +114,9 @@ const CloudBG_1 = styled.img`
 // `
 const JesusFlag2 = styled.img`
     position: absolute;
-    width: 360px;
+    width: 330px;
     /* top: calc(50% + 102px); */
-    left: calc(50% - 340px);
+    left: calc(50% - 220px);
     top: 3000px;
     z-index: 9;
     @media only screen and (max-width: 700px) {
@@ -129,18 +129,18 @@ const JesusFlag2 = styled.img`
   
 const Haunter = styled.img`
     position: absolute;
-    width: 169px;
+    width: 144px;
     /* top: calc(50% - 110px); */
-    left: calc(50% - 509px);
+    left: calc(50% - 480px);
     top: 2100px;
     z-index: 11;
 `
   
 const Boo = styled.img`
     position: absolute;
-    width: 89px;
+    width: 74px;
     /* top: calc(50% - 122px); */
-    left: calc(50% + 485px);
+    left: calc(50% + 455px);
     top: 2100px;
     z-index: 12;
 `
@@ -176,18 +176,18 @@ const Justin_Txt = styled.img`
 
 const Pipe = styled.img`
     position: absolute;
-    width: 124px;
+    width: 109px;
     /* top: calc(50% + 140px); */
-    left: calc(50% + 433px);
+    left: calc(50% + 419px);
     top: 2000px;
     z-index: 10;
 `
   
 const HelloKitty = styled.img`
     position: absolute;
-    width: 120px;
+    width: 105px;
     /* top: calc(50% + 150px); */
-    left: calc(50% - 485px);
+    left: calc(50% - 424px);
     top: 2000px;
     z-index: 15;
     @media only screen and (max-width: 700px) {
@@ -198,9 +198,9 @@ const HelloKitty = styled.img`
   
 const Toad = styled.img`
     position: absolute;
-    width: 122px;
+    width: 107px;
     /* top: calc(50% + 180px); */
-    left: calc(50% + 373px);
+    left: calc(50% + 350px);
     top: 2400px;
     z-index: 16;
     @media only screen and (max-width: 700px) {
@@ -211,9 +211,9 @@ const Toad = styled.img`
   
 const Kart = styled.img`
     position: absolute;
-    width: 271px;
+    width: 256px;
     /* top: calc(50% + 218px); */
-    left: calc(50% - 410px);
+    left: calc(50% - 340px);
     top: 2400px;
     z-index: 17;
     @media only screen and (max-width: 700px) {
@@ -224,9 +224,9 @@ const Kart = styled.img`
   
 const Joy = styled.img`
     position: absolute;
-    width: 122px;
+    width: 107px;
     /* top: calc(50% + 232px); */
-    left: calc(50% + 281px);
+    left: calc(50% + 266px);
     top: 2800px;
     z-index: 18;
     @media only screen and (max-width: 700px) {
@@ -237,9 +237,9 @@ const Joy = styled.img`
   
 const Pikachu = styled.img`
     position: absolute;
-    width: 153px;
+    width: 138px;
     top: calc(50% + 235px)k;
-    left: calc(50% - 259px);
+    left: calc(50% - 230px);
     top: 2800px;
     z-index: 19;
     @media only screen and (max-width: 700px) {
@@ -250,9 +250,9 @@ const Pikachu = styled.img`
   
 const Mario = styled.img`
     position: absolute;
-    width: 153px;
+    width: 138px;
     /* top: calc(50% + 245px); */
-    left: calc(50% - 148px);
+    left: calc(50% - 142px);
     top: 3200px;
     z-index: 20;
     @media only screen and (max-width: 700px) {
@@ -263,7 +263,7 @@ const Mario = styled.img`
   
 const MiniJesus = styled.img`
     position: absolute;
-    width: 200px;
+    width: 180px;
     /* top: calc(50% + 160px); */
     top: 3200px;
     left: calc(50% + 173px);
