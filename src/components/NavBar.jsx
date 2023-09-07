@@ -25,14 +25,14 @@ const DarkBG = styled.div`
     position: fixed;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.7);
     cursor: pointer;
     transition: transform 0.3s ease, opacity 0.3s ease;
 `
 
 const MenuContainer = styled.div`
     position: fixed;
-    top: 32px;
+    top: 0px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 9998;
@@ -144,9 +144,9 @@ function NavBar({ scrollYGlobal,
                 <li>
                     <p onClick={() => clickToPortfolio()} >Portfolio</p>
                 </li>
-                <li>
+                {/* <li>
                     <p onClick={() => clickToPortfolio()} >Services</p>
-                </li>
+                </li> */}
                 <li>
                     <p onClick={() => clickToEducation()} >Education</p>
                 </li>

@@ -147,20 +147,20 @@ const Boo = styled.img`
   
 const Bernard_Txt = styled.img`
     position: absolute;
-    width: 700px;
+    width: 600px;
     /* top: calc(50% - 65px); */
     left: calc(50% + 0px);
     top: 1450px;
     z-index: 13;
     @media only screen and (max-width: 700px) {
-        width: 530px;
+        width: 430px;
         top: 1450px;
         /* top: calc(50% - 118px); */
     }
 `
 const Justin_Txt = styled.img`
     position: absolute;
-    width: 700px;
+    width: 600px;
     /* top: calc(50% - 208px); */
     left: calc(50% + 0px);
     /* top: -100px; */
@@ -252,23 +252,25 @@ const Mario = styled.img`
     position: absolute;
     width: 153px;
     /* top: calc(50% + 245px); */
-    left: calc(50% - 155px);
+    left: calc(50% - 148px);
     top: 3200px;
     z-index: 20;
     @media only screen and (max-width: 700px) {
         left: calc(50% - 165px + 30px);
+        width: 140px;
     }
 `
   
 const MiniJesus = styled.img`
     position: absolute;
-    width: 206px;
+    width: 200px;
     /* top: calc(50% + 160px); */
     top: 3200px;
     left: calc(50% + 173px);
     z-index: 21;
     @media only screen and (max-width: 700px) {
         left: calc(50% + 183px - 35px);
+        width: 180px;
     }
 `
   
@@ -287,7 +289,7 @@ const HeroText = styled.h1`
     position: relative;
     color: #520000;
     z-index: 1000;
-    font-size: 33px;
+    font-size: 29px;
     font-family: "myriad-pro", sans-serif;
     font-weight: 700;
     font-style: normal;
@@ -298,6 +300,7 @@ const HeroText = styled.h1`
         top: 6.5rem;
         padding: 0;
         margin: 0;
+        display: none;
         /* font-size: 43px; */
     }
 `
@@ -499,7 +502,7 @@ function Hero({ scrollYGlobal }) {
             }, startDelay);
             
             gsap.to(justinTxtRef.current, {
-                top: 'calc(50% - 208px)',
+                top: 'calc(50% - 195px)',
                 duration: durationLoad,
                 ease: easeLoad
             }, startDelay);
@@ -507,13 +510,13 @@ function Hero({ scrollYGlobal }) {
          else 
         {
             gsap.to(bernardTxtRef.current, {
-                top: 'calc(50% - 118px)',
+                top: 'calc(50% - 110px)',
                 duration: durationLoad,
                 ease: easeLoad
             }, startDelay);
 
             gsap.to(justinTxtRef.current, {
-                top: 'calc(50% - 233px)',
+                top: 'calc(50% - 210px)',
                 duration: durationLoad,
                 ease: easeLoad
             }, startDelay);
@@ -569,7 +572,7 @@ function Hero({ scrollYGlobal }) {
         }, startDelay);
         
         gsap.to(marioRef.current, {
-            top: 'calc(50% + 245px)',
+            top: 'calc(50% + 235px)',
             duration: durationLoad,
             ease: easeLoad
         }, startDelay);
@@ -594,45 +597,45 @@ function Hero({ scrollYGlobal }) {
 
 
       // RESIZING NAMES
-      useEffect(() => {
-        window.addEventListener('resize', checkScreenSizesNames);
-        return () => {
-          window.removeEventListener('resize', checkScreenSizesNames);
-        };
-      }, []);
+    //   useEffect(() => {
+    //     window.addEventListener('resize', checkScreenSizesNames);
+    //     return () => {
+    //       window.removeEventListener('resize', checkScreenSizesNames);
+    //     };
+    //   }, []);
 
-      const checkScreenSizesNames = () => {
-        justinRef.current.style.left = "";
+    //   const checkScreenSizesNames = () => {
+    //     justinRef.current.style.left = "";
 
-        if (window.innerWidth > 700) 
-        {
-            gsap.to(bernardTxtRef.current, {
-                top: 'calc(50% - 65px)',
-                duration: durationLoad,
-                ease: easeLoad
-            }, startDelay);
+    //     if (window.innerWidth > 700) 
+    //     {
+    //         gsap.to(bernardTxtRef.current, {
+    //             top: 'calc(50% - 65px)',
+    //             duration: durationLoad,
+    //             ease: easeLoad
+    //         }, startDelay);
             
-            gsap.to(justinTxtRef.current, {
-                top: 'calc(50% - 208px)',
-                duration: durationLoad,
-                ease: easeLoad
-            }, startDelay);
-        } 
-         else 
-        {
-            gsap.to(bernardTxtRef.current, {
-                top: 'calc(50% - 118px)',
-                duration: durationLoad,
-                ease: easeLoad
-            }, startDelay);
+    //         gsap.to(justinTxtRef.current, {
+    //             top: 'calc(50% - 208px)',
+    //             duration: durationLoad,
+    //             ease: easeLoad
+    //         }, startDelay);
+    //     } 
+    //      else 
+    //     {
+    //         gsap.to(bernardTxtRef.current, {
+    //             top: 'calc(50% - 118px)',
+    //             duration: durationLoad,
+    //             ease: easeLoad
+    //         }, startDelay);
 
-            gsap.to(justinTxtRef.current, {
-                top: 'calc(50% - 233px)',
-                duration: durationLoad,
-                ease: easeLoad
-            }, startDelay);
-        }
-      }
+    //         gsap.to(justinTxtRef.current, {
+    //             top: 'calc(50% - 233px)',
+    //             duration: durationLoad,
+    //             ease: easeLoad
+    //         }, startDelay);
+    //     }
+    //   }
 
 
       
