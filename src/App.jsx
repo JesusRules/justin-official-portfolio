@@ -14,7 +14,6 @@ import Lenis from '@studio-freight/lenis'
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
-  /* height: 100vh; */
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
   background-color: lightblue;
@@ -67,7 +66,9 @@ function App() {
       <Hero scrollYGlobal={scrollY} />
       <Who myRef={whoRef}/>
       <Skills myRef={skillsRef} scrollYGlobal={scrollY}/>
-      <Projects myRef={portfolioRef} scrollYGlobal={scrollY} />
+      <Projects myRef={portfolioRef} scrollYGlobal={scrollY} 
+                scrollToSkills={scrollToSkills} 
+                scrollToEducation={scrollToEducation} />
       <Education myRef={educationRef}/>
       <Contact myRef={contactRef}/>
     </Container>

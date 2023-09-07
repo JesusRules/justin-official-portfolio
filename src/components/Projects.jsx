@@ -17,6 +17,7 @@ extend({ Water })
 
 const Container = styled.div`
     background-color: lightblue;
+    position: relative;
     height: 100vh;
     scroll-snap-align: start;
     cursor: grab;
@@ -29,7 +30,9 @@ const Container = styled.div`
 
 const SpeechBubble = styled.img`
   position: absolute;
-  width: 30rem;
+  max-width: 30rem;
+  width: 100%;
+  top: 10%;
   left: 0;
   right: 0;
   margin: auto;
@@ -132,6 +135,30 @@ const StyledButton = styled.button`
   }
 `;
 
+const Arrows = styled.div`
+  position: absolute;
+  margin: 0 auto;
+  top: 0;
+  bottom: 0;
+  z-index: 1000;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  opacity: 0.33;
+  img {
+    width: 2.3rem;
+    height: 2.3rem;
+  }
+  #arrow-bottom {
+    transform: scaleY(-1);
+  }
+  @media only screen and (min-width: 700px) {
+    display: none;
+  }
+  `;
+
 
 // var contentTitlesArray = [
 //   "",
@@ -205,7 +232,7 @@ var contentTitlesArray = [
 ]
 
 
-function Projects({ myRef, scrollYGlobal }) {
+function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation }) {
   const [animIndex, setAnimIndex] = useState(3); //IDLE
   const playerRef = useRef();
   const speechBubbleRef = useRef();
@@ -349,9 +376,20 @@ function Projects({ myRef, scrollYGlobal }) {
       }
     }
 
+    const handleUpArrow = () => {
+      scrollToSkills();
+    }
+    const handleDownArrow = () => {
+      scrollToEducation();
+    }
+
   return (
     <>
     <Container ref={myRef}>
+      <Arrows>
+        <img onClick={handleUpArrow} id='arrow-top' src="/img/projects/misc/short-arrow.png"/>
+        <img onClick={handleDownArrow} id='arrow-bottom' src="/img/projects/misc/short-arrow.png"/>
+      </Arrows>
       {showComponent && (
         <>
         <ProjectPopup ref={projectRef}>
