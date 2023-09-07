@@ -126,14 +126,14 @@ function NavBar({ scrollYGlobal,
   return (
     <>
     <Container className={`nav ${visible ? 'visible' : 'hidden'}`}>
-        <Image  src="/img/NavBar.png" onClick={(e) => handleClick(e)}/>
+        <Image  src="/img/hero-banner/NavBar.png" onClick={(e) => handleClick(e)}/>
     </Container>
 
     {menuEnabled && (
     <>
         <DarkBG onClick={() => setMenuEnabled(false)} />
         <MenuContainer >
-            <MenuImage src="/img/Jesus-Banner.png" />
+            <MenuImage src="/img/hero-banner/Jesus-Banner.png" />
             <MenuItems>
                 <li>
                     <p onClick={() => clickToWho()} >Who Am I?</p>

@@ -14,7 +14,7 @@ import gsap from 'gsap';
 
 export function MiniJesus(props) {
   const { playerRef, canvasRef, speechBubbleRef, touchObjects, setCurrentProject, setWithinProject,
-          idleStance, setIdleStance, playerPosition, setPlayerPosition } = props;
+          idleStance, setIdleStance, cameraPosition, setCameraPosition } = props;
   const modelRef = useRef();
   const { nodes, materials, animations } = useGLTF('/models/MiniJesus-transformed.glb')
   const { actions, names, ref, mixer } = useAnimations(animations, playerRef)
@@ -30,7 +30,7 @@ export function MiniJesus(props) {
   const [hovered, setHovered] = useState(false);
   const [swipeDirection, setSwipeDirection] = useState(0);
   let startX;
-  let cameraPosition;
+  // let cameraPosition;
   const [startUpCam, setStartUpCam] = useState(false);
   const [targetRotation, setTargetRotation] = useState(-Math.PI);
   const [speedDifference, setSpeedDifference] = useState(10);
@@ -38,6 +38,7 @@ export function MiniJesus(props) {
   // const gltf = useLoader(GLTFLoader, '/models/MiniJesus-transformed.glb');
   // const mixer = new THREE.AnimationMixer();
   
+  const prevCameraPosition = useRef([0, 1.75, 5]);
   const [isTouchingAnySphere, setIsTouchingAnySphere] = useState(true);
   //DISTANCE FROM CAM
   const playerPositionNew = new THREE.Vector3();
@@ -262,7 +263,7 @@ export function MiniJesus(props) {
       // -Math.PI / 2 = RIGHT
       // 0 = BACK
 
-    cameraPosition = state.camera.position;
+    // cameraPosition = state.camera.position;
     
     //MISC
     // angle = moveDelta * 1.00;
@@ -304,13 +305,11 @@ export function MiniJesus(props) {
 
     if (!startUpCam) 
     {
-      // state.camera.position.set(cameraX, 1.75, cameraZ);
       prevPosition.current = state.camera.position.clone();
       
       const x = Math.cos(0) * radius;
       const z = Math.sin(0) * radius;
-      console.log("ME", playerPosition[1])
-      if (playerPosition[1] === 2) 
+      if (cameraPosition[1] === 2) 
       {
         playerRef.current.position.x = x;
         playerRef.current.position.z = z;
@@ -321,24 +320,22 @@ export function MiniJesus(props) {
       } 
       else 
       {
-        // playerRef.current.position.x = playerPosition[0];
-        // playerRef.current.position.z = playerPosition[2];
-        // const cameraX = playerPosition[0] + Math.cos(0) * radius; //2.2
-        // const cameraZ = playerPosition[2] + Math.sin(0) * radius; //2.2      
-        state.camera.position.x = playerPosition[0] * 1.0007;
-        state.camera.position.z = playerPosition[2] * 1.0007;
+        state.camera.position.x = cameraPosition[0] * 1.0007;
+        state.camera.position.z = cameraPosition[2] * 1.0007;
       }
-
-      // const cameraX = playerRef.current.position.x + Math.cos(0) * radius; //2.2
-      // const cameraZ = playerRef.current.position.z + Math.sin(0) * radius; //2.2      
-      // state.camera.position.x = cameraX;
-      // state.camera.position.z = cameraZ;
 
       setStartUpCam(true);
     }
 
-    setPlayerPosition([state.camera.position.x, 1.75, state.camera.position.z])
-    // setPlayerPosition([playerRef.current.position.x, 0, playerRef.current.position.z])
+    const currentPositionCamera = state.camera.position.toArray();
+    if (
+        Math.round(currentPositionCamera[0]) !== Math.round(prevCameraPosition.current[0]) ||
+        Math.round(currentPositionCamera[1]) !== Math.round(prevCameraPosition.current[1]) ||
+        Math.round(currentPositionCamera[2]) !== Math.round(prevCameraPosition.current[2])
+    ) {
+      prevCameraPosition.current = currentPositionCamera;
+      setCameraPosition([state.camera.position.x, 1.75, state.camera.position.z])
+    }
 
     const distance = 25.2; // Distance from the camera // 14.5
     playerPositionNew.copy(state.camera.position);

@@ -225,7 +225,7 @@ function Projects({ myRef, scrollYGlobal }) {
 
   const [showComponent, setShowComponent] = useState(false);
   const [onInitialize, setOnInitialize] = useState(true);
-  const [playerPosition, setPlayerPosition] = useState([1, 2, 1]);
+  const [cameraPosition, setCameraPosition] = useState([1, 2, 1]);
 
   // SCROLLING
     useEffect(() => {
@@ -368,8 +368,8 @@ function Projects({ myRef, scrollYGlobal }) {
                         setWithinProject={setWithinProject} 
                         idleStance={idleStance} 
                         setIdleStance={setIdleStance} 
-                        playerPosition={playerPosition} 
-                        setPlayerPosition={setPlayerPosition} />
+                        cameraPosition={cameraPosition} 
+                        setCameraPosition={setCameraPosition} />
                   <OrbitControls
                     enablePan={false}
                     enableDamping
@@ -380,24 +380,22 @@ function Projects({ myRef, scrollYGlobal }) {
                     rotateSpeed={0.145}
                     target={[0, 0, 0]} // Lock the camera to the center
                     />
-                  <Environment map={envMap} background={envMap} />
+                  
+                  {/* <Environment map={envMap} background={envMap} />
+                  <Ocean />
+                  <Skybox />  */}
+                  <Sky />
+                  
                   <ambientLight color='white' intensity={3} />
                   <directionalLight intensity={2}  castShadow  position={[-100, 30, 50]} />
                   <directionalLight intensity={2}  castShadow position={[62, 40, -20]} />
                   
-                  {/* <CameraPosition 
-                    cameraPosition={cameraPosition} 
-                    setCameraPosition={setCameraPosition} 
-                    onInitialize={onInitialize} 
-                    setOnInitialize={setOnInitialize}/> */}
-                  <Ocean />
                   <MyFbxModel scale={0.369} rotation={[0, 0, 0]}/>
-                  <Skybox /> 
                   {objectPoints}
 
-                  <EffectComposer>
-                  <Bloom luminanceThreshold={0} luminanceSmoothing={3.3} height={300} />
-                  </EffectComposer>
+                  {/* <EffectComposer> */}
+                  {/* <Bloom luminanceThreshold={0} luminanceSmoothing={3.3} height={300} /> */}
+                  {/* </EffectComposer> */}
                     </Suspense>
               </Canvas>
               </>
@@ -459,34 +457,5 @@ function Loader() {
     </Html>
 }
 
-// function CameraPosition({ cameraPosition, setCameraPosition, onInitialize, setOnInitialize }) {
-//   const prevCameraPosition = useRef([0, 1.75, 5]);
-//   useFrame((state, delta) => {
-//     if (onInitialize) 
-//     {
-//       playerRef.current.position.x = 5;
-//       playerRef.current.position.z = 5;
-//       state.camera.position.set(cameraPosition[0], cameraPosition[1], cameraPosition[2]);
-//       setOnInitialize(false);
-//     }
-//     const currentPosition = state.camera.position.toArray();
-//     // Compare the current position with the previous position
-//     if (
-//         Math.round(currentPosition[0]) !== Math.round(prevCameraPosition.current[0]) ||
-//         Math.round(currentPosition[1]) !== Math.round(prevCameraPosition.current[1]) ||
-//         Math.round(currentPosition[2]) !== Math.round(prevCameraPosition.current[2])
-//       // currentPosition[0] !== prevCameraPosition.current[0] ||
-//       // currentPosition[1] !== prevCameraPosition.current[1] ||
-//       // currentPosition[2] !== prevCameraPosition.current[2]
-//     ) {
-//       // Update the previous position reference
-//       prevCameraPosition.current = currentPosition;
-//       // Call setCameraPosition with the new camera position
-//       console.log(currentPosition);
-//       setCameraPosition(currentPosition);
-//     }
-//   })
-//   return null; // This component doesn't render anything
-// }
 
 export default Projects
