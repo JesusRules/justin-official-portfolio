@@ -19,7 +19,7 @@ const ContentContainer = styled.div`
 
 const TitleDiv = styled.div`
   @media only screen and (max-width: 500px) {
-    h2 {
+    h2 {s
       font-size: 2rem;
     }
     img {
@@ -28,14 +28,26 @@ const TitleDiv = styled.div`
   }
 `
 
-const images = [
-  '/img/projects/ottawarecsports/preview-1.jpg',
-  '/img/projects/ottawarecsports/preview-2.jpg',
-  '/img/projects/ottawarecsports/preview-3.jpg',
-  '/img/projects/ottawarecsports/preview-5.jpg',
-  '/img/projects/ottawarecsports/preview-4.jpg',
-  '/img/projects/ottawarecsports/preview-6.jpg',
-];
+const BackgroundBanner = styled.div`
+    background-image: url(${props => props.imageUrl}); 
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+    background-position: top center;
+    height: 15rem;
+    border-bottom: 1px solid black;
+    box-shadow: 8px 8px 8px rgba(0,0,0, .1);
+`;
+
+// const images = [
+//   '/img/projects/daily-worshipper/preview-1.jpg',
+//   '/img/projects/daily-worshipper/preview-2.jpg',
+//   '/img/projects/daily-worshipper/preview-3.jpg',
+//   '/img/projects/daily-worshipper/preview-5.jpg',
+//   '/img/projects/daily-worshipper/preview-4.jpg',
+//   '/img/projects/daily-worshipper/preview-6.jpg',
+//   '/img/projects/daily-worshipper/preview-7.jpg',
+// ];
 
 function DailyWorshipper({ openModal }) {
 
@@ -52,14 +64,15 @@ function DailyWorshipper({ openModal }) {
     return (
       <ContentContainer>
       <div>
-        <TitleDiv style={{justifyContent: 'center', display: 'flex', alignItems: 'center'}}>
+        {/* <TitleDiv style={{justifyContent: 'center', display: 'flex', alignItems: 'center'}}>
            <h2>Daily Worshipper</h2>
-           {/* <img style={{width: '60px', height: '60px'}} src="/img/projects/ottawarecsports/ORS-Logo.png" /> */}
-        </TitleDiv>
-        <HorizontalImageLoopProjects _images={images} _isReversed={false} openModal={openModal} _uniqueClassName={"images5"} />
+           <img style={{width: '60px', height: '60px', borderRadius: '10px', boxShadow: '3px 3px 3px rgba(0,0,0,0.7)'}} src="/img/projects/daily-worshipper/jesus-icon.jpg" />
+        </TitleDiv> */}
+        <BackgroundBanner imageUrl="/img/projects/daily-worshipper/preview-main.jpg"/>
+        {/* <HorizontalImageLoopProjects _images={images} _isReversed={false} openModal={openModal} _uniqueClassName={"images5"} /> */}
         
         <div style={{textAlign: 'center', margin: '1rem'}}>
-            <h4 style={{fontWeight: 800}}>Try it out!</h4>
+            <h4 style={{fontWeight: 800, marginBottom: '.26rem'}}>Try it out!</h4>
             <div style={{display: 'flex', alignItems: 'start', gap: '0.2rem', justifyContent: 'center'}}>
               <img onClick={(e) => handleAppleStore()} style={{width: '32%', maxWidth: '250px', cursor: 'pointer'}} src="/img/projects/misc/apple-store.png"/>
               <img onClick={(e) => handleGooglePlayStore()} style={{width: '32%', maxWidth: '250px', cursor: 'pointer'}} src="/img/projects/misc/google-store.png"/>
