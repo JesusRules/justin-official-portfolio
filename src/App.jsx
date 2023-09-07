@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import './css/App.css'
 import './css/Swiper.css'
+import './css/Switch.css'
 import Skills from './components/Skills'
 import Hero from './components/Hero'
 import Who from './components/Who'

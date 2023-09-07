@@ -159,6 +159,18 @@ const Arrows = styled.div`
   }
   `;
 
+  const QualityToggle = styled.div`
+  position: absolute;
+  height: 3rem;
+  display: flex;
+  pointer-event: none;
+  align-items: center;
+  bottom: 0rem;
+  z-index: 10001;
+  transform: scale(0.8);
+  opacity: 0.9;
+  `;
+
 
 // var contentTitlesArray = [
 //   "",
@@ -376,6 +388,10 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation }) {
       }
     }
 
+    const onToggleChange = (e) => {
+      setQualityCheck(e.target.checked);
+    };
+
     const handleUpArrow = () => {
       scrollToSkills();
     }
@@ -390,6 +406,18 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation }) {
         <img onClick={handleUpArrow} id='arrow-top' src="/img/projects/misc/short-arrow.png"/>
         <img onClick={handleDownArrow} id='arrow-bottom' src="/img/projects/misc/short-arrow.png"/>
       </Arrows>
+      <QualityToggle>
+      <label className="toggle-wrap">
+        {/* <div>Label</div> */}
+        <input
+          type="checkbox"
+          checked={qualityCheck}
+          onChange={onToggleChange}
+        />
+        <div className="toggle-el"></div>
+    </label>
+      </QualityToggle>
+
       {showComponent && (
         <>
         <ProjectPopup ref={projectRef}>
