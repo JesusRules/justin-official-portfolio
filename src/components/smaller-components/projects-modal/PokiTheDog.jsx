@@ -15,6 +15,15 @@ const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  .poki-logo {
+    display: flex;
+    margin: 0 auto;
+    text-align: center;
+
+    height: 5rem;
+    padding: 0.5rem;
+  }
 `;
 
 const images = [
@@ -27,10 +36,14 @@ const images = [
 ];
 
 function PokiTheDog({ openModal }) {
+  const handleUrl = () => {
+    window.open('https://pokithedog.com/', '_blank');
+  }
     return (
       <ContentContainer>
       <div>
-        <h2>PokiTheDog</h2>
+        {/* <h2>PokiTheDog</h2> */}
+        <img className='poki-logo' src='/img/projects/pokithedog/pokithedog-logo.png'/>
 
         {/* METHOD 3 */}
         <HorizontalImageLoopProjects _images={images} _isReversed={false} openModal={openModal} _uniqueClassName={"images4"} />
@@ -94,11 +107,11 @@ function PokiTheDog({ openModal }) {
       </div>
       </div> */}
 
-
-        
         <div style={{textAlign: 'center', margin: '1rem'}}>
-            {/* <h4 style={{fontWeight: 800}}>Try it out!</h4> */}
-            <a style={{fontSize: '1.2rem'}} href='https://pokithedog.com/' target="_blank">https://pokithedog.com/</a>
+            <h4 style={{fontWeight: 800, marginBottom: '.26rem'}}>Try it out!</h4>
+            <div style={{display: 'flex', alignItems: 'start', gap: '0.2rem', justifyContent: 'center'}}>
+              <img onClick={(e) => handleUrl()} style={{width: '28%', maxWidth: '170px', cursor: 'pointer'}} src="/img/projects/misc/web-link.png"/>
+            </div>
         </div>
 
       <div style={{padding: '0 1rem', textAlign: 'center', fontStyle: 'italic', marginTop: '1.35rem'}}>
@@ -108,7 +121,7 @@ function PokiTheDog({ openModal }) {
       </div>
 
       <div >
-        <img style={{display: 'flex', padding: '1.5rem', width: '260px', margin: 'auto auto'}} src="img/projects/pokithedog/pokithedog-logo.png"/>
+        {/* <img style={{display: 'flex', padding: '1.5rem', width: '260px', margin: 'auto auto'}} src="img/projects/pokithedog/pokithedog-logo.png"/> */}
       </div>
 
       <p style={{textAlign: 'left', color: 'blue', margin: '1rem', fontStyle: 'italic', fontWeight: 400}}>Project was made using vanilla <b>JavaScript, CSS and HTML.</b></p>

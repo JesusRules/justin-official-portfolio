@@ -17,6 +17,18 @@ const ContentContainer = styled.div`
   justify-content: space-between;
 `;
 
+
+const TitleDiv = styled.div`
+  @media only screen and (max-width: 500px) {
+    h2 {
+      font-size: 2rem;
+    }
+    img {
+      display: none;
+    }
+  }
+`
+
 const images = [
   '/img/projects/portfolio-old/preview-1.jpg',
   '/img/projects/portfolio-old/preview-2.jpg',
@@ -27,15 +39,23 @@ const images = [
 ];
 
 function Portfolio_Old({ openModal }) {
+  const handleUrl = () => {
+    window.open('https://bern0241.github.io/portfolio-website/', '_blank');
+  }
     return (
       <ContentContainer>
       <div>
-        <h2>My Portfolio (Old)</h2>
+      <TitleDiv style={{justifyContent: 'center', display: 'flex', alignItems: 'center'}}>
+           <h2>My Portfolio (Old)</h2>
+           {/* <img style={{width: '60px', height: '60px'}} src="/img/projects/portfolio-old/Justin-Icon.png" /> */}
+        </TitleDiv>
         <HorizontalImageLoopProjects _images={images} _isReversed={false} openModal={openModal} _uniqueClassName={"images5"} />
-        
+
         <div style={{textAlign: 'center', margin: '1rem'}}>
-            {/* <h4 style={{fontWeight: 800}}>Try it out!</h4> */}
-            <a style={{fontSize: '1.2rem'}} href='https://bern0241.github.io/portfolio-website/' target="_blank">https://bern0241.github.io/portfolio-website/</a>
+            <h4 style={{fontWeight: 800, marginBottom: '.26rem'}}>Try it out!</h4>
+            <div style={{display: 'flex', alignItems: 'start', gap: '0.2rem', justifyContent: 'center'}}>
+              <img onClick={(e) => handleUrl()} style={{width: '28%', maxWidth: '170px', cursor: 'pointer'}} src="/img/projects/misc/web-link.png"/>
+            </div>
         </div>
 
       <div style={{padding: '0 1rem', textAlign: 'center', fontStyle: 'italic', marginTop: '1.35rem'}}>
@@ -43,10 +63,10 @@ function Portfolio_Old({ openModal }) {
             <p>It features some early websites/apps I did in school!</p>
       </div>
       </div>
-
+{/* 
       <div >
         <img style={{display: 'flex', padding: '1.5rem', width: '120px', margin: 'auto auto'}} src="img/projects/portfolio-old/Justin-Icon.png"/>
-      </div>
+      </div> */}
 
       <p style={{textAlign: 'left', color: 'blue', margin: '1rem', fontStyle: 'italic', fontWeight: 400}}>Project was made using vanilla <b>JavaScript, CSS and HTML.</b></p>
       </ContentContainer>
