@@ -16,8 +16,8 @@ const Container = styled.div`
     flex-direction: column;
     justify-content: center;
     background-image: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.0)),
-                  url("/img/blue-sky-2.jpg");
-    /* background-image: url("/img/blue-sky-2.jpg"); */
+                  url("/img/hero-banner/blue-sky-2.jpg");
+    /* background-image: url("/img/hero-banner/blue-sky-2.jpg"); */
     background-repeat: no-repeat;
     background-size: cover;
 `

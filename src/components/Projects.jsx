@@ -366,6 +366,7 @@ function Projects({ myRef, scrollYGlobal }) {
 
         <SpeechBubble ref={speechBubbleRef} src="/img/projects/misc/speech-bubble-portfolio.png"/>
         <Canvas camera={{fov: 58, far: 1000, near: 0.1, position: [0, 1.75, 5]}}
+                  style={{ background: 'lightblue' }} 
                   gl={{
                     toneMapping: THREE.ReinhardToneMapping,
                     toneMappingExposure: 1.0, // Adjust this value
@@ -397,15 +398,16 @@ function Projects({ myRef, scrollYGlobal }) {
                     target={[0, 0, 0]} // Lock the camera to the center
                     />
                   
-                  {/* <Environment map={envMap} background={envMap} />
-                  <Ocean />
-                  <Skybox />  */}
-                  <Sky />
+                  <Environment map={envMap} background={envMap} />
+                  {/* <Ocean /> */}
+                  {/* <Skybox />  */}
+                   {/* <Sky /> */}
                   
                   <ambientLight color='white' intensity={3} />
                   <directionalLight intensity={2}  castShadow  position={[-100, 30, 50]} />
                   <directionalLight intensity={2}  castShadow position={[62, 40, -20]} />
                   
+                  {/* <PortfolioEnvironment scale={36.9} rotation={[0, 0, 0]} position={[0,0,0]}/>' */}
                   <MyFbxModel scale={0.369} rotation={[0, 0, 0]}/>
                   {objectPoints}
 
@@ -417,7 +419,6 @@ function Projects({ myRef, scrollYGlobal }) {
               </>
           )}
     </Container>
-        {/* <PortfolioEnvironment scale={18.2} rotation={[0, 0, 0]}/> */}'
         {/* <Sky /> */}
         {/* <Noise opacity={0.02} /> */}
     </>
