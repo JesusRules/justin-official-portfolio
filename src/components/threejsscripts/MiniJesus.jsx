@@ -14,7 +14,7 @@ import gsap from 'gsap';
 
 export function MiniJesus(props) {
   const { playerRef, canvasRef, speechBubbleRef, touchObjects, setCurrentProject, setWithinProject,
-          idleStance, setIdleStance, cameraPosition, setCameraPosition } = props;
+          idleStance, setIdleStance, cameraPosition, setCameraPosition, setIsLoaded } = props;
   const modelRef = useRef();
   const { nodes, materials, animations } = useGLTF('/models/MiniJesus-transformed.glb')
   const { actions, names, ref, mixer } = useAnimations(animations, playerRef)
@@ -69,8 +69,7 @@ export function MiniJesus(props) {
         // setTargetRotation(-Math.PI);
       }
     });
-    console.log('OBJECT 2', touchObjects); //[0]x,[1]y,[2]z
-
+    setIsLoaded(true); //Meant for animation at beginning
     //Control keys
     // document.addEventListener('keydown', handleKeyDown, false);
     // document.addEventListener('keyup', handleKeyUp, false);
@@ -215,7 +214,7 @@ export function MiniJesus(props) {
     
     actions['Run'].setDuration(speedDifference);
     
-    if (speedDifference < 5) {
+    if (speedDifference < 3.3) { //5
       setIdleStance(false);
     }
     else if (speedDifference > 14) { //18
@@ -253,7 +252,7 @@ export function MiniJesus(props) {
 
 
 
-    const lerpFactor = 0.05;
+    const lerpFactor = 0.10; //0.05
     playerRef.current.lookAt(0, 0, 0); //stays
     const currentRotation = modelRef.current.rotation.y;
     const lerpedRotation = THREE.MathUtils.lerp(currentRotation, targetRotation, lerpFactor);
@@ -385,7 +384,7 @@ export function MiniJesus(props) {
 
   return (
     <group ref={playerRef} {...props} dispose={null} position={[0,0,0]}>
-      <group ref={modelRef} name="Scene">
+      <group ref={modelRef} name="Scene" rotation={[0, -Math.PI, 0]}>
         <group name="MiniJesus" rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
           <primitive object={nodes.Hip_J} />
         </group>

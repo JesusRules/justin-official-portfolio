@@ -224,7 +224,7 @@ function Projects({ myRef, scrollYGlobal }) {
   envMap.intensity = 2;
 
   const [showComponent, setShowComponent] = useState(false);
-  const [onInitialize, setOnInitialize] = useState(true);
+  const [isLoaded, setIsLoaded] = useState(false);
   const [cameraPosition, setCameraPosition] = useState([1, 2, 1]);
 
   // SCROLLING
@@ -234,22 +234,36 @@ function Projects({ myRef, scrollYGlobal }) {
      
       if (scrollYGlobal == divElement.offsetTop) {
         setShowComponent(true);
-        setOnInitialize(true);
-        if (!showBubbleOnce) {
-          setShowBubbleOnce(true);
-          gsap.to(speechBubbleRef.current, {
-            duration:0.66,
-            opacity: 1,
-            transform: 'translateY(0px)',
-          });
-          setAnimIndex(2); //7 alt Jumping happy
-        }
+        // if (!showBubbleOnce) {
+        //   setShowBubbleOnce(true);
+        //   gsap.to(speechBubbleRef.current, {
+        //     duration:0.66,
+        //     opacity: 1,
+        //     transform: 'translateY(0px)',
+        //   });
+        //   setAnimIndex(2); //7 alt Jumping happy
+        // }
       }
       if (scrollYGlobal > divElement.offsetTop || scrollYGlobal < divElement.offsetTop) {
         setShowComponent(false);
       }
 
   }, [scrollYGlobal])
+
+  useEffect(() => {
+    if (!isLoaded) return;
+    setTimeout(() => {
+      setAnimIndex(2); //7 alt Jumping happy
+      if (!showBubbleOnce) {
+        setShowBubbleOnce(true);
+        gsap.to(speechBubbleRef.current, {
+          duration:0.66,
+          opacity: 1,
+          transform: 'translateY(0px)',
+        });
+      }
+    }, [330])
+  }, [isLoaded])
 
     useEffect(() => {
       setupPositionSpots();
@@ -350,8 +364,8 @@ function Projects({ myRef, scrollYGlobal }) {
         
         <ProjectInfoModal currentProject={currentProject} openModal={openModal} setOpenModal={setOpenModal} />
 
-        <SpeechBubble ref={speechBubbleRef} src="/img/speech-bubble-portfolio.png"/>
-        <Canvas shadows camera={{fov: 58, far: 1000, near: 0.1, position: [0, 1.75, 5]}}
+        <SpeechBubble ref={speechBubbleRef} src="/img/projects/misc/speech-bubble-portfolio.png"/>
+        <Canvas camera={{fov: 58, far: 1000, near: 0.1, position: [0, 1.75, 5]}}
                   gl={{
                     toneMapping: THREE.ReinhardToneMapping,
                     toneMappingExposure: 1.0, // Adjust this value
@@ -369,7 +383,9 @@ function Projects({ myRef, scrollYGlobal }) {
                         idleStance={idleStance} 
                         setIdleStance={setIdleStance} 
                         cameraPosition={cameraPosition} 
-                        setCameraPosition={setCameraPosition} />
+                        setCameraPosition={setCameraPosition} 
+                        setIsLoaded={setIsLoaded}
+                        />
                   <OrbitControls
                     enablePan={false}
                     enableDamping
