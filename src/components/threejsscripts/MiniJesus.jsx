@@ -14,7 +14,7 @@ import gsap from 'gsap';
 
 export function MiniJesus(props) {
   const { playerRef, canvasRef, speechBubbleRef, touchObjects, setCurrentProject, setWithinProject,
-          idleStance, setIdleStance } = props;
+          idleStance, setIdleStance, playerPosition, setPlayerPosition } = props;
   const modelRef = useRef();
   const { nodes, materials, animations } = useGLTF('/models/MiniJesus-transformed.glb')
   const { actions, names, ref, mixer } = useAnimations(animations, playerRef)
@@ -44,7 +44,6 @@ export function MiniJesus(props) {
   //SPEED CAM
   const prevPosition = useRef(0);
   const startTime = useRef(0);
-
 
   useEffect(() => {
     actions['FirstPlaceWin'].setDuration(1.8);
@@ -264,7 +263,6 @@ export function MiniJesus(props) {
       // 0 = BACK
 
     cameraPosition = state.camera.position;
-    const playerPosition = playerRef.current.position;
     
     //MISC
     // angle = moveDelta * 1.00;
@@ -289,7 +287,7 @@ export function MiniJesus(props) {
 
     // Touch sphere interaction
     touchObjects.forEach(sphere => {
-      const distance = playerPosition.distanceTo(new Vector3(sphere.props.position[0], sphere.props.position[1], sphere.props.position[2])); //sphere.position, sphere.content
+      const distance = playerRef.current.position.distanceTo(new Vector3(sphere.props.position[0], sphere.props.position[1], sphere.props.position[2])); //sphere.position, sphere.content
       // const distance = playerPosition.distanceTo(sphere); //sphere.position, sphere.content
       if (distance < 4) {
         setCurrentProject(sphere.props.content);
@@ -311,17 +309,36 @@ export function MiniJesus(props) {
       
       const x = Math.cos(0) * radius;
       const z = Math.sin(0) * radius;
-      playerRef.current.position.x = x;
-      playerRef.current.position.z = z;
+      console.log("ME", playerPosition[1])
+      if (playerPosition[1] === 2) 
+      {
+        playerRef.current.position.x = x;
+        playerRef.current.position.z = z;
+        const cameraX = playerRef.current.position.x + Math.cos(0) * radius; //2.2
+        const cameraZ = playerRef.current.position.z + Math.sin(0) * radius; //2.2      
+        state.camera.position.x = cameraX;
+        state.camera.position.z = cameraZ;
+      } 
+      else 
+      {
+        // playerRef.current.position.x = playerPosition[0];
+        // playerRef.current.position.z = playerPosition[2];
+        // const cameraX = playerPosition[0] + Math.cos(0) * radius; //2.2
+        // const cameraZ = playerPosition[2] + Math.sin(0) * radius; //2.2      
+        state.camera.position.x = playerPosition[0] * 1.0007;
+        state.camera.position.z = playerPosition[2] * 1.0007;
+      }
 
-      const cameraX = playerRef.current.position.x + Math.cos(0) * radius; //2.2
-      const cameraZ = playerRef.current.position.z + Math.sin(0) * radius; //2.2      
-      state.camera.position.x = cameraX;
-      state.camera.position.z = cameraZ;
+      // const cameraX = playerRef.current.position.x + Math.cos(0) * radius; //2.2
+      // const cameraZ = playerRef.current.position.z + Math.sin(0) * radius; //2.2      
+      // state.camera.position.x = cameraX;
+      // state.camera.position.z = cameraZ;
 
       setStartUpCam(true);
-      // setTargetPosition(new Vector3(state.camera.position.x, 0, state.camera.position.z));
     }
+
+    setPlayerPosition([state.camera.position.x, 1.75, state.camera.position.z])
+    // setPlayerPosition([playerRef.current.position.x, 0, playerRef.current.position.z])
 
     const distance = 25.2; // Distance from the camera // 14.5
     playerPositionNew.copy(state.camera.position);

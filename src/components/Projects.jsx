@@ -222,7 +222,10 @@ function Projects({ myRef, scrollYGlobal }) {
   const [openModal, setOpenModal] = useState(false);
   const envMap = useEnvironment({ files: '/sunflowers_puresky_1k.hdr'});
   envMap.intensity = 2;
+
   const [showComponent, setShowComponent] = useState(false);
+  const [onInitialize, setOnInitialize] = useState(true);
+  const [playerPosition, setPlayerPosition] = useState([1, 2, 1]);
 
   // SCROLLING
     useEffect(() => {
@@ -231,6 +234,7 @@ function Projects({ myRef, scrollYGlobal }) {
      
       if (scrollYGlobal == divElement.offsetTop) {
         setShowComponent(true);
+        setOnInitialize(true);
         if (!showBubbleOnce) {
           setShowBubbleOnce(true);
           gsap.to(speechBubbleRef.current, {
@@ -244,9 +248,6 @@ function Projects({ myRef, scrollYGlobal }) {
       if (scrollYGlobal > divElement.offsetTop || scrollYGlobal < divElement.offsetTop) {
         setShowComponent(false);
       }
-      // console.log('1', window.innerHeight);
-      console.log('2', scrollYGlobal);
-      // console.log('3', divElement.offsetTop);
 
   }, [scrollYGlobal])
 
@@ -356,8 +357,19 @@ function Projects({ myRef, scrollYGlobal }) {
                     toneMappingExposure: 1.0, // Adjust this value
                   }}>
                     <Suspense fallback={<Loader />}>
-                      <MiniJesus scale={37} animIndex={animIndex} setAnimIndex={setAnimIndex} playerRef={playerRef} canvasRef={myRef} speechBubbleRef={speechBubbleRef} touchObjects={objectPoints} setCurrentProject={setCurrentProject} setWithinProject={setWithinProject} 
-                      idleStance={idleStance} setIdleStance={setIdleStance}/>
+                      <MiniJesus scale={37} 
+                        animIndex={animIndex} 
+                        setAnimIndex={setAnimIndex} 
+                        playerRef={playerRef} 
+                        canvasRef={myRef} 
+                        speechBubbleRef={speechBubbleRef} 
+                        touchObjects={objectPoints} 
+                        setCurrentProject={setCurrentProject} 
+                        setWithinProject={setWithinProject} 
+                        idleStance={idleStance} 
+                        setIdleStance={setIdleStance} 
+                        playerPosition={playerPosition} 
+                        setPlayerPosition={setPlayerPosition} />
                   <OrbitControls
                     enablePan={false}
                     enableDamping
@@ -373,6 +385,11 @@ function Projects({ myRef, scrollYGlobal }) {
                   <directionalLight intensity={2}  castShadow  position={[-100, 30, 50]} />
                   <directionalLight intensity={2}  castShadow position={[62, 40, -20]} />
                   
+                  {/* <CameraPosition 
+                    cameraPosition={cameraPosition} 
+                    setCameraPosition={setCameraPosition} 
+                    onInitialize={onInitialize} 
+                    setOnInitialize={setOnInitialize}/> */}
                   <Ocean />
                   <MyFbxModel scale={0.369} rotation={[0, 0, 0]}/>
                   <Skybox /> 
@@ -441,5 +458,35 @@ function Loader() {
     </div>
     </Html>
 }
+
+// function CameraPosition({ cameraPosition, setCameraPosition, onInitialize, setOnInitialize }) {
+//   const prevCameraPosition = useRef([0, 1.75, 5]);
+//   useFrame((state, delta) => {
+//     if (onInitialize) 
+//     {
+//       playerRef.current.position.x = 5;
+//       playerRef.current.position.z = 5;
+//       state.camera.position.set(cameraPosition[0], cameraPosition[1], cameraPosition[2]);
+//       setOnInitialize(false);
+//     }
+//     const currentPosition = state.camera.position.toArray();
+//     // Compare the current position with the previous position
+//     if (
+//         Math.round(currentPosition[0]) !== Math.round(prevCameraPosition.current[0]) ||
+//         Math.round(currentPosition[1]) !== Math.round(prevCameraPosition.current[1]) ||
+//         Math.round(currentPosition[2]) !== Math.round(prevCameraPosition.current[2])
+//       // currentPosition[0] !== prevCameraPosition.current[0] ||
+//       // currentPosition[1] !== prevCameraPosition.current[1] ||
+//       // currentPosition[2] !== prevCameraPosition.current[2]
+//     ) {
+//       // Update the previous position reference
+//       prevCameraPosition.current = currentPosition;
+//       // Call setCameraPosition with the new camera position
+//       console.log(currentPosition);
+//       setCameraPosition(currentPosition);
+//     }
+//   })
+//   return null; // This component doesn't render anything
+// }
 
 export default Projects
