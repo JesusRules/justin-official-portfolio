@@ -16,23 +16,25 @@ const Container = styled.div`
     flex-direction: column;
     justify-content: center;
     background-image: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.0)),
-                  url("/img/hero-banner/blue-sky-2.jpg");
+    url("/img/hero-banner/blue-sky-2.jpg");
     /* background-image: url("/img/hero-banner/blue-sky-2.jpg"); */
     background-repeat: no-repeat;
     background-size: cover;
-`
-const Container2 = styled.div`
-    height: 100%;
+    `
+    const Container2 = styled.div`
+    position: relative;
+    top: 2.5rem;
 `
 
-const Title = styled.h1`
+const Title = styled.h3`
     color: black;
     text-align: center;
-    margin: 1rem;
     font-style: italic;
-    margin-bottom: 3rem;
+    margin-bottom: 2.5rem;
     font-weight: 800;
     position: relative;
+    @media only screen and (max-width: 700px) {
+    }
 `;
 
 const Subtitle = styled.h2`
@@ -66,7 +68,7 @@ function Skills({ myRef, scrollYGlobal }) {
   return (
     <Container className="trigger" ref={myRef}>
       <Container2>
-      <Title>All the languages, software, technologies I know!</Title>
+      <Title>All the technologies I know!</Title>
     
     {/* <div className="first-div" style={{opacity: 0, transform: 'translateY(40px)'}}> */}
     <div className="first-div" >

@@ -797,9 +797,9 @@ function Hero({ scrollYGlobal }) {
       <audio ref={pikachuAudioRef} controls>
           <source src="/audio/pikachu.mp3" type="audio/mpeg" />
       </audio>
-      {/* <audio ref={kartAudioRef} controls>
+      <audio ref={kartAudioRef} controls>
           <source src="/audio/kart.mp3" type="audio/mpeg" />
-      </audio> */}
+      </audio>
       <audio ref={jesusAudioRef} controls>
           <source src="/audio/jesus.mp3" type="audio/mpeg" />
       </audio>

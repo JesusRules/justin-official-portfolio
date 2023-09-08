@@ -77,7 +77,7 @@ function OttawaRecSports({ openModal }) {
       </div>
       </div>
       <p style={{textAlign: 'center', marginBottom: '1.5rem'}}>Thanks to our hard working team for a great semester!</p>
-      <p style={{textAlign: 'left', color: 'blue', margin: '1rem', fontStyle: 'italic', fontWeight: 400, paddingBottom: '1rem'}}>Project was made using <b>React, NextJS, Tailwind CSS, AWS Services (Amplify, GraphQL, SES, Cognito, DynamoDB, S3).</b></p>
+      <p className='bottom-madewith' style={{textAlign: 'left', color: 'blue', margin: '1rem', fontStyle: 'italic', fontWeight: 400, paddingBottom: '1rem'}}>Project was made using <b>React, NextJS, Tailwind CSS, AWS Services (Amplify, GraphQL, SES, Cognito, DynamoDB, S3).</b></p>
       </ContentContainer>
     )
 }

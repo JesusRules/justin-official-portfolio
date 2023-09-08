@@ -146,7 +146,7 @@ const Arrows = styled.div`
   flex-direction: column;
   justify-content: center;
   gap: 2px;
-  opacity: 0.33;
+  opacity: 0.82;
   img {
     width: 2.3rem;
     height: 2.3rem;
