@@ -254,7 +254,7 @@ const Mario = styled.img`
     /* top: calc(50% + 245px); */
     left: calc(50% - 142px);
     top: 3200px;
-    z-index: 20;
+    z-index: 20111;
     @media only screen and (max-width: 700px) {
         left: calc(50% - 165px + 42px);
         width: 132px;
@@ -382,6 +382,16 @@ function Hero({ scrollYGlobal }) {
     const [haunterPos, setHaunterPos] = useState();
     const [booPos, setBooPos] = useState();
     const [contactBtnPos, setContactBtnPos] = useState();
+
+    // Audio
+    const marioAudioRef = useRef();
+    const booAudioRef = useRef();
+    const haunterAudioRef = useRef();
+    const kartAudioRef = useRef();
+    const pikachuAudioRef = useRef();
+    const pipeAudioRef = useRef();
+    const toadAudioRef = useRef();
+    const jesusAudioRef = useRef();
 
     let navElement;
 
@@ -600,45 +610,45 @@ function Hero({ scrollYGlobal }) {
 
 
       // RESIZING NAMES
-    //   useEffect(() => {
-    //     window.addEventListener('resize', checkScreenSizesNames);
-    //     return () => {
-    //       window.removeEventListener('resize', checkScreenSizesNames);
-    //     };
-    //   }, []);
+      useEffect(() => {
+        window.addEventListener('resize', checkScreenSizesNames);
+        return () => {
+          window.removeEventListener('resize', checkScreenSizesNames);
+        };
+      }, []);
 
-    //   const checkScreenSizesNames = () => {
-    //     justinRef.current.style.left = "";
+      const checkScreenSizesNames = () => {
+        justinRef.current.style.left = "";
 
-    //     if (window.innerWidth > 700) 
-    //     {
-    //         gsap.to(bernardTxtRef.current, {
-    //             top: 'calc(50% - 65px)',
-    //             duration: durationLoad,
-    //             ease: easeLoad
-    //         }, startDelay);
+        if (window.innerWidth > 700) 
+        {
+            gsap.to(bernardTxtRef.current, {
+                top: 'calc(50% - 65px)',
+                duration: durationLoad,
+                ease: easeLoad
+            }, startDelay);
             
-    //         gsap.to(justinTxtRef.current, {
-    //             top: 'calc(50% - 208px)',
-    //             duration: durationLoad,
-    //             ease: easeLoad
-    //         }, startDelay);
-    //     } 
-    //      else 
-    //     {
-    //         gsap.to(bernardTxtRef.current, {
-    //             top: 'calc(50% - 118px)',
-    //             duration: durationLoad,
-    //             ease: easeLoad
-    //         }, startDelay);
+            gsap.to(justinTxtRef.current, {
+                top: 'calc(50% - 195px)',
+                duration: durationLoad,
+                ease: easeLoad
+            }, startDelay);
+        } 
+         else 
+        {
+            gsap.to(bernardTxtRef.current, {
+                top: 'calc(50% - 128px)',
+                duration: durationLoad,
+                ease: easeLoad
+            }, startDelay);
 
-    //         gsap.to(justinTxtRef.current, {
-    //             top: 'calc(50% - 233px)',
-    //             duration: durationLoad,
-    //             ease: easeLoad
-    //         }, startDelay);
-    //     }
-    //   }
+            gsap.to(justinTxtRef.current, {
+                top: 'calc(50% - 229px)',
+                duration: durationLoad,
+                ease: easeLoad
+            }, startDelay);
+        }
+      }
 
 
       
@@ -753,23 +763,55 @@ function Hero({ scrollYGlobal }) {
       <CloudBG_1 ref={cloudBG1} src="/img/hero-banner/CloudBG-1.png" data-speedx="0.282" data-speedy="0.3" data-speedz="0.041" data-rotation="0" className='parallax cloud-bg-1'/>
         {/* Items/Characters */}
       {/* <JesusFlag src="/img/JesusFlag.png" className='parallax jesus-flag'/> */}
-      <Haunter ref={haunterRef} src="/img/hero-banner/Haunter.png" data-speedx="0.215" data-speedy="0.301" data-speedz="0.1" data-rotation="0.01" className='parallax haunter'/>
-      <Boo ref={booRef} src="/img/hero-banner/Boo.png" data-speedx="0.215" data-speedy="0.276" data-speedz="0.1" data-rotation="0.01" className='parallax boo'/>
+      <Haunter ref={haunterRef} src="/img/hero-banner/Haunter.png" data-speedx="0.215" data-speedy="0.301" data-speedz="0.1" data-rotation="0.01" className='parallax haunter'
+            draggable="false" onClick={() => haunterAudioRef.current.play()}/>
+      <Boo ref={booRef} src="/img/hero-banner/Boo.png" data-speedx="0.215" data-speedy="0.276" data-speedz="0.1" data-rotation="0.01" className='parallax boo'
+            draggable="false" onClick={() => booAudioRef.current.play()}/>
 
       <Bernard_Txt ref={bernardTxtRef} src="/img/hero-banner/Bernard-Text.png" data-speedx="0.1" data-speedy="0.134" data-speedz="0.25" data-rotation="0.02" className='parallax bernard-txt'/>
       <Justin_Txt ref={justinTxtRef} src="/img/hero-banner/Justin-Text.png" data-speedx="0.1" data-speedy="0.125" data-speedz="0.25" data-rotation="0.02"  className='parallax justin-txt'/>
       
       <JesusFlag2 ref={jesusFlagRef} src="/img/hero-banner/JesusFlag.gif" data-speedx="0.125" data-speedy="0.137" data-speedz="0.175" data-rotation="0.09" className='parallax jesus-flag'/>
-      <Pipe ref={pipeRef} src="/img/hero-banner/Pipe.png" data-speedx="0.11" data-speedy="0.134" data-speedz="0.3" data-rotation="0.1" className='parallax pipe'/>
+      <Pipe ref={pipeRef} src="/img/hero-banner/Pipe.png" data-speedx="0.11" data-speedy="0.134" data-speedz="0.3" data-rotation="0.1" className='parallax pipe'
+            draggable="false" onClick={() => pipeAudioRef.current.play()}/>
       <HelloKitty ref={helloKittyRef} src="/img/hero-banner/HelloKitty.png" data-speedx="0.11" data-speedy="0.15" data-speedz="0.3" data-rotation="0.1" className='parallax hello-kitty'/>
-      <Toad ref={toadRef} src="/img/hero-banner/Toad.png" data-speedx="0.08" data-speedy="0.09" data-speedz="0.35" data-rotation="0.125" className='parallax toad'/>
-      <Kart ref={kartRef} src="/img/hero-banner/Kart.png" data-speedx="0.08" data-speedy="0.088" data-speedz="0.35" data-rotation="0.125" className='parallax kart'/>
+      <Toad ref={toadRef} src="/img/hero-banner/Toad.png" data-speedx="0.08" data-speedy="0.09" data-speedz="0.35" data-rotation="0.125" className='parallax toad'
+            draggable="false" onClick={() => toadAudioRef.current.play()}/>
+      <Kart ref={kartRef} src="/img/hero-banner/Kart.png" data-speedx="0.08" data-speedy="0.088" data-speedz="0.35" data-rotation="0.125" className='parallax kart'
+            draggable="false" onClick={() => kartAudioRef.current.play()}/>
       <Joy ref={joyRef} src="/img/hero-banner/Joy.png" data-speedx="0.05" data-speedy="0.06" data-speedz="0.4" data-rotation="0.15" className='parallax joy'/>
-      <Pikachu ref={pikachuRef} src="/img/hero-banner/Pikachu.png" data-speedx="0.05" data-speedy="0.064" data-speedz="0.4" data-rotation="0.15" className='parallax pikachu'/>
-      <Mario ref={marioRef} src="/img/hero-banner/Mario.png" data-speedx="0.03" data-speedy="0.032" data-speedz="0.45" data-rotation="0.175" className='parallax mario'/>
-      <MiniJesus ref={miniJesusRef} src="/img/hero-banner/MiniJesus.png" data-speedx="0.03" data-speedy="0.03" data-speedz="0.45" data-rotation="0.175" className='parallax mini-jesus'/>
+      <Pikachu ref={pikachuRef} src="/img/hero-banner/Pikachu.png" data-speedx="0.05" data-speedy="0.064" data-speedz="0.4" data-rotation="0.15" className='parallax pikachu'
+            draggable="false" onClick={() => pikachuAudioRef.current.play()}/>
+      <Mario ref={marioRef} src="/img/hero-banner/Mario.png" data-speedx="0.03" data-speedy="0.032" data-speedz="0.45" data-rotation="0.175" className='parallax mario'
+            draggable="false" onClick={() => marioAudioRef.current.play()}/>
+      <MiniJesus ref={miniJesusRef} src="/img/hero-banner/MiniJesus.png" data-speedx="0.03" data-speedy="0.03" data-speedz="0.45" data-rotation="0.175" className='parallax mini-jesus'
+            draggable="false" onClick={() => jesusAudioRef.current.play()}/>
       <Justin ref={justinRef} src="/img/hero-banner/Justin.png" data-speedx="0.01" data-speedy="0.02" data-speedz="0.53" data-rotation="0.2" className='parallax justin'/>
 
+      <audio ref={marioAudioRef} controls>
+          <source src="/audio/mario.mp3" type="audio/mpeg" />
+      </audio>
+      <audio ref={booAudioRef} controls>
+          <source src="/audio/boo.mp3" type="audio/mpeg" />
+      </audio>
+      <audio ref={pikachuAudioRef} controls>
+          <source src="/audio/pikachu.mp3" type="audio/mpeg" />
+      </audio>
+      {/* <audio ref={kartAudioRef} controls>
+          <source src="/audio/kart.mp3" type="audio/mpeg" />
+      </audio> */}
+      <audio ref={jesusAudioRef} controls>
+          <source src="/audio/jesus.mp3" type="audio/mpeg" />
+      </audio>
+      <audio ref={haunterAudioRef} controls>
+          <source src="/audio/haunter.mp3" type="audio/mpeg" />
+      </audio>
+      <audio ref={toadAudioRef} controls>
+          <source src="/audio/toad.mp3" type="audio/mpeg" />
+      </audio>
+      <audio ref={pipeAudioRef} controls>
+          <source src="/audio/pipe.mp3" type="audio/mpeg" />
+      </audio>
 
     </Container>
   )

@@ -433,13 +433,19 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation }) {
 
         <SpeechBubble ref={speechBubbleRef} src="/img/projects/misc/speech-bubble-portfolio.png"/>
         <Canvas camera={{fov: 58, far: 1000, near: 0.1, position: [0, 1.75, 5]}}
-                  style={{ background: 'lightblue'}} 
+                  style={{ background: 'lightblue', 
+                            backgroundImage: 'url(/img/projects/misc/background.jpg)' ,
+                            backgroundSize: 'cover',
+                            backgroundRepeat: 'no-repeat',
+                            backgroundPosition: 'center center'
+                  }} 
                   gl={{
                     outputColorSpace: THREE.SRGBColorSpace,
                     // toneMapping: THREE.ReinhardToneMapping,
                     toneMapping: THREE.ACESFilmicToneMapping,
                     toneMappingExposure: 1, // Adjust this value
                   }}>
+
                     <Suspense fallback={<Loader />}>
                       <MiniJesus scale={37} 
                         animIndex={animIndex} 
