@@ -15,6 +15,15 @@ const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  .title {
+    display: flex;
+    margin: 0 auto;
+    text-align: center;
+
+    height: 3rem;
+    padding: 0.5rem;
+  }
 `;
 
 const TitleDiv = styled.div`
@@ -46,29 +55,28 @@ function Memories({ openModal }) {
     if (openModal) {
       setTimeout(() => {
         if (swiperRef.current) swiperRef.current.style.display = 'none';
-      }, 100)
+      }, 33)
       setTimeout(() => {
         if (swiperRef.current) swiperRef.current.style.display = 'block';
-      }, 200)
+      }, 50)
       setInitialized(true);
     }
   }, [openModal]);
 
   const handleUrl = () => {
-    window.open('https://snazzy-sunburst-e79220.netlify.app/', '_blank');
+    window.open('https://sparkling-salamander-f12f3e.netlify.app/posts', '_blank');
   }
     return (
       <ContentContainer>
       <div>
-        <TitleDiv style={{justifyContent: 'center', display: 'flex', alignItems: 'center'}}>
-           <h2>Memories</h2>
-           <img style={{width: '60px', height: '60px'}} src="/img/projects/ottawarecsports/ORS-Logo.png" />
-        </TitleDiv>
+        <img className='title' src='/img/projects/memories/memories-name.png'/>
+
         {/* <HorizontalImageLoopProjects _images={images} _isReversed={false} openModal={openModal} _uniqueClassName={"images5"} /> */}
         
         <div ref={swiperRef} className='swiper_container1'>
         <Swiper
         effect={'coverflow'}
+        initialSlide={1}
         grabCursor={true}
         centeredSlides={true}
         loop={false}
@@ -89,13 +97,13 @@ function Memories({ openModal }) {
         className="swiper_container2"
       >
         <SwiperSlide>
-          <img src="/img/projects/memories/preview-1.jpg" alt="slide_image" />
+          <img src="/img/projects/memories/preview-2.jpg" alt="slide_image" />
         </SwiperSlide>
         <SwiperSlide>
           <img src="/img/projects/memories/preview-1.jpg" alt="slide_image" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="/img/projects/memories/preview-1.jpg" alt="slide_image" />
+          <img src="/img/projects/memories/preview-3.jpg" alt="slide_image" />
         </SwiperSlide>
         <div className="slider-controler">
               <div className="swiper-pagination"></div>
@@ -118,23 +126,14 @@ function Memories({ openModal }) {
             </div>
         </div>
 
-      <div style={{padding: '0 2rem', textAlign: 'center', fontStyle: 'italic', lineHeight: '10%'}}>
-            <p>In our final semester (of the Algonquin MADD program), me and 5 other students were assigned a client project to improve the existing <a target="_blank" href="https://ottawarecsports.com/">Ottawa Rec Sports.</a></p>
-            <p><br/>Miraculously, our project came <span style={{color: 'blue'}}>third place</span> in the annual Algonquin RE/ACTION showcase!</p>
-           
-            <div style={{margin: '1rem 0', width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-              <div>
-                <img style={{maxWidth: '260px', width: '100%', objectFit: 'cover'}} src="/img/projects/ottawarecsports/justin-award.jpg" />
-                <img style={{maxWidth: '215px', width: '100%'}} src="/img/projects/ottawarecsports/excellence-paper-reaction.jpg" />
-              </div>
-              <div>
-                <img style={{minWidth: '320px', width: '100%', maxWidth: '550px', }} src="/img/projects/ottawarecsports/group-stage.jpg" />
-              </div>
-            </div>
+      <div style={{padding: '0 2rem', textAlign: 'center', fontStyle: 'italic', lineHeight: '10%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '1rem'}}>
+            <p>Memories was a 7:30 hour long YouTube tutorial I followed during my attendance at college (by JavaScript Mastery).</p>
+            <iframe width="370" height="200" src="https://www.youtube.com/embed/VsUzmlZfYNg?si=S1N8D_KPebf07Gh9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <p>Great video for anyone looking to learn web development and dealing with databases. </p>
+        </div>
       </div>
-      </div>
-      <p style={{textAlign: 'center', marginBottom: '1.5rem'}}>Thanks to our hard working team for a great semester!</p>
-      <p className='bottom-madewith' style={{textAlign: 'left', color: 'blue', margin: '1rem', fontStyle: 'italic', fontWeight: 400, paddingBottom: '1rem'}}>Project was made using <b>React, NextJS, Tailwind CSS, AWS Services (Amplify, GraphQL, SES, Cognito, DynamoDB, S3).</b></p>
+
+      <p className='bottom-madewith' style={{textAlign: 'left', color: 'blue', margin: '1rem', fontStyle: 'italic', fontWeight: 400, paddingBottom: '1rem', paddingTop: '2rem'}}>Project was made using the <b>MERN Stack development bundle (MongoDB, Express, React, Node.js)</b></p>
       </ContentContainer>
     )
 }

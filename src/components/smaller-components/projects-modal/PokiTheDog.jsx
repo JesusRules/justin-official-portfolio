@@ -16,7 +16,7 @@ const ContentContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
 
-  .poki-logo {
+  .title {
     display: flex;
     margin: 0 auto;
     text-align: center;
@@ -43,7 +43,7 @@ function PokiTheDog({ openModal }) {
       <ContentContainer>
       <div>
         {/* <h2>PokiTheDog</h2> */}
-        <img className='poki-logo' src='/img/projects/pokithedog/pokithedog-logo.png'/>
+        <img className='title' src='/img/projects/pokithedog/pokithedog-logo.png'/>
 
         {/* METHOD 3 */}
         <HorizontalImageLoopProjects _images={images} _isReversed={false} openModal={openModal} _uniqueClassName={"images4"} />

@@ -12,7 +12,7 @@
 }
 
 .swiper_container2 {
-    height: 20.25rem;
+    height: 21rem;
 }
 
 /* .swiper-slide {
@@ -54,7 +54,7 @@
       max-width: 36rem;
       height: 18rem;
       box-shadow: 7px 7px 7px rgba(0,0,0,.5);
-      border: 1px solid black;
+      border: 2px solid black;
   }
 
   @media (max-width: 700px) {
