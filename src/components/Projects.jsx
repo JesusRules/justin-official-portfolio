@@ -432,6 +432,7 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation }) {
         <ProjectInfoModal currentProject={currentProject} openModal={openModal} setOpenModal={setOpenModal} />
 
         <SpeechBubble ref={speechBubbleRef} src="/img/projects/misc/speech-bubble-portfolio.png"/>
+        
         <Canvas camera={{fov: 58, far: 1000, near: 0.1, position: [0, 1.75, 5]}}
                   style={{ background: 'lightblue', 
                             backgroundImage: 'url(/img/projects/misc/background.jpg)' ,

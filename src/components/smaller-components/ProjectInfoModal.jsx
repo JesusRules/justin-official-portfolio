@@ -6,6 +6,7 @@ import PokiTheDog from './projects-modal/PokiTheDog';
 import Portfolio_Old from './projects-modal/Portfolio_Old';
 import OttawaRecSports from './projects-modal/OttawaRecSports';
 import DailyWorshipper from './projects-modal/DailyWorshipper';
+import Memories from './projects-modal/Memories';
 
 const ProjectInfoModalDiv = styled.div`
   height: 92%;
@@ -121,6 +122,7 @@ function ProjectInfoModal(props) {
         {currentProject.id === "my-portfolio-old" && <Portfolio_Old openModal={openModal} /> }
         {currentProject.id === "ottawa-rec-sports" && <OttawaRecSports openModal={openModal} /> }
         {currentProject.id === "daily-worshipper" && <DailyWorshipper openModal={openModal} /> }
+        {currentProject.id === "memories" && <Memories openModal={openModal} /> }
 
     </ProjectInfoModalDiv>
     </>

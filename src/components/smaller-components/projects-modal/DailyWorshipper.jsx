@@ -94,7 +94,7 @@ function DailyWorshipper({ openModal }) {
             </div> */}
       </div>
       </div>
-      <p style={{textAlign: 'left', color: 'blue', margin: '1rem', fontStyle: 'italic', fontWeight: 400, paddingBottom: '1rem'}}>Project was made using <b>React Native, Expo.</b></p>
+      <p className='bottom-madewith' style={{textAlign: 'left', color: 'blue', margin: '1rem', fontStyle: 'italic', fontWeight: 400, paddingBottom: '1rem'}}>Project was made using <b>React Native, Expo.</b></p>
       </ContentContainer>
     )
 }

@@ -98,8 +98,8 @@ export function MiniJesus(props) {
     };
   }, [])
 
-  // TOUCH
 
+  // TOUCH /////////////////
   const handleTouchStart = (event) => {
     startX = event.touches[0].clientX;
   };
@@ -125,8 +125,8 @@ export function MiniJesus(props) {
   };
   
 
-  // MOUSE 
 
+  // MOUSE ///////////////
   const handleMouseDown = (event) => {
     startX = event.clientX;
   };
@@ -151,6 +151,16 @@ export function MiniJesus(props) {
     startX = null;
     setSwipeDirection(null);
   };
+
+  // BOTH TOUCH AND MOUSE
+  const HideBubble = () => {
+    //Hide bubble
+    gsap.to(speechBubbleRef.current, {
+      duration:0.5,
+      opacity: 0,
+      transform: 'translateY(-30px)',
+    }); 
+  }
 
   // const handleKeyDown = (event) => {
   //   if (event.shiftKey) {
@@ -197,12 +207,6 @@ export function MiniJesus(props) {
     if (idleStance) setAnimIndex(3);
     if (!idleStance) {
       setAnimIndex(5);
-      //Hide bubble
-      gsap.to(speechBubbleRef.current, {
-        duration:0.5,
-        opacity: 0,
-        transform: 'translateY(-30px)',
-      }); 
     }
   }, [idleStance])
 
@@ -226,7 +230,6 @@ export function MiniJesus(props) {
 
   useFrame((state, delta ) => {
     let angle;
-    
     // KEY DOWN METHOD
     // if (keyDown) {
     //   if (moveDir === 'left') {
@@ -333,6 +336,7 @@ export function MiniJesus(props) {
         Math.round(currentPositionCamera[2]) !== Math.round(prevCameraPosition.current[2])
     ) {
       prevCameraPosition.current = currentPositionCamera;
+      HideBubble();
       setCameraPosition([state.camera.position.x, 1.75, state.camera.position.z])
     }
 
