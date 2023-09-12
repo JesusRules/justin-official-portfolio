@@ -20,12 +20,13 @@ const Container = styled.div`
   background-color: lightblue;
   place-items: center;
   position: relative;
-  overflow-y: auto; 
+  overflow-y: ${(props) => (props.hideOverflow ? 'hidden' : 'auto')};
   overflow-x: hidden;
 `
 
 function App() {
   const [scrollY, setScrollY] = useState(0);
+  const [hideOverflow, setHideOverflow] = useState(false);
 
   const whoRef = useRef(null);
   const skillsRef = useRef(null);
@@ -54,9 +55,13 @@ function App() {
     contactRef.current.scrollIntoView({ behavior: 'smooth' });
   }
 
-  return (
-    <Container onScroll={handleScroll}>
+  const toggleOverflow = () => {
+    setHideOverflow(!hideOverflow);
+  };
 
+  return (
+    <Container onScroll={handleScroll} hideOverflow={hideOverflow}>
+      <button onClick={toggleOverflow} style={{position: 'fixed', top: '5rem', left: '5rem', zIndex: 5000}}>CLICK ME</button>
       <NavBar scrollYGlobal={scrollY} 
               clickToWho={scrollToWho}
               clickToSkills={scrollToSkills}

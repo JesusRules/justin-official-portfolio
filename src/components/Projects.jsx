@@ -399,6 +399,12 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation }) {
       scrollToEducation();
     }
 
+    const preventScroll = (e) => {
+      if (disableScroll) {
+        e.preventDefault();
+      }
+    };
+
   return (
     <>
     <Container ref={myRef}>
