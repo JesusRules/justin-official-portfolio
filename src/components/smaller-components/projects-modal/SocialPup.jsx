@@ -27,6 +27,7 @@ const ContentContainer = styled.div`
 `;
 
 const TitleDiv = styled.div`
+  background-color: #54b9d1;
   @media only screen and (max-width: 500px) {
     h2 {
       font-size: 2rem;
@@ -46,9 +47,10 @@ const images = [
   '/img/projects/memories/preview-1.jpg',
 ];
 
-function Memories({ openModal }) {
+function SocialPup({ openModal }) {
   const swiperRef = useRef();
   const [initialized, setInitialized] = useState(false);
+
 
   useEffect(() => {
     if (initialized) return;
@@ -64,12 +66,13 @@ function Memories({ openModal }) {
   }, [openModal]);
 
   const handleUrl = () => {
-    window.open('https://sparkling-salamander-f12f3e.netlify.app/posts', '_blank');
+    window.open('https://socialape-14d54.web.app/', '_blank');
   }
     return (
       <ContentContainer>
       <div>
-        <img className='title' src='/img/projects/memories/memories-name.png'/>
+      <TitleDiv style={{justifyContent: 'center', display: 'flex', alignItems: 'center'}}>
+      <img className='title' src='/img/projects/socialpup/socialpup-banner-small.jpg'/>        </TitleDiv>
 
         {/* <HorizontalImageLoopProjects _images={images} _isReversed={false} openModal={openModal} _uniqueClassName={"images5"} /> */}
         
@@ -97,13 +100,13 @@ function Memories({ openModal }) {
         className="swiper_container2"
       >
         <SwiperSlide>
-          <img src="/img/projects/memories/preview-2.jpg" alt="slide_image" />
+          <img src="/img/projects/socialpup/preview-2.jpg" alt="slide_image" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="/img/projects/memories/preview-1.jpg" alt="slide_image" />
+          <img src="/img/projects/socialpup/preview-1.jpg" alt="slide_image" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="/img/projects/memories/preview-3.jpg" alt="slide_image" />
+          <img src="/img/projects/socialpup/preview-3.jpg" alt="slide_image" />
         </SwiperSlide>
         <div className="slider-controler">
               <div className="swiper-pagination"></div>
@@ -127,15 +130,15 @@ function Memories({ openModal }) {
         </div>
 
       <div style={{padding: '0 2rem', textAlign: 'center', fontStyle: 'italic', lineHeight: '10%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '1rem'}}>
-            <p>Memories was a 7:30 hour long YouTube tutorial I followed during my attendance at college (by JavaScript Mastery).</p>
-            <iframe width="370" height="200" src="https://www.youtube.com/embed/VsUzmlZfYNg?si=S1N8D_KPebf07Gh9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-            <p>Great video for anyone looking to learn web development and dealing with databases. </p>
+            <p>SocialPup (originally SocialApe) was a 12 hour long YouTube video covering technologies with old style React, Redux and Google's Firebase.</p>
+            <iframe width="370" height="200" src="https://www.youtube.com/embed/m_u6P5k0vP0?si=DKYHsakt5ilpKU7C&amp;start=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <p>It took a while to finish, but it was very helpful!</p>
         </div>
       </div>
 
-      <p className='bottom-madewith' style={{textAlign: 'left', color: 'blue', margin: '1rem', fontStyle: 'italic', fontWeight: 400, paddingBottom: '1rem', paddingTop: '2rem'}}>Project was made using the <b>MERN Stack development bundle (MongoDB, Express, React, Node.js)</b></p>
+      <p className='bottom-madewith' style={{textAlign: 'left', color: 'blue', margin: '1rem', fontStyle: 'italic', fontWeight: 400, paddingBottom: '1rem', paddingTop: '2rem'}}>Project was made using <b>React, Redux, Axios, DayJS, JWT-Decode, and Firebase</b></p>
       </ContentContainer>
     )
 }
 
-export default Memories;
+export default SocialPup;
