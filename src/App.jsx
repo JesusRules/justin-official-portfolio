@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import './css/App.css'
 import './css/Swiper.css'
 import './css/Switch.css'
+import './css/CloseButton.css'
 import Skills from './components/Skills'
 import Hero from './components/Hero'
 import Who from './components/Who'
@@ -55,13 +56,8 @@ function App() {
     contactRef.current.scrollIntoView({ behavior: 'smooth' });
   }
 
-  const toggleOverflow = () => {
-    setHideOverflow(!hideOverflow);
-  };
-
   return (
     <Container onScroll={handleScroll} hideOverflow={hideOverflow}>
-      <button onClick={toggleOverflow} style={{position: 'fixed', top: '5rem', left: '5rem', zIndex: 5000}}>CLICK ME</button>
       <NavBar scrollYGlobal={scrollY} 
               clickToWho={scrollToWho}
               clickToSkills={scrollToSkills}
@@ -74,7 +70,8 @@ function App() {
       <Skills myRef={skillsRef} scrollYGlobal={scrollY}/>
       <Projects myRef={portfolioRef} scrollYGlobal={scrollY} 
                 scrollToSkills={scrollToSkills} 
-                scrollToEducation={scrollToEducation} />
+                scrollToEducation={scrollToEducation}
+                setHideOverflow={setHideOverflow} />
       <Education myRef={educationRef}/>
       <Contact myRef={contactRef}/>
     </Container>

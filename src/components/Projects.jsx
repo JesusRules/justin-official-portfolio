@@ -244,7 +244,7 @@ var contentTitlesArray = [
 ]
 
 
-function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation }) {
+function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, setHideOverflow }) {
   const [animIndex, setAnimIndex] = useState(3); //IDLE
   const playerRef = useRef();
   const speechBubbleRef = useRef();
@@ -377,10 +377,13 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation }) {
           opacity: 1,       // Fade in
           duration: 0.3,
         });
-
+      }
+      if (openModal) {
+        setHideOverflow(true);
+      } else {
+        setHideOverflow(false);
       }
     }, [openModal])
-
 
     const clickProject = () => {
       if (idleStance && withinProject) {
@@ -398,12 +401,6 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation }) {
     const handleDownArrow = () => {
       scrollToEducation();
     }
-
-    const preventScroll = (e) => {
-      if (disableScroll) {
-        e.preventDefault();
-      }
-    };
 
   return (
     <>

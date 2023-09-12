@@ -9,6 +9,7 @@ import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { EffectCoverflow, Pagination, Navigation } from 'swiper/modules';
+import CloseButton from '../CloseButton';
 
 const ContentContainer = styled.div`
   height: 100%;
@@ -38,12 +39,13 @@ const images = [
   '/img/projects/portfolio-old/preview-6.jpg',
 ];
 
-function Portfolio_Old({ openModal }) {
+function Portfolio_Old({ openModal, setOpenModal }) {
   const handleUrl = () => {
     window.open('https://bern0241.github.io/portfolio-website/', '_blank');
   }
     return (
       <ContentContainer>
+      <CloseButton setOpenModal={setOpenModal} />
       <div>
       <TitleDiv style={{justifyContent: 'center', display: 'flex', alignItems: 'center'}}>
            <h2>My Portfolio (Old)</h2>

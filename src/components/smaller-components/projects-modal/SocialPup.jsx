@@ -82,7 +82,7 @@ function SocialPup({ openModal, setOpenModal }) {
   }
     return (
       <ContentContainer>
-        {/* <CloseButton color="white" setOpenModal={setOpenModal} /> */}
+        <CloseButton color="white" setOpenModal={setOpenModal} />
       <div>
       <TitleDiv style={{justifyContent: 'center', display: 'flex', alignItems: 'center'}}>
       <img className='title' src='/img/projects/socialpup/socialpup-banner-small.jpg'/>        </TitleDiv>

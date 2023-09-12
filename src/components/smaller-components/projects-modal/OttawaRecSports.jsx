@@ -9,6 +9,7 @@ import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { EffectCoverflow, Pagination, Navigation } from 'swiper/modules';
+import CloseButton from '../CloseButton';
 
 const ContentContainer = styled.div`
   height: 100%;
@@ -37,12 +38,13 @@ const images = [
   '/img/projects/ottawarecsports/preview-6.jpg',
 ];
 
-function OttawaRecSports({ openModal }) {
+function OttawaRecSports({ openModal, setOpenModal }) {
   const handleUrl = () => {
     window.open('https://snazzy-sunburst-e79220.netlify.app/', '_blank');
   }
     return (
       <ContentContainer>
+      <CloseButton setOpenModal={setOpenModal} />
       <div>
         <TitleDiv style={{justifyContent: 'center', display: 'flex', alignItems: 'center'}}>
            <h2>Ottawa Rec Sports</h2>

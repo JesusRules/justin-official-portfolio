@@ -9,6 +9,7 @@ import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { EffectCoverflow, Pagination, Navigation } from 'swiper/modules';
+import CloseButton from '../CloseButton';
 
 const ContentContainer = styled.div`
   height: 100%;
@@ -35,12 +36,13 @@ const images = [
   '/img/projects/pokithedog/preview-6.jpg',
 ];
 
-function PokiTheDog({ openModal }) {
+function PokiTheDog({ openModal, setOpenModal }) {
   const handleUrl = () => {
     window.open('https://pokithedog.com/', '_blank');
   }
     return (
       <ContentContainer>
+      <CloseButton setOpenModal={setOpenModal} />
       <div>
         {/* <h2>PokiTheDog</h2> */}
         <img className='title' src='/img/projects/pokithedog/pokithedog-logo.png'/>

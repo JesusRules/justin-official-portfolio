@@ -9,6 +9,7 @@ import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { EffectCoverflow, Pagination, Navigation } from 'swiper/modules';
+import CloseButton from '../CloseButton';
 
 const ContentContainer = styled.div`
   height: 100%;
@@ -49,7 +50,7 @@ const BackgroundBanner = styled.div`
 //   '/img/projects/daily-worshipper/preview-7.jpg',
 // ];
 
-function DailyWorshipper({ openModal }) {
+function DailyWorshipper({ openModal, setOpenModal }) {
 
   const handleAppleStore = () => {
     window.open('https://apps.apple.com/us/app/daily-worshipper/id6451055173', '_blank');
@@ -63,6 +64,7 @@ function DailyWorshipper({ openModal }) {
 
     return (
       <ContentContainer>
+      <CloseButton setOpenModal={setOpenModal} />
       <div>
         {/* <TitleDiv style={{justifyContent: 'center', display: 'flex', alignItems: 'center'}}>
            <h2>Daily Worshipper</h2>

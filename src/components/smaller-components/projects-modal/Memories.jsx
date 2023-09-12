@@ -9,6 +9,7 @@ import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { EffectCoverflow, Pagination, Navigation } from 'swiper/modules';
+import CloseButton from '../CloseButton';
 
 const ContentContainer = styled.div`
   height: 100%;
@@ -37,18 +38,20 @@ const TitleDiv = styled.div`
   }
 `
 
-const images = [
-  '/img/projects/memories/preview-1.jpg',
-  '/img/projects/memories/preview-1.jpg',
-  '/img/projects/memories/preview-1.jpg',
-  '/img/projects/memories/preview-1.jpg',
-  '/img/projects/memories/preview-1.jpg',
-  '/img/projects/memories/preview-1.jpg',
-];
-
-function Memories({ openModal }) {
+function Memories({ openModal, setOpenModal }) {
   const swiperRef = useRef();
   const [initialized, setInitialized] = useState(false);
+  const [slidesPerView, setSlidesPerView] = useState(window.innerWidth < 700 ? 1 : 4);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setSlidesPerView(window.innerWidth < 700 ? 1 : 4);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     if (initialized) return;
@@ -58,7 +61,7 @@ function Memories({ openModal }) {
         setTimeout(() => {
           if (swiperRef.current) swiperRef.current.style.display = 'block';
         }, 100)
-      }, 200)
+      }, 100)
       setInitialized(true);
     }
   }, [openModal]);
@@ -68,6 +71,7 @@ function Memories({ openModal }) {
   }
     return (
       <ContentContainer>
+      <CloseButton setOpenModal={setOpenModal} />
       <div>
         <img className='title' src='/img/projects/memories/memories-name.png'/>
 
@@ -80,7 +84,7 @@ function Memories({ openModal }) {
         grabCursor={true}
         centeredSlides={true}
         loop={false}
-        slidesPerView={'4'}
+        slidesPerView={slidesPerView}
         coverflowEffect={{
           rotate: 0,
           stretch: -55,
