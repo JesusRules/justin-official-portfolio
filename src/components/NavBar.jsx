@@ -1,5 +1,6 @@
-import React, { useState, useEffect }from 'react'
+import React, { useState, useEffect, useRef }from 'react'
 import { styled } from 'styled-components'
+import gsap from 'gsap';
 
 const Container = styled.div`
     display: flex;
@@ -43,10 +44,12 @@ const MenuImage = styled.img`
     width: inherit;
     height: inherit;
     object-fit: cover;
+    position: relative;
+    top: 1rem;
     `
 const MenuItems = styled.ul`
     position: absolute;
-    top: 2vw;
+    top: 0;
     bottom: 0;
     left: 0;
     right: 0;
@@ -58,6 +61,7 @@ const MenuItems = styled.ul`
     color: #fff;
     text-decoration: none;
     list-style: none;
+    opacity: 0;
     p {
         font-weight:bold;
         color: #fff;
@@ -81,6 +85,8 @@ function NavBar({ scrollYGlobal,
     const [menuEnabled, setMenuEnabled] = useState(false);
     const [prevScrollPos, setPrevScrollPos] = useState(0);
     const [visible, setVisible] = useState(true);
+    const [gifUrl, setGifUrl] = useState("/img/navbar/Banner-Render-2.gif");
+    const menuItemsRef = useRef();
 
     useEffect(() => {
         window.addEventListener('mousemove', handleMouseMove);
@@ -124,19 +130,34 @@ function NavBar({ scrollYGlobal,
         e.preventDefault();
         setMenuEnabled(!menuEnabled);
     }
+    
+    useEffect(() => {
+        if (menuEnabled === true) {
+            setGifUrl("/img/navbar/Banner-Render-2-Faster.gif")
+            gsap.to(menuItemsRef.current, {
+                opacity: 1,
+                duration: 1,
+            })
+        }
+        if (menuEnabled === false) {
+            setGifUrl("/img/navbar/Banner-Render-3.gif")
+        }
+        
+    }, [menuEnabled])
 
   return (
     <>
     <Container className={`nav ${visible ? 'visible' : 'hidden'}`}>
-        <Image  src="/img/hero-banner/NavBar.png" onClick={(e) => handleClick(e)}/>
+        <Image  src="/img/navbar/NavBar.png" onClick={(e) => handleClick(e)}/>
     </Container>
 
     {menuEnabled && (
     <>
         <DarkBG onClick={() => setMenuEnabled(false)} />
-        <MenuContainer >
-            <MenuImage src="/img/hero-banner/Jesus-Banner.png" />
-            <MenuItems>
+        <MenuContainer>
+            {/* <MenuImage src="/img/navbar/Jesus-Banner.png" /> */}
+            <MenuImage src={gifUrl}/>
+            <MenuItems ref={menuItemsRef}>
                 <li>
                     <p onClick={() => {
                         clickToWho();

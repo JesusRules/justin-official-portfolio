@@ -55,10 +55,10 @@ function Memories({ openModal }) {
     if (openModal) {
       setTimeout(() => {
         if (swiperRef.current) swiperRef.current.style.display = 'none';
-      }, 33)
+      }, 60)
       setTimeout(() => {
         if (swiperRef.current) swiperRef.current.style.display = 'block';
-      }, 50)
+      }, 100)
       setInitialized(true);
     }
   }, [openModal]);

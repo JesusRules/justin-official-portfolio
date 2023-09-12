@@ -254,7 +254,7 @@ const Mario = styled.img`
     /* top: calc(50% + 245px); */
     left: calc(50% - 142px);
     top: 3200px;
-    z-index: 20111;
+    z-index: 20;
     @media only screen and (max-width: 700px) {
         left: calc(50% - 165px + 42px);
         width: 132px;
