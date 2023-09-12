@@ -108,7 +108,7 @@ function ProjectInfoModal(props) {
     
     <ProjectInfoModalDiv ref={projectModalRef}>
         {/* Close Button */}
-          <a onClick={() => setOpenModal(false)} className="close-button">
+          {/* <a onClick={() => setOpenModal(false)} className="close-button">
           <div className="in">
           <div className="close-button-block"></div>
           <div className="close-button-block"></div>
@@ -117,14 +117,14 @@ function ProjectInfoModal(props) {
           <div className="close-button-block"></div>
           <div className="close-button-block"></div>
           </div>
-          </a>
+          </a> */}
 
-        {currentProject.id === "pokithedog" && <PokiTheDog openModal={openModal} /> }
-        {currentProject.id === "my-portfolio-old" && <Portfolio_Old openModal={openModal} /> }
-        {currentProject.id === "ottawa-rec-sports" && <OttawaRecSports openModal={openModal} /> }
-        {currentProject.id === "daily-worshipper" && <DailyWorshipper openModal={openModal} /> }
-        {currentProject.id === "memories" && <Memories openModal={openModal} /> }
-        {currentProject.id === "socialpup" && <SocialPup openModal={openModal} /> }
+        {currentProject.id === "pokithedog" && <PokiTheDog openModal={openModal} setOpenModal={setOpenModal} /> }
+        {currentProject.id === "my-portfolio-old" && <Portfolio_Old openModal={openModal} setOpenModal={setOpenModal} /> }
+        {currentProject.id === "ottawa-rec-sports" && <OttawaRecSports opeopenModal={openModal} setOpenModal={setOpenModal} /> }
+        {currentProject.id === "daily-worshipper" && <DailyWorshipper openModal={openModal} setOpenModal={setOpenModal} /> }
+        {currentProject.id === "memories" && <Memories openModal={openModal} setOpenModal={setOpenModal} /> }
+        {currentProject.id === "socialpup" && <SocialPup openModal={openModal} setOpenModal={setOpenModal} /> }
 
     </ProjectInfoModalDiv>
     </>

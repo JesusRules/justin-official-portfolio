@@ -478,6 +478,10 @@ p {
   transition: all ease-out 280ms;
 }
 
+.close-button-white {
+  background: white;
+}
+
 .close-button-block:last-of-type {
   transform: rotate(180deg);
 }

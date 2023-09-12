@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import { styled, keyframes  } from 'styled-components'
 import gsap from 'gsap';
 import { HorizontalImageLoopProjects } from '../../../utils';
+import CloseButton from '../CloseButton';
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import 'swiper/css';
@@ -47,10 +48,21 @@ const images = [
   '/img/projects/memories/preview-1.jpg',
 ];
 
-function SocialPup({ openModal }) {
+function SocialPup({ openModal, setOpenModal }) {
   const swiperRef = useRef();
   const [initialized, setInitialized] = useState(false);
+  const actualSwiperRef = useRef();
+  const [slidesPerView, setSlidesPerView] = useState(window.innerWidth < 700 ? 1 : 4);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setSlidesPerView(window.innerWidth < 700 ? 1 : 4);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     if (initialized) return;
@@ -60,7 +72,7 @@ function SocialPup({ openModal }) {
         setTimeout(() => {
           if (swiperRef.current) swiperRef.current.style.display = 'block';
         }, 100)
-      }, 200)
+      }, 100)
       setInitialized(true);
     }
   }, [openModal]);
@@ -70,6 +82,7 @@ function SocialPup({ openModal }) {
   }
     return (
       <ContentContainer>
+        {/* <CloseButton color="white" setOpenModal={setOpenModal} /> */}
       <div>
       <TitleDiv style={{justifyContent: 'center', display: 'flex', alignItems: 'center'}}>
       <img className='title' src='/img/projects/socialpup/socialpup-banner-small.jpg'/>        </TitleDiv>
@@ -83,7 +96,7 @@ function SocialPup({ openModal }) {
         grabCursor={true}
         centeredSlides={true}
         loop={false}
-        slidesPerView={'4'}
+        slidesPerView={slidesPerView}
         coverflowEffect={{
           rotate: 0,
           stretch: -55,
