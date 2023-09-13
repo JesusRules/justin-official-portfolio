@@ -14,7 +14,7 @@ import OtherProjects from './projects-modal/OtherProjects';
 const ProjectInfoModalDiv = styled.div`
   height: 92%;
   width: 92%;
-  max-width: 900px;
+  max-width: 1000px;
   margin: auto;
   border-radius: 15px;
   position: absolute;
