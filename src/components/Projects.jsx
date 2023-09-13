@@ -214,7 +214,7 @@ var contentTitlesArray = [
   { name: "Daily Worshipper", description: "An app that can search the entire Bible.", id: 'daily-worshipper' },
   { name: "Memories", description: "A sharing, picture-posting blogging website.", id: 'memories' },
   { name: "SocialPup", description: "A social media clone.", id: 'socialpup' },
-  { name: "My Weather App", description: "An app that can determine the weather anywhere in the world.", id: 'my-weather=app' },
+  { name: "My Weather App", description: "An app that can determine the weather anywhere in the world.", id: 'my-weather-app' },
   { name: "Other Projects (Links)", description: "Other YouTube videos and app prototypes I've done.", id: 'other-projects' },
   
   { name: "", description: "", id: '' },
@@ -267,6 +267,7 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
   const [isLoaded, setIsLoaded] = useState(false);
   const [cameraPosition, setCameraPosition] = useState([1, 2, 1]);
   const [qualityCheck, setQualityCheck] = useState(false);
+  const [startUpCam, setStartUpCam] = useState(false); //MINI JESUS 
 
   // SCROLLING
     useEffect(() => {
@@ -287,6 +288,7 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
       }
       if (scrollYGlobal > divElement.offsetTop || scrollYGlobal < divElement.offsetTop) {
         setShowComponent(false);
+        setStartUpCam(false);
       }
 
   }, [scrollYGlobal])
@@ -465,6 +467,8 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
                         cameraPosition={cameraPosition} 
                         setCameraPosition={setCameraPosition} 
                         setIsLoaded={setIsLoaded}
+                        startUpCam={startUpCam}
+                        setStartUpCam={setStartUpCam}
                         />
                   <OrbitControls
                     enablePan={false}

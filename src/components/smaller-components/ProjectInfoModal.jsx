@@ -8,6 +8,7 @@ import OttawaRecSports from './projects-modal/OttawaRecSports';
 import DailyWorshipper from './projects-modal/DailyWorshipper';
 import Memories from './projects-modal/Memories';
 import SocialPup from './projects-modal/SocialPup';
+import WeatherApp from './projects-modal/WeatherApp';
 
 const ProjectInfoModalDiv = styled.div`
   height: 92%;
@@ -125,6 +126,7 @@ function ProjectInfoModal(props) {
         {currentProject.id === "daily-worshipper" && <DailyWorshipper openModal={openModal} setOpenModal={setOpenModal} /> }
         {currentProject.id === "memories" && <Memories openModal={openModal} setOpenModal={setOpenModal} /> }
         {currentProject.id === "socialpup" && <SocialPup openModal={openModal} setOpenModal={setOpenModal} /> }
+        {currentProject.id === "my-weather-app" && <WeatherApp openModal={openModal} setOpenModal={setOpenModal} /> }
 
     </ProjectInfoModalDiv>
     </>

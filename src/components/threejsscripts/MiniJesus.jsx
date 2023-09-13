@@ -14,7 +14,8 @@ import gsap from 'gsap';
 
 export function MiniJesus(props) {
   const { playerRef, canvasRef, speechBubbleRef, touchObjects, setCurrentProject, setWithinProject,
-          idleStance, setIdleStance, cameraPosition, setCameraPosition, setIsLoaded } = props;
+          idleStance, setIdleStance, cameraPosition, setCameraPosition, setIsLoaded,
+          startUpCam, setStartUpCam } = props;
   const modelRef = useRef();
   const { nodes, materials, animations } = useGLTF('/models/MiniJesus-transformed.glb')
   const { actions, names, ref, mixer } = useAnimations(animations, playerRef)
@@ -31,7 +32,7 @@ export function MiniJesus(props) {
   const [swipeDirection, setSwipeDirection] = useState(0);
   let startX;
   // let cameraPosition;
-  const [startUpCam, setStartUpCam] = useState(false);
+  // const [startUpCam, setStartUpCam] = useState(false);
   const [targetRotation, setTargetRotation] = useState(-Math.PI);
   const [speedDifference, setSpeedDifference] = useState(10);
   // const [idleStance, setIdleStance] = useState(true); //outside! (Projects)
@@ -260,7 +261,8 @@ export function MiniJesus(props) {
     const currentRotation = modelRef.current.rotation.y;
     const lerpedRotation = THREE.MathUtils.lerp(currentRotation, targetRotation, lerpFactor);
     modelRef.current.rotation.y = lerpedRotation;
-      // -Math.PI = FRONT
+      
+    // -Math.PI = FRONT
       // Math.PI / 2 = LEFT
       // -Math.PI / 2 = RIGHT
       // 0 = BACK
