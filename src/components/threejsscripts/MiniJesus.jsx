@@ -390,14 +390,18 @@ export function MiniJesus(props) {
 
   return (
     <group ref={playerRef} {...props} dispose={null} position={[0,0,0]}>
+      <mesh onClick={() => clickedJesus()} position={[0, 0.04, 0]}>
+        <boxGeometry args={[.06,.1,.05]} />
+        <meshBasicMaterial transparent opacity={0} color="blue" />
+      </mesh>
       <group ref={modelRef} name="Scene" rotation={[0, -Math.PI, 0]}>
         <group name="MiniJesus" rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
           <primitive object={nodes.Hip_J} />
         </group>
         <group name="Mini_Jesus" rotation={[Math.PI / 2, 0, 0]} scale={0.01}
+            onClick={() => clickedJesus()}
            onPointerOver={() => setHovered(true)} 
            onPointerOut={() => setHovered(false)} 
-           onClick={() => clickedJesus()}
           >
           <skinnedMesh name="Mesh" geometry={nodes.Mesh.geometry} material={materials.PaletteMaterial001} skeleton={nodes.Mesh.skeleton} />
           <skinnedMesh name="Mesh_1" geometry={nodes.Mesh_1.geometry} material={skinMat} skeleton={nodes.Mesh_1.skeleton} />
