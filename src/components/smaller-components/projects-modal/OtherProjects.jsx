@@ -30,7 +30,7 @@ const ContentContainer = styled.div`
 const ProjectDiv = styled.div`
   display: grid;
   margin: 0 auto;
-  width: 88%;
+  width: 89%;
   grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
   row-gap: 4rem;
@@ -175,24 +175,24 @@ function OtherProjects({ openModal, setOpenModal }) {
             <div className='info left'>
               <h3 onClick={(e) => handleUrl("https://whimsical-sawine-ca8839.netlify.app/")}>YouTube Clone</h3>
               <p>2 hour long video I followed on YouTube (by JavaScript Mastery) using React, Material UI, and RapidAPI.
-              Video link <a href="https://www.youtube.com/watch?v=FHTbsZEJspU&t=1s">here</a></p>
+              Video link <a href="https://www.youtube.com/watch?v=FHTbsZEJspU&t=1s" target="_blank">here</a></p>
             </div>          
           </div>
           <div className='grid-item' style={{ gridArea: 'four' }}>
-            <img className='' src="/img/projects/other-projects/polished+.jpg" 
+            <img className='' src="/img/projects/other-projects/youtube-clone.jpg" 
                 onClick={(e) => handleUrl("https://whimsical-sawine-ca8839.netlify.app/")}/>
           </div>
 
 
           {/* Bike Club */}
           <div className='grid-item' style={{ gridArea: 'five' }}>
-            <img className='' src="/img/projects/other-projects/polished+.jpg" 
+            <img className='' src="/img/projects/other-projects/bike-club.jpg" 
                 onClick={(e) => handleUrl("https://bern0241.github.io/9013-bootstrap-010/#")}/>
           </div>
           <div className='grid-item' style={{ gridArea: 'six' }}>
             <div className='info'>
               <h3 onClick={(e) => handleUrl("https://bern0241.github.io/9013-bootstrap-010/#")}>The Bike Club</h3>
-              <p>A beginner assignment done in school when learning fundamental HTML, CSS, JS and <a href="https://getbootstrap.com/">Bootstrap.</a></p>
+              <p>A beginner assignment done in school when learning fundamental HTML, CSS, JS and <a href="https://getbootstrap.com/" target="_blank">Bootstrap.</a></p>
             </div>
           </div>
 
@@ -200,23 +200,23 @@ function OtherProjects({ openModal, setOpenModal }) {
           <div className='grid-item' style={{ gridArea: 'seven' }}>
             <div className='info left'>
               <h3 onClick={(e) => handleUrl("https://bejewelled-malabi-9c797f.netlify.app/")}>Fire Giftr</h3>
-              <p>Fire Giftr was a hybrid assignment where we learned to sign into a GitHub account and save data to the Firebase database.</p>
+              <p>Fire Giftr was a hybrid assignment where we learned to sign into our GitHub accounts and save data using Firebase's database.</p>
             </div>          
           </div>
           <div className='grid-item' style={{ gridArea: 'eight' }}>
-            <img className='' src="/img/projects/other-projects/polished+.jpg" 
+            <img className='' src="/img/projects/other-projects/fire-giftr.jpg" 
                 onClick={(e) => handleUrl("https://bejewelled-malabi-9c797f.netlify.app/")}/>
           </div>
 
 
           {/* Proof Of Concept - Postgres Test */}
           <div className='grid-item' style={{ gridArea: 'nine' }}>
-            <img className='' src="/img/projects/other-projects/polished+.jpg" 
-                onClick={(e) => handleUrl("https://gleaming-kulfi-440d07.netlify.app/")}/>
+            <img className='' src="/img/projects/other-projects/postgres-poc.jpg" 
+                onClick={(e) => handleUrl("https://candid-dolphin-08c29e.netlify.app/")}/>
           </div>
           <div className='grid-item' style={{ gridArea: 'ten' }}>
             <div className='info'>
-              <h3 onClick={(e) => handleUrl("https://gleaming-kulfi-440d07.netlify.app/")}>Proof Of Concept - Postgres Test</h3>
+              <h3 onClick={(e) => handleUrl("https://candid-dolphin-08c29e.netlify.app/")}>Proof Of Concept - Postgres Test</h3>
               <p>This test was an important step me and my team had to make prior to the development of Ottawa Rec Sports. We learned the basics of PostgreSQL and relational databases, especially many-to-many calls.</p>
             </div>
           </div>
@@ -225,51 +225,49 @@ function OtherProjects({ openModal, setOpenModal }) {
         {/* ThreeJS Crash Course */}
           <div className='grid-item' style={{ gridArea: 'eleven' }}>
             <div className='info left'>
-              <h3 onClick={(e) => handleUrl("https://www.youtube.com/watch?v=YK1Sw_hnm58")}>ThreeJS Crash Course</h3>
-              <p>A 2 and a half hour video on YouTube by Chris Courses <a href="https://www.youtube.com/watch?v=YK1Sw_hnm58">(video link)</a> 
-                A very useful tutorial on learning ThreeJS with vanilla HTML and JavaScript.</p>
+              <h3 onClick={(e) => handleUrl("https://sweet-crisp-75d074.netlify.app/")}>ThreeJS Crash Course</h3>
+              <p>A nifty YouTube tutorial by Chris Courses <a href="https://www.youtube.com/watch?v=YK1Sw_hnm58" target="_blank">(video link).</a> Very useful on learning ThreeJS with vanilla HTML and JavaScript.</p>
             </div>          
           </div>
           <div className='grid-item' style={{ gridArea: 'twelve' }}>
-            <img className='' src="/img/projects/other-projects/polished+.jpg" 
-                onClick={(e) => handleUrl("https://www.youtube.com/watch?v=YK1Sw_hnm58")}/>
+            <img className='' src="/img/projects/other-projects/threejs-crash-course.jpg" 
+                onClick={(e) => handleUrl("https://sweet-crisp-75d074.netlify.app/")}/>
           </div>
 
           {/* ThreeJS Portfolio */}
           <div className='grid-item' style={{ gridArea: 'thirteen' }}>
-            <img className='' src="/img/projects/other-projects/polished+.jpg" 
-                onClick={(e) => handleUrl("https://gleaming-kulfi-440d07.netlify.app/")}/>
+            <img className='' src="/img/projects/other-projects/threejs-portfolio.jpg" 
+                onClick={(e) => handleUrl("https://three-js-portfolio-tutorial.netlify.app/")}/>
           </div>
           <div className='grid-item' style={{ gridArea: 'fourteen' }}>
             <div className='info'>
-              <h3 onClick={(e) => handleUrl("https://gleaming-kulfi-440d07.netlify.app/")}>ThreeJS Portfolio</h3>
-              <p>Another very useful tutorial when learning React Three Fiber (ThreeJS but for React). <a href="https://www.youtube.com/watch?v=qALsVa-V9qo&t=300s">Video link here.</a></p>
+              <h3 onClick={(e) => handleUrl("https://three-js-portfolio-tutorial.netlify.app/")}>ThreeJS Portfolio</h3>
+              <p>Another very useful tutorial when learning React Three Fiber (ThreeJS but for React). <a href="https://www.youtube.com/watch?v=qALsVa-V9qo&t=300s" target="_blank">Video link here.</a></p>
             </div>
           </div>
 
           {/* Parallax Tutorial */}
           <div className='grid-item' style={{ gridArea: 'fifteen' }}>
             <div className='info left'>
-              <h3 onClick={(e) => handleUrl("https://whimsical-sawine-ca8839.netlify.app/")}>Parallax Tutorial</h3>
-              <p>A super interesting video on creating a awesome parallax effect for website hero banners. Taught me a lot about compositing in Photoshop and advanced JavaScript.
-                <a href="https://www.youtube.com/watch?v=Yo3j_Dx4u7c&t=2489s">Video link here.</a>
+              <h3 onClick={(e) => handleUrl("https://admirable-kashata-8e7974.netlify.app/")}>Parallax Tutorial</h3>
+              <p>A super interesting video on creating an awesome parallax effect for website hero banners. Taught me a lot about compositing in Photoshop and advanced JavaScript. <a href="https://www.youtube.com/watch?v=Yo3j_Dx4u7c&t=2489s" target="_blank">Video link here.</a>
               </p>
             </div>          
           </div>
           <div className='grid-item' style={{ gridArea: 'sixteen' }}>
-            <img className='' src="/img/projects/other-projects/polished+.jpg" 
-                onClick={(e) => handleUrl("https://whimsical-sawine-ca8839.netlify.app/")}/>
+            <img className='' src="/img/projects/other-projects/parallax-image.jpg" 
+                onClick={(e) => handleUrl("https://admirable-kashata-8e7974.netlify.app/")}/>
           </div>
 
           {/* Giftr (Flutter) */}
           <div className='grid-item' style={{ gridArea: 'seventeen' }}>
-            <img className='' src="/img/projects/other-projects/polished+.jpg" 
-                onClick={(e) => handleUrl("https://gleaming-kulfi-440d07.netlify.app/")}/>
+            <img className='' src="/img/projects/other-projects/giftr-flutter.jpg" 
+                onClick={(e) => handleUrl("https://willowy-llama-b7af14.netlify.app/#/")}/>
           </div>
           <div className='grid-item' style={{ gridArea: 'eighteen' }}>
             <div className='info'>
-              <h3 onClick={(e) => handleUrl("https://gleaming-kulfi-440d07.netlify.app/")}>Giftr (Flutter)</h3>
-              <p>A school assignment that taught us the foundations of using <a href="https://flutter.dev/development?gclid=Cj0KCQjwmICoBhDxARIsABXkXlJLORbygAzmGgvqmj2ji9RBb9yODa7P9xDih9RmixTMHRuRGwZSTbgaAtrDEALw_wcB&gclsrc=aw.ds">Flutter and Dart.</a> In association with Express and Mongoose (MongoDB).</p>
+              <h3 onClick={(e) => handleUrl("https://willowy-llama-b7af14.netlify.app/#/")}>Giftr (Flutter)</h3>
+              <p>A not very attractive website, but a school assignment that taught us the foundations of using <a href="https://flutter.dev/development?gclid=Cj0KCQjwmICoBhDxARIsABXkXlJLORbygAzmGgvqmj2ji9RBb9yODa7P9xDih9RmixTMHRuRGwZSTbgaAtrDEALw_wcB&gclsrc=aw.ds" target="_blank">Flutter and Dart.</a> In association with Express and Mongoose (MongoDB).</p>
             </div>
           </div>
 
