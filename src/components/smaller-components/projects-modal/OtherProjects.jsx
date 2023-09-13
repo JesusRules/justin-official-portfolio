@@ -33,11 +33,19 @@ const ProjectDiv = styled.div`
   width: 88%;
   grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
-  row-gap: 2rem;
+  row-gap: 4rem;
   align-items: center;
   grid-template-areas: 
     'one two' 
-    'three four';
+    'three four'
+    'five six'
+    'seven eight'
+    'nine ten'
+    'eleven twelve'
+    'thirteen fourteen'
+    'fifteen sixteen'
+    'seventeen eighteen'
+    ;
 
   margin-bottom: 1rem;
 
@@ -59,6 +67,9 @@ const ProjectDiv = styled.div`
   }
   .left {
     text-align: right;
+    h3 {
+      text-align: right;
+    }
   }
   img {
     border: 1px solid black;
@@ -71,9 +82,24 @@ const ProjectDiv = styled.div`
     grid-template-columns: 1fr;
     grid-template-areas: 
     'two'
-    'one' 
+    'one'
     'three'
-    'four';
+    'four'
+    'six'
+    'five'
+    'seven'
+    'eight'
+    'ten'
+    'nine'
+    'eleven'
+    'twelve'
+    'fourteen'
+    'thirteen'
+    'fifteen'
+    'sixteen'
+    'eighteen'
+    'seventeen';
+
     
     .info {
       h3 {
@@ -135,7 +161,6 @@ function OtherProjects({ openModal, setOpenModal }) {
             <img className='' src="/img/projects/other-projects/polished+.jpg" 
                 onClick={(e) => handleUrl("https://gleaming-kulfi-440d07.netlify.app/")}/>
           </div>
-
           <div className='grid-item' style={{ gridArea: 'two' }}>
             <div className='info'>
               <h3 onClick={(e) => handleUrl("https://gleaming-kulfi-440d07.netlify.app/")}>Polished+</h3>
@@ -143,16 +168,104 @@ function OtherProjects({ openModal, setOpenModal }) {
             </div>
           </div>
         
+
           <div className='grid-item' style={{ gridArea: 'three' }}>
             <div className='info left'>
-              <h3 onClick={(e) => handleUrl("https://gleaming-kulfi-440d07.netlify.app/")}>Polished+</h3>
-              <p>Beginning of college assignment I did, learning the fundamentals of HTML and CSS.</p>
+              <h3 onClick={(e) => handleUrl("https://whimsical-sawine-ca8839.netlify.app/")}>YouTube Clone</h3>
+              <p>2 hour long video I followed on YouTube (by JavaScript Mastery) using React, Material UI, and RapidAPI.
+              Video link <a href="https://www.youtube.com/watch?v=FHTbsZEJspU&t=1s">here</a></p>
             </div>          
           </div>
-
           <div className='grid-item' style={{ gridArea: 'four' }}>
             <img className='' src="/img/projects/other-projects/polished+.jpg" 
+                onClick={(e) => handleUrl("https://whimsical-sawine-ca8839.netlify.app/")}/>
+          </div>
+
+
+          <div className='grid-item' style={{ gridArea: 'five' }}>
+            <img className='' src="/img/projects/other-projects/polished+.jpg" 
                 onClick={(e) => handleUrl("https://gleaming-kulfi-440d07.netlify.app/")}/>
+          </div>
+          <div className='grid-item' style={{ gridArea: 'six' }}>
+            <div className='info'>
+              <h3 onClick={(e) => handleUrl("https://gleaming-kulfi-440d07.netlify.app/")}>Polished+</h3>
+              <p>Beginning of college assignment I did, learning the fundamentals of HTML and CSS.</p>
+            </div>
+          </div>
+
+
+          <div className='grid-item' style={{ gridArea: 'seven' }}>
+            <div className='info left'>
+              <h3 onClick={(e) => handleUrl("https://whimsical-sawine-ca8839.netlify.app/")}>YouTube Clone</h3>
+              <p>2 hour long video I followed on YouTube (by JavaScript Mastery) using React, Material UI, and RapidAPI.
+              Video link <a href="https://www.youtube.com/watch?v=FHTbsZEJspU&t=1s">here</a></p>
+            </div>          
+          </div>
+          <div className='grid-item' style={{ gridArea: 'eight' }}>
+            <img className='' src="/img/projects/other-projects/polished+.jpg" 
+                onClick={(e) => handleUrl("https://whimsical-sawine-ca8839.netlify.app/")}/>
+          </div>
+
+
+          <div className='grid-item' style={{ gridArea: 'nine' }}>
+            <img className='' src="/img/projects/other-projects/polished+.jpg" 
+                onClick={(e) => handleUrl("https://gleaming-kulfi-440d07.netlify.app/")}/>
+          </div>
+          <div className='grid-item' style={{ gridArea: 'ten' }}>
+            <div className='info'>
+              <h3 onClick={(e) => handleUrl("https://gleaming-kulfi-440d07.netlify.app/")}>Polished+</h3>
+              <p>Beginning of college assignment I did, learning the fundamentals of HTML and CSS.</p>
+            </div>
+          </div>
+
+
+          <div className='grid-item' style={{ gridArea: 'eleven' }}>
+            <div className='info left'>
+              <h3 onClick={(e) => handleUrl("https://whimsical-sawine-ca8839.netlify.app/")}>YouTube Clone</h3>
+              <p>2 hour long video I followed on YouTube (by JavaScript Mastery) using React, Material UI, and RapidAPI.
+              Video link <a href="https://www.youtube.com/watch?v=FHTbsZEJspU&t=1s">here</a></p>
+            </div>          
+          </div>
+          <div className='grid-item' style={{ gridArea: 'twelve' }}>
+            <img className='' src="/img/projects/other-projects/polished+.jpg" 
+                onClick={(e) => handleUrl("https://whimsical-sawine-ca8839.netlify.app/")}/>
+          </div>
+
+
+          <div className='grid-item' style={{ gridArea: 'thirteen' }}>
+            <img className='' src="/img/projects/other-projects/polished+.jpg" 
+                onClick={(e) => handleUrl("https://gleaming-kulfi-440d07.netlify.app/")}/>
+          </div>
+          <div className='grid-item' style={{ gridArea: 'fourteen' }}>
+            <div className='info'>
+              <h3 onClick={(e) => handleUrl("https://gleaming-kulfi-440d07.netlify.app/")}>Polished+</h3>
+              <p>Beginning of college assignment I did, learning the fundamentals of HTML and CSS.</p>
+            </div>
+          </div>
+
+
+          <div className='grid-item' style={{ gridArea: 'fifteen' }}>
+            <div className='info left'>
+              <h3 onClick={(e) => handleUrl("https://whimsical-sawine-ca8839.netlify.app/")}>YouTube Clone</h3>
+              <p>2 hour long video I followed on YouTube (by JavaScript Mastery) using React, Material UI, and RapidAPI.
+              Video link <a href="https://www.youtube.com/watch?v=FHTbsZEJspU&t=1s">here</a></p>
+            </div>          
+          </div>
+          <div className='grid-item' style={{ gridArea: 'sixteen' }}>
+            <img className='' src="/img/projects/other-projects/polished+.jpg" 
+                onClick={(e) => handleUrl("https://whimsical-sawine-ca8839.netlify.app/")}/>
+          </div>
+
+
+          <div className='grid-item' style={{ gridArea: 'seventeen' }}>
+            <img className='' src="/img/projects/other-projects/polished+.jpg" 
+                onClick={(e) => handleUrl("https://gleaming-kulfi-440d07.netlify.app/")}/>
+          </div>
+          <div className='grid-item' style={{ gridArea: 'eighteen' }}>
+            <div className='info'>
+              <h3 onClick={(e) => handleUrl("https://gleaming-kulfi-440d07.netlify.app/")}>Polished+</h3>
+              <p>Beginning of college assignment I did, learning the fundamentals of HTML and CSS.</p>
+            </div>
           </div>
 
         </ProjectDiv>
