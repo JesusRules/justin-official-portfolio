@@ -187,11 +187,11 @@ function Who({ myRef }) {
               
               
               <div className='social-media-icons' style={{display: 'flex', gap: '.6rem', pointerEvents: 'auto'}}>
-                <a title="Facebook" href="https://www.facebook.com/justin.bernard320"><img src="/svg/facebook.svg"/></a>
-                <a title="YouTube" href="https://www.youtube.com/channel/UCx8Il9AsAJZnIs9BwXY_M7g"><img src="/svg/youtube.svg"/></a>
-                <a title="GitHub" href="https://github.com/bern0241"><img src="/svg/github.svg"/></a>
-                <a title="LinkedIn" href="https://www.linkedin.com/in/justin-bernard32/"><img src="/svg/linkedin.svg"/></a>
-                <a title="Instagram" href="https://www.instagram.com/justin.bernard320/"><img src="/svg/instagram.svg"/></a>
+                <a target="_blank" title="Facebook" href="https://www.facebook.com/justin.bernard320"><img src="/svg/facebook.svg"/></a>
+                <a target="_blank" title="YouTube" href="https://www.youtube.com/channel/UCx8Il9AsAJZnIs9BwXY_M7g"><img src="/svg/youtube.svg"/></a>
+                <a target="_blank" title="GitHub" href="https://github.com/bern0241"><img src="/svg/github.svg"/></a>
+                <a target="_blank" title="LinkedIn" href="https://www.linkedin.com/in/justin-bernard32/"><img src="/svg/linkedin.svg"/></a>
+                <a target="_blank" title="Instagram" href="https://www.instagram.com/justin.bernard320/"><img src="/svg/instagram.svg"/></a>
               </div>
 
             <ResumeButton href="/justin-bernard-resume.docx" target="_blank">

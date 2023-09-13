@@ -71,12 +71,29 @@ const MenuItems = styled.ul`
         cursor: pointer;
 
         text-decoration: none;
-        transition: text-decoration 0.3s ease-in-out;
+        // transition: text-decoration 0.3s ease-in-out;
+        position: relative;
 
     }
     p:hover {
-    text-decoration: underline;
+    // text-decoration: underline;
     }
+    p:after {    
+        background: none repeat scroll 0 0 transparent;
+        bottom: 0;
+        content: "";
+        display: block;
+        height: 2px;
+        left: 50%;
+        position: absolute;
+        background: #fff;
+        transition: width 0.1s ease 0s, left 0.1s ease 0s;
+        width: 0;
+      }
+      p:hover:after { 
+        width: 100%; 
+        left: 0; 
+      }
 `
 
 function NavBar({ scrollYGlobal, 

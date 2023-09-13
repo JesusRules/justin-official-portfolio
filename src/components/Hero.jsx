@@ -277,7 +277,7 @@ const MiniJesus = styled.img`
 const Justin = styled.img`
     position: absolute;
     width: 235px;
-    /* top: calc(50% + 157px); */
+    // top: calc(50% + 157px);
     top: 3600px;
     left: calc(50% + 0px);
     z-index: 22;
@@ -448,6 +448,7 @@ function Hero({ scrollYGlobal }) {
         
         update(event.touches[0].clientX);
     }
+
 
       const gsapBeginning = () => {
         gsap.to(skyRef.current, {
@@ -653,7 +654,7 @@ function Hero({ scrollYGlobal }) {
 
       
       useEffect(() => {
-            setJustinPos(window.getComputedStyle(justinRef.current).getPropertyValue('left'));
+            // setJustinPos(window.getComputedStyle(justinRef.current).getPropertyValue('left'));
             setMiniJesusPos(window.getComputedStyle(miniJesusRef.current).getPropertyValue('left'));
             setMarioPos(window.getComputedStyle(marioRef.current).getPropertyValue('left'));
             setPikachuPos(window.getComputedStyle(pikachuRef.current).getPropertyValue('left'));
@@ -679,7 +680,7 @@ function Hero({ scrollYGlobal }) {
         const currentScrollY = scrollYGlobal;
 
         if (currentScrollY > scrollY) { //down
-            justinRef.current.style.left = parseFloat(justinPos) + scrollYGlobal * -1 + 'px';
+            // justinRef.current.style.left = parseFloat(justinPos) + scrollYGlobal * -1 + 'px';
             miniJesusRef.current.style.left = parseFloat(miniJesusPos) + scrollYGlobal * 1 + 'px';
             marioRef.current.style.left = parseFloat(marioPos) + scrollYGlobal * -1 + 'px';
             pikachuRef.current.style.left = parseFloat(pikachuPos) + scrollYGlobal * 1 + 'px';
@@ -694,7 +695,7 @@ function Hero({ scrollYGlobal }) {
             // contactBtnRef.current.style.bottom = parseFloat(contactBtnPos) + scrollYGlobal * 1 + 'px';
         }
          else if (currentScrollY < scrollY && scrollYGlobal < '600') { //up
-            justinRef.current.style.left = "";
+            // justinRef.current.style.left = "";
             miniJesusRef.current.style.left = "";
             marioRef.current.style.left = "";
             pikachuRef.current.style.left = "";
