@@ -72,7 +72,7 @@ function App() {
                 scrollToSkills={scrollToSkills} 
                 scrollToEducation={scrollToEducation}
                 setHideOverflow={setHideOverflow} />
-      <Education myRef={educationRef}/>
+      <Education myRef={educationRef} scrollYGlobal={scrollY} />
       <Contact myRef={contactRef}/>
     </Container>
   )
