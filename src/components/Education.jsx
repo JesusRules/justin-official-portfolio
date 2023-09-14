@@ -17,6 +17,7 @@ const Section = styled.div`
 const Container = styled.div`
   position: relative;
   width: 100%;
+  height: 100%;
   // max-width: 1100px;
   // top: 6vw;
   margin: 0 auto;
@@ -36,7 +37,7 @@ const Container = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Adjust the opacity here */
+    background-color: rgba(0, 0, 0, 0.66); /* Adjust the opacity here */
     opacity: 0; /* Start with 0 opacity */
     pointer-events: none; /* Allow clicks to pass through the overlay */
     z-index: 10;
@@ -46,6 +47,16 @@ const Container = styled.div`
     // top: 3.5rem;
   }
 `;
+
+const EducationPopup = styled.div`
+  color: white;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  right: 0;
+  z-index: 20;
+`
 
 const FloatingBox = styled.div`
   position: absolute;
@@ -59,7 +70,9 @@ const FloatingBox = styled.div`
   height: 82%;
   width: 92%;
   max-width: 1100px;
-  z-index: 10;
+  z-index: 30;
+  opacity: 0;
+  display: none;
   @media only screen and (max-width: 800px) {
     top: 1rem;
   }
@@ -79,6 +92,12 @@ const Banner = styled.img`
 function Education({ myRef, scrollYGlobal }) {
   const overlayRef = useRef(null);
   const backgroundImageRef = useRef(null);
+  // Beginning Effect
+  const text1Ref = useRef();
+  const text2Ref = useRef();
+  const educationPopupRef = useRef();
+  // Main
+  const floatingBoxRef = useRef();
 
   useEffect(() => {
     const divElement = myRef.current;
@@ -92,8 +111,28 @@ function Education({ myRef, scrollYGlobal }) {
     }, [scrollYGlobal])
 
     const OnViewed = () => {
+      gsap.to(overlayRef.current, { opacity: 1, duration: 2, delay: 0 });
       gsap.to(backgroundImageRef.current, { scale: 1.1, duration: 8 });
-      gsap.to(overlayRef.current, { opacity: 1, duration: 1, delay: 5 });
+      // Text effects
+      gsap.to(text1Ref.current, { opacity: 1, duration: 2, delay: 0 });
+      gsap.to(text2Ref.current, { opacity: 1, duration: 2, delay: 2 });
+      // Main
+      gsap.to(floatingBoxRef.current, 
+        { 
+          opacity: 1, 
+          duration: 1, 
+          delay: 5.5,
+          onStart: () => {
+            floatingBoxRef.current.style.display = 'block'
+          },
+        });
+        gsap.to(educationPopupRef.current, 
+          { opacity: 0, 
+            duration: 1, 
+            delay: 5.5,
+            onComplete: () => { 
+              educationPopupRef.current.style.display = 'none'
+          } });
     }
 
 
@@ -101,13 +140,24 @@ function Education({ myRef, scrollYGlobal }) {
     <Section ref={myRef}>
       <Container>
         <div ref={overlayRef} className="overlay"></div>
-        <img ref={backgroundImageRef} src="/img/education/algonquin-college.jpg" alt="Background Image" className="background-image" />
+        <img draggable={false} ref={backgroundImageRef} src="/img/education/algonquin-college.jpg" alt="Background Image" className="background-image" />
 
-        {/* <FloatingBox>
+        <EducationPopup ref={educationPopupRef} >
+          <p ref={text1Ref} style={{fontSize: '3.5rem', opacity: 0}}>My Education</p>
+          
+            <div ref={text2Ref} style={{display: 'flex', justifyContent: 'center', 
+                              alignItems: 'end', gap: '1rem',
+                              opacity: 0}}>
+            <p style={{fontSize: '3.5rem'}}>At </p>
+            <img draggable={false} style={{width: '20rem', position: 'relative', top: '0.3rem'}} src="/img/education/algonquin-college-logo.png"/>
+          </div>
+        </EducationPopup>
+
+        <FloatingBox ref={floatingBoxRef}>
           <Content>
             <h2>My Education</h2>
           </Content>
-        </FloatingBox> */}
+        </FloatingBox>
 
       {/* <Banner src="/img/education/algonquin-college.jpg"/> */}
       {/* <h1>Education</h1> */}
