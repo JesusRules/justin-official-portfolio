@@ -61,7 +61,7 @@ const EducationPopup = styled.div`
 
 const FloatingBox = styled.div`
   position: absolute;
-  top: 6vw;
+  top: 3vw;
   bottom: 0;
   left: 0;
   right: 0;
@@ -253,10 +253,14 @@ function Education({ myRef, scrollYGlobal }) {
     };
 
     const GameDevGraduatedLink = () => {
-      window.open('https://drive.google.com/file/d/1i0o7hcPwAWGdsVgMl3929-Q3LHstEg_t/view?usp=sharing', '_blank');
+      window.open('https://drive.google.com/file/d/1i0o7hcPwAWGdsVgMl3929-Q3LHstEg_t/view?usp=sharing');
+      // window.open('https://drive.google.com/file/d/1i0o7hcPwAWGdsVgMl3929-Q3LHstEg_t/view?usp=sharing', '_blank');
     }
     const MADDGraduatedLink = () => {
-      window.open('https://drive.google.com/file/d/1wdxcyf9W-N1ppXQfkvZbvDgWQxy2n15q/view?usp=sharing', '_blank');
+      window.open('https://drive.google.com/file/d/1wdxcyf9W-N1ppXQfkvZbvDgWQxy2n15q/view?usp=sharing');
+    }
+    const GradesLink = () => {
+      window.open('https://drive.google.com/file/d/1RulDt3DBsVV_cg3Q60xid17W0UzKaCRp/view?usp=sharing');
     }
 
 
@@ -270,6 +274,14 @@ function Education({ myRef, scrollYGlobal }) {
             <img src="/img/education/madd-diploma.jpg"/>
           </ModalImage>
           <DarkBG onClick={(e) => setDiplomaModal(false)}/>
+          </>
+        )}
+        {gradesModal && (
+          <>
+          <ModalImage>
+            <img src="/img/education/grades.jpg"/>
+          </ModalImage>
+          <DarkBG onClick={(e) => setGradesModal(false)}/>
           </>
         )}
 
@@ -315,7 +327,7 @@ function Education({ myRef, scrollYGlobal }) {
               <br/>
               <br/>
               <p style={{fontStyle: 'italic'}}>Proof I had amazing grades! </p>
-              <img style={{width: '7rem'}} src="/img/education/view-grades-icon.png"/>
+              <img style={{width: '7rem', cursor: 'pointer'}} src="/img/education/view-grades-icon.png" onClick={(e) => GradesLink()}/>
             </div>
             {/* <div style={{display: 'flex', justifyContent: 'center'}}>
               <ZoomableImage src="/img/education/grades.jpg" />
