@@ -50,11 +50,8 @@ function OttawaRecSports({ openModal, setOpenModal }) {
            <h2>Ottawa Rec Sports</h2>
            <img style={{width: '60px', height: '60px'}} src="/img/projects/ottawarecsports/ORS-Logo.png" />
         </TitleDiv>
-        <HorizontalImageLoopProjects _images={images} _isReversed={false} openModal={openModal} _uniqueClassName={"images5"} />
         
-        {/* <div style={{textAlign: 'center', margin: '1rem'}}>
-            <a style={{fontSize: '1.2rem'}} href='https://snazzy-sunburst-e79220.netlify.app/' target="_blank">Test Our Ottawa Rec Sports!</a>
-        </div> */}
+        <HorizontalImageLoopProjects _images={images} _isReversed={false} openModal={openModal} _uniqueClassName={"images5"} />
 
         <div style={{textAlign: 'center', margin: '1rem'}}>
             <h4 style={{fontWeight: 800, marginBottom: '.26rem'}}>Try it out!</h4>

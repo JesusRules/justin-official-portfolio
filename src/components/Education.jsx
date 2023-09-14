@@ -82,6 +82,18 @@ const Content = styled.div`
   padding: 1rem;
 `
 
+const ScrollImage = styled.div`
+ position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100vh; /* Adjust to the desired height */
+  img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease; /* Add a smooth transition effect */
+  }
+`;
+
 const Banner = styled.img`
   // width: 40rem;
   width: 100%;
@@ -112,16 +124,16 @@ function Education({ myRef, scrollYGlobal }) {
 
     const OnViewed = () => {
       gsap.to(overlayRef.current, { opacity: 1, duration: 2, delay: 0 });
-      gsap.to(backgroundImageRef.current, { scale: 1.1, duration: 8 });
+      gsap.to(backgroundImageRef.current, { scale: 1.05, duration: 7 });
       // Text effects
-      gsap.to(text1Ref.current, { opacity: 1, duration: 2, delay: 0 });
-      gsap.to(text2Ref.current, { opacity: 1, duration: 2, delay: 2 });
+      gsap.to(text1Ref.current, { opacity: 1, duration: 1.5, delay: 0 });
+      gsap.to(text2Ref.current, { opacity: 1, duration: 1.5, delay: 1.5 });
       // Main
       gsap.to(floatingBoxRef.current, 
         { 
           opacity: 1, 
           duration: 1, 
-          delay: 5.5,
+          delay: 4,
           onStart: () => {
             floatingBoxRef.current.style.display = 'block'
           },
@@ -129,11 +141,17 @@ function Education({ myRef, scrollYGlobal }) {
         gsap.to(educationPopupRef.current, 
           { opacity: 0, 
             duration: 1, 
-            delay: 5.5,
+            delay: 4,
             onComplete: () => { 
               educationPopupRef.current.style.display = 'none'
           } });
+          gsap.to(overlayRef.current, { opacity: 0.3, duration: 1, delay: 4 });
     }
+
+    // Image Scroll
+    const imageStyle = {
+      transform: `translateY(${scrollYGlobal * 0.1}px)`, // Adjust the multiplier for the desired scroll speed
+    };
 
 
   return (
@@ -156,6 +174,8 @@ function Education({ myRef, scrollYGlobal }) {
         <FloatingBox ref={floatingBoxRef}>
           <Content>
             <h2>My Education</h2>
+            <p>Check out them grades!</p>
+            
           </Content>
         </FloatingBox>
 

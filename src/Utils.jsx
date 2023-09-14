@@ -13,7 +13,7 @@ export const HorizontalImageLoopProjects = ({ _images, _isReversed, openModal, _
     useEffect(() => {
         setTimeout(() => {
             giantTimeout();
-          }, "500");
+          }, "600");
 
         function giantTimeout() {
             const boxes = gsap.utils.toArray("." + _uniqueClassName);

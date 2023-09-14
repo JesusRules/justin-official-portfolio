@@ -123,7 +123,7 @@ function ProjectInfoModal(props) {
 
         {currentProject.id === "pokithedog" && <PokiTheDog openModal={openModal} setOpenModal={setOpenModal} /> }
         {currentProject.id === "my-portfolio-old" && <Portfolio_Old openModal={openModal} setOpenModal={setOpenModal} /> }
-        {currentProject.id === "ottawa-rec-sports" && <OttawaRecSports opeopenModal={openModal} setOpenModal={setOpenModal} /> }
+        {currentProject.id === "ottawa-rec-sports" && <OttawaRecSports openModal={openModal} setOpenModal={setOpenModal} /> }
         {currentProject.id === "daily-worshipper" && <DailyWorshipper openModal={openModal} setOpenModal={setOpenModal} /> }
         {currentProject.id === "memories" && <Memories openModal={openModal} setOpenModal={setOpenModal} /> }
         {currentProject.id === "socialpup" && <SocialPup openModal={openModal} setOpenModal={setOpenModal} /> }
