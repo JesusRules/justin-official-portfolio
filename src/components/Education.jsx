@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { styled } from 'styled-components'
 import gsap from 'gsap';
+import ZoomableImage from './smaller-components/ZoomableImage';
 
 const Section = styled.div`
     background-color: white;
@@ -60,26 +61,28 @@ const EducationPopup = styled.div`
 
 const FloatingBox = styled.div`
   position: absolute;
-  top: 4vw;
+  top: 6vw;
   bottom: 0;
   left: 0;
   right: 0;
   margin: auto;
   background-color: rgba(255,255,255,0.9);
   border-radius: 15px;
-  height: 82%;
-  width: 92%;
+  height: 90%;
+  width: 97%;
   max-width: 1100px;
   z-index: 30;
   opacity: 0;
   display: none;
+  overflow-y: auto;
+  overflow-x: hidden;
   @media only screen and (max-width: 800px) {
-    top: 1rem;
+    top: 3rem;
   }
 `;
 
 const Content = styled.div`
-  padding: 1rem;
+  padding: .5rem;
 `
 
 const ScrollImage = styled.div`
@@ -175,7 +178,10 @@ function Education({ myRef, scrollYGlobal }) {
           <Content>
             <h2>My Education</h2>
             <p>Check out them grades!</p>
-            
+            <img style={{width: '25rem'}} src="/img/education/madd-diploma.jpg"/>
+            {/* <div style={{display: 'flex', justifyContent: 'center'}}>
+              <ZoomableImage src="/img/education/grades.jpg" />
+            </div> */}
           </Content>
         </FloatingBox>
 

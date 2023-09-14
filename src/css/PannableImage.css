@@ -1,0 +1,12 @@
+.pannable-image {
+    width: 400px; /* Set the desired container width */
+    height: 300px; /* Set the desired container height */
+    overflow: hidden;
+    cursor: grab; /* Use a grab cursor to indicate that the image is draggable */
+  }
+  
+  .pannable-image img {
+    width: 100%; /* Make the image responsive within the container */
+    height: auto;
+  }
+  
