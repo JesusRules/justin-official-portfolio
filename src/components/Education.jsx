@@ -85,29 +85,63 @@ const Content = styled.div`
   padding: .5rem;
   max-width: 1000px;
   margin: 0 auto;
-  h2 {
-    margin-bottom: 2rem;
+  h4 {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    margin-bottom: 2.7rem;
+    img {
+      padding-left: 0.2rem;
+      padding-right: 0.2rem;
+      position: relative;
+      top: 0.75rem;
+      width: 10rem;
+    }
   }
+
   .intro {
     margin: 0 auto;
-    max-width: 800px;
     text-align: left;
     display: flex;
-    img {
-      width: 19rem;
+
+    #my-diploma {
+      object-fit: cover;
+      padding-left: 6rem;
+      width: 100%;
+      height: 100%;
+      max-width: 19rem;
       cursor: pointer;
       transition: width 0.3s, height 0.3s;
     }
-    p {
-      padding: 1rem;
-      line-height: 2rem;
+
+    .info {
+      padding-left: 1rem;
+      padding-right: 1rem;
+      #course {
+        font-size: 1.1rem;
+        margin-top: 1.6rem;
+      }
+      .diploma-icon {
+        width: 2.5rem;
+        cursor: pointer;
+      }
     }
+
   }
+
+  .grades {
+    margin-top: 3rem;
+  }
+
   @media only screen and (max-width: 700px) {
     .intro {
       flex-direction: column;
       text-align: center;
-      align-items: center;
+      #my-diploma {
+        padding: 0;
+        margin: 0 auto;
+        background-color: red;
+
+      }
     }
   }
 `
@@ -130,8 +164,11 @@ const ModalImage = styled.div`
   margin: auto;
   left: 50%;
   top: 50%;
-  width: auto;
   transform: translate(-50%, -50%);
+  img {
+    width: 100vw;
+    max-width: 800px;
+  }
 `
 
 const DarkBG = styled.div`
@@ -231,21 +268,26 @@ function Education({ myRef, scrollYGlobal }) {
 
         <FloatingBox ref={floatingBoxRef}>
           <Content>
-            <h2>My Education</h2>
+            <h4>Both courses I graduated from <img src="/img/education/algonquin-college-logo-normal.png"/> were:</h4>
             <div className='intro'>
-              <img draggable={false} src="/img/education/madd-diploma.jpg" 
+              <img id="my-diploma" draggable={false} src="/img/education/madd-diploma.jpg" 
                     onClick={(e) => setDiplomaModal(true)}/>
-              <div>
-                <p>I graduated from both the <a href="https://www.algonquincollege.com/mediaanddesign/program/game-development/" target="_blank">Game Development</a> (3 years) and <a href='https://www.algonquincollege.com/mediaanddesign/program/mobile-application-design-and-development/' target="_blank"> Application Design and Development</a> (2 years) at Algonquin College (Ottawa, Canada).
-                </p>
+              
+              <div className='info'>
+                {/* <p>Both courses I graduated from Algonquin College were:</p> */}
+                <div>
+                    <p id="course"><a href="https://www.algonquincollege.com/mediaanddesign/program/game-development/" target="_blank">Game Development</a> (2018-2021) <span style={{fontWeight: '900'}}>with Honours</span></p>
+                    <img className="diploma-icon" src="/img/education/diploma-paper-2.png"/>
+                </div>
+                <div>
+                   <p id="course"><a href='https://www.algonquincollege.com/mediaanddesign/program/mobile-application-design-and-development/' target="_blank">Mobile Application Design and Development</a> (2021-2023) <span style={{fontWeight: '900'}}>with Honours</span></p>
+                    <img className="diploma-icon" src="/img/education/diploma-paper-2.png"/>
+                </div>
+
               </div>
             </div>
-            <div className='grad-papers'>
-              <p>Graduation Papers:</p>
-            </div>
             <div className='grades'>
-              <p>My grades were impeccable! I literally finished every semester while on the Dean's List!</p>
-              <p>Check out my grades here!</p>
+              {/* <p>My grades were impeccable! I literally finished every semester while on the Dean's List!</p> */}
             </div>
             {/* <div style={{display: 'flex', justifyContent: 'center'}}>
               <ZoomableImage src="/img/education/grades.jpg" />
