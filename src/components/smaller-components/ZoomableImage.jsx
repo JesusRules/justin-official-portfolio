@@ -9,7 +9,7 @@ const ZoomableImage = ({ src }) => {
           // initialPositionY={100}
         >
       <TransformComponent >
-        <img style={{width: '100%', height: '20rem'}} src={src} alt="test" />
+        <img style={{width: '100%', height: '80rem'}} src={src} alt="test" />
       </TransformComponent>
     </TransformWrapper>
   );

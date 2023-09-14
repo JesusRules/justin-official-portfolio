@@ -66,7 +66,7 @@ const FloatingBox = styled.div`
   left: 0;
   right: 0;
   margin: auto;
-  background-color: rgba(255,255,255,0.9);
+  background-color: rgba(255,255,255,0.92);
   border-radius: 15px;
   height: 90%;
   width: 97%;
@@ -88,7 +88,7 @@ const Content = styled.div`
   h4 {
     font-size: 1.5rem;
     margin-top: 1rem;
-    margin-bottom: 2.7rem;
+    margin-bottom: 1.75rem;
     img {
       padding-left: 0.2rem;
       padding-right: 0.2rem;
@@ -103,7 +103,8 @@ const Content = styled.div`
     text-align: left;
     display: flex;
 
-    #my-diploma {
+    #my-diploma-1,
+    #my-diploma-2 {
       object-fit: cover;
       padding-left: 6rem;
       width: 100%;
@@ -111,6 +112,9 @@ const Content = styled.div`
       max-width: 19rem;
       cursor: pointer;
       transition: width 0.3s, height 0.3s;
+    }
+    #my-diploma-2 {
+      display: none;
     }
 
     .info {
@@ -130,17 +134,25 @@ const Content = styled.div`
 
   .grades {
     margin-top: 3rem;
+    margin-bottom: 5rem;
   }
 
   @media only screen and (max-width: 700px) {
     .intro {
       flex-direction: column;
       text-align: center;
-      #my-diploma {
+      #my-diploma-1,
+      #my-diploma-2 {
         padding: 0;
         margin: 0 auto;
         background-color: red;
-
+      }
+      #my-diploma-1 {
+        display: none;
+      }
+      #my-diploma-2 {
+        margin-top: 2.3rem;
+        display: block;
       }
     }
   }
@@ -187,12 +199,13 @@ function Education({ myRef, scrollYGlobal }) {
   const text1Ref = useRef();
   const text2Ref = useRef();
   const educationPopupRef = useRef();
+  const [showBeginning, setShowBeginning] = useState(false);
   // Main
   const floatingBoxRef = useRef();
   // Modals
   const [diplomaModal, setDiplomaModal] = useState(false);
-  const [gameDevModal, setGameDevModal] = useState(false);
-  const [MADDModal, setMADDModal] = useState(false);
+  // const [gameDevModal, setGameDevModal] = useState(false);
+  // const [MADDModal, setMADDModal] = useState(false);
   const [gradesModal, setGradesModal] = useState(false);
 
   useEffect(() => {
@@ -207,8 +220,10 @@ function Education({ myRef, scrollYGlobal }) {
     }, [scrollYGlobal])
 
     const OnViewed = () => {
+      if (showBeginning) return;
+      setShowBeginning(true);
       gsap.to(overlayRef.current, { opacity: 1, duration: 2, delay: 0 });
-      gsap.to(backgroundImageRef.current, { scale: 1.05, duration: 7 });
+      gsap.to(backgroundImageRef.current, { scale: 1.05, duration: 5 });
       // Text effects
       gsap.to(text1Ref.current, { opacity: 1, duration: 1.5, delay: 0 });
       gsap.to(text2Ref.current, { opacity: 1, duration: 1.5, delay: 1.5 });
@@ -277,7 +292,7 @@ function Education({ myRef, scrollYGlobal }) {
           <Content>
             <h4>Both courses I graduated from <img src="/img/education/algonquin-college-logo-normal.png"/> were:</h4>
             <div className='intro'>
-              <img id="my-diploma" draggable={false} src="/img/education/madd-diploma.jpg" 
+              <img id="my-diploma-1" draggable={false} src="/img/education/madd-diploma.jpg" 
                     onClick={(e) => setDiplomaModal(true)}/>
               
               <div className='info'>
@@ -290,11 +305,17 @@ function Education({ myRef, scrollYGlobal }) {
                    <p id="course"><a href='https://www.algonquincollege.com/mediaanddesign/program/mobile-application-design-and-development/' target="_blank">Mobile Application Design and Development</a> (2021-2023) <span style={{fontWeight: '900'}}>with Honours</span></p>
                     <img className="diploma-icon" src="/img/education/diploma-paper-2.png" onClick={MADDGraduatedLink}/>
                 </div>
-
               </div>
+
+              <img id="my-diploma-2" draggable={false} src="/img/education/madd-diploma.jpg" 
+                    onClick={(e) => setDiplomaModal(true)}/>
             </div>
             <div className='grades'>
-              {/* <p>My grades were impeccable! I literally finished every semester while on the Dean's List!</p> */}
+              <p>My grades were impeccable! I literally finished <span style={{fontWeight: 900}}>every semester</span> while on the Dean's List!</p>
+              <br/>
+              <br/>
+              <p style={{fontStyle: 'italic'}}>Proof I had amazing grades! </p>
+              <img style={{width: '7rem'}} src="/img/education/view-grades-icon.png"/>
             </div>
             {/* <div style={{display: 'flex', justifyContent: 'center'}}>
               <ZoomableImage src="/img/education/grades.jpg" />
