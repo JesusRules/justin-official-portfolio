@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { styled } from 'styled-components'
 import gsap from 'gsap';
 import ZoomableImage from './smaller-components/ZoomableImage';
@@ -95,6 +95,8 @@ const Content = styled.div`
     display: flex;
     img {
       width: 19rem;
+      cursor: pointer;
+      transition: width 0.3s, height 0.3s;
     }
     p {
       padding: 1rem;
@@ -122,12 +124,24 @@ const ScrollImage = styled.div`
   }
 `;
 
-const Banner = styled.img`
-  // width: 40rem;
-  width: 100%;
-  object-fit: cover;
-  height: 15rem;
-`;
+const ModalImage = styled.div`
+  position: absolute;
+  z-index: 50;
+  margin: auto;
+  left: 50%;
+  top: 50%;
+  width: auto;
+  transform: translate(-50%, -50%);
+`
+
+const DarkBG = styled.div`
+    z-index: 40;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.56);
+    cursor: pointer;
+    position: absolute;
+`
 
 function Education({ myRef, scrollYGlobal }) {
   const overlayRef = useRef(null);
@@ -138,6 +152,11 @@ function Education({ myRef, scrollYGlobal }) {
   const educationPopupRef = useRef();
   // Main
   const floatingBoxRef = useRef();
+  // Modals
+  const [diplomaModal, setDiplomaModal] = useState(false);
+  const [gameDevModal, setGameDevModal] = useState(false);
+  const [MADDModal, setMADDModal] = useState(false);
+  const [gradesModal, setGradesModal] = useState(false);
 
   useEffect(() => {
     const divElement = myRef.current;
@@ -183,8 +202,19 @@ function Education({ myRef, scrollYGlobal }) {
 
 
   return (
+    <>
     <Section ref={myRef}>
       <Container>
+        {diplomaModal && (
+          <>
+          <ModalImage>
+            <img src="/img/education/madd-diploma.jpg"/>
+          </ModalImage>
+          <DarkBG onClick={(e) => setDiplomaModal(false)}/>
+          </>
+        )}
+
+        
         <div ref={overlayRef} className="overlay"></div>
         <img draggable={false} ref={backgroundImageRef} src="/img/education/algonquin-college.jpg" alt="Background Image" className="background-image" />
 
@@ -203,22 +233,30 @@ function Education({ myRef, scrollYGlobal }) {
           <Content>
             <h2>My Education</h2>
             <div className='intro'>
-              <img src="/img/education/madd-diploma.jpg"/>
+              <img draggable={false} src="/img/education/madd-diploma.jpg" 
+                    onClick={(e) => setDiplomaModal(true)}/>
               <div>
                 <p>I graduated from both the <a href="https://www.algonquincollege.com/mediaanddesign/program/game-development/" target="_blank">Game Development</a> (3 years) and <a href='https://www.algonquincollege.com/mediaanddesign/program/mobile-application-design-and-development/' target="_blank"> Application Design and Development</a> (2 years) at Algonquin College (Ottawa, Canada).
                 </p>
               </div>
+            </div>
+            <div className='grad-papers'>
+              <p>Graduation Papers:</p>
+            </div>
+            <div className='grades'>
+              <p>My grades were impeccable! I literally finished every semester while on the Dean's List!</p>
+              <p>Check out my grades here!</p>
             </div>
             {/* <div style={{display: 'flex', justifyContent: 'center'}}>
               <ZoomableImage src="/img/education/grades.jpg" />
             </div> */}
           </Content>
         </FloatingBox>
-
       {/* <Banner src="/img/education/algonquin-college.jpg"/> */}
       {/* <h1>Education</h1> */}
       </Container>
     </Section>
+    </>
   )
 }
 
