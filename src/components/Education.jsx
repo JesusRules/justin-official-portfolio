@@ -12,6 +12,7 @@ const Section = styled.div`
     // background-image: url("/img/education/algonquin-college.jpg");
     background-repeat: no-repeat;
     background-size: cover;
+    overflow: hidden;
 `
 const Container = styled.div`
   position: relative;
@@ -24,7 +25,7 @@ const Container = styled.div`
     font-style: italic;
     margin-bottom: 1.2rem;
   }
-  img {
+  .background-image {
     width: 100vw;
     height: 100vh;
     object-fit: cover;
@@ -38,13 +39,35 @@ const Container = styled.div`
     background-color: rgba(0, 0, 0, 0.5); /* Adjust the opacity here */
     opacity: 0; /* Start with 0 opacity */
     pointer-events: none; /* Allow clicks to pass through the overlay */
-    transition: opacity 0.3s ease; /* Add a smooth transition */
+    z-index: 10;
   }
 
   @media only screen and (max-width: 800px) {
     // top: 3.5rem;
   }
 `;
+
+const FloatingBox = styled.div`
+  position: absolute;
+  top: 4vw;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  background-color: rgba(255,255,255,0.9);
+  border-radius: 15px;
+  height: 82%;
+  width: 92%;
+  max-width: 1100px;
+  z-index: 10;
+  @media only screen and (max-width: 800px) {
+    top: 1rem;
+  }
+`;
+
+const Content = styled.div`
+  padding: 1rem;
+`
 
 const Banner = styled.img`
   // width: 40rem;
@@ -53,16 +76,9 @@ const Banner = styled.img`
   height: 15rem;
 `;
 
-const GameDevelopment = styled.div`
-
-`
-
-const MADD = styled.div`
-
-`
-
 function Education({ myRef, scrollYGlobal }) {
-  const overlayRef = useRef();
+  const overlayRef = useRef(null);
+  const backgroundImageRef = useRef(null);
 
   useEffect(() => {
     const divElement = myRef.current;
@@ -76,7 +92,8 @@ function Education({ myRef, scrollYGlobal }) {
     }, [scrollYGlobal])
 
     const OnViewed = () => {
-      gsap.to(overlayRef.current, { opacity: 1, duration: 0.3 });
+      gsap.to(backgroundImageRef.current, { scale: 1.1, duration: 8 });
+      gsap.to(overlayRef.current, { opacity: 1, duration: 1, delay: 5 });
     }
 
 
@@ -84,7 +101,13 @@ function Education({ myRef, scrollYGlobal }) {
     <Section ref={myRef}>
       <Container>
         <div ref={overlayRef} className="overlay"></div>
-        <img src="/img/education/algonquin-college.jpg" alt="Background Image" className="background-image" />
+        <img ref={backgroundImageRef} src="/img/education/algonquin-college.jpg" alt="Background Image" className="background-image" />
+
+        {/* <FloatingBox>
+          <Content>
+            <h2>My Education</h2>
+          </Content>
+        </FloatingBox> */}
 
       {/* <Banner src="/img/education/algonquin-college.jpg"/> */}
       {/* <h1>Education</h1> */}
