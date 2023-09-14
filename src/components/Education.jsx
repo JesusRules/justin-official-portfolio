@@ -83,6 +83,31 @@ const FloatingBox = styled.div`
 
 const Content = styled.div`
   padding: .5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  h2 {
+    margin-bottom: 2rem;
+  }
+  .intro {
+    margin: 0 auto;
+    max-width: 800px;
+    text-align: left;
+    display: flex;
+    img {
+      width: 19rem;
+    }
+    p {
+      padding: 1rem;
+      line-height: 2rem;
+    }
+  }
+  @media only screen and (max-width: 700px) {
+    .intro {
+      flex-direction: column;
+      text-align: center;
+      align-items: center;
+    }
+  }
 `
 
 const ScrollImage = styled.div`
@@ -177,8 +202,13 @@ function Education({ myRef, scrollYGlobal }) {
         <FloatingBox ref={floatingBoxRef}>
           <Content>
             <h2>My Education</h2>
-            <p>Check out them grades!</p>
-            <img style={{width: '25rem'}} src="/img/education/madd-diploma.jpg"/>
+            <div className='intro'>
+              <img src="/img/education/madd-diploma.jpg"/>
+              <div>
+                <p>I graduated from both the <a href="https://www.algonquincollege.com/mediaanddesign/program/game-development/" target="_blank">Game Development</a> (3 years) and <a href='https://www.algonquincollege.com/mediaanddesign/program/mobile-application-design-and-development/' target="_blank"> Application Design and Development</a> (2 years) at Algonquin College (Ottawa, Canada).
+                </p>
+              </div>
+            </div>
             {/* <div style={{display: 'flex', justifyContent: 'center'}}>
               <ZoomableImage src="/img/education/grades.jpg" />
             </div> */}
