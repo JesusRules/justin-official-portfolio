@@ -237,6 +237,13 @@ function Education({ myRef, scrollYGlobal }) {
       transform: `translateY(${scrollYGlobal * 0.1}px)`, // Adjust the multiplier for the desired scroll speed
     };
 
+    const GameDevGraduatedLink = () => {
+      window.open('https://drive.google.com/file/d/1i0o7hcPwAWGdsVgMl3929-Q3LHstEg_t/view?usp=sharing', '_blank');
+    }
+    const MADDGraduatedLink = () => {
+      window.open('https://drive.google.com/file/d/1wdxcyf9W-N1ppXQfkvZbvDgWQxy2n15q/view?usp=sharing', '_blank');
+    }
+
 
   return (
     <>
@@ -277,11 +284,11 @@ function Education({ myRef, scrollYGlobal }) {
                 {/* <p>Both courses I graduated from Algonquin College were:</p> */}
                 <div>
                     <p id="course"><a href="https://www.algonquincollege.com/mediaanddesign/program/game-development/" target="_blank">Game Development</a> (2018-2021) <span style={{fontWeight: '900'}}>with Honours</span></p>
-                    <img className="diploma-icon" src="/img/education/diploma-paper-2.png"/>
+                    <img className="diploma-icon" src="/img/education/diploma-paper-2.png" onClick={GameDevGraduatedLink}/>
                 </div>
                 <div>
                    <p id="course"><a href='https://www.algonquincollege.com/mediaanddesign/program/mobile-application-design-and-development/' target="_blank">Mobile Application Design and Development</a> (2021-2023) <span style={{fontWeight: '900'}}>with Honours</span></p>
-                    <img className="diploma-icon" src="/img/education/diploma-paper-2.png"/>
+                    <img className="diploma-icon" src="/img/education/diploma-paper-2.png" onClick={MADDGraduatedLink}/>
                 </div>
 
               </div>
