@@ -71,8 +71,8 @@ function SocialPup({ openModal, setOpenModal }) {
         if (swiperRef.current) swiperRef.current.style.display = 'none';
         setTimeout(() => {
           if (swiperRef.current) swiperRef.current.style.display = 'block';
-        }, 100)
-      }, 100)
+        }, 50)
+      }, 50)
       setInitialized(true);
     }
   }, [openModal]);

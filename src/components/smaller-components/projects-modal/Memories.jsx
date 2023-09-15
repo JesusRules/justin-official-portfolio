@@ -60,11 +60,12 @@ function Memories({ openModal, setOpenModal }) {
         if (swiperRef.current) swiperRef.current.style.display = 'none';
         setTimeout(() => {
           if (swiperRef.current) swiperRef.current.style.display = 'block';
-        }, 100)
-      }, 100)
+        }, 50)
+      }, 50)
       setInitialized(true);
     }
   }, [openModal]);
+
 
   const handleUrl = () => {
     window.open('https://sparkling-salamander-f12f3e.netlify.app/posts', '_blank');

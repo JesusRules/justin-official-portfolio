@@ -61,7 +61,7 @@ function OttawaRecSports({ openModal, setOpenModal }) {
         </div>
 
       <div style={{padding: '0 2rem', textAlign: 'center', fontStyle: 'italic', lineHeight: '10%'}}>
-            <p>In our final semester (of the Algonquin MADD program), me and 5 other students were assigned a client project to improve the existing <a target="_blank" href="https://ottawarecsports.com/">Ottawa Rec Sports.</a></p>
+            <p>During Algonquin College (the MADD program), me and 5 other students were assigned a client project to improve the existing <a target="_blank" href="https://ottawarecsports.com/">Ottawa Rec Sports.</a></p>
             <p><br/>Miraculously, our project came <span style={{color: 'blue'}}>third place</span> in the annual Algonquin RE/ACTION showcase!</p>
            
             <div style={{margin: '1rem 0', width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
@@ -75,7 +75,7 @@ function OttawaRecSports({ openModal, setOpenModal }) {
             </div>
       </div>
       </div>
-      <p style={{textAlign: 'center', marginBottom: '1.5rem'}}>Thanks to our hard working team for a great semester!</p>
+      <p style={{textAlign: 'center', padding: '0rem 1rem 0rem 1rem', marginBottom: '1.5rem'}}>Thanks to our hard working team for a great semester!</p>
       <p className='bottom-madewith' style={{textAlign: 'left', color: 'blue', margin: '1rem', fontStyle: 'italic', fontWeight: 400, paddingBottom: '1rem'}}>Project was made using <b>React, NextJS, Tailwind CSS, AWS Services (Amplify, GraphQL, SES, Cognito, DynamoDB, S3).</b></p>
       </ContentContainer>
     )

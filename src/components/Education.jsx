@@ -61,15 +61,12 @@ const EducationPopup = styled.div`
 
 const FloatingBox = styled.div`
   position: absolute;
-  top: 3vw;
+  top: 0;
   bottom: 0;
   left: 0;
   right: 0;
   margin: auto;
-  background-color: rgba(255,255,255,0.92);
-  border-radius: 15px;
-  height: 90%;
-  width: 97%;
+  width: 95%;
   max-width: 1100px;
   z-index: 30;
   opacity: 0;
@@ -77,24 +74,31 @@ const FloatingBox = styled.div`
   overflow-y: auto;
   overflow-x: hidden;
   @media only screen and (max-width: 800px) {
-    top: 3rem;
   }
 `;
 
 const Content = styled.div`
-  padding: .5rem;
+  padding: 0.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   max-width: 1000px;
-  margin: 0 auto;
+  margin: auto;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 15px;
+  background-color: rgba(255,255,255,0.92);
   h4 {
+    text-decoration: underline;
     font-size: 1.5rem;
-    margin-top: 1rem;
-    margin-bottom: 1.75rem;
+    font-style: italic;
+    margin-bottom: 3rem;
     img {
       padding-left: 0.2rem;
       padding-right: 0.2rem;
       position: relative;
       top: 0.75rem;
-      width: 10rem;
+      width: 15rem;
     }
   }
 
@@ -109,12 +113,16 @@ const Content = styled.div`
       padding-left: 6rem;
       width: 100%;
       height: 100%;
-      max-width: 19rem;
+      max-width: 16rem;
       cursor: pointer;
       transition: width 0.3s, height 0.3s;
     }
+    #my-diploma-1 {
+      margin-bottom: 2rem;
+    }
     #my-diploma-2 {
       display: none;
+      max-width: 12rem;
     }
 
     .info {
@@ -122,9 +130,9 @@ const Content = styled.div`
       padding-right: 1rem;
       #course {
         font-size: 1.1rem;
-        margin-top: 1.6rem;
       }
       .diploma-icon {
+        margin-bottom: 1.6rem;
         width: 2.5rem;
         cursor: pointer;
       }
@@ -133,28 +141,36 @@ const Content = styled.div`
   }
 
   .grades {
-    margin-top: 3rem;
-    margin-bottom: 5rem;
+    // margin-top: 2.5rem;
+    img {
+      width: 6rem;
+      cursor: pointer;
+    }
   }
 
   @media only screen and (max-width: 700px) {
+    top: 3.5rem;
+    transform: translateY(0);
+
     .intro {
       flex-direction: column;
       text-align: center;
       #my-diploma-1,
       #my-diploma-2 {
         padding: 0;
-        margin: 0 auto;
-        background-color: red;
       }
       #my-diploma-1 {
         display: none;
       }
       #my-diploma-2 {
-        margin-top: 2.3rem;
+        margin: 0rem auto 1.7rem auto;
         display: block;
       }
     }
+    h4 {
+      margin-bottom: 2rem;
+    }
+    margin-bottom: 5rem;
   }
 `
 
@@ -222,17 +238,17 @@ function Education({ myRef, scrollYGlobal }) {
     const OnViewed = () => {
       if (showBeginning) return;
       setShowBeginning(true);
-      gsap.to(overlayRef.current, { opacity: 1, duration: 2, delay: 0 });
+      gsap.to(overlayRef.current, { opacity: 1, duration: 1.5, delay: 0 });
       gsap.to(backgroundImageRef.current, { scale: 1.05, duration: 5 });
       // Text effects
       gsap.to(text1Ref.current, { opacity: 1, duration: 1.5, delay: 0 });
-      gsap.to(text2Ref.current, { opacity: 1, duration: 1.5, delay: 1.5 });
+      gsap.to(text2Ref.current, { opacity: 1, duration: 1.5, delay: 1.25 });
       // Main
       gsap.to(floatingBoxRef.current, 
         { 
           opacity: 1, 
           duration: 1, 
-          delay: 4,
+          delay: 3.5,
           onStart: () => {
             floatingBoxRef.current.style.display = 'block'
           },
@@ -240,11 +256,11 @@ function Education({ myRef, scrollYGlobal }) {
         gsap.to(educationPopupRef.current, 
           { opacity: 0, 
             duration: 1, 
-            delay: 4,
+            delay: 3.5,
             onComplete: () => { 
               educationPopupRef.current.style.display = 'none'
           } });
-          gsap.to(overlayRef.current, { opacity: 0.3, duration: 1, delay: 4 });
+          gsap.to(overlayRef.current, { opacity: 0.3, duration: 1, delay: 3.5 });
     }
 
     // Image Scroll
@@ -290,19 +306,19 @@ function Education({ myRef, scrollYGlobal }) {
         <img draggable={false} ref={backgroundImageRef} src="/img/education/algonquin-college.jpg" alt="Background Image" className="background-image" />
 
         <EducationPopup ref={educationPopupRef} >
-          <p ref={text1Ref} style={{fontSize: '3.5rem', opacity: 0}}>My Education</p>
+          <p ref={text1Ref} style={{fontSize: '3rem', opacity: 0}}>My Education</p>
           
             <div ref={text2Ref} style={{display: 'flex', justifyContent: 'center', 
                               alignItems: 'end', gap: '1rem',
                               opacity: 0}}>
-            <p style={{fontSize: '3.5rem'}}>At </p>
-            <img draggable={false} style={{width: '20rem', position: 'relative', top: '0.3rem'}} src="/img/education/algonquin-college-logo.png"/>
+            <p style={{fontSize: '3rem'}}>At </p>
+            <img draggable={false} style={{width: '18rem', position: 'relative', top: '0.3rem'}} src="/img/education/algonquin-college-logo.png"/>
           </div>
         </EducationPopup>
 
         <FloatingBox ref={floatingBoxRef}>
           <Content>
-            <h4>Both courses I graduated from <img src="/img/education/algonquin-college-logo-normal.png"/> were:</h4>
+            <h4><img src="/img/education/algonquin-college-logo-normal.png"/></h4>
             <div className='intro'>
               <img id="my-diploma-1" draggable={false} src="/img/education/madd-diploma.jpg" 
                     onClick={(e) => setDiplomaModal(true)}/>
@@ -310,10 +326,12 @@ function Education({ myRef, scrollYGlobal }) {
               <div className='info'>
                 {/* <p>Both courses I graduated from Algonquin College were:</p> */}
                 <div>
+                    <span>Course #1</span>
                     <p id="course"><a href="https://www.algonquincollege.com/mediaanddesign/program/game-development/" target="_blank">Game Development</a> (2018-2021) <span style={{fontWeight: '900'}}>with Honours</span></p>
                     <img className="diploma-icon" src="/img/education/diploma-paper-2.png" onClick={GameDevGraduatedLink}/>
                 </div>
                 <div>
+                    <span>Course #2</span>
                    <p id="course"><a href='https://www.algonquincollege.com/mediaanddesign/program/mobile-application-design-and-development/' target="_blank">Mobile Application Design and Development</a> (2021-2023) <span style={{fontWeight: '900'}}>with Honours</span></p>
                     <img className="diploma-icon" src="/img/education/diploma-paper-2.png" onClick={MADDGraduatedLink}/>
                 </div>
@@ -325,9 +343,8 @@ function Education({ myRef, scrollYGlobal }) {
             <div className='grades'>
               <p>My grades were impeccable! I literally finished <span style={{fontWeight: 900}}>every semester</span> while on the Dean's List!</p>
               <br/>
-              <br/>
               <p style={{fontStyle: 'italic'}}>Proof I had amazing grades! </p>
-              <img style={{width: '7rem', cursor: 'pointer'}} src="/img/education/view-grades-icon.png" onClick={(e) => GradesLink()}/>
+              <img src="/img/education/view-grades-icon.png" onClick={(e) => GradesLink()}/>
             </div>
             {/* <div style={{display: 'flex', justifyContent: 'center'}}>
               <ZoomableImage src="/img/education/grades.jpg" />
