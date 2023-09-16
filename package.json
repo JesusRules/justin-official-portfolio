@@ -23,7 +23,9 @@
     "styled-components": "^6.0.7",
     "swiper": "^10.2.0",
     "three": "^0.155.0",
-    "three-stdlib": "^2.25.0"
+    "three-stdlib": "^2.25.0",
+    "@types/webgi": "https://storage.googleapis.com/dist.pixotronics.com/webgi/runtime/bundle-types-0.5.5.tgz",
+    "webgi": "https://storage.googleapis.com/dist.pixotronics.com/webgi/runtime/bundle-0.5.8.tgz"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
@@ -33,6 +35,8 @@
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
-    "vite": "^4.4.5"
+    "vite": "^4.4.5",
+    "@types/webgi": "https://storage.googleapis.com/dist.pixotronics.com/webgi/runtime/bundle-types-0.5.5.tgz",
+    "webgi": "https://storage.googleapis.com/dist.pixotronics.com/webgi/runtime/bundle-0.5.5.tgz"
   }
 }

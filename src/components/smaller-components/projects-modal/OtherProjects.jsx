@@ -112,7 +112,6 @@ const ProjectDiv = styled.div`
       margin-bottom: 2.5rem;
     }
   }
-}
 `
 
 const images = [

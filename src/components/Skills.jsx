@@ -3,9 +3,6 @@ import { styled } from 'styled-components'
 import gsap from 'gsap';
 import InfiniteImageScroller from './threejsscripts/InfiniteImageScroller'
 import { Canvas } from '@react-three/fiber'
-import ScrollTrigger from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
 
 const Container = styled.div`
     background-color: #ceeeff;
@@ -24,6 +21,7 @@ const Container = styled.div`
     const Container2 = styled.div`
     position: relative;
     top: 2.5rem;
+    z-index: 10;
 `
 
 const Title = styled.h3`
@@ -66,8 +64,8 @@ function Skills({ myRef, scrollYGlobal }) {
       }, [scrollYGlobal])
 
   return (
-    <Container className="trigger" ref={myRef}>
-      <img style={{filter: 'blur(0px)', position: 'absolute'}} src="/img/jesus-effect/image-2.png"/>
+    <Container id="skills" className="trigger" ref={myRef}>
+      {/* <img style={{filter: 'blur(0px)', position: 'absolute'}} src="/img/jesus-effect/image-2.png"/> */}
       <Container2>
       <Title>All the technologies I know!</Title>
     

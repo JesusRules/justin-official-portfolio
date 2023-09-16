@@ -443,3 +443,27 @@ p {
 .bottom-madewith {
   font-size: .9rem;
 }
+
+#webgi-canvas-container {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  align-items: center;
+  top: -3.5rem;
+  left: -9rem;
+  pointer-events: none;
+  min-height: 831px;
+  background: transparent;
+  z-index: 5;
+  filter: blur(5px);
+}
+
+#webgi-canvas {
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+}

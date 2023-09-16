@@ -273,7 +273,6 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
     useEffect(() => {
       const divElement = myRef.current;
       const halfwayPoint = divElement.scrollHeight / 5;
-      console.log(Math.round(scrollYGlobal));
       if (Math.round(scrollYGlobal) == divElement.offsetTop) {
         setShowComponent(true);
         // if (!showBubbleOnce) {

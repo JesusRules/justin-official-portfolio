@@ -65,6 +65,7 @@ const Right = styled.div`
   justify-content: center;
   gap: 20px;
   pointer-events: none;
+  z-index: 10;
 
   width:50vw;
   max-width: 33rem;
@@ -165,7 +166,7 @@ function Who({ myRef }) {
   return (
     <Section ref={myRef}>
       <Container>
-        <img style={{filter: 'blur(7px)'}} src="/img/jesus-effect/image-1.png"/>
+        {/* <img style={{filter: 'blur(7px)'}} src="/img/jesus-effect/image-1.png"/> */}
         <Left>
             <Canvas camera={{fov: 25, position: [0, 0, 6]}}>
                 <JustinHead />

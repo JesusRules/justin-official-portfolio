@@ -13,9 +13,8 @@ import { styled } from 'styled-components'
 import Projects from './components/Projects'
 import NavBar from './components/NavBar'
 import Lenis from '@studio-freight/lenis'
+import WebgiViewer from './components/WebgiViewer'
 import gsap from 'gsap';
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-gsap.registerPlugin(ScrollTrigger);
 
 const Container = styled.div`
   width: 100vw;
@@ -43,6 +42,7 @@ function App() {
     const scrollTop = event.target.scrollTop;
     setScrollY(scrollTop);
   };
+
 
   const scrollToWho = () => {
     whoRef.current.scrollIntoView({ behavior: 'smooth' });
@@ -78,6 +78,7 @@ function App() {
                 setHideOverflow={setHideOverflow} />
       <Education myRef={educationRef} scrollYGlobal={scrollY} />
       <Contact myRef={contactRef} educationRef={educationRef} scrollYGlobal={scrollY}/>
+      <WebgiViewer scrollYGlobal={scrollY}/>
     </Container>
   )
 }
