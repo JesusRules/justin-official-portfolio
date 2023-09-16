@@ -14,6 +14,7 @@ const Section = styled.div`
     background-repeat: no-repeat;
     background-size: cover;
     overflow: hidden;
+    z-index: 10;
 `
 const Container = styled.div`
   position: relative;

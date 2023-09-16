@@ -21,7 +21,7 @@ const Sky = styled.img`
     top: 600px;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 1;
+    z-index: 10;
 `
   
 // const Dove = styled.img`
@@ -50,7 +50,7 @@ const CloudMain_Back = styled.img`
     /* top: calc(50% + 271px); */
     left: calc(50% - 0px);
     top: 2000px;
-    z-index: 3;
+    z-index: 13;
     `
     
     const CloudMain_Front = styled.img`
@@ -59,7 +59,7 @@ const CloudMain_Back = styled.img`
     /* top: calc(50% + 286px); */
     left: calc(50% - 0px);
     top: 3600px;
-    z-index: 4;
+    z-index: 14;
 `
 
   
@@ -70,7 +70,7 @@ const CloudBG_4 = styled.img`
     left: calc(50% - 536px);
     top: 1600px;
     //top: 2000px; LIKE SKY OLD
-    z-index: 5;
+    z-index: 15;
 `
   
 const CloudBG_3 = styled.img`
@@ -80,7 +80,7 @@ const CloudBG_3 = styled.img`
     left: calc(50% - 150px);
     top: 1600px;
     //top: 2000px; LIKE SKY OLD
-    z-index: 6;
+    z-index: 16;
 `
   
 const CloudBG_2 = styled.img`
@@ -90,7 +90,7 @@ const CloudBG_2 = styled.img`
     left: calc(50% + 530px);
     top: 1600px;
     //top: 2000px; LIKE SKY OLD
-    z-index: 7;
+    z-index: 17;
 `
   
 const CloudBG_1 = styled.img`
@@ -100,7 +100,7 @@ const CloudBG_1 = styled.img`
     left: calc(50% - 950px);
     top: 1600px;
     //top: 2000px; LIKE SKY OLD
-    z-index: 8;
+    z-index: 18;
 `
   
 // const JesusFlag = styled.img`
@@ -118,7 +118,7 @@ const JesusFlag2 = styled.img`
     /* top: calc(50% + 102px); */
     left: calc(50% - 220px);
     top: 3000px;
-    z-index: 9;
+    z-index: 19;
     @media only screen and (max-width: 700px) {
         left: calc(50% - 316px + 150px);
         /* top: calc(50% + 102px + 10px); */
@@ -133,7 +133,7 @@ const Haunter = styled.img`
     /* top: calc(50% - 110px); */
     left: calc(50% - 480px);
     top: 2100px;
-    z-index: 11;
+    z-index: 21;
 `
   
 const Boo = styled.img`
@@ -142,7 +142,7 @@ const Boo = styled.img`
     /* top: calc(50% - 122px); */
     left: calc(50% + 455px);
     top: 2100px;
-    z-index: 12;
+    z-index: 22;
 `
   
 const Bernard_Txt = styled.img`
@@ -151,7 +151,7 @@ const Bernard_Txt = styled.img`
     /* top: calc(50% - 65px); */
     left: calc(50% + 0px);
     top: 1450px;
-    z-index: 13;
+    z-index: 23;
     @media only screen and (max-width: 700px) {
         width: 430px;
         top: 1450px;
@@ -165,7 +165,7 @@ const Justin_Txt = styled.img`
     left: calc(50% + 0px);
     /* top: -100px; */
     top: 1300px;
-    z-index: 14;
+    z-index: 24;
     @media only screen and (max-width: 700px) {
         /* top: -100px; */
         top: 1300px;
@@ -180,7 +180,7 @@ const Pipe = styled.img`
     /* top: calc(50% + 140px); */
     left: calc(50% + 419px);
     top: 2000px;
-    z-index: 10;
+    z-index: 20;
 `
   
 const HelloKitty = styled.img`
@@ -189,7 +189,7 @@ const HelloKitty = styled.img`
     /* top: calc(50% + 150px); */
     left: calc(50% - 415px);
     top: 2000px;
-    z-index: 15;
+    z-index: 25;
     @media only screen and (max-width: 700px) {
         left: calc(50% - 495px + 290px);
         display: none;
@@ -202,7 +202,7 @@ const Toad = styled.img`
     /* top: calc(50% + 180px); */
     left: calc(50% + 350px);
     top: 2400px;
-    z-index: 16;
+    z-index: 26;
     @media only screen and (max-width: 700px) {
         left: calc(50% + 383px - 160px);
         display: none;
@@ -215,7 +215,7 @@ const Kart = styled.img`
     /* top: calc(50% + 218px); */
     left: calc(50% - 340px);
     top: 2400px;
-    z-index: 17;
+    z-index: 27;
     @media only screen and (max-width: 700px) {
         left: calc(50% - 420px + 240px);
         display: none;
@@ -228,7 +228,7 @@ const Joy = styled.img`
     /* top: calc(50% + 232px); */
     left: calc(50% + 266px);
     top: 2800px;
-    z-index: 18;
+    z-index: 28;
     @media only screen and (max-width: 700px) {
         left: calc(50% + 291px - 100px);
         display: none;
@@ -241,7 +241,7 @@ const Pikachu = styled.img`
     top: calc(50% + 235px)k;
     left: calc(50% - 230px);
     top: 2800px;
-    z-index: 19;
+    z-index: 29;
     @media only screen and (max-width: 700px) {
         left: calc(50% - 269px + 115px);
         display: none;
@@ -254,7 +254,7 @@ const Mario = styled.img`
     /* top: calc(50% + 245px); */
     left: calc(50% - 142px);
     top: 3200px;
-    z-index: 20;
+    z-index: 30;
     @media only screen and (max-width: 700px) {
         left: calc(50% - 165px + 42px);
         width: 132px;
@@ -267,7 +267,7 @@ const MiniJesus = styled.img`
     /* top: calc(50% + 160px); */
     top: 3200px;
     left: calc(50% + 173px);
-    z-index: 21;
+    z-index: 31;
     @media only screen and (max-width: 700px) {
         left: calc(50% + 183px - 40px);
         width: 163px;
@@ -280,7 +280,7 @@ const Justin = styled.img`
     // top: calc(50% + 157px);
     top: 3600px;
     left: calc(50% + 0px);
-    z-index: 22;
+    z-index: 32;
     @media only screen and (max-width: 700px) {
         width: 215px;
     }

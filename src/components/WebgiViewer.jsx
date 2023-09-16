@@ -130,20 +130,6 @@ const WebgiViewer = ({ scrollYGlobal }) => {
     }, [])
 
     useEffect(() => {
-        // HEIGHT
-        if (scrollYGlobal > innerHeight) {
-            gsap.to("#webgi-canvas-container", {
-                opacity: 1,
-                duration: 0.5,
-            })
-        }
-        // if (scrollYGlobal < innerHeight) {
-        //     gsap.to("#webgi-canvas-container", {
-        //         opacity: 0,
-        //         duration: 0.5,
-        //     })
-        // }
-
         // MOVEMENT
         if (scrollYGlobal >= 1300) {
             if (movedOnce) return;
@@ -195,11 +181,10 @@ const WebgiViewer = ({ scrollYGlobal }) => {
                     cameraRef.positionTargetUpdated(true);
                 }
             })
-            // gsap.to("#webgi-canvas-container", {
-            //     filter: 'blur(2px)',
-            //     duration: 0.5,
-                
-            // })
+            gsap.to("#webgi-canvas-container", {
+                filter: 'blur(6px)',
+                duration: 0.5,
+            })
         }
     }, [scrollYGlobal])
 

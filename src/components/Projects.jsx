@@ -26,6 +26,7 @@ const Container = styled.div`
     background-size: cover; 
     background-repeat: no-repeat;
     background-position: center center;
+    z-index: 10;
 `
 
 const SpeechBubble = styled.img`
