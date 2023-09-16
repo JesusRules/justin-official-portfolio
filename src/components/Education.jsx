@@ -283,7 +283,7 @@ function Education({ myRef, scrollYGlobal }) {
 
   return (
     <>
-    <Section ref={myRef}>
+    <Section ref={myRef} className='education-section'>
       <Container>
 
         {diplomaModal && (

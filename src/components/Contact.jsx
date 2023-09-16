@@ -5,6 +5,8 @@ import { Church } from './threejsscripts/Church'
 import { OrbitControls, Html, Environment, Sky, PerspectiveCamera, Circle, useEnvironment, shaderMaterial, useProgress  } from '@react-three/drei';
 import { Euler, Vector3  } from 'three';
 import * as THREE from "three";
+import gsap from 'gsap';
+
 
 const Container = styled.div`
     background-color: brown;
@@ -12,23 +14,23 @@ const Container = styled.div`
     scroll-snap-align: start;
 `
 
-function Contact({ myRef, scrollYGlobal }) {
+function Contact({ myRef, scrollYGlobal, educationRef }) {
   const [showComponent, setShowComponent] = useState(false);
 
   //SCROLLING
-  useEffect(() => {
-    const divElement = myRef.current;
-    const halfwayPoint = divElement.scrollHeight / 5;
-    if (Math.round(scrollYGlobal) >= (divElement.offsetTop - innerHeight - 20)) {
-      setShowComponent(true);
-    } else {
-      // setShowComponent(false);
-    }
-    if (Math.round(scrollYGlobal) <= (divElement.offsetTop - innerHeight + 20)) {
-      // setShowComponent(false);
-    }
+    useEffect(() => {
+      const divElement = myRef.current;
+      const halfwayPoint = divElement.scrollHeight / 5;
+      console.log(divElement.offsetTop - innerHeight);
+      if (Math.round(scrollYGlobal) >= (3001)) {
+        setShowComponent(true);
+      }
+      if (Math.round(scrollYGlobal) < (3001)) {
+        setShowComponent(false);
+      }
 
-}, [scrollYGlobal])
+  }, [scrollYGlobal])
+
 
   return (
     <Container ref={myRef}>
