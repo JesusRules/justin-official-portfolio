@@ -273,8 +273,8 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
     useEffect(() => {
       const divElement = myRef.current;
       const halfwayPoint = divElement.scrollHeight / 5;
-     
-      if (scrollYGlobal == divElement.offsetTop) {
+      console.log(Math.round(scrollYGlobal));
+      if (Math.round(scrollYGlobal) == divElement.offsetTop) {
         setShowComponent(true);
         // if (!showBubbleOnce) {
         //   setShowBubbleOnce(true);
@@ -286,7 +286,7 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
         //   setAnimIndex(2); //7 alt Jumping happy
         // }
       }
-      if (scrollYGlobal > divElement.offsetTop || scrollYGlobal < divElement.offsetTop) {
+      if (Math.round(scrollYGlobal) > divElement.offsetTop || Math.round(scrollYGlobal) < divElement.offsetTop) {
         setShowComponent(false);
         setStartUpCam(false);
       }

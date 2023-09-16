@@ -21,7 +21,6 @@ function Contact({ myRef, scrollYGlobal, educationRef }) {
     useEffect(() => {
       const divElement = myRef.current;
       const halfwayPoint = divElement.scrollHeight / 5;
-      console.log(divElement.offsetTop - innerHeight);
       if (Math.round(scrollYGlobal) >= (3001)) {
         setShowComponent(true);
       }
