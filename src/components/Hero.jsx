@@ -753,6 +753,7 @@ function Hero({ scrollYGlobal }) {
 
       <Sky ref={skyRef} src="/img/hero-banner/Sky.png" data-speedx="0.33" data-speedy="0.33" data-speedz="0" data-rotation="0" className='parallax bg-img'
             draggable="false"/>
+    
       {/* <Dove src="/img/Dove.png" className='parallax dove'/> */}
       {/* <Dove2 src="/img/Dove.gif" className='parallax dove'/> */}
       {/* Cloud Main */}

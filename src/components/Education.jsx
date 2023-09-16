@@ -260,7 +260,8 @@ function Education({ myRef, scrollYGlobal }) {
             onComplete: () => { 
               educationPopupRef.current.style.display = 'none'
           } });
-          gsap.to(overlayRef.current, { opacity: 0.3, duration: 1, delay: 3.5 });
+          gsap.to(overlayRef.current, { opacity: 0, duration: 1, delay: 3.5 });
+          gsap.to(backgroundImageRef.current, {  filter: 'blur(4px)', duration: 1, delay: 3.5 });
     }
 
     // Image Scroll
@@ -284,6 +285,7 @@ function Education({ myRef, scrollYGlobal }) {
     <>
     <Section ref={myRef}>
       <Container>
+
         {diplomaModal && (
           <>
           <ModalImage>

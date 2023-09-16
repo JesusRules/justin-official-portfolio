@@ -70,6 +70,15 @@ const Right = styled.div`
   max-width: 33rem;
   left: 50%;
 
+  h1 {
+    display: inline-block;
+    color: transparent;
+    background-image: linear-gradient(180deg, #4a6bff, #020bac);
+    -webkit-background-clip: text;
+    background-clip: text;
+    font-weight: 800;
+  }
+
   @media only screen and (max-width: 700px) {
     margin: auto;
     text-align: center;
@@ -156,6 +165,7 @@ function Who({ myRef }) {
   return (
     <Section ref={myRef}>
       <Container>
+        <img style={{filter: 'blur(7px)'}} src="/img/jesus-effect/image-1.png"/>
         <Left>
             <Canvas camera={{fov: 25, position: [0, 0, 6]}}>
                 <JustinHead />
@@ -181,7 +191,8 @@ function Who({ myRef }) {
           </Canvas>
           </LeftMobile>
             <Right className='about-me'>
-              <h1><span style={{color: 'blue'}}>About</span> <span style={{color: 'blue'}}>Me</span></h1>
+              {/* <h1><span style={{color: 'black', fontWeight: 800}}>About</span> <span style={{color: 'black', fontWeight: 800}}>Me</span></h1> */}
+              <h1>About Me</h1>
               <h2>There's nothing I can't do!</h2>
               <p>Communicative, strong, and resilient! I love to learn, I love culture, and I love life! Coding is my favourite thing to do!</p>
               

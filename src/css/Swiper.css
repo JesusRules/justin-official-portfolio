@@ -247,3 +247,21 @@
     width: 0rem;
     min-width: 0rem;
   }
+
+  
+/* Cool scrollbar! */
+::-webkit-scrollbar {
+  width: 10px; /* Width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Track background color */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #0086d3; /* Thumb color */
+}
+
+/* For Firefox */
+scrollbar-width: thin;
+scrollbar-color: #f1f1f1 #888; /* Track color and Thumb color */

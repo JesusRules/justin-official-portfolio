@@ -305,7 +305,7 @@ export function MiniJesus(props) {
       // setCurrentProject("");
       setWithinProject(false);
     }
-
+    
 
     if (!startUpCam) 
     {

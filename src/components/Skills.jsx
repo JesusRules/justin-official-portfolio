@@ -67,6 +67,7 @@ function Skills({ myRef, scrollYGlobal }) {
 
   return (
     <Container className="trigger" ref={myRef}>
+      <img style={{filter: 'blur(0px)', position: 'absolute'}} src="/img/jesus-effect/image-2.png"/>
       <Container2>
       <Title>All the technologies I know!</Title>
     
