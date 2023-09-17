@@ -331,7 +331,7 @@ const ContactBtn = styled.button`
 
 `
 
-function Hero({ scrollYGlobal }) { 
+function Hero({ scrollYGlobal, clickToContact }) { 
     // PARALLAX VARS
     let parallex_el;
     let xValue = 0, yValue = 0;
@@ -722,7 +722,7 @@ function Hero({ scrollYGlobal }) {
       {/* <Vignette /> */}
     <HeroText ref={subtitleTxtRef}>Passionate. Professional. Reliable.</HeroText>
 
-    <div ref={contactBtnRef} id="button-8" className="contact-btn-main">
+    <div ref={contactBtnRef} id="button-8" className="contact-btn-main" onClick={clickToContact}>
         <span className='borderLine'></span>
         <div id="button- 3" style={{padding: 0}}>
             <span className='contact'>Contact Me!</span>

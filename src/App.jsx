@@ -73,7 +73,7 @@ function App() {
               clickToEducation={scrollToEducation}
               clickToContact={scrollToContact}
               />
-      <Hero scrollYGlobal={scrollY} />
+      <Hero scrollYGlobal={scrollY} clickToContact={scrollToContact}/>
       <Who myRef={whoRef}/>
       <Skills myRef={skillsRef} scrollYGlobal={scrollY}/>
       <Projects myRef={portfolioRef} scrollYGlobal={scrollY} 

@@ -73,7 +73,7 @@ const WebgiViewer = ({ scrollYGlobal }) => {
 
         // Add plugins individually.
         // await viewer.addPlugin(GBufferPlugin)
-        await viewer.addPlugin(new ProgressivePlugin(32))
+        await viewer.addPlugin(new ProgressivePlugin(1)) //32
         await viewer.addPlugin(new TonemapPlugin(true))
         await viewer.addPlugin(GammaCorrectionPlugin)
         // await viewer.addPlugin(SSRPlugin)
@@ -107,23 +107,24 @@ const WebgiViewer = ({ scrollYGlobal }) => {
         // position.set(-0.5251238011, -1.0550513875, 11.0900732729);
         // target.set(0.0834774777, -0.1475334433, -2.0926561362);
 
-        window.scrollTo(0, 0);
+        
+        // window.scrollTo(0, 0);
 
-        let needsUpdate = true;
+        // let needsUpdate = true;
 
-        const onUpdate = () => {
-            needsUpdate = true;
-            viewer.setDirty();
-        }
+        // const onUpdate = () => {
+        //     needsUpdate = true;
+        //     viewer.setDirty();
+        // }
 
-        viewer.addEventListener("preFrame", () => {
-            if (needsUpdate) {
-                camera.positionTargetUpdated(true);
-                needsUpdate = false;
-            }
-        })
+        // viewer.addEventListener("preFrame", () => {
+        //     if (needsUpdate) {
+        //         camera.positionTargetUpdated(true);
+        //         needsUpdate = false;
+        //     }
+        // })
 
-        memoizedScrollAnimation(position, target, isMobileOrTablet, onUpdate);
+        // memoizedScrollAnimation(position, target, isMobileOrTablet, onUpdate);
     }, []);
 
     useEffect(() => {
