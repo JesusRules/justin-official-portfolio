@@ -103,9 +103,6 @@ const WebgiViewer = ({ scrollYGlobal }) => {
             // target.set(0, 1.37, 0);
             // props.contentRef.current.className = "mobile-or-tablet";
         }
-        // SECOND
-        // position.set(5.2417274218, 0.9178823077, 15.0533755813);
-        // target.set(-2.6210682888, -0.5284058537, 0.8750121143);
         // FIRST
         position.set(-0.5251238011, -1.0550513875, 11.0900732729);
         target.set(0.0834774777, -0.1475334433, -2.0926561362);
@@ -158,8 +155,9 @@ const WebgiViewer = ({ scrollYGlobal }) => {
                 }
             })
         }
+
         // SECOND SCREEN
-        if (scrollYGlobal >= 30) {
+        if (scrollYGlobal >= 30 && scrollYGlobal < innerHeight * 2) {
             gsap.to(positionRef, {
                 x: 5.2417274218 , //First values are DESKTOP
                 y: 0.9178823077 ,
@@ -187,7 +185,8 @@ const WebgiViewer = ({ scrollYGlobal }) => {
         }
 
         // THIRD SCREEN
-        if (scrollYGlobal >= innerHeight * 2) {
+        if (scrollYGlobal >= innerHeight * 2
+            && scrollYGlobal < innerHeight * 3) {
             if (movedOnce) return;
             // setMovedOnce(true);
             // SOUND SECTION
@@ -214,6 +213,56 @@ const WebgiViewer = ({ scrollYGlobal }) => {
             gsap.to("#webgi-canvas-container", {
                 filter: 'blur(0px)',
                 duration: 0.5,
+            })
+        }
+
+         // FOURTH SCREEN (Projects)
+         if (Math.round(scrollYGlobal) >= innerHeight * 3
+            && Math.round(scrollYGlobal) < innerHeight * 5) {
+            gsap.to(positionRef, {
+                x: -0.5251238011 , //First values are DESKTOP
+                y: -1.0550513875 ,
+                z: 11.0900732729,
+                duration: 0.5,
+                onUpdate: () => {
+                    viewerRef.setDirty();
+                    cameraRef.positionTargetUpdated(true);
+                }
+            });
+            gsap.to(targetRef, {
+                x: 0.0834774777 ,
+                y: -0.1475334433,
+                z:  -2.0926561362 ,
+                duration: 0.5,
+                onUpdate: () => {
+                    viewerRef.setDirty();
+                    cameraRef.positionTargetUpdated(true);
+                }
+            })
+        }
+
+
+        // LAST SCREEN (6)
+        if (Math.round(scrollYGlobal) >= innerHeight * 5) {
+            gsap.to(positionRef, {
+                x: 0.024786392 , //First values are DESKTOP
+                y: -44.6719188643 ,
+                z: 16.054278361,
+                duration: 1.5,
+                onUpdate: () => {
+                    viewerRef.setDirty();
+                    cameraRef.positionTargetUpdated(true);
+                }
+            });
+            gsap.to(targetRef, {
+                x: 0.2665220273 ,
+                y: -8.5961483864,
+                z: -3.2990005316 ,
+                duration: 1.5,
+                onUpdate: () => {
+                    viewerRef.setDirty();
+                    cameraRef.positionTargetUpdated(true);
+                }
             })
         }
 
