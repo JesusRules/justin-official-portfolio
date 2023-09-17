@@ -21,10 +21,10 @@ function Contact({ myRef, scrollYGlobal, educationRef }) {
     useEffect(() => {
       const divElement = myRef.current;
       const halfwayPoint = divElement.scrollHeight / 5;
-      if (Math.round(scrollYGlobal) >= (3001)) {
+      if (Math.round(scrollYGlobal) > (3001)) {
         setShowComponent(true);
       }
-      if (Math.round(scrollYGlobal) < (3001)) {
+      if (Math.round(scrollYGlobal) <= (3001)) {
         setShowComponent(false);
       }
 
@@ -35,35 +35,68 @@ function Contact({ myRef, scrollYGlobal, educationRef }) {
     <Container ref={myRef}>
       {showComponent && 
       (
-        <Canvas camera={{fov: 95, far: 1000, near: 0.1, 
-           position: [0, 8, 35]}} >
+        <Canvas style={{backgroundColor: 'lightblue'}} camera={{fov: 95, far: 1000, near: 0.1, 
+           position: [0, 82, 35]}} >
           <ambientLight color='white' intensity={3} />
           <directionalLight intensity={2}  castShadow  position={[-100, 30, 50]} />
           <directionalLight intensity={2}  castShadow position={[62, 40, -20]} />
           <OrbitControls enableZoom={false} enableRotate={false} enablePan={false} />
           <Sky />
           <Church />
-          <CameraConsole />
+          <CameraConsole showComponent={showComponent} />
         </Canvas>
       )}
     </Container>
   )
 }
 
-function CameraConsole() {
-  const targetPosition = new Vector3(0, 30, 0);
+function CameraConsole({ showComponent }) {
+  let targetPosition = new Vector3(0, 30, 0);
+  const { camera } = useThree();
+
+  useEffect(() => {
+    if (!showComponent) return;
+    // Create a GSAP tween to animate the camera's position
+    gsap.to(camera.position, {
+      x: 0, // New X position
+      y: 8, // New Y position
+      z: 35, // New Z position
+      duration: 2,
+    });
+
+  }, [showComponent]);
 
   useFrame((state) => {
-    // state.camera.position.set(0, 8, 35);
+    state.camera.lookAt(targetPosition)
+    // state.camera.position.set(0, 82, 35); //8
+
+    // gsap.to(state.camera.position, {
+    //   x: 10, //new
+    //   y: 20, 
+    //   z: -5,
+    //   duration: 3,
+    // });
+
+    // gsap.to(targetPosition, {
+    //   x: 10, //new
+    //   y: 20, 
+    //   z: -5,
+    //   duration: 3,
+    //   onUpdate: () => {
+    //     // Update the camera's target position based on the tweened values
+    //     state.camera.lookAt(targetPosition)
+    //   },
+    // });
+
+
     // state.camera.fov = 95;
-    const direction = new Vector3().subVectors(targetPosition, state.camera.position);
-    state.camera.rotation.setFromRotationMatrix(
-      new THREE.Matrix4().lookAt(
-        state.camera.position, // Camera position
-        targetPosition,        // Target position
-        state.camera.up        // Up vector (usually (0, 1, 0))
-      )
-    );
+    // state.camera.rotation.setFromRotationMatrix(
+    //   new THREE.Matrix4().lookAt(
+    //     state.camera.position, // Camera position
+    //     targetPosition,        // Target position
+    //     state.camera.up        // Up vector (usually (0, 1, 0))
+    //   )
+    // );
   })
   return null;
 }
