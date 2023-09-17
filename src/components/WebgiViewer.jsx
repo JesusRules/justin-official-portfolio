@@ -135,8 +135,59 @@ const WebgiViewer = ({ scrollYGlobal }) => {
 
     useEffect(() => {
         // MOVEMENT
+        // FIRST SCREEN
+        if (scrollYGlobal < innerHeight) {
+            gsap.to(positionRef, {
+                x: -0.5251238011 , //First values are DESKTOP
+                y: -1.0550513875 ,
+                z: 11.0900732729,
+                duration: 0.5,
+                onUpdate: () => {
+                    viewerRef.setDirty();
+                    cameraRef.positionTargetUpdated(true);
+                }
+            });
+            gsap.to(targetRef, {
+                x: 0.0834774777 ,
+                y: -0.1475334433,
+                z:  -2.0926561362 ,
+                duration: 0.5,
+                onUpdate: () => {
+                    viewerRef.setDirty();
+                    cameraRef.positionTargetUpdated(true);
+                }
+            })
+        }
+        // SECOND SCREEN
+        if (scrollYGlobal >= innerHeight) {
+            gsap.to(positionRef, {
+                x: 5.2417274218 , //First values are DESKTOP
+                y: 0.9178823077 ,
+                z: 15.0533755813,
+                duration: 0.5,
+                onUpdate: () => {
+                    viewerRef.setDirty();
+                    cameraRef.positionTargetUpdated(true);
+                }
+            });
+            gsap.to(targetRef, {
+                x: -2.6210682888 ,
+                y: -0.5284058537,
+                z:  0.8750121143 ,
+                duration: 0.5,
+                onUpdate: () => {
+                    viewerRef.setDirty();
+                    cameraRef.positionTargetUpdated(true);
+                }
+            })
+            gsap.to("#webgi-canvas-container", {
+                filter: 'blur(6px)',
+                duration: 0.5,
+            })
+        }
+
         // THIRD SCREEN
-        if (scrollYGlobal >= 1300) {
+        if (scrollYGlobal >= innerHeight * 2) {
             if (movedOnce) return;
             // setMovedOnce(true);
             // SOUND SECTION
@@ -165,34 +216,6 @@ const WebgiViewer = ({ scrollYGlobal }) => {
                 duration: 0.5,
             })
         }
-
-        // SECOND SCREEN
-        // if (scrollYGlobal <= 1300) {
-        //     gsap.to(positionRef, {
-        //         x: 2.6499672302 , //First values are DESKTOP
-        //         y: -1.03756955 ,
-        //         z: 12.2175173291,
-        //         duration: 0.5,
-        //         onUpdate: () => {
-        //             viewerRef.setDirty();
-        //             cameraRef.positionTargetUpdated(true);
-        //         }
-        //     });
-        //     gsap.to(targetRef, {
-        //         x: -1.670552383 ,
-        //         y: -0.0041488934,
-        //         z: 3.5020938767 ,
-        //         duration: 0.5,
-        //         onUpdate: () => {
-        //             viewerRef.setDirty();
-        //             cameraRef.positionTargetUpdated(true);
-        //         }
-        //     })
-        //     gsap.to("#webgi-canvas-container", {
-        //         filter: 'blur(6px)',
-        //         duration: 0.5,
-        //     })
-        // }
 
     }, [scrollYGlobal])
 
