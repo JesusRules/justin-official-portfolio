@@ -103,8 +103,12 @@ const WebgiViewer = ({ scrollYGlobal }) => {
             // target.set(0, 1.37, 0);
             // props.contentRef.current.className = "mobile-or-tablet";
         }
-        position.set(5.2417274218, 0.9178823077, 15.0533755813);
-        target.set(-2.6210682888, -0.5284058537, 0.8750121143);
+        // SECOND
+        // position.set(5.2417274218, 0.9178823077, 15.0533755813);
+        // target.set(-2.6210682888, -0.5284058537, 0.8750121143);
+        // FIRST
+        position.set(-0.5251238011, -1.0550513875, 11.0900732729);
+        target.set(0.0834774777, -0.1475334433, -2.0926561362);
 
         window.scrollTo(0, 0);
 
