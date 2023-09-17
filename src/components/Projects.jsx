@@ -450,7 +450,11 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
                     // toneMapping: THREE.ReinhardToneMapping,
                     toneMapping: THREE.ACESFilmicToneMapping,
                     toneMappingExposure: 1, // Adjust this value
-                  }}>
+                  }}
+                  performance={{ min: 0.001, max: 0.001 }}
+                  devicePixelRatio={window.devicePixelRatio / 10}
+                  pixelRatio={window.devicePixelRatio / 10}
+                  >
 
                     <Suspense fallback={<Loader />}>
                       <MiniJesus scale={37} 

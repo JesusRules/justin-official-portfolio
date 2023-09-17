@@ -38,6 +38,10 @@ function App() {
   const educationRef = useRef(null);
   const contactRef = useRef(null);
 
+  useEffect(() => {
+    devicePixelRatio = 0.001;
+  }, [])
+
   const handleScroll = (event) => {
     const scrollTop = event.target.scrollTop;
     setScrollY(scrollTop);
@@ -78,7 +82,7 @@ function App() {
                 setHideOverflow={setHideOverflow} />
       <Education myRef={educationRef} scrollYGlobal={scrollY} />
       <Contact myRef={contactRef} educationRef={educationRef} scrollYGlobal={scrollY}/>
-      {/* <WebgiViewer scrollYGlobal={scrollY}/> */}
+      <WebgiViewer scrollYGlobal={scrollY}/>
     </Container>
   )
 }

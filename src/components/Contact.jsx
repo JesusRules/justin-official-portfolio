@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect, Suspense } from 'react'
 import { styled } from 'styled-components'
 import { Canvas, useFrame, useLoader, useThree, extend  } from '@react-three/fiber'
 import { Church } from './threejsscripts/Church'
@@ -30,20 +30,24 @@ function Contact({ myRef, scrollYGlobal, educationRef }) {
 
   }, [scrollYGlobal])
 
-
   return (
     <Container ref={myRef}>
       {showComponent && 
       (
-        <Canvas style={{backgroundColor: 'lightblue'}} camera={{fov: 95, far: 1000, near: 0.1, 
-           position: [0, 82, 35]}} >
-          <ambientLight color='white' intensity={3} />
-          <directionalLight intensity={2}  castShadow  position={[-100, 30, 50]} />
-          <directionalLight intensity={2}  castShadow position={[62, 40, -20]} />
-          <OrbitControls enableZoom={false} enableRotate={false} enablePan={false} />
-          <Sky />
-          <Church />
-          <CameraConsole showComponent={showComponent} />
+        <Canvas style={{width: '100%', height: '100%', backgroundColor: '#c8f9ff'}} camera={{fov: 95, far: 1000, near: 0.1, 
+          position: [0, 82, 35]}} 
+          gl={{ antialias: false }} // Disable antialiasing for performance
+          pixelRatio={0.0} // Set the pixel ratio to half (adjust as needed)
+         >
+             <Suspense fallback={<Loader />}>
+              <ambientLight color='white' intensity={3} />
+              {/* <directionalLight intensity={2}  castShadow  position={[-100, 30, 50]} /> */}
+              {/* <directionalLight intensity={2}  castShadow position={[62, 40, -20]} /> */}
+              <OrbitControls enableZoom={false} enableRotate={false} enablePan={false} />
+              {/* <Sky /> */}
+              <Church />
+              <CameraConsole showComponent={showComponent} />
+            </Suspense>
         </Canvas>
       )}
     </Container>
@@ -61,7 +65,7 @@ function CameraConsole({ showComponent }) {
       x: 0, // New X position
       y: 8, // New Y position
       z: 35, // New Z position
-      duration: 2,
+      duration: 3,
     });
 
   }, [showComponent]);
@@ -99,6 +103,15 @@ function CameraConsole({ showComponent }) {
     // );
   })
   return null;
+}
+
+function Loader() {
+  const { progress } = useProgress()
+  return <Html center>
+    <div style={{width: '100vw', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center',  margin: 'auto'}}>
+    <p style={{textAlign: 'center', fontSize: '2.2rem'}}>{progress} % Loaded</p>
+    </div>
+    </Html>
 }
 
 export default Contact
