@@ -159,7 +159,7 @@ const WebgiViewer = ({ scrollYGlobal }) => {
             })
         }
         // SECOND SCREEN
-        if (scrollYGlobal >= innerHeight) {
+        if (scrollYGlobal >= 30) {
             gsap.to(positionRef, {
                 x: 5.2417274218 , //First values are DESKTOP
                 y: 0.9178823077 ,

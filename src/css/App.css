@@ -456,7 +456,7 @@ p {
   pointer-events: none;
   min-height: 831px;
   background: transparent;
-  z-index: 1115; /* 5 */
+  z-index: 5; /* 5 */
   /* filter: blur(6px); */
 }
 
