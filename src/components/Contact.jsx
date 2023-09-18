@@ -9,15 +9,60 @@ import gsap from 'gsap';
 import ContactForm from './smaller-components/ContactForm';
 
 const Container = styled.div`
-    background-color: brown;
+   position: relative;
     width: 100vw;
     height: 100vh;
     scroll-snap-align: start;
 `
 
+const Footer = styled.div`
+  width: 100vw;
+  height: 2rem;
+  background-color: #00000079;
+  position: absolute;
+  bottom: 0;
+  z-index: 1000;
+  pointer-events: none;
+  opacity: 0;
+  `;
+
+const SVGContent = styled.div`
+    opacity: 0;
+    width: 100vw;
+    height: 2rem;
+    position: absolute;
+    bottom: 0;
+    z-index: 10000;
+    display: flex;
+    justify-content: space-between;
+    max-width: 1000px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    align-items: center;
+    p {
+      color: white;
+      font-weight: 500;
+    }
+    img {
+      cursor: pointer;
+      width: 1.5rem;
+      height: 1.5rem;
+      object-fit: cover;
+      z-index: 10000;
+    }
+    .svg-images {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+    }
+`;
+
 function Contact({ myRef, scrollYGlobal, educationRef }) {
   const [showComponent, setShowComponent] = useState(false);
   const contactForm = useRef();
+  const footer1Ref = useRef();
+  const footer2Ref = useRef();
 
   //SCROLLING
     useEffect(() => {
@@ -39,12 +84,35 @@ function Contact({ myRef, scrollYGlobal, educationRef }) {
         duration: 1,
         delay: 2
       })
+      gsap.to(footer1Ref.current, {
+        opacity: 1,
+        duration: 1,
+        delay: 2
+      })
+      gsap.to(footer2Ref.current, {
+        opacity: 1,
+        duration: 1,
+        delay: 2
+      })
     }
   }, [showComponent])
 
   return (
     <>
     <Container ref={myRef}>
+      
+      <Footer ref={footer1Ref}/>
+      <SVGContent ref={footer2Ref}>
+          <p>Created by Justin Bernard</p>
+          <div className='svg-images'>
+          <a target="_blank" title="Facebook" href="https://www.facebook.com/justin.bernard320"><img src="/svg/footer/facebook-foot.svg"/></a>
+          <a target="_blank" title="GitHub" href="https://github.com/bern0241"><img src="/svg/footer/github-foot.svg"/></a>
+          <a target="_blank" title="LinkedIn" href="https://www.linkedin.com/in/justin-bernard32/"><img src="/svg/footer/linkedin-foot.svg"/></a>
+          <a target="_blank" title="YouTube" href="https://www.youtube.com/channel/UCx8Il9AsAJZnIs9BwXY_M7g"><img src="/svg/footer/youtube-foot.svg"/></a>
+          <a target="_blank" title="Instagram" href="https://www.instagram.com/justin.bernard320/"><img src="/svg/footer/instagram-foot.svg"/></a>
+          </div>
+      </SVGContent>
+
       <ContactForm contactForm={contactForm} />
       {showComponent && 
       (
@@ -84,17 +152,6 @@ function CameraConsole({ showComponent }) {
   let targetPosition = new Vector3(0, 110, 0);
   const { camera } = useThree();
 
-  useEffect(() => {
-    if (!showComponent) return;
-    // gsap.to(camera.position, {
-    //   x: 0,
-    //   y: 8, 
-    //   z: 35,
-    //   duration: 3,
-    // });
-    
-  }, [showComponent]);
-  
   useFrame((state) => {
     state.camera.lookAt(targetPosition)
     gsap.to(targetPosition, {
