@@ -17,6 +17,7 @@ const Container = styled.div`
 
 function Contact({ myRef, scrollYGlobal, educationRef }) {
   const [showComponent, setShowComponent] = useState(false);
+  const contactForm = useRef();
 
   //SCROLLING
     useEffect(() => {
@@ -28,13 +29,23 @@ function Contact({ myRef, scrollYGlobal, educationRef }) {
       if (Math.round(scrollYGlobal) <= (3001)) {
         setShowComponent(false);
       }
-
   }, [scrollYGlobal])
+
+
+  useEffect(() => {
+    if (showComponent) {
+      gsap.to(contactForm.current, {
+        opacity: 1,
+        duration: 1,
+        delay: 2
+      })
+    }
+  }, [showComponent])
 
   return (
     <>
     <Container ref={myRef}>
-      <ContactForm />
+      <ContactForm contactForm={contactForm} />
       {showComponent && 
       (
        <>

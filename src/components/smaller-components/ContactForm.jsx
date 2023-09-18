@@ -1,4 +1,4 @@
-import React, {} from 'react';
+import React, { } from 'react';
 import { styled, keyframes  } from 'styled-components'
 
 const ContactContainer = styled.div`
@@ -27,6 +27,7 @@ const ContactContent = styled.div`
     box-shadow: 0px 25px 50px rgba(0, 0, 0, 0.1); 
     
     align-items: center;
+    opacity: 0;
 
     .names {
         display: flex;
@@ -111,7 +112,6 @@ const ContactContent = styled.div`
             right: 0;
             flex-direction: column;
         }
-
         /* grid-template-columns: 1fr;
         grid-template-areas: 
         'one'
@@ -131,10 +131,10 @@ const ContactContent = styled.div`
     }
 `;
 
-function ContactForm() {
+function ContactForm({ contactForm }) {
     return (
         <ContactContainer>
-            <ContactContent>
+            <ContactContent ref={contactForm}>
                 <h2 style={{gridArea: 'one'}} className='title'>Contact Me!</h2>
                 <div className='names'>
                     <div style={{gridArea: 'two'}} className='inputBox first-name'>

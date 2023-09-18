@@ -39,7 +39,7 @@ function App() {
   const contactRef = useRef(null);
 
   useEffect(() => {
-    devicePixelRatio = 0.001;
+    devicePixelRatio = 0.25;
   }, [])
 
   const handleScroll = (event) => {
