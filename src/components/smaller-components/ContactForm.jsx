@@ -146,6 +146,14 @@ const SuccessModal = styled.div`
     z-index: 100000;
     height: 10rem;
     width: 20rem;
+    img {
+        width: 2rem;
+        /* background-color: red; */
+        position: absolute;
+        cursor: pointer;
+        z-index: 1000;
+        right: 0;
+    }
     .content {
         width: 100%;
         padding: 2rem;
@@ -175,6 +183,14 @@ const ErrorModal = styled.div`
     z-index: 100000;
     height: 10rem;
     width: 20rem;
+    img {
+        width: 2rem;
+        /* background-color: red; */
+        position: absolute;
+        cursor: pointer;
+        z-index: 1000;
+        right: 0;
+    }
     .content {
         padding: 2rem;
         width: 100%;
@@ -226,7 +242,6 @@ function ContactForm({ contactForm }) {
             return;
         }
         
-        // setErrorModal(true);
         const emailService = 'service_np61i8q';
         const templateId = 'template_k7g7a9m';
         const templateParams = {
@@ -236,19 +251,25 @@ function ContactForm({ contactForm }) {
             subject: subject,
             message: message,
         };
-
+        
         // / Send the email
-        // emailjs.send(emailService, templateId, templateParams)
-        // .then((response) => {
-        //     setSuccessModal(true);
-        //     console.log('Email sent:', response);
-        //     // Reset the form or show a success message
-        // })
-        // .catch((error) => {
-        //     setErrorModal(true);
-        //     setErrorMessage(error);
-        //     console.error('Email error:', error);
-        // });
+        emailjs.send(emailService, templateId, templateParams)
+        .then((response) => {
+            setSuccessModal(true);
+            setFirstName('');
+            setLastName('');
+            setEmail('');
+            setPhoneNumber('');
+            setSubject('');
+            setMessage('');
+            console.log('Email sent:', response);
+            // Reset the form or show a success message
+        })
+        .catch((error) => {
+            setErrorModal(true);
+            setErrorMessage(error);
+            console.error('Email error:', error);
+        });
     }
 
     useEffect(() => {
@@ -287,17 +308,17 @@ function ContactForm({ contactForm }) {
 
     // RED PARAGRAPH LINE
     useEffect(() => {
-        if (showErrorMessage) {
-            setTimeout(() => {
-                setShowErrorMessage(false);
-            }, 5000)
-        }
-    }, [showErrorMessage])
+		const timer = setTimeout(() => {
+			setShowErrorMessage(false);
+		}, 5000);
+		return () => clearTimeout(timer);
+	}, [showErrorMessage]);
 
     return (
         <>
         {successModal && (
             <SuccessModal ref={successModalRef}>
+                <img src="/svg/close-button.svg" onClick={(e) => setSuccessModal(false)}/>
                 <div className='content'>
                     <p style={{fontWeight: 400}}>Thank you <span style={{fontWeight: 900, fontStyle: 'italic'}}>{firstName}!</span></p>
                     
@@ -308,6 +329,7 @@ function ContactForm({ contactForm }) {
 
         {errorModal && (
             <ErrorModal ref={errorModalRef}>
+                <img src="/svg/close-button.svg" onClick={(e) => setErrorModal(false)}/>
                 <div className='content'>
                     <p style={{fontWeight: 900}}>Error sending the message!</p>
                     <p>The problem: {errorMessage}</p>
