@@ -10,7 +10,7 @@ import { useGLTF } from '@react-three/drei'
 export function Church(props) {
   const { nodes, materials } = useGLTF('/models/Church-transformed.glb')
   return (
-    <group {...props} dispose={null}>
+    <group scale={0.9} {...props} dispose={null}>
       <group position={[-14.485, 7.55, -23.621]} rotation={[Math.PI / 2, 0, 0]} scale={[0.275, 0.64, 0.181]}>
         <mesh geometry={nodes.Mesh091.geometry} material={materials['Gold.002']} />
         <mesh geometry={nodes.Mesh091_1.geometry} material={materials['Ceramic.002']} />

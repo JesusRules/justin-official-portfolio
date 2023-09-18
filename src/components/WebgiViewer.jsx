@@ -226,7 +226,7 @@ const WebgiViewer = ({ scrollYGlobal }) => {
                 duration: 0.25,
             })
         }
-        if (Math.round(scrollYGlobal) >= innerHeight * 3) {
+        if (Math.round(scrollYGlobal) >= innerHeight * 3.75) {
             canvasRef.current.style.display = "none";
             canvasContainerRef.current.style.display = "none";
         }

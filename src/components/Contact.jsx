@@ -34,17 +34,23 @@ function Contact({ myRef, scrollYGlobal, educationRef }) {
     <Container ref={myRef}>
       {showComponent && 
       (
-        <Canvas style={{width: '100%', height: '100%', backgroundColor: '#c8f9ff'}} camera={{fov: 95, far: 1000, near: 0.1, 
-          position: [0, 82, 35]}} 
+        <Canvas camera={{fov: 95, far: 1000, near: 0.1, 
+          position: [0, 150, 35]}} 
           gl={{ antialias: false }} // Disable antialiasing for performance
           pixelRatio={0.0} // Set the pixel ratio to half (adjust as needed)
+          style={{width: '100%', height: '100%', backgroundColor: '#c8f9ff', 
+          backgroundImage: 'url(/img/contact/contact-background-blur.jpg)' ,
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center center'}} 
          >
              <Suspense fallback={<Loader />}>
               <ambientLight color='white' intensity={3} />
               {/* <directionalLight intensity={2}  castShadow  position={[-100, 30, 50]} /> */}
               {/* <directionalLight intensity={2}  castShadow position={[62, 40, -20]} /> */}
               <OrbitControls enableZoom={false} enableRotate={false} enablePan={false} />
-              {/* <Sky /> */}
+              <Sky />
+              <Environment preset="night" />
               <Church />
               <CameraConsole showComponent={showComponent} />
             </Suspense>
@@ -55,52 +61,34 @@ function Contact({ myRef, scrollYGlobal, educationRef }) {
 }
 
 function CameraConsole({ showComponent }) {
-  let targetPosition = new Vector3(0, 30, 0);
+  let targetPosition = new Vector3(0, 110, 0);
   const { camera } = useThree();
 
   useEffect(() => {
     if (!showComponent) return;
-    // Create a GSAP tween to animate the camera's position
-    gsap.to(camera.position, {
-      x: 0, // New X position
-      y: 8, // New Y position
-      z: 35, // New Z position
-      duration: 3,
-    });
-
+    // gsap.to(camera.position, {
+    //   x: 0,
+    //   y: 8, 
+    //   z: 35,
+    //   duration: 3,
+    // });
+    
   }, [showComponent]);
-
+  
   useFrame((state) => {
     state.camera.lookAt(targetPosition)
-    // state.camera.position.set(0, 82, 35); //8
-
-    // gsap.to(state.camera.position, {
-    //   x: 10, //new
-    //   y: 20, 
-    //   z: -5,
-    //   duration: 3,
-    // });
-
-    // gsap.to(targetPosition, {
-    //   x: 10, //new
-    //   y: 20, 
-    //   z: -5,
-    //   duration: 3,
-    //   onUpdate: () => {
-    //     // Update the camera's target position based on the tweened values
-    //     state.camera.lookAt(targetPosition)
-    //   },
-    // });
-
-
-    // state.camera.fov = 95;
-    // state.camera.rotation.setFromRotationMatrix(
-    //   new THREE.Matrix4().lookAt(
-    //     state.camera.position, // Camera position
-    //     targetPosition,        // Target position
-    //     state.camera.up        // Up vector (usually (0, 1, 0))
-    //   )
-    // );
+    gsap.to(targetPosition, {
+      x: 0,
+      y: 30,
+      z: 0,
+      duration: 2,
+    });
+    gsap.to(camera.position, {
+      x: 0,
+      y: 8, 
+      z: 35,
+      duration: 2,
+    });
   })
   return null;
 }
@@ -109,7 +97,7 @@ function Loader() {
   const { progress } = useProgress()
   return <Html center>
     <div style={{width: '100vw', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center',  margin: 'auto'}}>
-    <p style={{textAlign: 'center', fontSize: '2.2rem'}}>{progress} % Loaded</p>
+    <p style={{textAlign: 'center', text: 'white', fontSize: '2.2rem'}}>{progress} % Loaded</p>
     </div>
     </Html>
 }
