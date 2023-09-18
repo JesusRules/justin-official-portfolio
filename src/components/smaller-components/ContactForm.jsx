@@ -15,6 +15,8 @@ const ContactContent = styled.div`
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 500px;
 
     background: rgb(255, 255, 255, 0.15); //0.15
     backdrop-filter: blur(25px);
@@ -22,7 +24,6 @@ const ContactContent = styled.div`
     border-bottom: 1px solid rgba(255, 255, 255, 0.25);
     border-left: 1px solid rgba(255, 255, 255, 0.25);
     border-radius: 20px;
-    width: 500px;
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -39,23 +40,26 @@ const ContactContent = styled.div`
     }
     .inputBox {
         position: relative;
-        width: 100%;
+        width: 90%;
+        margin: 0 auto;
 
         input {
             padding: 1rem;
-            width: 93%;
+            width: 91.5%;
             outline: none;
             font-size: 1.25em;
-            color: white;
+            color: #000000;
             border-radius: 5px;
-            background: rgba(0,0,0,0.2);
+            /* background: rgba(0,0,0,0.2); //0.2 */
+            background: rgba(255,255,255,1); //0.2
             box-shadow: inset 0 0 15px rgba(0,0,0,0.25);
             border: 1px solid rgba(0,0,0,0.5);
             margin-bottom: 30px;
         }
 
         ::placeholder {
-            color: rgba(255,255,255, 0.5);
+            color: rgba(0, 0, 0, 0.525);
+            /* color: rgba(255,255,255, 0.5); */ //old
         }
 
         #btn {
@@ -98,9 +102,9 @@ function ContactForm() {
                 <div className='inputBox'>
                     <input type="email" placeholder='Email'/>
                 </div>
-                <div className='inputBox'>
+                {/* <div className='inputBox'>
                     <input type="submit" value="Send" id="btn"/>
-                </div>
+                </div> */}
                 {/* <div className='group'>
                     <a href="#">Forget Password</a>
                     <a href="#">Signup</a>
