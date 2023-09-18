@@ -6,10 +6,11 @@ import { OrbitControls, Html, Environment, Sky, PerspectiveCamera, Circle, useEn
 import { Euler, Vector3  } from 'three';
 import * as THREE from "three";
 import gsap from 'gsap';
-
+import ContactForm from './smaller-components/ContactForm';
 
 const Container = styled.div`
     background-color: brown;
+    width: 100vw;
     height: 100vh;
     scroll-snap-align: start;
 `
@@ -31,9 +32,12 @@ function Contact({ myRef, scrollYGlobal, educationRef }) {
   }, [scrollYGlobal])
 
   return (
+    <>
     <Container ref={myRef}>
+      <ContactForm />
       {showComponent && 
       (
+       <>
         <Canvas camera={{fov: 95, far: 1000, near: 0.1, 
           position: [0, 150, 35]}} 
           gl={{ antialias: false }} // Disable antialiasing for performance
@@ -53,10 +57,15 @@ function Contact({ myRef, scrollYGlobal, educationRef }) {
               <Environment preset="night" />
               <Church />
               <CameraConsole showComponent={showComponent} />
+              {/* <Html >
+                <ContactForm />
+              </Html> */}
             </Suspense>
         </Canvas>
+        </>
       )}
     </Container>
+    </>
   )
 }
 
