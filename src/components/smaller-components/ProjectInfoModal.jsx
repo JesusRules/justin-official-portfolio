@@ -10,6 +10,7 @@ import Memories from './projects-modal/Memories';
 import SocialPup from './projects-modal/SocialPup';
 import WeatherApp from './projects-modal/WeatherApp';
 import OtherProjects from './projects-modal/OtherProjects';
+import ChurchParty from './projects-modal/ChurchParty';
 
 const ProjectInfoContainer = styled.div`
   position: relative;
@@ -122,6 +123,8 @@ function ProjectInfoModal(props) {
         {currentProject.id === "socialpup" && <SocialPup openModal={openModal} setOpenModal={setOpenModal} /> }
         {currentProject.id === "my-weather-app" && <WeatherApp openModal={openModal} setOpenModal={setOpenModal} /> }
         {currentProject.id === "other-projects" && <OtherProjects openModal={openModal} setOpenModal={setOpenModal} /> }
+        
+        {currentProject.id === "church-party" && <ChurchParty openModal={openModal} setOpenModal={setOpenModal} /> }
     </ProjectInfoModalDiv>
     {/* </ProjectInfoContainer> */}
     </>
