@@ -54,9 +54,11 @@ const WebgiViewer = ({ scrollYGlobal }) => {
 
       useEffect(() => {
         setupViewer();
-        setTimeout(() => {
-            setLoad(true);
-        }, 500)
+        canvasRef.current.style.display = "none";
+        canvasContainerRef.current.style.display = "none";
+        // setTimeout(() => {
+        //     setLoad(true);
+        // }, 500)
     }, [])
 
 
@@ -130,13 +132,18 @@ const WebgiViewer = ({ scrollYGlobal }) => {
 
         viewer.scene.activeCamera.setCameraOptions({ controlsEnabled: false });
 
-        // if (isMobile) { //initial - NO use
-        //     position.set(-0.5251238011, -1.0550513875, 11.0900732729);
-        //     target.set(0.0834774777, -0.1475334433, -2.0926561362);
-        // } else {
-        //     position.set(-0.5251238011, -1.0550513875, 11.0900732729);
-        //     target.set(0.0834774777, -0.1475334433, -2.0926561362);
-        // }
+        if (!isMobile) { //initial - NO use
+            position.set(5.2417274218, 0.9178823077, 15.0533755813);
+            target.set(-2.6210682888, -0.5284058537, 0.8750121143);
+        } else {
+            position.set(6.8070028002, 0.9898715098, 14.1779883979);
+            target.set(-1.0557929105, -0.4564166516, -0.0003750692);
+        }
+
+        // setTimeout(() => {
+        //     canvasRef.current.style.display = "none";
+        //     canvasContainerRef.current.style.display = "none";
+        // }, 200)
 
         // window.scrollTo(0, 0);
 
@@ -158,7 +165,8 @@ const WebgiViewer = ({ scrollYGlobal }) => {
     }, []);
 
     const ShowCrucifixScreens = () => {
-        if (load === false) return;
+        // if (load === false) return;
+
         // FIRST SCREEN
         if (scrollYGlobal < innerHeight / 2) {
             canvasRef.current.style.display = "none";

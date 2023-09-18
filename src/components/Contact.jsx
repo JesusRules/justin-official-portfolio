@@ -28,7 +28,7 @@ const Footer = styled.div`
 
 const SVGContent = styled.div`
     opacity: 0;
-    width: 100vw;
+    width: 94%;
     height: 2rem;
     position: absolute;
     bottom: 0;
@@ -105,7 +105,7 @@ function Contact({ myRef, scrollYGlobal, educationRef }) {
       
       <Footer ref={footer1Ref}/>
       <SVGContent ref={footer2Ref}>
-          <p>Created by Justin Bernard</p>
+          <p>By Justin Bernard</p>
           <div className='svg-images'>
           <a target="_blank" title="Facebook" href="https://www.facebook.com/justin.bernard320"><img src="/svg/footer/facebook-foot.svg"/></a>
           <a target="_blank" title="GitHub" href="https://github.com/bern0241"><img src="/svg/footer/github-foot.svg"/></a>
