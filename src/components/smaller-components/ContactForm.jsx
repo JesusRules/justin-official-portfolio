@@ -24,10 +24,30 @@ const ContactContent = styled.div`
     border-bottom: 1px solid rgba(255, 255, 255, 0.25);
     border-left: 1px solid rgba(255, 255, 255, 0.25);
     border-radius: 20px;
-    display: flex;
-    flex-direction: column;
     box-shadow: 0px 25px 50px rgba(0, 0, 0, 0.1); 
     
+    align-items: center;
+
+    .names {
+        display: flex;
+        gap: 1.4rem;
+        width: 86%;
+        position: relative;
+        right: .635rem;
+        margin: 0 auto;
+    }
+    
+    /* display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+    'one one'
+    'two three'
+    'four four'
+    'five five'
+    'six six'
+    'seven seven'
+    ; */
+
     h2 {
         position: relative;
         width: 100%;
@@ -41,7 +61,6 @@ const ContactContent = styled.div`
         position: relative;
         width: 90%;
         margin: 0 auto;
-
         input, textarea {
             padding: .8rem;
             width: 91.5%;
@@ -55,13 +74,11 @@ const ContactContent = styled.div`
             border: 1px solid rgba(0,0,0,0.5);
             margin-bottom: 15px;
         }
-
         ::placeholder {
             color: rgba(0, 0, 0, 0.525);
             /* color: rgba(255,255,255, 0.5); */ //old
         }
-
-        #btn {
+        #send-btn {
             width: 100%;
             position: relative;
             border: none;
@@ -74,44 +91,70 @@ const ContactContent = styled.div`
             transition: 0.5s;
         }
     }
-
-    .group {
-        display: flex;
-        justify-content: space-between;
-        a {
-            font-size: 1.25em;
-            color: white;
-            text-decoration: none;
-        }
-        a:nth-child(2) {
-            text-decoration: underline;
-        }
+    /* .first-name {
+        width: 80%;
     }
+    .last-name {
+        width: 80%;
+    }
+    .first-name, .last-name {
+        position: relative;
+        right: .17rem;
+    } */
 
+   
+    @media only screen and (max-width: 700px) {
+        .names {
+            width: 100%;
+            display: flex;
+            gap: 0;
+            right: 0;
+            flex-direction: column;
+        }
+
+        /* grid-template-columns: 1fr;
+        grid-template-areas: 
+        'one'
+        'two'
+        'three'
+        'four'
+        'five'
+        'six'
+        'seven';
+        
+        .first-name {
+            width: 90%;
+        }
+        .last-name {
+            width: 90%;
+        } */
+    }
 `;
 
 function ContactForm() {
     return (
         <ContactContainer>
             <ContactContent>
-                <h2>Contact Me!</h2>
-                <div className='inputBox'>
-                    <input type="text" placeholder='First Name'/>
+                <h2 style={{gridArea: 'one'}} className='title'>Contact Me!</h2>
+                <div className='names'>
+                    <div style={{gridArea: 'two'}} className='inputBox first-name'>
+                        <input type="text" placeholder='First Name'/>
+                    </div>
+                    <div style={{gridArea: 'three'}} className='inputBox last-name'>
+                        <input type="text" placeholder='Last Name'/>
+                    </div>
                 </div>
-                <div className='inputBox'>
-                    <input type="text" placeholder='Last Name'/>
-                </div>
-                <div className='inputBox'>
+                <div style={{gridArea: 'four'}} className='inputBox email'>
                     <input type="email" placeholder='Email'/>
                 </div>
-                <div className='inputBox'>
+                <div style={{gridArea: 'five'}} className='inputBox phone-number'>
                     <input type="tel" placeholder='Phone Number'/>
                 </div>
-                <div className="inputBox" title="Your message">
+                <div style={{gridArea: 'six'}} className="inputBox message" title="Your message">
                   <textarea rows="6" type="text" placeholder="What Do You Need Done?"></textarea>
                 </div>
-                <div className='inputBox'>
-                    <input type="submit" value="Send" id="btn"/>
+                <div style={{gridArea: 'seven'}} className='inputBox send-btn'>
+                    <input type="submit" value="Send" id="send-btn"/>
                 </div>
             </ContactContent>
         </ContactContainer>
