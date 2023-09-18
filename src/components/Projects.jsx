@@ -406,6 +406,8 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
 
   return (
     <>
+    <ProjectInfoModal currentProject={currentProject} openModal={openModal} setOpenModal={setOpenModal} />
+
     <Container ref={myRef}>
       <Arrows>
         <img onClick={handleUpArrow} id='arrow-top' src="/img/projects/misc/short-arrow.png"/>
@@ -434,7 +436,7 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
             <StyledButton ref={learnButtonRef} style={{cursor: withinProject ? 'pointer' : 'grab'}} onClick={() => clickProject()}>Learn More</StyledButton>
         </ProjectPopup>
         
-        <ProjectInfoModal currentProject={currentProject} openModal={openModal} setOpenModal={setOpenModal} />
+        {/* <ProjectInfoModal currentProject={currentProject} openModal={openModal} setOpenModal={setOpenModal} /> */}
 
         <SpeechBubble ref={speechBubbleRef} src="/img/projects/misc/speech-bubble-portfolio.png"/>
         
