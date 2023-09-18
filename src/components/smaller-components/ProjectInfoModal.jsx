@@ -11,6 +11,12 @@ import SocialPup from './projects-modal/SocialPup';
 import WeatherApp from './projects-modal/WeatherApp';
 import OtherProjects from './projects-modal/OtherProjects';
 
+const ProjectInfoContainer = styled.div`
+  position: relative;
+  height: 100vh;
+  z-index: 111110;
+`;
+
 const ProjectInfoModalDiv = styled.div`
   height: 92%;
   width: 92%;
@@ -35,8 +41,6 @@ const ProjectInfoModalDiv = styled.div`
     padding: 1rem;
     text-align: center;
   }
-
-
 `;
 
 const DarkBG = styled.div`
@@ -108,19 +112,8 @@ function ProjectInfoModal(props) {
     <>
     <DarkBG ref={closeButtonRef} onClick={() => setOpenModal(false)} />
     
+    {/* <ProjectInfoContainer> */}
     <ProjectInfoModalDiv ref={projectModalRef}>
-        {/* Close Button */}
-          {/* <a onClick={() => setOpenModal(false)} className="close-button">
-          <div className="in">
-          <div className="close-button-block"></div>
-          <div className="close-button-block"></div>
-          </div>
-          <div className="out">
-          <div className="close-button-block"></div>
-          <div className="close-button-block"></div>
-          </div>
-          </a> */}
-
         {currentProject.id === "pokithedog" && <PokiTheDog openModal={openModal} setOpenModal={setOpenModal} /> }
         {currentProject.id === "my-portfolio-old" && <Portfolio_Old openModal={openModal} setOpenModal={setOpenModal} /> }
         {currentProject.id === "ottawa-rec-sports" && <OttawaRecSports openModal={openModal} setOpenModal={setOpenModal} /> }
@@ -129,8 +122,8 @@ function ProjectInfoModal(props) {
         {currentProject.id === "socialpup" && <SocialPup openModal={openModal} setOpenModal={setOpenModal} /> }
         {currentProject.id === "my-weather-app" && <WeatherApp openModal={openModal} setOpenModal={setOpenModal} /> }
         {currentProject.id === "other-projects" && <OtherProjects openModal={openModal} setOpenModal={setOpenModal} /> }
-
     </ProjectInfoModalDiv>
+    {/* </ProjectInfoContainer> */}
     </>
   )
 }

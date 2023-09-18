@@ -26,7 +26,6 @@ const Container = styled.div`
     background-size: cover; 
     background-repeat: no-repeat;
     background-position: center center;
-    z-index: 10;
 `
 
 const SpeechBubble = styled.img`
@@ -171,6 +170,14 @@ const Arrows = styled.div`
   transform: scale(0.8);
   opacity: 0.9;
   `;
+  
+  const BackgroundImage = styled.img`
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    position: absolute;
+    z-index: 111;
+  `
 
 
 // var contentTitlesArray = [
@@ -406,8 +413,10 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
 
   return (
     <>
-    <ProjectInfoModal currentProject={currentProject} openModal={openModal} setOpenModal={setOpenModal} />
-
+    {!showComponent && (
+      <BackgroundImage src="/img/projects/misc/background.jpg" alt="Background Image" />
+    )}
+  
     <Container ref={myRef}>
       <Arrows>
         <img onClick={handleUpArrow} id='arrow-top' src="/img/projects/misc/short-arrow.png"/>
@@ -436,12 +445,13 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
             <StyledButton ref={learnButtonRef} style={{cursor: withinProject ? 'pointer' : 'grab'}} onClick={() => clickProject()}>Learn More</StyledButton>
         </ProjectPopup>
         
-        {/* <ProjectInfoModal currentProject={currentProject} openModal={openModal} setOpenModal={setOpenModal} /> */}
+        <ProjectInfoModal currentProject={currentProject} openModal={openModal} setOpenModal={setOpenModal} />
 
         <SpeechBubble ref={speechBubbleRef} src="/img/projects/misc/speech-bubble-portfolio.png"/>
         
         <Canvas camera={{fov: 58, far: 1000, near: 0.1, position: [0, 1.75, 5]}}
-                  style={{ background: 'lightblue', 
+                  style={{  zIndex: 6,
+                            background: 'lightblue', 
                             backgroundImage: 'url(/img/projects/misc/background.jpg)' ,
                             backgroundSize: 'cover',
                             backgroundRepeat: 'no-repeat',

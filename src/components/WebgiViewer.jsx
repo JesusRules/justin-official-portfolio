@@ -301,7 +301,6 @@ const WebgiViewer = ({ scrollYGlobal }) => {
             ref={canvasContainerRef}
             id="webgi-canvas-container"
             style={{
-
             }}
             >
             <canvas
