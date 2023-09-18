@@ -97,7 +97,7 @@ function Loader() {
   const { progress } = useProgress()
   return <Html center>
     <div style={{width: '100vw', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center',  margin: 'auto'}}>
-    <p style={{textAlign: 'center', text: 'white', fontSize: '2.2rem'}}>{progress} % Loaded</p>
+    <p style={{textAlign: 'center', color: 'white', fontSize: '2.2rem'}}>{progress} % Loaded</p>
     </div>
     </Html>
 }

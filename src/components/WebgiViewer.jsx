@@ -40,6 +40,8 @@ const WebgiViewer = ({ scrollYGlobal }) => {
     const [cameraRef, setCameraRef] = useState(null);
     const [positionRef, setPositionRef] = useState(null);
     const [canvasDimensions, setCanvasDimensions] = useState({ width: 400, height: 300 });
+    
+    const [load, setLoad] = useState(false);
 
     const memoizedScrollAnimation = useCallback(
         (position, target, isMobile, onUpdate) => {
@@ -129,16 +131,13 @@ const WebgiViewer = ({ scrollYGlobal }) => {
 
     useEffect(() => {
         setupViewer();
-        const canvas = document.getElementById('webgi-canvas'); // Replace 'myCanvas' with the ID of your canvas element
-        const originalWidth = canvas.width;
-        const originalHeight = canvas.height;
-
-        console.log('Original Width:', originalWidth);
-        console.log('Original Height:', originalHeight);
+        setTimeout(() => {
+            setLoad(true);
+        }, 500)
     }, [])
 
     useEffect(() => {
-        // MOVEMENT
+        if (load === false) return;
         // FIRST SCREEN
         if (scrollYGlobal < innerHeight) {
             canvasRef.current.style.display = "none";
