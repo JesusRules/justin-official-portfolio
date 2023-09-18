@@ -210,7 +210,7 @@ const WebgiViewer = ({ scrollYGlobal }) => {
                 }
             })
             gsap.to("#webgi-canvas-container", {
-                filter: 'blur(6px)',
+                filter: 'blur(7px)',
                 duration: 0.25,
             })
         }
@@ -222,7 +222,7 @@ const WebgiViewer = ({ scrollYGlobal }) => {
                 x: !isMobile ? -4.1537089546 : -4.7237797477, //First values are DESKTOP
                 y: !isMobile ? -0.6428199459 : -0.6071419895,
                 z: !isMobile ? 7.4630851022 : 7.0099156403,
-                duration: 0.25,
+                duration: 0.5,
                 onUpdate: () => {
                     viewerRef.setDirty();
                     cameraRef.positionTargetUpdated(true);
@@ -232,7 +232,7 @@ const WebgiViewer = ({ scrollYGlobal }) => {
                 x: !isMobile ? 2.6098327676 : 2.0397619746,
                 y: !isMobile ? -0.0352704138 : 0.0004075426,
                 z: !isMobile ? -0.9973734908 : -1.4505429526,
-                duration: 0.25,
+                duration: 0.5,
                 onUpdate: () => {
                     viewerRef.setDirty();
                     cameraRef.positionTargetUpdated(true);
@@ -240,7 +240,7 @@ const WebgiViewer = ({ scrollYGlobal }) => {
             })
             gsap.to("#webgi-canvas-container", {
                 filter: 'blur(0px)',
-                duration: 0.25,
+                duration: 0.5,
             })
         }
         if (Math.round(scrollYGlobal) >= innerHeight * 3.75) {

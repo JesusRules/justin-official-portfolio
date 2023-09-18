@@ -60,6 +60,8 @@ const SVGContent = styled.div`
 
 function Contact({ myRef, scrollYGlobal, educationRef }) {
   const [showComponent, setShowComponent] = useState(false);
+  const [showOnce, setShowOnce] = useState(false);
+
   const contactForm = useRef();
   const footer1Ref = useRef();
   const footer2Ref = useRef();
@@ -135,10 +137,7 @@ function Contact({ myRef, scrollYGlobal, educationRef }) {
               <Sky />
               <Environment preset="night" />
               <Church />
-              <CameraConsole showComponent={showComponent} />
-              {/* <Html >
-                <ContactForm />
-              </Html> */}
+              <CameraConsole showComponent={showComponent} showOnce={showOnce} setShowOnce={setShowOnce} />
             </Suspense>
         </Canvas>
         </>
@@ -148,25 +147,42 @@ function Contact({ myRef, scrollYGlobal, educationRef }) {
   )
 }
 
-function CameraConsole({ showComponent }) {
+function CameraConsole({ showComponent, setShowOnce, showOnce }) {
   let targetPosition = new Vector3(0, 110, 0);
   const { camera } = useThree();
 
+  useEffect(() => {
+    if (showComponent === true) {
+      if (showOnce) {
+        // camera.position.set(0, 8, 35);
+        // camera.lookAt(new Vector3(0, 30, 0));
+      }
+    } 
+  }, [showComponent])
+
   useFrame((state) => {
-    state.camera.lookAt(targetPosition)
+    state.camera.lookAt(targetPosition);
+    if (showOnce) return;
     gsap.to(targetPosition, {
       x: 0,
       y: 30,
       z: 0,
       duration: 2,
+      // onComplete: () => {
+      //   setShowOnce(true);
+      // }
     });
     gsap.to(camera.position, {
-      x: 0,
-      y: 8, 
-      z: 35,
-      duration: 2,
+        x: 0,
+        y: 8, 
+        z: 35,
+        duration: 2,
     });
+      // targetPosition = new Vector3(0, 30, 0);
+      // camera.position.set(0, 8, 35);
+      // state.camera.lookAt(targetPosition);
   })
+
   return null;
 }
 

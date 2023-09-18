@@ -458,7 +458,7 @@ p {
   background: transparent;
   z-index: 5; /* 5 */
   /* display: none; */
-  filter: blur(6px);
+  filter: blur(7px);
 }
 
 #webgi-canvas {
