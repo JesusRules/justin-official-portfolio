@@ -217,6 +217,7 @@ const RequiredFieldsText = styled.p`
 `;  
 
 function ContactForm({ contactForm }) {
+    const [rememberName, setRememberName] = useState("");
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
@@ -244,6 +245,7 @@ function ContactForm({ contactForm }) {
         
         const emailService = 'service_np61i8q';
         const templateId = 'template_k7g7a9m';
+        const publicKey = 'QEmJXApzcSZ86edg8';
         const templateParams = {
             from_name: `${firstName} ${lastName}`,
             email: email,
@@ -253,8 +255,9 @@ function ContactForm({ contactForm }) {
         };
         
         // / Send the email
-        emailjs.send(emailService, templateId, templateParams)
+        emailjs.send(emailService, templateId, templateParams, publicKey)
         .then((response) => {
+            setRememberName(firstName);
             setSuccessModal(true);
             setFirstName('');
             setLastName('');
@@ -320,7 +323,7 @@ function ContactForm({ contactForm }) {
             <SuccessModal ref={successModalRef}>
                 <img src="/svg/close-button.svg" onClick={(e) => setSuccessModal(false)}/>
                 <div className='content'>
-                    <p style={{fontWeight: 400}}>Thank you <span style={{fontWeight: 900, fontStyle: 'italic'}}>{firstName}!</span></p>
+                    <p style={{fontWeight: 400}}>Thank you <span style={{fontWeight: 900, fontStyle: 'italic'}}>{rememberName}!</span></p>
                     
                     <p style={{fontWeight: 800}}>Your message was <span style={{textDecoration: 'underline'}}>successfully</span> sent!</p>
                 </div>
