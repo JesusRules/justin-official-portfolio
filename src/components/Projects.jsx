@@ -176,7 +176,7 @@ const Arrows = styled.div`
     height: 100vh;
     object-fit: cover;
     position: absolute;
-    z-index: 111;
+    z-index: 1111; //111
   `
 
 
@@ -271,13 +271,13 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
   const envMap = useEnvironment({ files: 'hdri/sunflowers_puresky_1k.hdr'});
   envMap.intensity = 2;
 
-  const [showComponent, setShowComponent] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [cameraPosition, setCameraPosition] = useState([1, 2, 1]);
   const [qualityCheck, setQualityCheck] = useState(false);
   const [startUpCam, setStartUpCam] = useState(false); //MINI JESUS 
   
-  const [showSpecialBG, setShowSpecialBG] = useState(false);
+  const [showComponent, setShowComponent] = useState(false);
+  const [showModels, setShowModels] = useState(false);
 
   // SCROLLING
     useEffect(() => {
@@ -285,6 +285,7 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
       const halfwayPoint = divElement.scrollHeight / 5;
       if (Math.round(scrollYGlobal) == divElement.offsetTop) {
         setShowComponent(true);
+        setShowModels(true);
         // if (!showBubbleOnce) {
         //   setShowBubbleOnce(true);
         //   gsap.to(speechBubbleRef.current, {
@@ -296,7 +297,8 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
         // }
       }
       if (Math.round(scrollYGlobal) > divElement.offsetTop || Math.round(scrollYGlobal) < divElement.offsetTop) {
-        setShowComponent(false);
+        // setShowComponent(false);
+        setShowModels(false);
         setStartUpCam(false);
       }
 
@@ -415,7 +417,10 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
 
   return (
     <>  
-    <BackgroundImage src="/img/projects/misc/background.jpg" alt="Background Image" />
+    {!showModels && (
+      <BackgroundImage src="/img/projects/misc/background.jpg" alt="Background Image" />
+    )}
+
     <Container ref={myRef}>
       <Arrows>
         <img onClick={handleUpArrow} id='arrow-top' src="/img/projects/misc/short-arrow.png"/>
@@ -466,7 +471,6 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
                   devicePixelRatio={window.devicePixelRatio / 10}
                   pixelRatio={window.devicePixelRatio / 10}
                   >
-
                     <Suspense fallback={<Loader />}>
                       <MiniJesus scale={37} 
                         animIndex={animIndex} 
@@ -485,38 +489,43 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
                         startUpCam={startUpCam}
                         setStartUpCam={setStartUpCam}
                         />
-                  <OrbitControls
-                    enablePan={false}
-                    enableDamping
-                    dampingFactor={0.07} // Adjust to control rotation speed (0 - 1)
-                    enableZoom={false}
-                    minPolarAngle={1.45735} // Minimum rotation angle (85.5 degPrees) // TOP
-                    maxPolarAngle={1.53589} // Maximum rotation angle (88 degrees) // BOTTOM
-                    rotateSpeed={0.145}
-                    target={[0, 0, 0]} // Lock the camera to the center
-                    />
-                  
-                  <Environment map={envMap} />
-                  {/* <HDRIBackground /> */}
-                  <Ocean />
-                  <Skybox /> 
-                   {/* <Sky /> */}
-                  
-                  <ambientLight color='white' intensity={3} />
-                  <directionalLight intensity={2}  castShadow  position={[-100, 30, 50]} />
-                  <directionalLight intensity={2}  castShadow position={[62, 40, -20]} />
-                  
-                  {/* <PortfolioEnvironment scale={36.9} rotation={[0, 0, 0]} position={[0,0,0]}/>' */}
-                  <MyFbxModel scale={0.369} rotation={[0, 0, 0]}/>
-                  {objectPoints}
-                  
-                  {qualityCheck && (
+                  {showModels && (
                     <>
-                    <EffectComposer>
-                    <Bloom luminanceThreshold={0} luminanceSmoothing={3.3} height={300} />
-                    </EffectComposer>
+                    <OrbitControls
+                      enablePan={false}
+                      enableDamping
+                      dampingFactor={0.07} // Adjust to control rotation speed (0 - 1)
+                      enableZoom={false}
+                      minPolarAngle={1.45735} // Minimum rotation angle (85.5 degPrees) // TOP
+                      maxPolarAngle={1.53589} // Maximum rotation angle (88 degrees) // BOTTOM
+                      rotateSpeed={0.145}
+                      target={[0, 0, 0]} // Lock the camera to the center
+                      />
+                    
+                    <Environment map={envMap} />
+                    {/* <HDRIBackground /> */}
+                    <Ocean />
+                    <Skybox /> 
+                    {/* <Sky /> */}
+                    
+                    <ambientLight color='white' intensity={3} />
+                    <directionalLight intensity={2}  castShadow  position={[-100, 30, 50]} />
+                    <directionalLight intensity={2}  castShadow position={[62, 40, -20]} />
+                    
+                    {/* <PortfolioEnvironment scale={36.9} rotation={[0, 0, 0]} position={[0,0,0]}/>' */}
+                    <MyFbxModel scale={0.369} rotation={[0, 0, 0]}/>
+                    {objectPoints}
+                    
+                    {qualityCheck && (
+                      <>
+                      <EffectComposer>
+                      <Bloom luminanceThreshold={0} luminanceSmoothing={3.3} height={300} />
+                      </EffectComposer>
+                      </>
+                    )}
                     </>
                   )}
+                  
                     </Suspense>
               </Canvas>
               </>

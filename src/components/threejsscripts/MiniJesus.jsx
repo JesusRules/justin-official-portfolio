@@ -231,6 +231,13 @@ export function MiniJesus(props) {
 
   useFrame((state, delta ) => {
     let angle;
+
+    const distance = 25.2; // Distance from the camera // 14.5
+    playerPositionNew.copy(state.camera.position);
+    state.camera.getWorldDirection(playerPositionNew);
+    playerPositionNew.multiplyScalar(distance).add(state.camera.position);
+    playerPositionNew.y = 0;
+    playerRef.current.position.copy(playerPositionNew);
     // KEY DOWN METHOD
     // if (keyDown) {
     //   if (moveDir === 'left') {
@@ -342,12 +349,12 @@ export function MiniJesus(props) {
       setCameraPosition([state.camera.position.x, 1.75, state.camera.position.z])
     }
 
-    const distance = 25.2; // Distance from the camera // 14.5
-    playerPositionNew.copy(state.camera.position);
-    state.camera.getWorldDirection(playerPositionNew);
-    playerPositionNew.multiplyScalar(distance).add(state.camera.position);
-    playerPositionNew.y = 0;
-    playerRef.current.position.copy(playerPositionNew);
+    // const distance = 25.2; // Distance from the camera // 14.5
+    // playerPositionNew.copy(state.camera.position);
+    // state.camera.getWorldDirection(playerPositionNew);
+    // playerPositionNew.multiplyScalar(distance).add(state.camera.position);
+    // playerPositionNew.y = 0;
+    // playerRef.current.position.copy(playerPositionNew);
   })
 
   // const faceMovementDir = (offsetDistance, camera, angle, radius) => {
