@@ -43,6 +43,22 @@ const WebgiViewer = ({ scrollYGlobal }) => {
     
     const [load, setLoad] = useState(false);
 
+    useEffect(() => {
+        window.addEventListener('resize', checkIsMobile);
+        checkIsMobile();
+        return () => {
+          window.removeEventListener('resize', checkIsMobile);
+        };
+      }, []);
+
+      const checkIsMobile = () => {
+        if (window.innerWidth >= 700) {
+            setIsMobile(false);
+        } else {
+            setIsMobile(true);
+        }
+      }
+
     const memoizedScrollAnimation = useCallback(
         (position, target, isMobile, onUpdate) => {
             if (position && target && onUpdate) {
@@ -57,8 +73,8 @@ const WebgiViewer = ({ scrollYGlobal }) => {
         });
 
         setViewerRef(viewer);
-        const isMobileOrTablet = mobileAndTabletCheck();
-        setIsMobile(isMobileOrTablet);
+        // const isMobileOrTablet = mobileAndTabletCheck();
+        // setIsMobile(isMobileOrTablet);
 
         const manager = await viewer.addPlugin(AssetManagerPlugin)
 
@@ -100,16 +116,14 @@ const WebgiViewer = ({ scrollYGlobal }) => {
 
         viewer.scene.activeCamera.setCameraOptions({ controlsEnabled: false });
 
-        if (isMobileOrTablet) { //initial
-            // position.set(-16.7, 1.17, 11.7);
-            // target.set(0, 1.37, 0);
-            // props.contentRef.current.className = "mobile-or-tablet";
-        }
-        // FIRST
-        // position.set(-0.5251238011, -1.0550513875, 11.0900732729);
-        // target.set(0.0834774777, -0.1475334433, -2.0926561362);
+        // if (isMobile) { //initial - NO use
+        //     position.set(-0.5251238011, -1.0550513875, 11.0900732729);
+        //     target.set(0.0834774777, -0.1475334433, -2.0926561362);
+        // } else {
+        //     position.set(-0.5251238011, -1.0550513875, 11.0900732729);
+        //     target.set(0.0834774777, -0.1475334433, -2.0926561362);
+        // }
 
-        
         // window.scrollTo(0, 0);
 
         // let needsUpdate = true;
@@ -170,9 +184,9 @@ const WebgiViewer = ({ scrollYGlobal }) => {
 
         if (scrollYGlobal >= 30 && scrollYGlobal < innerHeight * 2) {
             gsap.to(positionRef, {
-                x: 5.2417274218 , //First values are DESKTOP
-                y: 0.9178823077 ,
-                z: 15.0533755813,
+                x: !isMobile ? 5.2417274218 : 6.8070028002, //First values are DESKTOP
+                y: !isMobile ? 0.9178823077 : 0.9898715098,
+                z: !isMobile ? 15.0533755813 : 14.1779883979,
                 duration: 0.25,
                 onUpdate: () => {
                     viewerRef.setDirty();
@@ -180,9 +194,9 @@ const WebgiViewer = ({ scrollYGlobal }) => {
                 }
             });
             gsap.to(targetRef, {
-                x: -2.6210682888 ,
-                y: -0.5284058537,
-                z:  0.8750121143 ,
+                x: !isMobile ? -2.6210682888 : -1.0557929105,
+                y: !isMobile ? -0.5284058537 : -0.4564166516,
+                z: !isMobile ? 0.8750121143 : -0.0003750692,
                 duration: 0.25,
                 onUpdate: () => {
                     viewerRef.setDirty();
@@ -199,11 +213,10 @@ const WebgiViewer = ({ scrollYGlobal }) => {
         if (scrollYGlobal >= innerHeight * 2)
             // && scrollYGlobal < innerHeight * 3) 
         {
-
             gsap.to(positionRef, {
-                x: -4.1537089546 , //First values are DESKTOP
-                y: -0.6428199459 ,
-                z: 7.4630851022,
+                x: !isMobile ? -4.1537089546 : -4.7237797477, //First values are DESKTOP
+                y: !isMobile ? -0.6428199459 : -0.6071419895,
+                z: !isMobile ? 7.4630851022 : 7.0099156403,
                 duration: 0.25,
                 onUpdate: () => {
                     viewerRef.setDirty();
@@ -211,9 +224,9 @@ const WebgiViewer = ({ scrollYGlobal }) => {
                 }
             });
             gsap.to(targetRef, {
-                x: 2.6098327676 ,
-                y: -0.0352704138,
-                z: -0.9973734908 ,
+                x: !isMobile ? 2.6098327676 : 2.0397619746,
+                y: !isMobile ? -0.0352704138 : 0.0004075426,
+                z: !isMobile ? -0.9973734908 : -1.4505429526,
                 duration: 0.25,
                 onUpdate: () => {
                     viewerRef.setDirty();
@@ -229,6 +242,7 @@ const WebgiViewer = ({ scrollYGlobal }) => {
             canvasRef.current.style.display = "none";
             canvasContainerRef.current.style.display = "none";
         }
+
         // OLD
          // FOURTH SCREEN (Projects)
         //  if (Math.round(scrollYGlobal) >= innerHeight * 3
