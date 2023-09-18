@@ -21,7 +21,7 @@ const Footer = styled.div`
   background-color: #00000079;
   position: absolute;
   bottom: 0;
-  z-index: 1000;
+  z-index: 10000;
   pointer-events: none;
   opacity: 0;
   `;
@@ -32,7 +32,7 @@ const SVGContent = styled.div`
     height: 2rem;
     position: absolute;
     bottom: 0;
-    z-index: 10000;
+    z-index: 100000;
     display: flex;
     justify-content: space-between;
     max-width: 1000px;

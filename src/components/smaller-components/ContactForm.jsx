@@ -148,12 +148,15 @@ function ContactForm({ contactForm }) {
                     <input type="email" placeholder='Email'/>
                 </div>
                 <div style={{gridArea: 'five'}} className='inputBox phone-number'>
-                    <input type="tel" placeholder='Phone Number'/>
+                    <input type="tel" placeholder='Phone Number (Optional)'/>
                 </div>
-                <div style={{gridArea: 'six'}} className="inputBox message" title="Your message">
+                <div style={{gridArea: 'six'}} className='inputBox subject'>
+                    <input type="tel" placeholder='Subject'/>
+                </div>
+                <div style={{gridArea: 'seven'}} className="inputBox message" title="Your message">
                   <textarea rows="6" type="text" placeholder="What Do You Need Done?"></textarea>
                 </div>
-                <div style={{gridArea: 'seven'}} className='inputBox send-btn'>
+                <div style={{gridArea: 'eight'}} className='inputBox send-btn'>
                     <input type="submit" value="Send" id="send-btn"/>
                 </div>
             </ContactContent>
