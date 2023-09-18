@@ -46,10 +46,24 @@ const WebgiViewer = ({ scrollYGlobal }) => {
     useEffect(() => {
         window.addEventListener('resize', checkIsMobile);
         checkIsMobile();
+        ShowCrucifixScreens();
         return () => {
           window.removeEventListener('resize', checkIsMobile);
         };
       }, []);
+
+      useEffect(() => {
+        setupViewer();
+        setTimeout(() => {
+            setLoad(true);
+        }, 500)
+    }, [])
+
+
+    useEffect(() => {
+        ShowCrucifixScreens();
+    }, [scrollYGlobal])
+
 
       const checkIsMobile = () => {
         if (window.innerWidth >= 700) {
@@ -143,17 +157,10 @@ const WebgiViewer = ({ scrollYGlobal }) => {
         // memoizedScrollAnimation(position, target, isMobileOrTablet, onUpdate);
     }, []);
 
-    useEffect(() => {
-        setupViewer();
-        setTimeout(() => {
-            setLoad(true);
-        }, 500)
-    }, [])
-
-    useEffect(() => {
+    const ShowCrucifixScreens = () => {
         if (load === false) return;
         // FIRST SCREEN
-        if (scrollYGlobal < innerHeight) {
+        if (scrollYGlobal < innerHeight / 2) {
             canvasRef.current.style.display = "none";
             canvasContainerRef.current.style.display = "none";
             // gsap.to(positionRef, {
@@ -177,12 +184,11 @@ const WebgiViewer = ({ scrollYGlobal }) => {
             //     }
             // })
         }
-
         // SECOND SCREEN
         canvasRef.current.style.display = "block";
         canvasContainerRef.current.style.display = "block";
 
-        if (scrollYGlobal >= 30 && scrollYGlobal < innerHeight * 2) {
+        if (scrollYGlobal >= 0 && scrollYGlobal < innerHeight * 2) {
             gsap.to(positionRef, {
                 x: !isMobile ? 5.2417274218 : 6.8070028002, //First values are DESKTOP
                 y: !isMobile ? 0.9178823077 : 0.9898715098,
@@ -208,7 +214,6 @@ const WebgiViewer = ({ scrollYGlobal }) => {
                 duration: 0.25,
             })
         }
-
         // THIRD SCREEN
         if (scrollYGlobal >= innerHeight * 2)
             // && scrollYGlobal < innerHeight * 3) 
@@ -242,7 +247,6 @@ const WebgiViewer = ({ scrollYGlobal }) => {
             canvasRef.current.style.display = "none";
             canvasContainerRef.current.style.display = "none";
         }
-
         // OLD
          // FOURTH SCREEN (Projects)
         //  if (Math.round(scrollYGlobal) >= innerHeight * 3
@@ -294,7 +298,7 @@ const WebgiViewer = ({ scrollYGlobal }) => {
         //         }
         //     })
         // }
-    }, [scrollYGlobal])
+    }
 
     return (
         <div

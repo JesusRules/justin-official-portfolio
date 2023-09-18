@@ -276,6 +276,8 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
   const [cameraPosition, setCameraPosition] = useState([1, 2, 1]);
   const [qualityCheck, setQualityCheck] = useState(false);
   const [startUpCam, setStartUpCam] = useState(false); //MINI JESUS 
+  
+  const [showSpecialBG, setShowSpecialBG] = useState(false);
 
   // SCROLLING
     useEffect(() => {
@@ -412,11 +414,8 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
     }
 
   return (
-    <>
-    {!showComponent && (
-      <BackgroundImage src="/img/projects/misc/background.jpg" alt="Background Image" />
-    )}
-  
+    <>  
+    <BackgroundImage src="/img/projects/misc/background.jpg" alt="Background Image" />
     <Container ref={myRef}>
       <Arrows>
         <img onClick={handleUpArrow} id='arrow-top' src="/img/projects/misc/short-arrow.png"/>
@@ -450,7 +449,7 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
         <SpeechBubble ref={speechBubbleRef} src="/img/projects/misc/speech-bubble-portfolio.png"/>
         
         <Canvas camera={{fov: 58, far: 1000, near: 0.1, position: [0, 1.75, 5]}}
-                  style={{  zIndex: 6,
+                  style={{  zIndex: 116,
                             background: 'lightblue', 
                             backgroundImage: 'url(/img/projects/misc/background.jpg)' ,
                             backgroundSize: 'cover',
