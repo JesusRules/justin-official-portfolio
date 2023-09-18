@@ -81,10 +81,14 @@ function Contact({ myRef, scrollYGlobal, educationRef }) {
 
   useEffect(() => {
     if (showComponent) {
+      contactForm.current.style.pointerEvents = 'none';
       gsap.to(contactForm.current, {
         opacity: 1,
         duration: 1,
-        delay: 2
+        delay: 2,
+        onStart: () => {
+          contactForm.current.style.pointerEvents = 'all';
+        }
       })
       gsap.to(footer1Ref.current, {
         opacity: 1,

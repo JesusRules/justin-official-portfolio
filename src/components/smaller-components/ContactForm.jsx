@@ -1,5 +1,7 @@
-import React, { } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { styled, keyframes  } from 'styled-components'
+import emailjs from "emailjs-com";
+import gsap from 'gsap';
 
 const ContactContainer = styled.div`
     z-index: 1000;
@@ -131,36 +133,228 @@ const ContactContent = styled.div`
     }
 `;
 
+const SuccessModal = styled.div`
+    position: absolute;
+    margin: auto;
+    color: #007400;
+    border: 1.5px solid #007400;
+    background-color: #ddffdd;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100000;
+    height: 10rem;
+    width: 20rem;
+    .content {
+        width: 100%;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        justify-content: space-evenly;
+        margin: auto;
+        text-align: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+`;
+
+const ErrorModal = styled.div`
+    position: absolute;
+    margin: auto;
+    color: #740000;
+    border: 1.5px solid #740000;
+    background-color: #ffdddd;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100000;
+    height: 10rem;
+    width: 20rem;
+    .content {
+        padding: 2rem;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        justify-content: space-evenly;
+        margin: auto;
+        text-align: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+`;
+
+const RequiredFieldsText = styled.p`
+  color: #f00000;  
+  text-align: center;
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  /* background-color: #ffffff7a; */
+`;  
+
 function ContactForm({ contactForm }) {
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [email, setEmail] = useState("");
+    const [phoneNumber, setPhoneNumber] = useState("");
+    const [subject, setSubject] = useState("");
+    const [message, setMessage] = useState("");
+    // Modals
+    const [successModal, setSuccessModal] = useState(false);
+    const successModalRef = useRef();
+    const [errorModal, setErrorModal] = useState(false);
+    const errorModalRef = useRef();
+    // ErrorMessage
+    const [showErrorMessage, setShowErrorMessage] = useState(false);
+    const [errorMessage, setErrorMessage] = useState();
+    
+    const sendEmail = (e) => {
+        e.preventDefault();
+
+        if (firstName === "" || lastName === "" || email === "" || subject === ""
+        || message === "")
+        {
+            setShowErrorMessage(true);
+            return;
+        }
+        
+        // setErrorModal(true);
+        const emailService = 'service_np61i8q';
+        const templateId = 'template_k7g7a9m';
+        const templateParams = {
+            from_name: `${firstName} ${lastName}`,
+            email: email,
+            phoneNumber: phoneNumber,
+            subject: subject,
+            message: message,
+        };
+
+        // / Send the email
+        // emailjs.send(emailService, templateId, templateParams)
+        // .then((response) => {
+        //     setSuccessModal(true);
+        //     console.log('Email sent:', response);
+        //     // Reset the form or show a success message
+        // })
+        // .catch((error) => {
+        //     setErrorModal(true);
+        //     setErrorMessage(error);
+        //     console.error('Email error:', error);
+        // });
+    }
+
+    useEffect(() => {
+        if (successModal) {
+            gsap.to(successModalRef.current, {
+                onStart: () => {
+                    successModalRef.current.style.display = "block";
+                },
+                opacity: 0,
+                duration: 1,
+                delay: 7,
+                onComplete: () => {
+                    setSuccessModal(false);
+                    successModalRef.current.style.display = "none";
+                }
+            })
+        }
+    }, [successModal])
+
+    useEffect(() => {
+        if (errorModal) {
+            gsap.to(errorModalRef.current, {
+                onStart: () => {
+                    errorModalRef.current.style.display = "block";
+                },
+                opacity: 0,
+                duration: 1,
+                delay: 7,
+                onComplete: () => {
+                    setErrorModal(false);
+                    errorModalRef.current.style.display = "none";
+                }
+            })
+        }
+    }, [errorModal])
+
+    // RED PARAGRAPH LINE
+    useEffect(() => {
+        if (showErrorMessage) {
+            setTimeout(() => {
+                setShowErrorMessage(false);
+            }, 5000)
+        }
+    }, [showErrorMessage])
+
     return (
+        <>
+        {successModal && (
+            <SuccessModal ref={successModalRef}>
+                <div className='content'>
+                    <p style={{fontWeight: 400}}>Thank you <span style={{fontWeight: 900, fontStyle: 'italic'}}>{firstName}!</span></p>
+                    
+                    <p style={{fontWeight: 800}}>Your message was <span style={{textDecoration: 'underline'}}>successfully</span> sent!</p>
+                </div>
+            </SuccessModal>
+        )}
+
+        {errorModal && (
+            <ErrorModal ref={errorModalRef}>
+                <div className='content'>
+                    <p style={{fontWeight: 900}}>Error sending the message!</p>
+                    <p>The problem: {errorMessage}</p>
+                </div>
+            </ErrorModal>
+        )}
+
         <ContactContainer>
             <ContactContent ref={contactForm}>
                 <h2 style={{gridArea: 'one'}} className='title'>Contact Me!</h2>
                 <div className='names'>
                     <div style={{gridArea: 'two'}} className='inputBox first-name'>
-                        <input type="text" placeholder='First Name'/>
+                        <input type="text" placeholder='First Name'
+                            value={firstName} onChange={(e) => setFirstName(e.target.value)}/>
                     </div>
                     <div style={{gridArea: 'three'}} className='inputBox last-name'>
-                        <input type="text" placeholder='Last Name'/>
+                        <input type="text" placeholder='Last Name'
+                            value={lastName} onChange={(e) => setLastName(e.target.value)}/>
                     </div>
                 </div>
                 <div style={{gridArea: 'four'}} className='inputBox email'>
-                    <input type="email" placeholder='Email'/>
+                    <input type="email" placeholder='Email'
+                            value={email} onChange={(e) => setEmail(e.target.value)}/>
                 </div>
                 <div style={{gridArea: 'five'}} className='inputBox phone-number'>
-                    <input type="tel" placeholder='Phone Number (Optional)'/>
+                    <input type="tel" placeholder='Phone Number (Optional)'
+                            value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)}/>
                 </div>
                 <div style={{gridArea: 'six'}} className='inputBox subject'>
-                    <input type="tel" placeholder='Subject'/>
+                    <input type="tel" placeholder='Subject'
+                            value={subject} onChange={(e) => setSubject(e.target.value)}/>
                 </div>
                 <div style={{gridArea: 'seven'}} className="inputBox message" title="Your message">
-                  <textarea rows="6" type="text" placeholder="What Do You Need Done?"></textarea>
+                  <textarea rows="6" type="text" placeholder="What Do You Need Done?"
+                            value={message} onChange={(e) => setMessage(e.target.value)}></textarea>
                 </div>
+
+                {showErrorMessage && (
+                    <RequiredFieldsText>Please fillout all required fields!</RequiredFieldsText>
+                )}
+
                 <div style={{gridArea: 'eight'}} className='inputBox send-btn'>
-                    <input type="submit" value="Send" id="send-btn"/>
+                    <input type="submit" value="Send" onClick={sendEmail} id="send-btn"/>
                 </div>
             </ContactContent>
         </ContactContainer>
+        </>
     );
 }
 
