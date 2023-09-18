@@ -9,7 +9,7 @@ const ContactContainer = styled.div`
 `;
 
 const ContactContent = styled.div`
-    padding: 3rem;
+    padding: 1rem 3rem;
     position: absolute;
     margin: auto;
     left: 50%;
@@ -26,7 +26,6 @@ const ContactContent = styled.div`
     border-radius: 20px;
     display: flex;
     flex-direction: column;
-    gap: 30px;
     box-shadow: 0px 25px 50px rgba(0, 0, 0, 0.1); 
     
     h2 {
@@ -36,25 +35,25 @@ const ContactContent = styled.div`
         font-size: 2.5em;
         font-weight: 600;
         color: white;
-        margin-bottom: 10px;
+        margin-bottom: 2rem;
     }
     .inputBox {
         position: relative;
         width: 90%;
         margin: 0 auto;
 
-        input {
-            padding: 1rem;
+        input, textarea {
+            padding: .8rem;
             width: 91.5%;
             outline: none;
-            font-size: 1.25em;
+            font-size: 1.1em;
             color: #000000;
             border-radius: 5px;
             /* background: rgba(0,0,0,0.2); //0.2 */
             background: rgba(255,255,255,1); //0.2
             box-shadow: inset 0 0 15px rgba(0,0,0,0.25);
             border: 1px solid rgba(0,0,0,0.5);
-            margin-bottom: 30px;
+            margin-bottom: 15px;
         }
 
         ::placeholder {
@@ -100,15 +99,20 @@ function ContactForm() {
                     <input type="text" placeholder='First Name'/>
                 </div>
                 <div className='inputBox'>
+                    <input type="text" placeholder='Last Name'/>
+                </div>
+                <div className='inputBox'>
                     <input type="email" placeholder='Email'/>
                 </div>
-                {/* <div className='inputBox'>
+                <div className='inputBox'>
+                    <input type="tel" placeholder='Phone Number'/>
+                </div>
+                <div className="inputBox" title="Your message">
+                  <textarea rows="6" type="text" placeholder="What Do You Need Done?"></textarea>
+                </div>
+                <div className='inputBox'>
                     <input type="submit" value="Send" id="btn"/>
-                </div> */}
-                {/* <div className='group'>
-                    <a href="#">Forget Password</a>
-                    <a href="#">Signup</a>
-                </div> */}
+                </div>
             </ContactContent>
         </ContactContainer>
     );
