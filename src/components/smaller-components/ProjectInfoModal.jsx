@@ -11,6 +11,7 @@ import SocialPup from './projects-modal/SocialPup';
 import WeatherApp from './projects-modal/WeatherApp';
 import OtherProjects from './projects-modal/OtherProjects';
 import ChurchParty from './projects-modal/ChurchParty';
+import SaviourTFF from './projects-modal/SaviourTFF';
 
 const ProjectInfoContainer = styled.div`
   position: relative;
@@ -125,6 +126,7 @@ function ProjectInfoModal(props) {
         {currentProject.id === "other-projects" && <OtherProjects openModal={openModal} setOpenModal={setOpenModal} /> }
         
         {currentProject.id === "church-party" && <ChurchParty openModal={openModal} setOpenModal={setOpenModal} /> }
+        {currentProject.id === "saviour-tff" && <SaviourTFF openModal={openModal} setOpenModal={setOpenModal} /> }
     </ProjectInfoModalDiv>
     {/* </ProjectInfoContainer> */}
     </>

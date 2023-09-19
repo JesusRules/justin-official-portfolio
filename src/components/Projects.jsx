@@ -489,6 +489,7 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
                         startUpCam={startUpCam}
                         setStartUpCam={setStartUpCam}
                         />
+                        <Skybox /> 
                   {showModels && (
                     <>
                     <OrbitControls
@@ -503,10 +504,8 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
                       />
                     
                     <Environment map={envMap} />
-                    {/* <HDRIBackground /> */}
                     <Ocean />
-                    <Skybox /> 
-                    {/* <Sky /> */}
+                    {/* <Skybox />  */}
                     
                     <ambientLight color='white' intensity={3} />
                     <directionalLight intensity={2}  castShadow  position={[-100, 30, 50]} />

@@ -85,7 +85,8 @@ function SocialPup({ openModal, setOpenModal }) {
         <CloseButton color="white" setOpenModal={setOpenModal} />
       <div>
       <TitleDiv style={{justifyContent: 'center', display: 'flex', alignItems: 'center'}}>
-      <img className='title' src='/img/projects/socialpup/socialpup-banner-small.jpg'/>        </TitleDiv>
+        <img className='title' src='/img/projects/socialpup/socialpup-banner-small.jpg'/>
+      </TitleDiv>
 
         {/* <HorizontalImageLoopProjects _images={images} _isReversed={false} openModal={openModal} _uniqueClassName={"images5"} /> */}
         
