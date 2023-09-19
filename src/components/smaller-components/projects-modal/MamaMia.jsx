@@ -62,18 +62,41 @@ const images = [
 ];
 
 function MamaMia({ openModal, setOpenModal }) {
-  const handleItchIO = () => {
-    window.open('https://jesusrules.itch.io/mama-mia', '_blank');
-  }
+  const swiperRef = useRef();
+  const [initialized, setInitialized] = useState(false);
+  const [slidesPerView, setSlidesPerView] = useState(window.innerWidth < 700 ? 1 : 4);
+
+    useEffect(() => {
+      const handleResize = () => {
+        setSlidesPerView(window.innerWidth < 700 ? 1 : 4);
+      };
+      window.addEventListener('resize', handleResize);
+      return () => {
+        window.removeEventListener('resize', handleResize);
+      };
+    }, []);
+
+    useEffect(() => {
+      if (initialized) return;
+      if (openModal) {
+        setTimeout(() => {
+          if (swiperRef.current) swiperRef.current.style.display = 'none';
+          setTimeout(() => {
+            if (swiperRef.current) swiperRef.current.style.display = 'block';
+          }, 50)
+        }, 50)
+        setInitialized(true);
+      }
+    }, [openModal]);
+
+    const handleItchIO = () => {
+      window.open('https://jesusrules.itch.io/mama-mia', '_blank');
+    }
 
     return (
       <ContentContainer>
       <CloseButton setOpenModal={setOpenModal} color="white" />
       <div >
-      {/* <TitleDiv style={{justifyContent: 'center', display: 'flex', alignItems: 'center'}}>
-        <p>Mama Mia</p>
-        <img className='title' src='/img/projects/mama-mia/mamamia-logo.png'/>
-      </TitleDiv> */}
       <TitleDiv style={{justifyContent: 'center', display: 'flex', alignItems: 'center'}}>
           <img id="mario" src="/img/projects/mama-mia/mario.png"/>
            <h2>Mama Mia</h2>
@@ -90,23 +113,64 @@ function MamaMia({ openModal, setOpenModal }) {
             </div>
         </div>
 
-      <div style={{padding: '0 2rem', textAlign: 'center', fontStyle: 'italic', marginTop: '1.35rem', display: 'flex',
+      <div style={{textAlign: 'center', fontStyle: 'italic', marginTop: '1.35rem', display: 'flex',
                   flexDirection: 'column', gap: '1rem', alignItems: 'center', }}>
             <p style={{fontWeight: 800, transform: 'translateY(-13px)'}}>(2+ Players Required, Windows only, LOCAL only available)</p>
             
-            <p>Mama Mia is a free to play game where Marios must chase down and destroy Pikachus.</p>
+            <p style={{padding: '0 2rem'}}>Mama Mia is a free to play game where Marios must chase down and destroy Pikachus.</p>
             
-            <p style={{marginBottom: '1.5rem'}}>Right now there is currently <span style={{fontWeight: '900'}}>NO online internet available.</span> You must play with friends/people over your LAN connection!</p>
+            <p style={{padding: '0 2rem'}}>Right now there is currently <span style={{fontWeight: '900'}}>NO online internet available.</span> You must play with friends/people over your LAN connection!</p>
+
+            <p style={{marginBottom: '1.5rem'}}><span style={{fontWeight: 800}}>For more information:</span><br/><a href='https://pokithedog.com/mamamia-game.html' target='_blank'>https://pokithedog.com/mamamia-game.html</a></p>
 
             <p style={{fontWeight: 800}}>Check out these YouTube videos for gameplay:</p>
 
-            <iframe style={{width: "100%", maxWidth: '600px', height: 315 }} src="https://www.youtube.com/embed/gD_hHXYEsxc?si=CPHl-_Zkq4F-ySs6" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-            <p><span style={{fontWeight: 800}}>Check out this link for more information:</span><br/><a href='https://pokithedog.com/mamamia-game.html' target='_blank'>https://pokithedog.com/mamamia-game.html</a></p>
+            <div ref={swiperRef} className='swiper_container1'>
+            <Swiper
+              effect={'coverflow'}
+              initialSlide={1}
+              grabCursor={true}
+              centeredSlides={true}
+              loop={false}
+              slidesPerView={slidesPerView}
+              coverflowEffect={{
+                rotate: 0,
+                stretch: -55,
+                depth: 130,
+                modifier: 6, //2.5
+              }}
+              pagination={{ el: '.swiper-pagination', clickable: true }}
+              navigation={{
+                nextEl: '.arrow-projects-right',
+                prevEl: '.arrow-projects-left',
+                clickable: true,
+              }}
+              modules={[EffectCoverflow, Pagination, Navigation]}
+              className="swiper_container2"
+            >
+              <SwiperSlide>
+                 <iframe width="560" height="315" src="https://www.youtube.com/embed/J2RQklrT4V8?si=zHTlzC7hCXbo_11o&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              </SwiperSlide>
+              <SwiperSlide>
+                 <iframe width="560" height="315" src="https://www.youtube.com/embed/XnlxRLnJp48?si=tPFCXBEBStJyMYqD&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              </SwiperSlide>
+              <div className="slider-controler">
+                    <div className="swiper-pagination"></div>
+                </div>
+            </Swiper>
+            <div className='arrows'>
+              <div className='arrow-projects-left'>
+                <img src="/img/projects/misc/left-arrow.png" />
+              </div>
+              <div className='arrow-projects-right' >
+                <img src="/img/projects/misc/right-arrow.png" />
+              </div>
+            </div>
+          </div>
       </div>
       </div>
 
-      <p className='bottom-madewith' style={{textAlign: 'left', color: 'blue',  fontStyle: 'italic', fontWeight: 400, padding: '1rem'}}>Project was made using <b>GameMaker Studio 2</b></p>
+      <p className='bottom-madewith' style={{textAlign: 'left', color: 'blue',  fontStyle: 'italic', fontWeight: 400, padding: '1rem'}}>Project was made using <b>Unity and Mirror (Multiplayer Solution)</b></p>
       </ContentContainer>
     )
 }

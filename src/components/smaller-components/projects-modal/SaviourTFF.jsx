@@ -88,7 +88,7 @@ function SaviourTFF({ openModal, setOpenModal }) {
                   flexDirection: 'column', gap: '1rem', alignItems: 'center', backgroundColor: '#fff1f1'}}>
             <p>Saviour - The Final Frontier is a single player, 2D adventure game where you play as Jesus Christ and need to defeat hell after You were crucified.</p>
 
-            <p><span style={{fontWeight: 800}}>Check out this link for more information:</span><br/><a href='https://pokithedog.com/saviour-game.html' target='_blank'>https://pokithedog.com/saviour-game.html</a></p>
+            <p style={{marginBottom: '1.5rem'}}><span style={{fontWeight: 800}}>For more information:</span><br/><a href='https://pokithedog.com/saviour-game.html' target='_blank'>https://pokithedog.com/saviour-game.html</a></p>
 
             <p style={{fontWeight: 800}}>Check out this video for game promo:</p>
 
