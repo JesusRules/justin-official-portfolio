@@ -135,6 +135,19 @@ const StyledButton = styled.button`
   }
 `;
 
+const UnavailableButton = styled.button`
+  border: none;
+  outline: none;
+  color: #fefefe;
+  background-color: #7e712adc;
+  border-radius: 3px;
+  padding: .7rem 1rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  user-select: none;
+  font-family: 'Poppins', sans-serif;
+`
+
 const Arrows = styled.div`
   position: absolute;
   margin: 0 auto;
@@ -233,7 +246,7 @@ var contentTitlesArray = [
   { name: "Stellar Fever", description: "A 4 player co-op action game.", id: 'stellar-fever' },
   { name: "Graveyard Smash", description: "A single player shoot-em-up styled game.", id: 'graveyard-smash' },
   { name: "St. Joseph Model Games", description: "The 3d model of my entire high school (I made) which can be played in.", id: 'stjoes-games' },
-  { name: "Fusion FPS", description: "Game project made for learning the multiplayer solution Photon Fusion.", id: 'fusion-fps' },
+  { name: "Fusion FPS", description: "Game project made for learning the multiplayer solution Photon Fusion.", id: 'fusion-fps', status: 'unavailable' },
   { name: "SaySike Project", description: "Game prototype that was made in college.", id: 'saysike-project' },
   
   { name: "", description: "", id: '' },
@@ -446,7 +459,11 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
               <h2>{currentProject.name}</h2>
               <p>{currentProject.description}</p>
             </div>
-            <StyledButton ref={learnButtonRef} style={{cursor: withinProject ? 'pointer' : 'grab'}} onClick={() => clickProject()}>Learn More</StyledButton>
+            {currentProject.status !== "unavailable" ? (
+              <StyledButton ref={learnButtonRef} style={{cursor: withinProject ? 'pointer' : 'grab'}} onClick={() => clickProject()}>Learn More</StyledButton>
+              ) : (
+              <UnavailableButton ref={learnButtonRef} disabled >Currently Unavailable</UnavailableButton>
+            )}
         </ProjectPopup>
         
         <ProjectInfoModal currentProject={currentProject} openModal={openModal} setOpenModal={setOpenModal} />
