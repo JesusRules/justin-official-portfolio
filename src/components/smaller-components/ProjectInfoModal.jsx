@@ -13,6 +13,7 @@ import OtherProjects from './projects-modal/OtherProjects';
 import ChurchParty from './projects-modal/ChurchParty';
 import SaviourTFF from './projects-modal/SaviourTFF';
 import MamaMia from './projects-modal/MamaMia';
+import StellarFever from './projects-modal/StellarFever';
 
 const ProjectInfoContainer = styled.div`
   position: relative;
@@ -130,6 +131,7 @@ function ProjectInfoModal(props) {
         {currentProject.id === "saviour-tff" && <SaviourTFF openModal={openModal} setOpenModal={setOpenModal} /> }
         
         {currentProject.id === "mama-mia" && <MamaMia openModal={openModal} setOpenModal={setOpenModal} /> }
+        {currentProject.id === "stellar-fever" && <StellarFever openModal={openModal} setOpenModal={setOpenModal} /> }
     </ProjectInfoModalDiv>
     {/* </ProjectInfoContainer> */}
     </>

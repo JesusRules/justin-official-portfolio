@@ -58,7 +58,7 @@ const images = [
   '/img/projects/mama-mia/preview-5.jpg',
   '/img/projects/mama-mia/preview-4.jpg',
   '/img/projects/mama-mia/preview-6.jpg',
-  '/img/projects/mama-mia/preview-7.jpg',
+  // '/img/projects/mama-mia/preview-7.jpg',
 ];
 
 function MamaMia({ openModal, setOpenModal }) {
@@ -95,14 +95,14 @@ function MamaMia({ openModal, setOpenModal }) {
 
     return (
       <ContentContainer>
-      <CloseButton setOpenModal={setOpenModal} color="white" />
+      <CloseButton setOpenModal={setOpenModal} />
       <div >
       <TitleDiv style={{justifyContent: 'center', display: 'flex', alignItems: 'center'}}>
           <img id="mario" src="/img/projects/mama-mia/mario.png"/>
            <h2>Mama Mia</h2>
           <img id="pikachu" src="/img/projects/mama-mia/pikachu.png"/>
            {/* <img style={{width: '60px', height: '60px'}} src="/img/projects/portfolio-old/Justin-Icon.png" /> */}
-        </TitleDiv>
+      </TitleDiv>
 
       <HorizontalImageLoopProjects _images={images} _isReversed={false} openModal={openModal} _uniqueClassName={"images5"} />
 
