@@ -61,6 +61,9 @@ function SaviourTFF({ openModal, setOpenModal }) {
   const handleGooglePlayStore = () => {
     window.open('https://play.google.com/store/apps/details?id=com.poki.saviour.PokiTheDog.game', '_blank');
   }
+  const handleUrl = () => {
+    window.open('https://gx.games/games/24sb3z/saviour-the-final-frontier/', '_blank');
+  }
 
     return (
       <ContentContainer>
@@ -77,6 +80,7 @@ function SaviourTFF({ openModal, setOpenModal }) {
             <div style={{display: 'flex', alignItems: 'start', gap: '0.2rem', justifyContent: 'center'}}>
               <img onClick={(e) => handleAppleStore()} style={{width: '32%', maxWidth: '250px', cursor: 'pointer'}} src="/img/projects/misc/apple-store.png"/>
               <img onClick={(e) => handleGooglePlayStore()} style={{width: '32%', maxWidth: '250px', cursor: 'pointer'}} src="/img/projects/misc/google-store.png"/>
+              <img onClick={(e) => handleUrl()} style={{width: '32%', maxWidth: '250px', cursor: 'pointer'}} src="/img/projects/misc/web-link.png"/>
             </div>
         </div>
 
