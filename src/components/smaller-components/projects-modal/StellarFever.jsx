@@ -74,7 +74,7 @@ function StellarFever({ openModal, setOpenModal }) {
             <p>The game is also playable alone!</p>
 
             <p style={{marginTop: '1.5rem', marginBottom: '.5rem', fontStyle:'italic'}}>Check out this game trailer:</p>
-            <iframe style={{width: "100%", maxWidth: '600px', height: 315 }}  src="https://www.youtube.com/embed/HygPgY9TVno?si=YO4bBQm7u5Zz6NkG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <iframe style={{width: "100%", maxWidth: '560px', height: 315 }}  src="https://www.youtube.com/embed/HygPgY9TVno?si=YO4bBQm7u5Zz6NkG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
             <p style={{marginTop: '2.5rem', marginBottom: '.5rem', fontStyle:'italic'}}>Here's some gameplay featuring 1 player:</p>
             <iframe style={{width: "100%", maxWidth: '600px', height: 315 }} src="https://www.youtube.com/embed/Rw1wA3txT_U?si=2v0vqLWD668lfpkw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
