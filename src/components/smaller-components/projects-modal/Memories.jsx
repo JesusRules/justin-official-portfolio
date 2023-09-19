@@ -68,7 +68,7 @@ function Memories({ openModal, setOpenModal }) {
 
 
   const handleUrl = () => {
-    window.open('https://sparkling-salamander-f12f3e.netlify.app/posts', '_blank');
+    window.open('https://justins-memories.netlify.app/posts', '_blank');
   }
     return (
       <ContentContainer>

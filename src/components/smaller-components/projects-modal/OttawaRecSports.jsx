@@ -40,7 +40,7 @@ const images = [
 
 function OttawaRecSports({ openModal, setOpenModal }) {
   const handleUrl = () => {
-    window.open('https://snazzy-sunburst-e79220.netlify.app/', '_blank');
+    window.open('https://ottawarecsports.netlify.app/', '_blank');
   }
     return (
       <ContentContainer>
