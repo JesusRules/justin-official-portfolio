@@ -77,6 +77,7 @@ function MamaMia({ openModal, setOpenModal }) {
     }, []);
 
     useEffect(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       if (initialized) return;
       if (openModal) {
         setTimeout(() => {

@@ -79,24 +79,25 @@ function ProjectInfoModal(props) {
     }, [])
 
     useEffect(() => {
-        if (openModal) {
-            closeButtonRef.current.style.display = 'block';
-            gsap.to(projectModalRef.current, {
-                x: '0%', // Final x position (center)
-                opacity: 1, // Final opacity
-                duration: 0.5, // Animation duration in seconds
+      if (openModal) {
+        closeButtonRef.current.style.display = 'block';
+        gsap.to(projectModalRef.current, {
+          x: '0%', // Final x position (center)
+          opacity: 1, // Final opacity
+          duration: 0.5, // Animation duration in seconds
                 ease: '"elastic.out(1, 0.3)"', // Easing function (you can choose a different one)
                 onStart: () => {
-                    projectModalRef.current.style.display = 'block';
+                  projectModalRef.current.style.display = 'block';
                 },
                 onComplete: () => {
-                    projectModalRef.current.style.pointerEvents = 'auto';
+                  projectModalRef.current.style.pointerEvents = 'auto';
                     projectModalRef.current.style.userSelect = 'auto';
                 }
               });
-        }
-        if (!openModal) {
-            closeButtonRef.current.style.display = 'none';
+            }
+            if (!openModal) {
+              // projectModalRef.current.scrollTop = 0; //scroll to top
+              closeButtonRef.current.style.display = 'none';
             gsap.to(projectModalRef.current, {
                 x: '-100%', // Final x position (outside the viewport to the right)
                 opacity: 0, // Final opacity
@@ -107,6 +108,7 @@ function ProjectInfoModal(props) {
                     projectModalRef.current.style.userSelect = 'none';
                 },
                 onComplete: () => {
+                    projectModalRef.current.scrollTop = 0
                     projectModalRef.current.style.display = 'none';
                 },
               });
