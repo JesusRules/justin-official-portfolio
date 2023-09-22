@@ -65,18 +65,23 @@ const BackgroundBanner = styled.div`
 
 
 const images = [
-  '/img/projects/memories/preview-1.jpg',
-  '/img/projects/memories/preview-1.jpg',
-  '/img/projects/memories/preview-1.jpg',
-  '/img/projects/memories/preview-1.jpg',
-  '/img/projects/memories/preview-1.jpg',
-  '/img/projects/memories/preview-1.jpg',
+  '/img/projects/ultimate-jesus-game/preview-2.jpg',
+  '/img/projects/ultimate-jesus-game/preview-3.jpg',
+  '/img/projects/ultimate-jesus-game/preview-4.jpg',
+  '/img/projects/ultimate-jesus-game/preview-5.jpg',
+  '/img/projects/ultimate-jesus-game/preview-6.jpg',
+  '/img/projects/ultimate-jesus-game/preview-11.jpg',
+  '/img/projects/ultimate-jesus-game/preview-12.jpg',
+  '/img/projects/ultimate-jesus-game/preview-8.jpg',
+  '/img/projects/ultimate-jesus-game/preview-9.jpg',
+  '/img/projects/ultimate-jesus-game/preview-7.jpg',
+  '/img/projects/ultimate-jesus-game/preview-1.jpg',
 ];
 
 
 function UltimateJesusGame({ openModal, setOpenModal }) {
   const handleItchIO = () => {
-    window.open('https://p0rtal.itch.io/stellar-fever', '_blank');
+    window.open('https://jesusrules.itch.io/the-ultimate-jesus-game', '_blank');
   }
 
     return (
@@ -101,20 +106,19 @@ function UltimateJesusGame({ openModal, setOpenModal }) {
         </div>
 
       <div style={{padding: '0 2rem', textAlign: 'center', fontStyle: 'italic', lineHeight: '10%', maxWidth: '760px', margin: '0 auto'}}>
-            <p style={{fontWeight: 800, transform: 'translateY(-13px)', color: '#f29c32'}}>(Windows only)</p>
-            <p>Stellar Fever was a final year project developed by 6 people during college.</p>
-            <p>My job was to program the behaviour of enemy AI.</p>
-            <p>The game is a 4-player co-op experience (via online). Each player chooses a unique player class.</p>
-            <p>The game is also playable alone!</p>
+            <p style={{fontWeight: 800, transform: 'translateY(-13px)'}}>(Windows only)</p>
+            <p>The Ultimate Jesus Game is a 3D platformer prototype I developed as a side-project. It features some levels that show off some mechanics and gameplay features I implemented.</p>
 
-            <p style={{marginTop: '1.5rem', marginBottom: '.5rem', fontStyle:'italic'}}>Check out this game trailer:</p>
-            <iframe style={{width: "100%", maxWidth: '560px', height: 315 }}  src="https://www.youtube.com/embed/HygPgY9TVno?si=YO4bBQm7u5Zz6NkG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <p style={{margin: '1.5rem'}}>The project is not done, but a crucial learning step in my game development endeavours.</p>
 
-            <p style={{marginTop: '2.5rem', marginBottom: '.5rem', fontStyle:'italic'}}>Here's some gameplay featuring 1 player:</p>
-            <iframe style={{width: "100%", maxWidth: '600px', height: 315 }} src="https://www.youtube.com/embed/Rw1wA3txT_U?si=2v0vqLWD668lfpkw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <p style={{marginBottom: '1.5rem'}}><span style={{fontWeight: 800}}>For more information:</span><br/><a href='https://pokithedog.com/ultimate-jesus-game.html' target='_blank'>https://pokithedog.com/ultimate-jesus-game.html</a></p>
+
+
+            <p style={{marginTop: '1.5rem', marginBottom: '.5rem', fontStyle:'italic', fontWeight: 800}}>Check out this game demonstration:</p>
+            <iframe style={{width: "100%", maxWidth: '600px', height: 315 }} src="https://www.youtube.com/embed/I5lIdJ137m0?si=IfU3VrIQn1GKhCBL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
       </div>
       </div>
-      <p className='bottom-madewith' style={{textAlign: 'left', color: 'blue', padding: '1rem', fontStyle: 'italic', fontWeight: 400}}>Project was made using <b>Unreal Engine 4.</b></p>
+      <p className='bottom-madewith' style={{textAlign: 'left', color: 'blue', padding: '1rem', fontStyle: 'italic', fontWeight: 400}}>Project was made using <b>Unreal Engine 4-5.</b></p>
       </ContentContainer>
     )
 }
