@@ -15,6 +15,7 @@ import SaviourTFF from './projects-modal/SaviourTFF';
 import MamaMia from './projects-modal/MamaMia';
 import StellarFever from './projects-modal/StellarFever';
 import GraveyardSmash from './projects-modal/GraveyardSmash';
+import UltimateJesusGame from './projects-modal/UltimateJesusGame';
 
 const ProjectInfoContainer = styled.div`
   position: relative;
@@ -132,7 +133,7 @@ function ProjectInfoModal(props) {
         
         {currentProject.id === "church-party" && <ChurchParty openModal={openModal} setOpenModal={setOpenModal} /> }
         {currentProject.id === "saviour-tff" && <SaviourTFF openModal={openModal} setOpenModal={setOpenModal} /> }
-        
+        {currentProject.id === "ultimate-jesus-game" && <UltimateJesusGame openModal={openModal} setOpenModal={setOpenModal} /> }
         {currentProject.id === "mama-mia" && <MamaMia openModal={openModal} setOpenModal={setOpenModal} /> }
         {currentProject.id === "stellar-fever" && <StellarFever openModal={openModal} setOpenModal={setOpenModal} /> }
         {currentProject.id === "graveyard-smash" && <GraveyardSmash openModal={openModal} setOpenModal={setOpenModal} /> }

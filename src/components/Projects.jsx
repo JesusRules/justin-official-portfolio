@@ -241,7 +241,7 @@ var contentTitlesArray = [
   { name: "", description: "", id: '' },
   { name: "Church Party", description: "A 5 player mini-game extravaganza.", id: 'church-party' },
   { name: "Saviour - The Final Frontier", description: "A single player 2D adventure game.", id: 'saviour-tff' },
-  { name: "Ultimate Jesus Game", description: "A single player 3D adventure game.", id: 'ultimate-jesus-game' },
+  { name: "The Ultimate Jesus Game", description: "A single player 3D adventure game.", id: 'ultimate-jesus-game' },
   { name: "Mama Mia", description: "A multiplayer mayhem of cat vs mice gameplay.", id: 'mama-mia' },
   { name: "Stellar Fever", description: "A 4 player co-op action game.", id: 'stellar-fever' },
   { name: "Graveyard Smash", description: "A single player shoot-em-up styled game.", id: 'graveyard-smash' },
