@@ -100,10 +100,11 @@ function UltimateJesusGame({ openModal, setOpenModal }) {
         
         <div style={{ textAlign: 'center', margin: '1rem'}}>
             <h4 style={{fontWeight: 800, marginBottom: '.26rem'}}>Try it out!</h4>
-            <div style={{display: 'flex', alignItems: 'start', gap: '0.2rem', justifyContent: 'center'}}>
+            {/* <div style={{display: 'flex', alignItems: 'start', gap: '0.2rem', justifyContent: 'center'}}>
               <img onClick={(e) => handleItchIO()} style={{borderRadius: '5px', width: '32%', maxWidth: '250px', cursor: 'pointer'}} src="/img/projects/misc/itch-logo.jpg"/>
-            </div>
-        </div>
+            </div> */}
+            <iframe style={{borderRight: '1px solid black'}} frameborder="0" src="https://itch.io/embed/2274074?bg_color=e6f7fc&amp;fg_color=131f2c&amp;link_color=212f46&amp;border_color=2e4a5c" width="208" height="167"><a href="https://jesusrules.itch.io/the-ultimate-jesus-game">The Ultimate Jesus Game by JesusRules</a></iframe>       
+      </div>
 
       <div style={{padding: '0 2rem', textAlign: 'center', fontStyle: 'italic', lineHeight: '10%', maxWidth: '760px', margin: '0 auto'}}>
             <p style={{fontWeight: 800, transform: 'translateY(-13px)'}}>(Windows only)</p>

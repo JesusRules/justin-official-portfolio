@@ -77,10 +77,11 @@ function SaviourTFF({ openModal, setOpenModal }) {
 
       <div style={{textAlign: 'center', margin: '1rem'}}>
             <h4 style={{fontWeight: 800, marginBottom: '.26rem'}}>Try it out!</h4>
-            <div style={{display: 'flex', alignItems: 'start', gap: '0.2rem', justifyContent: 'center'}}>
+            <div style={{display: 'flex', alignItems: 'center', transform: 'translateY(-.5rem)', gap: '0.2rem', justifyContent: 'center'}}>
               <img onClick={(e) => handleAppleStore()} style={{width: '32%', maxWidth: '250px', cursor: 'pointer'}} src="/img/projects/misc/apple-store.png"/>
               <img onClick={(e) => handleGooglePlayStore()} style={{width: '32%', maxWidth: '250px', cursor: 'pointer'}} src="/img/projects/misc/google-store.png"/>
-              <img onClick={(e) => handleUrl()} style={{width: '32%', maxWidth: '250px', cursor: 'pointer'}} src="/img/projects/misc/web-link.png"/>
+              {/* <img onClick={(e) => handleUrl()} style={{width: '32%', maxWidth: '250px', cursor: 'pointer'}} src="/img/projects/misc/web-link.png"/> */}
+              <img onClick={(e) => handleUrl()} style={{width: '32%', maxWidth: '250px', cursor: 'pointer'}} src="/img/projects/misc/gx-games-logo.png"/>
             </div>
         </div>
 
