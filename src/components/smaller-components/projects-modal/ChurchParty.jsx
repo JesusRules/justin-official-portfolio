@@ -20,6 +20,9 @@ const ContentContainer = styled.div`
 
 
 const TitleDiv = styled.div`
+h2 {
+  border: 0px;
+}
   @media only screen and (max-width: 500px) {
     h2 {
       font-size: 2rem;

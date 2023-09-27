@@ -16,6 +16,7 @@ import MamaMia from './projects-modal/MamaMia';
 import StellarFever from './projects-modal/StellarFever';
 import GraveyardSmash from './projects-modal/GraveyardSmash';
 import UltimateJesusGame from './projects-modal/UltimateJesusGame';
+import StJoesGames from './projects-modal/StJoesGames';
 
 const ProjectInfoContainer = styled.div`
   position: relative;
@@ -137,6 +138,7 @@ function ProjectInfoModal(props) {
         {currentProject.id === "mama-mia" && <MamaMia openModal={openModal} setOpenModal={setOpenModal} /> }
         {currentProject.id === "stellar-fever" && <StellarFever openModal={openModal} setOpenModal={setOpenModal} /> }
         {currentProject.id === "graveyard-smash" && <GraveyardSmash openModal={openModal} setOpenModal={setOpenModal} /> }
+        {currentProject.id === "stjoes-games" && <StJoesGames openModal={openModal} setOpenModal={setOpenModal} /> }
     </ProjectInfoModalDiv>
     {/* </ProjectInfoContainer> */}
     </>

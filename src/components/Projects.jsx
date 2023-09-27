@@ -245,7 +245,7 @@ var contentTitlesArray = [
   { name: "Mama Mia", description: "A multiplayer mayhem of cat vs mice gameplay.", id: 'mama-mia' },
   { name: "Stellar Fever", description: "A 4 player co-op action game.", id: 'stellar-fever' },
   { name: "Graveyard Smash", description: "A single player shoot-em-up styled game.", id: 'graveyard-smash' },
-  { name: "St. Joseph Model Games", description: "The 3d model of my entire high school (I made) which can be played in.", id: 'stjoes-games' },
+  { name: "St. Joseph High School (Model)", description: "The 3d model of my entire high school (I made) which can be played in.", id: 'stjoes-games' },
   { name: "Fusion FPS", description: "Game project made for learning the multiplayer solution Photon Fusion.", id: 'fusion-fps', status: 'unavailable' },
   { name: "SaySike Project", description: "Game prototype that was made in college.", id: 'saysike-project' },
   
