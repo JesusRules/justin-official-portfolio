@@ -43,9 +43,13 @@ const images = [
 ];
 
 function ChurchParty({ openModal, setOpenModal }) {
-  const handleUrl = () => {
-    window.open('https://bern0241.github.io/portfolio-website/', '_blank');
+  const handleAppleStore = () => {
+    window.open('https://apps.apple.com/us/app/church-party/id1611305342?platform=ipad', '_blank');
   }
+  const handleGooglePlayStore = () => {
+    window.open('https://play.google.com/store/apps/details?id=com.praisejesus.churchparty', '_blank');
+  }
+
     return (
       <ContentContainer>
       <CloseButton setOpenModal={setOpenModal} />
@@ -57,10 +61,11 @@ function ChurchParty({ openModal, setOpenModal }) {
         <HorizontalImageLoopProjects _images={images} _isReversed={false} openModal={openModal} _uniqueClassName={"images5"} />
 
         <div style={{textAlign: 'center', margin: '1rem'}}>
-            <h4 style={{fontWeight: 800, marginBottom: '.26rem'}}>Game is not available for download :(</h4>
-            {/* <div style={{display: 'flex', alignItems: 'start', gap: '0.2rem', justifyContent: 'center'}}>
-              <img onClick={(e) => handleUrl()} style={{width: '28%', maxWidth: '170px', cursor: 'pointer'}} src="/img/projects/misc/web-link.png"/>
-            </div> */}
+            <h4 style={{fontWeight: 800, marginBottom: '1.25rem'}}>Try it out!</h4>
+            <div style={{display: 'flex', alignItems: 'center', transform: 'translateY(-.5rem)', gap: '0.2rem', justifyContent: 'center'}}>
+              <img onClick={(e) => handleAppleStore()} style={{width: '32%', maxWidth: '250px', cursor: 'pointer'}} src="/img/projects/misc/apple-store.png"/>
+              <img onClick={(e) => handleGooglePlayStore()} style={{width: '32%', maxWidth: '250px', cursor: 'pointer'}} src="/img/projects/misc/google-store.png"/>
+            </div>
         </div>
 
       <div style={{padding: '0 1rem', textAlign: 'center', fontStyle: 'italic', marginTop: '1.35rem', display: 'flex',
