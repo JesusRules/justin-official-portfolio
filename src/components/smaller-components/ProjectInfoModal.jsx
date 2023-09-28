@@ -19,6 +19,7 @@ import UltimateJesusGame from './projects-modal/UltimateJesusGame';
 import StJoesGames from './projects-modal/StJoesGames';
 import GuitarKing from './projects-modal/GuitarKing';
 import SpotifyClone from './projects-modal/SpotifyClone';
+import MyMusicPlayer from './projects-modal/MyMusicPlayer';
 
 const ProjectInfoContainer = styled.div`
   position: relative;
@@ -144,6 +145,7 @@ function ProjectInfoModal(props) {
         
         {currentProject.id === "guitarking" && <GuitarKing openModal={openModal} setOpenModal={setOpenModal} /> }
         {currentProject.id === "my-spotify-clone" && <SpotifyClone openModal={openModal} setOpenModal={setOpenModal} /> }
+        {currentProject.id === "my-music-player" && <MyMusicPlayer openModal={openModal} setOpenModal={setOpenModal} /> }
     </ProjectInfoModalDiv>
     {/* </ProjectInfoContainer> */}
     </>
