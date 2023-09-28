@@ -35,21 +35,23 @@ const ContentContainer = styled.div`
   }
 `;
 
+
+const TopLightsDiv = styled.div`
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  `
 const TopLights = styled.img`
-  width: 100%;
-  min-width: 50rem;
-  margin: 0 auto;
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
-  `;
+    width: 100%;
+    min-width: 50rem;
+    margin-bottom: 1rem;
+`;
 
 const TopBanner = styled.img`
   cursor: pointer;
   width: 92%;
   max-width: 41rem;
   left: 50%;
-  top: .3rem;
   position: relative;
   transform: translateX(-50%);
 `
@@ -116,16 +118,26 @@ const AllPerformancesDiv = styled.div`
   align-items: center;
 `
 const PerformanceDiv = styled.div`
+  margin: 1rem 0 2rem 0;
   width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  p {
+    font-style: italic;
+    font-size: 1.5rem;
+  }
 ` 
+const Video = styled.iframe`
+  width: 100%;
+  max-width: 50rem;
+  height: 22rem;
+`
 
 const BottomBanner = styled.img`
   position: fixed;
-  bottom: 0;
   width: 100%;
-  z-index: 0;
   opacity: 12%;
 `
 
@@ -146,13 +158,16 @@ function LivePerformances({ openModal, setOpenModal }) {
     window.open('https://ottawabluesfest.ca/', '_blank');
   }
     return (
+      <>
       <BackgroundDiv>
+      
       <ContentContainer>
-      <BottomBanner src="/img/projects/live-performances/drummer.jpg"/>
       <CloseButton setOpenModal={setOpenModal} />
       
       <div style={{zIndex: 1}}>
+        <TopLightsDiv>
         <TopLights draggable={false} src="/img/projects/live-performances/lights-1.jpg"/>
+        </TopLightsDiv>
         <TopBanner onClick={handleRBCWebsite} draggable={false} src="/img/projects/live-performances/bluesfest-banner.png"/>
         
         <BlackDivider draggable={false} src="/img/projects/live-performances/black-divider.png" />
@@ -173,7 +188,8 @@ function LivePerformances({ openModal, setOpenModal }) {
         <AllPerformancesDiv>
           
           <PerformanceDiv>
-            <iframe style={{width: '60%', height: '20rem'}} src="https://www.youtube.com/embed/w9kPjBpEOJg?si=K6H9GwqYZisNLDdw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <p>Let Us Be Free - Sloth Pit</p>
+            <Video src="https://www.youtube.com/embed/w9kPjBpEOJg?si=K6H9GwqYZisNLDdw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></Video>
           </PerformanceDiv>
         
           </AllPerformancesDiv>
@@ -261,6 +277,7 @@ function LivePerformances({ openModal, setOpenModal }) {
       {/* <p className='bottom-madewith' style={{textAlign: 'left', color: 'blue', padding: '1rem', fontStyle: 'italic', fontWeight: 400}}>Project was made using vanilla <b>JavaScript, CSS and HTML.</b></p> */}
       </ContentContainer>
       </BackgroundDiv>
+      </>
     )
 }
 

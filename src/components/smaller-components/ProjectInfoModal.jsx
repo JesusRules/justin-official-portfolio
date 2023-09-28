@@ -40,7 +40,7 @@ const ProjectInfoModalDiv = styled.div`
   top: 0;
   bottom: 0;
   box-shadow: 5px 5px 5px black;
-  z-index: 10010;
+  z-index: 10010;//scroll-snap-type
   cursor: auto;
   background-color: #e6fbff;
   color: black;
@@ -127,6 +127,7 @@ function ProjectInfoModal(props) {
     
     {/* <ProjectInfoContainer> */}
     <ProjectInfoModalDiv ref={projectModalRef}>
+
         {currentProject.id === "pokithedog" && <PokiTheDog openModal={openModal} setOpenModal={setOpenModal} /> }
         {currentProject.id === "my-portfolio-old" && <Portfolio_Old openModal={openModal} setOpenModal={setOpenModal} /> }
         {currentProject.id === "ottawa-rec-sports" && <OttawaRecSports openModal={openModal} setOpenModal={setOpenModal} /> }
