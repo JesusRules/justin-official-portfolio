@@ -104,29 +104,29 @@ const Content = styled.div`
   }
 
   .intro {
-    margin: 0 auto;
-    text-align: left;
     display: flex;
+    flex-direction: column;
 
-    #my-diploma-1,
-    #my-diploma-2 {
-      object-fit: cover;
-      padding-left: 6rem;
-      width: 100%;
-      height: 100%;
-      max-width: 16rem;
-      cursor: pointer;
-      transition: width 0.3s, height 0.3s;
-    }
-    #my-diploma-1 {
-      margin-bottom: 2rem;
-    }
-    #my-diploma-2 {
-      display: none;
-      max-width: 12rem;
-    }
+    .diploma-row {
+        max-width: 700px;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        margin: 0 auto;
+        margin-bottom: .5rem;
+      }
+      .pic {
+        max-width: 13rem;
+        cursor: pointer;
+        width: 30%;
+      }
+      .info {
+        text-align: left;
+        padding-left: 1rem;
+        width: 70%;
+      }
 
-    .info {
+
       padding-left: 1rem;
       padding-right: 1rem;
       #course {
@@ -137,12 +137,10 @@ const Content = styled.div`
         width: 2.5rem;
         cursor: pointer;
       }
-    }
-
   }
 
   .grades {
-    // margin-top: 2.5rem;
+    margin-top: .5rem;
     img {
       width: 6rem;
       cursor: pointer;
@@ -154,24 +152,24 @@ const Content = styled.div`
     transform: translateY(0);
 
     .intro {
-      flex-direction: column;
-      text-align: center;
-      #my-diploma-1,
-      #my-diploma-2 {
-        padding: 0;
+      .diploma-row {
+        flex-direction: column;
+        align-items: center;
       }
-      #my-diploma-1 {
-        display: none;
+      .pic {
+        max-width: 17rem;
+        width: 100%;
+        margin-bottom: .5rem;
       }
-      #my-diploma-2 {
-        margin: 0rem auto 1.7rem auto;
-        display: block;
+      .info {
+        text-align: center;
+        max-width: 20rem;
+        width: 100%;
       }
     }
     h4 {
       margin-bottom: 2rem;
     }
-    margin-bottom: 5rem;
   }
 `
 
@@ -220,8 +218,8 @@ function Education({ myRef, scrollYGlobal }) {
   // Main
   const floatingBoxRef = useRef();
   // Modals
+  const [gameDevModal, setGameDevModal] = useState(false);
   const [diplomaModal, setDiplomaModal] = useState(false);
-  // const [gameDevModal, setGameDevModal] = useState(false);
   // const [MADDModal, setMADDModal] = useState(false);
   const [gradesModal, setGradesModal] = useState(false);
 
@@ -295,12 +293,12 @@ function Education({ myRef, scrollYGlobal }) {
           <DarkBG onClick={(e) => setDiplomaModal(false)}/>
           </>
         )}
-        {gradesModal && (
+        {gameDevModal && (
           <>
           <ModalImage>
-            <img src="/img/education/grades.jpg"/>
+            <img src="/img/education/gamedev-grad.jpg"/>
           </ModalImage>
-          <DarkBG onClick={(e) => setGradesModal(false)}/>
+          <DarkBG onClick={(e) => setGameDevModal(false)}/>
           </>
         )}
 
@@ -323,26 +321,27 @@ function Education({ myRef, scrollYGlobal }) {
           <Content>
             <h4><img src="/img/education/algonquin-college-logo-normal.png"/></h4>
             <div className='intro'>
-              <img id="my-diploma-1" draggable={false} src="/img/education/madd-diploma.jpg" 
-                    onClick={(e) => setDiplomaModal(true)}/>
-              
-              <div className='info'>
-                {/* <p>Both courses I graduated from Algonquin College were:</p> */}
-                <div>
-                    <span>Course #1</span>
-                    <p id="course"><a href="https://www.algonquincollege.com/mediaanddesign/program/game-development/" target="_blank">Game Development</a> (2018-2021) <span style={{fontWeight: '900'}}>with Honours</span></p>
-                    <img className="diploma-icon" src="/img/education/diploma-paper-2.png" onClick={GameDevGraduatedLink}/>
+              {/* <div className='photos'>
+                <img id="my-gamedev-diploma" draggable={false} src="/img/education/gamedev-grad.jpg" onClick={(e) => setDiplomaModal(true)}/>
+              <img id="my-madd-diploma" draggable={false} src="/img/education/madd-diploma.jpg" onClick={(e) => setDiplomaModal(true)}/>
+              </div> */}
+                <div className='diploma-row'>
+                    <img className='pic' draggable={false} src="/img/education/gamedev-grad.jpg" onClick={(e) => setGameDevModal(true)}/>
+                    <div className='info'>
+                      <span>Course #1</span>
+                      <p id="course"><a href="https://www.algonquincollege.com/mediaanddesign/program/game-development/" target="_blank">Game Development</a> (2018-2021) <span style={{fontWeight: '900'}}>with Honours</span></p>
+                      <img className="diploma-icon" src="/img/education/diploma-paper-2.png" onClick={GameDevGraduatedLink}/>
+                    </div>
                 </div>
-                <div>
-                    <span>Course #2</span>
-                   <p id="course"><a href='https://www.algonquincollege.com/mediaanddesign/program/mobile-application-design-and-development/' target="_blank">Mobile Application Design and Development</a> (2021-2023) <span style={{fontWeight: '900'}}>with Honours</span></p>
-                    <img className="diploma-icon" src="/img/education/diploma-paper-2.png" onClick={MADDGraduatedLink}/>
+                <div className='diploma-row'>
+                      <img className='pic' draggable={false} src="/img/education/madd-diploma.jpg" onClick={(e) => setDiplomaModal(true)}/>
+                      <div className='info'>
+                      <span>Course #2</span>
+                      <p id="course"><a href='https://www.algonquincollege.com/mediaanddesign/program/mobile-application-design-and-development/' target="_blank">Mobile Application Design and Development</a> (2021-2023) <span style={{fontWeight: '900'}}>with Honours</  span></p>
+                      <img className="diploma-icon" src="/img/education/diploma-paper-2.png" onClick={MADDGraduatedLink}/>
+                    </div>
                 </div>
               </div>
-
-              <img id="my-diploma-2" draggable={false} src="/img/education/madd-diploma.jpg" 
-                    onClick={(e) => setDiplomaModal(true)}/>
-            </div>
             <div className='grades'>
               <p>My grades were impeccable! I literally finished <span style={{fontWeight: 900}}>every semester</span> while on the Dean's List!</p>
               <br/>
