@@ -251,7 +251,7 @@ var contentTitlesArray = [
   
   { name: "", description: "", id: '' },
   { name: "GuitarKing (Design)", description: "An Adobe XD design of a guitar playing app.", id: 'guitarking' },
-  { name: "Justin's Spotify App", description: "A Spotify clone I made for mobile.", id: 'my-spotify-app' },
+  { name: "Justin's Spotify Clone", description: "A Spotify clone I made for mobile.", id: 'my-spotify-clone' },
   { name: "My Music Player", description: "A music player featuring songs I like.", id: 'my-music-player' },
   { name: "Live Performances (Bluesfest)", description: "Live performances of me playing on stage.", id: 'bluesfest' },
   { name: "YouTube Guitar Covers", description: "Videos of guitar song covers.", id: 'guitar-covers' },
