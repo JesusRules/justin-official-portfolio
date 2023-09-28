@@ -51,6 +51,68 @@ const TopBanner = styled.img`
   transform: translateX(-50%);
 `
 
+const BlackDivider = styled.img`
+  width: 92%;
+  max-width: 70rem;
+  height: 1.25rem;
+  /* min-width: 42rem; */
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: .5rem;
+  margin-bottom: .5rem;
+`
+
+const IntroDiv = styled.div`
+  padding: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  max-width: 820px;
+  margin: 0rem auto 0 auto;
+  #intro-content {
+    gap: .75rem;
+    padding-left: .9rem;
+    display: flex;
+    flex-direction: column;
+    p {
+      font-size: 1.05rem;
+    }
+  }
+  #band-pic {
+    width: 24rem;
+  }
+
+  @media only screen and (max-width: 700px) {
+    flex-direction: column;
+    #intro-content {
+      margin-top: 1rem;
+      text-align: center;
+    }
+    #band-pic {
+      width: 100%;
+      align-self: center;
+      max-width: 25rem;
+    }
+  }
+`
+const YearSign = styled.img`
+ position: absolute; 
+ left: 0;
+ right: 0;
+ margin: 0 auto;
+ width: 12.2rem;
+ transform: translateY(-1rem)
+`
+
+const BottomBanner = styled.img`
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 0;
+  opacity: 12%;
+`
+
 const images = [
   '/img/projects/pokithedog/preview-1.jpg',
   '/img/projects/pokithedog/preview-2.jpg',
@@ -66,12 +128,26 @@ function LivePerformances({ openModal, setOpenModal }) {
   }
     return (
       <ContentContainer>
-      <CloseButton color="white" setOpenModal={setOpenModal} />
-      <div>
-        <TopLights src="/img/projects/live-performances/lights-1.jpg"/>
-        <TopBanner src="/img/projects/live-performances/bluesfest-banner.png"/>
-        {/* <h2>PokiTheDog</h2> */}
-        {/* <img className='title' src='/img/projects/pokithedog/pokithedog-logo.png'/> */}
+      <BottomBanner src="/img/projects/live-performances/drummer.jpg"/>
+      <CloseButton setOpenModal={setOpenModal} />
+      
+      <div style={{zIndex: 1}}>
+        <TopLights draggable={false} src="/img/projects/live-performances/lights-1.jpg"/>
+        <TopBanner draggable={false} src="/img/projects/live-performances/bluesfest-banner.png"/>
+        
+        <BlackDivider src="/img/projects/live-performances/black-divider.png" />
+
+        <IntroDiv>
+          <img id="band-pic" src="/img/projects/live-performances/slothpit_beintheband.jpg"/>
+          <div id="intro-content">
+            <p>Hey guys! Welcome to the live performances' section of the website!</p>
+            <p>I was in the <span style={{fontWeight: 900}}>Be In The Band</span> program at the Royal Ottawa for 4 years!</p>
+            <p>I played drums, bass and guitar. Sometimes all 3 in 1 year!</p>
+          </div>
+        </IntroDiv>
+
+        <BlackDivider src="/img/projects/live-performances/black-divider.png" />
+        <YearSign src="/img/projects/live-performances/2017.png"/>
 
         {/* METHOD 3 */}
         {/* <HorizontalImageLoopProjects _images={images} _isReversed={false} openModal={openModal} _uniqueClassName={"images4"} /> */}
@@ -152,7 +228,7 @@ function LivePerformances({ openModal, setOpenModal }) {
         {/* <img style={{display: 'flex', padding: '1.5rem', width: '260px', margin: 'auto auto'}} src="img/projects/pokithedog/pokithedog-logo.png"/> */}
       </div>
 
-      <p className='bottom-madewith' style={{textAlign: 'left', color: 'blue', margin: '1rem', fontStyle: 'italic', fontWeight: 400}}>Project was made using vanilla <b>JavaScript, CSS and HTML.</b></p>
+      {/* <p className='bottom-madewith' style={{textAlign: 'left', color: 'blue', padding: '1rem', fontStyle: 'italic', fontWeight: 400}}>Project was made using vanilla <b>JavaScript, CSS and HTML.</b></p> */}
       </ContentContainer>
     )
 }
