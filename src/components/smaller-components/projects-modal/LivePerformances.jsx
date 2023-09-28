@@ -118,7 +118,7 @@ const AllPerformancesDiv = styled.div`
   align-items: center;
 `
 const PerformanceDiv = styled.div`
-  margin: 1rem 0 2rem 0;
+  margin: 1.5rem 0 1.5rem 0;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -127,11 +127,15 @@ const PerformanceDiv = styled.div`
   p {
     font-style: italic;
     font-size: 1.5rem;
+    font-weight: 600;
+  }
+  span {
+    font-weight: 700;
   }
 ` 
 const Video = styled.iframe`
   width: 100%;
-  max-width: 50rem;
+  max-width: 40rem;
   height: 22rem;
 `
 
@@ -177,7 +181,7 @@ function LivePerformances({ openModal, setOpenModal }) {
           <div id="intro-content">
             <p>Hey guys! Welcome to the live performances' section of the website!</p>
             <p>I was in the <span style={{fontWeight: 900}}>Be In The Band</span> program at the Royal Ottawa for 4 years!</p>
-            <p>I played drums, bass and guitar. Sometimes all 3 in 1 year!</p>
+            <p>I played drums, bass and guitar. Sometimes all 3 in 1 year! And all kinds of genres/bands!</p>
           </div>
         </IntroDiv>
 
@@ -188,9 +192,16 @@ function LivePerformances({ openModal, setOpenModal }) {
         <AllPerformancesDiv>
           
           <PerformanceDiv>
-            <p>Let Us Be Free - Sloth Pit</p>
+            <p>Let Us Be Free - <span style={{fontWeight: 800}}>Sloth Pit</span></p>
+            <span>Genre: <u>Metal</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Instrument: <u>Drums</u></span>
             <Video src="https://www.youtube.com/embed/w9kPjBpEOJg?si=K6H9GwqYZisNLDdw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></Video>
           </PerformanceDiv>
+
+          <PerformanceDiv>
+            <p>No Name - <span style={{fontWeight: 800}}>Sloth Pit</span></p>
+            <span>Genre: <u>Metal</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Instrument: <u>Drums</u></span>
+            <Video src="https://www.youtube.com/embed/P36Jz9kpBM8?si=j21P7XD7sOZSHqmP" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></Video>
+            </PerformanceDiv>
         
           </AllPerformancesDiv>
         </YearlyDiv>
