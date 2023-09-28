@@ -11,17 +11,19 @@ import 'swiper/css/navigation';
 import { EffectCoverflow, Pagination, Navigation } from 'swiper/modules';
 import CloseButton from '../CloseButton';
 
-const ContentContainer = styled.div`
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  
+const BackgroundDiv = styled.div`
   background-image: url('/img/projects/live-performances/seamless-sand-texture.jpg');
   background-repeat: repeat;
   background-size: 330px 330px; 
   background-position: center center;
   background-color: #fff;
+  background-attachment: fixed;
+`
+const ContentContainer = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   .title {
     display: flex;
@@ -43,6 +45,7 @@ const TopLights = styled.img`
   `;
 
 const TopBanner = styled.img`
+  cursor: pointer;
   width: 92%;
   max-width: 41rem;
   left: 50%;
@@ -69,7 +72,7 @@ const IntroDiv = styled.div`
   flex-direction: row;
   justify-content: center;
   max-width: 820px;
-  margin: 0rem auto 0 auto;
+  margin: 2.5rem auto 4.5rem auto;
   #intro-content {
     gap: .75rem;
     padding-left: .9rem;
@@ -105,6 +108,19 @@ const YearSign = styled.img`
  transform: translateY(-1rem)
 `
 
+const YearlyDiv = styled.div` 
+`
+const AllPerformancesDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+const PerformanceDiv = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+` 
+
 const BottomBanner = styled.img`
   position: fixed;
   bottom: 0;
@@ -126,16 +142,20 @@ function LivePerformances({ openModal, setOpenModal }) {
   const handleUrl = () => {
     window.open('https://pokithedog.com/', '_blank');
   }
+  const handleRBCWebsite = () => {
+    window.open('https://ottawabluesfest.ca/', '_blank');
+  }
     return (
+      <BackgroundDiv>
       <ContentContainer>
       <BottomBanner src="/img/projects/live-performances/drummer.jpg"/>
       <CloseButton setOpenModal={setOpenModal} />
       
       <div style={{zIndex: 1}}>
         <TopLights draggable={false} src="/img/projects/live-performances/lights-1.jpg"/>
-        <TopBanner draggable={false} src="/img/projects/live-performances/bluesfest-banner.png"/>
+        <TopBanner onClick={handleRBCWebsite} draggable={false} src="/img/projects/live-performances/bluesfest-banner.png"/>
         
-        <BlackDivider src="/img/projects/live-performances/black-divider.png" />
+        <BlackDivider draggable={false} src="/img/projects/live-performances/black-divider.png" />
 
         <IntroDiv>
           <img id="band-pic" src="/img/projects/live-performances/slothpit_beintheband.jpg"/>
@@ -146,8 +166,18 @@ function LivePerformances({ openModal, setOpenModal }) {
           </div>
         </IntroDiv>
 
-        <BlackDivider src="/img/projects/live-performances/black-divider.png" />
-        <YearSign src="/img/projects/live-performances/2017.png"/>
+        <YearlyDiv>
+        <BlackDivider draggable={false} src="/img/projects/live-performances/black-divider.png" />
+        <YearSign draggable={false} src="/img/projects/live-performances/2017.png"/>
+        
+        <AllPerformancesDiv>
+          
+          <PerformanceDiv>
+            <iframe style={{width: '60%', height: '20rem'}} src="https://www.youtube.com/embed/w9kPjBpEOJg?si=K6H9GwqYZisNLDdw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </PerformanceDiv>
+        
+          </AllPerformancesDiv>
+        </YearlyDiv>
 
         {/* METHOD 3 */}
         {/* <HorizontalImageLoopProjects _images={images} _isReversed={false} openModal={openModal} _uniqueClassName={"images4"} /> */}
@@ -230,6 +260,7 @@ function LivePerformances({ openModal, setOpenModal }) {
 
       {/* <p className='bottom-madewith' style={{textAlign: 'left', color: 'blue', padding: '1rem', fontStyle: 'italic', fontWeight: 400}}>Project was made using vanilla <b>JavaScript, CSS and HTML.</b></p> */}
       </ContentContainer>
+      </BackgroundDiv>
     )
 }
 
