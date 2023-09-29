@@ -64,7 +64,6 @@ const ProjectDiv = styled.div`
   .grid-item {
     h3 {
       font-style: italic;
-      cursor: pointer;
       margin-bottom: 1rem;
     }
     iframe {
@@ -135,33 +134,83 @@ const ProjectDiv = styled.div`
     display: flex;
     flex-direction: column;
     grid-template-columns: 1fr;
-    /* grid-template-areas: 
-    'item2'
-    'item1'
-    'item3'
-    'item4'
-    'item6'
-    'item5'
-    'item7'
-    'item8'
-    'item10'
-    'item9'
-    'item11'
-    'item12'
-    'item14'
-    'item13'
-    'item15'
-    'item16'
-    'item18'
-    'item19'
-    'item20'
-    'item21'; */
 
+    // REVERSED
     .grid-item:nth-child(1) {
       order: 2;
     }
     .grid-item:nth-child(2) {
       order: 1;
+    }
+    // ORDERED
+    .grid-item:nth-child(3) {
+      order: 3;
+    }
+    .grid-item:nth-child(4) {
+      order: 4;
+    }
+    // REVERSED
+    .grid-item:nth-child(5) {
+      order: 6;
+    }
+    .grid-item:nth-child(6) {
+      order: 5;
+    }
+    // ORDERED
+    .grid-item:nth-child(7) {
+      order: 7;
+    }
+    .grid-item:nth-child(8) {
+      order: 8;
+    }
+    // REVERSED
+    .grid-item:nth-child(9) {
+      order: 10;
+    }
+    .grid-item:nth-child(10) {
+      order: 9;
+    }
+    // ORDERED
+    .grid-item:nth-child(11) {
+      order: 11;
+    }
+    .grid-item:nth-child(12) {
+      order: 12;
+    }
+    // REVERSED
+    .grid-item:nth-child(13) {
+      order: 14;
+    }
+    .grid-item:nth-child(14) {
+      order: 13;
+    }
+    // ORDERED
+    .grid-item:nth-child(15) {
+      order: 15;
+    }
+    .grid-item:nth-child(16) {
+      order: 16;
+    }
+    // REVERSED
+    .grid-item:nth-child(17) {
+      order: 18;
+    }
+    .grid-item:nth-child(18) {
+      order: 17;
+    }
+    // ORDERED
+    .grid-item:nth-child(19) {
+      order: 19;
+    }
+    .grid-item:nth-child(20) {
+      order: 20;
+    }
+    // REVERSED
+    .grid-item:nth-child(21) {
+      order: 21;
+    }
+    .grid-item:nth-child(22) {
+      order: 22;
     }
 
     // WORKS
@@ -169,11 +218,13 @@ const ProjectDiv = styled.div`
     grid-column-start: 1;
     grid-column-end: 1;
   }
-  .grid-item:nth-child(4n+2) {
+  .grid-item:nth-child(4n+2) { //text 1
     grid-column-start: 1;
     grid-column-end: 1;
+    transform: translateX(0rem);
   }
-  .grid-item:nth-child(4n+3) {
+  .grid-item:nth-child(4n+3) { //text 2
+    transform: translateX(0rem);
     grid-column-start: 1;
     grid-column-end: 1;
   }
@@ -182,8 +233,9 @@ const ProjectDiv = styled.div`
     grid-column-end: 1;
   }
     
-    
     .grid-item {
+      padding: 0;
+      margin: 0;
       width: 100%;
       transform: translateX(0);
       iframe {
@@ -194,6 +246,7 @@ const ProjectDiv = styled.div`
       .info {
         width: 100%;
         h3 {
+          /* background-color: red; */
           margin: 0 auto;
           text-align: center;
         }
@@ -216,21 +269,13 @@ const images = [
 ];
 
 function MusicCovers({ openModal, setOpenModal }) {
-  useEffect(() => {
-    AddGridAreaIncrementalNumbers();
-  }, [])
+  // useEffect(() => {
+  // }, [])
 
   const handleUrl = (stringLink) => {
     window.open(stringLink, '_blank');
   }
   
-  const AddGridAreaIncrementalNumbers = () => {
-    const gridItems = document.querySelectorAll('.grid-item');
-    // gridItems.forEach((item, index) => {
-    //   item.style.gridArea = `item${index + 1}`;
-    // });
-  }
-
     return (
       <ContentContainer>
       <CloseButton setOpenModal={setOpenModal} />
@@ -267,13 +312,13 @@ function MusicCovers({ openModal, setOpenModal }) {
           </div>
           <div className='grid-item' style={{}}>
             <div className='info'>
-              <h3 onClick={(e) => handleUrl("https://polished-plus.netlify.app/")}>Soundgarden<br/> - Beyond The Wheel</h3>
+              <h3>Soundgarden<br/> - Beyond The Wheel</h3>
             </div>
           </div>
 
           <div className='grid-item' style={{}}>
             <div className='info'>
-              <h3 onClick={(e) => handleUrl("https://polished-plus.netlify.app/")}>Banjo-Kazooie<br/> - Pause Menu Music</h3>
+              <h3>Banjo-Kazooie<br/> - Pause Menu Music</h3>
             </div>
           </div>
           <div className='grid-item' style={{}}>
@@ -288,14 +333,13 @@ function MusicCovers({ openModal, setOpenModal }) {
           </div>
           <div className='grid-item' style={{}}>
             <div className='info'>
-              <h3 onClick={(e) => handleUrl("https://polished-plus.netlify.app/")}>Tool<br/> - Right In Two</h3>
+              <h3>Tool<br/> - Right In Two</h3>
             </div>
           </div>
 
-
           <div className='grid-item' style={{}}>
             <div className='info'>
-              <h3 onClick={(e) => handleUrl("https://polished-plus.netlify.app/")}>Acoustic/Electric Mashup</h3>
+              <h3>Acoustic/Electric Mashup</h3>
             </div>
           </div>
           <div className='grid-item' style={{}}>
@@ -310,14 +354,14 @@ function MusicCovers({ openModal, setOpenModal }) {
           </div>
           <div className='grid-item' style={{}}>
             <div className='info'>
-              <h3 onClick={(e) => handleUrl("https://polished-plus.netlify.app/")}>Guns N' Roses<br/> - Don't Cry (Solo)</h3>
+              <h3>Guns N' Roses<br/> - Don't Cry (Solo)</h3>
             </div>
           </div>
 
 
           <div className='grid-item' style={{}}>
             <div className='info'>
-              <h3 onClick={(e) => handleUrl("https://polished-plus.netlify.app/")}>Alice Cooper<br/> - Poison</h3>
+              <h3>Alice Cooper<br/> - Poison</h3>
             </div>
           </div>
           <div className='grid-item' style={{}}>
@@ -333,14 +377,13 @@ function MusicCovers({ openModal, setOpenModal }) {
           </div>
           <div className='grid-item' style={{}}>
             <div className='info'>
-              <h3 onClick={(e) => handleUrl("https://polished-plus.netlify.app/")}>Alice in Chains<br/> - Man in the Box</h3>
+              <h3>Alice in Chains<br/> - Man in the Box</h3>
             </div>
           </div>
 
-
           <div className='grid-item' style={{}}>
             <div className='info'>
-              <h3 onClick={(e) => handleUrl("https://polished-plus.netlify.app/")}>System of a Down<br/> - ATWA</h3>
+              <h3>System of a Down<br/> - ATWA</h3>
             </div>
           </div>
           <div className='grid-item' style={{}}>
@@ -348,10 +391,7 @@ function MusicCovers({ openModal, setOpenModal }) {
           </div>
 
 
-
-
           
-
 
 
 
@@ -369,11 +409,6 @@ function MusicCovers({ openModal, setOpenModal }) {
               <h3 onClick={(e) => handleUrl("https://polished-plus.netlify.app/")}>Soundgarden<br/> - Beyond The Wheel</h3>
             </div>
           </div>
-
-
-
-
-
           <div className='grid-item' style={{ gridArea: 'seven'}}>
             <div className='info'>
               <h3 onClick={(e) => handleUrl("https://polished-plus.netlify.app/")}>Soundgarden<br/> - Beyond The Wheel</h3>
@@ -382,11 +417,6 @@ function MusicCovers({ openModal, setOpenModal }) {
           <div className='grid-item' style={{ gridArea: 'eight'}}>
               <iframe src="https://www.youtube.com/embed/0QHEDCigeBw?si=3JZyK1nJkpJ29QOc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
           </div> */}
-          
-
-          
-
-
           {/* YouTube Clone */}
           {/* <div className='grid-item' style={{ gridArea: 'three' }}>
             <div className='info left'>
