@@ -32,13 +32,13 @@ const ProjectDiv = styled.div`
 // SECTION SPACED
   display: grid;
   width: 100%;
-  gap: .5rem;
+  gap: 1rem;
   /* grid-template-rows: repeat(3, 1fr); //3 */
   /* grid-template-columns: 3fr 2fr; */
   grid-template-columns: 1fr 1fr 1fr;
-  row-gap: 3rem;
+  row-gap: 5rem;
   align-items: center;
-  grid-template-areas: 
+  /* grid-template-areas:  */
     /* 'one two' 
     'three four'
     'five six'
@@ -50,7 +50,7 @@ const ProjectDiv = styled.div`
     'fifteen sixteen'
     'seventeen eighteen'
     'nineteen twenty' */
-    ;
+    /* ; */
 
   margin-bottom: 1rem;
   
@@ -69,7 +69,7 @@ const ProjectDiv = styled.div`
     }
     .info {
       width: 100%;
-      background-color: red;
+      /* background-color: red; */
       /* width: 20.7rem; */
       position: relative;
       bottom: 1rem;
@@ -242,39 +242,98 @@ function MusicCovers({ openModal, setOpenModal }) {
       </div>
 
         <ProjectDiv>
+          {/* Every 2 */}
           <div className='grid-item' 
-                  style={{ 
-                          // gridArea: 'one',
-                          // gridColumnStart: 1,
-                          // gridColumnEnd: 3
-                          }}>
+                  style={{}}>
               <iframe src="https://www.youtube.com/embed/0QHEDCigeBw?si=3JZyK1nJkpJ29QOc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
           </div>
-          <div className='grid-item' style={{ 
-                                            // gridArea: 'two'
-                                            }}>
+          <div className='grid-item' style={{}}>
             <div className='info'>
               <h3 onClick={(e) => handleUrl("https://polished-plus.netlify.app/")}>Soundgarden<br/> - Beyond The Wheel</h3>
             </div>
           </div>
 
 
-
-
-
-
-          <div className='grid-item' style={{ 
-                                          // gridArea: 'three'
-                                        }}>
+          <div className='grid-item' style={{}}>
             <div className='info'>
-              <h3 onClick={(e) => handleUrl("https://polished-plus.netlify.app/")}>Soundgarden<br/> - Beyond The Wheel</h3>
+              <h3 onClick={(e) => handleUrl("https://polished-plus.netlify.app/")}>Banjo-Kazooie<br/> - Pause Menu Music</h3>
             </div>
           </div>
-          <div className='grid-item' style={{ 
-                                              // gridArea: 'four'
-                                            }}>
-              <iframe src="https://www.youtube.com/embed/0QHEDCigeBw?si=3JZyK1nJkpJ29QOc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          <div className='grid-item' style={{}}>
+              <iframe src="https://www.youtube.com/embed/Rg2VJwkkIWY?si=keKW1vw97H1SkP2H" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
           </div>
+
+
+          {/* Every 2 */}
+          <div className='grid-item' 
+                  style={{}}>
+              <iframe src="https://www.youtube.com/embed/L9R853DYm7E?si=ETGCEMU6thtJvr8h" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+          <div className='grid-item' style={{}}>
+            <div className='info'>
+              <h3 onClick={(e) => handleUrl("https://polished-plus.netlify.app/")}>Tool<br/> - Right In Two</h3>
+            </div>
+          </div>
+
+
+          <div className='grid-item' style={{}}>
+            <div className='info'>
+              <h3 onClick={(e) => handleUrl("https://polished-plus.netlify.app/")}>Acoustic/Electric Mashup</h3>
+            </div>
+          </div>
+          <div className='grid-item' style={{}}>
+              <iframe src="https://www.youtube.com/embed/HoWJtcePjW8?si=-m3pW5rBbvjZz2Vo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+
+
+          {/* Every 2 */}
+          <div className='grid-item' 
+                  style={{}}>
+              <iframe src="https://www.youtube.com/embed/W9h_kRAijDY?si=ZBB40dkUid3hAOQp" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+          <div className='grid-item' style={{}}>
+            <div className='info'>
+              <h3 onClick={(e) => handleUrl("https://polished-plus.netlify.app/")}>Guns N' Roses<br/> - Don't Cry (Solo)</h3>
+            </div>
+          </div>
+
+
+          <div className='grid-item' style={{}}>
+            <div className='info'>
+              <h3 onClick={(e) => handleUrl("https://polished-plus.netlify.app/")}>Alice Cooper<br/> - Poison</h3>
+            </div>
+          </div>
+          <div className='grid-item' style={{}}>
+              <iframe src="https://www.youtube.com/embed/6niBt9aws2k?si=yWf1tp1XCbMjrq2C" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+
+
+
+          {/* Every 2 */}
+          <div className='grid-item' 
+                  style={{}}>
+              <iframe src="https://www.youtube.com/embed/S1vznDR9RQw?si=o31zRvfN0KRlLfce" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+          <div className='grid-item' style={{}}>
+            <div className='info'>
+              <h3 onClick={(e) => handleUrl("https://polished-plus.netlify.app/")}>Alice in Chains<br/> - Man in the Box</h3>
+            </div>
+          </div>
+
+
+          <div className='grid-item' style={{}}>
+            <div className='info'>
+              <h3 onClick={(e) => handleUrl("https://polished-plus.netlify.app/")}>System of a Down<br/> - ATWA</h3>
+            </div>
+          </div>
+          <div className='grid-item' style={{}}>
+              <iframe src="https://www.youtube.com/embed/S82YYdGY1Q0?si=8SQo99f-TA68dVTw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+
+
+
+
+          
 
 
 
