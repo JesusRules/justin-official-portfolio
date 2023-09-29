@@ -51,46 +51,43 @@ const ProjectDiv = styled.div`
 
   margin-bottom: 1rem;
   
-
   .grid-item {
     h3 {
-      color: blue;
       font-style: italic;
-      text-decoration: underline;
       cursor: pointer;
       margin-bottom: 1rem;
     }
-
     iframe {
-      width: 37rem;
+      width: 100%;
       height: 22rem;
     }
-  }
-  .info {
-    background-color: red;
-    width: 22.5rem;
-    position: relative;
-    bottom: 1rem;
-    // NEW
-  }
-  .left {
-    text-align: right;
-  }
-  iframe {
-    border: 1px solid black;
-    box-shadow: 5px 5px 5px rgba(0,0,0, 0.3);
-    cursor: pointer;
-  }
+    .info {
+      /* background-color: red; */
+      width: 20.7rem;
+      position: relative;
+      bottom: 1rem;
+      // NEW
+    }
+    .left {
+      text-align: right;
+    }
+    iframe {
+      border: 1px solid black;
+      box-shadow: 5px 5px 5px rgba(0,0,0, 0.3);
+      cursor: pointer;
+    }
 
+  }
 
   // IMAGE 2
   .grid-second-image { 
-    transform: translateX(-14.55rem);
+    transform: translateX(-18.55rem);
   }
   // TEXT 2
   .left {
     transform: translateX(0rem);
   }
+
 
   @media only screen and (max-width: 700px) {
     row-gap: 1rem;
@@ -116,17 +113,25 @@ const ProjectDiv = styled.div`
     'seventeen'
     'nineteen'
     'twenty';
-
     
-    .info {
-      h3 {
-        text-align: center;
+    .grid-item {
+      width: 100%;
+      transform: translateX(0);
+      iframe {
+        width: 100%;
+        margin-bottom: 2.5rem;
       }
-      text-align: left;
-      bottom: 0rem;
-    }
-    iframe {
-      margin-bottom: 2.5rem;
+      .info {
+        width: 100%;
+        h3 {
+          margin: 0 auto;
+          text-align: center;
+        }
+        text-align: left;
+        bottom: 0rem;
+      }
+      .grid-second-image {
+      }
     }
   }
 `
@@ -167,7 +172,8 @@ function MusicCovers({ openModal, setOpenModal }) {
         </div> */}
 
       <div style={{padding: '0 1rem', marginBottom: '2rem', textAlign: 'center', fontStyle: 'italic', marginTop: '1.35rem'}}>
-            <p>Here are some songs I've covered on YouTube.</p>
+            <p>Here are some songs I've covered on guitar.</p>
+            <p>It goes in chronological order (from oldest to latest)</p>
             <p>I love live music! I aspire to be a live performer one day!</p>
       </div>
 
@@ -178,8 +184,8 @@ function MusicCovers({ openModal, setOpenModal }) {
           </div>
           <div className='grid-item' style={{ gridArea: 'two' }}>
             <div className='info'>
-              <h3 onClick={(e) => handleUrl("https://polished-plus.netlify.app/")}>Polished+</h3>
-              <p>Beginning of college assignment I did, learning the fundamentals of HTML and CSS.</p>
+              <h3 onClick={(e) => handleUrl("https://polished-plus.netlify.app/")}>Soundgarden<br/> - Beyond The Wheel</h3>
+              {/* <p>Beginning of college assignment I did, learning the fundamentals of HTML and CSS.</p> */}
             </div>
           </div>
         
@@ -188,8 +194,6 @@ function MusicCovers({ openModal, setOpenModal }) {
           <div className='grid-item' style={{ gridArea: 'three' }}>
             <div className='info left'>
               <h3 onClick={(e) => handleUrl("https://justins-youtube-clone.netlify.app/")}>YouTube Clone</h3>
-              <p>2 hour long video I followed on YouTube (by JavaScript Mastery) using React, Material UI, and RapidAPI.
-              Video link <a href="https://www.youtube.com/watch?v=FHTbsZEJspU&t=1s" target="_blank">here</a></p>
             </div>          
           </div>
           <div className='grid-item grid-second-image' style={{ gridArea: 'four' }}>
