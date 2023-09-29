@@ -28,10 +28,17 @@ const ContentContainer = styled.div`
   }
 `;
 
+const WrapperDiv = styled.div`
+  background-color: red;
+  width: 100%;
+  /* position: relative;
+  left: 50%;
+  transform: translateX(-50%); */
+`;
+
 const ProjectDiv = styled.div`
 // SECTION SPACED
   display: grid;
-  width: 100%;
   gap: 1rem;
   /* grid-template-rows: repeat(3, 1fr); //3 */
   /* grid-template-columns: 3fr 2fr; */
@@ -93,12 +100,14 @@ const ProjectDiv = styled.div`
     grid-column-end: 3; */
   }
   .grid-item:nth-child(4n+2) {
+    transform: translateX(1rem);
     grid-column-start: 4;
     grid-column-end: 6;
     /* grid-column-start: 3;
     grid-column-end: 4; */
   }
   .grid-item:nth-child(4n+3) {
+    transform: translateX(-1rem);
     grid-column-start: 0;
     grid-column-end: 3;
     /* grid-column-start: 0;
@@ -248,6 +257,7 @@ function MusicCovers({ openModal, setOpenModal }) {
             <p>It goes in chronological order (from oldest to latest)</p>
             <p>I love live music! I aspire to be a live performer one day!</p>
       </div>
+        
 
         <ProjectDiv>
           {/* Every 2 */}
@@ -260,7 +270,6 @@ function MusicCovers({ openModal, setOpenModal }) {
               <h3 onClick={(e) => handleUrl("https://polished-plus.netlify.app/")}>Soundgarden<br/> - Beyond The Wheel</h3>
             </div>
           </div>
-
 
           <div className='grid-item' style={{}}>
             <div className='info'>
@@ -387,8 +396,6 @@ function MusicCovers({ openModal, setOpenModal }) {
           <div className='grid-item grid-second-image' style={{ gridArea: 'four' }}>
               <iframe src="https://www.youtube.com/embed/0QHEDCigeBw?si=3JZyK1nJkpJ29QOc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
           </div> */}
-
-
           
 
         </ProjectDiv>
