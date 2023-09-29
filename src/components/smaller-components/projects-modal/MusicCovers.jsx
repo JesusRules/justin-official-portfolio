@@ -18,7 +18,7 @@ const ContentContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
   
-  background: linear-gradient(rgba(255, 63, 63, 0.328), #500c0cbe), url("/img/projects/music-covers/CrossBackground.png");
+  background: linear-gradient(rgba(211, 38, 38, 0.39), #500c0cbe), url("/img/projects/music-covers/CrossBackground.png");
   background-size: cover;
   background-position: top center;
   background-repeat: no-repeat;
@@ -86,7 +86,7 @@ const ProjectDiv = styled.div`
       box-shadow: 5px 5px 5px rgba(0,0,0, 0.3);
     }
     .info {
-      width: 100%;
+      width: 95%;
       /* background-color: red; */
       /* width: 20.7rem; */
       position: relative;
@@ -111,15 +111,15 @@ const ProjectDiv = styled.div`
     grid-column-end: 3; */
   }
   .grid-item:nth-child(4n+2) {
-    transform: translateX(1rem);
+    transform: translateX(0.1rem);
     grid-column-start: 4;
     grid-column-end: 6;
     /* grid-column-start: 3;
     grid-column-end: 4; */
   }
   .grid-item:nth-child(4n+3) {
-    transform: translateX(-1rem);
-    grid-column-start: 0;
+    transform: translateX(1.1rem);
+    grid-column-start: 1;
     grid-column-end: 3;
     /* grid-column-start: 0;
     grid-column-end: 2; */
@@ -285,7 +285,7 @@ function MusicCovers({ openModal, setOpenModal }) {
   // }, [])
 
   const handleUrl = (stringLink) => {
-    window.open(stringLink, '_blank');
+    // window.open(stringLink, '_blank');
   }
   
     return (
@@ -384,6 +384,134 @@ function MusicCovers({ openModal, setOpenModal }) {
           </div>
           <div className='grid-item' style={{}}>
               <iframe src="https://www.youtube.com/embed/S82YYdGY1Q0?si=8SQo99f-TA68dVTw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+
+
+          {/* Every 2 */}
+          <div className='grid-item' 
+                  style={{}}>
+              <iframe src="https://www.youtube.com/embed/9B01rtS36II?si=48kR7aICmHTXZ_BK" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+          <div className='grid-item' style={{}}>
+            <div className='info'>
+              <h3>Nirvana<br/> - Heart Shaped Box</h3>
+            </div>
+          </div>
+
+          <div className='grid-item' style={{}}>
+            <div className='info'>
+              <h3>Guns N' Roses<br/> - Estranged</h3>
+            </div>
+          </div>
+          <div className='grid-item' style={{}}>
+              <iframe src="https://www.youtube.com/embed/fSMZa1TipCA?si=HO8mkSQf4fniwUqQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+
+
+          {/* Every 2 */}
+          <div className='grid-item' 
+                  style={{}}>
+              <iframe src="https://www.youtube.com/embed/MILRbs5Fi88?si=RT4c_8FpiNzsVLuB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+          <div className='grid-item' style={{}}>
+            <div className='info'>
+              <h3>Lit<br/> - My Own Worst Enemy</h3>
+            </div>
+          </div>
+
+          <div className='grid-item' style={{}}>
+            <div className='info'>
+              <h3>Rise Against<br/> - Prayer of the Refugee</h3>
+            </div>
+          </div>
+          <div className='grid-item' style={{}}>
+              <iframe src="https://www.youtube.com/embed/UR6JW6mYZWg?si=oXC5_dbnukETQHK1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+
+
+          {/* Every 2 */}
+          <div className='grid-item' 
+                  style={{}}>
+              <iframe src="https://www.youtube.com/embed/MILRbs5Fi88?si=RT4c_8FpiNzsVLuB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+          <div className='grid-item' style={{}}>
+            <div className='info'>
+              <h3>Breaking Benjamin<br/> - The Diary of Jane</h3>
+            </div>
+          </div>
+
+          <div className='grid-item' style={{}}>
+            <div className='info'>
+              <h3>Disturbed<br/> - Stricken</h3>
+            </div>
+          </div>
+          <div className='grid-item' style={{}}>
+              <iframe src="https://www.youtube.com/embed/7NMrtn-67_0?si=2-TzLXVzQfZGF1oW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+
+
+          {/* Every 2 */}
+          <div className='grid-item' 
+                  style={{}}>
+              <iframe src="https://www.youtube.com/embed/_bSF-1F6FHI?si=WpAYcQbADF2i5m8B" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+          <div className='grid-item' style={{}}>
+            <div className='info'>
+              <h3>Coheed and Cambria<br/> - Welcome Home</h3>
+            </div>
+          </div>
+
+          <div className='grid-item' style={{}}>
+            <div className='info'>
+              <h3>Priestess<br/> - Lay Down</h3>
+            </div>
+          </div>
+          <div className='grid-item' style={{}}>
+              <iframe src="https://www.youtube.com/embed/dO4q-WqA5K8?si=6RCM_bhCphnksxpF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+
+
+
+          {/* Every 2 */}
+          <div className='grid-item' 
+                  style={{}}>
+              <iframe src="https://www.youtube.com/embed/fAn_REtelfM?si=P6iSM-eTm9M8H2Io" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+          <div className='grid-item' style={{}}>
+            <div className='info'>
+              <h3>Paramore<br/> - That's What You Get</h3>
+            </div>
+          </div>
+
+          <div className='grid-item' style={{}}>
+            <div className='info'>
+              <h3>Jesus Culture<br/> - Let it Rain (Solo)</h3>
+            </div>
+          </div>
+          <div className='grid-item' style={{}}>
+               <iframe src="https://www.youtube.com/embed/6nma6qnHhgY?si=SMdpJFiHyH0UC-Fy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+
+
+
+           {/* Every 2 */}
+           <div className='grid-item' 
+                  style={{}}>
+              <iframe src="https://www.youtube.com/embed/pZfiFDum4RM?si=5rCU2pJ4j7Jwo45a" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+          <div className='grid-item' style={{}}>
+            <div className='info'>
+              <h3>Guns N' Roses<br/> - Patience Solos (Studio vs Live)</h3>
+            </div>
+          </div>
+
+          <div className='grid-item' style={{}}>
+            <div className='info'>
+              <h3>Mastodon<br/> - Colony of Birchmen</h3>
+            </div>
+          </div>
+          <div className='grid-item' style={{}}>
+              <iframe src="https://www.youtube.com/embed/-J1qqSqenC4?si=HZtHqVkR0gmp7JEK" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
           </div>
 
         </ProjectDiv>

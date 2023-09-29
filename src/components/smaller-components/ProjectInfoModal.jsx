@@ -169,7 +169,8 @@ function ProjectInfoModal(props) {
 
     {openModal &&
       (currentProject.id === "live-performances" ||
-      currentProject.id === "other-projects") && (
+      currentProject.id === "other-projects" || 
+      currentProject.id === "music-covers" ) && (
       <GoToTopButton onClick={scrollToTop}>Top</GoToTopButton>
     )}
     <ProjectInfoModalDiv ref={projectModalRef}>
