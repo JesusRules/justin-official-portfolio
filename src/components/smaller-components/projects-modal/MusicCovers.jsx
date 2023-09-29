@@ -30,11 +30,12 @@ const ContentContainer = styled.div`
 
 const ProjectDiv = styled.div`
   display: grid;
-  margin: 0 auto;
-  width: 99%;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-  row-gap: 4rem;
+  width: 100%;
+  gap: .5rem;
+  /* grid-template-rows: repeat(3, 1fr); //3 */
+  /* grid-template-columns: 3fr 2fr; */
+  grid-template-columns: 1fr 1fr 1fr;
+  row-gap: 3rem;
   align-items: center;
   grid-template-areas: 
     'one two' 
@@ -58,27 +59,27 @@ const ProjectDiv = styled.div`
       margin-bottom: 1rem;
     }
     iframe {
-      margin-left: .6rem;
-      width: 200%;
+      width: 100%;
       height: 22rem;
+
+      border: 1px solid black;
+      box-shadow: 5px 5px 5px rgba(0,0,0, 0.3);
     }
     .info {
       width: 100%;
-      /* background-color: red; */
+      background-color: red;
       /* width: 20.7rem; */
       position: relative;
       bottom: 1rem;
+      right: 0;
       // NEW
     }
     .left {
       text-align: right;
     }
-    iframe {
-      border: 1px solid black;
-      box-shadow: 5px 5px 5px rgba(0,0,0, 0.3);
-      cursor: pointer;
-    }
-
+  }
+  .grid-item:nth-child(2n+1) {
+    text-align: right;
   }
 
   // IMAGE 2
@@ -181,27 +182,87 @@ function MusicCovers({ openModal, setOpenModal }) {
       </div>
 
         <ProjectDiv>
-          {/* Polished+ */}
-          <div className='grid-item' style={{ gridArea: 'one' }}>
+
+
+          <div className='grid-item' 
+                  style={{ gridArea: 'one', 
+                          gridColumnStart: 1,
+                          gridColumnEnd: 3}}>
               <iframe src="https://www.youtube.com/embed/0QHEDCigeBw?si=3JZyK1nJkpJ29QOc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
           </div>
-          <div className='grid-item' style={{ gridArea: 'two' }}>
+          <div className='grid-item' style={{ gridArea: 'two', 
+                                            gridColumnStart: 3,
+                                            gridColumnEnd: 4}}>
             <div className='info'>
               <h3 onClick={(e) => handleUrl("https://polished-plus.netlify.app/")}>Soundgarden<br/> - Beyond The Wheel</h3>
-              {/* <p>Beginning of college assignment I did, learning the fundamentals of HTML and CSS.</p> */}
             </div>
           </div>
-        
+
+
+
+
+
+
+          <div className='grid-item' style={{ gridArea: 'three', 
+                                            gridColumnStart: 0,
+                                            gridColumnEnd: 2}}>
+            <div className='info'>
+              <h3 onClick={(e) => handleUrl("https://polished-plus.netlify.app/")}>Soundgarden<br/> - Beyond The Wheel</h3>
+            </div>
+          </div>
+          <div className='grid-item' style={{ gridArea: 'four', 
+                                            gridColumnStart: 2,
+                                            gridColumnEnd: 4}}>
+              <iframe src="https://www.youtube.com/embed/0QHEDCigeBw?si=3JZyK1nJkpJ29QOc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+
+
+
+
+
+
+          <div className='grid-item' 
+                  style={{ gridArea: 'five', 
+                          gridColumnStart: 1,
+                          gridColumnEnd: 3}}>
+              <iframe src="https://www.youtube.com/embed/0QHEDCigeBw?si=3JZyK1nJkpJ29QOc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+          <div className='grid-item' style={{ gridArea: 'six', 
+                                            gridColumnStart: 3,
+                                            gridColumnEnd: 4}}>
+            <div className='info'>
+              <h3 onClick={(e) => handleUrl("https://polished-plus.netlify.app/")}>Soundgarden<br/> - Beyond The Wheel</h3>
+            </div>
+          </div>
+
+
+
+
+
+          <div className='grid-item' style={{ gridArea: 'seven', 
+                                            gridColumnStart: 0,
+                                            gridColumnEnd: 2}}>
+            <div className='info'>
+              <h3 onClick={(e) => handleUrl("https://polished-plus.netlify.app/")}>Soundgarden<br/> - Beyond The Wheel</h3>
+            </div>
+          </div>
+          <div className='grid-item' style={{ gridArea: 'eight', 
+                                            gridColumnStart: 2,
+                                            gridColumnEnd: 4}}>
+              <iframe src="https://www.youtube.com/embed/0QHEDCigeBw?si=3JZyK1nJkpJ29QOc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+          
+
 
           {/* YouTube Clone */}
-          <div className='grid-item' style={{ gridArea: 'three' }}>
+          {/* <div className='grid-item' style={{ gridArea: 'three' }}>
             <div className='info left'>
               <h3 onClick={(e) => handleUrl("https://justins-youtube-clone.netlify.app/")}>YouTube Clone</h3>
             </div>          
           </div>
           <div className='grid-item grid-second-image' style={{ gridArea: 'four' }}>
               <iframe src="https://www.youtube.com/embed/0QHEDCigeBw?si=3JZyK1nJkpJ29QOc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-          </div>
+          </div> */}
 
 
           
