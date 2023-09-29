@@ -102,26 +102,29 @@ const IntroDiv = styled.div`
   }
 `
 const YearSign = styled.img`
- position: absolute; 
- left: 0;
- right: 0;
- margin: 0 auto;
- width: 12.2rem;
- transform: translateY(-1rem)
+  position: absolute; 
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 12.2rem;
+  transform: translateY(-1rem);
 `
 
 const YearlyDiv = styled.div` 
+  margin-top: 5rem;
 `
 const AllPerformancesDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 1rem;
 `
 const PerformanceDiv = styled.div`
   margin: 1.5rem 0 1.5rem 0;
   width: 100%;
   display: flex;
   flex-direction: column;
+  text-align: center;
   justify-content: center;
   align-items: center;
   p {
@@ -131,6 +134,10 @@ const PerformanceDiv = styled.div`
   }
   span {
     font-weight: 700;
+  }
+  .live-link {
+    margin-top: .5rem;
+    font-size: 1.2rem;
   }
 ` 
 const Video = styled.iframe`
@@ -180,15 +187,16 @@ function LivePerformances({ openModal, setOpenModal }) {
           <img id="band-pic" src="/img/projects/live-performances/slothpit_beintheband.jpg"/>
           <div id="intro-content">
             <p>Hey guys! Welcome to the live performances' section of the website!</p>
-            <p>I was in the <span style={{fontWeight: 900}}>Be In The Band</span> program at the Royal Ottawa for 4 years!</p>
+            <p>I was in the <span style={{fontWeight: 900}}>Be In The Band</span> program at the Royal Ottawa for 5 years!</p>
             <p>I played drums, bass and guitar. Sometimes all 3 in 1 year! And all kinds of genres/bands!</p>
           </div>
         </IntroDiv>
 
+
+        {/* 2015 */}
         <YearlyDiv>
         <BlackDivider draggable={false} src="/img/projects/live-performances/black-divider.png" />
-        <YearSign draggable={false} src="/img/projects/live-performances/2017.png"/>
-        
+        <YearSign draggable={false} src="/img/projects/live-performances/2015.png"/>
         <AllPerformancesDiv>
           
           <PerformanceDiv>
@@ -196,15 +204,64 @@ function LivePerformances({ openModal, setOpenModal }) {
             <span>Genre: <u>Metal</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Instrument: <u>Drums</u></span>
             <Video src="https://www.youtube.com/embed/w9kPjBpEOJg?si=K6H9GwqYZisNLDdw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></Video>
           </PerformanceDiv>
-
           <PerformanceDiv>
             <p>No Name - <span style={{fontWeight: 800}}>Sloth Pit</span></p>
             <span>Genre: <u>Metal</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Instrument: <u>Drums</u></span>
             <Video src="https://www.youtube.com/embed/P36Jz9kpBM8?si=j21P7XD7sOZSHqmP" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></Video>
             </PerformanceDiv>
+          </AllPerformancesDiv>
+        </YearlyDiv>
+
+        {/* 2016 */}
+        <YearlyDiv>
+        <BlackDivider draggable={false} src="/img/projects/live-performances/black-divider.png" />
+        <YearSign draggable={false} src="/img/projects/live-performances/2016.png"/>
+        <AllPerformancesDiv>
+          
+          <PerformanceDiv>
+            <p>First Song - <span style={{fontWeight: 800}}>Mad Hatters</span> (Short)</p>
+            <span>Genre: <u>RnB</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Instrument: <u>Drums</u></span>
+            <Video src="https://www.youtube.com/embed/f5CH-R-8M1U?si=WSP7_RpBuj1mkZgk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></Video>
+          </PerformanceDiv>
+          <PerformanceDiv>
+            <p>Second Song - <span style={{fontWeight: 800}}>Mad Hatters</span></p>
+            <span>Genre: <u>Soul</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Instrument: <u>Drums</u></span>
+            <Video src="https://www.youtube.com/embed/zvoFlvVrsiI?si=S7wx3h6uHcCVwiAK" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></Video>
+            <a className="live-link" href="https://www.youtube.com/watch?v=Zt55Sfzin2Q" target='_blank' >Click Here For Live Version</a>
+            </PerformanceDiv>
+          </AllPerformancesDiv>
+        </YearlyDiv>
+
+        {/* 2017 */}
+        <YearlyDiv>
+        <BlackDivider draggable={false} src="/img/projects/live-performances/black-divider.png" />
+        <YearSign draggable={false} src="/img/projects/live-performances/2017.png"/>
+        
+        <AllPerformancesDiv>
+          <PerformanceDiv>
+            <p>Go Back Home - <span style={{fontWeight: 800}}>Twisted Melody</span></p>
+            <span>Genre: <u>Pop</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Instrument: <u>Drums</u></span>
+            <Video src="https://www.youtube.com/embed/4Mevkyoo9pM?si=tm57F47zcDQv-sG1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></Video>
+          </PerformanceDiv>
+          <PerformanceDiv>
+            <p>Naive - <span style={{fontWeight: 800}}>Twisted Melody</span></p>
+            <span>Genre: <u>Pop</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Instrument: <u>Drums</u></span>
+            <Video src="https://www.youtube.com/embed/iZ2Q6aYx1QY?si=eMigZ8y-ABPsUPA1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></Video>
+            </PerformanceDiv>
+          <PerformanceDiv>
+            <p>Boom! - <span style={{fontWeight: 800}}>Sloth Pit</span></p>
+            <span>Genre: <u>Metal</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Instrument: <u>Drums</u></span>
+            <Video src="https://www.youtube.com/embed/SPd_UEvyVN8?si=nryT_ZGpa-BGLZso" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></Video>
+          </PerformanceDiv>
+          <PerformanceDiv>
+            <p>Outdated - <span style={{fontWeight: 800}}>Sloth Pit</span></p>
+            <span>Genre: <u>Metal</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Instrument: <u>Drums</u></span>
+            <Video src="https://www.youtube.com/embed/5vqaAoi93lQ?si=mCmzm8kVPUewi1gJ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></Video>
+            </PerformanceDiv>
         
           </AllPerformancesDiv>
         </YearlyDiv>
+        
 
         {/* METHOD 3 */}
         {/* <HorizontalImageLoopProjects _images={images} _isReversed={false} openModal={openModal} _uniqueClassName={"images4"} /> */}
