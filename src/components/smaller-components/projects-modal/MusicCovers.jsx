@@ -35,7 +35,7 @@ const ProjectDiv = styled.div`
   gap: 1rem;
   /* grid-template-rows: repeat(3, 1fr); //3 */
   /* grid-template-columns: 3fr 2fr; */
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   row-gap: 5rem;
   align-items: center;
   /* grid-template-areas:  */
@@ -88,19 +88,27 @@ const ProjectDiv = styled.div`
   // WORKS
   .grid-item:nth-child(4n+1) {
     grid-column-start: 1;
-    grid-column-end: 3;
+    grid-column-end: 4;
+    /* grid-column-start: 1;
+    grid-column-end: 3; */
   }
   .grid-item:nth-child(4n+2) {
-    grid-column-start: 3;
-    grid-column-end: 4;
+    grid-column-start: 4;
+    grid-column-end: 6;
+    /* grid-column-start: 3;
+    grid-column-end: 4; */
   }
   .grid-item:nth-child(4n+3) {
     grid-column-start: 0;
-    grid-column-end: 2;
+    grid-column-end: 3;
+    /* grid-column-start: 0;
+    grid-column-end: 2; */
   }
   .grid-item:nth-child(4n+4) {
-    grid-column-start: 2;
-    grid-column-end: 4;
+    grid-column-start: 3;
+    grid-column-end: 6;
+    /* grid-column-start: 2;
+    grid-column-end: 4; */
   }
 
   // IMAGE 2
