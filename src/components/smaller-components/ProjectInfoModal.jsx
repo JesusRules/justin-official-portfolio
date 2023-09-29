@@ -21,6 +21,7 @@ import GuitarKing from './projects-modal/GuitarKing';
 import SpotifyClone from './projects-modal/SpotifyClone';
 import MyMusicPlayer from './projects-modal/MyMusicPlayer';
 import LivePerformances from './projects-modal/LivePerformances';
+import MusicCovers from './projects-modal/MusicCovers';
 
 const ProjectInfoContainer = styled.div`
   position: relative;
@@ -193,6 +194,7 @@ function ProjectInfoModal(props) {
         {currentProject.id === "my-spotify-clone" && <SpotifyClone openModal={openModal} setOpenModal={setOpenModal} /> }
         {currentProject.id === "my-music-player" && <MyMusicPlayer openModal={openModal} setOpenModal={setOpenModal} /> }
         {currentProject.id === "live-performances" && <LivePerformances openModal={openModal} setOpenModal={setOpenModal} /> }
+        {currentProject.id === "music-covers" && <MusicCovers openModal={openModal} setOpenModal={setOpenModal} /> }
     </ProjectInfoModalDiv>
     {/* </ProjectInfoContainer> */}
     </>
