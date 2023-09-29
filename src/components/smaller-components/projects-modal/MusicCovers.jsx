@@ -58,12 +58,14 @@ const ProjectDiv = styled.div`
       margin-bottom: 1rem;
     }
     iframe {
-      width: 100%;
+      margin-left: .6rem;
+      width: 200%;
       height: 22rem;
     }
     .info {
+      width: 100%;
       /* background-color: red; */
-      width: 20.7rem;
+      /* width: 20.7rem; */
       position: relative;
       bottom: 1rem;
       // NEW
@@ -118,6 +120,7 @@ const ProjectDiv = styled.div`
       width: 100%;
       transform: translateX(0);
       iframe {
+        margin-left: 0rem;
         width: 100%;
         margin-bottom: 2.5rem;
       }
