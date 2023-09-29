@@ -245,10 +245,73 @@ const ProjectDiv = styled.div`
     }
     // REVERSED
     .grid-item:nth-child(21) {
-      order: 21;
+      order: 22;
     }
     .grid-item:nth-child(22) {
-      order: 22;
+      order: 21;
+    }
+    // ORDERED
+    .grid-item:nth-child(23) {
+      order: 23;
+    }
+    .grid-item:nth-child(24) {
+      order: 24;
+    }
+    // REVERSED
+    .grid-item:nth-child(25) {
+      order: 26;
+    }
+    .grid-item:nth-child(26) {
+      order: 25;
+    }
+    // ORDERED
+    .grid-item:nth-child(27) {
+      order: 27;
+    }
+    .grid-item:nth-child(28) {
+      order: 28;
+    }
+    // REVERSED
+    .grid-item:nth-child(29) {
+      order: 30;
+    }
+    .grid-item:nth-child(30) {
+      order: 29;
+    }
+    // ORDERED
+    .grid-item:nth-child(31) {
+      order: 31;
+    }
+    .grid-item:nth-child(32) {
+      order: 32;
+    }
+    // REVERSED
+    .grid-item:nth-child(33) {
+      order: 34;
+    }
+    .grid-item:nth-child(34) {
+      order: 33;
+    }
+    // ORDERED
+    .grid-item:nth-child(35) {
+      order: 35;
+    }
+    .grid-item:nth-child(36) {
+      order: 36;
+    }
+    // REVERSED
+    .grid-item:nth-child(37) {
+      order: 38;
+    }
+    .grid-item:nth-child(38) {
+      order: 37;
+    }
+    // ORDERED
+    .grid-item:nth-child(39) {
+      order: 39;
+    }
+    .grid-item:nth-child(40) {
+      order: 40;
     }
 
     // WORKS
