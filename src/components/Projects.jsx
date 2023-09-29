@@ -254,7 +254,7 @@ var contentTitlesArray = [
   { name: "Justin's Spotify Clone", description: "A Spotify clone I made for mobile.", id: 'my-spotify-clone' },
   { name: "My Music Player", description: "A music player featuring songs I like.", id: 'my-music-player' },
   { name: "Live Performances (Bluesfest)", description: "Live performances of me playing on stage.", id: 'live-performances' },
-  { name: "YouTube Music Covers", description: "Videos of me covering songs/improvising.", id: 'music-covers' },
+  { name: "Music Covers", description: "Videos of me covering songs/improvising.", id: 'music-covers' },
   { name: "Songs I've Made", description: "I made this section because I aspire to play live music one day.", id: 'soundcloud-songs' },
   
   { name: "", description: "", id: '' },
@@ -498,7 +498,7 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
                         touchObjects={objectPoints} 
                         setCurrentProject={setCurrentProject} 
                         setWithinProject={setWithinProject} 
-                        idleStance={idleStance} 
+                        idscroleStance={idleStance} 
                         setIdleStance={setIdleStance} 
                         cameraPosition={cameraPosition} 
                         setCameraPosition={setCameraPosition} 

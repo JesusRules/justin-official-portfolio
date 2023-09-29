@@ -24,6 +24,7 @@ const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding-bottom: 13rem;
 
   .title {
     display: flex;
@@ -120,7 +121,7 @@ const AllPerformancesDiv = styled.div`
   margin-top: 1rem;
 `
 const PerformanceDiv = styled.div`
-  margin: 1.5rem 0 1.5rem 0;
+  margin: 1.7rem 0 1.5rem 0;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -141,15 +142,20 @@ const PerformanceDiv = styled.div`
   }
 ` 
 const Video = styled.iframe`
-  width: 100%;
+  margin-top: .3rem;
+  width: 97%;
   max-width: 40rem;
   height: 22rem;
+  z-index: 10;
 `
 
 const BottomBanner = styled.img`
-  position: fixed;
+  position: absolute;
   width: 100%;
-  opacity: 12%;
+  height: 15rem;
+  object-fit: cover;
+  opacity: 40%;
+  transform: translateY(-2rem);
 `
 
 const images = [
@@ -188,7 +194,7 @@ function LivePerformances({ openModal, setOpenModal }) {
           <div id="intro-content">
             <p>Hey guys! Welcome to the live performances' section of the website!</p>
             <p>I was in the <span style={{fontWeight: 900}}>Be In The Band</span> program at the Royal Ottawa for 5 years!</p>
-            <p>I played drums, bass and guitar. Sometimes all 3 in 1 year! And all kinds of genres/bands!</p>
+            <p>I played drums, bass and guitar with different kinds of genres/bands!</p>
           </div>
         </IntroDiv>
 
@@ -220,12 +226,12 @@ function LivePerformances({ openModal, setOpenModal }) {
           
           <PerformanceDiv>
             <p>First Song - <span style={{fontWeight: 800}}>Mad Hatters</span> (Short)</p>
-            <span>Genre: <u>RnB</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Instrument: <u>Drums</u></span>
+            <span>Genre: <u>R&B/Soul</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Instrument: <u>Drums</u></span>
             <Video src="https://www.youtube.com/embed/f5CH-R-8M1U?si=WSP7_RpBuj1mkZgk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></Video>
           </PerformanceDiv>
           <PerformanceDiv>
             <p>Second Song - <span style={{fontWeight: 800}}>Mad Hatters</span></p>
-            <span>Genre: <u>Soul</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Instrument: <u>Drums</u></span>
+            <span>Genre: <u>R&B/Soul</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Instrument: <u>Drums</u></span>
             <Video src="https://www.youtube.com/embed/zvoFlvVrsiI?si=S7wx3h6uHcCVwiAK" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></Video>
             <a className="live-link" href="https://www.youtube.com/watch?v=Zt55Sfzin2Q" target='_blank' >Click Here For Live Version</a>
             </PerformanceDiv>
@@ -261,7 +267,65 @@ function LivePerformances({ openModal, setOpenModal }) {
         
           </AllPerformancesDiv>
         </YearlyDiv>
+
+         {/* 2018 */}
+         <YearlyDiv>
+        <BlackDivider draggable={false} src="/img/projects/live-performances/black-divider.png" />
+        <YearSign draggable={false} src="/img/projects/live-performances/2018.png"/>
+        <AllPerformancesDiv>
+          <PerformanceDiv>
+            <p>Jealous - <span style={{fontWeight: 800}}>Twisted Melody</span></p>
+            <span>Genre: <u>R&B/Soul</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Instrument: <u>Bass</u></span>
+            <Video src="https://www.youtube.com/embed/QPNrOZV8-e4?si=OBIaQqA_CQmf47Gt" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></Video>
+          </PerformanceDiv>
+          <PerformanceDiv>
+            <p>Falling - <span style={{fontWeight: 800}}>Twisted Melody</span></p>
+            <span>Genre: <u>R&B/Soul</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Instrument: <u>Bass</u></span>
+            <Video src="https://www.youtube.com/embed/bkyfuWmI5_U?si=Jx6uNdlSBCSwnolf" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></Video>
+            <a className="live-link" href="https://www.youtube.com/watch?v=TsiXBx53fl0" target='_blank' >Click Here For Studio Version</a>
+            </PerformanceDiv>
+          </AllPerformancesDiv>
+        </YearlyDiv>
+
+        {/* 2019 */}
+        <YearlyDiv>
+        <BlackDivider draggable={false} src="/img/projects/live-performances/black-divider.png" />
+        <YearSign draggable={false} src="/img/projects/live-performances/2019.png"/>
+        <AllPerformancesDiv>
+          <PerformanceDiv>
+            <p>Like A Fool - <span style={{fontWeight: 800}}>Stretch</span></p>
+            <span>Genre: <u>R&B/Soul</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Instrument: <u>Guitar</u></span>
+            <Video src="https://www.youtube.com/embed/HGJKOKpqIj8?si=SqWhwVV_79web7fD" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></Video>
+          </PerformanceDiv>
+          <PerformanceDiv>
+            <p>Scam On My Heart - <span style={{fontWeight: 800}}>Stretch</span></p>
+            <span>Genre: <u>R&B/Soul</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Instrument: <u>Guitar (Solo 2:27)</u></span>
+            <Video src="https://www.youtube.com/embed/5-tLjHBw2UU?si=ZXOS5BFmbVaCijgU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></Video>
+            </PerformanceDiv>
+          <PerformanceDiv>
+            <p>This Is Goodbye - <span style={{fontWeight: 800}}>Twisted Melody</span></p>
+            <span>Genre: <u>R&B/Soul</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Instrument: <u>Guitar</u></span>
+            <Video src="https://www.youtube.com/embed/kt634X93R1A?si=0F-LwZR9Wa4hzCcT" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></Video>
+            </PerformanceDiv>
+          <PerformanceDiv>
+            <p>Done - <span style={{fontWeight: 800}}>Twisted Melody</span></p>
+            <span>Genre: <u>Pop</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Instrument: <u>Guitar</u></span>
+            <Video src="https://www.youtube.com/embed/e-AmVA-pHZk?si=RMEomPBjc9eQs7yf" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></Video>
+            </PerformanceDiv>
+          <PerformanceDiv>
+            <p>Song 1 - <span style={{fontWeight: 800}}>Brass Knuckles</span></p>
+            <span>Genre: <u>Orchestra</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Instrument: <u>Drums</u></span>
+            <Video src="https://www.youtube.com/embed/P3XMQiHZaHs?si=ZA3NYPETuxzYH3mi" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></Video>
+            </PerformanceDiv>
+          <PerformanceDiv>
+            <p>Song 2 - <span style={{fontWeight: 800}}>Brass Knuckles</span></p>
+            <span>Genre: <u>Orchestra Funk</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Instrument: <u>Drums</u></span>
+            <Video src="https://www.youtube.com/embed/rgeG897chKI?si=Ff06RrVNAhNjI5kf" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></Video>
+            </PerformanceDiv>
+          </AllPerformancesDiv>
+        </YearlyDiv>
         
+        <BottomBanner src='/img/projects/live-performances/drummer.jpg'/>
 
         {/* METHOD 3 */}
         {/* <HorizontalImageLoopProjects _images={images} _isReversed={false} openModal={openModal} _uniqueClassName={"images4"} /> */}

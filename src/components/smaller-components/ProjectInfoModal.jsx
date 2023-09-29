@@ -75,6 +75,35 @@ const BackgroundBanner = styled.div`
     border: 1px solid black;
 `;
 
+const GoToTopDiv = styled.div`
+  position: relative;
+  z-index: 0;
+  width: 100%;
+  max-width: 970px;
+  height: 96%;
+  background-color: transparent;
+  margin: 0 auto;
+  z-index: 100000;
+  `
+
+const GoToTopButton = styled.button`
+  cursor: pointer;
+  z-index: 100000;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  right: 0;
+  justify-content: center;
+  align-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  background-color: red;
+  color: white;
+  border: 0px;
+`
+
 function ProjectInfoModal(props) {
     const { currentProject, openModal, setOpenModal} = props;
     const projectModalRef = useRef();
@@ -121,13 +150,28 @@ function ProjectInfoModal(props) {
         }
     }, [openModal])
 
+    const scrollToTop = () => {
+      // projectModalRef.current.scrollTop = 0;
+      projectModalRef.current.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+
   return (
     <>
     <DarkBG ref={closeButtonRef} onClick={() => setOpenModal(false)} />
     
     {/* <ProjectInfoContainer> */}
-    <ProjectInfoModalDiv ref={projectModalRef}>
+    {/* <GoToTopDiv> */}
+    {/* </GoToTopDiv> */}
 
+    {openModal &&
+      (currentProject.id === "live-performances" ||
+      currentProject.id === "other-projects") && (
+      <GoToTopButton onClick={scrollToTop}>Top</GoToTopButton>
+    )}
+    <ProjectInfoModalDiv ref={projectModalRef}>
         {currentProject.id === "pokithedog" && <PokiTheDog openModal={openModal} setOpenModal={setOpenModal} /> }
         {currentProject.id === "my-portfolio-old" && <Portfolio_Old openModal={openModal} setOpenModal={setOpenModal} /> }
         {currentProject.id === "ottawa-rec-sports" && <OttawaRecSports openModal={openModal} setOpenModal={setOpenModal} /> }
