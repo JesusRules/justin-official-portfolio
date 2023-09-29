@@ -39,7 +39,7 @@ const ContentContainer = styled.div`
     border-bottom: 1px solid black;
     background-color: #511a1e;
     color: white;
-    text-shadow: 5px 5px 5px rgba(0,0,0,.8);
+    text-shadow: 3px 3px 3px rgba(0,0,0,.6);
     font-weight: 800;
     box-shadow: 10px 10px 10px rgba(0,0,0,.4);
   }
@@ -64,6 +64,7 @@ const WrapperDiv = styled.div`
 
 const ProjectDiv = styled.div`
 // SECTION SPACED
+  width: 99.8%;
   display: grid;
   gap: 1rem;
   /* grid-template-rows: repeat(3, 1fr); //3 */
@@ -91,7 +92,7 @@ const ProjectDiv = styled.div`
     h3 {
       font-style: italic;
       margin-bottom: 1rem;
-      text-shadow: 8px 8px 8px rgba(0,0,0, .85);
+      text-shadow: 5px 5px 5px rgba(0,0,0, .7);
     }
     iframe {
       width: 100%;
@@ -126,7 +127,7 @@ const ProjectDiv = styled.div`
     grid-column-end: 4;
     iframe {
       border: 1px solid black;
-      box-shadow: 15px 15px 15px rgba(0,0,0, .6);
+      box-shadow: 10px 10px 10px rgba(0,0,0, .6);
     }
     /* grid-column-start: 1;
     grid-column-end: 3; */
@@ -150,7 +151,7 @@ const ProjectDiv = styled.div`
     grid-column-end: 6;
     iframe {
       border: 1px solid black;
-      box-shadow: -15px 15px 15px rgba(0,0,0, .6);
+      box-shadow: -10px 10px 10px rgba(0,0,0, .6);
     }
     /* grid-column-start: 2;
     grid-column-end: 4; */
@@ -164,7 +165,7 @@ const ProjectDiv = styled.div`
   .left {
     transform: translateX(0rem);
   }
-
+  
 
   @media only screen and (max-width: 700px) {
     row-gap: .5rem;
@@ -269,6 +270,7 @@ const ProjectDiv = styled.div`
     grid-column-start: 1;
     grid-column-end: 1;
   }
+  width: 99.7%;
     
     .grid-item {
       padding: 0;
