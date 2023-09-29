@@ -11,23 +11,37 @@ import 'swiper/css/navigation';
 import { EffectCoverflow, Pagination, Navigation } from 'swiper/modules';
 import CloseButton from '../CloseButton';
 
+
+const BackgroundDiv = styled.div`
+  background: linear-gradient(rgba(126, 23, 23, 0.562), rgba(126, 23, 23, 0.562)), url("/img/projects/music-covers/CrossBackground.png");
+  /* background: linear-gradient(rgba(101, 18, 18, 0.562), rgba(101, 18, 18, 0.562)), url("/img/projects/music-covers/CrossBackground.png"); */
+  background-size: cover;
+  background-position: center center;
+  background-repeat: repeat;
+  background-size: 1000px 1000px; 
+`
+
 const ContentContainer = styled.div`
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  
-  background: linear-gradient(rgba(211, 38, 38, 0.39), #500c0cbe), url("/img/projects/music-covers/CrossBackground.png");
+
+  /* background: linear-gradient(rgba(211, 38, 38, 0.39), #500c0cbe), url("/img/projects/music-covers/CrossBackground.png");
   background-size: cover;
   background-position: top center;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; */
   /* color: #511a1e; */
   color: white;
 
   h2 {
-    color: #511a1e;
+    border-bottom: 1px solid black;
+    background-color: #511a1e;
+    color: white;
+    text-shadow: 5px 5px 5px rgba(0,0,0,.8);
     font-weight: 800;
+    box-shadow: 10px 10px 10px rgba(0,0,0,.4);
   }
 
   .title {
@@ -77,13 +91,11 @@ const ProjectDiv = styled.div`
     h3 {
       font-style: italic;
       margin-bottom: 1rem;
+      text-shadow: 8px 8px 8px rgba(0,0,0, .85);
     }
     iframe {
       width: 100%;
       height: 22rem;
-
-      border: 1px solid black;
-      box-shadow: 5px 5px 5px rgba(0,0,0, 0.3);
     }
     .info {
       width: 95%;
@@ -93,6 +105,11 @@ const ProjectDiv = styled.div`
       bottom: 1rem;
       right: 0;
       // NEW
+      h3 {
+        font-style: italic;
+        font-weight: 500;
+        font-size: 1.9rem;
+      }
     }
     .left {
       text-align: right;
@@ -107,6 +124,10 @@ const ProjectDiv = styled.div`
   .grid-item:nth-child(4n+1) {
     grid-column-start: 1;
     grid-column-end: 4;
+    iframe {
+      border: 1px solid black;
+      box-shadow: 15px 15px 15px rgba(0,0,0, .6);
+    }
     /* grid-column-start: 1;
     grid-column-end: 3; */
   }
@@ -127,6 +148,10 @@ const ProjectDiv = styled.div`
   .grid-item:nth-child(4n+4) {
     grid-column-start: 3;
     grid-column-end: 6;
+    iframe {
+      border: 1px solid black;
+      box-shadow: -15px 15px 15px rgba(0,0,0, .6);
+    }
     /* grid-column-start: 2;
     grid-column-end: 4; */
   }
@@ -289,15 +314,17 @@ function MusicCovers({ openModal, setOpenModal }) {
   }
   
     return (
+      <BackgroundDiv>
+        {/* <FixedGradient /> */}
       <ContentContainer>
-      <CloseButton setOpenModal={setOpenModal} />
+      <CloseButton color="white" setOpenModal={setOpenModal} />
       <div>
         <h2>Music Covers</h2>
 
-      <div style={{color: '#000000', padding: '0 1rem', marginBottom: '2rem', textAlign: 'center', fontStyle: 'italic', marginTop: '1.35rem'}}>
-            <p style={{fontSize:'1.1rem', fontWeight: 900}}>Here are some songs I've covered on guitar.</p>
-            <p style={{fontSize:'1.1rem', fontWeight: 900}}>It goes in chronological order (from oldest to latest)</p>
-            <p style={{fontSize:'1.1rem', fontWeight: 900}}>I love live music! I aspire to be a live performer one day!</p>
+      <div style={{color: 'white', textShadow: '1px 1px 1px black', padding: '0 1rem', marginBottom: '2rem', textAlign: 'center', fontStyle: 'italic', marginTop: '1.35rem'}}>
+            <p style={{fontSize:'1.1rem', fontWeight: 700}}>Here are some songs I've covered on guitar.</p>
+            <p style={{fontSize:'1.1rem', fontWeight: 700}}>It goes in chronological order (from oldest to latest)</p>
+            <p style={{fontSize:'1.1rem', fontWeight: 700}}>I love live music! I aspire to be a live performer one day!</p>
       </div>
 
         <ProjectDiv>
@@ -518,6 +545,7 @@ function MusicCovers({ openModal, setOpenModal }) {
 
       </div>
       </ContentContainer>
+      </BackgroundDiv>
     )
 }
 
