@@ -17,6 +17,18 @@ const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  
+  background: linear-gradient(rgba(255, 63, 63, 0.328), #500c0cbe), url("/img/projects/music-covers/CrossBackground.png");
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+  /* color: #511a1e; */
+  color: white;
+
+  h2 {
+    color: #511a1e;
+    font-weight: 800;
+  }
 
   .title {
     display: flex;
@@ -130,7 +142,7 @@ const ProjectDiv = styled.div`
 
 
   @media only screen and (max-width: 700px) {
-    row-gap: 1rem;
+    row-gap: .5rem;
     display: flex;
     flex-direction: column;
     grid-template-columns: 1fr;
@@ -281,28 +293,12 @@ function MusicCovers({ openModal, setOpenModal }) {
       <CloseButton setOpenModal={setOpenModal} />
       <div>
         <h2>Music Covers</h2>
-        {/* <img className='title' src='/img/projects/pokithedog/pokithedog-logo.png'/> */}
 
-        {/* METHOD 3 */}
-        {/* <HorizontalImageLoopProjects _images={images} _isReversed={false} openModal={openModal} _uniqueClassName={"images4"} /> */}
-
-      {/* METHOD 2 */}
-        {/* <BackgroundBanner imageUrl="/img/projects/pokithedog/pokithedog-2.png">
-        </BackgroundBanner> */}
-
-        {/* <div style={{textAlign: 'center', margin: '1rem'}}>
-            <h4 style={{fontWeight: 800, marginBottom: '.26rem'}}>Try it out!</h4>
-            <div style={{display: 'flex', alignItems: 'start', gap: '0.2rem', justifyContent: 'center'}}>
-              <img onClick={(e) => handleUrl()} style={{width: '28%', maxWidth: '170px', cursor: 'pointer'}} src="/img/projects/misc/web-link.png"/>
-            </div>
-        </div> */}
-
-      <div style={{padding: '0 1rem', marginBottom: '2rem', textAlign: 'center', fontStyle: 'italic', marginTop: '1.35rem'}}>
-            <p>Here are some songs I've covered on guitar.</p>
-            <p>It goes in chronological order (from oldest to latest)</p>
-            <p>I love live music! I aspire to be a live performer one day!</p>
+      <div style={{color: '#000000', padding: '0 1rem', marginBottom: '2rem', textAlign: 'center', fontStyle: 'italic', marginTop: '1.35rem'}}>
+            <p style={{fontSize:'1.1rem', fontWeight: 900}}>Here are some songs I've covered on guitar.</p>
+            <p style={{fontSize:'1.1rem', fontWeight: 900}}>It goes in chronological order (from oldest to latest)</p>
+            <p style={{fontSize:'1.1rem', fontWeight: 900}}>I love live music! I aspire to be a live performer one day!</p>
       </div>
-        
 
         <ProjectDiv>
           {/* Every 2 */}
@@ -389,44 +385,6 @@ function MusicCovers({ openModal, setOpenModal }) {
           <div className='grid-item' style={{}}>
               <iframe src="https://www.youtube.com/embed/S82YYdGY1Q0?si=8SQo99f-TA68dVTw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
           </div>
-
-
-          
-
-
-
-
-
-          {/* <div className='grid-item' 
-                  style={{ gridArea: 'five', 
-                          // gridColumnStart: 1,
-                          // gridColumnEnd: 3
-                          }}>
-              <iframe src="https://www.youtube.com/embed/0QHEDCigeBw?si=3JZyK1nJkpJ29QOc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-          </div>
-          <div className='grid-item' style={{ gridArea: 'six'}}>
-            <div className='info'>
-              <h3 onClick={(e) => handleUrl("https://polished-plus.netlify.app/")}>Soundgarden<br/> - Beyond The Wheel</h3>
-            </div>
-          </div>
-          <div className='grid-item' style={{ gridArea: 'seven'}}>
-            <div className='info'>
-              <h3 onClick={(e) => handleUrl("https://polished-plus.netlify.app/")}>Soundgarden<br/> - Beyond The Wheel</h3>
-            </div>
-          </div>
-          <div className='grid-item' style={{ gridArea: 'eight'}}>
-              <iframe src="https://www.youtube.com/embed/0QHEDCigeBw?si=3JZyK1nJkpJ29QOc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-          </div> */}
-          {/* YouTube Clone */}
-          {/* <div className='grid-item' style={{ gridArea: 'three' }}>
-            <div className='info left'>
-              <h3 onClick={(e) => handleUrl("https://justins-youtube-clone.netlify.app/")}>YouTube Clone</h3>
-            </div>          
-          </div>
-          <div className='grid-item grid-second-image' style={{ gridArea: 'four' }}>
-              <iframe src="https://www.youtube.com/embed/0QHEDCigeBw?si=3JZyK1nJkpJ29QOc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-          </div> */}
-          
 
         </ProjectDiv>
 
