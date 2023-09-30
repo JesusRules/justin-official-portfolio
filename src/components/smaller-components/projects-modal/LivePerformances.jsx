@@ -313,12 +313,34 @@ function LivePerformances({ openModal, setOpenModal, hideVideos }) {
           <PerformanceDiv>
             <p>First Song - <span style={{fontWeight: 800}}>Mad Hatters</span> (Short)</p>
             <span>Genre: <u>R&B/Soul</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Instrument: <u>Drums</u></span>
-            <Video src="https://www.youtube.com/embed/f5CH-R-8M1U?si=WSP7_RpBuj1mkZgk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></Video>
+            <VideoDiv>
+              <VideoDiv2>
+                <Video src="https://www.youtube.com/embed/f5CH-R-8M1U?si=WSP7_RpBuj1mkZgk" srcDoc='
+                <style>*{padding:0;margin:0;overflow:hidden;}body,html{height:100%;}img,svg{position:absolute;width:100%;top:0;bottom:0;margin:auto;}svg{filter:drop-shadow(1px 1px 10px hsl(206.5,70.7%,8%));transition:all 250ms ease-in-out;}body:hover svg{filter:drop-shadow(1px 1px 10px hsl(206.5,0%,10%));transform:scale(1.2);}</style>
+                <a href="https://www.youtube.com/embed/f5CH-R-8M1U?si=WSP7_RpBuj1mkZgk?autoplay=1">
+                    <img src="https://i.ytimg.com/vi/f5CH-R-8M1U/sddefault.jpg" alt="Performance Video"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="84" height="84" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-play-circle"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+                </a>
+                '
+                loading="lazy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></Video>
+              </VideoDiv2>
+            </VideoDiv>
           </PerformanceDiv>
           <PerformanceDiv>
             <p>Second Song - <span style={{fontWeight: 800}}>Mad Hatters</span></p>
             <span>Genre: <u>R&B/Soul</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Instrument: <u>Drums</u></span>
-            <Video src="https://www.youtube.com/embed/zvoFlvVrsiI?si=S7wx3h6uHcCVwiAK" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></Video>
+            <VideoDiv>
+              <VideoDiv2>
+                <Video src="https://www.youtube.com/embed/zvoFlvVrsiI?si=S7wx3h6uHcCVwiAK" srcDoc='
+                <style>*{padding:0;margin:0;overflow:hidden;}body,html{height:100%;}img,svg{position:absolute;width:100%;top:0;bottom:0;margin:auto;}svg{filter:drop-shadow(1px 1px 10px hsl(206.5,70.7%,8%));transition:all 250ms ease-in-out;}body:hover svg{filter:drop-shadow(1px 1px 10px hsl(206.5,0%,10%));transform:scale(1.2);}</style>
+                <a href="https://www.youtube.com/embed/zvoFlvVrsiI?si=S7wx3h6uHcCVwiAK?autoplay=1">
+                    <img src="https://i.ytimg.com/vi/zvoFlvVrsiI/sddefault.jpg" alt="Performance Video"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="84" height="84" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-play-circle"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+                </a>
+                '
+                loading="lazy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></Video>
+              </VideoDiv2>
+            </VideoDiv>
             <a className="live-link" href="https://www.youtube.com/watch?v=Zt55Sfzin2Q" target='_blank' >Click Here For Live Version</a>
             </PerformanceDiv>
           </AllPerformancesDiv>
@@ -333,22 +355,66 @@ function LivePerformances({ openModal, setOpenModal, hideVideos }) {
           <PerformanceDiv>
             <p>Go Back Home - <span style={{fontWeight: 800}}>Twisted Melody</span></p>
             <span>Genre: <u>Pop</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Instrument: <u>Drums</u></span>
-            <Video src="https://www.youtube.com/embed/4Mevkyoo9pM?si=tm57F47zcDQv-sG1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></Video>
+            <VideoDiv>
+              <VideoDiv2>
+                <Video src="https://www.youtube.com/embed/4Mevkyoo9pM?si=tm57F47zcDQv-sG1" srcDoc='
+                <style>*{padding:0;margin:0;overflow:hidden;}body,html{height:100%;}img,svg{position:absolute;width:100%;top:0;bottom:0;margin:auto;}svg{filter:drop-shadow(1px 1px 10px hsl(206.5,70.7%,8%));transition:all 250ms ease-in-out;}body:hover svg{filter:drop-shadow(1px 1px 10px hsl(206.5,0%,10%));transform:scale(1.2);}</style>
+                <a href="https://www.youtube.com/embed/4Mevkyoo9pM?si=tm57F47zcDQv-sG1?autoplay=1">
+                    <img src="https://i.ytimg.com/vi/4Mevkyoo9pM/sddefault.jpg" alt="Performance Video"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="84" height="84" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-play-circle"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+                </a>
+                '
+                loading="lazy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></Video>
+              </VideoDiv2>
+            </VideoDiv>
           </PerformanceDiv>
           <PerformanceDiv>
             <p>Naive - <span style={{fontWeight: 800}}>Twisted Melody</span></p>
             <span>Genre: <u>Pop</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Instrument: <u>Drums</u></span>
-            <Video src="https://www.youtube.com/embed/iZ2Q6aYx1QY?si=eMigZ8y-ABPsUPA1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></Video>
+            <VideoDiv>
+              <VideoDiv2>
+                <Video src="https://www.youtube.com/embed/iZ2Q6aYx1QY?si=eMigZ8y-ABPsUPA1" srcDoc='
+                <style>*{padding:0;margin:0;overflow:hidden;}body,html{height:100%;}img,svg{position:absolute;width:100%;top:0;bottom:0;margin:auto;}svg{filter:drop-shadow(1px 1px 10px hsl(206.5,70.7%,8%));transition:all 250ms ease-in-out;}body:hover svg{filter:drop-shadow(1px 1px 10px hsl(206.5,0%,10%));transform:scale(1.2);}</style>
+                <a href="https://www.youtube.com/embed/iZ2Q6aYx1QY?si=eMigZ8y-ABPsUPA1?autoplay=1">
+                    <img src="https://i.ytimg.com/vi/iZ2Q6aYx1QY/sddefault.jpg" alt="Performance Video"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="84" height="84" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-play-circle"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+                </a>
+                '
+                loading="lazy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></Video>
+              </VideoDiv2>
+            </VideoDiv>
             </PerformanceDiv>
           <PerformanceDiv>
             <p>Boom! - <span style={{fontWeight: 800}}>Sloth Pit</span></p>
             <span>Genre: <u>Metal</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Instrument: <u>Drums</u></span>
-            <Video src="https://www.youtube.com/embed/SPd_UEvyVN8?si=nryT_ZGpa-BGLZso" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></Video>
+            <VideoDiv>
+              <VideoDiv2>
+                <Video src="https://www.youtube.com/embed/SPd_UEvyVN8?si=nryT_ZGpa-BGLZso" srcDoc='
+                <style>*{padding:0;margin:0;overflow:hidden;}body,html{height:100%;}img,svg{position:absolute;width:100%;top:0;bottom:0;margin:auto;}svg{filter:drop-shadow(1px 1px 10px hsl(206.5,70.7%,8%));transition:all 250ms ease-in-out;}body:hover svg{filter:drop-shadow(1px 1px 10px hsl(206.5,0%,10%));transform:scale(1.2);}</style>
+                <a href="https://www.youtube.com/embed/SPd_UEvyVN8?si=nryT_ZGpa-BGLZso?autoplay=1">
+                    <img src="https://i.ytimg.com/vi/SPd_UEvyVN8/sddefault.jpg" alt="Performance Video"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="84" height="84" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-play-circle"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+                </a>
+                '
+                loading="lazy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></Video>
+              </VideoDiv2>
+            </VideoDiv>
           </PerformanceDiv>
           <PerformanceDiv>
             <p>Outdated - <span style={{fontWeight: 800}}>Sloth Pit</span></p>
             <span>Genre: <u>Metal</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Instrument: <u>Drums</u></span>
-            <Video src="https://www.youtube.com/embed/5vqaAoi93lQ?si=mCmzm8kVPUewi1gJ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></Video>
+            <VideoDiv>
+              <VideoDiv2>
+                <Video src="https://www.youtube.com/embed/5vqaAoi93lQ?si=mCmzm8kVPUewi1gJ" srcDoc='
+                <style>*{padding:0;margin:0;overflow:hidden;}body,html{height:100%;}img,svg{position:absolute;width:100%;top:0;bottom:0;margin:auto;}svg{filter:drop-shadow(1px 1px 10px hsl(206.5,70.7%,8%));transition:all 250ms ease-in-out;}body:hover svg{filter:drop-shadow(1px 1px 10px hsl(206.5,0%,10%));transform:scale(1.2);}</style>
+                <a href="https://www.youtube.com/embed/5vqaAoi93lQ?si=mCmzm8kVPUewi1gJ?autoplay=1">
+                    <img src="https://i.ytimg.com/vi/5vqaAoi93lQ/sddefault.jpg" alt="Performance Video"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="84" height="84" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-play-circle"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+                </a>
+                '
+                loading="lazy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></Video>
+              </VideoDiv2>
+            </VideoDiv>
             </PerformanceDiv>
         
           </AllPerformancesDiv>
@@ -362,12 +428,34 @@ function LivePerformances({ openModal, setOpenModal, hideVideos }) {
           <PerformanceDiv>
             <p>Jealous - <span style={{fontWeight: 800}}>Twisted Melody</span></p>
             <span>Genre: <u>R&B/Soul</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Instrument: <u>Bass</u></span>
-            <Video src="https://www.youtube.com/embed/QPNrOZV8-e4?si=OBIaQqA_CQmf47Gt" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></Video>
+            <VideoDiv>
+              <VideoDiv2>
+                <Video src="https://www.youtube.com/embed/QPNrOZV8-e4?si=OBIaQqA_CQmf47Gt" srcDoc='
+                <style>*{padding:0;margin:0;overflow:hidden;}body,html{height:100%;}img,svg{position:absolute;width:100%;top:0;bottom:0;margin:auto;}svg{filter:drop-shadow(1px 1px 10px hsl(206.5,70.7%,8%));transition:all 250ms ease-in-out;}body:hover svg{filter:drop-shadow(1px 1px 10px hsl(206.5,0%,10%));transform:scale(1.2);}</style>
+                <a href="https://www.youtube.com/embed/QPNrOZV8-e4?si=OBIaQqA_CQmf47Gt?autoplay=1">
+                    <img src="https://i.ytimg.com/vi/QPNrOZV8-e4/sddefault.jpg" alt="Performance Video"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="84" height="84" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-play-circle"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+                </a>
+                '
+                loading="lazy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></Video>
+              </VideoDiv2>
+            </VideoDiv>
           </PerformanceDiv>
           <PerformanceDiv>
             <p>Falling - <span style={{fontWeight: 800}}>Twisted Melody</span></p>
             <span>Genre: <u>R&B/Soul</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Instrument: <u>Bass</u></span>
-            <Video src="https://www.youtube.com/embed/bkyfuWmI5_U?si=Jx6uNdlSBCSwnolf" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></Video>
+            <VideoDiv>
+              <VideoDiv2>
+                <Video src="https://www.youtube.com/embed/bkyfuWmI5_U?si=Jx6uNdlSBCSwnolf" srcDoc='
+                <style>*{padding:0;margin:0;overflow:hidden;}body,html{height:100%;}img,svg{position:absolute;width:100%;top:0;bottom:0;margin:auto;}svg{filter:drop-shadow(1px 1px 10px hsl(206.5,70.7%,8%));transition:all 250ms ease-in-out;}body:hover svg{filter:drop-shadow(1px 1px 10px hsl(206.5,0%,10%));transform:scale(1.2);}</style>
+                <a href="https://www.youtube.com/embed/bkyfuWmI5_U?si=Jx6uNdlSBCSwnolf?autoplay=1">
+                    <img src="https://i.ytimg.com/vi/bkyfuWmI5_U/sddefault.jpg" alt="Performance Video"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="84" height="84" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-play-circle"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+                </a>
+                '
+                loading="lazy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></Video>
+              </VideoDiv2>
+            </VideoDiv>
             <a className="live-link" href="https://www.youtube.com/watch?v=TsiXBx53fl0" target='_blank' >Click Here For Studio Version</a>
             </PerformanceDiv>
           </AllPerformancesDiv>
@@ -381,32 +469,98 @@ function LivePerformances({ openModal, setOpenModal, hideVideos }) {
           <PerformanceDiv>
             <p>Like A Fool - <span style={{fontWeight: 800}}>Stretch</span></p>
             <span>Genre: <u>R&B/Soul</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Instrument: <u>Guitar</u></span>
-            <Video src="https://www.youtube.com/embed/HGJKOKpqIj8?si=SqWhwVV_79web7fD" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></Video>
+            <VideoDiv>
+              <VideoDiv2>
+                <Video src="https://www.youtube.com/embed/HGJKOKpqIj8?si=SqWhwVV_79web7fD" srcDoc='
+                <style>*{padding:0;margin:0;overflow:hidden;}body,html{height:100%;}img,svg{position:absolute;width:100%;top:0;bottom:0;margin:auto;}svg{filter:drop-shadow(1px 1px 10px hsl(206.5,70.7%,8%));transition:all 250ms ease-in-out;}body:hover svg{filter:drop-shadow(1px 1px 10px hsl(206.5,0%,10%));transform:scale(1.2);}</style>
+                <a href="https://www.youtube.com/embed/HGJKOKpqIj8?si=SqWhwVV_79web7fD?autoplay=1">
+                    <img src="https://i.ytimg.com/vi/HGJKOKpqIj8/sddefault.jpg" alt="Performance Video"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="84" height="84" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-play-circle"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+                </a>
+                '
+                loading="lazy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></Video>
+              </VideoDiv2>
+            </VideoDiv>
           </PerformanceDiv>
           <PerformanceDiv>
             <p>Scam On My Heart - <span style={{fontWeight: 800}}>Stretch</span></p>
             <span>Genre: <u>R&B/Soul</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Instrument: <u>Guitar (Solo 2:27)</u></span>
-            <Video src="https://www.youtube.com/embed/5-tLjHBw2UU?si=ZXOS5BFmbVaCijgU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></Video>
+            <VideoDiv>
+              <VideoDiv2>
+                <Video src="https://www.youtube.com/embed/5-tLjHBw2UU?si=ZXOS5BFmbVaCijgU" srcDoc='
+                <style>*{padding:0;margin:0;overflow:hidden;}body,html{height:100%;}img,svg{position:absolute;width:100%;top:0;bottom:0;margin:auto;}svg{filter:drop-shadow(1px 1px 10px hsl(206.5,70.7%,8%));transition:all 250ms ease-in-out;}body:hover svg{filter:drop-shadow(1px 1px 10px hsl(206.5,0%,10%));transform:scale(1.2);}</style>
+                <a href="https://www.youtube.com/embed/5-tLjHBw2UU?si=ZXOS5BFmbVaCijgU?autoplay=1">
+                    <img src="https://i.ytimg.com/vi/5-tLjHBw2UU/sddefault.jpg" alt="Performance Video"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="84" height="84" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-play-circle"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+                </a>
+                '
+                loading="lazy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></Video>
+              </VideoDiv2>
+            </VideoDiv>
             </PerformanceDiv>
           <PerformanceDiv>
             <p>This Is Goodbye - <span style={{fontWeight: 800}}>Twisted Melody</span></p>
             <span>Genre: <u>R&B/Soul</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Instrument: <u>Guitar</u></span>
-            <Video src="https://www.youtube.com/embed/kt634X93R1A?si=0F-LwZR9Wa4hzCcT" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></Video>
+            <VideoDiv>
+              <VideoDiv2>
+                <Video src="https://www.youtube.com/embed/kt634X93R1A?si=0F-LwZR9Wa4hzCcT" srcDoc='
+                <style>*{padding:0;margin:0;overflow:hidden;}body,html{height:100%;}img,svg{position:absolute;width:100%;top:0;bottom:0;margin:auto;}svg{filter:drop-shadow(1px 1px 10px hsl(206.5,70.7%,8%));transition:all 250ms ease-in-out;}body:hover svg{filter:drop-shadow(1px 1px 10px hsl(206.5,0%,10%));transform:scale(1.2);}</style>
+                <a href="https://www.youtube.com/embed/kt634X93R1A?si=0F-LwZR9Wa4hzCcT?autoplay=1">
+                    <img src="https://i.ytimg.com/vi/kt634X93R1A/sddefault.jpg" alt="Performance Video"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="84" height="84" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-play-circle"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+                </a>
+                '
+                loading="lazy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></Video>
+              </VideoDiv2>
+            </VideoDiv>
             </PerformanceDiv>
           <PerformanceDiv>
             <p>Done - <span style={{fontWeight: 800}}>Twisted Melody</span></p>
             <span>Genre: <u>Pop</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Instrument: <u>Guitar</u></span>
-            <Video src="https://www.youtube.com/embed/e-AmVA-pHZk?si=RMEomPBjc9eQs7yf" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></Video>
+            <VideoDiv>
+              <VideoDiv2>
+                <Video src="https://www.youtube.com/embed/e-AmVA-pHZk?si=RMEomPBjc9eQs7yf" srcDoc='
+                <style>*{padding:0;margin:0;overflow:hidden;}body,html{height:100%;}img,svg{position:absolute;width:100%;top:0;bottom:0;margin:auto;}svg{filter:drop-shadow(1px 1px 10px hsl(206.5,70.7%,8%));transition:all 250ms ease-in-out;}body:hover svg{filter:drop-shadow(1px 1px 10px hsl(206.5,0%,10%));transform:scale(1.2);}</style>
+                <a href="https://www.youtube.com/embed/e-AmVA-pHZk?si=RMEomPBjc9eQs7yf?autoplay=1">
+                    <img src="https://i.ytimg.com/vi/e-AmVA-pHZk/sddefault.jpg" alt="Performance Video"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="84" height="84" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-play-circle"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+                </a>
+                '
+                loading="lazy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></Video>
+              </VideoDiv2>
+            </VideoDiv>
             </PerformanceDiv>
           <PerformanceDiv>
             <p>Song 1 - <span style={{fontWeight: 800}}>Brass Knuckles</span></p>
             <span>Genre: <u>Orchestra</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Instrument: <u>Drums</u></span>
-            <Video src="https://www.youtube.com/embed/P3XMQiHZaHs?si=ZA3NYPETuxzYH3mi" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></Video>
+            <VideoDiv>
+              <VideoDiv2>
+                <Video src="https://www.youtube.com/embed/P3XMQiHZaHs?si=ZA3NYPETuxzYH3mi" srcDoc='
+                <style>*{padding:0;margin:0;overflow:hidden;}body,html{height:100%;}img,svg{position:absolute;width:100%;top:0;bottom:0;margin:auto;}svg{filter:drop-shadow(1px 1px 10px hsl(206.5,70.7%,8%));transition:all 250ms ease-in-out;}body:hover svg{filter:drop-shadow(1px 1px 10px hsl(206.5,0%,10%));transform:scale(1.2);}</style>
+                <a href="https://www.youtube.com/embed/P3XMQiHZaHs?si=ZA3NYPETuxzYH3mi?autoplay=1">
+                    <img src="https://i.ytimg.com/vi/P3XMQiHZaHs/sddefault.jpg" alt="Performance Video"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="84" height="84" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-play-circle"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+                </a>
+                '
+                loading="lazy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></Video>
+              </VideoDiv2>
+            </VideoDiv>
             </PerformanceDiv>
           <PerformanceDiv>
             <p>Song 2 - <span style={{fontWeight: 800}}>Brass Knuckles</span></p>
             <span>Genre: <u>Orchestra Funk</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Instrument: <u>Drums</u></span>
-            <Video src="https://www.youtube.com/embed/rgeG897chKI?si=Ff06RrVNAhNjI5kf" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></Video>
+            <VideoDiv>
+              <VideoDiv2>
+                <Video src="https://www.youtube.com/embed/rgeG897chKI?si=Ff06RrVNAhNjI5kf" srcDoc='
+                <style>*{padding:0;margin:0;overflow:hidden;}body,html{height:100%;}img,svg{position:absolute;width:100%;top:0;bottom:0;margin:auto;}svg{filter:drop-shadow(1px 1px 10px hsl(206.5,70.7%,8%));transition:all 250ms ease-in-out;}body:hover svg{filter:drop-shadow(1px 1px 10px hsl(206.5,0%,10%));transform:scale(1.2);}</style>
+                <a href="https://www.youtube.com/embed/rgeG897chKI?si=Ff06RrVNAhNjI5kf?autoplay=1">
+                    <img src="https://i.ytimg.com/vi/rgeG897chKI/sddefault.jpg" alt="Performance Video"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="84" height="84" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-play-circle"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+                </a>
+                '
+                loading="lazy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></Video>
+              </VideoDiv2>
+            </VideoDiv>
             </PerformanceDiv>
           </AllPerformancesDiv>
         </YearlyDiv>
