@@ -24,12 +24,10 @@ export function MiniJesus(props) {
   const { animIndex, setAnimIndex } = props;
   const radius = 98; // Adjust the radius of the circle
 
-  const [keyDown, setKeyDown] = useState(false);
   const [moveDir, setMoveDir] = useState(false);
-  const [moveDelta, setMoveDelta] = useState(0);
-  const [camSpeed, setCamSpeed] = useState(0);
   const [hovered, setHovered] = useState(false);
   const [swipeDirection, setSwipeDirection] = useState(0);
+  const [isMoving, setIsMoving] = useState(false);
   let startX;
   // let cameraPosition;
   // const [startUpCam, setStartUpCam] = useState(false);
@@ -136,7 +134,7 @@ export function MiniJesus(props) {
     if (startX !== null) {
       const currentX = event.clientX;
       const deltaX = currentX - startX;
-      
+      setIsMoving(true);
       if (deltaX > 0) {
         setMoveDir('left');
         setTargetRotation(-4.71239);
@@ -150,8 +148,17 @@ export function MiniJesus(props) {
   
   const handleMouseUp = () => {
     startX = null;
+    setIsMoving(false);
     setSwipeDirection(null);
   };
+
+  useEffect(() => {
+    if (isMoving) {
+      setAnimIndex(5);
+    } else {
+      setAnimIndex(3);
+    }
+  }, [isMoving])
 
   // BOTH TOUCH AND MOUSE
   const HideBubble = () => {
@@ -192,7 +199,7 @@ export function MiniJesus(props) {
 
   
   useEffect(() => {
-    // console.log('ACTIONS', actions);
+    console.log('ACTIONS', actions);
     if (actions[names[animIndex]]) {
       actions[names[animIndex]].reset().fadeIn(0.5).play();
     }
@@ -204,26 +211,23 @@ export function MiniJesus(props) {
   }, [animIndex, actions, names])
 
 
-  useEffect(() => {
-    if (idleStance) setAnimIndex(3);
-    if (!idleStance) {
-      setAnimIndex(5);
-    }
-  }, [idleStance])
+  // useEffect(() => {
+  //   if (idleStance) setAnimIndex(3); //idle
+  //   if (!idleStance) {
+  //     setAnimIndex(5); //run 
+  //   }
+  // }, [idleStance])
 
 
   const camSpeedFunc = (speed) => {
     setSpeedDifference(20 - speed);
     
     if (speedDifference < 0.2) setSpeedDifference(0.2);
-    
     actions['Run'].setDuration(speedDifference);
     
     if (speedDifference < 3.3) { //5
-      setIdleStance(false);
     }
-    else if (speedDifference > 14) { //18
-      setIdleStance(true);
+    if (speedDifference > 14) { //18
       if (moveDir === 'left') setTargetRotation(-3.14159);
       if (moveDir === 'right') setTargetRotation(-3.14159);
     }
