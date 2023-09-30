@@ -165,6 +165,33 @@ box-shadow: 6px 6px 10px rgba(0,0,0,.7);
   right: 0;
   margin: .3rem auto 0rem auto;
   border: 0;
+
+  //VIDEO
+  * {
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+  }
+  body,
+  html {
+    height: 100%;
+  }
+  img,
+  svg {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+  }
+  svg {
+    filter: drop-shadow(1px 1px 10px hsl(206.5, 70.7%, 8%));
+    transition: all 250ms ease-in-out;
+  }
+  body:hover svg {
+    filter: drop-shadow(1px 1px 10px hsl(206.5, 0%, 10%));
+    transform: scale(1.2);
+  }
 `
 
 const BottomBanner = styled.img`
@@ -185,7 +212,18 @@ const images = [
   '/img/projects/pokithedog/preview-6.jpg',
 ];
 
-function LivePerformances({ openModal, setOpenModal }) {
+function LivePerformances({ openModal, setOpenModal, hideVideos }) {
+  const [hideMe, setHideMe] = useState(false);
+
+  useEffect(() => {
+    if (openModal) {
+      setHideMe(false);
+    }
+    if (!openModal) {
+      setHideMe(true);
+    }
+  }, [openModal])
+
   const handleUrl = () => {
     window.open('https://pokithedog.com/', '_blank');
   }
@@ -194,22 +232,15 @@ function LivePerformances({ openModal, setOpenModal }) {
   }
 
   function stopAllVideos() {
-    // Get all iframes on the page
-    const iframes = document.querySelectorAll('iframe');
-    // Loop through each iframe
-    iframes.forEach(iframe => {
-      const src = iframe.src;
-      // Check if the iframe is a YouTube video
-      if (src.includes('youtube.com')) {
-        // For YouTube videos, use the YouTube IFrame API to stop playback
-        const player = new YT.Player(iframe);
-        player.stopVideo();
-      } else {
-        // For generic iframes, simply set the src attribute to an empty string to stop playback
-        iframe.src = '';
-      }
-    });
-    }
+    // document.querySelectorAll('iframe').forEach(v => { v.src = v.src });
+    // var iframes = document.querySelectorAll('iframe');
+    // // Loop through each iframe and hide them
+    // iframes.forEach(function(iframe) {
+    //   iframe.autoplay = 'false'
+    //   // iframe.style.display = "none";
+    // setHideMe(false);
+  }
+
 
     return (
       <>
@@ -238,6 +269,8 @@ function LivePerformances({ openModal, setOpenModal }) {
         </IntroDiv>
 
 
+        {!hideVideos && (
+          <>
         {/* 2015 */}
         <YearlyDiv>
         <BlackDivider draggable={false} src="/img/projects/live-performances/black-divider.png" />
@@ -250,29 +283,7 @@ function LivePerformances({ openModal, setOpenModal }) {
             <VideoDiv>
               <VideoDiv2>
                 <Video src="https://www.youtube.com/embed/w9kPjBpEOJg?si=K6H9GwqYZisNLDdw" srcDoc='
-                <style>
-                * {
-                  padding: 0; margin: 0; overflow: hidden;
-                }
-                body, html {
-                  height: 100%;
-                }
-                img, svg {
-                  position: absolute;
-                  width: 100%;
-                  top: 0;
-                  bottom: 0;
-                  margin: auto;
-                }
-                svg {
-                  filter: drop-shadow(1px 1px 10px hsl(206.5, 70.7%, 8%));
-                  transition: all 250ms ease-in-out;
-                }
-                body:hover svg {
-                  filter: drop-shadow(1px 1px 10px hsl(206.5, 0%, 10%));
-                  transform: scale(1.2);
-                }
-                </style>
+                <style>*{padding:0;margin:0;overflow:hidden;}body,html{height:100%;}img,svg{position:absolute;width:100%;top:0;bottom:0;margin:auto;}svg{filter:drop-shadow(1px 1px 10px hsl(206.5,70.7%,8%));transition:all 250ms ease-in-out;}body:hover svg{filter:drop-shadow(1px 1px 10px hsl(206.5,0%,10%));transform:scale(1.2);}</style>
                 <a href="https://www.youtube.com/embed/w9kPjBpEOJg?si=K6H9GwqYZisNLDdw?autoplay=1">
                     <img src="https://i.ytimg.com/vi/w9kPjBpEOJg/sddefault.jpg" alt="Performance Video"/>
                     <svg xmlns="http://www.w3.org/2000/svg" width="84" height="84" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-play-circle"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
@@ -397,6 +408,8 @@ function LivePerformances({ openModal, setOpenModal }) {
             </PerformanceDiv>
           </AllPerformancesDiv>
         </YearlyDiv>
+        </>
+        )}
         
         <BottomBanner src='/img/projects/live-performances/drummer.jpg'/>
 

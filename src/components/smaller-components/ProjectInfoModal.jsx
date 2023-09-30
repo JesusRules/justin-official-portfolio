@@ -109,6 +109,7 @@ function ProjectInfoModal(props) {
     const { currentProject, openModal, setOpenModal} = props;
     const projectModalRef = useRef();
     const closeButtonRef = useRef();
+    const [hideVideos, setHideVideos] = useState(true);
 
     useEffect(() => {
         gsap.set(projectModalRef.current, { x: '0%', opacity: 1 });
@@ -124,6 +125,7 @@ function ProjectInfoModal(props) {
                 ease: '"elastic.out(1, 0.3)"', // Easing function (you can choose a different one)
                 onStart: () => {
                   projectModalRef.current.style.display = 'block';
+                  setHideVideos(false);
                 },
                 onComplete: () => {
                   projectModalRef.current.style.pointerEvents = 'auto';
@@ -146,6 +148,7 @@ function ProjectInfoModal(props) {
                 onComplete: () => {
                     projectModalRef.current.scrollTop = 0
                     projectModalRef.current.style.display = 'none';
+                    setHideVideos(true);
                 },
               });
         }
@@ -194,7 +197,7 @@ function ProjectInfoModal(props) {
         {currentProject.id === "guitarking" && <GuitarKing openModal={openModal} setOpenModal={setOpenModal} /> }
         {currentProject.id === "my-spotify-clone" && <SpotifyClone openModal={openModal} setOpenModal={setOpenModal} /> }
         {currentProject.id === "my-music-player" && <MyMusicPlayer openModal={openModal} setOpenModal={setOpenModal} /> }
-        {currentProject.id === "live-performances" && <LivePerformances openModal={openModal} setOpenModal={setOpenModal} /> }
+        {currentProject.id === "live-performances" && <LivePerformances openModal={openModal} setOpenModal={setOpenModal} hideVideos={hideVideos} /> }
         {currentProject.id === "music-covers" && <MusicCovers openModal={openModal} setOpenModal={setOpenModal} /> }
     </ProjectInfoModalDiv>
     {/* </ProjectInfoContainer> */}
