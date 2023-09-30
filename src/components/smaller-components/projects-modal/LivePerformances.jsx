@@ -141,12 +141,30 @@ const PerformanceDiv = styled.div`
     font-size: 1.2rem;
   }
 ` 
+
+const VideoDiv = styled.div`
+  width: 100%;
+  `
+const VideoDiv2 = styled.div`
+  position: relative;
+  padding-bottom: 100%;
+  height: 0;
+  overflow: hidden;
+`
 const Video = styled.iframe`
-  margin-top: .3rem;
-  width: 97%;
-  max-width: 40rem;
+box-shadow: 6px 6px 10px rgba(0,0,0,.7);
+  width: 100%;
+  object-fit: cover;
+  max-width: 39rem;
   height: 22rem;
+  /* max-height: 20rem; */
   z-index: 10;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: .3rem auto 0rem auto;
+  border: 0;
 `
 
 const BottomBanner = styled.img`
@@ -174,13 +192,34 @@ function LivePerformances({ openModal, setOpenModal }) {
   const handleRBCWebsite = () => {
     window.open('https://ottawabluesfest.ca/', '_blank');
   }
+
+  function stopAllVideos() {
+    // Get all iframes on the page
+    const iframes = document.querySelectorAll('iframe');
+    // Loop through each iframe
+    iframes.forEach(iframe => {
+      const src = iframe.src;
+      // Check if the iframe is a YouTube video
+      if (src.includes('youtube.com')) {
+        // For YouTube videos, use the YouTube IFrame API to stop playback
+        const player = new YT.Player(iframe);
+        player.stopVideo();
+      } else {
+        // For generic iframes, simply set the src attribute to an empty string to stop playback
+        iframe.src = '';
+      }
+    });
+    }
+
     return (
       <>
       <BackgroundDiv>
       
       <ContentContainer>
       <CloseButton setOpenModal={setOpenModal} />
-      
+
+      <button style={{position: 'absolute', bottom: 0, zIndex: 100000}} onClick={stopAllVideos}>CLICK ME</button>
+
       <div style={{zIndex: 1}}>
         <TopLightsDiv>
         <TopLights draggable={false} src="/img/projects/live-performances/lights-1.jpg"/>
@@ -208,7 +247,41 @@ function LivePerformances({ openModal, setOpenModal }) {
           <PerformanceDiv>
             <p>Let Us Be Free - <span style={{fontWeight: 800}}>Sloth Pit</span></p>
             <span>Genre: <u>Metal</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Instrument: <u>Drums</u></span>
-            <Video src="https://www.youtube.com/embed/w9kPjBpEOJg?si=K6H9GwqYZisNLDdw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></Video>
+            <VideoDiv>
+              <VideoDiv2>
+                <Video src="https://www.youtube.com/embed/w9kPjBpEOJg?si=K6H9GwqYZisNLDdw" srcDoc='
+                <style>
+                * {
+                  padding: 0; margin: 0; overflow: hidden;
+                }
+                body, html {
+                  height: 100%;
+                }
+                img, svg {
+                  position: absolute;
+                  width: 100%;
+                  top: 0;
+                  bottom: 0;
+                  margin: auto;
+                }
+                svg {
+                  filter: drop-shadow(1px 1px 10px hsl(206.5, 70.7%, 8%));
+                  transition: all 250ms ease-in-out;
+                }
+                body:hover svg {
+                  filter: drop-shadow(1px 1px 10px hsl(206.5, 0%, 10%));
+                  transform: scale(1.2);
+                }
+                </style>
+                <a href="https://www.youtube.com/embed/w9kPjBpEOJg?si=K6H9GwqYZisNLDdw?autoplay=1">
+                    <img src="https://i.ytimg.com/vi/w9kPjBpEOJg/sddefault.jpg" alt="Performance Video"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="84" height="84" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-play-circle"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+                </a>
+                '
+                
+                loading="lazy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></Video>
+              </VideoDiv2>
+            </VideoDiv>
           </PerformanceDiv>
           <PerformanceDiv>
             <p>No Name - <span style={{fontWeight: 800}}>Sloth Pit</span></p>
