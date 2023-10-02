@@ -54,13 +54,38 @@ const ContentContainer = styled.div`
   }
 `;
 
-const WrapperDiv = styled.div`
-  background-color: red;
+const VideoDiv = styled.div`
   width: 100%;
-  /* position: relative;
-  left: 50%;
-  transform: translateX(-50%); */
-`;
+  box-shadow: 10px 10px 10px rgba(0,0,0, .6);
+  `
+const VideoDiv2 = styled.div`
+  position: relative;
+  padding-top: 0rem;
+  /* height: 0; */
+  /* box-shadow: 6px 6px 10px rgba(0,0,0,.7); */
+  overflow: hidden;
+  height: 22rem;
+  @media only screen and (max-width: 700px) {
+    margin-bottom: 2.5rem;
+    /* padding-bottom: 58%; */
+    /* padding-bottom: 50.5%; */
+  }
+  `
+const Video = styled.iframe`
+  /* box-shadow: 6px 6px 10px rgba(0,0,0,.7); */
+  /* width: 100%;
+  object-fit: cover;
+  max-width: 39rem;
+  height: 100%; */
+  /* max-height: 20rem; */
+  /* z-index: 10;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: .3rem auto 0rem auto;
+  border: 0; */
+`
 
 const ProjectDiv = styled.div`
 // SECTION SPACED
@@ -97,6 +122,7 @@ const ProjectDiv = styled.div`
     iframe {
       width: 100%;
       height: 22rem;
+      /* box-shadow: 10px 10px 10px rgba(0,0,0, .6); */
     }
     .info {
       width: 95%;
@@ -126,8 +152,8 @@ const ProjectDiv = styled.div`
     grid-column-start: 1;
     grid-column-end: 4;
     iframe {
-      border: 1px solid black;
-      box-shadow: 10px 10px 10px rgba(0,0,0, .6);
+      /* border: 1px solid black; */
+      /* box-shadow: 10px 10px 10px rgba(0,0,0, .6); */
     }
     /* grid-column-start: 1;
     grid-column-end: 3; */
@@ -150,7 +176,7 @@ const ProjectDiv = styled.div`
     grid-column-start: 3;
     grid-column-end: 6;
     iframe {
-      border: 1px solid black;
+      /* border: 1px solid black; */
       box-shadow: -10px 10px 10px rgba(0,0,0, .6);
     }
     /* grid-column-start: 2;
@@ -165,7 +191,6 @@ const ProjectDiv = styled.div`
   .left {
     transform: translateX(0rem);
   }
-  
 
   @media only screen and (max-width: 700px) {
     row-gap: .5rem;
@@ -343,7 +368,6 @@ const ProjectDiv = styled.div`
       iframe {
         margin-left: 0rem;
         width: 100%;
-        margin-bottom: 2.5rem;
       }
       .info {
         width: 100%;
@@ -396,7 +420,47 @@ function MusicCovers({ openModal, setOpenModal }) {
           {/* Every 2 */}
           <div className='grid-item' 
                   style={{}}>
-              <iframe src="https://www.youtube.com/embed/0QHEDCigeBw?si=3JZyK1nJkpJ29QOc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              <VideoDiv>
+              <VideoDiv2>
+                <Video src="https://www.youtube.com/embed/0QHEDCigeBw?si=3JZyK1nJkpJ29QOc" srcDoc='
+                <style>
+                * {
+                height: 100%;
+                  padding: 0;
+                  margin: 0;
+                  overflow: hidden;
+                }
+                body, html {
+                  height: 100%;
+                }
+                img, svg {
+                  object-fit: cover;
+                  position: absolute;
+                  width: 100%;
+                  top: 0;
+                  bottom: 0;
+                  margin: auto;
+                }
+                svg {
+                  height: 5rem;
+                  filter: drop-shadow(1px 1px 10px hsl(206.5, 70.7%, 8%));
+                  transition: all 250ms ease-in-out;
+                }
+                body:hover svg {
+                  filter: drop-shadow(1px 1px 10px hsl(206.5, 0%, 10%));
+                  transform: scale(1.2);
+                }
+              </style>
+
+                <a href="https://www.youtube.com/embed/0QHEDCigeBw?si=3JZyK1nJkpJ29QOc?autoplay=1">
+                    <img src="https://i.ytimg.com/vi/0QHEDCigeBw/hqdefault.jpg" alt="Performance Video"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="84" height="84" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-play-circle"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+                </a>
+                '
+                loading="lazy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></Video>
+              </VideoDiv2>
+            </VideoDiv>
+              {/* <iframe src="https://www.youtube.com/embed/0QHEDCigeBw?si=3JZyK1nJkpJ29QOc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> */}
           </div>
           <div className='grid-item' style={{}}>
             <div className='info'>

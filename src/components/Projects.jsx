@@ -255,7 +255,7 @@ var contentTitlesArray = [
   { name: "My Music Player", description: "A music player featuring songs I like.", id: 'my-music-player' },
   { name: "Live Performances (Bluesfest)", description: "Live performances of me playing on stage.", id: 'live-performances' },
   { name: "Music Covers", description: "Videos of me covering songs/improvising.", id: 'music-covers' },
-  { name: "Songs I've Made", description: "I made this section because I aspire to play live music one day.", id: 'soundcloud-songs' },
+  { name: "Songs I've Made", description: "I made this section because I aspire to produce more music.", id: 'my-songs' },
   
   { name: "", description: "", id: '' },
   { name: "Grey Rock Adventure Tour", description: "A commercial video I made for Grey Rock Adventure Tours.", id: 'greyrock-video' },
