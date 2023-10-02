@@ -198,7 +198,7 @@ function ProjectInfoModal(props) {
         {currentProject.id === "my-spotify-clone" && <SpotifyClone openModal={openModal} setOpenModal={setOpenModal} /> }
         {currentProject.id === "my-music-player" && <MyMusicPlayer openModal={openModal} setOpenModal={setOpenModal} /> }
         {currentProject.id === "live-performances" && <LivePerformances openModal={openModal} setOpenModal={setOpenModal} hideVideos={hideVideos} /> }
-        {currentProject.id === "music-covers" && <MusicCovers openModal={openModal} setOpenModal={setOpenModal} /> }
+        {currentProject.id === "music-covers" && <MusicCovers openModal={openModal} setOpenModal={setOpenModal} hideVideos={hideVideos} /> }
     </ProjectInfoModalDiv>
     {/* </ProjectInfoContainer> */}
     </>
