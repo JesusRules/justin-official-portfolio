@@ -126,7 +126,7 @@ const images = [
   '/img/projects/pokithedog/preview-6.jpg',
 ];
 
-function MySongs({ openModal, setOpenModal }) {
+function MySongs({ openModal, setOpenModal, hideVideos }) {
 
   const handleUrl = (stringLink) => {
     window.open(stringLink, '_blank');
@@ -143,7 +143,8 @@ function MySongs({ openModal, setOpenModal }) {
       </div>
 
         <ProjectDiv>
-
+          {!hideVideos && (
+            <>
           <div className='grid-item' >
             <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1189297048&color=%23005bff&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe><div style={{fontSize: '10px', color: '#cccccc', lineBreak: 'anywhere', wordBreak: 'normal', overflow: 'hidden', whiteSpace: 'nowrap',textOverflow: 'ellipsis', fontFamily: 'Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif', fontWeight: 100}}><a href="https://soundcloud.com/justin-bernard" title="Justin Bernard" target="_blank" style={{color: '#cccccc', textDecoration: 'none'}}>Justin Bernard</a> · <a href="https://soundcloud.com/justin-bernard/hypnotic-car-song" title="Hypnotic Car Song" target="_blank" style={{color: '#cccccc', textDecoration: 'none'}}>Hypnotic Car Song</a></div>
           </div>
@@ -171,6 +172,8 @@ function MySongs({ openModal, setOpenModal }) {
           <div className='grid-item' >
             <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/130905024&color=%23005bff&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe><div style={{fontSize: '10px', color: '#cccccc', lineBreak: 'anywhere', wordBreak: 'normal', overflow: 'hidden', whiteSpace: 'nowrap',textOverflow: 'ellipsis', fontFamily: 'Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif', fontWeight: 100}}><a href="https://soundcloud.com/justin-bernard-7" title="Justin Bernard 7" target="_blank" style={{color: '#cccccc', textDecoration: 'none'}}>Justin Bernard 7</a> · <a href="https://soundcloud.com/justin-bernard-7/dubstep-tutorial" title="Dubstep Tutorial" target="_blank" style={{color: '#cccccc', textDecoration: 'none'}}>Dubstep Tutorial</a></div>
           </div>
+          </>
+          )}
 
         </ProjectDiv>
 
