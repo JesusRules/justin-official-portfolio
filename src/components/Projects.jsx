@@ -179,6 +179,11 @@ const Arrows = styled.div`
   pointer-event: none;
   align-items: center;
   bottom: 0rem;
+  /* left: 50%; */
+  /* transform: translateX(-50%); */
+  right: 0;
+  left: 0;
+  justify-content: center;
   z-index: 10001;
   transform: scale(0.8);
   opacity: 0.9;
@@ -524,7 +529,7 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
                     <Ocean />
                     {/* <Skybox />  */}
                     
-                    <ambientLight color='white' intensity={3} />
+                    <ambientLight color='white' intensity={4} />
                     <directionalLight intensity={2}  castShadow  position={[-100, 30, 50]} />
                     <directionalLight intensity={2}  castShadow position={[62, 40, -20]} />
                     
