@@ -30,7 +30,7 @@ const Container = styled.div`
 
 const SpeechBubble = styled.img`
   position: absolute;
-  max-width: 30rem;
+  max-width: 24rem;
   width: 100%;
   top: 10%;
   left: 0;

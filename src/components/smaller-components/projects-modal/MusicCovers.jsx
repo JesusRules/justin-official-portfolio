@@ -68,7 +68,7 @@ const VideoDiv2 = styled.div`
   @media only screen and (max-width: 700px) {
     margin-bottom: 2.5rem;
   }
-  `
+`
 const Video = styled.iframe`
 `
 
