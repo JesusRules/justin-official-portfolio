@@ -16,6 +16,8 @@ const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  background-color: #632c18;
+  color: #ffd39e;
 `;
 
 const TitleDiv = styled.div`
@@ -59,25 +61,25 @@ function MiniDoom2({ openModal, setOpenModal }) {
     return (
       <ContentContainer>
       <CloseButton setOpenModal={setOpenModal} />
-      <div>
+      <div style={{backgroundColor: '#632c18'}}>
         <BackgroundBanner imageUrl="/img/projects/minidoom2-video/main-banner.jpg"/>
-      <div style={{textAlign: 'center', margin: '1rem'}}>
-            <h4 style={{fontWeight: 800, marginBottom: '.26rem'}}>Play game here!</h4>
+      <div style={{textAlign: 'center', margin: '1rem', backgroundColor: '#632c18'}}>
+            <h4 style={{color: 'white', fontWeight: 800, marginBottom: '.26rem'}}>Play game here!</h4>
             <div style={{display: 'flex', alignItems: 'start', gap: '0.2rem', justifyContent: 'center'}}>
               <img onClick={(e) => handleItchIO()} style={{borderRadius: '5px', width: '32%', maxWidth: '250px', cursor: 'pointer'}} src="/img/projects/misc/itch-logo.jpg"/>
             </div>
-            <p style={{marginTop: '.25rem', fontStyle: 'italic', fontWeight: 800}}>Note: I did NOT make this game.</p>
+            <p style={{color: 'white', marginTop: '.25rem', fontStyle: 'italic', fontWeight: 800}}>Note: I did NOT make this game.</p>
         </div>
         
         {/* <HorizontalImageLoopProjects _images={images} _isReversed={false} openModal={openModal} _uniqueClassName={"images5"} /> */}
 
-        <div style={{padding: '0 2rem', textAlign: 'center', fontStyle: 'italic', lineHeight: '10%', maxWidth: '760px', margin: '2rem auto 0 auto'}}>
+        <div style={{backgroundColor: '#632c18', padding: '0 2rem', textAlign: 'center', fontStyle: 'italic', lineHeight: '10%', maxWidth: '760px', margin: '2rem auto 0 auto'}}>
             <p>Here's the video trailer I made for MiniDoom2 in college.</p>
             <p style={{marginBottom: '1rem'}}>It is not an offical trailer but a fanmade one.</p>
             <iframe style={{width: "100%", maxWidth: '700px', height: 415 }} src="https://www.youtube.com/embed/-EfTKhpe2K0?si=CFhxtrJmV7kAQdnb" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
       </div>
       </div>
-      <p className='bottom-madewith' style={{textAlign: 'left', color: 'blue', margin: '1rem', fontStyle: 'italic', fontWeight: 400, paddingBottom: '1rem'}}>Project was made using <b>Adobe Premiere.</b></p>
+      <p className='bottom-madewith' style={{textAlign: 'left', color: '#ffe4c6', padding: '1rem', fontStyle: 'italic', fontWeight: 400, paddingBottom: '1rem', backgroundColor: '#632c18'}}>Project was made using <b>Adobe Premiere.</b></p>
       </ContentContainer>
     )
 }
