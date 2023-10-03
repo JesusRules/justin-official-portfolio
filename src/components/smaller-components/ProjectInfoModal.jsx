@@ -24,6 +24,7 @@ import LivePerformances from './projects-modal/LivePerformances';
 import MusicCovers from './projects-modal/MusicCovers';
 import MySongs from './projects-modal/MySongs';
 import GreyRockAdventureTours from './projects-modal/GreyRockAdventureTours';
+import SpiritVideo from './projects-modal/SpiritVideo';
 
 const ProjectInfoContainer = styled.div`
   position: relative;
@@ -205,6 +206,7 @@ function ProjectInfoModal(props) {
         {currentProject.id === "my-songs" && <MySongs openModal={openModal} setOpenModal={setOpenModal} hideVideos={hideVideos} /> }
         
         {currentProject.id === "greyrock-video" && <GreyRockAdventureTours openModal={openModal} setOpenModal={setOpenModal} /> }
+        {currentProject.id === "spirit-video" && <SpiritVideo openModal={openModal} setOpenModal={setOpenModal} /> }
     </ProjectInfoModalDiv>
     {/* </ProjectInfoContainer> */}
     </>

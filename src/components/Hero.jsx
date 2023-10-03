@@ -297,7 +297,7 @@ const HeroText = styled.h1`
     font-weight: 700;
     font-style: normal;
     /* top: 10rem; */
-    top: 15%;
+    top: 11.25%; //15
     opacity: 0;
     @media only screen and (max-width: 700px) {
         top: 6.5rem;

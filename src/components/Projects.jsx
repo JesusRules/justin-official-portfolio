@@ -259,7 +259,7 @@ var contentTitlesArray = [
   
   { name: "", description: "", id: '' },
   { name: "Grey Rock Adventure Tours (Promo)", description: "A commercial video I made for Grey Rock Adventure Tours.", id: 'greyrock-video' },
-  { name: "Spirit Video 2009", description: "An annual end-of-the-year video I was assigned to make that the whole school watched.", id: 'spirit-video' },
+  { name: "Spirit Video 2009", description: "An annual end-of-the-year video I was assigned to make.", id: 'spirit-video' },
   { name: "MiniDoom 2 Trailer", description: "A video trailer I made in college.", id: 'minidoom2-video' },
   { name: "Other Videos (Links)", description: "Other videos I've done.", id: 'other-videos' },
 ]
