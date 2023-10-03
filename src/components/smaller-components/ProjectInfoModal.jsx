@@ -26,6 +26,7 @@ import MySongs from './projects-modal/MySongs';
 import GreyRockAdventureTours from './projects-modal/GreyRockAdventureTours';
 import SpiritVideo from './projects-modal/SpiritVideo';
 import MiniDoom2 from './projects-modal/MiniDoom2';
+import OtherVideos from './projects-modal/OtherVideos';
 
 const ProjectInfoContainer = styled.div`
   position: relative;
@@ -153,6 +154,13 @@ function ProjectInfoModal(props) {
                     projectModalRef.current.scrollTop = 0
                     projectModalRef.current.style.display = 'none';
                     setHideVideos(true);
+                    //Stop videos NOT lazy
+                    const videos = document.querySelectorAll('iframe');
+                    videos.forEach(i => {
+                      const source = i.src
+                      i.src = ''
+                      i.src = source
+                   })
                 },
               });
         }
@@ -209,6 +217,7 @@ function ProjectInfoModal(props) {
         {currentProject.id === "greyrock-video" && <GreyRockAdventureTours openModal={openModal} setOpenModal={setOpenModal} /> }
         {currentProject.id === "spirit-video" && <SpiritVideo openModal={openModal} setOpenModal={setOpenModal} /> }
         {currentProject.id === "minidoom2-video" && <MiniDoom2 openModal={openModal} setOpenModal={setOpenModal} /> }
+        {currentProject.id === "other-videos" && <OtherVideos openModal={openModal} setOpenModal={setOpenModal} hideVideos={hideVideos} /> }
     </ProjectInfoModalDiv>
     {/* </ProjectInfoContainer> */}
     </>

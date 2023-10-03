@@ -60,7 +60,7 @@ function MiniDoom2({ openModal, setOpenModal }) {
 
     return (
       <ContentContainer>
-      <CloseButton setOpenModal={setOpenModal} />
+      <CloseButton color='white' setOpenModal={setOpenModal} />
       <div style={{backgroundColor: '#632c18'}}>
         <BackgroundBanner imageUrl="/img/projects/minidoom2-video/main-banner.jpg"/>
       <div style={{textAlign: 'center', margin: '1rem', backgroundColor: '#632c18'}}>
