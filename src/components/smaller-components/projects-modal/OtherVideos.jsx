@@ -78,7 +78,7 @@ const ProjectDiv = styled.div`
       // NEW
       h3 {
         font-style: italic;
-        font-weight: 500;
+        font-weight: 600;
         font-size: 1.9rem;
       }
     }
@@ -320,6 +320,9 @@ const ProjectDiv = styled.div`
           margin: 0 auto;
           text-align: center;
         }
+        p {
+          text-align: center;
+        }
         text-align: left;
         bottom: 0rem;
       }
@@ -329,22 +332,13 @@ const ProjectDiv = styled.div`
   }
 `
 
-const images = [
-  '/img/projects/pokithedog/preview-1.jpg',
-  '/img/projects/pokithedog/preview-2.jpg',
-  '/img/projects/pokithedog/preview-3.jpg',
-  '/img/projects/pokithedog/preview-4.jpg',
-  '/img/projects/pokithedog/preview-5.jpg',
-  '/img/projects/pokithedog/preview-6.jpg',
-];
-
 function OtherVideos({ openModal, setOpenModal, hideVideos }) {
   
     return (
       // <BackgroundDiv>
         <>
       <ContentContainer>
-      <CloseButton color="white" setOpenModal={setOpenModal} />
+      <CloseButton setOpenModal={setOpenModal} />
       <div>
         <h2>Other Videos</h2>
 
