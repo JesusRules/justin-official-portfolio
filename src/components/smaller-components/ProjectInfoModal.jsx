@@ -27,6 +27,7 @@ import GreyRockAdventureTours from './projects-modal/GreyRockAdventureTours';
 import SpiritVideo from './projects-modal/SpiritVideo';
 import MiniDoom2 from './projects-modal/MiniDoom2';
 import OtherVideos from './projects-modal/OtherVideos';
+import SaySike from './projects-modal/SaySike';
 
 const ProjectInfoContainer = styled.div`
   position: relative;
@@ -207,6 +208,7 @@ function ProjectInfoModal(props) {
         {currentProject.id === "stellar-fever" && <StellarFever openModal={openModal} setOpenModal={setOpenModal} /> }
         {currentProject.id === "graveyard-smash" && <GraveyardSmash openModal={openModal} setOpenModal={setOpenModal} /> }
         {currentProject.id === "stjoes-games" && <StJoesGames openModal={openModal} setOpenModal={setOpenModal} /> }
+        {currentProject.id === "saysike-project" && <SaySike openModal={openModal} setOpenModal={setOpenModal} /> }
         
         {currentProject.id === "guitarking" && <GuitarKing openModal={openModal} setOpenModal={setOpenModal} /> }
         {currentProject.id === "my-spotify-clone" && <SpotifyClone openModal={openModal} setOpenModal={setOpenModal} /> }

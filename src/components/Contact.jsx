@@ -65,17 +65,20 @@ function Contact({ myRef, scrollYGlobal, educationRef }) {
   const contactForm = useRef();
   const footer1Ref = useRef();
   const footer2Ref = useRef();
+  const canvasRef = useRef();
 
   //SCROLLING
     useEffect(() => {
       const divElement = myRef.current;
       const halfwayPoint = divElement.scrollHeight / 5;
-      if (Math.round(scrollYGlobal) > (3001)) {
+      if (Math.round(scrollYGlobal) > (3100)) { //3001
         setShowComponent(true);
       }
-      if (Math.round(scrollYGlobal) <= (3001)) {
+      if (Math.round(scrollYGlobal) <= (3100)) {
+        setShowOnce(false);
         setShowComponent(false);
       }
+      console.log(scrollYGlobal)
   }, [scrollYGlobal])
 
 
@@ -123,7 +126,7 @@ function Contact({ myRef, scrollYGlobal, educationRef }) {
       {showComponent && 
       (
        <>
-        <Canvas camera={{fov: 95, far: 1000, near: 0.1, 
+        <Canvas ref={canvasRef} camera={{fov: 95, far: 1000, near: 0.1, 
           position: [0, 150, 35]}} 
           gl={{ antialias: false }} // Disable antialiasing for performance
           pixelRatio={0.0} // Set the pixel ratio to half (adjust as needed)
@@ -141,7 +144,7 @@ function Contact({ myRef, scrollYGlobal, educationRef }) {
               <Sky />
               <Environment preset="night" />
               <Church />
-              <CameraConsole showComponent={showComponent} showOnce={showOnce} setShowOnce={setShowOnce} />
+              <CameraConsole showComponent={showComponent} />
             </Suspense>
         </Canvas>
         </>
@@ -151,22 +154,12 @@ function Contact({ myRef, scrollYGlobal, educationRef }) {
   )
 }
 
-function CameraConsole({ showComponent, setShowOnce, showOnce }) {
+function CameraConsole({ showComponent }) {
   let targetPosition = new Vector3(0, 110, 0);
   const { camera } = useThree();
 
-  useEffect(() => {
-    if (showComponent === true) {
-      if (showOnce) {
-        // camera.position.set(0, 8, 35);
-        // camera.lookAt(new Vector3(0, 30, 0));
-      }
-    } 
-  }, [showComponent])
-
   useFrame((state) => {
     state.camera.lookAt(targetPosition);
-    if (showOnce) return;
     gsap.to(targetPosition, {
       x: 0,
       y: 30,
