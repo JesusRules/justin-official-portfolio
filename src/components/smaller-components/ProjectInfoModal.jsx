@@ -25,6 +25,7 @@ import MusicCovers from './projects-modal/MusicCovers';
 import MySongs from './projects-modal/MySongs';
 import GreyRockAdventureTours from './projects-modal/GreyRockAdventureTours';
 import SpiritVideo from './projects-modal/SpiritVideo';
+import MiniDoom2 from './projects-modal/MiniDoom2';
 
 const ProjectInfoContainer = styled.div`
   position: relative;
@@ -207,6 +208,7 @@ function ProjectInfoModal(props) {
         
         {currentProject.id === "greyrock-video" && <GreyRockAdventureTours openModal={openModal} setOpenModal={setOpenModal} /> }
         {currentProject.id === "spirit-video" && <SpiritVideo openModal={openModal} setOpenModal={setOpenModal} /> }
+        {currentProject.id === "minidoom2-video" && <MiniDoom2 openModal={openModal} setOpenModal={setOpenModal} /> }
     </ProjectInfoModalDiv>
     {/* </ProjectInfoContainer> */}
     </>
