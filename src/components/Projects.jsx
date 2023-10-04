@@ -476,6 +476,8 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
 
         <SpeechBubble ref={speechBubbleRef} src="/img/projects/misc/speech-bubble-portfolio.png"/>
         
+        {showModels && (
+          <>
         <Canvas camera={{fov: 58, far: 1000, near: 0.1, position: [0, 1.75, 5]}}
                   style={{  zIndex: 116,
                             background: 'lightblue', 
@@ -513,8 +515,7 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
                         setStartUpCam={setStartUpCam}
                         />
                         <Skybox /> 
-                  {showModels && (
-                    <>
+                    {/* WAS HERE */}
                     <OrbitControls
                       enablePan={false}
                       enableDamping
@@ -548,11 +549,11 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
                       </EffectComposer>
                       </>
                     )}
-                    </>
-                  )}
-                  
+                  {/* WAS HERE */}
                     </Suspense>
               </Canvas>
+                    </>
+                  )}
               </>
           )}
     </Container>
