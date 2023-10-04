@@ -20,6 +20,7 @@ const ContactContent = styled.div`
     width: 100%;
     max-width: 500px;
 
+    /* background: rgb(255, 255, 255, 0.15); //0.15 */
     background: rgb(255, 255, 255, 0.15); //0.15
     backdrop-filter: blur(25px);
     border: 1px solid rgb(255, 255, 255);

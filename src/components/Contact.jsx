@@ -60,7 +60,7 @@ const SVGContent = styled.div`
 
 function Contact({ myRef, scrollYGlobal, educationRef }) {
   const [showComponent, setShowComponent] = useState(false);
-  const [showOnce, setShowOnce] = useState(false);
+  const [ticked, setTicked] = useState(false);
 
   const contactForm = useRef();
   const footer1Ref = useRef();
@@ -75,8 +75,10 @@ function Contact({ myRef, scrollYGlobal, educationRef }) {
         setShowComponent(true);
       }
       if (Math.round(scrollYGlobal) <= (3100)) {
-        setShowOnce(false);
-        setShowComponent(false);
+        // setShowComponent(false);
+        if (showComponent) {
+          setTicked(true);
+        }
       }
   }, [scrollYGlobal])
 
@@ -122,13 +124,13 @@ function Contact({ myRef, scrollYGlobal, educationRef }) {
       </SVGContent>
 
       <ContactForm contactForm={contactForm} />
-      {showComponent && 
+      {(showComponent && !ticked) && 
       (
        <>
         <Canvas ref={canvasRef} camera={{fov: 95, far: 1000, near: 0.1, 
           position: [0, 150, 35]}} 
           gl={{ antialias: false }} // Disable antialiasing for performance
-          pixelRatio={0.0} // Set the pixel ratio to half (adjust as needed)
+          pixelRatio={0.5} // Set the pixel ratio to half (adjust as needed)
           style={{width: '100%', height: '100%', backgroundColor: '#c8f9ff', 
           backgroundImage: 'url(/img/contact/contact-background-blur.jpg)' ,
           backgroundSize: 'cover',
@@ -148,6 +150,16 @@ function Contact({ myRef, scrollYGlobal, educationRef }) {
         </Canvas>
         </>
       )}
+      {(showComponent && ticked) && 
+      (
+        <>
+        <div style={{width: '100vw', height: '100vh', 
+              backgroundImage: 'url(/img/contact/image-done.jpg)',
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'center center',
+              backgroundSize: 'cover'}}/>
+        </>
+      )}
     </Container>
     </>
   )
@@ -164,9 +176,9 @@ function CameraConsole({ showComponent }) {
       y: 30,
       z: 0,
       duration: 2,
-      // onComplete: () => {
-      //   setShowOnce(true);
-      // }
+      onComplete: () => {
+        // setShowOnce2(true);
+      }
     });
     gsap.to(camera.position, {
         x: 0,
