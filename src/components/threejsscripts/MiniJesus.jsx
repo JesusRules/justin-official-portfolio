@@ -238,7 +238,7 @@ export function MiniJesus(props) {
   useFrame((state, delta ) => {
     let angle;
 
-    const distance = 25.2; // Distance from the camera // 14.5
+    const distance = 25.2; // Distance from the camera // 25.2
     playerPositionNew.copy(state.camera.position);
     state.camera.getWorldDirection(playerPositionNew);
     playerPositionNew.multiplyScalar(distance).add(state.camera.position);
@@ -337,8 +337,8 @@ export function MiniJesus(props) {
       } 
       else 
       {
-        state.camera.position.x = cameraPosition[0] * 1.0007;
-        state.camera.position.z = cameraPosition[2] * 1.0007;
+        state.camera.position.x = cameraPosition[0] * 1.0000; //1.0007
+        state.camera.position.z = cameraPosition[2] * 1.0000; //1.0007
       }
 
       setStartUpCam(true);
