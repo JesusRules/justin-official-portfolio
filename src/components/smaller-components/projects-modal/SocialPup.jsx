@@ -67,12 +67,12 @@ function SocialPup({ openModal, setOpenModal }) {
   useEffect(() => {
     if (initialized) return;
     if (openModal) {
-      setTimeout(() => {
-        if (swiperRef.current) swiperRef.current.style.display = 'none';
-        setTimeout(() => {
-          if (swiperRef.current) swiperRef.current.style.display = 'block';
-        }, 100)
-      }, 100)
+      // setTimeout(() => {
+      //   if (swiperRef.current) swiperRef.current.style.display = 'none';
+      //   setTimeout(() => {
+      //     if (swiperRef.current) swiperRef.current.style.display = 'block';
+      //   }, 100)
+      // }, 100)
       setInitialized(true);
     }
   }, [openModal]);
