@@ -107,6 +107,7 @@ export function MiniJesus(props) {
     if (startX !== null) {
       const currentX = event.touches[0].clientX;
       const deltaX = currentX - startX;
+      setIsMoving(true);
       if (deltaX > 0) {
         setMoveDir('left');
         setTargetRotation(-4.71239);
@@ -120,6 +121,7 @@ export function MiniJesus(props) {
 
   const handleTouchEnd = () => {
     startX = null;
+    setIsMoving(false);
     setSwipeDirection(null);
   };
   
@@ -306,7 +308,7 @@ export function MiniJesus(props) {
     touchObjects.forEach(sphere => {
       const distance = playerRef.current.position.distanceTo(new Vector3(sphere.props.position[0], sphere.props.position[1], sphere.props.position[2])); //sphere.position, sphere.content
       // const distance = playerPosition.distanceTo(sphere); //sphere.position, sphere.content
-      if (distance < 4) {
+      if (distance < 2) { //4
         setCurrentProject(sphere.props.content);
         if (sphere.props.content.name !== "") setWithinProject(true);
         isTouchingAnySphere2 = true;
