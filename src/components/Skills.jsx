@@ -61,8 +61,8 @@ const CrucifixImage = styled.img`
     position: absolute;
     @media only screen and (max-width: 700px) {
         margin: 0 auto;
-        left: -92%;
-        right: -7%;
+        left: -94%;
+        right: -5%;
     }
 `
 
