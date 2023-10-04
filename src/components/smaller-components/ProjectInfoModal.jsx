@@ -201,14 +201,10 @@ function ProjectInfoModal(props) {
         {currentProject.id === "my-weather-app" && <WeatherApp openModal={openModal} setOpenModal={setOpenModal} /> }
         {currentProject.id === "other-projects" && <OtherProjects openModal={openModal} setOpenModal={setOpenModal} /> }
         
-        {currentProject.id === "church-party" && <ChurchParty openModal={openModal} setOpenModal={setOpenModal} /> }
-        {currentProject.id === "saviour-tff" && <SaviourTFF openModal={openModal} setOpenModal={setOpenModal} /> }
-        {currentProject.id === "ultimate-jesus-game" && <UltimateJesusGame openModal={openModal} setOpenModal={setOpenModal} /> }
-        {currentProject.id === "mama-mia" && <MamaMia openModal={openModal} setOpenModal={setOpenModal} /> }
-        {currentProject.id === "stellar-fever" && <StellarFever openModal={openModal} setOpenModal={setOpenModal} /> }
-        {currentProject.id === "graveyard-smash" && <GraveyardSmash openModal={openModal} setOpenModal={setOpenModal} /> }
-        {currentProject.id === "stjoes-games" && <StJoesGames openModal={openModal} setOpenModal={setOpenModal} /> }
-        {currentProject.id === "saysike-project" && <SaySike openModal={openModal} setOpenModal={setOpenModal} /> }
+        {currentProject.id === "greyrock-video" && <GreyRockAdventureTours openModal={openModal} setOpenModal={setOpenModal} /> }
+        {currentProject.id === "spirit-video" && <SpiritVideo openModal={openModal} setOpenModal={setOpenModal} /> }
+        {currentProject.id === "minidoom2-video" && <MiniDoom2 openModal={openModal} setOpenModal={setOpenModal} /> }
+        {currentProject.id === "other-videos" && <OtherVideos openModal={openModal} setOpenModal={setOpenModal} hideVideos={hideVideos} /> }
         
         {currentProject.id === "guitarking" && <GuitarKing openModal={openModal} setOpenModal={setOpenModal} /> }
         {currentProject.id === "my-spotify-clone" && <SpotifyClone openModal={openModal} setOpenModal={setOpenModal} /> }
@@ -217,10 +213,14 @@ function ProjectInfoModal(props) {
         {currentProject.id === "music-covers" && <MusicCovers openModal={openModal} setOpenModal={setOpenModal} hideVideos={hideVideos} /> }
         {currentProject.id === "my-songs" && <MySongs openModal={openModal} setOpenModal={setOpenModal} hideVideos={hideVideos} /> }
         
-        {currentProject.id === "greyrock-video" && <GreyRockAdventureTours openModal={openModal} setOpenModal={setOpenModal} /> }
-        {currentProject.id === "spirit-video" && <SpiritVideo openModal={openModal} setOpenModal={setOpenModal} /> }
-        {currentProject.id === "minidoom2-video" && <MiniDoom2 openModal={openModal} setOpenModal={setOpenModal} /> }
-        {currentProject.id === "other-videos" && <OtherVideos openModal={openModal} setOpenModal={setOpenModal} hideVideos={hideVideos} /> }
+        {currentProject.id === "church-party" && <ChurchParty openModal={openModal} setOpenModal={setOpenModal} /> }
+        {currentProject.id === "saviour-tff" && <SaviourTFF openModal={openModal} setOpenModal={setOpenModal} /> }
+        {currentProject.id === "ultimate-jesus-game" && <UltimateJesusGame openModal={openModal} setOpenModal={setOpenModal} /> }
+        {currentProject.id === "mama-mia" && <MamaMia openModal={openModal} setOpenModal={setOpenModal} /> }
+        {currentProject.id === "stellar-fever" && <StellarFever openModal={openModal} setOpenModal={setOpenModal} /> }
+        {currentProject.id === "graveyard-smash" && <GraveyardSmash openModal={openModal} setOpenModal={setOpenModal} /> }
+        {currentProject.id === "stjoes-games" && <StJoesGames openModal={openModal} setOpenModal={setOpenModal} /> }
+        {currentProject.id === "saysike-project" && <SaySike openModal={openModal} setOpenModal={setOpenModal} /> }
     </ProjectInfoModalDiv>
     {/* </ProjectInfoContainer> */}
     </>
