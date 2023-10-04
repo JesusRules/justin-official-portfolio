@@ -78,7 +78,6 @@ function Contact({ myRef, scrollYGlobal, educationRef }) {
         setShowOnce(false);
         setShowComponent(false);
       }
-      console.log(scrollYGlobal)
   }, [scrollYGlobal])
 
 

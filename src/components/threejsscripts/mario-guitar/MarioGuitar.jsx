@@ -7,10 +7,10 @@ Files: MiniJesusSwing.gltf [8.04MB] > MiniJesusSwing-transformed.glb [352.22KB] 
 import React, { useRef, useEffect, Suspense  } from 'react'
 import { useGLTF, Html, useProgress } from '@react-three/drei'
 import MarioModel from "./MarioModel";
-import Guitar from './Guitar';
+import GuitarModel from './GuitarModel';
 import { styled } from 'styled-components'
 
-export default function Mario(props) {
+export default function MarioGuitar(props) {
   const group = useRef()
   const child1 = useRef();
   const child2 = useRef();
@@ -22,7 +22,6 @@ export default function Mario(props) {
   const handleParentFunction = () => {
     // Do something in the parent component
     console.log("Function called from the parent component!");
-
     child1.current.playAnim();
     child2.current.playAnim();
   };
@@ -31,10 +30,10 @@ export default function Mario(props) {
   return (
     <group ref={group} {...props} dispose={null} onClick={(e) => handleParentFunction()}>
         <MarioModel ref={child1} callParentFunction={handleParentFunction}  />
-        <Guitar ref={child2} callParentFunction={handleParentFunction} />
+        <GuitarModel ref={child2} callParentFunction={handleParentFunction} />
     </group>
   )
 }
 
-useGLTF.preload('/Models/Mario/Guitar-transformed.glb')
+// useGLTF.preload('/models/mario-guitar/Guitar-transformed.glb')
 // useGLTF.preload('/MiniJesusSwing-transformed.glb')

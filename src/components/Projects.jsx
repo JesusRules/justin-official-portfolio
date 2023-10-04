@@ -12,6 +12,7 @@ import Skybox from './threejsscripts/Skybox';
 import { Bloom, DepthOfField, EffectComposer, Noise, Vignette } from '@react-three/postprocessing'
 import { Water } from 'three-stdlib';
 import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader.js'
+import MarioGuitar from './threejsscripts/mario-guitar/MarioGuitar';
 
 extend({ Water })
 
@@ -525,6 +526,8 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
                       target={[0, 0, 0]} // Lock the camera to the center
                       />
                     
+                    <MarioGuitar rotation={[0,-1,0]} position={[-116.586, 0, 82]} scale={1.2} />
+                    
                     <Environment map={envMap} />
                     <Ocean />
                     {/* <Skybox />  */}
@@ -540,6 +543,7 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
                     {qualityCheck && (
                       <>
                       <EffectComposer>
+                        {/* 3.3 */}
                       <Bloom luminanceThreshold={0} luminanceSmoothing={3.3} height={300} />
                       </EffectComposer>
                       </>

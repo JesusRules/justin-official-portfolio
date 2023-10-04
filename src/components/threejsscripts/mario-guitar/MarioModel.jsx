@@ -14,7 +14,7 @@ import { GLTFLoader } from 'three-stdlib';
 
 const MarioModel = forwardRef((props, ref) => {
   const group = useRef()
-  const { nodes, materials, animations } = useGLTF('/Models/Mario/MarioPlaying-transformed.glb', null, null, (error) => {
+  const { nodes, materials, animations } = useGLTF('/models/mario-guitar/MarioPlaying-transformed.glb', null, null, (error) => {
     console.error('Error loading model:', error);
   });
   const { actions, names, mixer } = useAnimations(animations, group)
@@ -58,10 +58,10 @@ const MarioModel = forwardRef((props, ref) => {
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Scene">
-        <group name="Armature001" rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
+        <group name="Armature001" rotation={[Math.PI / 2, 0, 0]} scale={1.00}>
           <primitive object={nodes.Hip_J} />
         </group>
-        <group name="mario_model_Good" rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
+        <group name="mario_model_Good" rotation={[Math.PI / 2, 0, 0]} scale={1.00}>
           <skinnedMesh name="Mesh014" geometry={nodes.Mesh014.geometry} material={materials.PaletteMaterial001} skeleton={nodes.Mesh014.skeleton} />
           <skinnedMesh name="Mesh014_1" geometry={nodes.Mesh014_1.geometry} material={materials['EyeLambert.009']} skeleton={nodes.Mesh014_1.skeleton} />
           <skinnedMesh name="Mesh014_2" geometry={nodes.Mesh014_2.geometry} material={materials.PaletteMaterial001} skeleton={nodes.Mesh014_2.skeleton} />
@@ -85,6 +85,6 @@ const Loading = styled.div`
   z-index: 4000;
 `
 
-useGLTF.preload('/Models/Mario/MarioPlaying-transformed.glb')
+useGLTF.preload('/models/mario-guitar/MarioPlaying-transformed.glb')
 
 export default MarioModel;

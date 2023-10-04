@@ -8,9 +8,9 @@ import React, { useRef, useEffect, forwardRef, useImperativeHandle } from 'react
 import { useGLTF, useAnimations } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 
-const Guitar = forwardRef((props, ref) => {
+const GuitarModel = forwardRef((props, ref) => {
   const group = useRef()
-  const { nodes, materials, animations } = useGLTF('/Models/Mario/Guitar-transformed.glb')
+  const { nodes, materials, animations } = useGLTF('/models/mario-guitar/Guitar-transformed.glb')
   const { actions, names } = useAnimations(animations, group)
 
   let time = 0;
@@ -41,7 +41,7 @@ const Guitar = forwardRef((props, ref) => {
   }));
 
   return (
-    <group position={[0, 0, 0.001]} ref={group} {...props} dispose={null}>
+    <group scale={100} position={[0, 0, 0.05]} ref={group} {...props} dispose={null}>
       <group name="Scene">
         <group name="Les_Paul002" position={[-0.032, 0.022, -0.007]} rotation={[1.895, -1.183, 0.401]} scale={0}>
           <mesh name="Mesh019" geometry={nodes.Mesh019.geometry} material={materials.PaletteMaterial001} />
@@ -61,6 +61,6 @@ const Guitar = forwardRef((props, ref) => {
   )
 })
 
-useGLTF.preload('/Models/Mario/Guitar-transformed.glb')
+useGLTF.preload('/models/mario-guitar/Guitar-transformed.glb')
 
-export default Guitar;
+export default GuitarModel;

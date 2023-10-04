@@ -52,7 +52,7 @@ export function MiniJesus(props) {
 
     actions['FirstPlaceWin'].loop = THREE.LoopOnce;
     actions['Win'].loop = THREE.LoopOnce;
-    console.log("ANIMATIONS", animations);
+    // console.log("ANIMATIONS", animations);
 
     actions['FirstPlaceWin'].clampWhenFinished = true;
     actions['Win'].clampWhenFinished = true;
@@ -201,7 +201,6 @@ export function MiniJesus(props) {
 
   
   useEffect(() => {
-    console.log('ACTIONS', actions);
     if (actions[names[animIndex]]) {
       actions[names[animIndex]].reset().fadeIn(0.5).play();
     }
@@ -385,8 +384,7 @@ export function MiniJesus(props) {
 
   const clickedJesus = () => {
     // if (keyDown) return;
-    console.log('OBJECT 2', touchObjects);
-
+    console.log(playerRef.current.position);
     setAnimIndex(7); //2 alt
     if (moveDir === 'left') setTargetRotation(-3.14159);
       if (moveDir === 'right') setTargetRotation(-3.14159);
