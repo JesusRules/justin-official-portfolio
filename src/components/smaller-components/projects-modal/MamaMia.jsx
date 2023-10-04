@@ -81,11 +81,11 @@ function MamaMia({ openModal, setOpenModal }) {
       if (initialized) return;
       if (openModal) {
         setTimeout(() => {
-          if (swiperRef.current) swiperRef.current.style.display = 'none';
+          swiperRef.current.style.width = '10%';
           setTimeout(() => {
-            if (swiperRef.current) swiperRef.current.style.display = 'block';
-          }, 320)
-        }, 320)
+            swiperRef.current.style.width = '100%';
+          }, 10)
+        }, 10)
         setInitialized(true);
       }
     }, [openModal]);

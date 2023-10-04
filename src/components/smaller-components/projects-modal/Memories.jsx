@@ -58,10 +58,8 @@ function Memories({ openModal, setOpenModal }) {
     if (openModal) {
       setTimeout(() => {
         swiperRef.current.style.width = '10%';
-        // if (swiperRef.current) swiperRef.current.style.display = 'none';
         setTimeout(() => {
           swiperRef.current.style.width = '100%';
-          // if (swiperRef.current) swiperRef.current.style.display = 'block';
         }, 10)
       }, 10)
       setInitialized(true);
