@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { styled, keyframes  } from 'styled-components'
 import gsap from 'gsap';
-import { HorizontalImageLoopProjects } from '../../../utils';
+// import { HorizontalImageLoopProjects } from '../../../utils';
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import 'swiper/css';
