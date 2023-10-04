@@ -47,6 +47,24 @@ const Subtitle = styled.h2`
     font-weight: 800;
 `;
 
+const CrucifixDiv = styled.div`
+   position: relative;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1000px;
+    bottom: 2.4rem;
+    background-color: green;
+    @media only screen and (max-width: 700px) {
+    }
+    `
+const CrucifixImage = styled.img`
+    position: absolute;
+    @media only screen and (max-width: 700px) {
+        margin: 0 auto;
+        left: -92%;
+        right: -7%;
+    }
+`
 
 function Skills({ myRef, scrollYGlobal }) {
     let tl = gsap.timeline();
@@ -65,7 +83,11 @@ function Skills({ myRef, scrollYGlobal }) {
 
   return (
     <Container id="skills" className="trigger" ref={myRef}>
-      <img style={{filter: 'blur(0px)', position: 'absolute'}} src="/img/jesus-effect/image-2.png"/>
+        
+        <CrucifixDiv>
+            <CrucifixImage style={{filter: 'blur(0px)', position: 'absolute'}} src="/img/jesus-effect/image-2-short.png"/>
+        </CrucifixDiv>
+
       <Container2>
       <Title>All the technologies I know!</Title>
     

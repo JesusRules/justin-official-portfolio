@@ -142,7 +142,7 @@ function SaySike({ openModal, setOpenModal, hideVideos }) {
             <p>This was a game prototype where Aliens need to destroy all Humans before the timer runs out.</p>
             <p>Aliens are disguised as humans.</p>
             <iframe style={{margin: '.5rem 0 .5rem 0',width: "100%", maxWidth: '700px', height: 415 }} src="https://www.youtube.com/embed/kVHVqMXbQus?si=EFOD-mKomQK1N-zV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-            <p>This project was never completed.</p>
+            <p>There is currently no playable demo available.</p>
       </div>
       </div>
       <p className='bottom-madewith' style={{textAlign: 'left', color: 'blue', margin: '1rem', fontStyle: 'italic', fontWeight: 400}}>Project was made using <b>Unreal Engine 4.</b></p>

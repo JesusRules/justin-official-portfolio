@@ -98,8 +98,6 @@ const Right = styled.div`
       justify-content: center;
     }
   }
-
-
   //-webkit-user-select: none; /* Safari */
   //-ms-user-select: none; /* IE 10 and IE 11 */
   //user-select: none; /* Standard syntax */
@@ -108,6 +106,24 @@ const Right = styled.div`
     align-items: center;
     text-align: center;
 } */
+`
+
+const CrucifixDiv = styled.div`
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 950px;
+  /* background-color: green; */
+`
+const CrucifixImage = styled.img`
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  margin: auto 0;
+  @media only screen and (max-width: 700px) {
+    right: -2.8rem;
+  }
 `
 
 
@@ -166,7 +182,11 @@ function Who({ myRef }) {
   return (
     <Section ref={myRef}>
       <Container>
-        <img style={{filter: 'blur(7px)'}} src="/img/jesus-effect/image-1.png"/>
+        
+        <CrucifixDiv>
+          <CrucifixImage style={{filter: 'blur(7px)'}} src="/img/jesus-effect/image-1-short.png"/>
+        </CrucifixDiv>
+
         <Left>
             <Canvas camera={{fov: 25, position: [0, 0, 6]}}>
                 <JustinHead />
