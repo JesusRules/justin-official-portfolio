@@ -15,10 +15,12 @@ const ContactContent = styled.div`
     position: absolute;
     margin: auto;
     left: 50%;
-    top: 50%;
+    top: 50%; //50
     transform: translate(-50%, -50%);
     width: 100%;
     max-width: 500px;
+    height: 80vh; // WORKS FOR MODAL SCROLLING LIKE BODY //72
+
 
     /* background: rgb(255, 255, 255, 0.15); //0.15 */
     background: rgb(255, 255, 255, 0.15); //0.15
@@ -131,6 +133,12 @@ const ContactContent = styled.div`
         .last-name {
             width: 90%;
         } */
+    }
+    @media only screen and (max-width: 435px) {
+        left: 49.25%;
+    }
+    @media only screen and (max-width: 325px) {
+        left: 48.25%;
     }
 `;
 
