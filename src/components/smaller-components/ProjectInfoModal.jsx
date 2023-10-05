@@ -98,7 +98,7 @@ const GoToTopButton = styled.button`
   z-index: 100000;
   position: absolute;
   /* bottom: 0; */
-  bottom: 3.5rem;
+  bottom: 3.9rem;
   display: flex;
   right: 0;
   justify-content: center;
