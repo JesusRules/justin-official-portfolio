@@ -8,8 +8,8 @@ const Container = styled.div`
     height: 100vh;
     scroll-snap-align: center;
     overflow: hidden;
-    background-image: linear-gradient(rgba(255, 255, 255, 0.0), rgba(255, 255, 255, 0.6)),
-                  url("/img/hero-banner/blue-sky-2.jpg");
+    /* background-image: linear-gradient(rgba(255, 255, 255, 0.0), rgba(255, 255, 255, 0.6)),
+                  url("/img/hero-banner/blue-sky-2.jpg"); */
     /* background-image: url("/img/hero-banner/Sky.png"); */
     background-repeat: no-repeat;
     background-size: cover;
@@ -774,7 +774,7 @@ function Hero({ scrollYGlobal, clickToContact }) {
     }
 
     useEffect(() => {
-        if (loadedImageCount === 20) { //20 images
+        if (loadedImageCount === 21) { //20 images
             setIsLoaded(true);
             console.log('All images have loaded successfully.');
             gsap.to(loadingTxtRef.current, {
@@ -826,7 +826,7 @@ function Hero({ scrollYGlobal, clickToContact }) {
     </div> */}
 
       <Sky ref={skyRef} src="/img/hero-banner/Sky.png" data-speedx="0.33" data-speedy="0.33" data-speedz="0" data-rotation="0" className='parallax bg-img'
-            draggable="false"/>
+            draggable="false" alt='Sky' onLoad={(e) => imageLoaded(e.target)} onError={(e) => imageError(e)}/>
     
       {/* <Dove src="/img/Dove.png" className='parallax dove'/> */}
       {/* <Dove2 src="/img/Dove.gif" className='parallax dove'/> */}
