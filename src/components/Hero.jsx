@@ -350,8 +350,8 @@ const LoadingText = styled.h1`
     font-style: normal;
     top: 0;
     bottom: 0;
-    opacity: 0;
-    transition: opacity 1s; 
+    opacity: 1;
+    /* transition: opacity 1s;  */
     @media only screen and (max-width: 700px) {
     }
 `
@@ -709,11 +709,11 @@ function Hero({ scrollYGlobal, clickToContact }) {
             setHaunterPos(window.getComputedStyle(haunterRef.current).getPropertyValue('left'));
             setBooPos(window.getComputedStyle(booRef.current).getPropertyValue('left'));
             // setContactBtnPos(window.getComputedStyle(contactBtnRef.current).getPropertyValue('bottom'));
-            setTimeout(() => {
-                if (!isLoaded) {
-                    loadingTxtRef.current.style.opacity = "1";
-                }
-            }, 1320)
+            // setTimeout(() => {
+            //     if (!isLoaded) {
+            //         loadingTxtRef.current.style.opacity = "1";
+            //     }
+            // }, 1320)
         }, [])
         
         useEffect(() => {
