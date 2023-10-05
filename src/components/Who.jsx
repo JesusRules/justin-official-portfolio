@@ -50,7 +50,11 @@ const Left = styled.div`
   gap: 10px;
   width: 100%;
   height: 100%;
-  left: -17rem;
+  /* left: -17rem; */
+  left: -14.5rem;
+  @media only screen and (max-width: 925px) {
+    left: -12rem;
+  }
   @media only screen and (max-width: 700px) {
     display: none;
   }

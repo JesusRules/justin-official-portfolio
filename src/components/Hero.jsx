@@ -364,7 +364,8 @@ function Hero({ scrollYGlobal, clickToContact }) {
     
     //TRANSFROM BEGINNING
     const durationLoad = 2.5;
-    const startDelay = 1;
+    // const [startDelay, setStartDelay] = useState(1); //1
+    let startDelay = 1;
     const easeLoad = "power3.out";
 
     // ALL OBJECT REFS
@@ -441,7 +442,12 @@ function Hero({ scrollYGlobal, clickToContact }) {
 
     useEffect(() => {
         navElement = document.querySelector('.nav');
-
+        if (window.innerWidth <= 768) {
+            startDelay = 0;
+        } else {
+            startDelay = 0.75;
+        }
+        
         scrollTo(0, 0);
         update(0);
         gsapBeginning();
@@ -709,11 +715,6 @@ function Hero({ scrollYGlobal, clickToContact }) {
             setHaunterPos(window.getComputedStyle(haunterRef.current).getPropertyValue('left'));
             setBooPos(window.getComputedStyle(booRef.current).getPropertyValue('left'));
             // setContactBtnPos(window.getComputedStyle(contactBtnRef.current).getPropertyValue('bottom'));
-            // setTimeout(() => {
-            //     if (!isLoaded) {
-            //         loadingTxtRef.current.style.opacity = "1";
-            //     }
-            // }, 1320)
         }, [])
         
         useEffect(() => {
@@ -752,48 +753,42 @@ function Hero({ scrollYGlobal, clickToContact }) {
             jesusFlagRef.current.style.left = "";
             haunterRef.current.style.left = "";
             booRef.current.style.left = "";
-            // contactBtnRef.current.style.bottom = "";
         }
 
         setScrollY(currentScrollY);
-        // mountain_2.style.left = parseFloat(mountain2Pos) + value * 1 + 'px';
-        // mountain_3.style.left = parseFloat(mountain3Pos) + value * -0.75 + 'px';
       }
 
-    // Function to track image loading
-    function imageLoaded(img) {
-        setLoadedImageCount((prevCount) => prevCount + 1);
-        console.log(`${img.alt} loaded successfully.`);
-        checkAllImagesLoaded();
-    }
-
-    // Function to track image loading errors
-    function imageError(img) {
-        console.error(`Error loading ${img.alt}.`);
-        checkAllImagesLoaded();
-    }
-
-    useEffect(() => {
-        if (loadedImageCount === 21) { //20 images
-            setIsLoaded(true);
-            console.log('All images have loaded successfully.');
-            gsap.to(loadingTxtRef.current, {
-                duration: 0.5,
-                opacity: 0,
-                ease: easeLoad,
-                onComplete: () => {
-                    loadingTxtRef.current.style.display = "none";
-                }
-            }, 0);
-        }
-    }, [loadedImageCount])
+      // LOADING STUFF
+    //   function imageLoaded(img) {
+    //     setLoadedImageCount((prevCount) => prevCount + 1);
+    //     console.log(`${img.alt} loaded successfully.`);
+    //     checkAllImagesLoaded();
+    // }
+    // function imageError(img) {
+    //     console.error(`Error loading ${img.alt}.`);
+    //     checkAllImagesLoaded();
+    // }
+    // useEffect(() => {
+    //     if (loadedImageCount === 21) { //20 images
+    //         setIsLoaded(true);
+    //         console.log('All images have loaded successfully.');
+    //         gsap.to(loadingTxtRef.current, {
+    //             duration: 0.5,
+    //             opacity: 0,
+    //             ease: easeLoad,
+    //             onComplete: () => {
+    //                 loadingTxtRef.current.style.display = "none";
+    //             }
+    //         }, 0);
+    //     }
+    // }, [loadedImageCount])
 
   return (
     <Container >
       {/* <Vignette /> */}
     <HeroText ref={subtitleTxtRef}>Passionate. Professional. Reliable.</HeroText>
     
-    <LoadingText ref={loadingTxtRef}>Loading...</LoadingText>
+    {/* <LoadingText ref={loadingTxtRef}>Loading...</LoadingText> */}
 
     <div ref={contactBtnRef} id="button-8" className="contact-btn-main" onClick={clickToContact}>
         <span className='borderLine'></span>
@@ -801,29 +796,6 @@ function Hero({ scrollYGlobal, clickToContact }) {
             <span className='contact'>Contact Me!</span>
         </div>
     </div>
-
-
-    {/* <div className="box2">
-        <span className='borderLine'></span>
-        <form>
-            <h2>Sign in</h2>
-            <div className='inputBox'>
-                <input type='text' required="required"/>
-                <span>Username</span>
-                <i></i>
-            </div>
-            <div className='inputBox'>
-                <input type='password' required="required"/>
-                <span>Password</span>
-                <i></i>
-            </div>
-            <div className="links">
-                <a href="#">Forgot Password</a>    
-                <a href="#">Signup</a>    
-            </div> 
-            <input type="submit" value="login" />
-        </form>
-    </div> */}
 
       <Sky ref={skyRef} src="/img/hero-banner/Sky.png" data-speedx="0.33" data-speedy="0.33" data-speedz="0" data-rotation="0" className='parallax bg-img'
             draggable="false" alt='Sky' onLoad={(e) => imageLoaded(e.target)} onError={(e) => imageError(e)}/>
@@ -877,7 +849,7 @@ function Hero({ scrollYGlobal, clickToContact }) {
       <Justin ref={justinRef} src="/img/hero-banner/Justin.png" data-speedx="0.01" data-speedy="0.02" data-speedz="0.53" data-rotation="0.2" className='parallax justin'
             draggable="false" alt='Justin' onLoad={(e) => imageLoaded(e.target)} onError={(e) => imageError(e)}/>
 
-      {/* <audio ref={marioAudioRef} controls style={{display: 'none'}}>
+      <audio ref={marioAudioRef} controls style={{display: 'none'}}>
           <source src="/audio/mario.mp3" type="audio/mpeg" />
       </audio>
       <audio ref={booAudioRef} controls style={{display: 'none'}}>
@@ -900,7 +872,7 @@ function Hero({ scrollYGlobal, clickToContact }) {
       </audio>
       <audio ref={pipeAudioRef} controls style={{display: 'none'}}>
           <source src="/audio/pipe.mp3" type="audio/mpeg" />
-      </audio> */}
+      </audio>
 
     </Container>
   )
