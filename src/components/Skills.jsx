@@ -374,6 +374,7 @@ const HorizontalImageLoopComponent1 = ({ _images, _isReversed }) => {
     let isMouseDown = false;
     let scrubStartAt = 0; // Store the time where scrubbing started
     const isReversed = _isReversed;
+    // const [isReversed, setIsReversed] = useState(_isReversed);
     let timeline;
 
     useEffect(() => {
@@ -401,7 +402,7 @@ const HorizontalImageLoopComponent1 = ({ _images, _isReversed }) => {
         timeline = horizontalLoop(items, config);
 
         setTimeout(() => {
-            if (isReversed) {
+            if (_isReversed) {
                 timeline.timeScale(-1)
             }
           }, "0");
@@ -453,14 +454,14 @@ const HorizontalImageLoopComponent1 = ({ _images, _isReversed }) => {
             // Calculate time relative to the start time and loop duration
             let time = scrubStartAt + cursorPosition * timeline.duration();
             // Allow the time to wrap around and loop
-            if (isReversed) {
+            if (_isReversed) {
                 if (time < 0) {
                     time = timeline.duration() + (time % timeline.duration());
                   } else if (time > timeline.duration()) {
                     time = time % timeline.duration();
                   }
             }
-            if (!isReversed) {
+            if (!_isReversed) {
                 if (time > 0) {
                     time = timeline.duration() + (time % timeline.duration());
                   } else if (time > timeline.duration()) {
@@ -475,7 +476,7 @@ const HorizontalImageLoopComponent1 = ({ _images, _isReversed }) => {
         isMouseDown = false;
         scrubStartAt = 0; // Reset the start time when scrubbing is done
         timeline.play()
-        if (isReversed) {
+        if (_isReversed) {
             timeline.timeScale(-1)
         }
     }
@@ -510,14 +511,14 @@ const HorizontalImageLoopComponent1 = ({ _images, _isReversed }) => {
             let time = scrubStartAt + cursorPosition * timeline.duration();
             
             // Allow the time to wrap around and loop
-            if (isReversed) {
+            if (_isReversed) {
                 if (time < 0) {
                     time = timeline.duration() + (time % timeline.duration());
                 } else if (time > timeline.duration()) {
                     time = time % timeline.duration();
                 }
             }
-            if (!isReversed) {
+            if (!_isReversed) {
                 if (time > 0) {
                     time = timeline.duration() + (time % timeline.duration());
                 } else if (time > timeline.duration()) {
@@ -533,7 +534,7 @@ const HorizontalImageLoopComponent1 = ({ _images, _isReversed }) => {
         isMouseDown = false;
         scrubStartAt = 0; // Reset the start time when scrubbing is done
         timeline.play();
-        if (isReversed) {
+        if (_isReversed) {
             timeline.timeScale(-1);
         }
     }
