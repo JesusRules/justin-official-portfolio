@@ -333,16 +333,27 @@ const Vignette = styled.div`
     pointer-events: none;
 `
 
-const ContactBtn = styled.button`
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-    width: 7rem;
-    height: 3rem;
-    bottom: 3rem;
-    z-index: 9999;
 
+const LoadingText = styled.h1`
+    width: 100%;
+    display: flex;
+    text-align: center;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    color: #520000;
+    z-index: 1000;
+    font-size: 29px;
+    font-family: "myriad-pro", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    top: 0;
+    bottom: 0;
+    opacity: 0;
+    transition: opacity 1s; 
+    @media only screen and (max-width: 700px) {
+    }
 `
 
 function Hero({ scrollYGlobal, clickToContact }) { 
@@ -408,6 +419,9 @@ function Hero({ scrollYGlobal, clickToContact }) {
     const jesusAudioRef = useRef();
 
     let navElement;
+    const loadingTxtRef = useRef();
+    const [loadedImageCount, setLoadedImageCount] = useState(0);
+    const [isLoaded, setIsLoaded] = useState(false);
 
     const update = (cursorPosition) => {
         parallex_el = document.querySelectorAll(".parallax");
@@ -695,9 +709,12 @@ function Hero({ scrollYGlobal, clickToContact }) {
             setHaunterPos(window.getComputedStyle(haunterRef.current).getPropertyValue('left'));
             setBooPos(window.getComputedStyle(booRef.current).getPropertyValue('left'));
             // setContactBtnPos(window.getComputedStyle(contactBtnRef.current).getPropertyValue('bottom'));
+            setTimeout(() => {
+                if (!isLoaded) {
+                    loadingTxtRef.current.style.opacity = "1";
+                }
+            }, 1320)
         }, [])
-
-
         
         useEffect(() => {
             handleScroll();
@@ -739,16 +756,44 @@ function Hero({ scrollYGlobal, clickToContact }) {
         }
 
         setScrollY(currentScrollY);
-
         // mountain_2.style.left = parseFloat(mountain2Pos) + value * 1 + 'px';
         // mountain_3.style.left = parseFloat(mountain3Pos) + value * -0.75 + 'px';
       }
 
+    // Function to track image loading
+    function imageLoaded(img) {
+        setLoadedImageCount((prevCount) => prevCount + 1);
+        console.log(`${img.alt} loaded successfully.`);
+        checkAllImagesLoaded();
+    }
+
+    // Function to track image loading errors
+    function imageError(img) {
+        console.error(`Error loading ${img.alt}.`);
+        checkAllImagesLoaded();
+    }
+
+    useEffect(() => {
+        if (loadedImageCount === 1) {
+            setIsLoaded(true);
+            console.log('All images have loaded successfully.');
+            gsap.to(loadingTxtRef.current, {
+                duration: 0.5,
+                opacity: 0,
+                ease: easeLoad,
+                onComplete: () => {
+                    loadingTxtRef.current.style.display = "none";
+                }
+            }, 0);
+        }
+    }, [loadedImageCount])
 
   return (
     <Container >
       {/* <Vignette /> */}
     <HeroText ref={subtitleTxtRef}>Passionate. Professional. Reliable.</HeroText>
+    
+    <LoadingText ref={loadingTxtRef}>Loading...</LoadingText>
 
     <div ref={contactBtnRef} id="button-8" className="contact-btn-main" onClick={clickToContact}>
         <span className='borderLine'></span>
@@ -756,6 +801,7 @@ function Hero({ scrollYGlobal, clickToContact }) {
             <span className='contact'>Contact Me!</span>
         </div>
     </div>
+
 
     {/* <div className="box2">
         <span className='borderLine'></span>
@@ -829,7 +875,7 @@ function Hero({ scrollYGlobal, clickToContact }) {
       <MiniJesus ref={miniJesusRef} src="/img/hero-banner/MiniJesus.png" data-speedx="0.03" data-speedy="0.03" data-speedz="0.45" data-rotation="0.175" className='parallax mini-jesus'
             draggable="false" onClick={() => jesusAudioRef.current.play()}/>
       <Justin ref={justinRef} src="/img/hero-banner/Justin.png" data-speedx="0.01" data-speedy="0.02" data-speedz="0.53" data-rotation="0.2" className='parallax justin'
-            draggable="false"/>
+            draggable="false" alt='Justin' onLoad={(e) => imageLoaded(e.target)} onError={(e) => imageError(e)}/>
 
       <audio ref={marioAudioRef} controls style={{display: 'none'}}>
           <source src="/audio/mario.mp3" type="audio/mpeg" />
