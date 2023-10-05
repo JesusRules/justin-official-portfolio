@@ -25,7 +25,10 @@ const Footer = styled.div`
   z-index: 10000;
   pointer-events: none;
   opacity: 0;
-  `;
+  @media only screen and (max-width: 426px) { //mobile 425 large
+    display: none;
+  }
+`;
 
 const SVGContent = styled.div`
     opacity: 0;
@@ -57,6 +60,9 @@ const SVGContent = styled.div`
       gap: 5px;
       align-items: center;
     }
+    @media only screen and (max-width: 426px) { //mobile 425 large
+    display: none;
+  }
 `;
 
 function Contact({ myRef, scrollYGlobal, educationRef }) {

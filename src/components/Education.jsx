@@ -103,9 +103,9 @@ const FloatingBox = styled.div`
   overflow-y: auto;
   overflow-x: hidden;
   @media only screen and (max-width: 700px) {
-    height: 88%;
+    height: 92%;
     border-radius: 10px;
-    bottom: 5.3rem;
+    bottom: 3rem;
     box-shadow: 7px 7px 7px rgba(0,0,0,.4);
   }
 `;
@@ -340,7 +340,7 @@ function Education({ myRef, scrollYGlobal }) {
         <img draggable={false} ref={backgroundImageRef} src="/img/education/algonquin-college.jpg" alt="Background Image" className="background-image" />
 
         <EducationPopup ref={educationPopupRef} >
-          <p ref={text1Ref} style={{opacity: 1}}>My Education</p>
+          <p ref={text1Ref} style={{opacity: 0}}>My Education</p>
           
             <div className='algonquin-at-name' ref={text2Ref} style={{display: 'flex', justifyContent: 'center', 
                               alignItems: 'end', gap: '1rem',
