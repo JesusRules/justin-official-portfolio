@@ -19,8 +19,7 @@ const ContactContent = styled.div`
     transform: translate(-50%, -50%);
     width: 100%;
     max-width: 500px;
-    height: 80vh; // WORKS FOR MODAL SCROLLING LIKE BODY //72
-
+    /* height: 80vh; // WORKS FOR MODAL SCROLLING LIKE BODY //72 */
 
     /* background: rgb(255, 255, 255, 0.15); //0.15 */
     background: rgb(255, 255, 255, 0.15); //0.15
@@ -117,6 +116,7 @@ const ContactContent = styled.div`
             right: 0;
             flex-direction: column;
         }
+        height: 80vh;
         /* grid-template-columns: 1fr;
         grid-template-areas: 
         'one'
@@ -382,8 +382,7 @@ function ContactForm({ contactForm }) {
                 {showErrorMessage && (
                     <RequiredFieldsText>Please fillout all required fields!</RequiredFieldsText>
                 )}
-
-                <div style={{gridArea: 'eight'}} className='inputBox send-btn'>
+                <div style={{gridArea: 'eight',}} className='inputBox send-btn'>
                     <input type="submit" value="Send" onClick={sendEmail} id="send-btn"/>
                 </div>
             </ContactContent>

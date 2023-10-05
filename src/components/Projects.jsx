@@ -161,6 +161,7 @@ const Arrows = styled.div`
   justify-content: center;
   gap: 5px;
   opacity: 0.82;
+  cursor: pointer;
   img {
     width: 2.3rem;
     height: 2.3rem;
@@ -443,8 +444,8 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
 
     <Container ref={myRef}>
       <Arrows>
-        <img onClick={handleUpArrow} id='arrow-top' src="/img/projects/misc/short-arrow.png"/>
-        <img onClick={handleDownArrow} id='arrow-bottom' src="/img/projects/misc/short-arrow.png"/>
+        <img draggable={false} onClick={handleUpArrow} id='arrow-top' src="/img/projects/misc/short-arrow.png"/>
+        <img draggable={false} onClick={handleDownArrow} id='arrow-bottom' src="/img/projects/misc/short-arrow.png"/>
       </Arrows>
       <QualityToggle>
       <label className="toggle-wrap">
