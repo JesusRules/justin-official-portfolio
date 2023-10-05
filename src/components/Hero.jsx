@@ -877,7 +877,7 @@ function Hero({ scrollYGlobal, clickToContact }) {
       <Justin ref={justinRef} src="/img/hero-banner/Justin.png" data-speedx="0.01" data-speedy="0.02" data-speedz="0.53" data-rotation="0.2" className='parallax justin'
             draggable="false" alt='Justin' onLoad={(e) => imageLoaded(e.target)} onError={(e) => imageError(e)}/>
 
-      <audio ref={marioAudioRef} controls style={{display: 'none'}}>
+      {/* <audio ref={marioAudioRef} controls style={{display: 'none'}}>
           <source src="/audio/mario.mp3" type="audio/mpeg" />
       </audio>
       <audio ref={booAudioRef} controls style={{display: 'none'}}>
@@ -900,7 +900,7 @@ function Hero({ scrollYGlobal, clickToContact }) {
       </audio>
       <audio ref={pipeAudioRef} controls style={{display: 'none'}}>
           <source src="/audio/pipe.mp3" type="audio/mpeg" />
-      </audio>
+      </audio> */}
 
     </Container>
   )

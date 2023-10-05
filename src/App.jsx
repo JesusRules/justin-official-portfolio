@@ -70,15 +70,15 @@ function App() {
 
   return (
     <Container onScroll={handleScroll} hideOverflow={hideOverflow}>
-      <NavBar scrollYGlobal={scrollY} 
+      {/* <NavBar scrollYGlobal={scrollY} 
               clickToWho={scrollToWho}
               clickToSkills={scrollToSkills}
               clickToPortfolio={scrollToPortfolio}
               clickToEducation={scrollToEducation}
               clickToContact={scrollToContact}
-              />
+              /> */}
       <Hero scrollYGlobal={scrollY} clickToContact={scrollToContact}/>
-      <Who myRef={whoRef}/>
+      {/* <Who myRef={whoRef}/>
       <Skills myRef={skillsRef} scrollYGlobal={scrollY}/>
       <Projects myRef={portfolioRef} scrollYGlobal={scrollY} 
                 scrollToSkills={scrollToSkills} 
@@ -88,7 +88,7 @@ function App() {
                   scrollToPortfolio={scrollToPortfolio}
                   scrollToContact={scrollToContact}
                   />
-      <Contact myRef={contactRef} educationRef={educationRef} scrollYGlobal={scrollY}/>
+      <Contact myRef={contactRef} educationRef={educationRef} scrollYGlobal={scrollY}/> */}
       {/* <WebgiViewer scrollYGlobal={scrollY}/> */}
     </Container>
   )
