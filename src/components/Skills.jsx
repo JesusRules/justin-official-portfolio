@@ -404,6 +404,7 @@ const HorizontalImageLoopComponent1 = ({ _images, _isReversed }) => {
         setTimeout(() => {
             if (_isReversed) {
                 timeline.timeScale(-1)
+                timeline.play();
             }
           }, "500");
         
@@ -437,7 +438,7 @@ const HorizontalImageLoopComponent1 = ({ _images, _isReversed }) => {
 
     const handleMouseDown = (event) => {
         isMouseDown = true;
-        timeline.play();
+        timeline.pause(); //works when .play()?
         // Calculate cursor position as a percentage of the slider width
         const cursorPosition = (event.clientX - sliderWrapper.current.getBoundingClientRect().left) / sliderWrapper.current.offsetWidth;
         // Store the time where scrubbing started
