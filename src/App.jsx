@@ -84,7 +84,10 @@ function App() {
                 scrollToSkills={scrollToSkills} 
                 scrollToEducation={scrollToEducation}
                 setHideOverflow={setHideOverflow} />
-      <Education myRef={educationRef} scrollYGlobal={scrollY} />
+      <Education myRef={educationRef} scrollYGlobal={scrollY} 
+                  scrollToPortfolio={scrollToPortfolio}
+                  scrollToContact={scrollToContact}
+                  />
       <Contact myRef={contactRef} educationRef={educationRef} scrollYGlobal={scrollY}/>
       {/* <WebgiViewer scrollYGlobal={scrollY}/> */}
     </Container>

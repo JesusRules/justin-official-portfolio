@@ -95,7 +95,7 @@ const FloatingBox = styled.div`
   left: 0;
   right: 0;
   margin: auto;
-  width: 95%;
+  width: 95%; //95
   max-width: 1100px;
   z-index: 30;
   opacity: 0;
@@ -104,6 +104,7 @@ const FloatingBox = styled.div`
   overflow-x: hidden;
   @media only screen and (max-width: 700px) {
     height: 92%;
+    width: 92%; //95
     border-radius: 10px;
     bottom: 3rem;
     box-shadow: 7px 7px 7px rgba(0,0,0,.4);
@@ -239,7 +240,31 @@ const DarkBG = styled.div`
     position: absolute;
 `
 
-function Education({ myRef, scrollYGlobal }) {
+const Arrows = styled.div`
+  position: absolute;
+  margin: 0 auto;
+  top: 0;
+  bottom: 0;
+  z-index: 1000;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  opacity: 0.82;
+  img {
+    width: 2.3rem;
+    height: 2.3rem;
+  }
+  #arrow-bottom {
+    transform: scaleY(-1);
+  }
+  @media only screen and (min-width: 700px) {
+    display: none;
+  }
+  `
+
+function Education({ myRef, scrollYGlobal, scrollToPortfolio, scrollToContact }) {
   const overlayRef = useRef(null);
   const backgroundImageRef = useRef(null);
   // Beginning Effect
@@ -312,10 +337,20 @@ function Education({ myRef, scrollYGlobal }) {
       window.open('https://drive.google.com/file/d/1RulDt3DBsVV_cg3Q60xid17W0UzKaCRp/view?usp=sharing');
     }
 
+    const handleUpArrow = () => {
+      scrollToPortfolio();
+    }
+    const handleDownArrow = () => {
+      scrollToContact();
+    }
 
   return (
     <>
     <Section ref={myRef} className='education-section'>
+    <Arrows>
+        <img onClick={handleUpArrow} id='arrow-top' src="/img/projects/misc/short-arrow.png"/>
+        <img onClick={handleDownArrow} id='arrow-bottom' src="/img/projects/misc/short-arrow.png"/>
+      </Arrows>
       <Container>
 
         {diplomaModal && (
