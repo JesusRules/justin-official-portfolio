@@ -142,7 +142,7 @@ function MySongs({ openModal, setOpenModal, hideVideos }) {
             <p>Here are some song's I've produced for fun - mainly using FL Studio.</p>
       </div>
 
-        <ProjectDiv>
+        <ProjectDiv style={{display: !openModal ? 'none' : 'block'}}>
           {!hideVideos && (
             <>
           <div className='grid-item' >

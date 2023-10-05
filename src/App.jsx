@@ -40,6 +40,10 @@ function App() {
 
   useEffect(() => {
     devicePixelRatio = 0.001;
+    setTimeout(function(){
+      // This hides the address bar:
+      window.scrollTo(0, 1);
+  }, 0);
   }, [])
 
   const handleScroll = (event) => {

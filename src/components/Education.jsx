@@ -45,7 +45,7 @@ const Container = styled.div`
     z-index: 10;
   }
 
-  @media only screen and (max-width: 800px) {
+  @media only screen and (max-width: 768px) {
     // top: 3.5rem;
   }
 `;
@@ -74,7 +74,11 @@ const FloatingBox = styled.div`
   display: none;
   overflow-y: auto;
   overflow-x: hidden;
-  @media only screen and (max-width: 800px) {
+  @media only screen and (max-width: 700px) {
+    height: 88%;
+    border-radius: 10px;
+    bottom: 5.3rem;
+    box-shadow: 7px 7px 7px rgba(0,0,0,.4);
   }
 `;
 

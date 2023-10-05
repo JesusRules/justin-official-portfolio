@@ -17,6 +17,7 @@ const Container = styled.div`
 
 const Footer = styled.div`
   width: 100vw;
+  position: fixed;
   height: 2rem;
   background-color: #00000079;
   position: absolute;
@@ -70,11 +71,12 @@ function Contact({ myRef, scrollYGlobal, educationRef }) {
   //SCROLLING
     useEffect(() => {
       const divElement = myRef.current;
+      // console.log(divElement.offsetTop - divElement.scrollHeight + 100);
       const halfwayPoint = divElement.scrollHeight / 5;
-      if (Math.round(scrollYGlobal) > (3100)) { //3001
+      if (Math.round(scrollYGlobal) > (divElement.offsetTop - divElement.scrollHeight + 100)) { //- 3008 very top
         setShowComponent(true);
       }
-      if (Math.round(scrollYGlobal) <= (3100)) {
+      if (Math.round(scrollYGlobal) <= (divElement.offsetTop - divElement.scrollHeight + 100)) {
         // setShowComponent(false);
         if (showComponent) {
           setTicked(true);
