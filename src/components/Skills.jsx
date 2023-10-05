@@ -373,7 +373,7 @@ const HorizontalImageLoopComponent1 = ({ _images, _isReversed }) => {
     const sliderWrapper = useRef(null);
     let isMouseDown = false;
     let scrubStartAt = 0; // Store the time where scrubbing started
-    const isReversed = _isReversed;
+    // const isReversed = _isReversed;
     // const [isReversed, setIsReversed] = useState(_isReversed);
     let timeline;
 
@@ -403,10 +403,12 @@ const HorizontalImageLoopComponent1 = ({ _images, _isReversed }) => {
 
         setTimeout(() => {
             if (_isReversed) {
-                timeline.timeScale(-1)
                 timeline.play();
+                timeline.timeScale(-1)
+                // setTimeout(() => {
+                // }, 200);
             }
-          }, "500");
+          }, 200);
         
         sliderWrapper.current.addEventListener('mousedown', handleMouseDown);
         sliderWrapper.current.addEventListener('mouseleave', handleMouseUp);
@@ -420,7 +422,7 @@ const HorizontalImageLoopComponent1 = ({ _images, _isReversed }) => {
         // Cleanup function
         return () => {
             sliderWrapper.current.removeEventListener('mousedown', handleMouseDown);
-            sliderWrapper.current.removeEventListener('mouseleave', handleMouseUp);
+            // sliderWrapper.current.removeEventListener('mouseleave', handleMouseUp);
             sliderWrapper.current.removeEventListener('mousemove', handleMouseMove);
             sliderWrapper.current.removeEventListener('mouseup', handleMouseUp);
 
@@ -474,11 +476,14 @@ const HorizontalImageLoopComponent1 = ({ _images, _isReversed }) => {
     }
 
     const handleMouseUp = (event) => {
-        isMouseDown = false;
-        scrubStartAt = 0; // Reset the start time when scrubbing is done
-        timeline.play()
-        if (_isReversed) {
-            timeline.timeScale(-1)
+        if (isMouseDown) {
+            isMouseDown = false;
+            scrubStartAt = 0; // Reset the start time when scrubbing is done
+            timeline.play()
+            if (_isReversed) {
+                timeline.timeScale(-1)
+            }
+
         }
     }
 
