@@ -32,7 +32,8 @@ const LeftMobile = styled.div`
   height: 100%;
   position: absolute;
   margin: auto;
-  top: 55%;
+  top: 37%;
+  /* top: 55%; */
   bottom: 0;
   @media only screen and (min-width: 700px) {
       display: none;
@@ -86,13 +87,13 @@ const Right = styled.div`
     width: 95vw;
     left: 0;
     right: 0;
-    top: 250px;
+    top: 230px;
     bottom: 50%;
     h1 {
-      font-size: 2.1rem;
+      font-size: 2rem;
     }
     h2 {
-      font-size: 1.9rem;
+      font-size: 1.8rem;
     }
     .social-media-icons {
       justify-content: center;

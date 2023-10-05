@@ -53,13 +53,15 @@ const CrucifixDiv = styled.div`
     width: 100%;
     max-width: 1000px;
     bottom: 2.4rem;
-    background-color: green;
+    /* height: 100%; */
     @media only screen and (max-width: 700px) {
     }
     `
 const CrucifixImage = styled.img`
     position: absolute;
+    height: 42rem;
     @media only screen and (max-width: 700px) {
+        top: 1.2rem;
         margin: 0 auto;
         left: -94%;
         right: -5%;

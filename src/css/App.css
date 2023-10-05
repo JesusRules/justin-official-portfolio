@@ -187,13 +187,17 @@ p {
   left: 0;
   right: 0;
   margin: 0 auto;
-  bottom: .5rem;
+  /* bottom: .5rem; */
   width: 110px;
   height: 90px;
   background: #1c1c1c;
   border-radius: 8px;
   overflow: hidden;
   cursor: pointer;
+  bottom: 5.5rem;
+  @media screen and (max-width: 768px) {
+  }
+
 }
 
 .contact-btn-main span {

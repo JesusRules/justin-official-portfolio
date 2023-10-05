@@ -6,6 +6,7 @@ const CloseButtonImg = styled.img`
   right: .6rem;
   top: .6rem;
   cursor: pointer;
+  z-index: 100;
 
 `
 
