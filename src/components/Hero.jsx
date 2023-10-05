@@ -157,6 +157,7 @@ const Bernard_Txt = styled.img`
     left: calc(50% + 0px);
     top: 1450px;
     z-index: 23;
+    opacity: 0;
     @media only screen and (max-width: 700px) {
         width: 430px;
         top: 1450px;
@@ -174,6 +175,7 @@ const Justin_Txt = styled.img`
     left: calc(50% + 0px);
     /* top: -100px; */
     top: 1300px;
+    opacity: 0;
     z-index: 24;
     @media only screen and (max-width: 700px) {
         /* top: -100px; */
@@ -463,6 +465,20 @@ function Hero({ scrollYGlobal, clickToContact }) {
 
 
       const gsapBeginning = () => {
+        // NAMES OPACITY
+        gsap.to(bernardTxtRef.current, {
+            opacity: 1,
+            duration: 0.5,
+            ease: easeLoad
+        }, startDelay);
+        
+        gsap.to(justinTxtRef.current, {
+            opacity: 1,
+            duration: 0.5,
+            ease: easeLoad
+        }, startDelay);
+        
+        // REST
         gsap.to(skyRef.current, {
             top: '50%',
             duration: durationLoad,
