@@ -185,7 +185,7 @@ function Who({ myRef }) {
       <Container>
         
         <CrucifixDiv>
-          <CrucifixImage style={{filter: 'blur(7px)'}} src="/img/jesus-effect/image-1-short.png"/>
+          <CrucifixImage style={{filter: 'blur(8px)'}} src="/img/jesus-effect/image-1-short.png"/>
         </CrucifixDiv>
 
         <Left>

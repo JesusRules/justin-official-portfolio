@@ -8,6 +8,11 @@ const Container = styled.div`
     height: 100vh;
     scroll-snap-align: center;
     overflow: hidden;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.0), rgba(255, 255, 255, 0.6)),
+                  url("/img/hero-banner/blue-sky-2.jpg");
+    /* background-image: url("/img/hero-banner/Sky.png"); */
+    background-repeat: no-repeat;
+    background-size: cover;
 `
 
 /* HERO LAYERS */
@@ -157,6 +162,10 @@ const Bernard_Txt = styled.img`
         top: 1450px;
         /* top: calc(50% - 118px); */
     }
+    @media only screen and (max-width: 370px) { //375 = mobile medium
+        width: 360px;
+    }
+    
 `
 const Justin_Txt = styled.img`
     position: absolute;
@@ -171,6 +180,9 @@ const Justin_Txt = styled.img`
         top: 1300px;
         /* top: calc(50% - 233px); */
         width: 530px;
+    }
+    @media only screen and (max-width: 370px) { //375 = mobile medium
+        width: 460px;
     }
 `
 

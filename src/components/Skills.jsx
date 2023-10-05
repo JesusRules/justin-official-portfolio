@@ -65,6 +65,7 @@ const CrucifixImage = styled.img`
         margin: 0 auto;
         left: -94%;
         right: -5%;
+        display: none;
     }
 `
 
