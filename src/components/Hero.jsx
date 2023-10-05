@@ -351,8 +351,10 @@ const LoadingText = styled.h1`
     top: 0;
     bottom: 0;
     opacity: 1;
+    /* display: none; */
     /* transition: opacity 1s;  */
-    @media only screen and (max-width: 700px) {
+    @media only screen and (min-width: 768px) {
+        display: none;
     }
 `
 
@@ -651,10 +653,27 @@ function Hero({ scrollYGlobal, clickToContact }) {
             ease: easeLoad
         }, startDelay);
         
+        // Contact Button
         gsap.to(contactBtnRef.current, {
             opacity: 1,
             duration: 1,
         }, '3');
+
+        // Loader - Show only mobile
+        if (window.innerWidth <= 768) {
+            gsap.to(loadingTxtRef.current, {
+                opacity: 0,
+                duration: 0.2,
+                ease: easeLoad,
+                onComplete: () => {
+                    loadingTxtRef.current.style.display = "none";
+                }
+            }, startDelay);
+        } else {
+            //NOT in css components - resizing issues
+            loadingTxtRef.current.style.display = "none";
+            loadingTxtRef.current.style.opacity = 0;
+        }
       }
 
 
@@ -788,7 +807,7 @@ function Hero({ scrollYGlobal, clickToContact }) {
       {/* <Vignette /> */}
     <HeroText ref={subtitleTxtRef}>Passionate. Professional. Reliable.</HeroText>
     
-    {/* <LoadingText ref={loadingTxtRef}>Loading...</LoadingText> */}
+    <LoadingText ref={loadingTxtRef}>Loading...</LoadingText>
 
     <div ref={contactBtnRef} id="button-8" className="contact-btn-main" onClick={clickToContact}>
         <span className='borderLine'></span>
