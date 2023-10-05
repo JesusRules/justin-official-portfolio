@@ -26,6 +26,7 @@ const Container = styled.div`
   position: relative;
   overflow-y: ${(props) => (props.hideOverflow ? 'hidden' : 'auto')};
   overflow-x: hidden;
+  -webkit-overflow-scrolling: auto;
 `
 
 function App() {

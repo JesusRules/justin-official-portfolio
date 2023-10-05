@@ -169,7 +169,7 @@ const Arrows = styled.div`
     transform: scaleY(-1);
   }
   @media only screen and (min-width: 700px) {
-    display: none;
+    /* display: none; */
   }
   `;
 
@@ -410,9 +410,11 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
         });
       }
       if (openModal) {
-        setHideOverflow(true);
+        setHideOverflow(true); // CANT
       } else {
-        setHideOverflow(false);
+        // setTimeout(() => {
+          setHideOverflow(false);
+        // }, (2000))
       }
     }, [openModal])
 
