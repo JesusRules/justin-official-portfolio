@@ -405,7 +405,7 @@ const HorizontalImageLoopComponent1 = ({ _images, _isReversed }) => {
             if (_isReversed) {
                 timeline.timeScale(-1)
             }
-          }, "0");
+          }, "500");
         
         sliderWrapper.current.addEventListener('mousedown', handleMouseDown);
         sliderWrapper.current.addEventListener('mouseleave', handleMouseUp);

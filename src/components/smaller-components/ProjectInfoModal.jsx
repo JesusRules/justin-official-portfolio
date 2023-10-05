@@ -97,7 +97,8 @@ const GoToTopButton = styled.button`
   cursor: pointer;
   z-index: 100000;
   position: absolute;
-  bottom: 0;
+  /* bottom: 0; */
+  bottom: 3.5rem;
   display: flex;
   right: 0;
   justify-content: center;
