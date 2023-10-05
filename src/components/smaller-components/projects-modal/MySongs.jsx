@@ -29,7 +29,6 @@ const ContentContainer = styled.div`
 
 const ProjectDiv = styled.div`
   position: absolute;
-  opacity: 0;
   left: 0;
   right: 0;
   display: grid;
@@ -124,13 +123,6 @@ const ProjectDiv = styled.div`
 
 function MySongs({ openModal, setOpenModal, hideVideos }) {
   const projectDev = useRef();
-
-  useEffect(() => {
-    setTimeout(() => {
-      projectDev.current.style.display = "block";
-      projectDev.current.style.opacity = 1;
-    }, "1000");
-  }, [])
 
   const handleUrl = (stringLink) => {
     window.open(stringLink, '_blank');

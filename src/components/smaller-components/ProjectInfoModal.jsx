@@ -131,7 +131,7 @@ function ProjectInfoModal(props) {
                 ease: '"elastic.out(1, 0.3)"', // Easing function (you can choose a different one)
                 onStart: () => {
                   projectModalRef.current.style.display = 'block';
-                  // setHideVideos(false); // TURN ON
+                  setHideVideos(false);
                 },
                 onComplete: () => {
                   projectModalRef.current.style.pointerEvents = 'auto';
@@ -155,13 +155,13 @@ function ProjectInfoModal(props) {
                     projectModalRef.current.scrollTop = 0
                     projectModalRef.current.style.display = 'none';
                     setHideVideos(true);
-                    //Stop videos NOT lazy 
-                  //   const videos = document.querySelectorAll('iframe'); TURN ON
-                  //   videos.forEach(i => {
-                  //     const source = i.src
-                  //     i.src = ''
-                  //     i.src = source
-                  //  })
+                    //Stop videos NOT lazy
+                    const videos = document.querySelectorAll('iframe');
+                    videos.forEach(i => {
+                      const source = i.src
+                      i.src = ''
+                      i.src = source
+                   })
                 },
               });
         }

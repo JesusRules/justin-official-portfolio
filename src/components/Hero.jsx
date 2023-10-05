@@ -831,28 +831,28 @@ function Hero({ scrollYGlobal, clickToContact }) {
       <Justin ref={justinRef} src="/img/hero-banner/Justin.png" data-speedx="0.01" data-speedy="0.02" data-speedz="0.53" data-rotation="0.2" className='parallax justin'
             draggable="false"/>
 
-      <audio ref={marioAudioRef} controls>
+      <audio ref={marioAudioRef} controls style={{display: 'none'}}>
           <source src="/audio/mario.mp3" type="audio/mpeg" />
       </audio>
-      <audio ref={booAudioRef} controls>
+      <audio ref={booAudioRef} controls style={{display: 'none'}}>
           <source src="/audio/boo.mp3" type="audio/mpeg" />
       </audio>
-      <audio ref={pikachuAudioRef} controls>
+      <audio ref={pikachuAudioRef} controls style={{display: 'none'}}>
           <source src="/audio/pikachu.mp3" type="audio/mpeg" />
       </audio>
-      <audio ref={kartAudioRef} controls>
+      <audio ref={kartAudioRef} controls style={{display: 'none'}}>
           <source src="/audio/kart.mp3" type="audio/mpeg" />
       </audio>
-      <audio ref={jesusAudioRef} controls>
+      <audio ref={jesusAudioRef} controls style={{display: 'none'}}>
           <source src="/audio/jesus.mp3" type="audio/mpeg" />
       </audio>
-      <audio ref={haunterAudioRef} controls>
+      <audio ref={haunterAudioRef} controls style={{display: 'none'}}>
           <source src="/audio/haunter.mp3" type="audio/mpeg" />
       </audio>
-      <audio ref={toadAudioRef} controls>
+      <audio ref={toadAudioRef} controls style={{display: 'none'}}>
           <source src="/audio/toad.mp3" type="audio/mpeg" />
       </audio>
-      <audio ref={pipeAudioRef} controls>
+      <audio ref={pipeAudioRef} controls style={{display: 'none'}}>
           <source src="/audio/pipe.mp3" type="audio/mpeg" />
       </audio>
 
