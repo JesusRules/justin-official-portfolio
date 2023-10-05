@@ -101,7 +101,7 @@ function Skills({ myRef, scrollYGlobal }) {
     </div>
     <div className="first-div" >
         <Subtitle>App development</Subtitle>
-        <HorizontalImageLoopComponent2 _images={imagesApps} _isReversed={true} />
+        <HorizontalImageLoopComponent1 _images={imagesApps} _isReversed={true} />
     </div>
     <div className="first-div" >
         <Subtitle>Media/Game creation</Subtitle>
