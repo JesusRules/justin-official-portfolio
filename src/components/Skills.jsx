@@ -101,7 +101,7 @@ function Skills({ myRef, scrollYGlobal }) {
     </div>
     <div className="first-div" >
         <Subtitle>App development</Subtitle>
-        <HorizontalImageLoopComponent1 _images={imagesApps} _isReversed={true} />
+        <HorizontalImageLoopComponent2 _images={imagesApps} _isReversed={true} />
     </div>
     <div className="first-div" >
         <Subtitle>Media/Game creation</Subtitle>
@@ -437,7 +437,7 @@ const HorizontalImageLoopComponent1 = ({ _images, _isReversed }) => {
 
     const handleMouseDown = (event) => {
         isMouseDown = true;
-        timeline.pause();
+        timeline.play();
         // Calculate cursor position as a percentage of the slider width
         const cursorPosition = (event.clientX - sliderWrapper.current.getBoundingClientRect().left) / sliderWrapper.current.offsetWidth;
         // Store the time where scrubbing started
