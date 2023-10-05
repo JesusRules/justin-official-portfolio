@@ -159,7 +159,7 @@ const Arrows = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 2px;
+  gap: 5px;
   opacity: 0.82;
   img {
     width: 2.3rem;
@@ -176,14 +176,13 @@ const Arrows = styled.div`
   const QualityToggle = styled.div`
   position: absolute;
   height: 3rem;
+  /* bottom: 0rem; */
+  bottom: 5.5rem;
   display: flex;
   pointer-event: none;
   align-items: center;
-  bottom: 0rem;
-  /* left: 50%; */
-  /* transform: translateX(-50%); */
-  right: 0;
   left: 0;
+  /* right: 0; */
   justify-content: center;
   z-index: 10001;
   transform: scale(0.8);

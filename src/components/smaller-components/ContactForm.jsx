@@ -67,7 +67,7 @@ const ContactContent = styled.div`
         margin: 0 auto;
         input, textarea {
             padding: .8rem;
-            width: 91.5%;
+            width: 91.5%; //91.5
             outline: none;
             font-size: 1.1em;
             color: #000000;

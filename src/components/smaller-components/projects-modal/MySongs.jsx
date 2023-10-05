@@ -47,6 +47,7 @@ const ProjectDiv = styled.div`
     'seventeen eighteen'
     'nineteen twenty'
     ; */
+    display: none;
 
   margin-bottom: 1rem;
 
@@ -117,16 +118,12 @@ const ProjectDiv = styled.div`
   }
 `
 
-const images = [
-  '/img/projects/pokithedog/preview-1.jpg',
-  '/img/projects/pokithedog/preview-2.jpg',
-  '/img/projects/pokithedog/preview-3.jpg',
-  '/img/projects/pokithedog/preview-4.jpg',
-  '/img/projects/pokithedog/preview-5.jpg',
-  '/img/projects/pokithedog/preview-6.jpg',
-];
-
 function MySongs({ openModal, setOpenModal, hideVideos }) {
+  const projectDev = useRef();
+
+  useEffect(() => {
+    projectDev.current.style.display = "block";
+  }, [])
 
   const handleUrl = (stringLink) => {
     window.open(stringLink, '_blank');
@@ -142,7 +139,7 @@ function MySongs({ openModal, setOpenModal, hideVideos }) {
             <p>Here are some song's I've produced for fun - mainly using FL Studio.</p>
       </div>
 
-        <ProjectDiv style={{display: !openModal ? 'none' : 'block'}}>
+        <ProjectDiv ref={projectDev}>
           {!hideVideos && (
             <>
           <div className='grid-item' >

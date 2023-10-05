@@ -384,7 +384,6 @@ export function MiniJesus(props) {
 
   const clickedJesus = () => {
     // if (keyDown) return;
-    console.log(playerRef.current.position);
     setAnimIndex(7); //2 alt
     if (moveDir === 'left') setTargetRotation(-3.14159);
       if (moveDir === 'right') setTargetRotation(-3.14159);
