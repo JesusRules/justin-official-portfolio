@@ -247,12 +247,15 @@ const Arrows = styled.div`
   bottom: 0;
   z-index: 1000;
   height: 100%;
-  display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 5px;
-  opacity: 0.82;
+  /* opacity: 0.82; */
+  /* display: flex; */
+  display: none;
+  opacity: 0;
   cursor: pointer;
+
   img {
     width: 2.3rem;
     height: 2.3rem;
@@ -275,6 +278,8 @@ function Education({ myRef, scrollYGlobal, scrollToPortfolio, scrollToContact })
   const [showBeginning, setShowBeginning] = useState(false);
   // Main
   const floatingBoxRef = useRef();
+  const floatingBoxContentRef = useRef();
+  const arrowsRef = useRef();
   // Modals
   const [gameDevModal, setGameDevModal] = useState(false);
   const [diplomaModal, setDiplomaModal] = useState(false);
@@ -287,6 +292,9 @@ function Education({ myRef, scrollYGlobal, scrollToPortfolio, scrollToContact })
    
       if (Math.round(scrollYGlobal) == divElement.offsetTop) {
         OnViewed();
+        if (floatingBoxContentRef.current) {
+          floatingBoxContentRef.current.focus();
+        }
       }
       // if (scrollYGlobal > divElement.offsetTop || scrollYGlobal < divElement.offsetTop) {
       // }
@@ -320,6 +328,17 @@ function Education({ myRef, scrollYGlobal, scrollToPortfolio, scrollToContact })
           } });
           gsap.to(overlayRef.current, { opacity: 0, duration: 1, delay: 3.5 });
           gsap.to(backgroundImageRef.current, {  filter: 'blur(4px)', duration: 1, delay: 3.5 });
+          gsap.to(arrowsRef.current, { 
+            opacity: 0.82, 
+            duration: 1, 
+            delay: 3.5,
+          });
+          gsap.to(arrowsRef.current, {
+            onComplete: () => {
+              delay: 3.5,
+              arrowsRef.current.style.display = "flex";
+            }
+          });
     }
 
     // Image Scroll
@@ -348,7 +367,7 @@ function Education({ myRef, scrollYGlobal, scrollToPortfolio, scrollToContact })
   return (
     <>
     <Section ref={myRef} className='education-section'>
-    <Arrows>
+    <Arrows ref={arrowsRef}>
         <img draggable={false} onClick={handleUpArrow} id='arrow-top' src="/img/projects/misc/short-arrow.png"/>
         <img draggable={false} onClick={handleDownArrow} id='arrow-bottom' src="/img/projects/misc/short-arrow.png"/>
       </Arrows>
@@ -387,7 +406,7 @@ function Education({ myRef, scrollYGlobal, scrollToPortfolio, scrollToContact })
         </EducationPopup>
 
         <FloatingBox ref={floatingBoxRef}>
-          <Content>
+          <Content ref={floatingBoxContentRef}>
             <h4><img src="/img/education/algonquin-college-logo-normal.png"/></h4>
             <div className='intro'>
               {/* <div className='photos'>
