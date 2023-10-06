@@ -32,7 +32,7 @@ const LeftMobile = styled.div`
   height: 100%;
   position: absolute;
   margin: auto;
-  top: 45%; //37
+  top: 40.5%; //45
   /* top: 55%; */
   bottom: 0;
   @media only screen and (min-width: 700px) {
@@ -89,7 +89,7 @@ const Right = styled.div`
   h2 {
     /* font-size: 1.6rem; */
     font-size: 1.4rem;
-    font-weight: 800;
+    font-weight: 700;
     padding-right: 1rem;
   }
   p {
