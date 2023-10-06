@@ -219,7 +219,7 @@ const ScrollImage = styled.div`
 
 const ModalImage = styled.div`
   position: absolute;
-  z-index: 50;
+  z-index: 11150;
   margin: auto;
   left: 50%;
   top: 50%;
