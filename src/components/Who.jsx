@@ -89,6 +89,7 @@ const Right = styled.div`
   h2 {
     /* font-size: 1.6rem; */
     font-size: 1.4rem;
+    font-weight: 800;
     padding-right: 1rem;
   }
   p {
