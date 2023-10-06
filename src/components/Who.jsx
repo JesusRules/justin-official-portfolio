@@ -51,7 +51,7 @@ const Left = styled.div`
   width: 100%;
   height: 100%;
   /* left: -17rem; */
-  left: -14.5rem;
+  left: -14.75rem;
   @media only screen and (max-width: 925px) {
     left: -12rem;
   }
@@ -188,9 +188,9 @@ function Who({ myRef }) {
     <Section ref={myRef}>
       <Container>
         
-        <CrucifixDiv>
+        {/* <CrucifixDiv>
           <CrucifixImage style={{filter: 'blur(8px)'}} src="/img/jesus-effect/image-1-short.png"/>
-        </CrucifixDiv>
+        </CrucifixDiv> */}
 
         <Left>
             <Canvas camera={{fov: 25, position: [0, 0, 6]}}>
@@ -219,7 +219,7 @@ function Who({ myRef }) {
             <Right className='about-me'>
               {/* <h1><span style={{color: 'black', fontWeight: 800}}>About</span> <span style={{color: 'black', fontWeight: 800}}>Me</span></h1> */}
               <h1>About Me</h1>
-              <h2>There's nothing I can't do!</h2>
+              <h2>I can make any system development vision come to life!</h2>
               <p>Communicative, strong, and resilient! I love to learn, I love culture, and I love life! Coding is my favourite thing to do!</p>
               
               

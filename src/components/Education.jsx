@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { styled } from 'styled-components'
 import gsap from 'gsap';
-import ZoomableImage from './smaller-components/ZoomableImage';
 
 const Section = styled.div`
     background-color: white;

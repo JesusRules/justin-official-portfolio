@@ -5,23 +5,35 @@ Files: MiniJesus.gltf [8.25MB] > MiniJesus-transformed.glb [499.31KB] (94%)
 */
 
 import React, { useRef, useState, useEffect } from 'react'
-import { useGLTF, useAnimations } from '@react-three/drei'
+import { useGLTF, useAnimations, useFBX } from '@react-three/drei'
 import { useFrame, useLoader, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 import { Vector3, Quaternion, MathUtils  } from 'three';
 import { GLTFLoader } from 'three-stdlib'
 import gsap from 'gsap';
+import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader";
 
-export function MiniJesus(props) {
+export function MiniJesusFBX(props) {
   const { playerRef, canvasRef, speechBubbleRef, touchObjects, setCurrentProject, setWithinProject,
           idleStance, setIdleStance, cameraPosition, setCameraPosition, setIsLoaded,
-          startUpCam, setStartUpCam, reloadCanvas } = props;
+          startUpCam, setStartUpCam } = props;
 
   const modelRef = useRef();
 
-  const { nodes, materials, animations } = useGLTF('/models/MiniJesus-transformed.glb'); //old
-  const { actions, names, ref, mixer } = useAnimations(animations, playerRef);
-  
+  const { nodes, materials, animations } = useFBX('/models/MiniJesus.fbx'); //old
+  const { actions, names, ref, mixer } = useAnimations(animations, playerRef)
+  const fbxRef = useRef();
+  let fbx = useFBX('/models/MiniJesus.fbx')
+  // const { animations } = useFBX('/models/MiniJesus.fbx', (fbx) => {
+  //   fbxRef.current = fbx;
+  // });
+  // const { actions, mixer } = useAnimations(animations, fbxRef);
+  // const fbx = useLoader(FBXLoader, "/models/MiniJesus.fbx");
+
+  const playAnimation = (animationName) => {
+    actions[animationName].play();
+  };
+
   //MINE
   const { animIndex, setAnimIndex } = props;
   const radius = 98; // Adjust the radius of the circle
@@ -48,7 +60,6 @@ export function MiniJesus(props) {
   const startTime = useRef(0);
 
   useEffect(() => {
-    // useGLTF.preload('/models/MiniJesus-transformed.glb')
     actions['FirstPlaceWin'].setDuration(1.8);
     actions['Walk'].setDuration(1.1);
     actions['Run'].setDuration(.6);
@@ -213,13 +224,6 @@ export function MiniJesus(props) {
       }
     };
   }, [animIndex, actions, names])
-
-  // useEffect(() => {
-  //   setShown(false);
-  //   setTimeout(() => {
-  //     setShown(true);
-  //   }, (100))
-  // }, [])
 
 
   // useEffect(() => {
@@ -392,11 +396,8 @@ export function MiniJesus(props) {
   //   setTargetRotation(new Vector3(offsetX, 0, offsetZ));
   // }
 
-  const [shown, setShown] = useState(true);
-
   const clickedJesus = () => {
     // if (keyDown) return;
-    // reloadCanvas();
     setAnimIndex(7); //2 alt
     if (moveDir === 'left') setTargetRotation(-3.14159);
       if (moveDir === 'right') setTargetRotation(-3.14159);
@@ -413,41 +414,10 @@ export function MiniJesus(props) {
   });
 
   return (
-    <>
-    {/* {shown && ( */}
-
     <group ref={playerRef} {...props} dispose={null} position={[0,0,0]}>
-      <mesh onClick={() => clickedJesus()} position={[0, 0.04, 0]}>
-        <boxGeometry args={[.06,.1,.05]} />
-        <meshBasicMaterial transparent opacity={0} color="blue" />
-      </mesh>
-      <group ref={modelRef} name="Scene" rotation={[0, -Math.PI, 0]}>
-        <group name="MiniJesus" rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
-          <primitive object={nodes.Hip_J} />
-        </group>
-        <group name="Mini_Jesus" rotation={[Math.PI / 2, 0, 0]} scale={0.01}
-            onClick={() => clickedJesus()}
-           onPointerOver={() => setHovered(true)} 
-           onPointerOut={() => setHovered(false)} 
-          >
-          <skinnedMesh name="Mesh" geometry={nodes.Mesh.geometry} material={materials.PaletteMaterial001} skeleton={nodes.Mesh.skeleton} />
-          <skinnedMesh name="Mesh_1" geometry={nodes.Mesh_1.geometry} material={skinMat} skeleton={nodes.Mesh_1.skeleton} />
-          <skinnedMesh name="Mesh_2" geometry={nodes.Mesh_2.geometry}  skeleton={nodes.Mesh_2.skeleton} />
-          <skinnedMesh name="Mesh_3" geometry={nodes.Mesh_3.geometry} material={ribbonMat} skeleton={nodes.Mesh_3.skeleton} />
-          <skinnedMesh name="Mesh_4" geometry={nodes.Mesh_4.geometry} material={hairMat} skeleton={nodes.Mesh_4.skeleton} />
-          <skinnedMesh name="Mesh_5" geometry={nodes.Mesh_5.geometry} material={materials.PaletteMaterial001} skeleton={nodes.Mesh_5.skeleton} />
-          {/* <skinnedMesh name="Mesh" geometry={nodes.Mesh.geometry} material={materials.PaletteMaterial001} skeleton={nodes.Mesh.skeleton} />
-          <skinnedMesh name="Mesh_1" geometry={nodes.Mesh_1.geometry} material={materials.PaletteMaterial001} skeleton={nodes.Mesh_1.skeleton} />
-          <skinnedMesh name="Mesh_2" geometry={nodes.Mesh_2.geometry} material={materials.PaletteMaterial001} skeleton={nodes.Mesh_2.skeleton} />
-          <skinnedMesh name="Mesh_3" geometry={nodes.Mesh_3.geometry} material={materials.PaletteMaterial001} skeleton={nodes.Mesh_3.skeleton} />
-          <skinnedMesh name="Mesh_4" geometry={nodes.Mesh_4.geometry} material={materials.PaletteMaterial001} skeleton={nodes.Mesh_4.skeleton} />
-          <skinnedMesh name="Mesh_5" geometry={nodes.Mesh_5.geometry} material={materials.PaletteMaterial001} skeleton={nodes.Mesh_5.skeleton} /> */}
-        </group>
-      </group>
+      <primitive ref={modelRef} object={fbx} scale={0.01} />
     </group>
-    {/* )} */}
-    </>
   )
 }
 
-useGLTF.preload('/models/MiniJesus-transformed.glb');
+// useGLTF.preload('/models/MiniJesus-transformed.glb')

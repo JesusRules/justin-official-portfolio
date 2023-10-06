@@ -87,9 +87,9 @@ function Skills({ myRef, scrollYGlobal }) {
   return (
     <Container id="skills" className="trigger" ref={myRef}>
         
-        <CrucifixDiv>
+        {/* <CrucifixDiv>
             <CrucifixImage style={{filter: 'blur(0px)', position: 'absolute'}} src="/img/jesus-effect/image-2-short.png"/>
-        </CrucifixDiv>
+        </CrucifixDiv> */}
 
       <Container2>
       <Title>All the technologies I know!</Title>

@@ -15,6 +15,7 @@ import NavBar from './components/NavBar'
 import Lenis from '@studio-freight/lenis'
 import WebgiViewer from './components/WebgiViewer'
 import gsap from 'gsap';
+import { useGLTF } from '@react-three/drei'
 
 const Container = styled.div`
   width: 100vw;

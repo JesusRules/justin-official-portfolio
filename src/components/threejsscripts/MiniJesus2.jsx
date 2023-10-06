@@ -12,15 +12,17 @@ import { Vector3, Quaternion, MathUtils  } from 'three';
 import { GLTFLoader } from 'three-stdlib'
 import gsap from 'gsap';
 
-export function MiniJesus(props) {
+export function MiniJesus2(props) {
   const { playerRef, canvasRef, speechBubbleRef, touchObjects, setCurrentProject, setWithinProject,
           idleStance, setIdleStance, cameraPosition, setCameraPosition, setIsLoaded,
-          startUpCam, setStartUpCam, reloadCanvas } = props;
+          startUpCam, setStartUpCam } = props;
 
   const modelRef = useRef();
 
-  const { nodes, materials, animations } = useGLTF('/models/MiniJesus-transformed.glb'); //old
-  const { actions, names, ref, mixer } = useAnimations(animations, playerRef);
+  // const { nodes, materials, animations } = useGLTF('/models/MiniJesus-transformed.glb'); //old
+  // const { actions, names, ref, mixer } = useAnimations(animations, playerRef);
+  const { nodes, materials, animations } = useGLTF('/models/MiniJesus.gltf')
+  const { actions, names, ref, mixer } = useAnimations(animations, playerRef)
   
   //MINE
   const { animIndex, setAnimIndex } = props;
@@ -214,13 +216,6 @@ export function MiniJesus(props) {
     };
   }, [animIndex, actions, names])
 
-  // useEffect(() => {
-  //   setShown(false);
-  //   setTimeout(() => {
-  //     setShown(true);
-  //   }, (100))
-  // }, [])
-
 
   // useEffect(() => {
   //   if (idleStance) setAnimIndex(3); //idle
@@ -392,11 +387,8 @@ export function MiniJesus(props) {
   //   setTargetRotation(new Vector3(offsetX, 0, offsetZ));
   // }
 
-  const [shown, setShown] = useState(true);
-
   const clickedJesus = () => {
     // if (keyDown) return;
-    // reloadCanvas();
     setAnimIndex(7); //2 alt
     if (moveDir === 'left') setTargetRotation(-3.14159);
       if (moveDir === 'right') setTargetRotation(-3.14159);
@@ -414,9 +406,7 @@ export function MiniJesus(props) {
 
   return (
     <>
-    {/* {shown && ( */}
-
-    <group ref={playerRef} {...props} dispose={null} position={[0,0,0]}>
+    {/* <group ref={playerRef} {...props} dispose={null} position={[0,0,0]}>
       <mesh onClick={() => clickedJesus()} position={[0, 0.04, 0]}>
         <boxGeometry args={[.06,.1,.05]} />
         <meshBasicMaterial transparent opacity={0} color="blue" />
@@ -436,18 +426,36 @@ export function MiniJesus(props) {
           <skinnedMesh name="Mesh_3" geometry={nodes.Mesh_3.geometry} material={ribbonMat} skeleton={nodes.Mesh_3.skeleton} />
           <skinnedMesh name="Mesh_4" geometry={nodes.Mesh_4.geometry} material={hairMat} skeleton={nodes.Mesh_4.skeleton} />
           <skinnedMesh name="Mesh_5" geometry={nodes.Mesh_5.geometry} material={materials.PaletteMaterial001} skeleton={nodes.Mesh_5.skeleton} />
-          {/* <skinnedMesh name="Mesh" geometry={nodes.Mesh.geometry} material={materials.PaletteMaterial001} skeleton={nodes.Mesh.skeleton} />
-          <skinnedMesh name="Mesh_1" geometry={nodes.Mesh_1.geometry} material={materials.PaletteMaterial001} skeleton={nodes.Mesh_1.skeleton} />
-          <skinnedMesh name="Mesh_2" geometry={nodes.Mesh_2.geometry} material={materials.PaletteMaterial001} skeleton={nodes.Mesh_2.skeleton} />
-          <skinnedMesh name="Mesh_3" geometry={nodes.Mesh_3.geometry} material={materials.PaletteMaterial001} skeleton={nodes.Mesh_3.skeleton} />
-          <skinnedMesh name="Mesh_4" geometry={nodes.Mesh_4.geometry} material={materials.PaletteMaterial001} skeleton={nodes.Mesh_4.skeleton} />
-          <skinnedMesh name="Mesh_5" geometry={nodes.Mesh_5.geometry} material={materials.PaletteMaterial001} skeleton={nodes.Mesh_5.skeleton} /> */}
+        </group>
+      </group>
+    </group> */}
+
+    <group ref={playerRef} {...props} dispose={null} position={[0,0,0]}>
+    <mesh onClick={() => clickedJesus()} position={[0, 0.04, 0]}>
+        <boxGeometry args={[.06,.1,.05]} />
+        <meshBasicMaterial transparent opacity={0} color="blue" />
+      </mesh>
+    <group ref={modelRef} name="Scene">
+      <group name="MiniJesus" rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
+        <primitive object={nodes.Hip_J} />
+        <group name="Mini_Jesus" rotation={[Math.PI / 2, 0, 0]}
+          onClick={() => clickedJesus()}
+          onPointerOver={() => setHovered(true)} 
+          onPointerOut={() => setHovered(false)} 
+          >
+          <skinnedMesh name="Mesh" geometry={nodes.Mesh.geometry} material={materials.Shoes1} skeleton={nodes.Mesh.skeleton} />
+          <skinnedMesh name="Mesh_1" geometry={nodes.Mesh_1.geometry} material={materials.Skin1} skeleton={nodes.Mesh_1.skeleton} />
+          <skinnedMesh name="Mesh_2" geometry={nodes.Mesh_2.geometry} material={materials.White1} skeleton={nodes.Mesh_2.skeleton} />
+          <skinnedMesh name="Mesh_3" geometry={nodes.Mesh_3.geometry} material={materials.Ribbon1} skeleton={nodes.Mesh_3.skeleton} />
+          <skinnedMesh name="Mesh_4" geometry={nodes.Mesh_4.geometry} material={materials.Hair1} skeleton={nodes.Mesh_4.skeleton} />
+          <skinnedMesh name="Mesh_5" geometry={nodes.Mesh_5.geometry} material={materials.Black1} skeleton={nodes.Mesh_5.skeleton} />
         </group>
       </group>
     </group>
-    {/* )} */}
+    </group>
     </>
   )
 }
 
-useGLTF.preload('/models/MiniJesus-transformed.glb');
+// useGLTF.preload('/models/MiniJesus-transformed.glb')
+useGLTF.preload('/models/MiniJesus.gltf')

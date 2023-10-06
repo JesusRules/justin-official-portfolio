@@ -354,7 +354,8 @@ const LoadingText = styled.h1`
     /* display: none; */
     /* transition: opacity 1s;  */
     @media only screen and (min-width: 768px) {
-        display: none;
+        /* display: none; */
+        opacity: 0;
     }
 `
 
@@ -660,20 +661,20 @@ function Hero({ scrollYGlobal, clickToContact }) {
         }, '3');
 
         // Loader - Show only mobile
-        if (window.innerWidth <= 768) {
-            gsap.to(loadingTxtRef.current, {
-                opacity: 0,
-                duration: 0.2,
-                ease: easeLoad,
-                onComplete: () => {
-                    loadingTxtRef.current.style.display = "none";
-                }
-            }, startDelay);
-        } else {
-            //NOT in css components - resizing issues
-            loadingTxtRef.current.style.display = "none";
-            loadingTxtRef.current.style.opacity = 0;
-        }
+        // if (window.innerWidth <= 768) {
+        //     gsap.to(loadingTxtRef.current, {
+        //         opacity: 0,
+        //         duration: 0.2,
+        //         ease: easeLoad,
+        //         onComplete: () => {
+        //             loadingTxtRef.current.style.display = "none";
+        //         }
+        //     }, startDelay);
+        // } else {
+        //     //NOT in css components - resizing issues
+        //     loadingTxtRef.current.style.display = "none";
+        //     loadingTxtRef.current.style.opacity = 0;
+        // }
       }
 
 
@@ -778,29 +779,29 @@ function Hero({ scrollYGlobal, clickToContact }) {
       }
 
       // LOADING STUFF
-    //   function imageLoaded(img) {
-    //     setLoadedImageCount((prevCount) => prevCount + 1);
-    //     console.log(`${img.alt} loaded successfully.`);
-    //     checkAllImagesLoaded();
-    // }
-    // function imageError(img) {
-    //     console.error(`Error loading ${img.alt}.`);
-    //     checkAllImagesLoaded();
-    // }
-    // useEffect(() => {
-    //     if (loadedImageCount === 21) { //20 images
-    //         setIsLoaded(true);
-    //         console.log('All images have loaded successfully.');
-    //         gsap.to(loadingTxtRef.current, {
-    //             duration: 0.5,
-    //             opacity: 0,
-    //             ease: easeLoad,
-    //             onComplete: () => {
-    //                 loadingTxtRef.current.style.display = "none";
-    //             }
-    //         }, 0);
-    //     }
-    // }, [loadedImageCount])
+      function imageLoaded(img) {
+        setLoadedImageCount((prevCount) => prevCount + 1);
+        console.log(`${img.alt} loaded successfully.`);
+        checkAllImagesLoaded();
+    }
+    function imageError(img) {
+        console.error(`Error loading ${img.alt}.`);
+        checkAllImagesLoaded();
+    }
+    useEffect(() => {
+        if (loadedImageCount === 21) { //20 images
+            setIsLoaded(true);
+            console.log('All images have loaded successfully.');
+            gsap.to(loadingTxtRef.current, {
+                duration: 0.5,
+                opacity: 0,
+                ease: easeLoad,
+                onComplete: () => {
+                    loadingTxtRef.current.style.display = "none";
+                }
+            }, 0);
+        }
+    }, [loadedImageCount])
 
   return (
     <Container >

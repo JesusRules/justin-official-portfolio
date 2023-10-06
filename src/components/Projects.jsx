@@ -13,6 +13,8 @@ import { Bloom, DepthOfField, EffectComposer, Noise, Vignette } from '@react-thr
 import { Water } from 'three-stdlib';
 import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader.js'
 import MarioGuitar from './threejsscripts/mario-guitar/MarioGuitar';
+import { MiniJesusFBX } from './threejsscripts/MiniJesusFBX';
+import { MiniJesus2 } from './threejsscripts/MiniJesus2';
 
 extend({ Water })
 
@@ -436,6 +438,17 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
       scrollToEducation();
     }
 
+
+
+    const [canvasKey, setCanvasKey] = useState(0);
+
+    const reloadCanvas = () => {
+      // Increment the key to trigger a reload
+      setCanvasKey((prevKey) => prevKey + 1);
+    };
+
+
+
   return (
     <>  
     {!showModels && (
@@ -480,7 +493,7 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
         
         {showModels && (
           <>
-        <Canvas camera={{fov: 58, far: 1000, near: 0.1, position: [0, 1.75, 5]}}
+        <Canvas key={canvasKey} camera={{fov: 58, far: 1000, near: 0.1, position: [0, 1.75, 5]}}
                   style={{  zIndex: 116,
                             background: 'lightblue', 
                             backgroundImage: 'url(/img/projects/misc/background.jpg)' ,
@@ -500,6 +513,7 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
                   >
                     <Suspense fallback={<Loader />}>
                       <MiniJesus scale={37} 
+                      reloadCanvas={reloadCanvas}
                         animIndex={animIndex} 
                         setAnimIndex={setAnimIndex} 
                         playerRef={playerRef} 
