@@ -31,6 +31,7 @@ const Title = styled.h3`
     margin-bottom: 2.5rem;
     font-weight: 800;
     position: relative;
+    font-size: 1.6rem;
     @media only screen and (max-width: 700px) {
     }
 `;
@@ -38,7 +39,7 @@ const Title = styled.h3`
 const Subtitle = styled.h2`
     color: black;
     text-align: center;
-    font-size: 1.1rem;
+    font-size: 1rem;
     text-transform: uppercase;
     max-width: 1100px;
     width: 100%;

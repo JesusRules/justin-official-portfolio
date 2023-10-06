@@ -32,7 +32,7 @@ const LeftMobile = styled.div`
   height: 100%;
   position: absolute;
   margin: auto;
-  top: 37%;
+  top: 45%; //37
   /* top: 55%; */
   bottom: 0;
   @media only screen and (min-width: 700px) {
@@ -68,7 +68,7 @@ const Right = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 20px;
+  gap: 18px; //20
   pointer-events: none;
   z-index: 10;
 
@@ -83,7 +83,22 @@ const Right = styled.div`
     -webkit-background-clip: text;
     background-clip: text;
     font-weight: 800;
+    /* font-size: 2.2rem; */
+    font-size: 1.8rem;
   }
+  h2 {
+    /* font-size: 1.6rem; */
+    font-size: 1.4rem;
+    padding-right: 1rem;
+  }
+  p {
+    font-size: .95rem;
+    padding-right: 1rem;
+  }
+  .social-media-icons img {
+    width: 2.5rem;
+  }
+  
 
   @media only screen and (max-width: 700px) {
     margin: auto;
@@ -91,26 +106,24 @@ const Right = styled.div`
     width: 95vw;
     left: 0;
     right: 0;
-    top: 230px;
+    top: 240px; //290
     bottom: 50%;
+    gap: 8px;
     h1 {
-      font-size: 2rem;
+      font-size: 1.8rem;
     }
     h2 {
-      font-size: 1.8rem;
+      padding: .5rem;
+      font-size: 1.4rem;
+    }
+    p {
+      padding: .5rem;
     }
     .social-media-icons {
       justify-content: center;
     }
   }
-  //-webkit-user-select: none; /* Safari */
-  //-ms-user-select: none; /* IE 10 and IE 11 */
-  //user-select: none; /* Standard syntax */
 
-  /* @media only screen and (max-width: 768px) {
-    align-items: center;
-    text-align: center;
-} */
 `
 
 const CrucifixDiv = styled.div`
@@ -140,8 +153,8 @@ const ResumeButton = styled.a`
       
       .btn-resume{
         display: inline-block;
-        font-size: 1.1em;
-        padding: 20px;
+        font-size: 1rem;
+        padding: 18px; //20
         background: #4d4d4d;
         position:relative;
         border:2px solid #fff;
@@ -220,7 +233,9 @@ function Who({ myRef }) {
               {/* <h1><span style={{color: 'black', fontWeight: 800}}>About</span> <span style={{color: 'black', fontWeight: 800}}>Me</span></h1> */}
               <h1>About Me</h1>
               <h2>I can make any system development vision come to life!</h2>
-              <p>Communicative, strong, and resilient! I love to learn, I love culture, and I love life! Coding is my favourite thing to do!</p>
+              {/* <p>Communicative, strong, and resilient! I love to learn, I love culture, and I love life! Coding is my favourite thing to do!</p> */}
+              <p>I possess unwavering dedication, strong social skills and an open-minded attitude towards embracing unfamiliar ideas and processes. My creativity is a defining trait, and I exhibit a genuine enthusiasm for learning, particularly in the realm of coding.</p>
+              {/* <p>I possess unwavering dedication, strong social skills and an open-minded attitude towards embracing unfamiliar ideas and processes. My creativity is a defining trait, and I exhibit a genuine enthusiasm for learning, particularly in the realm of coding. On a personal note, I cherish moments spent with my family and take pride in celebrating my indigenous and Italian heritage.</p> */}
               
               
               <div className='social-media-icons' style={{display: 'flex', gap: '.6rem', pointerEvents: 'auto'}}>
