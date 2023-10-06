@@ -307,7 +307,7 @@ const HeroText = styled.h1`
     color: #520000;
     z-index: 1000;
     /* font-size: 29px; */
-    font-size: 26px;
+    font-size: 28px;
     font-family: "myriad-pro", sans-serif;
     font-weight: 700;
     font-style: normal;
