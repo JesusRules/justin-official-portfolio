@@ -550,7 +550,8 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
                       <>
                       <EffectComposer>
                         {/* 3.3 */}
-                      <Bloom luminanceThreshold={0} luminanceSmoothing={6} height={300} />
+                        {/* 6 */}
+                      <Bloom luminanceThreshold={0} luminanceSmoothing={26} height={300} /> /
                       </EffectComposer>
                       </>
                     )}
