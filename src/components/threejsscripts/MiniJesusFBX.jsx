@@ -6,7 +6,7 @@ Files: MiniJesus.gltf [8.25MB] > MiniJesus-transformed.glb [499.31KB] (94%)
 
 import React, { useRef, useState, useEffect } from 'react'
 import { useGLTF, useAnimations, useFBX } from '@react-three/drei'
-import { useFrame, useLoader, useThree } from '@react-three/fiber';
+import { act, useFrame, useLoader, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 import { Vector3, Quaternion, MathUtils  } from 'three';
 import { GLTFLoader } from 'three-stdlib'
@@ -60,32 +60,29 @@ export function MiniJesusFBX(props) {
   const startTime = useRef(0);
 
   useEffect(() => {
-    actions['FirstPlaceWin'].setDuration(1.8);
-    actions['Walk'].setDuration(1.1);
-    actions['Run'].setDuration(.6);
+    actions['Armature|FirstPlaceWin'].setDuration(1.8);
+    actions['Armature|Walk'].setDuration(1.1);
+    actions['Armature|Run'].setDuration(.6);
 
-    actions['FirstPlaceWin'].loop = THREE.LoopOnce;
-    actions['Win'].loop = THREE.LoopOnce;
+    actions['Armature|FirstPlaceWin'].loop = THREE.LoopOnce;
+    actions['Armature|Win'].loop = THREE.LoopOnce;
     // console.log("ANIMATIONS", animations);
 
-    actions['FirstPlaceWin'].clampWhenFinished = true;
-    actions['Win'].clampWhenFinished = true;
+    actions['Armature|FirstPlaceWin'].clampWhenFinished = true;
+    actions['Armature|Win'].clampWhenFinished = true;
 
     mixer.addEventListener('finished', (e) => {
-      if (e.action._clip.name === "FirstPlaceWin") {
+      if (e.action._clip.name === "Armature|FirstPlaceWin") {
         // setIndex(3); //idle
       }
-      if (e.action._clip.name === "Win") {
-        setAnimIndex(3); //idle
+      if (e.action._clip.name === "Armature|Win") {
+        setAnimIndex(2); //idle
       }
-      if (e.action._clip.name === "Run") {
+      if (e.action._clip.name === "Armature|Run") {
         // setTargetRotation(-Math.PI);
       }
     });
-    setIsLoaded(true); //Meant for animation at beginning
-    //Control keys
-    // document.addEventListener('keydown', handleKeyDown, false);
-    // document.addEventListener('keyup', handleKeyUp, false);
+    setIsLoaded(true); 
 
     canvasRef.current.addEventListener("touchstart", handleTouchStart);
     canvasRef.current.addEventListener("touchmove", handleTouchMove);
@@ -170,9 +167,9 @@ export function MiniJesusFBX(props) {
 
   useEffect(() => {
     if (isMoving) {
-      setAnimIndex(5);
-    } else {
       setAnimIndex(3);
+    } else {
+      setAnimIndex(2);
     }
   }, [isMoving])
 
@@ -238,7 +235,7 @@ export function MiniJesusFBX(props) {
     setSpeedDifference(20 - speed);
     
     if (speedDifference < 0.2) setSpeedDifference(0.2);
-    actions['Run'].setDuration(speedDifference);
+    // actions['Run'].setDuration(speedDifference);
     
     if (speedDifference < 3.3) { //5
     }
@@ -368,37 +365,12 @@ export function MiniJesusFBX(props) {
       HideBubble();
       setCameraPosition([state.camera.position.x, 1.75, state.camera.position.z])
     }
-
-    // const distance = 25.2; // Distance from the camera // 14.5
-    // playerPositionNew.copy(state.camera.position);
-    // state.camera.getWorldDirection(playerPositionNew);
-    // playerPositionNew.multiplyScalar(distance).add(state.camera.position);
-    // playerPositionNew.y = 0;
-    // playerRef.current.position.copy(playerPositionNew);
   })
 
-  // const faceMovementDir = (offsetDistance, camera, angle, radius) => {
-  //   // const cameraX2 = playerRef.current.position.x + Math.cos(angle) * radius;
-  //   // const cameraZ2 = playerRef.current.position.z + Math.sin(angle) * radius;
-  //   // // camera.position.set(cameraX2, 1.75, cameraZ2);
-  //   // camera.position.x = cameraX2;
-  //   // camera.position.z = cameraZ2;
-
-  //   // Calculate the rotation angle based on player's rotation
-  //   const playerRotation = Math.atan2(playerRef.current.position.z, playerRef.current.position.x);
-
-  //   // Calculate the offset direction by adding 90 degrees (pi/2 radians) to the player's rotation
-  //   const offsetDirection = playerRotation + Math.PI / 2;
-
-  //   // Calculate the offset position based on the offset direction and distance
-  //   const offsetX = playerRef.current.position.x + Math.cos(offsetDirection) * offsetDistance;
-  //   const offsetZ = playerRef.current.position.z + Math.sin(offsetDirection) * offsetDistance;
-  //   setTargetRotation(new Vector3(offsetX, 0, offsetZ));
-  // }
 
   const clickedJesus = () => {
-    // if (keyDown) return;
-    setAnimIndex(7); //2 alt
+    console.log(actions);
+    setAnimIndex(1); //Armature|Win
     if (moveDir === 'left') setTargetRotation(-3.14159);
       if (moveDir === 'right') setTargetRotation(-3.14159);
   }
@@ -414,10 +386,17 @@ export function MiniJesusFBX(props) {
   });
 
   return (
-    <group ref={playerRef} {...props} dispose={null} position={[0,0,0]}>
-      <primitive ref={modelRef} object={fbx} scale={0.01} />
+    <group onClick={clickedJesus} ref={playerRef} {...props} dispose={null} position={[0,0,0]}>
+      <primitive ref={modelRef} object={fbx} scale={0.01} rotation={[0, -Math.PI, 0]} />
     </group>
   )
 }
 
 // useGLTF.preload('/models/MiniJesus-transformed.glb')
+
+// 0 = Armature|Clapping
+// 1 = Armature|Win
+// 2 = Armature|Idle
+// 3 = Armature|Run
+// 4 = Armature|FirstPlaceWin
+// 5 = Armature|Walk

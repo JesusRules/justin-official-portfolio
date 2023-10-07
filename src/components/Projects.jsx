@@ -328,7 +328,8 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
   useEffect(() => {
     if (!isLoaded) return;
     setTimeout(() => {
-      setAnimIndex(2); //7 alt Jumping happy
+      setAnimIndex(4); //FBX Jesus
+      // setAnimIndex(2); //7 alt Jumping happy
       if (!showBubbleOnce) {
         setShowBubbleOnce(true);
         gsap.to(speechBubbleRef.current, {
@@ -438,17 +439,6 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
       scrollToEducation();
     }
 
-
-
-    const [canvasKey, setCanvasKey] = useState(0);
-
-    const reloadCanvas = () => {
-      // Increment the key to trigger a reload
-      setCanvasKey((prevKey) => prevKey + 1);
-    };
-
-
-
   return (
     <>  
     {!showModels && (
@@ -493,7 +483,7 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
         
         {showModels && (
           <>
-        <Canvas key={canvasKey} camera={{fov: 58, far: 1000, near: 0.1, position: [0, 1.75, 5]}}
+        <Canvas camera={{fov: 58, far: 1000, near: 0.1, position: [0, 1.75, 5]}}
                   style={{  zIndex: 116,
                             background: 'lightblue', 
                             backgroundImage: 'url(/img/projects/misc/background.jpg)' ,
@@ -512,8 +502,7 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
                   pixelRatio={window.devicePixelRatio / 10}
                   >
                     <Suspense fallback={<Loader />}>
-                      <MiniJesus scale={37} 
-                      reloadCanvas={reloadCanvas}
+                      <MiniJesusFBX scale={37} 
                         animIndex={animIndex} 
                         setAnimIndex={setAnimIndex} 
                         playerRef={playerRef} 
