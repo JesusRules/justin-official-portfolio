@@ -609,31 +609,114 @@ function Ocean() {
   return <water ref={ref} args={[geom, config]} position={[0, 0.01, 0]} rotation-x={-Math.PI / 2} />
 }
 
+// function HDRIBackground() {
+//   const { scene, gl } = useThree(); // Access the scene from the three.js context
+  
+//   useEffect(() => {
+//     gl.outputColorSpace = THREE.SRGBColorSpace;
+//   }, [gl]);
+
+//   const hdrTextureURL = '/hdri/sunflowers_puresky_1k.hdr';
+//   const loader = new RGBELoader();
+//   loader.load(hdrTextureURL, function (texture) {
+//     texture.mapping = THREE.EquirectangularReflectionMapping;
+//     scene.background = texture;
+//     scene.environment = texture;
+//   });
+//   return null;
+// }
+
+const CrossSection = styled.div`
+`
+const CrossContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transform: translateY(2rem) scale(0.5);
+
+  /* width: 100%;
+  display: flex;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  bottom: 0; */
+`
+
+const WaterCross = styled.div`
+    position: absolute;
+    /* top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); */
+    width: 330px;
+    height: 760px;
+    background: url('/img/projects/misc/wave.png');
+    background-repeat: repeat-x;
+    animation: animate 1.5s linear infinite;
+    /* box-shadow: 0 0 0 6px #fff, 0 20px 35px rgba(0,0,0,1); */
+    mask: url('/img/projects/misc/cross-mask.svg');
+    -webkit-mask-image: url('/img/projects/misc/cross-mask.svg'); /* Use the mask image as a mask */
+    mask-image: url('/img/projects/misc/cross-mask.svg'); /* Use the mask image as a mask */
+    /* -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat; */
+    /* -webkit-mask-position: center; */
+    /* mask-position: center; */
+
+    @keyframes animate
+    {
+        0%{
+            /* background-position: 0 200px; */
+            background-position-x: 0;
+        }
+        100% {
+            /* background-position: 500px 0px; */
+            background-position-x: 500px;
+        }
+    }
+`
+const CrossBackground = styled.div`
+    position: absolute;
+    /* top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); */
+    background-position: center;
+    width: 330px;
+    height: 760px;
+    background: url('/img/projects/misc/cross-mask.svg');
+    background-repeat: no-repeat;
+`
+
+
+// function Loader() {
+//   // const { progress } = useProgress()
+//   return (
+//     <>
+//      <Html center>
+
+//       <CrossSection>
+//           <CrossContainer>
+//               <CrossBackground />
+//               <WaterCross />
+//           </CrossContainer>
+//       </CrossSection>
+
+//     </Html>
+//     </>
+//   )
+// }
+
 function Loader() {
   const { progress } = useProgress()
   return <Html center>
     <div style={{width: '100vw', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center',  margin: 'auto'}}>
-    <p style={{textAlign: 'center', fontSize: '2.2rem'}}>{progress} % Loaded</p>
+    <p style={{textAlign: 'center', fontSize: '2.2rem'}}>{parseInt(progress)} % Loaded</p>
     </div>
     </Html>
 }
-
-function HDRIBackground() {
-  const { scene, gl } = useThree(); // Access the scene from the three.js context
-  
-  useEffect(() => {
-    gl.outputColorSpace = THREE.SRGBColorSpace;
-  }, [gl]);
-
-  const hdrTextureURL = '/hdri/sunflowers_puresky_1k.hdr';
-  const loader = new RGBELoader();
-  loader.load(hdrTextureURL, function (texture) {
-    texture.mapping = THREE.EquirectangularReflectionMapping;
-    scene.background = texture;
-    scene.environment = texture;
-  });
-  return null;
-}
-
 
 export default Projects
