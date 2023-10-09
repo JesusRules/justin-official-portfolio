@@ -782,7 +782,6 @@ function Hero({ scrollYGlobal, clickToContact }) {
       // LOADING STUFF
       function imageLoaded(img) {
         setLoadedImageCount((prevCount) => prevCount + 1);
-        console.log(`${img.alt} loaded successfully.`);
         checkAllImagesLoaded();
     }
     function imageError(img) {
@@ -792,7 +791,7 @@ function Hero({ scrollYGlobal, clickToContact }) {
     useEffect(() => {
         if (loadedImageCount === 21) { //20 images
             setIsLoaded(true);
-            console.log('All images have loaded successfully.');
+            // console.log('All images have loaded successfully.');
             gsap.to(loadingTxtRef.current, {
                 duration: 0.5,
                 opacity: 0,
@@ -807,12 +806,12 @@ function Hero({ scrollYGlobal, clickToContact }) {
   return (
     <>
 
+    {/* <Loader /> */}
     <Container >
       {/* <Vignette /> */}
     <HeroText ref={subtitleTxtRef}>Passionate. Professional. Reliable.</HeroText>
     
     <LoadingText ref={loadingTxtRef}>Loading...</LoadingText>
-
     <div ref={contactBtnRef} id="button-8" className="contact-btn-main" onClick={clickToContact}>
         <span className='borderLine'></span>
         <div id="button- 3" style={{padding: 0}}>
@@ -903,3 +902,91 @@ function Hero({ scrollYGlobal, clickToContact }) {
 }
 
 export default Hero
+
+
+
+
+
+const CrossSection = styled.div`
+z-index: 10000001110;
+height: 100vh;
+width: 100vw;
+background: green;
+position: absolute;
+display: flex;
+justify-content: center;
+`
+const CrossContainer = styled.div`
+z-index: 10000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transform: translateY(2rem) scale(0.5);
+  background: green;
+`
+
+const WaterCross = styled.div`
+    position: absolute;
+    z-index: 10000000;
+    /* top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); */
+    width: 330px;
+    height: 480px;
+    background: url('/img/projects/misc/wave5.png');
+    background-repeat: repeat-x;
+    animation: animate 1.5s linear infinite;
+    
+    mask: url('/img/projects/misc/cross-mask.svg');
+    -webkit-mask-image: url('/img/projects/misc/cross-mask.svg');
+    mask-image: url('/img/projects/misc/cross-mask.svg');
+    
+    /* -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat; */
+    /* -webkit-mask-position: center; */
+    /* mask-position: center; */
+
+    /* background-position-y: -750px; // TOP */
+    background-position-y: 460px; // BOTTOM
+
+    @keyframes animate
+    {
+        0%{
+            background-position-x: 0;
+        }
+        100% {
+            background-position-x: 1333px;
+        }
+    }
+`
+const CrossBackground = styled.div`
+    position: absolute;
+    z-index: 10000000;
+    /* top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); */
+    background-position: center;
+    width: 330px;
+    height: 480px; //760
+    background: url('/img/projects/misc/cross-mask.svg');
+    background-repeat: no-repeat;
+`
+
+function Loader() {
+    // const { progress } = useProgress()
+    return (
+      <>
+       {/* <Html center> */}
+  
+        <CrossSection>
+            <CrossContainer>
+                <CrossBackground />
+                <WaterCross />
+            </CrossContainer>
+        </CrossSection>
+  
+      {/* </Html> */}
+      </>
+    )
+  }

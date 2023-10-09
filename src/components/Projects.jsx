@@ -416,9 +416,12 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
       if (openModal) {
         setHideOverflow(true); // CANT
       } else {
-        // setTimeout(() => {
+          // projectModalRef.current.scrollTo({
+          //   top: 0,
+          //   behavior: 'smooth'
+          // });
+          myRef.current.scrollTop = 0;
           setHideOverflow(false);
-        // }, (2000))
       }
     }, [openModal])
 
@@ -438,7 +441,7 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
     const handleDownArrow = () => {
       scrollToEducation();
     }
-
+    
   return (
     <>  
     {!showModels && (
@@ -666,6 +669,7 @@ const WaterCross = styled.div`
     mask-repeat: no-repeat; */
     /* -webkit-mask-position: center; */
     /* mask-position: center; */
+    background-position-y: 0px;
 
     @keyframes animate
     {
