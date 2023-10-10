@@ -69,7 +69,7 @@ const DarkBG = styled.div`
     cursor: pointer;
     position: absolute;
     display:  none;
-    /* overflow: hidden; */
+    overflow-y: hidden;
 
 `
 
