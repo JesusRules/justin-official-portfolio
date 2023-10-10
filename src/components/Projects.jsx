@@ -28,6 +28,7 @@ const Container = styled.div`
     background-repeat: no-repeat;
     background-position: center center;
     height: 100vh;
+    max-height: 100vh;
     width: 100%;
     overflow: hidden;
 `
@@ -442,7 +443,6 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
 
     const clickProject = () => {
       if (idleStance && withinProject) {
-        myRef.current.scrollTop = 0;
         setOpenModal(true);
       }
     }
@@ -460,9 +460,9 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
     
   return (
     <>  
-    {!showModels && (
+    {/* {!showModels && (
       <BackgroundImage src="/img/projects/misc/background.jpg" alt="Background Image" />
-    )}
+    )} */}
 
     <Container ref={myRef}>
       <Arrows>
@@ -504,7 +504,9 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
           <>
         <Canvas camera={{fov: 58, far: 1000, near: 0.1, position: [0, 1.75, 5]}}
                   style={{  zIndex: 116,
-                            overflowY: 'hidden',
+                            overflow: 'hidden',
+                            height: '100vh',
+                            maxHeight: '100vh',
                             background: 'lightblue', 
                             backgroundImage: 'url(/img/projects/misc/background.jpg)' ,
                             backgroundSize: 'cover',
