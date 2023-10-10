@@ -442,6 +442,8 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
 
     const clickProject = () => {
       if (idleStance && withinProject) {
+        myRef.current.scrollTop = 0;
+        console.log("CALLED")
         setOpenModal(true);
       }
     }
@@ -459,9 +461,9 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
     
   return (
     <>  
-    {/* {!showModels && (
+    {!showModels && (
       <BackgroundImage src="/img/projects/misc/background.jpg" alt="Background Image" />
-    )} */}
+    )}
 
     <Container ref={myRef}>
       <Arrows>
