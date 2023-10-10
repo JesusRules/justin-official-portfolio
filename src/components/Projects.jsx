@@ -22,7 +22,7 @@ const Container = styled.div`
     background-color: lightblue;
     scroll-snap-align: start;
     cursor: grab;
-    position: absolute;
+    position: relative;
     background-image: url('/img/projects/misc/background.jpg'); 
     background-size: cover; 
     background-repeat: no-repeat;
