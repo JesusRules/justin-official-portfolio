@@ -20,10 +20,10 @@ extend({ Water })
 
 const Container = styled.div`
     background-color: lightblue;
-    position: fixed;
+    position: absolute;
     scroll-snap-align: start;
     cursor: grab;
-    position: relative;
+    position: absolute;
     background-image: url('/img/projects/misc/background.jpg'); 
     background-size: cover; 
     background-repeat: no-repeat;
@@ -465,21 +465,6 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
     )}
 
     <Container ref={myRef}>
-      <Arrows>
-        <img draggable={false} onClick={handleUpArrow} id='arrow-top' src="/img/projects/misc/short-arrow.png"/>
-        <img draggable={false} onClick={handleDownArrow} id='arrow-bottom' src="/img/projects/misc/short-arrow.png"/>
-      </Arrows>
-      <QualityToggle>
-      <label className="toggle-wrap">
-        {/* <div>Label</div> */}
-        <input
-          type="checkbox"
-          checked={qualityCheck}
-          onChange={onToggleChange}
-        />
-        <div className="toggle-el"></div>
-    </label>
-      </QualityToggle>
 
       {showComponent && (
         <>
@@ -498,7 +483,7 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
         
         <ProjectInfoModal currentProject={currentProject} openModal={openModal} setOpenModal={setOpenModal} />
 
-        {/* <SpeechBubble ref={speechBubbleRef} src="/img/projects/misc/speech-bubble-portfolio.png"/> */}
+        <SpeechBubble ref={speechBubbleRef} src="/img/projects/misc/speech-bubble-portfolio.png"/>
         
         {showModels && (
           <>
@@ -628,23 +613,6 @@ function Ocean() {
   useFrame((state, delta) => (ref.current.material.uniforms.time.value += delta))
   return <water ref={ref} args={[geom, config]} position={[0, 0.01, 0]} rotation-x={-Math.PI / 2} />
 }
-
-// function HDRIBackground() {
-//   const { scene, gl } = useThree(); // Access the scene from the three.js context
-  
-//   useEffect(() => {
-//     gl.outputColorSpace = THREE.SRGBColorSpace;
-//   }, [gl]);
-
-//   const hdrTextureURL = '/hdri/sunflowers_puresky_1k.hdr';
-//   const loader = new RGBELoader();
-//   loader.load(hdrTextureURL, function (texture) {
-//     texture.mapping = THREE.EquirectangularReflectionMapping;
-//     scene.background = texture;
-//     scene.environment = texture;
-//   });
-//   return null;
-// }
 
 const CrossSection = styled.div`
 `
