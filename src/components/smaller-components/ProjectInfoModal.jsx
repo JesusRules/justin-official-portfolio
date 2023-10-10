@@ -69,7 +69,8 @@ const DarkBG = styled.div`
     cursor: pointer;
     position: absolute;
     display:  none;
-    /* transition: transform 0.3s ease, opacity 0.3s ease; */
+    overflow: hidden;
+
 `
 
 const BackgroundBanner = styled.div`
