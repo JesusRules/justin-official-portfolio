@@ -309,6 +309,7 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
       const halfwayPoint = divElement.scrollHeight / 5;
       if (Math.round(scrollYGlobal) == divElement.offsetTop) {
         scrollToPortfolio();
+        console.log("Projects");
         setShowComponent(true);
         setShowModels(true);
         // if (!showBubbleOnce) {

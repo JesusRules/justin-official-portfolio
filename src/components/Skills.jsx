@@ -70,11 +70,15 @@ const CrucifixImage = styled.img`
     }
 `
 
-function Skills({ myRef, scrollYGlobal }) {
+function Skills({ myRef, scrollYGlobal, scrollToSkills }) {
     let tl = gsap.timeline();
 
     useEffect(() => {
         const divElement = myRef.current;
+        if (Math.round(scrollYGlobal) == divElement.offsetTop) {
+            scrollToSkills();
+            console.log("Skills");
+        }
         if (scrollYGlobal >= divElement.offsetTop) {
         //   tl.to(".first-div", {
         //         transform: 'translateY(0)',

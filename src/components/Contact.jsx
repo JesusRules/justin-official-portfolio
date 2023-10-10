@@ -16,6 +16,7 @@ const Container = styled.div`
 `
 
 const Footer = styled.div`
+scroll-snap-type: none; 
   width: 100vw;
   position: fixed;
   height: 2rem;
@@ -31,6 +32,7 @@ const Footer = styled.div`
 `;
 
 const SVGContent = styled.div`
+scroll-snap-type: none; 
     opacity: 0;
     width: 94%;
     height: 2rem;
@@ -65,6 +67,14 @@ const SVGContent = styled.div`
   }
 `;
 
+const BackgroundImage = styled.img`
+width: 100vw;
+height: 100vh;
+object-fit: cover;
+position: absolute;
+z-index: 1111; //111
+`
+
 function Contact({ myRef, scrollYGlobal, educationRef, scrollToContact }) {
   const [showComponent, setShowComponent] = useState(false);
   const [ticked, setTicked] = useState(false);
@@ -78,18 +88,26 @@ function Contact({ myRef, scrollYGlobal, educationRef, scrollToContact }) {
     useEffect(() => {
       const divElement = myRef.current;
       // console.log(divElement.offsetTop - divElement.scrollHeight + 100);
-      const halfwayPoint = divElement.scrollHeight / 5;
-      if (Math.round(scrollYGlobal) > (divElement.offsetTop - divElement.scrollHeight + 100)) { //- 3008 very top
+      // if (Math.round(scrollYGlobal) > (divElement.offsetTop - divElement.scrollHeight + 100)) { //- 3008 very top
+      //   setShowComponent(true);
+      // }
+      // if (Math.round(scrollYGlobal) <= (divElement.offsetTop - divElement.scrollHeight + 100)) {
+      //   if (showComponent) {
+      //     setTicked(true);
+      //   }
+      // }
+      // if (Math.round(scrollYGlobal) == divElement.offsetTop) {
+      // }
+      
+      if (Math.round(scrollYGlobal) == divElement.offsetTop) {
+        scrollToContact();
+        console.log("Contact");
         setShowComponent(true);
       }
-      if (Math.round(scrollYGlobal) <= (divElement.offsetTop - divElement.scrollHeight + 100)) {
-        // setShowComponent(false);
+      if (Math.round(scrollYGlobal) > divElement.offsetTop || Math.round(scrollYGlobal) < divElement.offsetTop) {
         if (showComponent) {
           setTicked(true);
         }
-      }
-      if (Math.round(scrollYGlobal) == divElement.offsetTop) {
-          scrollToContact();
       }
   }, [scrollYGlobal])
 
@@ -120,8 +138,11 @@ function Contact({ myRef, scrollYGlobal, educationRef, scrollToContact }) {
 
   return (
     <>
+    {!showComponent && (
+      <BackgroundImage src="/img/contact/contact-background-blur.jpg" alt="Background Image" />
+    )}
+
     <Container ref={myRef}>
-      
       <Footer ref={footer1Ref}/>
       <SVGContent ref={footer2Ref}>
           <p>By Justin Bernard</p>
@@ -197,9 +218,6 @@ function CameraConsole({ showComponent }) {
         z: 35,
         duration: 2,
     });
-      // targetPosition = new Vector3(0, 30, 0);
-      // camera.position.set(0, 8, 35);
-      // state.camera.lookAt(targetPosition);
   })
 
   return null;
