@@ -135,7 +135,8 @@ function ProjectInfoModal(props) {
                   setHideVideos(false);
                 },
                 onComplete: () => {
-                  projectModalRef.current.style.pointerEvents = 'auto';
+                    projectModalRef.current.focus();
+                    projectModalRef.current.style.pointerEvents = 'auto';
                     projectModalRef.current.style.userSelect = 'auto';
                 }
               });
