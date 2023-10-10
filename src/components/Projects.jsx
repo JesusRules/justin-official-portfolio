@@ -20,8 +20,7 @@ extend({ Water })
 
 const Container = styled.div`
     background-color: lightblue;
-    position: relative;
-    height: 100%;
+    position: fixed;
     scroll-snap-align: start;
     cursor: grab;
     position: relative;
@@ -29,7 +28,8 @@ const Container = styled.div`
     background-size: cover; 
     background-repeat: no-repeat;
     background-position: center center;
-    overflow-y: hidden;
+    height: 100vh;
+    overflow: hidden;
 `
 
 const SpeechBubble = styled.img`
