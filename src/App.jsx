@@ -33,6 +33,7 @@ function App() {
   const [scrollY, setScrollY] = useState(0);
   const [hideOverflow, setHideOverflow] = useState(false);
 
+  const heroRef = useRef(null);
   const whoRef = useRef(null);
   const skillsRef = useRef(null);
   const portfolioRef = useRef(null);
@@ -53,6 +54,9 @@ function App() {
   };
 
 
+  const scrollToHero = () => {
+    heroRef.current.scrollIntoView({ behavior: 'smooth' });
+  }
   const scrollToWho = () => {
     whoRef.current.scrollIntoView({ behavior: 'smooth' });
   }
@@ -79,8 +83,10 @@ function App() {
               clickToEducation={scrollToEducation}
               clickToContact={scrollToContact}
               />
-      <Hero scrollYGlobal={scrollY} clickToContact={scrollToContact}/>
-      <Who myRef={whoRef}/>
+      <Hero myRef={heroRef} scrollYGlobal={scrollY} 
+                            clickToContact={scrollToContact}
+                            scrollToHero={scrollToHero} />
+      <Who myRef={whoRef} scrollYGlobal={scrollY}/>
       <Skills myRef={skillsRef} scrollYGlobal={scrollY}/>
       <Projects myRef={portfolioRef} scrollYGlobal={scrollY} 
                 scrollToSkills={scrollToSkills} 
@@ -92,7 +98,8 @@ function App() {
                   scrollToPortfolio={scrollToPortfolio}
                   scrollToContact={scrollToContact}
                   />
-      <Contact myRef={contactRef} educationRef={educationRef} scrollYGlobal={scrollY}/>
+      <Contact myRef={contactRef} educationRef={educationRef} 
+                scrollToContact={scrollToContact} scrollYGlobal={scrollY} />
       {/* <WebgiViewer scrollYGlobal={scrollY}/> */}
     </Container>
   )

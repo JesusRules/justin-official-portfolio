@@ -65,7 +65,7 @@ const SVGContent = styled.div`
   }
 `;
 
-function Contact({ myRef, scrollYGlobal, educationRef }) {
+function Contact({ myRef, scrollYGlobal, educationRef, scrollToContact }) {
   const [showComponent, setShowComponent] = useState(false);
   const [ticked, setTicked] = useState(false);
 
@@ -84,6 +84,7 @@ function Contact({ myRef, scrollYGlobal, educationRef }) {
       }
       if (Math.round(scrollYGlobal) <= (divElement.offsetTop - divElement.scrollHeight + 100)) {
         // setShowComponent(false);
+        scrollToContact();
         if (showComponent) {
           setTicked(true);
         }

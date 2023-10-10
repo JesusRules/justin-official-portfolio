@@ -360,7 +360,7 @@ const LoadingText = styled.h1`
     }
 `
 
-function Hero({ scrollYGlobal, clickToContact }) { 
+function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero }) { 
     // PARALLAX VARS
     let parallex_el;
     let xValue = 0, yValue = 0;
@@ -737,6 +737,16 @@ function Hero({ scrollYGlobal, clickToContact }) {
             setBooPos(window.getComputedStyle(booRef.current).getPropertyValue('left'));
             // setContactBtnPos(window.getComputedStyle(contactBtnRef.current).getPropertyValue('bottom'));
         }, [])
+
+        useEffect(() => {
+            const divElement = myRef.current;
+            // if (Math.round(scrollYGlobal) == divElement.offsetTop) {
+            //     scrollToHero();
+            // }
+            // if (Math.round(scrollYGlobal) > divElement.offsetTop || Math.round(scrollYGlobal) < divElement.offsetTop) {
+            //     console.log("OFF")
+            // }
+        }, [scrollYGlobal])
         
         useEffect(() => {
             handleScroll();
@@ -805,7 +815,7 @@ function Hero({ scrollYGlobal, clickToContact }) {
     <>
 
     {/* <Loader /> */}
-    <Container >
+    <Container ref={myRef}>
       {/* <Vignette /> */}
     <HeroText ref={subtitleTxtRef}>Passionate. Professional. Reliable.</HeroText>
     
