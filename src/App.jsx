@@ -69,6 +69,13 @@ function App() {
     contactRef.current.scrollIntoView({ behavior: 'smooth' });
   }
 
+  const PortfolioHidden = () => {
+    portfolioRef.current.style.overflowY = "hidden";
+  }
+  const PortfolioShow = () => {
+    portfolioRef.current.style.overflowY = "auto";
+  }
+
   return (
     <Container onScroll={handleScroll} hideOverflow={hideOverflow}>
       <NavBar scrollYGlobal={scrollY} 
@@ -85,7 +92,9 @@ function App() {
                 scrollToSkills={scrollToSkills} 
                 scrollToEducation={scrollToEducation}
                 setHideOverflow={setHideOverflow} 
-                scrollToPortfolio={scrollToPortfolio} />
+                scrollToPortfolio={scrollToPortfolio}
+                PortfolioHidden={PortfolioHidden}
+                PortfolioShow={PortfolioShow} />
       <Education myRef={educationRef} scrollYGlobal={scrollY} 
                   scrollToPortfolio={scrollToPortfolio}
                   scrollToContact={scrollToContact}

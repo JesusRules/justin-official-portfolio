@@ -276,7 +276,7 @@ var contentTitlesArray = [
 
 
 function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, setHideOverflow,
-                    scrollToPortfolio }) {
+                    scrollToPortfolio, PortfolioHidden, PortfolioShow }) {
   const [animIndex, setAnimIndex] = useState(3); //IDLE
   const playerRef = useRef();
   const speechBubbleRef = useRef();
@@ -417,11 +417,13 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
       }
       if (openModal) {
         setHideOverflow(true); // Outside to App.jsx
-        myRef.current.style.overflow = "hidden";
+        // myRef.current.style.overflow = "hidden";
+        PortfolioHidden();
       } else {
         setHideOverflow(false);
         scrollToPortfolio();
-        myRef.current.style.overflow = "auto";
+        PortfolioShow();
+        // myRef.current.style.overflow = "auto";
       }
     }, [openModal])
 
