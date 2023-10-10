@@ -302,6 +302,8 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
   const [showComponent, setShowComponent] = useState(false);
   const [showModels, setShowModels] = useState(false);
 
+  const canvasRef2 = useRef();
+
   // SCROLLING
     useEffect(() => {
       const divElement = myRef.current;
@@ -444,6 +446,8 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
     const clickProject = () => {
       if (idleStance && withinProject) {
         setOpenModal(true);
+        canvasRef2.current.scrollTop = 0;
+        console.log(canvasRef2.current.scrollTop);
       }
     }
 
@@ -502,7 +506,7 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
         
         {showModels && (
           <>
-        <Canvas camera={{fov: 58, far: 1000, near: 0.1, position: [0, 1.75, 5]}}
+        <Canvas ref={canvasRef2} camera={{fov: 58, far: 1000, near: 0.1, position: [0, 1.75, 5]}}
                   style={{  zIndex: 116,
                             overflow: 'hidden',
                             height: '100vh',
@@ -511,7 +515,7 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
                             backgroundImage: 'url(/img/projects/misc/background.jpg)' ,
                             backgroundSize: 'cover',
                             backgroundRepeat: 'no-repeat',
-                            backgroundPosition: 'center center'
+                            backgroundPosition: 'center center',
                   }} 
                   gl={{
                     outputColorSpace: THREE.SRGBColorSpace,
