@@ -69,7 +69,7 @@ const DarkBG = styled.div`
     cursor: pointer;
     position: absolute;
     display:  none;
-    overflow: hidden;
+    /* overflow: hidden; */
 
 `
 
@@ -125,7 +125,7 @@ function ProjectInfoModal(props) {
 
     useEffect(() => {
       if (openModal) {
-        closeButtonRef.current.style.display = 'block';
+        // closeButtonRef.current.style.display = 'block';  UNDO!!!!!!!!!!!!!!!!!
         gsap.to(projectModalRef.current, {
           x: '0%', // Final x position (center)
           opacity: 1, // Final opacity
@@ -143,7 +143,7 @@ function ProjectInfoModal(props) {
             }
             if (!openModal) {
               // projectModalRef.current.scrollTop = 0; //scroll to top
-              closeButtonRef.current.style.display = 'none';
+              // closeButtonRef.current.style.display = 'none'; // UNDO!!!!!!!!!!!!!!!!!
             gsap.to(projectModalRef.current, {
                 x: '-100%', // Final x position (outside the viewport to the right)
                 opacity: 0, // Final opacity
@@ -179,7 +179,7 @@ function ProjectInfoModal(props) {
 
   return (
     <>
-    <DarkBG ref={closeButtonRef} onClick={() => setOpenModal(false)} />
+    {/* <DarkBG ref={closeButtonRef} onClick={() => setOpenModal(false)} /> */}
     
     {/* <ProjectInfoContainer> */}
     {/* <GoToTopDiv> */}
@@ -191,8 +191,8 @@ function ProjectInfoModal(props) {
       currentProject.id === "music-covers" ||
       currentProject.id === "my-songs" || 
       currentProject.id === "other-videos") && (
-      <GoToTopButton onClick={scrollToTop}>Top</GoToTopButton>
-    )}
+        <GoToTopButton onClick={scrollToTop}>Top</GoToTopButton>
+        )}
     <ProjectInfoModalDiv ref={projectModalRef}>
         {currentProject.id === "pokithedog" && <PokiTheDog openModal={openModal} setOpenModal={setOpenModal} /> }
         {currentProject.id === "my-portfolio-old" && <Portfolio_Old openModal={openModal} setOpenModal={setOpenModal} /> }
