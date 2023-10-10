@@ -124,7 +124,7 @@ function ProjectInfoModal(props) {
 
     useEffect(() => {
       if (openModal) {
-        // closeButtonRef.current.style.display = 'block'; //!!!
+        closeButtonRef.current.style.display = 'block';
         gsap.to(projectModalRef.current, {
           x: '0%', // Final x position (center)
           opacity: 1, // Final opacity
@@ -141,7 +141,7 @@ function ProjectInfoModal(props) {
               });
             }
             if (!openModal) {
-              // closeButtonRef.current.style.display = 'none'; //!!!
+              closeButtonRef.current.style.display = 'none'; //!!!
             gsap.to(projectModalRef.current, {
                 x: '-100%', // Final x position (outside the viewport to the right)
                 opacity: 0, // Final opacity
