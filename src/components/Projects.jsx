@@ -47,8 +47,8 @@ const SpeechBubble = styled.img`
 `;
 
 const ProjectPopup = styled.div`
-  position: absolute;
-  display: flex;
+  position: fixed;
+  display: none;
   flex-direction: column;
   margin: auto;
   justify-content: center;
@@ -63,7 +63,7 @@ const ProjectPopup = styled.div`
   width: 100%;
   max-width: 30rem;
   text-align: center;
-  display: none;
+  opacity: 0;
 
   .content {
     position: relative;
@@ -322,7 +322,6 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
         setShowModels(false);
         setStartUpCam(false);
       }
-
   }, [scrollYGlobal])
 
   useEffect(() => {
@@ -414,16 +413,31 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
         });
       }
       if (openModal) {
-        setHideOverflow(true); // CANT
+        setHideOverflow(true); // Outside to App.jsx
       } else {
-          // projectModalRef.current.scrollTo({
-          //   top: 0,
-          //   behavior: 'smooth'
-          // });
-          myRef.current.scrollTop = 0;
+          // myRef.current.scrollTop = 0;
           setHideOverflow(false);
       }
     }, [openModal])
+
+    useEffect(() => {
+      if (!showModels) {
+        if (projectRef.current) {
+          projectRef.current.style.display = "none";
+        }
+      }
+      if (showModels) {
+        if (projectRef.current) {
+          projectRef.current.style.display = "inline-block";
+        }
+      }
+      if (!showModels && showBubbleOnce) //move screen
+      {
+        if (speechBubbleRef.current) {
+          speechBubbleRef.current.style.opacity = 0;
+        }
+      }
+    }, [showModels])
 
     const clickProject = () => {
       if (idleStance && withinProject) {
@@ -636,19 +650,7 @@ const CrossContainer = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
-  transform: translateY(2rem) scale(0.5);
-
-  /* width: 100%;
-  display: flex;
-  margin: auto;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  bottom: 0; */
+  transform: translateY(0rem) scale(0.37);
 `
 
 const WaterCross = styled.div`
@@ -657,8 +659,8 @@ const WaterCross = styled.div`
     left: 50%;
     transform: translate(-50%, -50%); */
     width: 330px;
-    height: 760px;
-    background: url('/img/projects/misc/wave.png');
+    height: 480px;
+    background: url('/img/projects/misc/wave5.png');
     background-repeat: repeat-x;
     animation: animate 1.5s linear infinite;
     /* box-shadow: 0 0 0 6px #fff, 0 20px 35px rgba(0,0,0,1); */
@@ -669,7 +671,8 @@ const WaterCross = styled.div`
     mask-repeat: no-repeat; */
     /* -webkit-mask-position: center; */
     /* mask-position: center; */
-    background-position-y: 0px;
+    /* background-position-y: -20px; // TOP */
+    background-position-y: 470px; // BOTTOM
 
     @keyframes animate
     {
@@ -679,7 +682,7 @@ const WaterCross = styled.div`
         }
         100% {
             /* background-position: 500px 0px; */
-            background-position-x: 500px;
+            background-position-x: 1333px;
         }
     }
 `
@@ -690,37 +693,56 @@ const CrossBackground = styled.div`
     transform: translate(-50%, -50%); */
     background-position: center;
     width: 330px;
-    height: 760px;
+    height: 480px;
     background: url('/img/projects/misc/cross-mask.svg');
     background-repeat: no-repeat;
 `
 
 
-// function Loader() {
-//   // const { progress } = useProgress()
-//   return (
-//     <>
-//      <Html center>
-
-//       <CrossSection>
-//           <CrossContainer>
-//               <CrossBackground />
-//               <WaterCross />
-//           </CrossContainer>
-//       </CrossSection>
-
-//     </Html>
-//     </>
-//   )
-// }
-
 function Loader() {
-  const { progress } = useProgress()
-  return <Html center>
-    <div style={{width: '100vw', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center',  margin: 'auto'}}>
-    <p style={{textAlign: 'center', fontSize: '2.2rem'}}>{parseInt(progress)} % Loaded</p>
-    </div>
+  const { progress } = useProgress();
+  const waterRef = useRef();
+  const [newProgress, setNewProgress] = useState(0);
+
+  useEffect(() => {
+    if (progress > newProgress)
+    {
+      setNewProgress(progress);
+      console.log(progress);
+      const interpolatedY = (470 + ((-20 - 470) * (progress / 100)));
+      // console.log(interpolatedY);
+      if (waterRef.current) {
+        waterRef.current.style.backgroundPositionY = `${interpolatedY}px`;
+      }
+    }
+  }, [progress])
+  
+  return (
+    <>
+     <Html center>
+
+      <CrossSection>
+          <CrossContainer>
+              <CrossBackground />
+              <WaterCross ref={waterRef} />
+          </CrossContainer>
+      </CrossSection>
+          {/* <div style={{width: '100vw', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center',  margin: 'auto'}}>
+           <p style={{textAlign: 'center', fontSize: '2.2rem'}}>{parseInt(progress)} % Loaded</p>
+     </div> */}
+
     </Html>
+    </>
+  )
 }
+
+// function Loader() {
+//   const { progress } = useProgress()
+//   return <Html center>
+//     <div style={{width: '100vw', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center',  margin: 'auto'}}>
+//     <p style={{textAlign: 'center', fontSize: '2.2rem'}}>{parseInt(progress)} % Loaded</p>
+//     </div>
+//     </Html>
+// }
 
 export default Projects

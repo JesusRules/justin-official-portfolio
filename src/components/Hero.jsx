@@ -782,11 +782,9 @@ function Hero({ scrollYGlobal, clickToContact }) {
       // LOADING STUFF
       function imageLoaded(img) {
         setLoadedImageCount((prevCount) => prevCount + 1);
-        checkAllImagesLoaded();
     }
     function imageError(img) {
         console.error(`Error loading ${img.alt}.`);
-        checkAllImagesLoaded();
     }
     useEffect(() => {
         if (loadedImageCount === 21) { //20 images
