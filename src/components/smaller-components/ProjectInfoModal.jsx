@@ -36,16 +36,17 @@ const ProjectInfoContainer = styled.div`
 `;
 
 const ProjectInfoModalDiv = styled.div`
-  height: 88%; //92
+  height: 100%; //88
   width: 92%;
   max-width: 1000px;
+  /* margin: auto; */
   margin: auto;
   border-radius: 15px;
   position: absolute;
   left: 0;
   right: 0;
   top: 0;
-  bottom: 2.2rem;
+  /* bottom: 2.2rem; */
   box-shadow: 5px 5px 5px black;
   z-index: 10010;//scroll-snap-type
   cursor: auto;
