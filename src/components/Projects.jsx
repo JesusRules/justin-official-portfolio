@@ -417,10 +417,11 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
       }
       if (openModal) {
         setHideOverflow(true); // Outside to App.jsx
+        myRef.current.style.overflow = "hidden";
       } else {
         setHideOverflow(false);
         scrollToPortfolio();
-        // myRef.current.scrollTop = 0;
+        myRef.current.style.overflow = "auto";
       }
     }, [openModal])
 
