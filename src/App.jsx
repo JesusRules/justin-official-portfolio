@@ -84,7 +84,8 @@ function App() {
       <Projects myRef={portfolioRef} scrollYGlobal={scrollY} 
                 scrollToSkills={scrollToSkills} 
                 scrollToEducation={scrollToEducation}
-                setHideOverflow={setHideOverflow} />
+                setHideOverflow={setHideOverflow} 
+                scrollToPortfolio={scrollToPortfolio} />
       <Education myRef={educationRef} scrollYGlobal={scrollY} 
                   scrollToPortfolio={scrollToPortfolio}
                   scrollToContact={scrollToContact}

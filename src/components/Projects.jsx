@@ -275,7 +275,8 @@ var contentTitlesArray = [
 ]
 
 
-function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, setHideOverflow }) {
+function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, setHideOverflow,
+                    scrollToPortfolio }) {
   const [animIndex, setAnimIndex] = useState(3); //IDLE
   const playerRef = useRef();
   const speechBubbleRef = useRef();
@@ -301,8 +302,6 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
   
   const [showComponent, setShowComponent] = useState(false);
   const [showModels, setShowModels] = useState(false);
-
-  const canvasRef2 = useRef();
 
   // SCROLLING
     useEffect(() => {
@@ -419,8 +418,9 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
       if (openModal) {
         setHideOverflow(true); // Outside to App.jsx
       } else {
-          // myRef.current.scrollTop = 0;
-          setHideOverflow(false);
+        setHideOverflow(false);
+        scrollToPortfolio();
+        // myRef.current.scrollTop = 0;
       }
     }, [openModal])
 
@@ -446,8 +446,6 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
     const clickProject = () => {
       if (idleStance && withinProject) {
         setOpenModal(true);
-        canvasRef2.current.scrollTop = 0;
-        console.log(canvasRef2.current.scrollTop);
       }
     }
 
@@ -464,9 +462,9 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
     
   return (
     <>  
-    {/* {!showModels && (
+    {!showModels && (
       <BackgroundImage src="/img/projects/misc/background.jpg" alt="Background Image" />
-    )} */}
+    )}
 
     <Container ref={myRef}>
       <Arrows>
@@ -506,7 +504,7 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
         
         {showModels && (
           <>
-        <Canvas ref={canvasRef2} camera={{fov: 58, far: 1000, near: 0.1, position: [0, 1.75, 5]}}
+        <Canvas camera={{fov: 58, far: 1000, near: 0.1, position: [0, 1.75, 5]}}
                   style={{  zIndex: 116,
                             overflow: 'hidden',
                             height: '100vh',
