@@ -47,7 +47,7 @@ const SpeechBubble = styled.img`
 `;
 
 const ProjectPopup = styled.div`
-  position: fixed;
+  position: absolute;
   display: none;
   flex-direction: column;
   margin: auto;
@@ -502,6 +502,7 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
           <>
         <Canvas camera={{fov: 58, far: 1000, near: 0.1, position: [0, 1.75, 5]}}
                   style={{  zIndex: 116,
+                            height: '100vh',
                             background: 'lightblue', 
                             backgroundImage: 'url(/img/projects/misc/background.jpg)' ,
                             backgroundSize: 'cover',
