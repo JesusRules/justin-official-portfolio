@@ -21,7 +21,7 @@ extend({ Water })
 const Container = styled.div`
     background-color: lightblue;
     position: relative;
-    height: 100vh;
+    height: 100%;
     scroll-snap-align: start;
     cursor: grab;
     position: relative;
@@ -388,7 +388,7 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
           }
         });
       } else {
-        projectRef.current.style.display = 'inline-block'; // Show before fading in
+        projectRef.current.style.display = 'block'; // Show before fading in
         gsap.to(projectRef.current, {
           opacity: 1,       // Fade in
           duration: 0.3,
@@ -407,7 +407,7 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
         });
       } 
       if (!openModal && currentProject !== "") {
-        projectRef.current.style.display = 'inline-block'; // Show before fading in
+        projectRef.current.style.display = 'block'; // Show before fading in
         gsap.to(projectRef.current, {
           opacity: 1,       // Fade in
           duration: 0.3,
@@ -429,7 +429,7 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
       }
       if (showModels) {
         if (projectRef.current) {
-          projectRef.current.style.display = "inline-block";
+          projectRef.current.style.display = "block";
         }
       }
       if (!showModels && showBubbleOnce) //move screen
@@ -498,7 +498,7 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
         
         <ProjectInfoModal currentProject={currentProject} openModal={openModal} setOpenModal={setOpenModal} />
 
-        <SpeechBubble ref={speechBubbleRef} src="/img/projects/misc/speech-bubble-portfolio.png"/>
+        {/* <SpeechBubble ref={speechBubbleRef} src="/img/projects/misc/speech-bubble-portfolio.png"/> */}
         
         {showModels && (
           <>
