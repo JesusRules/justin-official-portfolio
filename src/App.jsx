@@ -86,7 +86,8 @@ function App() {
       <Hero myRef={heroRef} scrollYGlobal={scrollY} 
                             clickToContact={scrollToContact}
                             scrollToHero={scrollToHero} />
-      <Who myRef={whoRef} scrollYGlobal={scrollY}/>
+      <Who myRef={whoRef} scrollYGlobal={scrollY}
+              scrollToWho={scrollToWho} />
       <Skills myRef={skillsRef} scrollYGlobal={scrollY}/>
       <Projects myRef={portfolioRef} scrollYGlobal={scrollY} 
                 scrollToSkills={scrollToSkills} 
@@ -96,6 +97,7 @@ function App() {
                 />
       <Education myRef={educationRef} scrollYGlobal={scrollY} 
                   scrollToPortfolio={scrollToPortfolio}
+                  scrollToEducation={scrollToEducation}
                   scrollToContact={scrollToContact}
                   />
       <Contact myRef={contactRef} educationRef={educationRef} 

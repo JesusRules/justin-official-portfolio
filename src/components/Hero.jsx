@@ -740,9 +740,9 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero }) {
 
         useEffect(() => {
             const divElement = myRef.current;
-            // if (Math.round(scrollYGlobal) == divElement.offsetTop) {
-            //     scrollToHero();
-            // }
+            if (Math.round(scrollYGlobal) == divElement.offsetTop) {
+                scrollToHero();
+            }
             // if (Math.round(scrollYGlobal) > divElement.offsetTop || Math.round(scrollYGlobal) < divElement.offsetTop) {
             //     console.log("OFF")
             // }
@@ -820,6 +820,7 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero }) {
     <HeroText ref={subtitleTxtRef}>Passionate. Professional. Reliable.</HeroText>
     
     <LoadingText ref={loadingTxtRef}>Loading...</LoadingText>
+    
     <div ref={contactBtnRef} id="button-8" className="contact-btn-main" onClick={clickToContact}>
         <span className='borderLine'></span>
         <div id="button- 3" style={{padding: 0}}>

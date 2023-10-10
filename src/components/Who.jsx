@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { styled } from 'styled-components'
 import downloadSvg from "/svg/download-solid.svg?url";
 import { JustinHead } from './threejsscripts/JustinHead';
@@ -197,7 +197,17 @@ const ResumeButton = styled.a`
       }
 `
 
-function Who({ myRef }) {
+function Who({ myRef, scrollYGlobal, scrollToWho }) {
+  useEffect(() => {
+    const divElement = myRef.current;
+    if (Math.round(scrollYGlobal) == divElement.offsetTop) {
+        scrollToWho();
+    }
+    // if (Math.round(scrollYGlobal) > divElement.offsetTop || Math.round(scrollYGlobal) < divElement.offsetTop) {
+    //     console.log("OFF")
+    // }
+}, [scrollYGlobal])
+
   return (
     <Section ref={myRef}>
       <Container>

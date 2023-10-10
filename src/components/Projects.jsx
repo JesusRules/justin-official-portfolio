@@ -276,7 +276,7 @@ var contentTitlesArray = [
 
 
 function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, setHideOverflow,
-                    scrollToPortfolio, PortfolioHidden, PortfolioShow }) {
+                    scrollToPortfolio }) {
   const [animIndex, setAnimIndex] = useState(3); //IDLE
   const playerRef = useRef();
   const speechBubbleRef = useRef();
@@ -308,6 +308,7 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
       const divElement = myRef.current;
       const halfwayPoint = divElement.scrollHeight / 5;
       if (Math.round(scrollYGlobal) == divElement.offsetTop) {
+        scrollToPortfolio();
         setShowComponent(true);
         setShowModels(true);
         // if (!showBubbleOnce) {

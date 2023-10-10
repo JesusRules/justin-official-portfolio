@@ -267,7 +267,7 @@ const Arrows = styled.div`
   }
   `
 
-function Education({ myRef, scrollYGlobal, scrollToPortfolio, scrollToContact }) {
+function Education({ myRef, scrollYGlobal, scrollToPortfolio, scrollToEducation, scrollToContact }) {
   const overlayRef = useRef(null);
   const backgroundImageRef = useRef(null);
   // Beginning Effect
@@ -290,6 +290,7 @@ function Education({ myRef, scrollYGlobal, scrollToPortfolio, scrollToContact })
     const halfwayPoint = divElement.scrollHeight / 5;
    
       if (Math.round(scrollYGlobal) == divElement.offsetTop) {
+        scrollToEducation();
         OnViewed();
         if (floatingBoxContentRef.current) {
           floatingBoxContentRef.current.focus();
