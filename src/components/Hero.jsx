@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { styled } from 'styled-components'
+import styled, { keyframes } from 'styled-components';
 import gsap from 'gsap';
 
 const Container = styled.div`
@@ -28,26 +28,76 @@ const Sky = styled.img`
     transform: translate(-50%, -50%);
     z-index: 10;
 `
+
+
+
+const spin = keyframes`
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+`;
   
-// const Dove = styled.img`
-//     position: absolute;
-//     width: 106px;
-//     top: calc(50% - 230px);
-//     left: calc(50% - 676px);
-//     /* top: 100px; */
-//     z-index: 2;
-//     transform: translate(-50%, -50%);
-// `
-// const Dove2 = styled.img`
-//     /* -webkit-transform: scaleX(-1); */
-//     position: absolute;
-//     width: 156px;
-//     top: calc(50% - 230px);
-//     left: calc(50% - 686px);
-//     /* top: 100px; */
-//     z-index: 2;
-//     transform: translate(-50%, -50%) scaleX(-1);
-// `
+const ContactBtnMain = styled.div`
+    opacity: 0;
+    z-index: 9990;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    /* bottom: .5rem; */
+    width: 110px;
+    height: 90px;
+    background: #1c1c1c;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    bottom: 5.5rem;
+    span {
+        color: #fff;
+        margin: auto;
+        text-align:center;
+        font-size: 1.23rem;
+    }
+    &::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 110px;
+        height: 90px;
+        background: linear-gradient(0deg, transparent, transparent, #45f3ff, #45f3ff, #45f3ff);
+        z-index: 1;
+        transform-origin: bottom right;
+        animation: ${spin} 2s linear infinite;
+    }
+    &::after {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 110px;
+        height: 90px;
+        background: linear-gradient(0deg, transparent, transparent, #45f3ff, #45f3ff, #45f3ff);
+        z-index: 1;
+        transform-origin: bottom right;
+        animation: ${spin} 2s linear infinite;
+        animation-delay: -1s;
+    }
+    div {
+        position: absolute;
+        inset: 5px;
+        background: #444;
+        /* background: #222; */
+        padding: 50px 40px;
+        border-radius: 8px;
+        z-index: 111112;
+        display: flex;
+        flex-direction: column;
+    }
+`
   
 const CloudMain_Back = styled.img`
     position: absolute;
@@ -821,12 +871,12 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero }) {
     
     <LoadingText ref={loadingTxtRef}>Loading...</LoadingText>
     
-    <div ref={contactBtnRef} id="button-8" className="contact-btn-main" onClick={clickToContact}>
+    <ContactBtnMain ref={contactBtnRef} id="button-8" onClick={clickToContact}>
         <span className='borderLine'></span>
         <div id="button- 3" style={{padding: 0}}>
             <span className='contact'>Contact Me!</span>
         </div>
-    </div>
+    </ContactBtnMain>
 
       <Sky ref={skyRef} src="/img/hero-banner/Sky.png" data-speedx="0.33" data-speedy="0.33" data-speedz="0" data-rotation="0" className='parallax bg-img'
             draggable="false" alt='Sky' onLoad={(e) => imageLoaded(e.target)} onError={(e) => imageError(e)}/>
@@ -945,7 +995,7 @@ const WaterCross = styled.div`
     height: 480px;
     background: url('/img/projects/misc/wave5.png');
     background-repeat: repeat-x;
-    animation: animate 1.5s linear infinite;
+    animation: ${spin} 1.5s linear infinite;
     
     mask: url('/img/projects/misc/cross-mask.svg');
     -webkit-mask-image: url('/img/projects/misc/cross-mask.svg');

@@ -80,7 +80,6 @@ function Contact({ myRef, scrollYGlobal, educationRef, scrollToContact }) {
       // console.log(divElement.offsetTop - divElement.scrollHeight + 100);
       const halfwayPoint = divElement.scrollHeight / 5;
       if (Math.round(scrollYGlobal) > (divElement.offsetTop - divElement.scrollHeight + 100)) { //- 3008 very top
-        scrollToContact();
         setShowComponent(true);
       }
       if (Math.round(scrollYGlobal) <= (divElement.offsetTop - divElement.scrollHeight + 100)) {
@@ -88,6 +87,9 @@ function Contact({ myRef, scrollYGlobal, educationRef, scrollToContact }) {
         if (showComponent) {
           setTicked(true);
         }
+      }
+      if (Math.round(scrollYGlobal) == divElement.offsetTop) {
+          scrollToContact();
       }
   }, [scrollYGlobal])
 
