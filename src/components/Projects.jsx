@@ -29,6 +29,7 @@ const Container = styled.div`
     background-size: cover; 
     background-repeat: no-repeat;
     background-position: center center;
+    overflow-y: hidden;
 `
 
 const SpeechBubble = styled.img`
@@ -458,9 +459,9 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
     
   return (
     <>  
-    {!showModels && (
+    {/* {!showModels && (
       <BackgroundImage src="/img/projects/misc/background.jpg" alt="Background Image" />
-    )}
+    )} */}
 
     <Container ref={myRef}>
       <Arrows>
