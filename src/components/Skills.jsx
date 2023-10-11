@@ -77,7 +77,6 @@ function Skills({ myRef, scrollYGlobal, scrollToSkills }) {
         const divElement = myRef.current;
         if (Math.round(scrollYGlobal) == divElement.offsetTop) {
             scrollToSkills();
-            console.log("Skills");
         }
         if (scrollYGlobal >= divElement.offsetTop) {
         //   tl.to(".first-div", {

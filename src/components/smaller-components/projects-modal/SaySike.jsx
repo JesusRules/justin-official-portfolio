@@ -141,7 +141,7 @@ function SaySike({ openModal, setOpenModal, hideVideos }) {
       <div style={{padding: '0 1rem', marginBottom: '2rem', textAlign: 'center', fontStyle: 'italic', marginTop: '1.35rem'}}>
             <p>This was a game prototype where Aliens need to destroy all Humans before the timer runs out.</p>
             <p>Aliens are disguised as humans.</p>
-            <iframe style={{margin: '.5rem 0 .5rem 0',width: "100%", maxWidth: '700px', height: 415 }} src="https://www.youtube.com/embed/kVHVqMXbQus?si=EFOD-mKomQK1N-zV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <iframe style={{margin: '.5rem 0 .5rem 0',width: "100%", maxWidth: '700px', height: 415 }} src="https://www.youtube.com/embed/kVHVqMXbQus?si=EFOD-mKomQK1N-zV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
             <p>There is currently no playable demo available.</p>
       </div>
       </div>

@@ -69,7 +69,7 @@ function GreyRockAdventureTours({ openModal, setOpenModal }) {
       <div style={{padding: '0 2rem', textAlign: 'center', fontStyle: 'italic', lineHeight: '10%', maxWidth: '760px', margin: '1rem auto 0 auto'}}>
             <p style={{marginBottom: '1rem'}}><span style={{fontWeight: 900}}>Grey Rock Adventure Tours</span> is a tour company offering snowmobile, ATV and Side by Side guided tours packages to groups with different experience levels.</p>
 
-            <iframe style={{width: "100%", maxWidth: '900px', height: 415 }} src="https://www.youtube.com/embed/lXYtpizG7nI?si=RTrnvjEknOFaXokW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <iframe style={{width: "100%", maxWidth: '900px', height: 415 }} src="https://www.youtube.com/embed/lXYtpizG7nI?si=RTrnvjEknOFaXokW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
             <p style={{marginTop: '1rem'}}><span style={{fontWeight: 800}}>More information:</span> <br/><a target="_blank" href="https://www.tourismedmundston.com/en-ca/things-to-do/grey-rock-adventure-tours/">https://www.tourismedmundston.com/en-ca/things-to-do/grey-rock-adventure-tours/</a></p>
       </div>
       </div>

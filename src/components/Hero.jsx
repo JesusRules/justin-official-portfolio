@@ -792,7 +792,6 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero }) {
             const divElement = myRef.current;
             if (Math.round(scrollYGlobal) == divElement.offsetTop) {
                 scrollToHero();
-                console.log("Hero");
             }
             // if (Math.round(scrollYGlobal) > divElement.offsetTop || Math.round(scrollYGlobal) < divElement.offsetTop) {
             //     console.log("OFF")

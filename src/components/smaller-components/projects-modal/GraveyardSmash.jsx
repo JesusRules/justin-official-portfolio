@@ -93,7 +93,7 @@ function GraveyardSmash({ openModal, setOpenModal }) {
             <p>You must destroy all gravestones before completing each level and being overran by the undead!</p>
 
             <p style={{fontWeight: 800, marginTop: '1.5rem', marginBottom: '.5rem'}}>Check out this YouTube video for gameplay:</p>
-            <iframe style={{width: "100%", maxWidth: '560px', height: 315 }} src="https://www.youtube.com/embed/GTmFF7Z02tE?si=eSynlV-bcEqfOPPH" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <iframe style={{width: "100%", maxWidth: '560px', height: 315 }} src="https://www.youtube.com/embed/GTmFF7Z02tE?si=eSynlV-bcEqfOPPH" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
       </div>
       </div>
 

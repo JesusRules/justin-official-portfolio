@@ -150,10 +150,10 @@ function MamaMia({ openModal, setOpenModal }) {
               className="swiper_container2"
             >
               <SwiperSlide>
-                 <iframe width="560" height="315" src="https://www.youtube.com/embed/J2RQklrT4V8?si=zHTlzC7hCXbo_11o&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                 <iframe width="560" height="315" src="https://www.youtube.com/embed/J2RQklrT4V8?si=zHTlzC7hCXbo_11o&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
               </SwiperSlide>
               <SwiperSlide>
-                 <iframe width="560" height="315" src="https://www.youtube.com/embed/XnlxRLnJp48?si=tPFCXBEBStJyMYqD&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                 <iframe width="560" height="315" src="https://www.youtube.com/embed/XnlxRLnJp48?si=tPFCXBEBStJyMYqD&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
               </SwiperSlide>
               <div className="slider-controler">
                     <div className="swiper-pagination"></div>
@@ -172,7 +172,7 @@ function MamaMia({ openModal, setOpenModal }) {
           <span style={{borderBottom: '1px solid black', width: '100%', margin: '1rem'}}></span>
           
           <p>Still interested? Here's Mama Mia but with only Marios battling off on the Xbox! </p>
-          <iframe style={{width: "100%", maxWidth: '560px', height: 315 }}  src="https://www.youtube.com/embed/m_WRsLLU3bU?si=YA6MNK8i3nSUX_aa" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          <iframe style={{width: "100%", maxWidth: '560px', height: 315 }}  src="https://www.youtube.com/embed/m_WRsLLU3bU?si=YA6MNK8i3nSUX_aa" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
       </div>
       </div>
 

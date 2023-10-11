@@ -77,7 +77,7 @@ function ChurchParty({ openModal, setOpenModal }) {
             <p>The game is mean't to be played with friends, or with people all around the world.</p>
             <p style={{fontWeight: 800}}>Check out this game demo:</p>
 
-            <iframe style={{width: "100%", maxWidth: '600px', height: 315 }} src="https://www.youtube.com/embed/cDhWRSwDhlA?si=lbVmGOEb_zaSL7Fn" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <iframe style={{width: "100%", maxWidth: '600px', height: 315 }} src="https://www.youtube.com/embed/cDhWRSwDhlA?si=lbVmGOEb_zaSL7Fn" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
       </div>
       </div>
 

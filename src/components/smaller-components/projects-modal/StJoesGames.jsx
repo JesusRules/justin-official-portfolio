@@ -82,11 +82,11 @@ function StJoesGames({ openModal, setOpenModal }) {
       </div>
       <div style={{textAlign: 'center', marginTop: '1.5rem'}}>
         <p style={{fontWeight: 800, marginBottom: '.5rem'}}>Check out this game demo:</p>
-        <iframe style={{width: "100%", maxWidth: '600px', height: 315 }} src="https://www.youtube.com/embed/NNemZpoT6ME?si=YHT5jQhXcrk3W-FU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <iframe style={{width: "100%", maxWidth: '600px', height: 315 }} src="https://www.youtube.com/embed/NNemZpoT6ME?si=YHT5jQhXcrk3W-FU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
       </div>
       <div style={{textAlign: 'center', marginTop: '2.5rem', paddingTop: '.5rem', borderTop: '1px solid black'}}>
         <p style={{fontWeight: 800, marginBottom: '.5rem'}}>You can also try the game as a Time Attack racer!</p>
-        <iframe style={{width: "100%", maxWidth: '600px', height: 315 }} src="https://www.youtube.com/embed/iMzHR6k7Z10?si=IjvOGnp9xzGVRZ60" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <iframe style={{width: "100%", maxWidth: '600px', height: 315 }} src="https://www.youtube.com/embed/iMzHR6k7Z10?si=IjvOGnp9xzGVRZ60" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
           <div style={{textAlign: 'center', margin: '0rem'}}>
               <h4 style={{fontWeight: 800, marginBottom: '.26rem'}}>Try here:</h4>
               <div style={{display: 'flex', alignItems: 'start', gap: '0.2rem', justifyContent: 'center'}}>
@@ -97,7 +97,7 @@ function StJoesGames({ openModal, setOpenModal }) {
       </div>
       <div style={{textAlign: 'center', marginTop: '2.5rem', paddingTop: '.5rem', borderTop: '1px solid black'}}>
         <p style={{fontWeight: 800, marginBottom: '.5rem'}}>I also turned the school into a VR experience!</p>
-        <iframe style={{width: "100%", maxWidth: '600px', height: 315 }} src="https://www.youtube.com/embed/oxkM8PeOlXI?si=pd3r8rIPCQi6GsZQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <iframe style={{width: "100%", maxWidth: '600px', height: 315 }} src="https://www.youtube.com/embed/oxkM8PeOlXI?si=pd3r8rIPCQi6GsZQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
         <h4 style={{fontWeight: 800, marginBottom: '.26rem'}}>Not Playable Yet :(</h4>
       </div>
       </div>

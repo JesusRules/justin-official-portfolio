@@ -291,7 +291,6 @@ function Education({ myRef, scrollYGlobal, scrollToPortfolio, scrollToEducation,
    
       if (Math.round(scrollYGlobal) == divElement.offsetTop) {
         scrollToEducation();
-        console.log("Education");
         OnViewed();
         if (floatingBoxContentRef.current) {
           floatingBoxContentRef.current.focus();

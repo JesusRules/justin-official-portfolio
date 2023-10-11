@@ -116,7 +116,7 @@ function UltimateJesusGame({ openModal, setOpenModal }) {
 
 
             <p style={{marginTop: '1.5rem', marginBottom: '.5rem', fontStyle:'italic', fontWeight: 800}}>Check out this game demonstration:</p>
-            <iframe style={{width: "100%", maxWidth: '600px', height: 315 }} src="https://www.youtube.com/embed/I5lIdJ137m0?si=IfU3VrIQn1GKhCBL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <iframe style={{width: "100%", maxWidth: '600px', height: 315 }} src="https://www.youtube.com/embed/I5lIdJ137m0?si=IfU3VrIQn1GKhCBL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
       </div>
       </div>
       <p className='bottom-madewith' style={{textAlign: 'left', color: 'blue', padding: '1rem', fontStyle: 'italic', fontWeight: 400}}>Project was made using <b>Unreal Engine 4-5.</b></p>

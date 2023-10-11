@@ -76,7 +76,7 @@ function MiniDoom2({ openModal, setOpenModal }) {
         <div style={{backgroundColor: '#632c18', padding: '0 2rem', textAlign: 'center', fontStyle: 'italic', lineHeight: '10%', maxWidth: '760px', margin: '2rem auto 0 auto'}}>
             <p>Here's the video trailer I made for MiniDoom2 in college.</p>
             <p style={{marginBottom: '1rem'}}>It is not an offical trailer but a fanmade one.</p>
-            <iframe style={{width: "100%", maxWidth: '700px', height: 415 }} src="https://www.youtube.com/embed/-EfTKhpe2K0?si=CFhxtrJmV7kAQdnb" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <iframe style={{width: "100%", maxWidth: '700px', height: 415 }} src="https://www.youtube.com/embed/-EfTKhpe2K0?si=CFhxtrJmV7kAQdnb" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
       </div>
       </div>
       <p className='bottom-madewith' style={{textAlign: 'left', color: '#ffe4c6', padding: '1rem', fontStyle: 'italic', fontWeight: 400, paddingBottom: '1rem', backgroundColor: '#632c18'}}>Project was made using <b>Adobe Premiere.</b></p>

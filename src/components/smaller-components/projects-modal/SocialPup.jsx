@@ -145,7 +145,7 @@ function SocialPup({ openModal, setOpenModal }) {
 
       <div style={{padding: '0 2rem', textAlign: 'center', fontStyle: 'italic', lineHeight: '10%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '1rem'}}>
             <p>SocialPup (originally SocialApe) was a 12 hour long YouTube video covering technologies with old style React, Redux and Google's Firebase.</p>
-            <iframe width="370" height="200" src="https://www.youtube.com/embed/m_u6P5k0vP0?si=DKYHsakt5ilpKU7C&amp;start=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <iframe width="370" height="200" src="https://www.youtube.com/embed/m_u6P5k0vP0?si=DKYHsakt5ilpKU7C&amp;start=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
             <p>It took a while to finish, but it was very helpful!</p>
         </div>
       </div>

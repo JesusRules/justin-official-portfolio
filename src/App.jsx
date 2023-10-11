@@ -41,7 +41,7 @@ function App() {
   const contactRef = useRef(null);
 
   useEffect(() => {
-    devicePixelRatio = 0.001;
+    // devicePixelRatio = 0.001;
     setTimeout(function(){
       // This hides the address bar:
       window.scrollTo(0, 1);

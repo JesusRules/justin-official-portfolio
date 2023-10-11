@@ -101,7 +101,6 @@ function Contact({ myRef, scrollYGlobal, educationRef, scrollToContact }) {
       
       if (Math.round(scrollYGlobal) == divElement.offsetTop) {
         scrollToContact();
-        console.log("Contact");
         setShowComponent(true);
       }
       if (Math.round(scrollYGlobal) > divElement.offsetTop || Math.round(scrollYGlobal) < divElement.offsetTop) {
@@ -162,7 +161,7 @@ function Contact({ myRef, scrollYGlobal, educationRef, scrollToContact }) {
         <Canvas ref={canvasRef} camera={{fov: 95, far: 1000, near: 0.1, 
           position: [0, 150, 35]}} 
           gl={{ antialias: false }} // Disable antialiasing for performance
-          pixelRatio={0.5} // Set the pixel ratio to half (adjust as needed)
+          // pixelRatio={0.5} // Set the pixel ratio to half (adjust as needed)
           style={{width: '100%', height: '100%', backgroundColor: '#c8f9ff', 
           backgroundImage: 'url(/img/contact/contact-background-blur.jpg)' ,
           backgroundSize: 'cover',

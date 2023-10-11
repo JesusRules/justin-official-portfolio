@@ -6,7 +6,7 @@ import { MiniJesus } from './threejsscripts/MiniJesus';
 import * as THREE from "three";
 import gsap from 'gsap';
 import ProjectInfoModal from './smaller-components/ProjectInfoModal';
-import { PortfolioEnvironment } from './threejsscripts/PortfolioEnvironment';
+// import { PortfolioEnvironment } from './threejsscripts/PortfolioEnvironment';
 import { FBXLoader } from 'three/addons/loaders/FBXLoader';
 import Skybox from './threejsscripts/Skybox';
 import { Bloom, DepthOfField, EffectComposer, Noise, Vignette } from '@react-three/postprocessing'
@@ -309,7 +309,6 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
       const halfwayPoint = divElement.scrollHeight / 5;
       if (Math.round(scrollYGlobal) == divElement.offsetTop) {
         scrollToPortfolio();
-        console.log("Projects");
         setShowComponent(true);
         setShowModels(true);
         // if (!showBubbleOnce) {
@@ -388,7 +387,7 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
           opacity: 0,       // Fade out
           duration: 0.3,
           onComplete: () => {
-            learnButtonRef.current.style.pointerEvents = "none";
+            if (learnButtonRef.current) learnButtonRef.current.style.pointerEvents = "none";
           }
         });
       } else {
@@ -397,7 +396,7 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
           opacity: 1,       // Fade in
           duration: 0.3,
           onComplete: () => {
-            learnButtonRef.current.style.pointerEvents = 'auto';
+            if (learnButtonRef.current) learnButtonRef.current.style.pointerEvents = 'auto';
           }
         });
       }
@@ -527,8 +526,8 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
                     toneMappingExposure: 1, // Adjust this value
                   }}
                   performance={{ min: 0.001, max: 0.001 }}
-                  devicePixelRatio={window.devicePixelRatio / 10}
-                  pixelRatio={window.devicePixelRatio / 10}
+                  // devicePixelRatio={window.devicePixelRatio / 10}
+                  // pixelRatio={window.devicePixelRatio / 10}
                   >
                     <Suspense fallback={<Loader />}>
                       <MiniJesusFBX scale={37} 
@@ -720,7 +719,6 @@ function Loader() {
     if (progress > newProgress)
     {
       setNewProgress(progress);
-      console.log(progress);
       const interpolatedY = (470 + ((-20 - 470) * (progress / 100)));
       // console.log(interpolatedY);
       if (waterRef.current) {

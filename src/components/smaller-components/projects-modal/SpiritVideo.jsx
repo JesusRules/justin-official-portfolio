@@ -59,7 +59,7 @@ function SpiritVideo({ openModal, setOpenModal }) {
             <p>St. Joes Spirit Video (2009) was that year's official Spirit video that I was given the opportunity to make.</p>
             <p>The video was played in the gymnasium and the whole school saw it.</p>
 
-            <iframe style={{width: "100%", maxWidth: '700px', height: 415 }} src="https://www.youtube.com/embed/ENxWg1qxo2M?si=nmtmhJYUWvDLLhCu" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <iframe style={{width: "100%", maxWidth: '700px', height: 415 }} src="https://www.youtube.com/embed/ENxWg1qxo2M?si=nmtmhJYUWvDLLhCu" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
       </div>
       </div>
 

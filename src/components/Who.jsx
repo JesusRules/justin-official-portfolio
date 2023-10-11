@@ -202,7 +202,6 @@ function Who({ myRef, scrollYGlobal, scrollToWho }) {
     const divElement = myRef.current;
     if (Math.round(scrollYGlobal) == divElement.offsetTop) {
         scrollToWho();
-        console.log("Who");
     }
     // if (Math.round(scrollYGlobal) > divElement.offsetTop || Math.round(scrollYGlobal) < divElement.offsetTop) {
     //     console.log("OFF")
