@@ -31,7 +31,7 @@ const DarkBG = styled.div`
     transition: transform 0.3s ease, opacity 0.3s ease;
 `
 
-const MenuContainer = styled.div`
+const MenuContainer = styled.nav`
     position: fixed;
     top: 0px;
     left: 50%;

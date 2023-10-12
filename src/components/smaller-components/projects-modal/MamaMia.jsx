@@ -84,8 +84,8 @@ function MamaMia({ openModal, setOpenModal }) {
           swiperRef.current.style.width = '10%';
           setTimeout(() => {
             swiperRef.current.style.width = '100%';
-          }, 10)
-        }, 10)
+          }, 60)
+        }, 60)
         setInitialized(true);
       }
     }, [openModal]);
