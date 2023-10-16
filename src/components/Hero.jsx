@@ -4,15 +4,31 @@ import gsap from 'gsap';
 
 const Container = styled.div`
     position: relative;
-    background-color: #a7e6ff;
+    background-color: #d0eaff;
     height: 100vh;
     scroll-snap-align: center;
     overflow: hidden;
     /* background-image: linear-gradient(rgba(255, 255, 255, 0.0), rgba(255, 255, 255, 0.6)),
                   url("/img/hero-banner/blue-sky-2.jpg"); */
     /* background-image: url("/img/hero-banner/Sky.png"); */
+    background: radial-gradient(circle at center, white 0%, transparent 100%), url("/img/hero-banner/Sky.png");
     background-repeat: no-repeat;
     background-size: cover;
+`
+
+const GradientOverlayImage = styled.div`
+    position: absolute;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 11;
+    background: radial-gradient(circle at center, #ffffffe2 0%, transparent 100%);
+    pointer-events: none;
+    @media only screen and ( min-width: 2538px ) and ( min-height: 1500px ) {
+        display: none;
+    }
 `
 
 /* HERO LAYERS */
@@ -27,6 +43,10 @@ const Sky = styled.img`
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 10;
+    /* @media only screen and (min-width: 2538px) { */
+    @media only screen and ( min-width: 2538px ) and ( min-height: 1500px ) {
+        display: none;
+    }
 `
 
 
@@ -106,7 +126,7 @@ const CloudMain_Back = styled.img`
     left: calc(50% - 0px);
     top: 2000px;
     z-index: 13;
-    `
+`
     
     const CloudMain_Front = styled.img`
     position: absolute;
@@ -126,6 +146,9 @@ const CloudBG_4 = styled.img`
     top: 1600px;
     //top: 2000px; LIKE SKY OLD
     z-index: 15;
+    @media only screen and ( min-width: 2538px ) and ( min-height: 1500px ) {
+        /* display: none; */
+    }
 `
   
 const CloudBG_3 = styled.img`
@@ -136,6 +159,9 @@ const CloudBG_3 = styled.img`
     top: 1600px;
     //top: 2000px; LIKE SKY OLD
     z-index: 16;
+    @media only screen and ( min-width: 2538px ) and ( min-height: 1500px ) {
+        /* display: none; */
+    }
 `
   
 const CloudBG_2 = styled.img`
@@ -146,6 +172,9 @@ const CloudBG_2 = styled.img`
     top: 1600px;
     //top: 2000px; LIKE SKY OLD
     z-index: 17;
+    @media only screen and ( min-width: 2538px ) and ( min-height: 1500px ) {
+        /* display: none; */
+    }
 `
   
 const CloudBG_1 = styled.img`
@@ -156,6 +185,9 @@ const CloudBG_1 = styled.img`
     top: 1600px;
     //top: 2000px; LIKE SKY OLD
     z-index: 18;
+    @media only screen and ( min-width: 2538px ) and ( min-height: 1500px ) {
+        /* display: none; */
+    }
 `
   
 // const JesusFlag = styled.img`
@@ -866,7 +898,8 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero }) {
 
     {/* <Loader /> */}
     <Container ref={myRef}>
-      {/* <Vignette /> */}
+        <GradientOverlayImage />
+         {/* <Vignette /> */}
     <HeroText ref={subtitleTxtRef}>Passionate. Professional. Reliable.</HeroText>
     
     <LoadingText ref={loadingTxtRef}>Loading...</LoadingText>
