@@ -10,8 +10,8 @@ const Container = styled.div`
     overflow: hidden;
     /* background-image: linear-gradient(rgba(255, 255, 255, 0.0), rgba(255, 255, 255, 0.6)),
                   url("/img/hero-banner/blue-sky-2.jpg"); */
-    /* background-image: url("/img/hero-banner/Sky.png"); */
-    background: radial-gradient(circle at center, white 0%, transparent 100%), url("/img/hero-banner/Sky.png");
+    background-image: url("/img/hero-banner/Sky.png");
+    /* background: radial-gradient(circle at center, white 0%, transparent 100%), url("/img/hero-banner/Sky.png"); */
     background-repeat: no-repeat;
     background-size: cover;
 `
@@ -27,7 +27,7 @@ const GradientOverlayImage = styled.div`
     background: radial-gradient(circle at center, #ffffffe2 0%, transparent 100%);
     pointer-events: none;
     @media only screen and ( min-width: 2538px ) and ( min-height: 1500px ) {
-        display: none;
+        /* display: none; */
     }
 `
 
@@ -44,7 +44,7 @@ const Sky = styled.img`
     transform: translate(-50%, -50%);
     z-index: 10;
     /* @media only screen and (min-width: 2538px) { */
-    @media only screen and ( min-width: 2538px ) and ( min-height: 1500px ) {
+    @media only screen and ( min-width: 1740px ) and ( min-height: 1500px ) {
         display: none;
     }
 `
@@ -393,7 +393,7 @@ const HeroText = styled.h1`
     font-family: "myriad-pro", sans-serif;
     font-weight: 700;
     font-style: normal;
-    /* top: 10rem; */
+    /* top: 13%; //15 */
     top: 13%; //15
     opacity: 0;
     @media only screen and (max-width: 700px) {

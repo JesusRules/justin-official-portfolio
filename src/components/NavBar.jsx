@@ -16,7 +16,7 @@ const Container = styled.div`
 
 const Image = styled.img`
     width: 100%;
-    min-width: 1200px; //1500px
+    min-width: 3600px; //1200px
     text-align: center;
     cursor: pointer;
     `
