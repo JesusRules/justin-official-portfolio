@@ -6,7 +6,7 @@ const Container = styled.div`
     position: relative;
     background-color: #d0eaff;
     height: 100vh;
-    scroll-snap-align: center;
+    scroll-snap-align: start;
     overflow: hidden;
     /* background-image: linear-gradient(rgba(255, 255, 255, 0.0), rgba(255, 255, 255, 0.6)),
                   url("/img/hero-banner/blue-sky-2.jpg"); */
