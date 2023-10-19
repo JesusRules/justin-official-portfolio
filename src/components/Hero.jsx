@@ -825,6 +825,10 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero }) {
             if (Math.round(scrollYGlobal) == divElement.offsetTop) {
                 scrollToHero();
             }
+            //WTF idk
+            if (divElement.scrollTop + divElement.clientHeight === divElement.scrollHeight) {
+                divElement.scrollTop = 0;
+              }
             // if (Math.round(scrollYGlobal) > divElement.offsetTop || Math.round(scrollYGlobal) < divElement.offsetTop) {
             //     console.log("OFF")
             // }
@@ -907,7 +911,7 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero }) {
     <ContactBtnMain ref={contactBtnRef} id="button-8" onClick={clickToContact}>
         <span className='borderLine'></span>
         <div id="button- 3" style={{padding: 0}}>
-            <span className='contact'>Contact Me!</span>
+            <span className='contact'>Contact Me!!</span>
         </div>
     </ContactBtnMain>
 
