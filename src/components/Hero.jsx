@@ -14,7 +14,7 @@ const Container = styled.div`
     position: relative;
     background-color: #d0eaff;
     height: 100vh;
-    /* scroll-snap-align: start; */
+    /* scroll-snap-align: center; */
     overflow: hidden;
     /* background-image: linear-gradient(rgba(255, 255, 255, 0.0), rgba(255, 255, 255, 0.6)),
                   url("/img/hero-banner/blue-sky-2.jpg"); */
@@ -34,6 +34,7 @@ const GradientOverlayImage = styled.div`
     z-index: 11;
     background: radial-gradient(circle at center, #ffffffe2 0%, transparent 100%);
     pointer-events: none;
+    overflow:hidden;
     @media only screen and ( min-width: 2538px ) and ( min-height: 1500px ) {
         /* display: none; */
     }
@@ -929,7 +930,7 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero }) {
         <ContactBtnMain ref={contactBtnRef} id="button-8" onClick={clickToContact}>
             <span className='borderLine'></span>
             <div id="button- 3" style={{padding: 0}}>
-                <span className='contact'>Contact Me!</span>
+                <span className='contact'>Contact Me!!!</span>
             </div>
         </ContactBtnMain>
 
