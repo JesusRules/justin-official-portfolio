@@ -25,9 +25,9 @@ const Container = styled.div`
   background-color: lightblue;
   place-items: center;
   position: relative;
-  /* overflow-y: ${(props) => (props.hideOverflow ? 'hidden' : 'auto')}; */
+  overflow-y: ${(props) => (props.hideOverflow ? 'hidden' : 'auto')};
   overflow-x: hidden;
-  overflow-y: hidden;
+  /* overflow-y: hidden; */
 `
 
 function App() {
@@ -43,11 +43,17 @@ function App() {
 
   useEffect(() => {
     // devicePixelRatio = 0.001;
-    setTimeout(function(){
-      // This hides the address bar:
-      window.scrollTo(0, 1);
-  }, 0);
+      setTimeout(function(){
+        // window.scrollTo(0, 1);
+    }, 0);
   }, [])
+
+  useEffect(() => {
+    // Open the URL in a new browser window without the address bar
+    window.open('https://justin-bernard.com', '_blank', 'location=no');
+  }, []);
+
+  
 
   const handleScroll = (event) => {
     const scrollTop = event.target.scrollTop;
