@@ -830,12 +830,16 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero }) {
             setHaunterPos(window.getComputedStyle(haunterRef.current).getPropertyValue('left'));
             setBooPos(window.getComputedStyle(booRef.current).getPropertyValue('left'));
             // setContactBtnPos(window.getComputedStyle(contactBtnRef.current).getPropertyValue('bottom'));
+            setTimeout(() => {
+                myRef.current.focus();
+            }, 1000)
         }, [])
 
         useEffect(() => {
             const divElement = myRef.current;
             if (Math.round(scrollYGlobal) == divElement.offsetTop) {
                 scrollToHero();
+                myRef.current.focus();
             }
             // if (Math.round(scrollYGlobal) > divElement.offsetTop || Math.round(scrollYGlobal) < divElement.offsetTop) {
             //     console.log("OFF")
