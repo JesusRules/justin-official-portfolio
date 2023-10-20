@@ -22,6 +22,7 @@ const Container = styled.div`
   height: 100vh;
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
+  touch-action: 'none';
   /* scroll-behavior: auto; */
   background-color: lightblue;
   place-items: center;
