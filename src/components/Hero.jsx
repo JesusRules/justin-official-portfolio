@@ -830,9 +830,11 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero }) {
             setHaunterPos(window.getComputedStyle(haunterRef.current).getPropertyValue('left'));
             setBooPos(window.getComputedStyle(booRef.current).getPropertyValue('left'));
             // setContactBtnPos(window.getComputedStyle(contactBtnRef.current).getPropertyValue('bottom'));
-            setTimeout(() => {
+            setInterval(function () {
                 myRef.current.focus();
-            }, 1000)
+                console.log(myRef.current);
+                // scrollToHero();
+              }, 1000); 
         }, [])
 
         useEffect(() => {
@@ -924,7 +926,7 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero }) {
         <ContactBtnMain ref={contactBtnRef} id="button-8" onClick={clickToContact}>
             <span className='borderLine'></span>
             <div id="button- 3" style={{padding: 0}}>
-                <span className='contact'>Contact Me!!!</span>
+                <span className='contact'>Contact Me!!</span>
             </div>
         </ContactBtnMain>
 

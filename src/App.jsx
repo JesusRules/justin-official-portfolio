@@ -52,10 +52,10 @@ function App() {
         window.scrollTo(0, 1);
     }, 500);
 
-    setInterval(function () {
-      containerRef.current.focus();
-      console.log(containerRef.current);
-    }, 1000); 
+    // setInterval(function () {
+    //   containerRef.current.focus();
+    //   console.log(containerRef.current);
+    // }, 1000); 
   }, [])
 
   
