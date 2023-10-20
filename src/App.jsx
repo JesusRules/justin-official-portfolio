@@ -21,9 +21,9 @@ const Container = styled.div`
   width: 100vw;
   height: 100vh;
   scroll-snap-type: y mandatory;
-  /* scroll-behavior: smooth; */
+  scroll-behavior: smooth;
   /* touch-action: 'none'; */
-  scroll-behavior: auto;
+  /* scroll-behavior: auto; */
   background-color: lightblue;
   /* background-color: lightblue; */
   place-items: center;
@@ -31,9 +31,9 @@ const Container = styled.div`
   overflow-y: ${(props) => (props.hideOverflow ? 'hidden' : 'auto')};
   overflow-x: hidden;
   /* overflow-y: hidden; */
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative;
+  /* left: 50%;
+  transform: translateX(-50%); */
 `
 
 function App() {
