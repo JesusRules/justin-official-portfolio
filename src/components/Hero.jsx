@@ -933,7 +933,7 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero }) {
     {/* <Loader /> */}
     {/* <ScrollableWrapper> */}
 
-        <Container ref={myRef}>
+        <Container tabIndex='-1' ref={myRef}>
             <GradientOverlayImage />
             {/* <Vignette /> */}
         <HeroText ref={subtitleTxtRef}>Passionate. Professional. Reliable.</HeroText>
@@ -943,7 +943,7 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero }) {
         <ContactBtnMain ref={contactBtnRef} id="button-8" onClick={clickToContact}>
             <span className='borderLine'></span>
             <div id="button- 3" style={{padding: 0}}>
-                <span className='contact'>Contact Me!</span>
+                <span className='contact'>Contact Me!!</span>
             </div>
         </ContactBtnMain>
 
