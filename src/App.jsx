@@ -38,6 +38,7 @@ function App() {
   const [scrollY, setScrollY] = useState(0);
   const [hideOverflow, setHideOverflow] = useState(false);
 
+  const containerRef = useRef(null);
   const heroRef = useRef(null);
   const whoRef = useRef(null);
   const skillsRef = useRef(null);
@@ -50,6 +51,11 @@ function App() {
       setTimeout(function(){
         window.scrollTo(0, 1);
     }, 500);
+
+    setInterval(function () {
+      containerRef.current.focus();
+      console.log(containerRef.current);
+    }, 1000); 
   }, [])
 
   
@@ -88,7 +94,7 @@ function App() {
 
 
   return (
-    <Container onScroll={handleScroll} hideOverflow={hideOverflow}>
+    <Container ref={containerRef} onScroll={handleScroll} hideOverflow={hideOverflow}>
       <NavBar scrollYGlobal={scrollY} 
               clickToWho={scrollToWho}
               clickToSkills={scrollToSkills}
