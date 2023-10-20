@@ -351,7 +351,7 @@ function ContactForm({ contactForm }) {
 
         <ContactContainer>
             <ContactContent ref={contactForm}>
-                <h2 style={{gridArea: 'one'}} className='title'>Contact Me!</h2>
+                <h2 style={{gridArea: 'one'}} className='title'>Contact Me!!</h2>
                 <div className='names'>
                     <div style={{gridArea: 'two'}} className='inputBox first-name'>
                         <input type="text" placeholder='First Name'

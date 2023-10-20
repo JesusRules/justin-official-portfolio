@@ -5,7 +5,7 @@ import gsap from 'gsap';
 
 // NEW ATTEMPT!
 const ScrollableWrapper = styled.div`
-  overflow: auto; /* Allows the parent container to be scrollable */
+  overflow: hidden; /* Allows the parent container to be scrollable */
   height: 100vh; /* Set the desired height for the scrollable parent */
   scroll-snap-align: center;
 `;
