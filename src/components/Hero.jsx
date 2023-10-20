@@ -928,7 +928,7 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero, whoRef }) {
         <ContactBtnMain ref={contactBtnRef} id="button-8" onClick={clickToContact}>
             <span className='borderLine'></span>
             <div id="button- 3" style={{padding: 0}}>
-                <span className='contact'>Contact Me!!!!</span>
+                <span className='contact'>Contact Me!</span>
             </div>
         </ContactBtnMain>
 
