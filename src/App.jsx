@@ -21,10 +21,11 @@ const Container = styled.div`
   width: 100vw;
   height: 100vh;
   scroll-snap-type: y mandatory;
-  scroll-behavior: smooth;
+  /* scroll-behavior: smooth; */
   /* touch-action: 'none'; */
-  /* scroll-behavior: auto; */
-  background-color: #26ff00;
+  scroll-behavior: auto;
+  scroll-snap-stop: 0.000000000001;
+  background-color: lightblue;
   /* background-color: lightblue; */
   place-items: center;
   position: relative;
@@ -47,8 +48,8 @@ function App() {
   useEffect(() => {
     // devicePixelRatio = 0.001;
       setTimeout(function(){
-        // window.scrollTo(0, 1);
-    }, 0);
+        window.scrollTo(0, 1);
+    }, 500);
   }, [])
 
   
@@ -61,21 +62,28 @@ function App() {
 
   const scrollToHero = () => {
     heroRef.current.scrollIntoView({ behavior: 'smooth' });
+    heroRef.current.focus();
+    console.log("JESUS!")
   }
   const scrollToWho = () => {
     whoRef.current.scrollIntoView({ behavior: 'smooth' });
+    whoRef.current.focus();
   }
   const scrollToSkills = () => {
     skillsRef.current.scrollIntoView({ behavior: 'smooth' });
+    skillsRef.current.focus();
   }
   const scrollToPortfolio = () => {
     portfolioRef.current.scrollIntoView({ behavior: 'smooth' });
+    portfolioRef.current.focus();
   }
   const scrollToEducation = () => {
     educationRef.current.scrollIntoView({ behavior: 'smooth' });
+    educationRef.current.focus();
   }
   const scrollToContact = () => {
     contactRef.current.scrollIntoView({ behavior: 'smooth' });
+    contactRef.current.focus();
   }
 
 
