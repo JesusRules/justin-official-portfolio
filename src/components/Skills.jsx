@@ -6,7 +6,7 @@ import { Canvas } from '@react-three/fiber'
 
 const Container = styled.div`
     background-color: #ceeeff;
-    height: 100vh;
+    height: 100%;
     scroll-snap-align: start;
     position: relative;
     display: flex;

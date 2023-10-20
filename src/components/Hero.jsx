@@ -12,19 +12,19 @@ const ScrollableWrapper = styled.div`
 `;
 
 const Container = styled.div`
+    overflow: hidden;
     position: relative;
-    /* background-color: #d0eaff; */
-    background-color: #ff0000;
+    background-color: #d0eaff;
     height: 100%;
     scroll-snap-align: center;
     /* scroll-behavior: smooth; */
-    overflow: hidden;
     /* background-image: linear-gradient(rgba(255, 255, 255, 0.0), rgba(255, 255, 255, 0.6)),
                   url("/img/hero-banner/blue-sky-2.jpg"); */
     background-image: url("/img/hero-banner/Sky.png");
     /* background: radial-gradient(circle at center, white 0%, transparent 100%), url("/img/hero-banner/Sky.png"); */
     background-repeat: no-repeat;
     background-size: cover;
+    pointer-events: none;
 `
 
 const GradientOverlayImage = styled.div`
@@ -36,8 +36,8 @@ const GradientOverlayImage = styled.div`
     left: 0;
     z-index: 11;
     background: radial-gradient(circle at center, #ffffffe2 0%, transparent 100%);
-    pointer-events: none;
-    overflow:hidden;
+    /* pointer-events: none; */
+    /* overflow:hidden; */
     @media only screen and ( min-width: 2538px ) and ( min-height: 1500px ) {
         /* display: none; */
     }
@@ -830,17 +830,6 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero, whoRef }) {
             setHaunterPos(window.getComputedStyle(haunterRef.current).getPropertyValue('left'));
             setBooPos(window.getComputedStyle(booRef.current).getPropertyValue('left'));
             // setContactBtnPos(window.getComputedStyle(contactBtnRef.current).getPropertyValue('bottom'));
-            setInterval(function () {
-                const rect = divElement.getBoundingClientRect();
-                if (Math.round(rect.bottom) == window.innerHeight) {
-                    // The bottom of the screen has reached the bottom of the div
-                    if (!reached) {
-                        setReached(true);
-                        alert("YUP 2!")
-                        return;
-                    }
-                }
-              }, 1000)
         }, [])
 
 
@@ -854,17 +843,11 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero, whoRef }) {
             // if (Math.round(scrollYGlobal) > divElement.offsetTop || Math.round(scrollYGlobal) < divElement.offsetTop) {
             //     console.log("OFF")
             // }
-            const rect = divElement.getBoundingClientRect();
-            console.log(Math.round(rect.bottom));
-            if (Math.round(rect.bottom) == window.innerHeight) {
-                // The bottom of the screen has reached the bottom of the div
-                console.log('Bottom of the screen reached the bottom of the div');
-                if (!reached) {
-                    setReached(true);
-                    alert("YUP!")
-                    return;
-                }
-              }
+            // const rect = divElement.getBoundingClientRect();
+            // console.log(Math.round(rect.bottom));
+            // if (Math.round(rect.bottom) == window.innerHeight) {
+                
+            //   }
         }, [scrollYGlobal])
         
 
@@ -946,7 +929,7 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero, whoRef }) {
         <ContactBtnMain ref={contactBtnRef} id="button-8" onClick={clickToContact}>
             <span className='borderLine'></span>
             <div id="button- 3" style={{padding: 0}}>
-                <span className='contact'>Contact Me!!!</span>
+                <span className='contact'>Contact Me!</span>
             </div>
         </ContactBtnMain>
 

@@ -27,8 +27,7 @@ const Container = styled.div`
     background-size: cover; 
     background-repeat: no-repeat;
     background-position: center center;
-    height: 100vh;
-    max-height: 100vh;
+    height: 100%;
     width: 100%;
     overflow: hidden;
 `

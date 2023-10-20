@@ -8,7 +8,7 @@ import PikaRun from './threejsscripts/PikaRun';
 
 const Section = styled.div`
     background-color: lightblue;
-    height: 100vh;
+    height: 100%;
     scroll-snap-align: start;
     display: flex;
     justify-content: center;
