@@ -11,7 +11,7 @@ import ContactForm from './smaller-components/ContactForm';
 const Container = styled.div`
    position: relative;
     width: 100vw;
-    height: 100%;
+    height: 100vh;
     scroll-snap-align: start;
 `
 
@@ -75,7 +75,7 @@ position: absolute;
 z-index: 1111; //111
 `
 
-function Contact({ myRef, scrollYGlobal, educationRef, scrollToContact }) {
+function Contact({ myRef, scrollYGlobal, educationRef, scrollToContact, setRefReached }) {
   const [showComponent, setShowComponent] = useState(false);
   const [ticked, setTicked] = useState(false);
 
@@ -102,6 +102,7 @@ function Contact({ myRef, scrollYGlobal, educationRef, scrollToContact }) {
       if (Math.round(scrollYGlobal) == divElement.offsetTop) {
         scrollToContact();
         setShowComponent(true);
+        setRefReached(true);
       }
       if (Math.round(scrollYGlobal) > divElement.offsetTop || Math.round(scrollYGlobal) < divElement.offsetTop) {
         if (showComponent) {
@@ -141,7 +142,7 @@ function Contact({ myRef, scrollYGlobal, educationRef, scrollToContact }) {
       <BackgroundImage src="/img/contact/contact-background-blur.jpg" alt="Background Image" />
     )}
 
-    <Container ref={myRef} className='main-div'>
+    <Container id='div6' ref={myRef} className='main-div'>
       <Footer ref={footer1Ref}/>
       <SVGContent ref={footer2Ref}>
           <p>By Justin Bernard</p>

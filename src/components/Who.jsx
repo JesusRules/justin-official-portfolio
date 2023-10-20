@@ -8,7 +8,7 @@ import PikaRun from './threejsscripts/PikaRun';
 
 const Section = styled.div`
     background-color: lightblue;
-    height: 100%;
+    height: 100vh;
     scroll-snap-align: start;
     display: flex;
     justify-content: center;
@@ -197,11 +197,12 @@ const ResumeButton = styled.a`
       }
 `
 
-function Who({ myRef, scrollYGlobal, scrollToWho }) {
+function Who({ myRef, scrollYGlobal, scrollToWho, setRefReached }) {
   useEffect(() => {
     const divElement = myRef.current;
     if (Math.round(scrollYGlobal) == divElement.offsetTop) {
         scrollToWho();
+        setRefReached(true);
     }
     // if (Math.round(scrollYGlobal) > divElement.offsetTop || Math.round(scrollYGlobal) < divElement.offsetTop) {
     //     console.log("OFF")
@@ -209,7 +210,7 @@ function Who({ myRef, scrollYGlobal, scrollToWho }) {
 }, [scrollYGlobal])
 
   return (
-    <Section ref={myRef} className='main-div'>
+    <Section ref={myRef} className='main-div' id='div2'>
       <Container>
         
         {/* <CrucifixDiv>

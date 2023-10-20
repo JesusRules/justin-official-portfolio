@@ -6,7 +6,7 @@ import { Canvas } from '@react-three/fiber'
 
 const Container = styled.div`
     background-color: #ceeeff;
-    height: 100%;
+    height: 100vh;
     scroll-snap-align: start;
     position: relative;
     display: flex;
@@ -70,13 +70,14 @@ const CrucifixImage = styled.img`
     }
 `
 
-function Skills({ myRef, scrollYGlobal, scrollToSkills }) {
+function Skills({ myRef, scrollYGlobal, scrollToSkills, setRefReached }) {
     let tl = gsap.timeline();
 
     useEffect(() => {
         const divElement = myRef.current;
         if (Math.round(scrollYGlobal) == divElement.offsetTop) {
             scrollToSkills();
+            setRefReached(true);
         }
         if (scrollYGlobal >= divElement.offsetTop) {
         //   tl.to(".first-div", {
@@ -89,7 +90,7 @@ function Skills({ myRef, scrollYGlobal, scrollToSkills }) {
       }, [scrollYGlobal])
 
   return (
-    <Container id="skills" className="trigger main-div" ref={myRef}>
+    <Container id="skills div3" className="trigger main-div" ref={myRef}>
         
         {/* <CrucifixDiv>
             <CrucifixImage style={{filter: 'blur(0px)', position: 'absolute'}} src="/img/jesus-effect/image-2-short.png"/>

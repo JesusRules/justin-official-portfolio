@@ -15,7 +15,7 @@ const Container = styled.div`
     overflow: hidden;
     position: relative;
     background-color: #d0eaff;
-    height: 100%;
+    height: 100vh;
     scroll-snap-align: center;
     /* scroll-behavior: smooth; */
     /* background-image: linear-gradient(rgba(255, 255, 255, 0.0), rgba(255, 255, 255, 0.6)),
@@ -453,7 +453,7 @@ const LoadingText = styled.h1`
     }
 `
 
-function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero, whoRef }) { 
+function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero, whoRef, setRefReached }) { 
     // PARALLAX VARS
     let parallex_el;
     let xValue = 0, yValue = 0;
@@ -838,6 +838,7 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero, whoRef }) {
             const divElement = myRef.current;
             if (Math.round(scrollYGlobal) == divElement.offsetTop) {
                 scrollToHero();
+                setRefReached(true);
             }
             // if (Math.round(scrollYGlobal) > divElement.offsetTop || Math.round(scrollYGlobal) < divElement.offsetTop) {
             //     console.log("OFF")
@@ -918,7 +919,7 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero, whoRef }) {
     {/* <Loader /> */}
     {/* <ScrollableWrapper> */}
 
-        <Container ref={myRef} className='main-div'>
+        <Container ref={myRef} className='main-div' id='div1'>
             <GradientOverlayImage />
             {/* <Vignette /> */}
         <HeroText ref={subtitleTxtRef}>Passionate. Professional. Reliable.</HeroText>

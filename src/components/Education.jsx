@@ -4,7 +4,7 @@ import gsap from 'gsap';
 
 const Section = styled.div`
     background-color: white;
-    height: 100%;
+    height: 100vh;
     position: relative;
     scroll-snap-align: start;
     // background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("/img/education/algonquin-college.jpg");
@@ -267,7 +267,7 @@ const Arrows = styled.div`
   }
   `
 
-function Education({ myRef, scrollYGlobal, scrollToPortfolio, scrollToEducation, scrollToContact }) {
+function Education({ myRef, scrollYGlobal, scrollToPortfolio, scrollToEducation, scrollToContact, setRefReached }) {
   const overlayRef = useRef(null);
   const backgroundImageRef = useRef(null);
   // Beginning Effect
@@ -292,6 +292,7 @@ function Education({ myRef, scrollYGlobal, scrollToPortfolio, scrollToEducation,
       if (Math.round(scrollYGlobal) == divElement.offsetTop) {
         scrollToEducation();
         OnViewed();
+        setRefReached(true);
         if (floatingBoxContentRef.current) {
           floatingBoxContentRef.current.focus();
         }
@@ -366,7 +367,7 @@ function Education({ myRef, scrollYGlobal, scrollToPortfolio, scrollToEducation,
 
   return (
     <>
-    <Section ref={myRef} className='education-section main-div'>
+    <Section id='div5' ref={myRef} className='education-section main-div'>
     <Arrows ref={arrowsRef}>
         <img draggable={false} onClick={handleUpArrow} id='arrow-top' src="/img/projects/misc/short-arrow.png"/>
         <img draggable={false} onClick={handleDownArrow} id='arrow-bottom' src="/img/projects/misc/short-arrow.png"/>

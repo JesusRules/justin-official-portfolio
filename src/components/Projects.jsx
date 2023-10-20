@@ -27,7 +27,7 @@ const Container = styled.div`
     background-size: cover; 
     background-repeat: no-repeat;
     background-position: center center;
-    height: 100%;
+    height: 100vh;
     width: 100%;
     overflow: hidden;
 `
@@ -275,7 +275,7 @@ var contentTitlesArray = [
 
 
 function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, setHideOverflow,
-                    scrollToPortfolio }) {
+                    scrollToPortfolio, setRefReached }) {
   const [animIndex, setAnimIndex] = useState(3); //IDLE
   const playerRef = useRef();
   const speechBubbleRef = useRef();
@@ -310,6 +310,7 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
         scrollToPortfolio();
         setShowComponent(true);
         setShowModels(true);
+        setRefReached(true);
         // if (!showBubbleOnce) {
         //   setShowBubbleOnce(true);
         //   gsap.to(speechBubbleRef.current, {
@@ -469,7 +470,7 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
       <BackgroundImage src="/img/projects/misc/background.jpg" alt="Background Image" />
     )}
 
-    <Container ref={myRef} className='main-div'>
+    <Container id='div4' ref={myRef} className='main-div'>
       <Arrows>
         <img draggable={false} onClick={handleUpArrow} id='arrow-top' src="/img/projects/misc/short-arrow.png"/>
         <img draggable={false} onClick={handleDownArrow} id='arrow-bottom' src="/img/projects/misc/short-arrow.png"/>
