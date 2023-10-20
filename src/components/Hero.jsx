@@ -454,7 +454,7 @@ const LoadingText = styled.h1`
     }
 `
 
-function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero }) { 
+function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero, whoRef }) { 
     // PARALLAX VARS
     let parallex_el;
     let xValue = 0, yValue = 0;
@@ -830,9 +830,17 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero }) {
             setHaunterPos(window.getComputedStyle(haunterRef.current).getPropertyValue('left'));
             setBooPos(window.getComputedStyle(booRef.current).getPropertyValue('left'));
             // setContactBtnPos(window.getComputedStyle(contactBtnRef.current).getPropertyValue('bottom'));
-            setInterval(function () {
-                scrollToHero();
-              }, 1000)
+            // setInterval(function () {
+            //     scrollToHero();
+            //   }, 1000)
+            whoRef.current.scrollIntoView({
+                behavior: "instant" // Use "instant" for an immediate scroll
+            });
+              setTimeout(() => {
+                myRef.current.scrollIntoView({
+                    behavior: "instant" // Use "instant" for an immediate scroll
+                });
+              }, 2000)
         }, [])
 
         useEffect(() => {

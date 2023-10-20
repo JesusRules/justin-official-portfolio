@@ -71,7 +71,6 @@ function App() {
   const scrollToHero = () => {
     heroRef.current.scrollIntoView({ behavior: 'smooth' });
     heroRef.current.focus();
-    console.log("JESUS!")
   }
   const scrollToWho = () => {
     whoRef.current.scrollIntoView({ behavior: 'smooth' });
@@ -106,7 +105,8 @@ function App() {
               />
       <Hero myRef={heroRef} scrollYGlobal={scrollY} 
                             clickToContact={scrollToContact}
-                            scrollToHero={scrollToHero} />
+                            scrollToHero={scrollToHero} 
+                            whoRef={whoRef} />
       <Who myRef={whoRef} scrollYGlobal={scrollY}
               scrollToWho={scrollToWho} />
       <Skills myRef={skillsRef} scrollYGlobal={scrollY} scrollToSkills={scrollToSkills}/>
