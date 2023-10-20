@@ -25,8 +25,9 @@ const Container = styled.div`
   background-color: lightblue;
   place-items: center;
   position: relative;
-  overflow-y: ${(props) => (props.hideOverflow ? 'hidden' : 'auto')};
+  /* overflow-y: ${(props) => (props.hideOverflow ? 'hidden' : 'auto')}; */
   overflow-x: hidden;
+  overflow-y: hidden;
 `
 
 function App() {
