@@ -14,7 +14,7 @@ const Container = styled.div`
     position: relative;
     background-color: #d0eaff;
     height: 100vh;
-    /* scroll-snap-align: center; */
+    scroll-snap-align: center;
     overflow: hidden;
     /* background-image: linear-gradient(rgba(255, 255, 255, 0.0), rgba(255, 255, 255, 0.6)),
                   url("/img/hero-banner/blue-sky-2.jpg"); */
@@ -827,6 +827,17 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero }) {
             setHaunterPos(window.getComputedStyle(haunterRef.current).getPropertyValue('left'));
             setBooPos(window.getComputedStyle(booRef.current).getPropertyValue('left'));
             // setContactBtnPos(window.getComputedStyle(contactBtnRef.current).getPropertyValue('bottom'));
+            myRef.current.addEventListener('scroll', (event) => {
+                event.preventDefault();
+              });
+              return () => {
+                // Clean up by removing the event listener when the component unmounts
+                if (myRef.current) {
+                    myRef.current.removeEventListener('scroll', (event) => {
+                    event.preventDefault();
+                  });
+                }
+              };
         }, [])
 
         useEffect(() => {
@@ -835,23 +846,24 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero }) {
                 scrollToHero();
             }
             //WTF idk
-            const divRect = divElement.getBoundingClientRect();
-            const viewportHeight = window.innerHeight;
+            // const divRect = divElement.getBoundingClientRect();
+            // const viewportHeight = window.innerHeight;
 
-            if (divRect.bottom == viewportHeight) {
-                console.log("At bottom");
-                divElement.scrollTop = 0;
-            }
-            // try too
-            if (divElement.scrollTop + divElement.clientHeight === scrollYGlobal) {
-                divElement.scrollTop = 0;
-                console.log('??')
-              }
+            // if (divRect.bottom == viewportHeight) {
+            //     console.log("At bottom");
+            //     divElement.scrollTop = 0;
+            // }
+            // // try too
+            // if (divElement.scrollTop + divElement.clientHeight === scrollYGlobal) {
+            //     divElement.scrollTop = 0;
+            //     console.log('??')
+            //   }
             // if (Math.round(scrollYGlobal) > divElement.offsetTop || Math.round(scrollYGlobal) < divElement.offsetTop) {
             //     console.log("OFF")
             // }
         }, [scrollYGlobal])
         
+
         useEffect(() => {
             handleScroll();
       }, [scrollYGlobal])
@@ -918,7 +930,7 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero }) {
   return (
     <>
     {/* <Loader /> */}
-    <ScrollableWrapper>
+    {/* <ScrollableWrapper> */}
 
         <Container ref={myRef}>
             <GradientOverlayImage />
@@ -930,7 +942,7 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero }) {
         <ContactBtnMain ref={contactBtnRef} id="button-8" onClick={clickToContact}>
             <span className='borderLine'></span>
             <div id="button- 3" style={{padding: 0}}>
-                <span className='contact'>Contact Me!!!</span>
+                <span className='contact'>Contact Me!</span>
             </div>
         </ContactBtnMain>
 
@@ -1012,7 +1024,7 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero }) {
         </audio>
 
         </Container>
-    </ScrollableWrapper>
+    {/* </ScrollableWrapper> */}
     </>
   )
 }
