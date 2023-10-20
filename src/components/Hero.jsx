@@ -12,6 +12,7 @@ const ScrollableWrapper = styled.div`
 `;
 
 const Container = styled.div`
+    touch-action: 'none';
     position: relative;
     background-color: #d0eaff;
     height: 100%;
@@ -829,12 +830,16 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero }) {
             setHaunterPos(window.getComputedStyle(haunterRef.current).getPropertyValue('left'));
             setBooPos(window.getComputedStyle(booRef.current).getPropertyValue('left'));
             // setContactBtnPos(window.getComputedStyle(contactBtnRef.current).getPropertyValue('bottom'));
+            clickToContact();
+            setTimeout(() => {
+                scrollToHero();
+            }, 500)
         }, [])
 
         useEffect(() => {
             const divElement = myRef.current;
             if (Math.round(scrollYGlobal) == divElement.offsetTop) {
-                // scrollToHero();
+                scrollToHero();
             }
             // if (Math.round(scrollYGlobal) > divElement.offsetTop || Math.round(scrollYGlobal) < divElement.offsetTop) {
             //     console.log("OFF")
