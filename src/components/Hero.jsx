@@ -826,8 +826,17 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero }) {
                 scrollToHero();
             }
             //WTF idk
-            if (divElement.scrollTop + divElement.clientHeight === divElement.scrollHeight) {
+            const divRect = divElement.getBoundingClientRect();
+            const viewportHeight = window.innerHeight;
+
+            if (divRect.bottom == viewportHeight) {
+                console.log("At bottom");
                 divElement.scrollTop = 0;
+            }
+            // try too
+            if (divElement.scrollTop + divElement.clientHeight === scrollYGlobal) {
+                divElement.scrollTop = 0;
+                console.log('??')
               }
             // if (Math.round(scrollYGlobal) > divElement.offsetTop || Math.round(scrollYGlobal) < divElement.offsetTop) {
             //     console.log("OFF")
