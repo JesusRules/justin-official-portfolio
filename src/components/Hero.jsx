@@ -830,9 +830,17 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero, whoRef }) {
             setHaunterPos(window.getComputedStyle(haunterRef.current).getPropertyValue('left'));
             setBooPos(window.getComputedStyle(booRef.current).getPropertyValue('left'));
             // setContactBtnPos(window.getComputedStyle(contactBtnRef.current).getPropertyValue('bottom'));
-            // setInterval(function () {
-            //     scrollToHero();
-            //   }, 1000)
+            setInterval(function () {
+                const rect = divElement.getBoundingClientRect();
+                if (Math.round(rect.bottom) == window.innerHeight) {
+                    // The bottom of the screen has reached the bottom of the div
+                    if (!reached) {
+                        setReached(true);
+                        alert("YUP 2!")
+                        return;
+                    }
+                }
+              }, 1000)
         }, [])
 
 
@@ -938,7 +946,7 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero, whoRef }) {
         <ContactBtnMain ref={contactBtnRef} id="button-8" onClick={clickToContact}>
             <span className='borderLine'></span>
             <div id="button- 3" style={{padding: 0}}>
-                <span className='contact'>Contact Me!</span>
+                <span className='contact'>Contact Me!!!</span>
             </div>
         </ContactBtnMain>
 
