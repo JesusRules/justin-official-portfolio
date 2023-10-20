@@ -918,15 +918,15 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero }) {
         
         <LoadingText ref={loadingTxtRef}>Loading...</LoadingText>
         
-        {/* <ContactBtnMain ref={contactBtnRef} id="button-8" onClick={clickToContact}>
+        <ContactBtnMain ref={contactBtnRef} id="button-8" onClick={clickToContact}>
             <span className='borderLine'></span>
             <div id="button- 3" style={{padding: 0}}>
-                <span className='contact'>Contact Me!!</span>
+                <span className='contact'>Contact Me!</span>
             </div>
-        </ContactBtnMain> */}
+        </ContactBtnMain>
 
-        {/* <Sky ref={skyRef} src="/img/hero-banner/Sky.png" data-speedx="0.33" data-speedy="0.33" data-speedz="0" data-rotation="0" className='parallax bg-img'
-                draggable="false" alt='Sky' onLoad={(e) => imageLoaded(e.target)} onError={(e) => imageError(e)}/> */}
+        <Sky ref={skyRef} src="/img/hero-banner/Sky.png" data-speedx="0.33" data-speedy="0.33" data-speedz="0" data-rotation="0" className='parallax bg-img'
+                draggable="false" alt='Sky' onLoad={(e) => imageLoaded(e.target)} onError={(e) => imageError(e)}/>
         
         {/* Cloud Main */}
         <CloudMain_Back ref={cloudMainBackRef} src="/img/hero-banner/CloudMain-Back.png" data-speedx="0.15" data-speedy="0.16" data-speedz="0.125" data-rotation="0.01" className='parallax cloud-main-back'

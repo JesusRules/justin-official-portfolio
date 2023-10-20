@@ -27,10 +27,13 @@ const Container = styled.div`
   background-color: lightblue;
   /* background-color: lightblue; */
   place-items: center;
-  position: relative;
+  /* position: relative; */
   overflow-y: ${(props) => (props.hideOverflow ? 'hidden' : 'auto')};
   overflow-x: hidden;
   /* overflow-y: hidden; */
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 `
 
 function App() {
