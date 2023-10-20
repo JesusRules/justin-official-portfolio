@@ -21,7 +21,8 @@ const Container = styled.div`
   width: 100vw;
   height: 100vh;
   scroll-snap-type: y mandatory;
-  scroll-behavior: smooth;
+  /* scroll-behavior: smooth; */
+  scroll-behavior: auto;
   background-color: lightblue;
   place-items: center;
   position: relative;

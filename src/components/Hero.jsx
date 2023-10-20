@@ -15,6 +15,7 @@ const Container = styled.div`
     background-color: #d0eaff;
     height: 100vh;
     scroll-snap-align: center;
+    scroll-behavior: auto;
     overflow: hidden;
     /* background-image: linear-gradient(rgba(255, 255, 255, 0.0), rgba(255, 255, 255, 0.6)),
                   url("/img/hero-banner/blue-sky-2.jpg"); */
@@ -942,7 +943,7 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero }) {
         <ContactBtnMain ref={contactBtnRef} id="button-8" onClick={clickToContact}>
             <span className='borderLine'></span>
             <div id="button- 3" style={{padding: 0}}>
-                <span className='contact'>Contact Me!!!</span>
+                <span className='contact'>Contact Me!</span>
             </div>
         </ContactBtnMain>
 
