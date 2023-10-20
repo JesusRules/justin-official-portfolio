@@ -24,7 +24,6 @@ const Container = styled.div`
   /* scroll-behavior: smooth; */
   /* touch-action: 'none'; */
   scroll-behavior: auto;
-  scroll-snap-stop: 0.000000000001;
   background-color: lightblue;
   /* background-color: lightblue; */
   place-items: center;
