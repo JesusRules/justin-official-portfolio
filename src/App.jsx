@@ -60,49 +60,6 @@ function App() {
     // }, 500);
   }, [])
 
-  // NEW ATTEMPT TO LOCK ON EACH DIV
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const scrollDivRefs = useRef([]);
-
-  useEffect(() => {
-    scrollDivRefs.current = Array.from(containerRef.current.querySelectorAll('.main-div'));
-  }, []);
-
-  useEffect(() => {
-    if (scrollDivRefs.current) {
-      console.log("FIRST", scrollDivRefs.current)
-    }
-  }, [scrollDivRefs.current])
-
-  // Function to scroll to a specific div
-  const scrollToIndex = (index) => {
-    if (index >= 0 && index < scrollDivRefs.current.length) {
-      setCurrentIndex(index);
-      scrollDivRefs.current[2].scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  // Add scroll event listener
-  useEffect(() => {
-    const handleScroll = (e) => {
-      if (e.target.scrollTop > 0) {
-        console.log(e.target.scrollTop)
-        // Scrolling down
-        scrollToIndex(currentIndex + 1);
-      } else {
-        // Scrolling up
-        scrollToIndex(currentIndex - 1);
-      }
-    };
-    containerRef.current.addEventListener('scroll', handleScroll);
-    return () => {
-      containerRef.current.removeEventListener('scroll', handleScroll);
-    };
-  }, [currentIndex]);
-
-
-
-
   // OLD //////////////////////////////
   const handleScroll = (event) => {
     const scrollTop = event.target.scrollTop;

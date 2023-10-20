@@ -4,7 +4,7 @@ import gsap from 'gsap';
 
 const Section = styled.div`
     background-color: white;
-    height: 100vh;
+    height: 100%;
     position: relative;
     scroll-snap-align: start;
     // background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("/img/education/algonquin-college.jpg");

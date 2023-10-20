@@ -11,7 +11,7 @@ import ContactForm from './smaller-components/ContactForm';
 const Container = styled.div`
    position: relative;
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     scroll-snap-align: start;
 `
 

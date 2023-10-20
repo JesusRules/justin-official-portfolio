@@ -15,7 +15,7 @@ const Container = styled.div`
     overflow: hidden;
     position: relative;
     background-color: #d0eaff;
-    height: 100vh;
+    height: 100%;
     scroll-snap-align: center;
     /* scroll-behavior: smooth; */
     /* background-image: linear-gradient(rgba(255, 255, 255, 0.0), rgba(255, 255, 255, 0.6)),
