@@ -49,11 +49,6 @@ function App() {
     }, 0);
   }, [])
 
-  useEffect(() => {
-    // Open the URL in a new browser window without the address bar
-    window.open('https://justin-bernard.com', '_blank', 'location=no');
-  }, []);
-
   
 
   const handleScroll = (event) => {

@@ -834,7 +834,7 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero }) {
         useEffect(() => {
             const divElement = myRef.current;
             if (Math.round(scrollYGlobal) == divElement.offsetTop) {
-                scrollToHero();
+                // scrollToHero();
             }
             // if (Math.round(scrollYGlobal) > divElement.offsetTop || Math.round(scrollYGlobal) < divElement.offsetTop) {
             //     console.log("OFF")
