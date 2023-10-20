@@ -11,7 +11,7 @@ import ContactForm from './smaller-components/ContactForm';
 const Container = styled.div`
    position: relative;
     width: 100vw;
-    height: 100%;
+    height: 100vh;
     scroll-snap-align: start;
 `
 
@@ -141,7 +141,7 @@ function Contact({ myRef, scrollYGlobal, educationRef, scrollToContact }) {
       <BackgroundImage src="/img/contact/contact-background-blur.jpg" alt="Background Image" />
     )}
 
-    <Container ref={myRef}>
+    <Container ref={myRef} className='main-div'>
       <Footer ref={footer1Ref}/>
       <SVGContent ref={footer2Ref}>
           <p>By Justin Bernard</p>

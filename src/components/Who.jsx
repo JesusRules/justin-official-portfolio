@@ -8,7 +8,7 @@ import PikaRun from './threejsscripts/PikaRun';
 
 const Section = styled.div`
     background-color: lightblue;
-    height: 100%;
+    height: 100vh;
     scroll-snap-align: start;
     display: flex;
     justify-content: center;
@@ -209,7 +209,7 @@ function Who({ myRef, scrollYGlobal, scrollToWho }) {
 }, [scrollYGlobal])
 
   return (
-    <Section ref={myRef}>
+    <Section ref={myRef} className='main-div'>
       <Container>
         
         {/* <CrucifixDiv>

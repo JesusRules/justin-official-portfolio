@@ -6,7 +6,7 @@ import { Canvas } from '@react-three/fiber'
 
 const Container = styled.div`
     background-color: #ceeeff;
-    height: 100%;
+    height: 100vh;
     scroll-snap-align: start;
     position: relative;
     display: flex;
@@ -89,7 +89,7 @@ function Skills({ myRef, scrollYGlobal, scrollToSkills }) {
       }, [scrollYGlobal])
 
   return (
-    <Container id="skills" className="trigger" ref={myRef}>
+    <Container id="skills" className="trigger main-div" ref={myRef}>
         
         {/* <CrucifixDiv>
             <CrucifixImage style={{filter: 'blur(0px)', position: 'absolute'}} src="/img/jesus-effect/image-2-short.png"/>

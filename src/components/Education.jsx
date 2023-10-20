@@ -4,7 +4,7 @@ import gsap from 'gsap';
 
 const Section = styled.div`
     background-color: white;
-    height: 100%;
+    height: 100vh;
     position: relative;
     scroll-snap-align: start;
     // background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("/img/education/algonquin-college.jpg");
@@ -366,7 +366,7 @@ function Education({ myRef, scrollYGlobal, scrollToPortfolio, scrollToEducation,
 
   return (
     <>
-    <Section ref={myRef} className='education-section'>
+    <Section ref={myRef} className='education-section main-div'>
     <Arrows ref={arrowsRef}>
         <img draggable={false} onClick={handleUpArrow} id='arrow-top' src="/img/projects/misc/short-arrow.png"/>
         <img draggable={false} onClick={handleDownArrow} id='arrow-bottom' src="/img/projects/misc/short-arrow.png"/>

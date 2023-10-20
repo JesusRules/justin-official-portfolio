@@ -17,9 +17,15 @@ import WebgiViewer from './components/WebgiViewer'
 import gsap from 'gsap';
 import { useGLTF } from '@react-three/drei'
 
+
+const Wrapper = styled.main`
+  height: 100vh;
+  position: relative;
+  background-color: red;
+  `
 const Container = styled.div`
   width: 100vw;
-  height: 100vh;
+  height: 100%; //100vh FOR OLD SCHOOL
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
   /* touch-action: 'none'; */
@@ -31,7 +37,6 @@ const Container = styled.div`
   overflow-y: ${(props) => (props.hideOverflow ? 'hidden' : 'auto')};
   overflow-x: hidden;
   /* overflow-y: hidden; */
-  position: relative;
   /* left: 50%;
   transform: translateX(-50%); */
 `
@@ -50,23 +55,59 @@ function App() {
 
   useEffect(() => {
     // devicePixelRatio = 0.001;
-      setTimeout(function(){
-        window.scrollTo(0, 1);
-    }, 500);
-
-    // setInterval(function () {
-    //   containerRef.current.focus();
-    //   console.log(containerRef.current);
-    // }, 1000); 
+    //   setTimeout(function(){
+    //     window.scrollTo(0, 1);
+    // }, 500);
   }, [])
 
-  
+  // NEW ATTEMPT TO LOCK ON EACH DIV
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const scrollDivRefs = useRef([]);
 
+  useEffect(() => {
+    scrollDivRefs.current = Array.from(containerRef.current.querySelectorAll('.main-div'));
+  }, []);
+
+  useEffect(() => {
+    if (scrollDivRefs.current) {
+      console.log("FIRST", scrollDivRefs.current)
+    }
+  }, [scrollDivRefs.current])
+
+  // Function to scroll to a specific div
+  const scrollToIndex = (index) => {
+    if (index >= 0 && index < scrollDivRefs.current.length) {
+      setCurrentIndex(index);
+      scrollDivRefs.current[2].scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  // Add scroll event listener
+  useEffect(() => {
+    const handleScroll = (e) => {
+      if (e.target.scrollTop > 0) {
+        console.log(e.target.scrollTop)
+        // Scrolling down
+        scrollToIndex(currentIndex + 1);
+      } else {
+        // Scrolling up
+        scrollToIndex(currentIndex - 1);
+      }
+    };
+    containerRef.current.addEventListener('scroll', handleScroll);
+    return () => {
+      containerRef.current.removeEventListener('scroll', handleScroll);
+    };
+  }, [currentIndex]);
+
+
+
+
+  // OLD //////////////////////////////
   const handleScroll = (event) => {
     const scrollTop = event.target.scrollTop;
     setScrollY(scrollTop);
   };
-
 
   const scrollToHero = () => {
     heroRef.current.scrollIntoView({ behavior: 'smooth' });
@@ -89,6 +130,7 @@ function App() {
 
 
   return (
+    <Wrapper>
     <Container ref={containerRef} onScroll={handleScroll} hideOverflow={hideOverflow}>
       <NavBar scrollYGlobal={scrollY} 
               clickToWho={scrollToWho}
@@ -119,6 +161,7 @@ function App() {
                 scrollToContact={scrollToContact} scrollYGlobal={scrollY} />
       {/* <WebgiViewer scrollYGlobal={scrollY}/> */}
     </Container>
+    </Wrapper>
   )
 }
 

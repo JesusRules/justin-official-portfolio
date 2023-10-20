@@ -15,7 +15,7 @@ const Container = styled.div`
     overflow: hidden;
     position: relative;
     background-color: #d0eaff;
-    height: 100%;
+    height: 100vh;
     scroll-snap-align: center;
     /* scroll-behavior: smooth; */
     /* background-image: linear-gradient(rgba(255, 255, 255, 0.0), rgba(255, 255, 255, 0.6)),
@@ -24,7 +24,6 @@ const Container = styled.div`
     /* background: radial-gradient(circle at center, white 0%, transparent 100%), url("/img/hero-banner/Sky.png"); */
     background-repeat: no-repeat;
     background-size: cover;
-    pointer-events: none;
 `
 
 const GradientOverlayImage = styled.div`
@@ -919,7 +918,7 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero, whoRef }) {
     {/* <Loader /> */}
     {/* <ScrollableWrapper> */}
 
-        <Container ref={myRef}>
+        <Container ref={myRef} className='main-div'>
             <GradientOverlayImage />
             {/* <Vignette /> */}
         <HeroText ref={subtitleTxtRef}>Passionate. Professional. Reliable.</HeroText>
@@ -929,7 +928,7 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero, whoRef }) {
         <ContactBtnMain ref={contactBtnRef} id="button-8" onClick={clickToContact}>
             <span className='borderLine'></span>
             <div id="button- 3" style={{padding: 0}}>
-                <span className='contact'>Contact Me!</span>
+                <span className='contact'>Contact Me!!!!</span>
             </div>
         </ContactBtnMain>
 

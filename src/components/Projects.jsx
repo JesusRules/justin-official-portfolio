@@ -27,7 +27,7 @@ const Container = styled.div`
     background-size: cover; 
     background-repeat: no-repeat;
     background-position: center center;
-    height: 100%;
+    height: 100vh;
     width: 100%;
     overflow: hidden;
 `
@@ -469,7 +469,7 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
       <BackgroundImage src="/img/projects/misc/background.jpg" alt="Background Image" />
     )}
 
-    <Container ref={myRef}>
+    <Container ref={myRef} className='main-div'>
       <Arrows>
         <img draggable={false} onClick={handleUpArrow} id='arrow-top' src="/img/projects/misc/short-arrow.png"/>
         <img draggable={false} onClick={handleDownArrow} id='arrow-bottom' src="/img/projects/misc/short-arrow.png"/>
