@@ -8,13 +8,14 @@ const ScrollableWrapper = styled.div`
   overflow: hidden; /* Allows the parent container to be scrollable */
   height: 100vh; /* Set the desired height for the scrollable parent */
   scroll-snap-align: center;
+  z-index: 100000000;
 `;
 
 const Container = styled.div`
     position: relative;
     background-color: #d0eaff;
-    height: 100vh;
-    scroll-snap-align: center;
+    height: 100%;
+    /* scroll-snap-align: center; */
     scroll-behavior: auto;
     overflow: hidden;
     /* background-image: linear-gradient(rgba(255, 255, 255, 0.0), rgba(255, 255, 255, 0.6)),
@@ -931,7 +932,7 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero }) {
   return (
     <>
     {/* <Loader /> */}
-    {/* <ScrollableWrapper> */}
+    <ScrollableWrapper>
 
         <Container tabIndex='-1' ref={myRef}>
             <GradientOverlayImage />
@@ -943,7 +944,7 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero }) {
         <ContactBtnMain ref={contactBtnRef} id="button-8" onClick={clickToContact}>
             <span className='borderLine'></span>
             <div id="button- 3" style={{padding: 0}}>
-                <span className='contact'>Contact Me!!</span>
+                <span className='contact'>Contact Me!!!</span>
             </div>
         </ContactBtnMain>
 
@@ -1025,7 +1026,7 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero }) {
         </audio>
 
         </Container>
-    {/* </ScrollableWrapper> */}
+    </ScrollableWrapper>
     </>
   )
 }
