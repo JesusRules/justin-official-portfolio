@@ -13,7 +13,8 @@ const ScrollableWrapper = styled.div`
 
 const Container = styled.div`
     position: relative;
-    background-color: #d0eaff;
+    /* background-color: #d0eaff; */
+    background-color: #ff0000;
     height: 100%;
     scroll-snap-align: center;
     /* scroll-behavior: smooth; */
@@ -834,8 +835,7 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero }) {
         useEffect(() => {
             const divElement = myRef.current;
             if (Math.round(scrollYGlobal) == divElement.offsetTop) {
-                // scrollToHero();
-
+                scrollToHero();
             }
             // if (Math.round(scrollYGlobal) > divElement.offsetTop || Math.round(scrollYGlobal) < divElement.offsetTop) {
             //     console.log("OFF")
@@ -921,7 +921,7 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero }) {
         <ContactBtnMain ref={contactBtnRef} id="button-8" onClick={clickToContact}>
             <span className='borderLine'></span>
             <div id="button- 3" style={{padding: 0}}>
-                <span className='contact'>Contact Me!!</span>
+                <span className='contact'>Contact Me!</span>
             </div>
         </ContactBtnMain>
 

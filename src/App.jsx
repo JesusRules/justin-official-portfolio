@@ -22,9 +22,10 @@ const Container = styled.div`
   height: 100vh;
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
-  touch-action: 'none';
+  /* touch-action: 'none'; */
   /* scroll-behavior: auto; */
-  background-color: lightblue;
+  background-color: #26ff00;
+  /* background-color: lightblue; */
   place-items: center;
   position: relative;
   overflow-y: ${(props) => (props.hideOverflow ? 'hidden' : 'auto')};
