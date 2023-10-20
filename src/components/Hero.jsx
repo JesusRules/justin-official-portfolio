@@ -833,15 +833,10 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero, whoRef }) {
             // setInterval(function () {
             //     scrollToHero();
             //   }, 1000)
-            whoRef.current.scrollIntoView({
-                behavior: "instant" // Use "instant" for an immediate scroll
-            });
-              setTimeout(() => {
-                myRef.current.scrollIntoView({
-                    behavior: "instant" // Use "instant" for an immediate scroll
-                });
-              }, 2000)
         }, [])
+
+
+        const [reached, setReached] = useState(false);
 
         useEffect(() => {
             const divElement = myRef.current;
@@ -851,6 +846,17 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero, whoRef }) {
             // if (Math.round(scrollYGlobal) > divElement.offsetTop || Math.round(scrollYGlobal) < divElement.offsetTop) {
             //     console.log("OFF")
             // }
+            const rect = divElement.getBoundingClientRect();
+            console.log(Math.round(rect.bottom));
+            if (Math.round(rect.bottom) == window.innerHeight) {
+                // The bottom of the screen has reached the bottom of the div
+                console.log('Bottom of the screen reached the bottom of the div');
+                if (!reached) {
+                    setReached(true);
+                    alert("YUP!")
+                    return;
+                }
+              }
         }, [scrollYGlobal])
         
 

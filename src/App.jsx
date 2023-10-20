@@ -70,27 +70,21 @@ function App() {
 
   const scrollToHero = () => {
     heroRef.current.scrollIntoView({ behavior: 'smooth' });
-    heroRef.current.focus();
   }
   const scrollToWho = () => {
     whoRef.current.scrollIntoView({ behavior: 'smooth' });
-    whoRef.current.focus();
   }
   const scrollToSkills = () => {
     skillsRef.current.scrollIntoView({ behavior: 'smooth' });
-    skillsRef.current.focus();
   }
   const scrollToPortfolio = () => {
     portfolioRef.current.scrollIntoView({ behavior: 'smooth' });
-    portfolioRef.current.focus();
   }
   const scrollToEducation = () => {
     educationRef.current.scrollIntoView({ behavior: 'smooth' });
-    educationRef.current.focus();
   }
   const scrollToContact = () => {
     contactRef.current.scrollIntoView({ behavior: 'smooth' });
-    contactRef.current.focus();
   }
 
 
