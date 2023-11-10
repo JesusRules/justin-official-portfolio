@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from 'react'
 import styled, { keyframes } from 'styled-components';
 import gsap from 'gsap';
 
-
 // NEW ATTEMPT!
 const ScrollableWrapper = styled.div`
   overflow: hidden; /* Allows the parent container to be scrollable */
