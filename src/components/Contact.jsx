@@ -78,11 +78,28 @@ z-index: 1111; //111
 function Contact({ myRef, scrollYGlobal, educationRef, scrollToContact, setRefReached }) {
   const [showComponent, setShowComponent] = useState(false);
   const [ticked, setTicked] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   const contactForm = useRef();
   const footer1Ref = useRef();
   const footer2Ref = useRef();
   const canvasRef = useRef();
+
+  useEffect(() => {
+    const handleResize = () => {
+        if (window.innerWidth < 768) {
+            setIsMobile(true);
+        } else {
+            setIsMobile(false);
+        }
+    };
+    handleResize();
+        
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   //SCROLLING
     useEffect(() => {
@@ -112,8 +129,9 @@ function Contact({ myRef, scrollYGlobal, educationRef, scrollToContact, setRefRe
   }, [scrollYGlobal])
 
 
+  // NON-MOBILE!
   useEffect(() => {
-    if (showComponent) {
+    if (showComponent && !isMobile) {
       contactForm.current.style.pointerEvents = 'none';
       gsap.to(contactForm.current, {
         opacity: 1,
@@ -134,11 +152,36 @@ function Contact({ myRef, scrollYGlobal, educationRef, scrollToContact, setRefRe
         delay: 2
       })
     }
-  }, [showComponent])
+  }, [showComponent, isMobile])
+
+  //MOBILE!
+  useEffect(() => {
+    if (showComponent && isMobile) {
+      contactForm.current.style.pointerEvents = 'none';
+      gsap.to(contactForm.current, {
+        opacity: 1,
+        duration: 1,
+        delay: .66,
+        onStart: () => {
+          contactForm.current.style.pointerEvents = 'all';
+        }
+      })
+      gsap.to(footer1Ref.current, {
+        opacity: 1,
+        duration: 1,
+        delay: .66
+      })
+      gsap.to(footer2Ref.current, {
+        opacity: 1,
+        duration: 1,
+        delay: .66
+      })
+    }
+  }, [showComponent, isMobile])
 
   return (
     <>
-    {!showComponent && (
+    {(!showComponent && !isMobile) && (
       <BackgroundImage src="/img/contact/contact-background-blur.jpg" alt="Background Image" />
     )}
 
@@ -155,41 +198,55 @@ function Contact({ myRef, scrollYGlobal, educationRef, scrollToContact, setRefRe
           </div>
       </SVGContent>
 
-      <ContactForm contactForm={contactForm} />
-      {(showComponent && !ticked) && 
-      (
-       <>
-        <Canvas ref={canvasRef} camera={{fov: 95, far: 1000, near: 0.1, 
-          position: [0, 150, 35]}} 
-          gl={{ antialias: false }} // Disable antialiasing for performance
-          // pixelRatio={0.5} // Set the pixel ratio to half (adjust as needed)
-          style={{width: '100%', height: '100%', backgroundColor: '#c8f9ff', 
-          backgroundImage: 'url(/img/contact/contact-background-blur.jpg)' ,
-          backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'center center'}} 
-         >
-             <Suspense fallback={<Loader />}>
-              <ambientLight color='white' intensity={3} />
-              {/* <directionalLight intensity={2}  castShadow  position={[-100, 30, 50]} /> */}
-              {/* <directionalLight intensity={2}  castShadow position={[62, 40, -20]} /> */}
-              <OrbitControls enableZoom={false} enableRotate={false} enablePan={false} />
-              <Sky />
-              <Environment preset="night" />
-              <Church />
-              <CameraConsole showComponent={showComponent} />
-            </Suspense>
-        </Canvas>
+      {!isMobile && (
+        <>
+        <ContactForm contactForm={contactForm} />
+        {(showComponent && !ticked) && 
+        (
+        <>
+          <Canvas ref={canvasRef} camera={{fov: 95, far: 1000, near: 0.1, 
+            position: [0, 150, 35]}} 
+            gl={{ antialias: false }} // Disable antialiasing for performance
+            // pixelRatio={0.5} // Set the pixel ratio to half (adjust as needed)
+            style={{width: '100%', height: '100%', backgroundColor: '#c8f9ff', 
+            backgroundImage: 'url(/img/contact/contact-background-blur.jpg)' ,
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center center'}} 
+          >
+              <Suspense fallback={<Loader />}>
+                <ambientLight color='white' intensity={3} />
+                {/* <directionalLight intensity={2}  castShadow  position={[-100, 30, 50]} /> */}
+                {/* <directionalLight intensity={2}  castShadow position={[62, 40, -20]} /> */}
+                <OrbitControls enableZoom={false} enableRotate={false} enablePan={false} />
+                <Sky />
+                <Environment preset="night" />
+                <Church />
+                <CameraConsole showComponent={showComponent} />
+              </Suspense>
+          </Canvas>
+          </>
+        )}
+        {(showComponent && ticked) && 
+        (
+          <>
+          <div style={{width: '100vw', height: '100vh', 
+                backgroundImage: 'url(/img/contact/image-done.jpg)',
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'center center',
+                backgroundSize: 'cover'}}/>
+          </>
+        )}
         </>
       )}
-      {(showComponent && ticked) && 
-      (
+      {isMobile && (
         <>
-        <div style={{width: '100vw', height: '100vh', 
-              backgroundImage: 'url(/img/contact/image-done.jpg)',
-              backgroundRepeat: 'no-repeat',
-              backgroundPosition: 'center center',
-              backgroundSize: 'cover'}}/>
+        <ContactForm contactForm={contactForm} />
+          <div style={{width: '100vw', height: '100vh', 
+                backgroundImage: 'url(/img/contact/image-done-2.jpg)',
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'center center',
+                backgroundSize: 'cover'}}/>
         </>
       )}
     </Container>
