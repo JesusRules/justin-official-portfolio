@@ -161,7 +161,7 @@ function Contact({ myRef, scrollYGlobal, educationRef, scrollToContact, setRefRe
       gsap.to(contactForm.current, {
         opacity: 1,
         duration: 1,
-        delay: .66,
+        delay: 1.33,
         onStart: () => {
           contactForm.current.style.pointerEvents = 'all';
         }
@@ -169,12 +169,12 @@ function Contact({ myRef, scrollYGlobal, educationRef, scrollToContact, setRefRe
       gsap.to(footer1Ref.current, {
         opacity: 1,
         duration: 1,
-        delay: .66
+        delay: 1.33
       })
       gsap.to(footer2Ref.current, {
         opacity: 1,
         duration: 1,
-        delay: .66
+        delay: 1.33
       })
     }
   }, [showComponent, isMobile])
