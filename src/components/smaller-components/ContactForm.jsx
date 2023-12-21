@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { styled, keyframes  } from 'styled-components'
 import emailjs from "emailjs-com";
 import gsap from 'gsap';
+import '../../css/ContactForm.css'
 
 const ContactContainer = styled.div`
     z-index: 1000;
@@ -21,14 +22,13 @@ const ContactContent = styled.div`
     max-width: 500px;
     /* height: 80vh; // WORKS FOR MODAL SCROLLING LIKE BODY //72 */
 
-    /* background: rgb(255, 255, 255, 0.15); //0.15 */
-    background: rgb(255, 255, 255, 0.15); //0.15
+    /* background: rgb(255, 255, 255, 0.15);
     backdrop-filter: blur(25px);
     border: 1px solid rgb(255, 255, 255);
     border-bottom: 1px solid rgba(255, 255, 255, 0.25);
     border-left: 1px solid rgba(255, 255, 255, 0.25);
     border-radius: 20px;
-    box-shadow: 0px 25px 50px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0px 25px 50px rgba(0, 0, 0, 0.1);  */
     
     align-items: center;
     opacity: 0;
@@ -350,8 +350,8 @@ function ContactForm({ contactForm }) {
         )}
 
         <ContactContainer>
-            <ContactContent ref={contactForm}>
-                <h2 style={{gridArea: 'one'}} className='title'>Contact Me!!</h2>
+            <ContactContent ref={contactForm} className='contact-form'>
+                <h2 style={{gridArea: 'one'}} className='title'>Contact Me!</h2>
                 <div className='names'>
                     <div style={{gridArea: 'two'}} className='inputBox first-name'>
                         <input type="text" placeholder='First Name'
