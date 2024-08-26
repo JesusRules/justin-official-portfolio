@@ -237,7 +237,7 @@ const Arrows = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: black;
+    background-color: #ffffff;
     opacity: 0;
     pointer-events: none; /* Prevent it from blocking other elements */
     transition: opacity 1s ease-in-out;
@@ -279,7 +279,7 @@ const Arrows = styled.div`
 //   "MiniDoom 2 Trailer"
 // ];
 
-var contentTitlesArray = [
+var contentTitlesArray1 = [
   { name: "", description: "", id: '' },
   { name: "PokiTheDog", description: "A game company startup website featuring some games I’ve made.", id: 'pokithedog' },
   { name: "My Portfolio (Old)", description: "A website made to promote me and some early apps I’ve done.", id: 'my-portfolio-old' },
@@ -316,6 +316,16 @@ var contentTitlesArray = [
   { name: "Church Party", description: "A 5 player mini-game extravaganza.", id: 'church-party' },
 ]
 
+var contentTitlesArray2 = [
+  { name: "", description: "", id: '' },
+  { name: "", description: "", id: '' },
+  { name: "", description: "", id: '' },
+  { name: "", description: "", id: '' },
+  { name: "", description: "", id: '' },
+  { name: "Go to Level 1", description: "", id: 'level-1' },
+  { name: "Cannabis Clubhouse", description: "An ecommerce website I created.", id: 'cannabis-clubhouse' },
+]
+
 
 function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, setHideOverflow,
                     scrollToPortfolio, setRefReached }) {
@@ -330,7 +340,7 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
   const [withinProject, setWithinProject] = useState(false);
   
   const radius = 170;
-  const [objectPoints1, setObjectPoints1] = useState([]);
+  const [objectPoints, setObjectPoints] = useState([]);
   const [idleStance, setIdleStance] = useState(true);
 
   const [openModal, setOpenModal] = useState(false);
@@ -402,27 +412,18 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
   }, [isLoaded])
 
     useEffect(() => {
-      setupPositionSpots();
-      // Your Three.js scene setup
-      // myRef.current.addEventListener("touchstart", handleTouchStart);
-      // myRef.current.addEventListener("touchmove", handleTouchMove);
-      // myRef.current.addEventListener("touchend", handleTouchEnd);
-
-      return () => {
-        // myRef.current.removeEventListener("touchstart", handleTouchStart);
-        // myRef.current.removeEventListener("touchmove", handleTouchMove);
-        // myRef.current.removeEventListener("touchend", handleTouchEnd);
-      };
+      setupPositionSpots(contentTitlesArray1); //LEVEL 1
     }, []);
 
-    const setupPositionSpots = () => {
-      for (let i = 0; i < contentTitlesArray.length; i++) {
-        const angle = (i / contentTitlesArray.length) * Math.PI * 2;
+    const setupPositionSpots = (_contentTitlesArray) => {
+      setObjectPoints([]);
+      for (let i = 0; i < _contentTitlesArray.length; i++) {
+        const angle = (i / _contentTitlesArray.length) * Math.PI * 2;
         const x = Math.cos(-angle) * radius;
         const z = Math.sin(-angle) * radius;
-        const newObj = <CircleObject content={contentTitlesArray[i]} key={i} position={[x, 0.1, z]} />; 
+        const newObj = <CircleObject content={_contentTitlesArray[i]} key={i} position={[x, 0.1, z]} />; 
         // setObjectPoints(objectPoints => [...objectPoints, newObj]);
-        setObjectPoints1(objectPoints => {
+        setObjectPoints(objectPoints => {
           return uniqueByKey([...objectPoints, newObj]);
         });
       }
@@ -523,9 +524,37 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
 
     //LEVELS SCRIPTS
 
+    const goLevel1 = () => {
+      // Fade in
+      setTransitioning(true);
+      setAnimIndex(3);
+      setRotateSpeed(0); //cam
+      blackOverlayRef.current.style.opacity = 1;
+
+      // Perform your action after the fade-in
+      setTimeout(() => {
+        // Do something, e.g., change the scene
+        setLevelState(1);
+        setSkyboxImages([
+          '/img/sky/level-1/sky-left.jpg', 
+          '/img/sky/level-1/sky-right.jpg', 
+          '/img/sky/level-1/sky-up.jpg',
+          '/img/sky/level-1/sky-down.jpg',
+          '/img/sky/level-1/sky-front.jpg',
+          '/img/sky/level-1/sky-back.jpg',
+        ]);
+        setupPositionSpots(contentTitlesArray1); //LEVEL 1
+        setRotateSpeed(0.145);
+        setTransitioning(false);
+        setAnimIndex(2);
+
+        // Fade out
+        blackOverlayRef.current.style.opacity = 0;
+      }, 1000); // Wait 1 second for the fade-in to complete
+    }
+
     const goLevel2 = () => {
       // Fade in
-
       setTransitioning(true);
       setAnimIndex(3);
       setRotateSpeed(0); //cam
@@ -543,6 +572,7 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
           '/img/sky/level-22/sky-front.jpg',
           '/img/sky/level-22/sky-back.jpg',
         ]);
+        setupPositionSpots(contentTitlesArray2); //LEVEL 2
         setRotateSpeed(0.145);
         setTransitioning(false);
         setAnimIndex(2);
@@ -580,7 +610,18 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
 
       {showComponent && (
         <>
-        {currentProject.id === 'level-2' ? (
+        {currentProject.id === 'level-1' ? (
+          <ProjectPopup ref={projectRef}>
+              <div className='content-levels'>
+                <h2>{currentProject.name}</h2>
+              </div>
+              {currentProject.status !== "unavailable" ? (
+                <StyledButtonLevels ref={learnButtonRef} style={{cursor: withinProject ? 'pointer' : 'grab'}} onClick={() => goLevel1()}>Go Jesus Go!</StyledButtonLevels>
+                ) : (
+                <UnavailableButton ref={learnButtonRef} disabled >Currently Unavailable</UnavailableButton>
+              )}
+          </ProjectPopup>
+        ) : currentProject.id === 'level-2' ? (
           <ProjectPopup ref={projectRef}>
               <div className='content-levels'>
                 <h2>{currentProject.name}</h2>
@@ -639,7 +680,7 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
                         playerRef={playerRef} 
                         canvasRef={myRef} 
                         speechBubbleRef={speechBubbleRef} 
-                        touchObjects={objectPoints1} 
+                        touchObjects={objectPoints} 
                         setCurrentProject={setCurrentProject} 
                         setWithinProject={setWithinProject} 
                         idscroleStance={idleStance} 
@@ -663,7 +704,9 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
                       target={[0, 0, 0]} // Lock the camera to the center
                       />
                     
-                    <MarioGuitar rotation={[0,-1,0]} position={[-116.586, 0, 82]} scale={1.2} />
+                    {levelState === 1 && (
+                      <MarioGuitar rotation={[0,-1,0]} position={[-116.586, 0, 82]} scale={1.2} />
+                    )}
                     
                     <ambientLight color='white' intensity={4} />
                     <directionalLight intensity={2}  castShadow  position={[-100, 30, 50]} />
@@ -677,9 +720,10 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
                       <>
                       <MyFbxModel scale={0.369} rotation={[0, 0, 0]}/>
                       <Ocean />
-                      {objectPoints1}
                       </>
                     )}
+
+                    {objectPoints}
 
                     
                     {qualityCheck && (
