@@ -322,8 +322,35 @@ var contentTitlesArray2 = [
   { name: "", description: "", id: '' },
   { name: "", description: "", id: '' },
   { name: "", description: "", id: '' },
+  { name: "", description: "", id: '' },
+  { name: "", description: "", id: '' },
+  { name: "", description: "", id: '' },
+  { name: "", description: "", id: '' },
+  
+  { name: "", description: "", id: '' },
+  { name: "", description: "", id: '' },
+  { name: "", description: "", id: '' },
+  { name: "", description: "", id: '' },
+  { name: "", description: "", id: '' },
+
+  { name: "", description: "", id: '' },
+  { name: "", description: "", id: '' },
+  { name: "", description: "", id: '' },
+  { name: "", description: "", id: '' },
+  { name: "", description: "", id: '' },
+  { name: "", description: "", id: '' },
+  { name: "", description: "", id: '' },
+
   { name: "Go to Level 1", description: "", id: 'level-1' },
-  { name: "Cannabis Clubhouse", description: "An ecommerce website I created.", id: 'cannabis-clubhouse' },
+  { name: "Cannabis Clubhouse", description: "An e-commerce website I made.", id: 'cannabis-clubhouse' },
+  { name: "", description: "", id: '' },
+  { name: "", description: "", id: '' },
+  { name: "", description: "", id: '' },
+  { name: "", description: "", id: '' },
+  { name: "", description: "", id: '' },
+  { name: "", description: "", id: '' },
+  { name: "", description: "", id: '' },
+  { name: "", description: "", id: '' },
 ]
 
 
@@ -340,7 +367,7 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
   const [withinProject, setWithinProject] = useState(false);
   
   const radius = 170;
-  const [objectPoints, setObjectPoints] = useState([]);
+  const [objectPoints, setObjectPoints] = useState([]); //Level 1
   const [idleStance, setIdleStance] = useState(true);
 
   const [openModal, setOpenModal] = useState(false);
@@ -565,12 +592,12 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
         // Do something, e.g., change the scene
         setLevelState(2);
         setSkyboxImages([
-          '/img/sky/level-22/sky-left.jpg', 
-          '/img/sky/level-22/sky-right.jpg', 
-          '/img/sky/level-22/sky-up.jpg',
-          '/img/sky/level-22/sky-down.jpg',
-          '/img/sky/level-22/sky-front.jpg',
-          '/img/sky/level-22/sky-back.jpg',
+          '/img/sky/level-2/sky-left.jpg', 
+          '/img/sky/level-2/sky-right.jpg', 
+          '/img/sky/level-2/sky-up.jpg',
+          '/img/sky/level-2/sky-down.jpg',
+          '/img/sky/level-2/sky-front.jpg',
+          '/img/sky/level-2/sky-back.jpg',
         ]);
         setupPositionSpots(contentTitlesArray2); //LEVEL 2
         setRotateSpeed(0.145);
@@ -718,13 +745,17 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
                     {/* CHANGE WITH LEVEL STATE */}
                     {levelState === 1 && (
                       <>
-                      <MyFbxModel scale={0.369} rotation={[0, 0, 0]}/>
+                      <EnvFBX1 scale={0.369} rotation={[0, 0, 0]}/>
                       <Ocean />
+                      </>
+                    )}
+                    {levelState === 2 && (
+                      <>
+                      <EnvFBX2 scale={0.369} rotation={[0, 0, 0]}/>
                       </>
                     )}
 
                     {objectPoints}
-
                     
                     {qualityCheck && (
                       <>
@@ -754,15 +785,19 @@ const CircleObject = ({ position }) => {
     <mesh position={position}>
       {/* Your object's geometry and appearance */}
       <sphereGeometry args={[1, 16, 16]} />
-      <meshPhongMaterial color="#ff0000" opacity={1.0} transparent />
+      <meshPhongMaterial color="#ff0000" opacity={0.0} transparent />
     </mesh>
   );
 }
 
-function MyFbxModel(props) {
+function EnvFBX1(props) {
   const fbx = useLoader(FBXLoader, '/models/portfolio-environment.fbx');
   return <primitive {...props} object={fbx} />;
   // return <primitive shadows castShadow  {...props} object={fbx} />;
+}
+function EnvFBX2(props) {
+  const fbx = useLoader(FBXLoader, '/models/portfolio-environment-2.fbx');
+  return <primitive {...props} object={fbx} />;
 }
 
 function Ocean() {
