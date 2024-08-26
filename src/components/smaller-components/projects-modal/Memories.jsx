@@ -141,7 +141,8 @@ function Memories({ openModal, setOpenModal }) {
             <p>Memories was a 7:30 hour long YouTube tutorial I followed during my attendance at college (by JavaScript Mastery).</p>
             <iframe width="370" height="200" src="https://www.youtube.com/embed/VsUzmlZfYNg?si=S1N8D_KPebf07Gh9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
             <p>Great video for anyone looking to learn web development and dealing with databases. </p>
-        </div>
+      </div>
+      
       </div>
 
       <p className='bottom-madewith' style={{textAlign: 'left', color: 'blue', margin: '1rem', fontStyle: 'italic', fontWeight: 400, paddingBottom: '1rem', paddingTop: '2rem'}}>Project was made using the <b>MERN Stack development bundle (MongoDB, Express, React, Node.js)</b></p>

@@ -27,6 +27,7 @@ const ContentContainer = styled.div`
   }
 `;
 
+
 const TitleDiv = styled.div`
   @media only screen and (max-width: 500px) {
     h2 {
@@ -68,13 +69,16 @@ function GreyRockVIP({ openModal, setOpenModal }) {
 
 
   const handleUrl = () => {
-    window.open('https://justins-memories.netlify.app/posts', '_blank');
+    window.open('https://greyrockvip.com', '_blank');
   }
     return (
       <ContentContainer>
       <CloseButton setOpenModal={setOpenModal} />
       <div>
-        <img className='title' src='/img/projects/memories/memories-name.png'/>
+      <TitleDiv style={{justifyContent: 'center', display: 'flex', alignItems: 'center'}}>
+           <h2>Grey Rock VIP</h2>
+           <img style={{height: '60px'}} src="/img/projects/grey-rock-vip/greyrock-eagle.png" />
+        </TitleDiv>
 
         {/* <HorizontalImageLoopProjects _images={images} _isReversed={false} openModal={openModal} _uniqueClassName={"images5"} /> */}
         
@@ -99,16 +103,16 @@ function GreyRockVIP({ openModal, setOpenModal }) {
           clickable: true,
         }}
         modules={[EffectCoverflow, Pagination, Navigation]}
-        className="swiper_container2"
+        className="swiper_container2-greyrockvip"
       >
         <SwiperSlide>
-          <img src="/img/projects/memories/preview-2.jpg" alt="slide_image" />
+          <img style={{height: '300px', width: '550px'}} src="/img/projects/grey-rock-vip/preview-2.jpg" alt="slide_image" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="/img/projects/memories/preview-1.jpg" alt="slide_image" />
+          <img style={{height: '300px', width: '510px'}} src="/img/projects/grey-rock-vip/preview-1.jpg" alt="slide_image" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="/img/projects/memories/preview-3.jpg" alt="slide_image" />
+          <img style={{height: '300px', width: '510px'}} src="/img/projects/grey-rock-vip/preview-3.jpg" alt="slide_image" />
         </SwiperSlide>
         <div className="slider-controler">
               <div className="swiper-pagination"></div>
@@ -124,27 +128,24 @@ function GreyRockVIP({ openModal, setOpenModal }) {
       </div>
       </div>
 
-        {/* <div style={{textAlign: 'center', margin: '1rem'}}>
-            <h4 style={{fontWeight: 800, marginBottom: '.26rem'}}>Try it out!</h4>
+      {/* <div style={{textAlign: 'center', margin: '1rem'}}>
+            <h4 style={{fontWeight: 800, marginBottom: '.26rem'}}>Only VIP clients can login</h4>
             <div style={{display: 'flex', alignItems: 'start', gap: '0.2rem', justifyContent: 'center'}}>
-              <img draggable={false} onClick={(e) => handleUrl()} style={{width: '28%', maxWidth: '170px', cursor: 'pointer'}} src="/img/projects/misc/web-link.png"/>
+              <img onClick={(e) => handleUrl()} draggable={false} style={{width: '28%', maxWidth: '170px', opacity: 1, cursor: 'pointer'}} src="/img/projects/misc/web-link.png"/>
             </div>
         </div> */}
-        <div style={{textAlign: 'center', margin: '1rem'}}>
-            <h4 style={{fontWeight: 800, marginBottom: '.26rem'}}>Currently not working</h4>
-            <div style={{display: 'flex', alignItems: 'start', gap: '0.2rem', justifyContent: 'center'}}>
-              <img draggable={false} style={{width: '28%', maxWidth: '170px', opacity: 0.4}} src="/img/projects/misc/web-link.png"/>
-            </div>
-        </div>
 
-      <div style={{padding: '0 2rem', textAlign: 'center', fontStyle: 'italic', lineHeight: '10%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '1rem'}}>
-            <p>Memories was a 7:30 hour long YouTube tutorial I followed during my attendance at college (by JavaScript Mastery).</p>
-            <iframe width="370" height="200" src="https://www.youtube.com/embed/VsUzmlZfYNg?si=S1N8D_KPebf07Gh9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
-            <p>Great video for anyone looking to learn web development and dealing with databases. </p>
-        </div>
+        <div style={{padding: '0 1rem', textAlign: 'center', fontStyle: 'italic', marginTop: '1.35rem'}}>
+            <p style={{marginBottom: '1rem'}}>This app was created in conjunction with the <a href='https://www.greyrockcasino.com/' target="_blank" rel="noopener noreferrer">Grey Rock Casino</a> and <a href='https://www.greyrockhotel.com//' target="_blank" rel="noopener noreferrer">Grey Rock Hotel</a>.</p>
+            
+            <p style={{marginBottom: '1rem'}}>This app is essentially a calendar that allows clients to book free (or discounted) days at the Grey Rock Hotel according to their playing history.</p>
+            
+            <p style={{marginBottom: '1rem'}}>It has many admin features and is being fully utilized. <span style={{fontWeight: '800'}}><br/>Only clients with valid promotional codes can login.</span></p>
       </div>
 
-      <p className='bottom-madewith' style={{textAlign: 'left', color: 'blue', margin: '1rem', fontStyle: 'italic', fontWeight: 400, paddingBottom: '1rem', paddingTop: '2rem'}}>Project was made using the <b>MERN Stack development bundle (MongoDB, Express, React, Node.js)</b></p>
+      </div>
+      
+      <p className='bottom-madewith' style={{textAlign: 'left', color: 'blue', margin: '1rem', fontStyle: 'italic', fontWeight: 400, paddingBottom: '1rem', paddingTop: '2rem'}}>Project was made using the <b>React, Stripe.</b></p>
       </ContentContainer>
     )
 }

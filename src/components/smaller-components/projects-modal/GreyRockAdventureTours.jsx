@@ -77,7 +77,7 @@ function GreyRockAdventureTours({ openModal, setOpenModal }) {
             <p style={{marginTop: '1rem'}}><span style={{fontWeight: 800}}>More information:</span> <br/><a target="_blank" href="https://www.tourismedmundston.com/en-ca/things-to-do/grey-rock-adventure-tours/">https://www.tourismedmundston.com/en-ca/things-to-do/grey-rock-adventure-tours/</a></p>
       </div>
       </div>
-      <p className='bottom-madewith' style={{textAlign: 'left', color: 'blue', margin: '1rem', fontStyle: 'italic', fontWeight: 400, paddingBottom: '1rem'}}>Project was made using <b>Adobe Premiere.</b></p>
+      <p className='bottom-madewith' style={{textAlign: 'left', color: 'blue', margin: '1rem', fontStyle: 'italic', fontWeight: 400, paddingBottom: '1rem'}}>Project was made using <b>Adobe Premiere, NextJS.</b></p>
       </ContentContainer>
     )
 }
