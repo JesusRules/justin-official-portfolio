@@ -28,6 +28,8 @@ import SpiritVideo from './projects-modal/SpiritVideo';
 import MiniDoom2 from './projects-modal/MiniDoom2';
 import OtherVideos from './projects-modal/OtherVideos';
 import SaySike from './projects-modal/SaySike';
+import CannabisClubhouse from './projects-modal/CannabisClubhouse';
+import GreyRockVIP from './projects-modal/GreyRockVIP';
 
 const ProjectInfoContainer = styled.div`
   position: relative;
@@ -222,6 +224,10 @@ function ProjectInfoModal(props) {
         {currentProject.id === "graveyard-smash" && <GraveyardSmash openModal={openModal} setOpenModal={setOpenModal} /> }
         {currentProject.id === "stjoes-games" && <StJoesGames openModal={openModal} setOpenModal={setOpenModal} /> }
         {currentProject.id === "saysike-project" && <SaySike openModal={openModal} setOpenModal={setOpenModal} /> }
+
+        {/* Newest! */}
+        {currentProject.id === "cannabis-clubhouse" && <CannabisClubhouse openModal={openModal} setOpenModal={setOpenModal} /> }
+        {currentProject.id === "grey-rock-vip" && <GreyRockVIP openModal={openModal} setOpenModal={setOpenModal} /> }
     </ProjectInfoModalDiv>
     {/* </ProjectInfoContainer> */}
     </>

@@ -291,7 +291,7 @@ var contentTitlesArray1 = [
   { name: "My Weather App", description: "An app that can determine the weather anywhere in the world.", id: 'my-weather-app' },
   
   { name: "", description: "", id: '' },
-  { name: "Grey Rock Adventure Tours (Promo)", description: "A commercial video I made for Grey Rock Adventure Tours.", id: 'greyrock-video' },
+  { name: "Grey Rock Adventure Tours", description: "A website and commercial video I made for Grey Rock Adventure Tours.", id: 'greyrock-video' },
   { name: "Spirit Video 2009", description: "An annual end-of-the-year video I was assigned to make.", id: 'spirit-video' },
   { name: "Other Videos (Links)", description: "Other videos I've done.", id: 'other-videos' },
   { name: "MiniDoom 2 Trailer", description: "A video trailer I made in college.", id: 'minidoom2-video' },
@@ -342,8 +342,8 @@ var contentTitlesArray2 = [
   { name: "", description: "", id: '' },
 
   { name: "Go to Level 1", description: "", id: 'level-1' },
-  { name: "Cannabis Clubhouse", description: "An e-commerce website I made.", id: 'cannabis-clubhouse' },
-  { name: "", description: "", id: '' },
+  { name: "Cannabis Clubhouse", description: "An e-commerce website/app I made.", id: 'cannabis-clubhouse' },
+  { name: "Grey Rock VIP", description: "An immersive calendar app that allows discounted reservations at the Grey Rock Casino.", id: 'grey-rock-vip' },
   { name: "", description: "", id: '' },
   { name: "", description: "", id: '' },
   { name: "", description: "", id: '' },
