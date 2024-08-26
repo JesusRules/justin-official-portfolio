@@ -16,7 +16,7 @@ import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader";
 export function MiniJesusFBX(props) {
   const { playerRef, canvasRef, speechBubbleRef, touchObjects, setCurrentProject, setWithinProject,
           idleStance, setIdleStance, cameraPosition, setCameraPosition, setIsLoaded,
-          startUpCam, setStartUpCam } = props;
+          startUpCam, setStartUpCam, transitioning } = props;
 
   const modelRef = useRef();
 
@@ -231,7 +231,12 @@ export function MiniJesusFBX(props) {
   // }, [idleStance])
 
 
-  const camSpeedFunc = (speed) => {
+  const camSpeedFunc = (speed) => { //Calls always
+    if (transitioning) {
+      setTargetRotation(0);
+      return;
+    }
+
     setSpeedDifference(20 - speed);
     
     if (speedDifference < 0.2) setSpeedDifference(0.2);

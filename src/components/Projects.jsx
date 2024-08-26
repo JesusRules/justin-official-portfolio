@@ -330,7 +330,7 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
   const [withinProject, setWithinProject] = useState(false);
   
   const radius = 170;
-  const [objectPoints, setObjectPoints] = useState([]);
+  const [objectPoints1, setObjectPoints1] = useState([]);
   const [idleStance, setIdleStance] = useState(true);
 
   const [openModal, setOpenModal] = useState(false);
@@ -348,6 +348,8 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
   // Transitioning to levels stuff
   const blackOverlayRef = useRef(null);
   const [levelState, setLevelState] = useState(1);
+  const [rotateSpeed, setRotateSpeed] = useState(0.145);
+  const [transitioning, setTransitioning] = useState(false);
   const [skyboxImages, setSkyboxImages] = useState([
     '/img/sky/sky-left.jpg', 
     '/img/sky/sky-right.jpg', 
@@ -420,7 +422,7 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
         const z = Math.sin(-angle) * radius;
         const newObj = <CircleObject content={contentTitlesArray[i]} key={i} position={[x, 0.1, z]} />; 
         // setObjectPoints(objectPoints => [...objectPoints, newObj]);
-        setObjectPoints(objectPoints => {
+        setObjectPoints1(objectPoints => {
           return uniqueByKey([...objectPoints, newObj]);
         });
       }
@@ -523,6 +525,10 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
 
     const goLevel2 = () => {
       // Fade in
+
+      setTransitioning(true);
+      setAnimIndex(3);
+      setRotateSpeed(0); //cam
       blackOverlayRef.current.style.opacity = 1;
 
       // Perform your action after the fade-in
@@ -537,6 +543,9 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
           '/img/sky/alternate-back.jpg',
           '/img/sky/alternate-front.jpg'
         ]);
+        setRotateSpeed(0.145);
+        setTransitioning(false);
+        setAnimIndex(2);
 
         // Fade out
         blackOverlayRef.current.style.opacity = 0;
@@ -630,7 +639,7 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
                         playerRef={playerRef} 
                         canvasRef={myRef} 
                         speechBubbleRef={speechBubbleRef} 
-                        touchObjects={objectPoints} 
+                        touchObjects={objectPoints1} 
                         setCurrentProject={setCurrentProject} 
                         setWithinProject={setWithinProject} 
                         idscroleStance={idleStance} 
@@ -640,6 +649,7 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
                         setIsLoaded={setIsLoaded}
                         startUpCam={startUpCam}
                         setStartUpCam={setStartUpCam}
+                        transitioning={transitioning}
                         />
                     {/* WAS HERE */}
                     <OrbitControls
@@ -649,12 +659,11 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
                       enableZoom={false}
                       minPolarAngle={1.45735} // Minimum rotation angle (85.5 degPrees) // TOP
                       maxPolarAngle={1.53589} // Maximum rotation angle (88 degrees) // BOTTOM
-                      rotateSpeed={0.145}
+                      rotateSpeed={rotateSpeed} //0.145
                       target={[0, 0, 0]} // Lock the camera to the center
                       />
                     
                     <MarioGuitar rotation={[0,-1,0]} position={[-116.586, 0, 82]} scale={1.2} />
-                    
                     
                     <ambientLight color='white' intensity={4} />
                     <directionalLight intensity={2}  castShadow  position={[-100, 30, 50]} />
@@ -668,10 +677,10 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
                       <>
                       <MyFbxModel scale={0.369} rotation={[0, 0, 0]}/>
                       <Ocean />
+                      {objectPoints1}
                       </>
                     )}
 
-                    {objectPoints}
                     
                     {qualityCheck && (
                       <>
