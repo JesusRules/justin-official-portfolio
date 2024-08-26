@@ -4,35 +4,39 @@ import { useThree, useFrame } from "@react-three/fiber";
 import * as THREE from 'three';
 import { useEnvironment } from '@react-three/drei';
 
-function Skybox() {
+function Skybox({ imagePaths }) {
     const { scene } = useThree();
     let camera, renderer, skyboxGeo, skybox;
     const skyboxRef = useRef();
 
     useEffect(() => {
-      const materialArray = createMaterialArray();
-      skyboxGeo = new THREE.BoxGeometry(1000, 1000, 1000);
-      skybox = new THREE.Mesh(skyboxGeo, materialArray);
+      const materialArray = createMaterialArray(imagePaths);
+      const skyboxGeo = new THREE.BoxGeometry(1000, 1000, 1000);
+      const skybox = new THREE.Mesh(skyboxGeo, materialArray);
       scene.add(skybox);
       skyboxRef.current = skybox;
-    }, [])
-
+  
+      // Cleanup on component unmount
+      return () => {
+        scene.remove(skybox);
+      };
+    }, [imagePaths]);
     
-    const skyboxImagepaths = [
-      '/img/sky/sky-left.jpg', // 2
-      '/img/sky/sky-right.jpg', // 4
-      '/img/sky/sky-down.jpg',
-      '/img/sky/sky-up.jpg',
-      '/img/sky/sky-back.jpg', // 1
-      '/img/sky/sky-front.jpg', // 3
-      ]
+    //Images now called outside this component (Projects)
+    // const skyboxImagepaths = [
+    //   '/img/sky/sky-left.jpg', // 2
+    //   '/img/sky/sky-right.jpg', // 4
+    //   '/img/sky/sky-down.jpg',
+    //   '/img/sky/sky-up.jpg',
+    //   '/img/sky/sky-back.jpg', // 1
+    //   '/img/sky/sky-front.jpg', // 3
+    //   ]
 
-    function createMaterialArray() {
-      const materialArray = skyboxImagepaths.map(image => {
-          let texture = new THREE.TextureLoader().load(image);
-          return new THREE.MeshBasicMaterial({ map: texture, side: THREE.BackSide, color: 0xffffff }); // <---
+    function createMaterialArray(paths) {
+      return paths.map(image => {
+        let texture = new THREE.TextureLoader().load(image);
+        return new THREE.MeshBasicMaterial({ map: texture, side: THREE.BackSide });
       });
-      return materialArray;
     }
                           
   useFrame(() => {

@@ -345,7 +345,17 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
   const [showComponent, setShowComponent] = useState(false);
   const [showModels, setShowModels] = useState(false);
 
+  // Transitioning to levels stuff
   const blackOverlayRef = useRef(null);
+  const [levelState, setLevelState] = useState(1);
+  const [skyboxImages, setSkyboxImages] = useState([
+    '/img/sky/sky-left.jpg', 
+    '/img/sky/sky-right.jpg', 
+    '/img/sky/sky-down.jpg',
+    '/img/sky/sky-up.jpg',
+    '/img/sky/sky-back.jpg',
+    '/img/sky/sky-front.jpg'
+  ]);
 
   // SCROLLING
     useEffect(() => {
@@ -518,8 +528,15 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
       // Perform your action after the fade-in
       setTimeout(() => {
         // Do something, e.g., change the scene
-        // performYourAction();
-        console.log("CALLED")
+        setLevelState(2);
+        setSkyboxImages([
+          '/img/sky/alternate-left.jpg', 
+          '/img/sky/alternate-right.jpg', 
+          '/img/sky/alternate-down.jpg',
+          '/img/sky/alternate-up.jpg',
+          '/img/sky/alternate-back.jpg',
+          '/img/sky/alternate-front.jpg'
+        ]);
 
         // Fade out
         blackOverlayRef.current.style.opacity = 0;
@@ -624,7 +641,6 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
                         startUpCam={startUpCam}
                         setStartUpCam={setStartUpCam}
                         />
-                        <Skybox /> 
                     {/* WAS HERE */}
                     <OrbitControls
                       enablePan={false}
@@ -639,16 +655,22 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
                     
                     <MarioGuitar rotation={[0,-1,0]} position={[-116.586, 0, 82]} scale={1.2} />
                     
-                    <Environment map={envMap} />
-                    <Ocean />
-                    {/* <Skybox />  */}
                     
                     <ambientLight color='white' intensity={4} />
                     <directionalLight intensity={2}  castShadow  position={[-100, 30, 50]} />
                     <directionalLight intensity={2}  castShadow position={[62, 40, -20]} />
                     
-                    {/* <PortfolioEnvironment scale={36.9} rotation={[0, 0, 0]} position={[0,0,0]}/>' */}
-                    <MyFbxModel scale={0.369} rotation={[0, 0, 0]}/>
+                    {/* GOOD STILL */}
+                    <Skybox imagePaths={skyboxImages} />
+                    <Environment map={envMap} />
+                    {/* CHANGE WITH LEVEL STATE */}
+                    {levelState === 1 && (
+                      <>
+                      <MyFbxModel scale={0.369} rotation={[0, 0, 0]}/>
+                      <Ocean />
+                      </>
+                    )}
+
                     {objectPoints}
                     
                     {qualityCheck && (
