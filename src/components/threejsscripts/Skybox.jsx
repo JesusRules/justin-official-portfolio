@@ -9,35 +9,70 @@ function Skybox({ imagePaths }) {
     let camera, renderer, skyboxGeo, skybox;
     const skyboxRef = useRef();
 
+    //GOOD
+    // useEffect(() => {
+    //   const materialArray = createMaterialArray(imagePaths);
+    //   const skyboxGeo = new THREE.BoxGeometry(1000, 1000, 1000);
+    //   const skybox = new THREE.Mesh(skyboxGeo, materialArray);
+    //   scene.add(skybox);
+    //   skyboxRef.current = skybox;
+    //   return () => {
+    //     scene.remove(skybox);
+    //   };
+    // }, [imagePaths]);
+
+    // function createMaterialArray(paths) {
+    //   return paths.map(image => {
+    //     let texture = new THREE.TextureLoader().load(image);
+    //     texture.wrapS = THREE.ClampToEdgeWrapping;
+    //     texture.wrapT = THREE.ClampToEdgeWrapping;
+    //     texture.minFilter = THREE.LinearFilter;
+    //     texture.magFilter = THREE.LinearFilter;
+    //     texture.generateMipmaps = false;
+    //     return new THREE.MeshBasicMaterial({ map: texture, side: THREE.BackSide });
+    //   });
+    // }
+    //BAD
+    function createMaterialArray(paths) {
+      return paths.map(image => {
+        let texture = new THREE.TextureLoader().load(image);
+        texture.wrapS = THREE.ClampToEdgeWrapping;
+        texture.wrapT = THREE.ClampToEdgeWrapping;
+        texture.minFilter = THREE.LinearFilter;
+        texture.magFilter = THREE.LinearFilter;
+        texture.generateMipmaps = false;
+        return new THREE.MeshBasicMaterial({ map: texture, side: THREE.BackSide });
+      });
+    }
+    function adjustUVs(geometry) {
+      const uv = geometry.attributes.uv;
+      for (let i = 0; i < uv.count; i++) {
+        const u = uv.getX(i);
+        const v = uv.getY(i);
+        
+        // Adjust UV coordinates by a small amount to overlap
+        uv.setXY(i, u * 0.98 + 0.01, v * 0.98 + 0.01); // Adjust these values as needed
+      }
+      uv.needsUpdate = true;
+    }
+
     useEffect(() => {
       const materialArray = createMaterialArray(imagePaths);
       const skyboxGeo = new THREE.BoxGeometry(1000, 1000, 1000);
+      
+      // Adjust UVs to slightly overlap textures
+      adjustUVs(skyboxGeo);
+      
       const skybox = new THREE.Mesh(skyboxGeo, materialArray);
       scene.add(skybox);
       skyboxRef.current = skybox;
-  
+    
       // Cleanup on component unmount
       return () => {
         scene.remove(skybox);
       };
     }, [imagePaths]);
     
-    //Images now called outside this component (Projects)
-    // const skyboxImagepaths = [
-    //   '/img/sky/sky-left.jpg', // 2
-    //   '/img/sky/sky-right.jpg', // 4
-    //   '/img/sky/sky-down.jpg',
-    //   '/img/sky/sky-up.jpg',
-    //   '/img/sky/sky-back.jpg', // 1
-    //   '/img/sky/sky-front.jpg', // 3
-    //   ]
-
-    function createMaterialArray(paths) {
-      return paths.map(image => {
-        let texture = new THREE.TextureLoader().load(image);
-        return new THREE.MeshBasicMaterial({ map: texture, side: THREE.BackSide });
-      });
-    }
                           
   useFrame(() => {
     if (skyboxRef.current) {
@@ -46,16 +81,6 @@ function Skybox({ imagePaths }) {
   });
   
   return null;
-    // return (
-    //     <mesh>
-    //       {/* Create a box geometry */}
-    //       <boxGeometry args={[skyboxSize, skyboxSize, skyboxSize]} />
-    //       <ambientLight intensity={0.5} />
-    //   <directionalLight position={[1, 2, 3]} />
-    //       {/* Apply the skybox texture as a material */}
-    //       <meshBasicMaterial color={'purple'} map={texture} side={THREE.DoubleSide} />
-    //     </mesh>
-    //   );
 }
 
 export default Skybox

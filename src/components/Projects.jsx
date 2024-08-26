@@ -351,12 +351,12 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
   const [rotateSpeed, setRotateSpeed] = useState(0.145);
   const [transitioning, setTransitioning] = useState(false);
   const [skyboxImages, setSkyboxImages] = useState([
-    '/img/sky/sky-left.jpg', 
-    '/img/sky/sky-right.jpg', 
-    '/img/sky/sky-down.jpg',
-    '/img/sky/sky-up.jpg',
-    '/img/sky/sky-back.jpg',
-    '/img/sky/sky-front.jpg'
+    '/img/sky/level-1/sky-left.jpg', 
+    '/img/sky/level-1/sky-right.jpg', 
+    '/img/sky/level-1/sky-down.jpg',
+    '/img/sky/level-1/sky-up.jpg',
+    '/img/sky/level-1/sky-back.jpg',
+    '/img/sky/level-1/sky-front.jpg'
   ]);
 
   // SCROLLING
@@ -536,12 +536,12 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
         // Do something, e.g., change the scene
         setLevelState(2);
         setSkyboxImages([
-          '/img/sky/alternate-left.jpg', 
-          '/img/sky/alternate-right.jpg', 
-          '/img/sky/alternate-down.jpg',
-          '/img/sky/alternate-up.jpg',
-          '/img/sky/alternate-back.jpg',
-          '/img/sky/alternate-front.jpg'
+          '/img/sky/level-22/sky-left.jpg', 
+          '/img/sky/level-22/sky-right.jpg', 
+          '/img/sky/level-22/sky-up.jpg',
+          '/img/sky/level-22/sky-down.jpg',
+          '/img/sky/level-22/sky-front.jpg',
+          '/img/sky/level-22/sky-back.jpg',
         ]);
         setRotateSpeed(0.145);
         setTransitioning(false);
