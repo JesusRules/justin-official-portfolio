@@ -166,7 +166,7 @@ const imagesMedia = [
     '/logos/media-development/pun2.jpg',
     '/logos/media-development/photon-fusion.webp',
     '/logos/media-development/photon-quantum.jpg',
-    '/logos/media-development/photoshop.png',
+    '/logos/media-development/photoshop.jpg',
     '/logos/media-development/unity.jpg',
     '/logos/media-development/unreal-engine.png',
     '/logos/media-development/zbrush.png',

@@ -76,6 +76,17 @@ const ProjectPopup = styled.div`
     pointer-events: none;
     user-select: none;
   }
+  .content-levels {
+    position: relative;
+    bottom: 0.8rem;
+    background-color: rgba(0, 0, 0, 0.66);
+    border-radius: 5px;
+    margin: 0.5rem auto;
+    padding: 0.5rem;
+    pointer-events: none;
+    user-select: none;
+    width: 55%;
+  }
   h2 {
     color: #fff;
     margin-bottom: 5px;
@@ -125,6 +136,25 @@ const StyledButton = styled.button`
   outline: none;
   color: #fefefe;
   background-color: #b99d00;
+  border-radius: 3px;
+  padding: .7rem 1rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  user-select: none;
+  font-family: 'Poppins', sans-serif;
+  
+  &:hover,
+  &:focus {
+    transition-timing-function: cubic-bezier(0.6, 4, 0.3, 0.8);
+    animation: ${gelatineAnimation} 0.5s 1;
+  }
+`;
+
+const StyledButtonLevels = styled.button`
+  border: none;
+  outline: none;
+  color: #fefefe;
+  background-color: #00a9b9;
   border-radius: 3px;
   padding: .7rem 1rem;
   font-size: 1.2rem;
@@ -201,6 +231,19 @@ const Arrows = styled.div`
     z-index: 1111; //111
   `
 
+  const BlackOverlayFade = styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0;
+    pointer-events: none; /* Prevent it from blocking other elements */
+    transition: opacity 1s ease-in-out;
+    z-index: 9999; /* Ensure it is on top of everything */
+  `
+
 
 // var contentTitlesArray = [
 //   "",
@@ -261,7 +304,7 @@ var contentTitlesArray = [
   { name: "Music Covers", description: "Videos of me covering songs/improvising.", id: 'music-covers' },
   { name: "GuitarKing (Design)", description: "An Adobe XD design of a guitar playing app.", id: 'guitarking' },
 
-  { name: "", description: "", id: '' },
+  { name: "Go to Level 2", description: "", id: 'level-2' },
   { name: "Graveyard Smash", description: "A single player shoot-em-up styled game.", id: 'graveyard-smash' },
   { name: "St. Joseph High School (Model)", description: "The 3d model of my entire high school (I made) which can be played in.", id: 'stjoes-games' },
   { name: "Stellar Fever", description: "A 4 player co-op action game.", id: 'stellar-fever' },
@@ -301,6 +344,8 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
   
   const [showComponent, setShowComponent] = useState(false);
   const [showModels, setShowModels] = useState(false);
+
+  const blackOverlayRef = useRef(null);
 
   // SCROLLING
     useEffect(() => {
@@ -463,9 +508,29 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
     const handleDownArrow = () => {
       scrollToEducation();
     }
+
+    //LEVELS SCRIPTS
+
+    const goLevel2 = () => {
+      // Fade in
+      blackOverlayRef.current.style.opacity = 1;
+
+      // Perform your action after the fade-in
+      setTimeout(() => {
+        // Do something, e.g., change the scene
+        // performYourAction();
+        console.log("CALLED")
+
+        // Fade out
+        blackOverlayRef.current.style.opacity = 0;
+      }, 1000); // Wait 1 second for the fade-in to complete
+    }
     
   return (
     <>  
+    {/* Black overlay (transitioning levels) */}
+    <BlackOverlayFade ref={blackOverlayRef} />
+
     {!showModels && (
       <BackgroundImage src="/img/projects/misc/background.jpg" alt="Background Image" />
     )}
@@ -489,18 +554,30 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
 
       {showComponent && (
         <>
-        <ProjectPopup ref={projectRef}>
-            {/* <img src="/img/projects/ultimate-jesus-game-display.png"/> */}
-            <div className='content'>
-              <h2>{currentProject.name}</h2>
-              <p>{currentProject.description}</p>
-            </div>
-            {currentProject.status !== "unavailable" ? (
-              <StyledButton ref={learnButtonRef} style={{cursor: withinProject ? 'pointer' : 'grab'}} onClick={() => clickProject()}>Learn More</StyledButton>
-              ) : (
-              <UnavailableButton ref={learnButtonRef} disabled >Currently Unavailable</UnavailableButton>
-            )}
-        </ProjectPopup>
+        {currentProject.id === 'level-2' ? (
+          <ProjectPopup ref={projectRef}>
+              <div className='content-levels'>
+                <h2>{currentProject.name}</h2>
+              </div>
+              {currentProject.status !== "unavailable" ? (
+                <StyledButtonLevels ref={learnButtonRef} style={{cursor: withinProject ? 'pointer' : 'grab'}} onClick={() => goLevel2()}>Go Jesus Go!</StyledButtonLevels>
+                ) : (
+                <UnavailableButton ref={learnButtonRef} disabled >Currently Unavailable</UnavailableButton>
+              )}
+          </ProjectPopup>
+        ) : (
+          <ProjectPopup ref={projectRef}>
+              <div className='content'>
+                <h2>{currentProject.name}</h2>
+                <p>{currentProject.description}</p>
+              </div>
+              {currentProject.status !== "unavailable" ? (
+                <StyledButton ref={learnButtonRef} style={{cursor: withinProject ? 'pointer' : 'grab'}} onClick={() => clickProject()}>Learn More</StyledButton>
+                ) : (
+                <UnavailableButton ref={learnButtonRef} disabled >Currently Unavailable</UnavailableButton>
+              )}
+          </ProjectPopup>
+        )}
         
         <ProjectInfoModal currentProject={currentProject} openModal={openModal} setOpenModal={setOpenModal} />
 
@@ -602,7 +679,7 @@ const CircleObject = ({ position }) => {
     <mesh position={position}>
       {/* Your object's geometry and appearance */}
       <sphereGeometry args={[1, 16, 16]} />
-      <meshPhongMaterial color="#ff0000" opacity={0.0} transparent />
+      <meshPhongMaterial color="#ff0000" opacity={1.0} transparent />
     </mesh>
   );
 }
