@@ -734,10 +734,10 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
                     {levelState === 1 && (
                       <>
                       <Ocean />
-                      <EnvFBX1 scale={0.369} rotation={[0, 0, 0]}/>
                       <MarioGuitar rotation={[0,-1,0]} position={[-116.586, 0, 82]} scale={1.2} />
                       </>
                     )}
+                    <EnvFBX1 scale={0.369} rotation={[0, 0, 0]} visible={levelState === 1} />
                     
                     <ambientLight color='white' intensity={4} />
                     <directionalLight intensity={2}  castShadow  position={[-100, 30, 50]} />
@@ -753,9 +753,9 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
                       <Ocean />
                       </>
                     )} */}
+                    <EnvFBX2 scale={0.369} rotation={[0, 0, 0]} visible={levelState === 2} />
                     {levelState === 2 && (
                       <>
-                      <EnvFBX2 scale={0.369} rotation={[0, 0, 0]}/>
                       </>
                     )}
 
@@ -796,14 +796,13 @@ const CircleObject = ({ position }) => {
 
 function EnvFBX1(props) {
   const fbx = useLoader(FBXLoader, '/models/portfolio-environment.fbx');
-  return <primitive {...props} object={fbx} />;
-  // return <primitive shadows castShadow  {...props} object={fbx} />;
-}
-function EnvFBX2(props) {
-  const fbx = useLoader(FBXLoader, '/models/portfolio-environment-2.fbx');
-  return <primitive {...props} object={fbx} />;
+  return <primitive {...props} object={fbx} visible={props.visible} />;
 }
 
+function EnvFBX2(props) {
+  const fbx = useLoader(FBXLoader, '/models/portfolio-environment-2.fbx');
+  return <primitive {...props} object={fbx} visible={props.visible} />;
+}
 function Ocean() {
   const ref = useRef();
   const gl = useThree((state) => state.gl);
