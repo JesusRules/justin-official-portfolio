@@ -732,7 +732,11 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
                       />
                     
                     {levelState === 1 && (
+                      <>
+                      <Ocean />
+                      <EnvFBX1 scale={0.369} rotation={[0, 0, 0]}/>
                       <MarioGuitar rotation={[0,-1,0]} position={[-116.586, 0, 82]} scale={1.2} />
+                      </>
                     )}
                     
                     <ambientLight color='white' intensity={4} />
@@ -743,12 +747,12 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
                     <Skybox imagePaths={skyboxImages} />
                     <Environment map={envMap} />
                     {/* CHANGE WITH LEVEL STATE */}
-                    {levelState === 1 && (
+                    {/* {levelState === 1 && (
                       <>
                       <EnvFBX1 scale={0.369} rotation={[0, 0, 0]}/>
                       <Ocean />
                       </>
-                    )}
+                    )} */}
                     {levelState === 2 && (
                       <>
                       <EnvFBX2 scale={0.369} rotation={[0, 0, 0]}/>
