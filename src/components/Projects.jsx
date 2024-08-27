@@ -570,7 +570,7 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
           '/img/sky/level-1/sky-front.jpg',
           '/img/sky/level-1/sky-back.jpg',
         ]);
-        setupPositionSpots(contentTitlesArray1); //LEVEL 1
+        setupPositionSpots(contentTitlesArray2); //LEVEL 1
         setRotateSpeed(0.145);
         setTransitioning(false);
         setAnimIndex(2);
