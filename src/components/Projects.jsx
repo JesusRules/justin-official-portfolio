@@ -570,7 +570,7 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
           '/img/sky/level-1/sky-front.jpg',
           '/img/sky/level-1/sky-back.jpg',
         ]);
-        setupPositionSpots(contentTitlesArray2); //LEVEL 1
+        setupPositionSpots(contentTitlesArray1); //LEVEL 1
         setRotateSpeed(0.145);
         setTransitioning(false);
         setAnimIndex(2);
@@ -753,11 +753,11 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
                       <Ocean />
                       </>
                     )} */}
-                    <EnvFBX2 scale={0.369} rotation={[0, 0, 0]} visible={levelState === 2} />
+                    
                     {levelState === 2 && (
-                      <>
-                      </>
+                      <></>
                     )}
+                    <EnvFBX2 scale={0.369} rotation={[0, 0, 0]} visible={levelState === 2} />
 
                     {objectPoints}
                     
