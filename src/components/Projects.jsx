@@ -371,8 +371,8 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
   const [idleStance, setIdleStance] = useState(true);
 
   const [openModal, setOpenModal] = useState(false);
-  const envMap = useEnvironment({ files: 'hdri/sunflowers_puresky_1k.hdr'});
-  envMap.intensity = 2;
+  // const envMap = useEnvironment({ files: 'hdri/sunflowers_puresky_1k.hdr'});
+  // envMap.intensity = 2;
 
   const [isLoaded, setIsLoaded] = useState(false);
   const [cameraPosition, setCameraPosition] = useState([1, 2, 1]);
@@ -745,7 +745,8 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
                     
                     {/* GOOD STILL */}
                     <Skybox imagePaths={skyboxImages} />
-                    <Environment map={envMap} />
+                    {/* <Environment map={envMap} /> */}
+                    <Environment files="hdri/sunflowers_puresky_1k.hdr" intensity={2} />
                     {/* CHANGE WITH LEVEL STATE */}
                     {/* {levelState === 1 && (
                       <>

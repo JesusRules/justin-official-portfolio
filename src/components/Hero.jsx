@@ -15,6 +15,7 @@ const Container = styled.div`
     position: relative;
     background-color: #d0eaff;
     height: 100vh;
+    width: 100vw;
     scroll-snap-align: center;
     /* scroll-behavior: smooth; */
     /* background-image: linear-gradient(rgba(255, 255, 255, 0.0), rgba(255, 255, 255, 0.6)),
@@ -982,7 +983,7 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero, whoRef, setR
         <Justin ref={justinRef} src="/img/hero-banner/Justin.png" data-speedx="0.01" data-speedy="0.02" data-speedz="0.53" data-rotation="0.2" className='parallax justin'
                 draggable="false" alt='Justin' onLoad={(e) => imageLoaded(e.target)} onError={(e) => imageError(e)}/>
 
-        <audio ref={marioAudioRef} controls style={{display: 'none'}}>
+        {/* <audio ref={marioAudioRef} controls style={{display: 'none'}}>
             <source src="/audio/mario.mp3" type="audio/mpeg" />
         </audio>
         <audio ref={booAudioRef} controls style={{display: 'none'}}>
@@ -1005,7 +1006,7 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero, whoRef, setR
         </audio>
         <audio ref={pipeAudioRef} controls style={{display: 'none'}}>
             <source src="/audio/pipe.mp3" type="audio/mpeg" />
-        </audio>
+        </audio> */}
 
         </Container>
     {/* </ScrollableWrapper> */}
