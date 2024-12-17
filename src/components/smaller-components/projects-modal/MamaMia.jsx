@@ -100,7 +100,7 @@ function MamaMia({ openModal, setOpenModal }) {
       <div >
       <TitleDiv style={{justifyContent: 'center', display: 'flex', alignItems: 'center'}}>
           <img id="mario" src="/img/projects/mama-mia/mario.png"/>
-           <h2>Mama Mia</h2>
+           <h2>Mama Mia!</h2>
           <img id="pikachu" src="/img/projects/mama-mia/pikachu.png"/>
            {/* <img style={{width: '60px', height: '60px'}} src="/img/projects/portfolio-old/Justin-Icon.png" /> */}
       </TitleDiv>
@@ -116,11 +116,11 @@ function MamaMia({ openModal, setOpenModal }) {
 
       <div style={{textAlign: 'center', fontStyle: 'italic', marginTop: '1.35rem', display: 'flex',
                   flexDirection: 'column', gap: '1rem', alignItems: 'center', }}>
-            <p style={{fontWeight: 800, transform: 'translateY(-13px)'}}>(2+ Players Required, Windows only, LOCAL only available)</p>
+            <p style={{fontWeight: 800, transform: 'translateY(-13px)'}}>(Windows only)</p>
             
-            <p style={{padding: '0 2rem'}}>Mama Mia is a free to play game where Marios must chase down and destroy Pikachus.</p>
-            
-            <p style={{padding: '0 2rem'}}>Right now there is currently <span style={{fontWeight: '900'}}>NO online internet available.</span> You must play with friends/people over your LAN connection!</p>
+            <p style={{padding: '0 2rem'}}>Mama Mia is a free to play game where player(s) can connect via 4 player local splitscreen against other people online!</p>
+
+            <p style={{padding: '0 2rem'}}>The game has gone through a massive renovation. There are now up to 16 players per match and 2 game modes.</p>
 
             <p style={{marginBottom: '1.5rem'}}><span style={{fontWeight: 800}}>For more information:</span><br/><a href='https://pokithedog.com/mamamia-game.html' target='_blank'>https://pokithedog.com/mamamia-game.html</a></p>
 
@@ -176,7 +176,7 @@ function MamaMia({ openModal, setOpenModal }) {
       </div>
       </div>
 
-      <p className='bottom-madewith' style={{textAlign: 'left', color: 'blue',  fontStyle: 'italic', fontWeight: 400, padding: '1rem'}}>Project was made using <b>Unity and Mirror (Multiplayer Solution)</b></p>
+      <p className='bottom-madewith' style={{textAlign: 'left', color: 'blue',  fontStyle: 'italic', fontWeight: 400, padding: '1rem'}}>Project was made using <b>Unity and Photon Quantum 3 (Multiplayer Solution)</b></p>
       </ContentContainer>
     )
 }

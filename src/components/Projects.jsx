@@ -310,7 +310,7 @@ var contentTitlesArray1 = [
   { name: "Stellar Fever", description: "A 4 player co-op action game.", id: 'stellar-fever' },
   { name: "SaySike Project", description: "Game prototype that was made in college.", id: 'saysike-project' },
   { name: "Fusion FPS", description: "Game project made for learning the multiplayer solution Photon Fusion.", id: 'fusion-fps', status: 'unavailable' },
-  { name: "Mama Mia", description: "A multiplayer mayhem of cat vs mice gameplay.", id: 'mama-mia' },
+  { name: "Mama Mia", description: "A multiplayer mayhem shooter with Mario and Pikachus.", id: 'mama-mia' },
   { name: "The Ultimate Jesus Game", description: "A single player 3D adventure game.", id: 'ultimate-jesus-game' },
   { name: "Saviour - The Final Frontier", description: "A single player 2D adventure game.", id: 'saviour-tff' },
   { name: "Church Party", description: "A 5 player mini-game extravaganza.", id: 'church-party' },
