@@ -309,7 +309,9 @@ var contentTitlesArray1 = [
   { name: "St. Joseph High School (Model)", description: "The 3d model of my entire high school (I made) which can be played in.", id: 'stjoes-games' },
   { name: "Stellar Fever", description: "A 4 player co-op action game.", id: 'stellar-fever' },
   { name: "SaySike Project", description: "Game prototype that was made in college.", id: 'saysike-project' },
-  { name: "Fusion FPS", description: "Game project made for learning the multiplayer solution Photon Fusion.", id: 'fusion-fps', status: 'unavailable' },
+  // { name: "Fusion FPS", description: "Game project made for learning the multiplayer solution Photon Fusion.", id: 'fusion-fps', status: 'unavailable' },
+  { name: "Fusion FPS", description: "Game project made for learning the multiplayer solution Photon Fusion 2.", id: 'fusion-fps' },
+
   { name: "Mama Mia", description: "A multiplayer mayhem shooter with Mario and Pikachus.", id: 'mama-mia' },
   { name: "The Ultimate Jesus Game", description: "A single player 3D adventure game.", id: 'ultimate-jesus-game' },
   { name: "Saviour - The Final Frontier", description: "A single player 2D adventure game.", id: 'saviour-tff' },
