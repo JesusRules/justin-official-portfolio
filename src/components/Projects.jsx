@@ -736,7 +736,7 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
                     {levelState === 1 && (
                       <>
                       <Ocean />
-                      <MarioGuitar rotation={[0,-1,0]} position={[-116.586, 0, 82]} scale={1.2} />
+                      {/* <MarioGuitar rotation={[0,-1,0]} position={[-116.586, 0, 82]} scale={1.2} /> */}
                       </>
                     )}
                     <EnvFBX1 scale={0.369} rotation={[0, 0, 0]} visible={levelState === 1} />
@@ -814,8 +814,8 @@ function Ocean() {
   const geom = useMemo(() => new THREE.PlaneGeometry(400, 400), []);
   const config = useMemo(
     () => ({
-      textureWidth: 512, //512
-      textureHeight: 512, //512s
+      textureWidth: 256, //512
+      textureHeight: 256, //512s
       waterNormals,
       sunDirection: new THREE.Vector3(),
       sunColor: 0xffffff,
