@@ -121,6 +121,23 @@ function ProjectInfoModal(props) {
     const closeButtonRef = useRef();
     const [hideVideos, setHideVideos] = useState(true);
 
+     // Fixes scrolling mobile issues
+    useEffect(() => {
+      if (openModal) {
+        const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
+        document.body.style.overflow = "hidden";
+        document.body.style.paddingRight = `${scrollBarWidth}px`; // Prevent layout shift
+      } else {
+        document.body.style.overflow = "";
+        document.body.style.paddingRight = "";
+      }
+    
+      return () => {
+        document.body.style.overflow = "";
+        document.body.style.paddingRight = "";
+      };
+    }, [openModal]);
+
     useEffect(() => {
         gsap.set(projectModalRef.current, { x: '0%', opacity: 1 });
     }, [])

@@ -133,6 +133,7 @@ const imagesApps = [
     '/logos/app-development/gsap.png',
     '/logos/app-development/hostinger.png',
     '/logos/app-development/knockoutjs.png',
+    '/logos/app-development/mantine.png',
     '/logos/app-development/mongodb.png',
     '/logos/app-development/mysql.png',
     '/logos/app-development/net-maui-logo.png',
@@ -196,11 +197,12 @@ const imagesLanguages = [
     '/logos/languages/dart.png',
     '/logos/languages/html.png',
     '/logos/languages/javascript.png',
+    '/logos/languages/typescript.png',
+    '/logos/languages/rust.png',
     '/logos/languages/kotlin.png',
     '/logos/languages/php.png',
     '/logos/languages/solidity.png',
     '/logos/languages/swift.png',
-    '/logos/languages/typescript.png',
     // DUPLICATE
     '/logos/languages/c++.png',
     '/logos/languages/csharp.png',
@@ -208,11 +210,12 @@ const imagesLanguages = [
     '/logos/languages/dart.png',
     '/logos/languages/html.png',
     '/logos/languages/javascript.png',
+    '/logos/languages/typescript.png',
+    '/logos/languages/rust.png',
     '/logos/languages/kotlin.png',
     '/logos/languages/php.png',
     '/logos/languages/solidity.png',
     '/logos/languages/swift.png',
-    '/logos/languages/typescript.png',
 ];
 
 

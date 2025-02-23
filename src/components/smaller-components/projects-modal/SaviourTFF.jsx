@@ -65,23 +65,6 @@ function SaviourTFF({ openModal, setOpenModal }) {
     window.open('https://gx.games/games/24sb3z/saviour-the-final-frontier/', '_blank');
   }
 
-  // Fixes scrolling mobile issues
-  useEffect(() => {
-    if (openModal) {
-      const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
-      document.body.style.overflow = "hidden";
-      document.body.style.paddingRight = `${scrollBarWidth}px`; // Prevent layout shift
-    } else {
-      document.body.style.overflow = "";
-      document.body.style.paddingRight = "";
-    }
-  
-    return () => {
-      document.body.style.overflow = "";
-      document.body.style.paddingRight = "";
-    };
-  }, [openModal]);
-
     return (
       <ContentContainer>
       <CloseButton setOpenModal={setOpenModal} color="white" />
