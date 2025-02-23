@@ -57,6 +57,10 @@ const ProjectInfoModalDiv = styled.div`
   overflow-y: auto;
   display: none;
 
+  /* Allows scrolling within the modal */
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+
   h2 {
     border-bottom: 1px solid black;
     padding: 1rem;
@@ -121,26 +125,27 @@ function ProjectInfoModal(props) {
     const closeButtonRef = useRef();
     const [hideVideos, setHideVideos] = useState(true);
 
-     // Fixes scrolling mobile issues
     useEffect(() => {
       if (openModal) {
         const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
+        
         document.body.style.overflow = "hidden";
-        document.body.style.paddingRight = `${scrollBarWidth}px`; // Prevent layout shift
+        document.body.style.touchAction = "none"; // Prevents touch scrolling on mobile
+        document.body.style.paddingRight = `${scrollBarWidth}px`; // Prevents layout shift
+    
       } else {
         document.body.style.overflow = "";
+        document.body.style.touchAction = ""; 
         document.body.style.paddingRight = "";
       }
     
       return () => {
         document.body.style.overflow = "";
+        document.body.style.touchAction = "";
         document.body.style.paddingRight = "";
       };
     }, [openModal]);
-
-    useEffect(() => {
-        gsap.set(projectModalRef.current, { x: '0%', opacity: 1 });
-    }, [])
+    
 
     useEffect(() => {
       if (openModal) {

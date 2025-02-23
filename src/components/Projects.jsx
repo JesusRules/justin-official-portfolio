@@ -727,8 +727,8 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
                       enableDamping
                       dampingFactor={0.07} // Adjust to control rotation speed (0 - 1)
                       enableZoom={false}
-                      minPolarAngle={1.45735} // Minimum rotation angle (85.5 degPrees) // TOP
-                      maxPolarAngle={1.53589} // Maximum rotation angle (88 degrees) // BOTTOM
+                      minPolarAngle={1.53589} // 1.45735 // TOP
+                      maxPolarAngle={1.53589} // 1.53589 // BOTTOM
                       rotateSpeed={rotateSpeed} //0.145
                       target={[0, 0, 0]} // Lock the camera to the center
                       />
