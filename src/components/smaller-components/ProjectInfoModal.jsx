@@ -150,7 +150,15 @@ function ProjectInfoModal(props) {
 
     useEffect(() => {
       if (openModal) {
+        // Ensure the modal is visible before focusing
         closeButtonRef.current.style.display = 'block';
+
+        // Set focus on the modal
+        setTimeout(() => {
+          if (projectModalRef.current) {
+            projectModalRef.current.focus();
+          }
+        }, 0); // Timeout ensures focus is applied after rendering
 
         gsap.to(projectModalRef.current, {
           x: '0%', // Final x position (center)
@@ -220,7 +228,7 @@ function ProjectInfoModal(props) {
       currentProject.id === "other-videos") && (
         <GoToTopButton onClick={scrollToTop}>Top</GoToTopButton>
         )}
-    <ProjectInfoModalDiv ref={projectModalRef}>
+    <ProjectInfoModalDiv ref={projectModalRef} tabIndex='-1'>
         {currentProject.id === "pokithedog" && <PokiTheDog openModal={openModal} setOpenModal={setOpenModal} /> }
         {currentProject.id === "my-portfolio-old" && <Portfolio_Old openModal={openModal} setOpenModal={setOpenModal} /> }
         {currentProject.id === "ottawa-rec-sports" && <OttawaRecSports openModal={openModal} setOpenModal={setOpenModal} /> }
