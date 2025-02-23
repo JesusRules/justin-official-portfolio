@@ -31,6 +31,7 @@ import SaySike from './projects-modal/SaySike';
 import CannabisClubhouse from './projects-modal/CannabisClubhouse';
 import GreyRockVIP from './projects-modal/GreyRockVIP';
 import FusionFPS from './projects-modal/FusionFPS';
+import GreyRockIncidentReport from './projects-modal/GreyRockIncidentReport';
 
 const ProjectInfoContainer = styled.div`
   position: relative;
@@ -59,7 +60,7 @@ const ProjectInfoModalDiv = styled.div`
 
   /* Allows scrolling within the modal */
   -webkit-overflow-scrolling: touch;
-  scroll-behavior: smooth;
+  /* scroll-behavior: smooth; */
 
   h2 {
     border-bottom: 1px solid black;
@@ -150,6 +151,7 @@ function ProjectInfoModal(props) {
     useEffect(() => {
       if (openModal) {
         closeButtonRef.current.style.display = 'block';
+
         gsap.to(projectModalRef.current, {
           x: '0%', // Final x position (center)
           opacity: 1, // Final opacity
@@ -158,6 +160,7 @@ function ProjectInfoModal(props) {
                 onStart: () => {
                   projectModalRef.current.style.display = 'block';
                   setHideVideos(false);
+                  projectModalRef.current.scrollTop = 0; //HERE
                 },
                 onComplete: () => {
                     projectModalRef.current.focus();
@@ -252,6 +255,7 @@ function ProjectInfoModal(props) {
         {/* Newest! */}
         {currentProject.id === "cannabis-clubhouse" && <CannabisClubhouse openModal={openModal} setOpenModal={setOpenModal} /> }
         {currentProject.id === "grey-rock-vip" && <GreyRockVIP openModal={openModal} setOpenModal={setOpenModal} /> }
+        {currentProject.id === "incident-report-app" && <GreyRockIncidentReport openModal={openModal} setOpenModal={setOpenModal} /> }
     </ProjectInfoModalDiv>
     {/* </ProjectInfoContainer> */}
     </>
