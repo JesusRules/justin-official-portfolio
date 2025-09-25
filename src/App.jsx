@@ -86,9 +86,8 @@ function App() {
     educationRef.current.scrollIntoView({ behavior: 'smooth' });
   }
   const scrollToContact = () => {
-    contactRef.current.scrollIntoView({ behavior: 'smooth' });
+    contactRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
-
 
   return (
     // <Wrapper>

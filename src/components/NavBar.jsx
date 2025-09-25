@@ -9,7 +9,7 @@ const Container = styled.div`
     left: 0;
     right: 0;
     top: -1rem;
-    z-index: 9999;
+    z-index: 9999000;
     transition: transform 0.3s ease, opacity 0.3s ease;
     user-select: none;
 `
@@ -22,7 +22,7 @@ const Image = styled.img`
     `
 
 const DarkBG = styled.div`
-    z-index: 9997;
+    z-index: 9997000;
     position: fixed;
     width: 100%;
     height: 100%;
@@ -36,7 +36,7 @@ const MenuContainer = styled.nav`
     top: 0px;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 9998;
+    z-index: 9998000;
     width: 270px;
     height: 400px;
     `

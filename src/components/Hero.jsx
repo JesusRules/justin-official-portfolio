@@ -33,7 +33,7 @@ const GradientOverlayImage = styled.div`
     height: 100%;
     top: 0;
     left: 0;
-    z-index: 11;
+    z-index: 11000;
     background: radial-gradient(circle at center, #ffffffe2 0%, transparent 100%);
     /* pointer-events: none; */
     /* overflow:hidden; */
@@ -73,7 +73,7 @@ const spin = keyframes`
   
 const ContactBtnMain = styled.div`
     opacity: 0;
-    z-index: 9990;
+    z-index: 9990000;
     position: absolute;
     left: 0;
     right: 0;
@@ -136,7 +136,7 @@ const CloudMain_Back = styled.img`
     /* top: calc(50% + 271px); */
     left: calc(50% - 0px);
     top: 2000px;
-    z-index: 13;
+    z-index: 13000;
 `
     
     const CloudMain_Front = styled.img`
@@ -145,7 +145,7 @@ const CloudMain_Back = styled.img`
     /* top: calc(50% + 286px); */
     left: calc(50% - 0px);
     top: 3600px;
-    z-index: 14;
+    z-index: 14000;
 `
 
   
@@ -156,7 +156,7 @@ const CloudBG_4 = styled.img`
     left: calc(50% - 536px);
     top: 1600px;
     //top: 2000px; LIKE SKY OLD
-    z-index: 15;
+    z-index: 15000;
     @media only screen and ( min-width: 2538px ) and ( min-height: 1500px ) {
         /* display: none; */
     }
@@ -169,7 +169,7 @@ const CloudBG_3 = styled.img`
     left: calc(50% - 150px);
     top: 1600px;
     //top: 2000px; LIKE SKY OLD
-    z-index: 16;
+    z-index: 16000;
     @media only screen and ( min-width: 2538px ) and ( min-height: 1500px ) {
         /* display: none; */
     }
@@ -182,7 +182,7 @@ const CloudBG_2 = styled.img`
     left: calc(50% + 530px);
     top: 1600px;
     //top: 2000px; LIKE SKY OLD
-    z-index: 17;
+    z-index: 17000;
     @media only screen and ( min-width: 2538px ) and ( min-height: 1500px ) {
         /* display: none; */
     }
@@ -195,7 +195,7 @@ const CloudBG_1 = styled.img`
     left: calc(50% - 950px);
     top: 1600px;
     //top: 2000px; LIKE SKY OLD
-    z-index: 18;
+    z-index: 18000;
     @media only screen and ( min-width: 2538px ) and ( min-height: 1500px ) {
         /* display: none; */
     }
@@ -216,7 +216,7 @@ const JesusFlag2 = styled.img`
     /* top: calc(50% + 102px); */
     left: calc(50% - 220px);
     top: 3000px;
-    z-index: 19;
+    z-index: 19000;
     @media only screen and (max-width: 700px) {
         left: calc(50% - 316px + 150px);
         /* top: calc(50% + 102px + 10px); */
@@ -231,7 +231,7 @@ const Haunter = styled.img`
     /* top: calc(50% - 110px); */
     left: calc(50% - 480px);
     top: 2100px;
-    z-index: 21;
+    z-index: 21000;
 `
   
 const Boo = styled.img`
@@ -240,7 +240,7 @@ const Boo = styled.img`
     /* top: calc(50% - 122px); */
     left: calc(50% + 455px);
     top: 2100px;
-    z-index: 22;
+    z-index: 22000;
 `
   
 const Bernard_Txt = styled.img`
@@ -249,7 +249,7 @@ const Bernard_Txt = styled.img`
     /* top: calc(50% - 65px); */
     left: calc(50% + 0px);
     top: 1450px;
-    z-index: 23;
+    z-index: 23000;
     opacity: 0;
     @media only screen and (max-width: 700px) {
         width: 430px;
@@ -269,7 +269,7 @@ const Justin_Txt = styled.img`
     /* top: -100px; */
     top: 1300px;
     opacity: 0;
-    z-index: 24;
+    z-index: 24000;
     @media only screen and (max-width: 700px) {
         /* top: -100px; */
         top: 1300px;
@@ -287,7 +287,7 @@ const Pipe = styled.img`
     /* top: calc(50% + 140px); */
     left: calc(50% + 419px);
     top: 2000px;
-    z-index: 20;
+    z-index: 20000;
 `
   
 const HelloKitty = styled.img`
@@ -296,7 +296,7 @@ const HelloKitty = styled.img`
     /* top: calc(50% + 150px); */
     left: calc(50% - 415px);
     top: 2000px;
-    z-index: 25;
+    z-index: 25000;
     @media only screen and (max-width: 700px) {
         left: calc(50% - 495px + 290px);
         display: none;
@@ -309,7 +309,7 @@ const Toad = styled.img`
     /* top: calc(50% + 180px); */
     left: calc(50% + 350px);
     top: 2400px;
-    z-index: 26;
+    z-index: 26000;
     @media only screen and (max-width: 700px) {
         left: calc(50% + 383px - 160px);
         display: none;
@@ -322,7 +322,7 @@ const Kart = styled.img`
     /* top: calc(50% + 218px); */
     left: calc(50% - 340px);
     top: 2400px;
-    z-index: 27;
+    z-index: 27000;
     @media only screen and (max-width: 700px) {
         left: calc(50% - 420px + 240px);
         display: none;
@@ -335,7 +335,7 @@ const Joy = styled.img`
     /* top: calc(50% + 232px); */
     left: calc(50% + 266px);
     top: 2800px;
-    z-index: 28;
+    z-index: 28000;
     @media only screen and (max-width: 700px) {
         left: calc(50% + 291px - 100px);
         display: none;
@@ -348,7 +348,7 @@ const Pikachu = styled.img`
     top: calc(50% + 235px)k;
     left: calc(50% - 230px);
     top: 2800px;
-    z-index: 29;
+    z-index: 29000;
     @media only screen and (max-width: 700px) {
         left: calc(50% - 269px + 115px);
         display: none;
@@ -361,7 +361,7 @@ const Mario = styled.img`
     /* top: calc(50% + 245px); */
     left: calc(50% - 142px);
     top: 3200px;
-    z-index: 30;
+    z-index: 30000;
     @media only screen and (max-width: 700px) {
         left: calc(50% - 165px + 42px);
         width: 132px;
@@ -374,7 +374,7 @@ const MiniJesus = styled.img`
     /* top: calc(50% + 160px); */
     top: 3200px;
     left: calc(50% + 173px);
-    z-index: 31;
+    z-index: 31000;
     @media only screen and (max-width: 700px) {
         left: calc(50% + 183px - 40px);
         width: 163px;
@@ -387,7 +387,7 @@ const Justin = styled.img`
     // top: calc(50% + 157px);
     top: 3600px;
     left: calc(50% + 0px);
-    z-index: 32;
+    z-index: 32000;
     @media only screen and (max-width: 700px) {
         width: 215px;
     }
@@ -398,7 +398,7 @@ const HeroText = styled.h1`
     text-align: center;
     position: relative;
     color: #520000;
-    z-index: 1000;
+    z-index: 1000000;
     /* font-size: 29px; */
     font-size: 28px;
     font-family: "myriad-pro", sans-serif;
@@ -444,7 +444,7 @@ const LoadingText = styled.h1`
     font-style: normal;
     top: 0;
     bottom: 0;
-    opacity: 1;
+    opacity: 1000;
     /* display: none; */
     /* transition: opacity 1s;  */
     @media only screen and (min-width: 768px) {
@@ -974,42 +974,22 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero, whoRef, setR
           console.error(`Error loading ${img.alt}.`);
       }
 
-    useEffect(() => {
-        if (loadedImageCount === 21) { //20 images
-            setIsLoaded(true);
-            gsap.ticker.lagSmoothing(0);
-            // console.log('All images have loaded successfully.');
-            gsap.to(loadingTxtRef.current, {
-                duration: 0.5,
-                opacity: 0,
-                ease: easeLoad,
-                onComplete: () => {
-                    loadingTxtRef.current.style.display = "none";
-                }
-            }, 0);
-        }
-    }, [loadedImageCount])
-
-    // after you increment loadedImageCount:
     // useEffect(() => {
-    //   const images = Array.from(
-    //     document.querySelectorAll<HTMLImageElement>('#div1 img')
-    //   );
-    //   const expected = images.length; // count what’s actually in the DOM
+    //     if (loadedImageCount === 21) { //20 images
+    //         setIsLoaded(true);
+    //         gsap.ticker.lagSmoothing(0);
+    //         // console.log('All images have loaded successfully.');
+    //         gsap.to(loadingTxtRef.current, {
+    //             duration: 0.5,
+    //             opacity: 0,
+    //             ease: easeLoad,
+    //             onComplete: () => {
+    //                 loadingTxtRef.current.style.display = "none";
+    //             }
+    //         }, 0);
+    //     }
+    // }, [loadedImageCount])
 
-    //   const ready = () => {
-    //     // fonts/paint/layout tend to be ready by 'load'; for SPA SSR we guard with requestAnimationFrame
-    //     requestAnimationFrame(() => setAllReady(true));
-    //   };
-
-    //   if (loadedImageCount >= expected && (document.readyState === 'complete' || document.readyState === 'interactive')) {
-    //     ready();
-    //   } else {
-    //     const onLoad = () => ready();
-    //     window.addEventListener('load', onLoad, { once: true });
-    //     return () => window.removeEventListener('load', onLoad);
-    //   }
-    // }, [loadedImageCount]);
     // count what’s actually present in the hero container (no magic numbers)
     useEffect(() => {
       const imgs = Array.from(
@@ -1129,13 +1109,13 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero, whoRef, setR
         <Pikachu ref={pikachuRef} src="/img/hero-banner/Pikachu.png" data-speedx="0.05" data-speedy="0.064" data-speedz="0.4" data-rotation="0.15" className='parallax pikachu'
                 draggable="false" alt='Pikachu' onLoad={(e) => imageLoaded(e.target)} onError={(e) => imageError(e)} onClick={() => pikachuAudioRef.current.play()}/>
         <Mario ref={marioRef} src="/img/hero-banner/Mario.png" data-speedx="0.03" data-speedy="0.032" data-speedz="0.45" data-rotation="0.175" className='parallax mario'
-                draggable="false" alt='Mario' onLoad={(e) => imageLoaded(e.target)} onError={(e) => imageError(e)} onClick={() => marioAudioRef.current.play()}/>
+                draggable="false" alt='Mario' onLoad={(e) => imageLoaded(e.target)} onError={(e) => imageError(e)} onClick={() => safePlay(marioAudioRef.current)} onTouchStart={() => safePlay(marioAudioRef.current)} />
         <MiniJesus ref={miniJesusRef} src="/img/hero-banner/MiniJesus.png" data-speedx="0.03" data-speedy="0.03" data-speedz="0.45" data-rotation="0.175" className='parallax mini-jesus'
                 draggable="false" alt='MiniJesus' onLoad={(e) => imageLoaded(e.target)} onError={(e) => imageError(e)} onClick={() => jesusAudioRef.current.play()} />
         <Justin ref={justinRef} src="/img/hero-banner/Justin.png" data-speedx="0.01" data-speedy="0.02" data-speedz="0.53" data-rotation="0.2" className='parallax justin'
                 draggable="false" alt='Justin' onLoad={(e) => imageLoaded(e.target)} onError={(e) => imageError(e)}/>
 
-        {/* <audio ref={marioAudioRef} controls style={{display: 'none'}}>
+        <audio ref={marioAudioRef} controls style={{display: 'none'}}>
             <source src="/audio/mario.mp3" type="audio/mpeg" />
         </audio>
         <audio ref={booAudioRef} controls style={{display: 'none'}}>
@@ -1158,7 +1138,7 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero, whoRef, setR
         </audio>
         <audio ref={pipeAudioRef} controls style={{display: 'none'}}>
             <source src="/audio/pipe.mp3" type="audio/mpeg" />
-        </audio> */}
+        </audio>
 
         </Container>
     {/* </ScrollableWrapper> */}
@@ -1169,7 +1149,14 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero, whoRef, setR
 export default Hero
 
 
-
+const safePlay = (el) => {
+  if (!el) return;
+  try {
+    el.currentTime = 0;
+    const p = el.play();
+    if (p && typeof p.catch === "function") p.catch(()=>{ /* ignore iOS race */ });
+  } catch {}
+};
 
 
 const CrossSection = styled.div`
