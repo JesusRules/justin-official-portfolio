@@ -518,6 +518,8 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero, whoRef, setR
 
     let navElement;
     const loadingTxtRef = useRef();
+    // add near the top
+    const [allReady, setAllReady] = useState(false);
     const [loadedImageCount, setLoadedImageCount] = useState(0);
     const [isLoaded, setIsLoaded] = useState(false);
 
@@ -547,7 +549,7 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero, whoRef, setR
         
         scrollTo(0, 0);
         update(0);
-        gsapBeginning();
+        // gsapBeginning();
         // Add event listener when the component mounts
         document.addEventListener('mousemove', handleMouseMove);
         document.addEventListener('touchmove', handleTouchMove);
@@ -813,23 +815,44 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero, whoRef, setR
         }
       }
 
-
-      
+      const pxLeft = (el) => {
+        const rect = el.getBoundingClientRect();
+        return rect.left + window.scrollX; // absolute px
+      };
+      const setLeftPx = (el, x) => {
+        el.style.left = `${x}px`;
+      };
+      // when capturing initial positions:
       useEffect(() => {
-            // setJustinPos(window.getComputedStyle(justinRef.current).getPropertyValue('left'));
-            setMiniJesusPos(window.getComputedStyle(miniJesusRef.current).getPropertyValue('left'));
-            setMarioPos(window.getComputedStyle(marioRef.current).getPropertyValue('left'));
-            setPikachuPos(window.getComputedStyle(pikachuRef.current).getPropertyValue('left'));
-            setJoyPos(window.getComputedStyle(joyRef.current).getPropertyValue('left'));
-            setKartPos(window.getComputedStyle(kartRef.current).getPropertyValue('left'));
-            setToadPos(window.getComputedStyle(toadRef.current).getPropertyValue('left'));
-            setPipePos(window.getComputedStyle(pipeRef.current).getPropertyValue('left'));
-            setHelloKittyPos(window.getComputedStyle(helloKittyRef.current).getPropertyValue('left'));
-            setFlagPos(window.getComputedStyle(jesusFlagRef.current).getPropertyValue('left'));
-            setHaunterPos(window.getComputedStyle(haunterRef.current).getPropertyValue('left'));
-            setBooPos(window.getComputedStyle(booRef.current).getPropertyValue('left'));
-            // setContactBtnPos(window.getComputedStyle(contactBtnRef.current).getPropertyValue('bottom'));
-        }, [])
+        const toPx = (r) => r.current ? pxLeft(r.current) : 0;
+        setMiniJesusPos(toPx(miniJesusRef));
+        setMarioPos(toPx(marioRef));
+        setPikachuPos(toPx(pikachuRef));
+        setJoyPos(toPx(joyRef));
+        setKartPos(toPx(kartRef));
+        setToadPos(toPx(toadRef));
+        setPipePos(toPx(pipeRef));
+        setHelloKittyPos(toPx(helloKittyRef));
+        setFlagPos(toPx(jesusFlagRef));
+        setHaunterPos(toPx(haunterRef));
+        setBooPos(toPx(booRef));
+      }, [allReady]); // wait until allReady so rects are real
+      
+      // useEffect(() => {
+      //       // setJustinPos(window.getComputedStyle(justinRef.current).getPropertyValue('left'));
+      //       setMiniJesusPos(window.getComputedStyle(miniJesusRef.current).getPropertyValue('left'));
+      //       setMarioPos(window.getComputedStyle(marioRef.current).getPropertyValue('left'));
+      //       setPikachuPos(window.getComputedStyle(pikachuRef.current).getPropertyValue('left'));
+      //       setJoyPos(window.getComputedStyle(joyRef.current).getPropertyValue('left'));
+      //       setKartPos(window.getComputedStyle(kartRef.current).getPropertyValue('left'));
+      //       setToadPos(window.getComputedStyle(toadRef.current).getPropertyValue('left'));
+      //       setPipePos(window.getComputedStyle(pipeRef.current).getPropertyValue('left'));
+      //       setHelloKittyPos(window.getComputedStyle(helloKittyRef.current).getPropertyValue('left'));
+      //       setFlagPos(window.getComputedStyle(jesusFlagRef.current).getPropertyValue('left'));
+      //       setHaunterPos(window.getComputedStyle(haunterRef.current).getPropertyValue('left'));
+      //       setBooPos(window.getComputedStyle(booRef.current).getPropertyValue('left'));
+      //       // setContactBtnPos(window.getComputedStyle(contactBtnRef.current).getPropertyValue('bottom'));
+      //   }, [])
 
 
         const [reached, setReached] = useState(false);
@@ -894,11 +917,13 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero, whoRef, setR
 
       // LOADING STUFF
       function imageLoaded(img) {
-        setLoadedImageCount((prevCount) => prevCount + 1);
-    }
-    function imageError(img) {
-        console.error(`Error loading ${img.alt}.`);
-    }
+          setLoadedImageCount((prevCount) => prevCount + 1);
+      }
+
+      function imageError(img) {
+          console.error(`Error loading ${img.alt}.`);
+      }
+
     useEffect(() => {
         if (loadedImageCount === 21) { //20 images
             setIsLoaded(true);
@@ -913,6 +938,33 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero, whoRef, setR
             }, 0);
         }
     }, [loadedImageCount])
+
+    // after you increment loadedImageCount:
+    useEffect(() => {
+      const images = Array.from(
+        document.querySelectorAll<HTMLImageElement>('#div1 img')
+      );
+      const expected = images.length; // count what’s actually in the DOM
+
+      const ready = () => {
+        // fonts/paint/layout tend to be ready by 'load'; for SPA SSR we guard with requestAnimationFrame
+        requestAnimationFrame(() => setAllReady(true));
+      };
+
+      if (loadedImageCount >= expected && (document.readyState === 'complete' || document.readyState === 'interactive')) {
+        ready();
+      } else {
+        const onLoad = () => ready();
+        window.addEventListener('load', onLoad, { once: true });
+        return () => window.removeEventListener('load', onLoad);
+      }
+    }, [loadedImageCount]);
+
+    // replace your original gsapBeginning call:
+    useEffect(() => {
+      if (!allReady) return;
+      gsapBeginning();
+    }, [allReady]);
 
   return (
     <>
