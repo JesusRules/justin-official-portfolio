@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState, useLayoutEffect } from 'react'
 import styled, { keyframes } from 'styled-components';
 import gsap from 'gsap';
 
@@ -583,7 +583,57 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero, whoRef, setR
     }
 
 
+      useLayoutEffect(() => {
+        if (!allReady) return;
+        const ctx = gsap.context(() => {
+          // ensure a baseline paint first on iOS
+          // (forces layout tick before anims start)
+          // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+          document.body.offsetHeight;
+
+          const tl = gsap.timeline({
+            defaults: { ease: "power3.out", duration: 2.5 },
+            delay: window.innerWidth <= 768 ? 0 : 0.75,
+          });
+
+          // your original sequence (sample abbreviated):
+          tl.to(skyRef.current, { top: '50%' }, 0)
+            .to(cloudMainBackRef.current, { top: 'calc(50% + 265px)' }, 0)
+            .to(cloudMainFrontRef.current, { top: 'calc(50% + 266px)' }, 0)
+            .to(cloudBG4.current, { top: 'calc(50% - 99px)' }, 0)
+            .to(cloudBG3.current, { top: 'calc(50% - 250px)' }, 0)
+            .to(cloudBG2.current, { top: 'calc(50% - 225px)' }, 0)
+            .to(cloudBG1.current, { top: 'calc(50% - 125px)' }, 0)
+            .to(haunterRef.current, { top: 'calc(50% - 110px)' }, 0)
+            .to(booRef.current, { top: 'calc(50% - 122px)' }, 0);
+
+          if (window.innerWidth > 700) {
+            tl.to(bernardTxtRef.current, { top: 'calc(50% - 65px)', opacity: 1 }, 0)
+              .to(justinTxtRef.current, { top: 'calc(50% - 195px)', opacity: 1 }, 0);
+          } else {
+            tl.to(bernardTxtRef.current, { top: 'calc(50% - 128px)', opacity: 1 }, 0)
+              .to(justinTxtRef.current, { top: 'calc(50% - 229px)', opacity: 1 }, 0);
+          }
+
+          tl.to(subtitleTxtRef.current, { opacity: 1 }, 0.1)
+            .to(jesusFlagRef.current, { top: 'calc(50% + 102px)' }, 0)
+            .to(pipeRef.current, { top: 'calc(50% + 140px)' }, 0)
+            .to(helloKittyRef.current, { top: 'calc(50% + 155px)' }, 0)
+            .to(toadRef.current, { top: 'calc(50% + 180px)' }, 0)
+            .to(kartRef.current, { top: 'calc(50% + 218px)' }, 0)
+            .to(joyRef.current, { top: 'calc(50% + 232px)' }, 0)
+            .to(pikachuRef.current, { top: 'calc(50% + 235px)' }, 0)
+            .to(marioRef.current, { top: 'calc(50% + 235px)' }, 0)
+            .to(miniJesusRef.current, { top: 'calc(50% + 160px)' }, 0)
+            .to(justinRef.current, { top: 'calc(50% + 157px)' }, 0)
+            .to(contactBtnRef.current, { opacity: 1, duration: 1 }, ">-0.2");
+        });
+
+        return () => ctx.revert();
+      }, [allReady]);
+
       const gsapBeginning = () => {
+        return;
         // NAMES OPACITY
         gsap.to(bernardTxtRef.current, {
             opacity: 1,
@@ -837,7 +887,7 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero, whoRef, setR
         setHaunterPos(toPx(haunterRef));
         setBooPos(toPx(booRef));
       }, [allReady]); // wait until allReady so rects are real
-      
+
       // useEffect(() => {
       //       // setJustinPos(window.getComputedStyle(justinRef.current).getPropertyValue('left'));
       //       setMiniJesusPos(window.getComputedStyle(miniJesusRef.current).getPropertyValue('left'));
@@ -927,6 +977,7 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero, whoRef, setR
     useEffect(() => {
         if (loadedImageCount === 21) { //20 images
             setIsLoaded(true);
+            gsap.ticker.lagSmoothing(0);
             // console.log('All images have loaded successfully.');
             gsap.to(loadingTxtRef.current, {
                 duration: 0.5,
@@ -940,18 +991,36 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero, whoRef, setR
     }, [loadedImageCount])
 
     // after you increment loadedImageCount:
+    // useEffect(() => {
+    //   const images = Array.from(
+    //     document.querySelectorAll<HTMLImageElement>('#div1 img')
+    //   );
+    //   const expected = images.length; // count what’s actually in the DOM
+
+    //   const ready = () => {
+    //     // fonts/paint/layout tend to be ready by 'load'; for SPA SSR we guard with requestAnimationFrame
+    //     requestAnimationFrame(() => setAllReady(true));
+    //   };
+
+    //   if (loadedImageCount >= expected && (document.readyState === 'complete' || document.readyState === 'interactive')) {
+    //     ready();
+    //   } else {
+    //     const onLoad = () => ready();
+    //     window.addEventListener('load', onLoad, { once: true });
+    //     return () => window.removeEventListener('load', onLoad);
+    //   }
+    // }, [loadedImageCount]);
+    // count what’s actually present in the hero container (no magic numbers)
     useEffect(() => {
-      const images = Array.from(
+      const imgs = Array.from(
         document.querySelectorAll<HTMLImageElement>('#div1 img')
       );
-      const expected = images.length; // count what’s actually in the DOM
+      const expected = imgs.length;
 
-      const ready = () => {
-        // fonts/paint/layout tend to be ready by 'load'; for SPA SSR we guard with requestAnimationFrame
-        requestAnimationFrame(() => setAllReady(true));
-      };
+      const ready = () => requestAnimationFrame(() => setAllReady(true));
 
-      if (loadedImageCount >= expected && (document.readyState === 'complete' || document.readyState === 'interactive')) {
+      if (loadedImageCount >= expected &&
+          (document.readyState === 'complete' || document.readyState === 'interactive')) {
         ready();
       } else {
         const onLoad = () => ready();
@@ -961,10 +1030,41 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero, whoRef, setR
     }, [loadedImageCount]);
 
     // replace your original gsapBeginning call:
+    // useEffect(() => {
+    //   if (!allReady) return;
+    //   gsapBeginning();
+    // }, [allReady]);
+
     useEffect(() => {
       if (!allReady) return;
-      gsapBeginning();
+      const els = document.querySelectorAll(".parallax");
+      const applyBase = () => {
+        els.forEach((el) => {
+          // your baseline transform equivalent to update(0)
+          const speedx = parseFloat(el.dataset.speedx || "0");
+          const speedy = parseFloat(el.dataset.speedy || "0");
+          el.style.transform =
+            `translateX(calc(-50% + ${0 * speedx}px)) translateY(calc(-50% + ${0 * speedy}px))`;
+        });
+      };
+
+      applyBase();
+
+      const onMouse = (e) => {
+        const overNav = document.querySelector('.nav')?.contains(e.target) ?? false;
+        if (!overNav) handleMouseMove(e);
+      };
+      const onTouch = (e) => handleTouchMove(e);
+
+      document.addEventListener('mousemove', onMouse, { passive: true });
+      document.addEventListener('touchmove', onTouch, { passive: true });
+
+      return () => {
+        document.removeEventListener('mousemove', onMouse);
+        document.removeEventListener('touchmove', onTouch);
+      };
     }, [allReady]);
+
 
   return (
     <>
