@@ -651,8 +651,160 @@ const HorizontalImageLoopComponent1 = ({ _images, _isReversed }) => {
     );
   };
 
-
   const HorizontalImageLoopComponent2 = ({ _images, _isReversed }) => {
+  const wrapperRef = useRef(null);
+  const tlRef = useRef(null);
+  const inited = useRef(false);
+  const isDownRef = useRef(false);
+  const scrubStartAtRef = useRef(0);
+
+  useLayoutEffect(() => {
+    if (inited.current) return; // React StrictMode guard
+    inited.current = true;
+
+    const wrapper = wrapperRef.current;
+    if (!wrapper) return;
+
+    const imgs = Array.from(wrapper.querySelectorAll("img"));
+    let cancelled = false;
+
+    const waitForImages = async () => {
+      await Promise.all(
+        imgs.map(img => {
+          if (img.complete && img.naturalWidth) return;
+          if (img.decode) return img.decode().catch(() => {});
+          return new Promise(res => {
+            img.addEventListener("load", res, { once: true });
+            img.addEventListener("error", res, { once: true });
+          });
+        })
+      );
+    };
+
+    (async () => {
+      await waitForImages();
+      if (cancelled) return;
+
+      // style (scoped)
+      const boxes = wrapper.querySelectorAll(".images2");
+      gsap.set(boxes, { backgroundColor: "#f2f2f2" });
+
+      // build loop (scoped!)
+      const items = wrapper.querySelectorAll(".images2");
+      const tl = horizontalLoop(items, { repeat: -1, speed: 1, snap: 1 });
+      tlRef.current = tl;
+
+      // iOS/Safari kick: nudge off exact 0 then play in desired direction
+      const d = tl.duration();
+      const epsilon = Math.max(d * 0.001, 0.02);
+      tl.pause(0).seek(_isReversed ? d - epsilon : epsilon, false);
+      tl.timeScale(_isReversed ? -1 : 1).play();
+
+      setTimeout(() => {
+        handleMouseUp();
+      }, 1000 )
+
+      // ---- Scrub handlers (mouse) ----
+      const handleMouseDown = e => {
+        const tl = tlRef.current; if (!tl) return;
+        isDownRef.current = true;
+        tl.pause();
+        const rect = wrapper.getBoundingClientRect();
+        const cursor = (e.clientX - rect.left) / wrapper.offsetWidth;
+        scrubStartAtRef.current = tl.time() - cursor * tl.duration();
+        if (cursor > 0.5) scrubStartAtRef.current += tl.duration();
+      };
+
+      const handleMouseMove = e => {
+        const tl = tlRef.current; if (!tl || !isDownRef.current) return;
+        const rect = wrapper.getBoundingClientRect();
+        const cursor = (e.clientX - rect.left) / wrapper.offsetWidth;
+        let time = scrubStartAtRef.current + cursor * tl.duration();
+        if (time < 0) time = tl.duration() + (time % tl.duration());
+        else if (time > tl.duration()) time = time % tl.duration();
+        tl.seek(time, false);
+      };
+
+      const handleMouseUp = () => {
+        const tl = tlRef.current; if (!tl) return;
+        isDownRef.current = false;
+        scrubStartAtRef.current = 0;
+        tl.play();
+        tl.timeScale(_isReversed ? -1 : 1);
+      };
+
+      // ---- Touch handlers ----
+      const handleTouchDown = e => {
+        const tl = tlRef.current; if (!tl) return;
+        isDownRef.current = true;
+        tl.pause();
+        const t = e.touches[0];
+        const rect = wrapper.getBoundingClientRect();
+        const cursor = (t.clientX - rect.left) / wrapper.offsetWidth;
+        scrubStartAtRef.current = tl.time() - cursor * tl.duration();
+        if (cursor > 0.5) scrubStartAtRef.current += tl.duration();
+      };
+
+      const handleTouchMove = e => {
+        const tl = tlRef.current; if (!tl || !isDownRef.current) return;
+        const t = e.touches[0];
+        const rect = wrapper.getBoundingClientRect();
+        const cursor = (t.clientX - rect.left) / wrapper.offsetWidth;
+        let time = scrubStartAtRef.current + cursor * tl.duration();
+        if (time < 0) time = tl.duration() + (time % tl.duration());
+        else if (time > tl.duration()) time = time % tl.duration();
+        tl.seek(time, false);
+      };
+
+      const handleTouchUp = () => {
+        const tl = tlRef.current; if (!tl) return;
+        isDownRef.current = false;
+        scrubStartAtRef.current = 0;
+        tl.play();
+        tl.timeScale(_isReversed ? -1 : 1);
+      };
+
+      // attach (scoped to wrapper)
+      wrapper.addEventListener("mousedown", handleMouseDown);
+      wrapper.addEventListener("mousemove", handleMouseMove);
+      wrapper.addEventListener("mouseup", handleMouseUp);
+      wrapper.addEventListener("mouseleave", handleMouseUp);
+
+      wrapper.addEventListener("touchstart", handleTouchDown, { passive: true });
+      wrapper.addEventListener("touchmove", handleTouchMove, { passive: true });
+      wrapper.addEventListener("touchend", handleTouchUp);
+
+      // cleanup
+      const cleanup = () => {
+        cancelled = true;
+        wrapper.removeEventListener("mousedown", handleMouseDown);
+        wrapper.removeEventListener("mousemove", handleMouseMove);
+        wrapper.removeEventListener("mouseup", handleMouseUp);
+        wrapper.removeEventListener("mouseleave", handleMouseUp);
+        wrapper.removeEventListener("touchstart", handleTouchDown);
+        wrapper.removeEventListener("touchmove", handleTouchMove);
+        wrapper.removeEventListener("touchend", handleTouchUp);
+        tl?.kill();
+        tlRef.current = null;
+      };
+      tlRef.current._cleanup = cleanup;
+    })();
+
+    return () => tlRef.current?._cleanup?.();
+  }, [_isReversed]);
+
+  return (
+    <div className="wrapper no-select" ref={wrapperRef}>
+      {_images.map((src, i) => (
+        <img draggable="false" className="box default images2" key={i} src={src} alt="" />
+      ))}
+      <img draggable="false" className="box empty images2" src="/logos/empty.png" alt="" />
+    </div>
+  );
+};
+
+
+  const HorizontalImageLoopComponent22 = ({ _images, _isReversed }) => {
     const sliderWrapper = useRef(null);
     let isMouseDown = false;
     let scrubStartAt = 0; // Store the time where scrubbing started
@@ -692,7 +844,7 @@ const HorizontalImageLoopComponent1 = ({ _images, _isReversed }) => {
                 // }, 200);
             }
           }, 200);
-        
+
         sliderWrapper.current.addEventListener('mousedown', handleMouseDown);
         sliderWrapper.current.addEventListener('mouseleave', handleMouseUp);
         sliderWrapper.current.addEventListener('mousemove', handleMouseMove);
