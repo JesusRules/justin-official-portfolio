@@ -660,7 +660,7 @@ const HorizontalImageLoopComponent1 = ({ _images, _isReversed }) => {
     // const [isReversed, setIsReversed] = useState(_isReversed);
     let timeline;
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         const boxes = gsap.utils.toArray(".images2");
         const items = document.querySelectorAll(".images2");
         
@@ -691,7 +691,7 @@ const HorizontalImageLoopComponent1 = ({ _images, _isReversed }) => {
                 // setTimeout(() => {
                 // }, 200);
             }
-          }, 1000);
+          }, 200);
         
         sliderWrapper.current.addEventListener('mousedown', handleMouseDown);
         sliderWrapper.current.addEventListener('mouseleave', handleMouseUp);
