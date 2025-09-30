@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useLayoutEffect } from 'react'
 import { styled } from 'styled-components'
 import gsap from 'gsap';
 import InfiniteImageScroller from './threejsscripts/InfiniteImageScroller'
@@ -219,191 +219,433 @@ const imagesLanguages = [
 ];
 
 
+// const HorizontalImageLoopComponent1 = ({ _images, _isReversed }) => {
+//     const sliderWrapper = useRef(null);
+//     let isMouseDown = false;
+//     let scrubStartAt = 0; // Store the time where scrubbing started
+//     const isReversed = _isReversed;
+//     let timeline;
+//     // NEW
+//     const inited = useRef(false); // guard against React 18 double-invoke in dev
+
+//     // NEW
+//     useLayoutEffect(() => {
+//       if (inited.current) return; // StrictMode guard
+//       inited.current = true;
+
+//       const wrapper = sliderWrapper.current;
+//       if (!wrapper) return;
+
+//       const imgs = Array.from(wrapper.querySelectorAll("img"));
+//       let cancelled = false;
+
+//       // wait for all images to have layout width
+//       const waitForImages = async () => {
+//         await Promise.all(
+//           imgs.map((img) => {
+//             if (img.complete && img.naturalWidth) return Promise.resolve();
+//             // prefer decode() when available (Safari iOS 15+)
+//             if (img.decode) return img.decode().catch(() => {});
+//             return new Promise((res) => {
+//               img.addEventListener("load", res, { once: true });
+//               img.addEventListener("error", res, { once: true });
+//             });
+//           })
+//         );
+//       };
+
+//       (async () => {
+//         await waitForImages();
+//         if (cancelled) return;
+
+//         const items = wrapper.querySelectorAll(".images1");
+//         const config = { repeat: -1, speed: 1, snap: 1, reversed: false };
+
+//         const tl = horizontalLoop(items, config);
+//         timelineRef.current = tl;
+
+//         if (_isReversed) tl.timeScale(-1);
+
+//         // pointer handlers (optional)
+//         const down = () => tl.pause();
+//         const up = () => { tl.play(); if (_isReversed) tl.timeScale(-1); };
+//         wrapper.addEventListener("touchstart", down);
+//         wrapper.addEventListener("touchend", up);
+//         wrapper.addEventListener("mousedown", down);
+//         wrapper.addEventListener("mouseup", up);
+
+//         // cleanup
+//         const cleanup = () => {
+//           cancelled = true;
+//           wrapper.removeEventListener("touchstart", down);
+//           wrapper.removeEventListener("touchend", up);
+//           wrapper.removeEventListener("mousedown", down);
+//           wrapper.removeEventListener("mouseup", up);
+//           tl?.kill();
+//         };
+//         // store cleanup so React can call it
+//         timelineRef.current._cleanup = cleanup;
+//       })();
+
+//       return () => {
+//         timelineRef.current?._cleanup?.();
+//       };
+//     }, [_isReversed]);
+
+//     useEffect(() => {
+//         const boxes = gsap.utils.toArray(".images1");
+//         const items = document.querySelectorAll(".images1");
+        
+//         // Create array of colors
+//         // const colors = ["#f38630","#6fb936", "#ccc", "#6fb936"];
+//         const colors = ["#f2f2f2"];
+        
+//         // Apply colors to boxes - one after the other
+//         gsap.set(boxes , {
+//             backgroundColor: gsap.utils.wrap(colors)
+//         });
+        
+//         // const items = document.querySelectorAll(".box");
+//       const config = {
+//           repeat: -1,
+//           speed: 1,
+//           snap: 1,
+//           reversed: false,
+//           // Add the paddingBetween property here
+//         };
+        
+//         timeline = horizontalLoop(items, config);
+
+//         setTimeout(() => {
+//             if (isReversed) {
+//                 timeline.timeScale(-1)
+//             }
+//           }, "0");
+        
+//         sliderWrapper.current.addEventListener('mousedown', handleMouseDown);
+//         sliderWrapper.current.addEventListener('mouseleave', handleMouseUp);
+//         sliderWrapper.current.addEventListener('mousemove', handleMouseMove);
+//         sliderWrapper.current.addEventListener('mouseup', handleMouseUp);
+
+//         sliderWrapper.current.addEventListener('touchstart', handleTouchDown);
+//         sliderWrapper.current.addEventListener('touchmove', handleTouchMove);
+//         sliderWrapper.current.addEventListener('touchend', handleTouchUp);
+        
+//         // Cleanup function
+//         return () => {
+//             sliderWrapper.current.removeEventListener('mousedown', handleMouseDown);
+//             sliderWrapper.current.removeEventListener('mouseleave', handleMouseUp);
+//             sliderWrapper.current.removeEventListener('mousemove', handleMouseMove);
+//             sliderWrapper.current.removeEventListener('mouseup', handleMouseUp);
+
+//             sliderWrapper.current.removeEventListener('touchstart', handleTouchDown);
+//             sliderWrapper.current.removeEventListener('touchmove', handleTouchMove);
+//             sliderWrapper.current.removeEventListener('touchend', handleTouchUp);
+//         // Pause and clear the animation when the component unmounts
+//         timeline.pause(0);
+//         timeline.kill();
+//       };
+//     }, []);
+
+
+//     // MOUSE MOVEMENTS
+
+//     const handleMouseDown = (event) => {
+//         isMouseDown = true;
+//         timeline.pause();
+//         // Calculate cursor position as a percentage of the slider width
+//         const cursorPosition = (event.clientX - sliderWrapper.current.getBoundingClientRect().left) / sliderWrapper.current.offsetWidth;
+//         // Store the time where scrubbing started
+//         scrubStartAt = timeline.time() - (cursorPosition * timeline.duration());
+//         // If the cursor position is greater than 0.5, it means you're dragging to the left
+//         if (cursorPosition > 0.5) {
+//             scrubStartAt += timeline.duration();
+//         }
+//     }
+    
+//     const handleMouseMove = (event) => {
+//         if (isMouseDown) {
+//             const cursorPosition = (event.clientX - sliderWrapper.current.getBoundingClientRect().left) / sliderWrapper.current.offsetWidth;
+//             // Calculate time relative to the start time and loop duration
+//             let time = scrubStartAt + cursorPosition * timeline.duration();
+//             // Allow the time to wrap around and loop
+//             if (isReversed) {
+//                 if (time > 0) {
+//                     time = timeline.duration() + (time % timeline.duration());
+//                   } else if (time > timeline.duration()) {
+//                     time = time % timeline.duration();
+//                   }
+//             }
+//             if (!isReversed) {
+//                 if (time < 0) {
+//                     time = timeline.duration() + (time % timeline.duration());
+//                   } else if (time > timeline.duration()) {
+//                     time = time % timeline.duration();
+//                   }
+//             }
+//             timeline.seek(time, false);
+//           }
+//     }
+
+//     const handleMouseUp = (event) => {
+//         isMouseDown = false;
+//         scrubStartAt = 0; // Reset the start time when scrubbing is done
+//         timeline.play()
+//         if (isReversed) {
+//             timeline.timeScale(-1)
+//         }
+//     }
+
+//     // TOUCH MOVEMENTS
+
+//     const handleTouchDown = (event) => {
+//         isMouseDown = true;
+//         timeline.pause();
+        
+//         // Get the first touch
+//         const touch = event.touches[0];
+        
+//         // Calculate cursor position as a percentage of the slider width
+//         const cursorPosition = (touch.clientX - sliderWrapper.current.getBoundingClientRect().left) / sliderWrapper.current.offsetWidth;
+        
+//         // Store the time where scrubbing started
+//         scrubStartAt = timeline.time() - (cursorPosition * timeline.duration());
+        
+//         // If the cursor position is greater than 0.5, it means you're dragging to the left
+//         if (cursorPosition > 0.5) {
+//             scrubStartAt += timeline.duration();
+//         }
+//     }
+    
+//     const handleTouchMove = (event) => {
+//         if (isMouseDown) {
+//             const touch = event.touches[0]; // Get the first touch
+//             const cursorPosition = (touch.clientX - sliderWrapper.current.getBoundingClientRect().left) / sliderWrapper.current.offsetWidth;
+            
+//             // Calculate time relative to the start time and loop duration
+//             let time = scrubStartAt + cursorPosition * timeline.duration();
+            
+//             // Allow the time to wrap around and loop
+//             if (isReversed) {
+//                 if (time > 0) {
+//                     time = timeline.duration() + (time % timeline.duration());
+//                 } else if (time > timeline.duration()) {
+//                     time = time % timeline.duration();
+//                 }
+//             }
+//             if (!isReversed) {
+//                 if (time < 0) {
+//                     time = timeline.duration() + (time % timeline.duration());
+//                 } else if (time > timeline.duration()) {
+//                     time = time % timeline.duration();
+//                 }
+//             }
+            
+//             timeline.seek(time, false);
+//         }
+//     }
+
+//     const handleTouchUp = () => {
+//         isMouseDown = false;
+//         scrubStartAt = 0; // Reset the start time when scrubbing is done
+//         timeline.play();
+//         if (isReversed) {
+//             timeline.timeScale(-1);
+//         }
+//     }
+
+//     return (
+//     <div class="wrapper no-select" ref={sliderWrapper}>
+//             {_images.map((imageUrl, index) => (
+//                 <img
+//                     draggable="false"
+//                     className={`box default images1`}
+//                     key={index}
+//                     src={imageUrl}
+//                     alt={`Image ${index}`}
+//                 />
+//             ))}
+//             <img
+//                 draggable="false"
+//                 className={`box empty images1`}
+//                 src={'/logos/empty.png'}
+//             />
+//       </div>
+//     );
+//   };
 const HorizontalImageLoopComponent1 = ({ _images, _isReversed }) => {
-    const sliderWrapper = useRef(null);
-    let isMouseDown = false;
-    let scrubStartAt = 0; // Store the time where scrubbing started
-    const isReversed = _isReversed;
-    let timeline;
+    const wrapperRef = useRef(null);
+    const tlRef = useRef(null);
+    const inited = useRef(false);
+    const isDownRef = useRef(false);
+    const scrubStartAtRef = useRef(0);
 
-    useEffect(() => {
-        const boxes = gsap.utils.toArray(".images1");
-        const items = document.querySelectorAll(".images1");
-        
-        // Create array of colors
-        // const colors = ["#f38630","#6fb936", "#ccc", "#6fb936"];
-        const colors = ["#f2f2f2"];
-        
-        // Apply colors to boxes - one after the other
-        gsap.set(boxes , {
-            backgroundColor: gsap.utils.wrap(colors)
-        });
-        
-        // const items = document.querySelectorAll(".box");
-      const config = {
-          repeat: -1,
-          speed: 1,
-          snap: 1,
-          reversed: false,
-          // Add the paddingBetween property here
-        };
-        
-        timeline = horizontalLoop(items, config);
+    useLayoutEffect(() => {
+      if (inited.current) return; // React StrictMode guard (dev)
+      inited.current = true;
 
-        setTimeout(() => {
-            if (isReversed) {
-                timeline.timeScale(-1)
-            }
-          }, "0");
-        
-        sliderWrapper.current.addEventListener('mousedown', handleMouseDown);
-        sliderWrapper.current.addEventListener('mouseleave', handleMouseUp);
-        sliderWrapper.current.addEventListener('mousemove', handleMouseMove);
-        sliderWrapper.current.addEventListener('mouseup', handleMouseUp);
+      const wrapper = wrapperRef.current;
+      if (!wrapper) return;
 
-        sliderWrapper.current.addEventListener('touchstart', handleTouchDown);
-        sliderWrapper.current.addEventListener('touchmove', handleTouchMove);
-        sliderWrapper.current.addEventListener('touchend', handleTouchUp);
-        
-        // Cleanup function
-        return () => {
-            sliderWrapper.current.removeEventListener('mousedown', handleMouseDown);
-            sliderWrapper.current.removeEventListener('mouseleave', handleMouseUp);
-            sliderWrapper.current.removeEventListener('mousemove', handleMouseMove);
-            sliderWrapper.current.removeEventListener('mouseup', handleMouseUp);
+      const imgs = Array.from(wrapper.querySelectorAll("img"));
+      let cancelled = false;
 
-            sliderWrapper.current.removeEventListener('touchstart', handleTouchDown);
-            sliderWrapper.current.removeEventListener('touchmove', handleTouchMove);
-            sliderWrapper.current.removeEventListener('touchend', handleTouchUp);
-        // Pause and clear the animation when the component unmounts
-        timeline.pause(0);
-        timeline.kill();
+      // wait until images have layout widths (Safari/iOS important)
+      const waitForImages = async () => {
+        await Promise.all(
+          imgs.map((img) => {
+            if (img.complete && img.naturalWidth) return;
+            if (img.decode) return img.decode().catch(() => {});
+            return new Promise((res) => {
+              img.addEventListener("load", res, { once: true });
+              img.addEventListener("error", res, { once: true });
+            });
+          })
+        );
       };
-    }, []);
 
+      (async () => {
+        await waitForImages();
+        if (cancelled) return;
 
-    // MOUSE MOVEMENTS
+        // optional: scoped styling for this slider only
+        const boxes = wrapper.querySelectorAll(".images1");
+        gsap.set(boxes, { backgroundColor: "#f2f2f2" });
 
-    const handleMouseDown = (event) => {
-        isMouseDown = true;
-        timeline.pause();
-        // Calculate cursor position as a percentage of the slider width
-        const cursorPosition = (event.clientX - sliderWrapper.current.getBoundingClientRect().left) / sliderWrapper.current.offsetWidth;
-        // Store the time where scrubbing started
-        scrubStartAt = timeline.time() - (cursorPosition * timeline.duration());
-        // If the cursor position is greater than 0.5, it means you're dragging to the left
-        if (cursorPosition > 0.5) {
-            scrubStartAt += timeline.duration();
-        }
-    }
-    
-    const handleMouseMove = (event) => {
-        if (isMouseDown) {
-            const cursorPosition = (event.clientX - sliderWrapper.current.getBoundingClientRect().left) / sliderWrapper.current.offsetWidth;
-            // Calculate time relative to the start time and loop duration
-            let time = scrubStartAt + cursorPosition * timeline.duration();
-            // Allow the time to wrap around and loop
-            if (isReversed) {
-                if (time > 0) {
-                    time = timeline.duration() + (time % timeline.duration());
-                  } else if (time > timeline.duration()) {
-                    time = time % timeline.duration();
-                  }
-            }
-            if (!isReversed) {
-                if (time < 0) {
-                    time = timeline.duration() + (time % timeline.duration());
-                  } else if (time > timeline.duration()) {
-                    time = time % timeline.duration();
-                  }
-            }
-            timeline.seek(time, false);
+        // build loop (scope to wrapper)
+        const items = wrapper.querySelectorAll(".images1");
+        const tl = horizontalLoop(items, { repeat: -1, speed: 1, snap: 1 });
+        tlRef.current = tl;
+        if (_isReversed) tl.timeScale(-1);
+
+        // ---- Scrub handlers (mouse) ----
+        const handleMouseDown = (e) => {
+          const tl = tlRef.current;
+          if (!tl) return;
+          isDownRef.current = true;
+          tl.pause();
+
+          const rect = wrapper.getBoundingClientRect();
+          const cursor = (e.clientX - rect.left) / wrapper.offsetWidth;
+          scrubStartAtRef.current = tl.time() - cursor * tl.duration();
+          if (cursor > 0.5) scrubStartAtRef.current += tl.duration();
+        };
+
+        const handleMouseMove = (e) => {
+          const tl = tlRef.current;
+          if (!tl || !isDownRef.current) return;
+
+          const rect = wrapper.getBoundingClientRect();
+          const cursor = (e.clientX - rect.left) / wrapper.offsetWidth;
+          let time = scrubStartAtRef.current + cursor * tl.duration();
+
+          if (_isReversed) {
+            if (time < 0) time = tl.duration() + (time % tl.duration());
+            else if (time > tl.duration()) time = time % tl.duration();
+          } else {
+            if (time < 0) time = tl.duration() + (time % tl.duration());
+            else if (time > tl.duration()) time = time % tl.duration();
           }
-    }
+          tl.seek(time, false);
+        };
 
-    const handleMouseUp = (event) => {
-        isMouseDown = false;
-        scrubStartAt = 0; // Reset the start time when scrubbing is done
-        timeline.play()
-        if (isReversed) {
-            timeline.timeScale(-1)
-        }
-    }
+        const handleMouseUp = () => {
+          const tl = tlRef.current;
+          if (!tl) return;
+          isDownRef.current = false;
+          scrubStartAtRef.current = 0;
+          tl.play();
+          if (_isReversed) tl.timeScale(-1);
+        };
 
-    // TOUCH MOVEMENTS
+        // ---- Touch handlers ----
+        const handleTouchDown = (e) => {
+          const tl = tlRef.current;
+          if (!tl) return;
+          isDownRef.current = true;
+          tl.pause();
 
-    const handleTouchDown = (event) => {
-        isMouseDown = true;
-        timeline.pause();
-        
-        // Get the first touch
-        const touch = event.touches[0];
-        
-        // Calculate cursor position as a percentage of the slider width
-        const cursorPosition = (touch.clientX - sliderWrapper.current.getBoundingClientRect().left) / sliderWrapper.current.offsetWidth;
-        
-        // Store the time where scrubbing started
-        scrubStartAt = timeline.time() - (cursorPosition * timeline.duration());
-        
-        // If the cursor position is greater than 0.5, it means you're dragging to the left
-        if (cursorPosition > 0.5) {
-            scrubStartAt += timeline.duration();
-        }
-    }
-    
-    const handleTouchMove = (event) => {
-        if (isMouseDown) {
-            const touch = event.touches[0]; // Get the first touch
-            const cursorPosition = (touch.clientX - sliderWrapper.current.getBoundingClientRect().left) / sliderWrapper.current.offsetWidth;
-            
-            // Calculate time relative to the start time and loop duration
-            let time = scrubStartAt + cursorPosition * timeline.duration();
-            
-            // Allow the time to wrap around and loop
-            if (isReversed) {
-                if (time > 0) {
-                    time = timeline.duration() + (time % timeline.duration());
-                } else if (time > timeline.duration()) {
-                    time = time % timeline.duration();
-                }
-            }
-            if (!isReversed) {
-                if (time < 0) {
-                    time = timeline.duration() + (time % timeline.duration());
-                } else if (time > timeline.duration()) {
-                    time = time % timeline.duration();
-                }
-            }
-            
-            timeline.seek(time, false);
-        }
-    }
+          const touch = e.touches[0];
+          const rect = wrapper.getBoundingClientRect();
+          const cursor = (touch.clientX - rect.left) / wrapper.offsetWidth;
+          scrubStartAtRef.current = tl.time() - cursor * tl.duration();
+          if (cursor > 0.5) scrubStartAtRef.current += tl.duration();
+        };
 
-    const handleTouchUp = () => {
-        isMouseDown = false;
-        scrubStartAt = 0; // Reset the start time when scrubbing is done
-        timeline.play();
-        if (isReversed) {
-            timeline.timeScale(-1);
-        }
-    }
+        const handleTouchMove = (e) => {
+          const tl = tlRef.current;
+          if (!tl || !isDownRef.current) return;
+
+          const touch = e.touches[0];
+          const rect = wrapper.getBoundingClientRect();
+          const cursor = (touch.clientX - rect.left) / wrapper.offsetWidth;
+          let time = scrubStartAtRef.current + cursor * tl.duration();
+
+          if (_isReversed) {
+            if (time < 0) time = tl.duration() + (time % tl.duration());
+            else if (time > tl.duration()) time = time % tl.duration();
+          } else {
+            if (time < 0) time = tl.duration() + (time % tl.duration());
+            else if (time > tl.duration()) time = time % tl.duration();
+          }
+          tl.seek(time, false);
+        };
+
+        const handleTouchUp = () => {
+          const tl = tlRef.current;
+          if (!tl) return;
+          isDownRef.current = false;
+          scrubStartAtRef.current = 0;
+          tl.play();
+          if (_isReversed) tl.timeScale(-1);
+        };
+
+        // attach (scoped to wrapper)
+        wrapper.addEventListener("mousedown", handleMouseDown);
+        wrapper.addEventListener("mousemove", handleMouseMove);
+        wrapper.addEventListener("mouseup", handleMouseUp);
+        wrapper.addEventListener("mouseleave", handleMouseUp);
+
+        wrapper.addEventListener("touchstart", handleTouchDown, { passive: true });
+        wrapper.addEventListener("touchmove", handleTouchMove, { passive: true });
+        wrapper.addEventListener("touchend", handleTouchUp);
+
+        // cleanup
+        const cleanup = () => {
+          cancelled = true;
+          wrapper.removeEventListener("mousedown", handleMouseDown);
+          wrapper.removeEventListener("mousemove", handleMouseMove);
+          wrapper.removeEventListener("mouseup", handleMouseUp);
+          wrapper.removeEventListener("mouseleave", handleMouseUp);
+
+          wrapper.removeEventListener("touchstart", handleTouchDown);
+          wrapper.removeEventListener("touchmove", handleTouchMove);
+          wrapper.removeEventListener("touchend", handleTouchUp);
+
+          tl?.kill();
+          tlRef.current = null;
+        };
+
+        tlRef.current._cleanup = cleanup;
+      })();
+
+      return () => {
+        tlRef.current?._cleanup?.();
+      };
+    }, [_isReversed]);
 
     return (
-    <div class="wrapper no-select" ref={sliderWrapper}>
-            {_images.map((imageUrl, index) => (
-                <img
-                    draggable="false"
-                    className={`box default images1`}
-                    key={index}
-                    src={imageUrl}
-                    alt={`Image ${index}`}
-                />
-            ))}
-            <img
-                draggable="false"
-                className={`box empty images1`}
-                src={'/logos/empty.png'}
-            />
+      <div className="wrapper no-select" ref={wrapperRef}>
+        {_images.map((src, i) => (
+          <img
+            draggable="false"
+            className="box default images1"
+            key={i}
+            src={src}
+            alt=""
+          />
+        ))}
+        <img draggable="false" className="box empty images1" src="/logos/empty.png" alt="" />
       </div>
     );
   };

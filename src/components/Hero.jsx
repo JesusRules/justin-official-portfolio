@@ -1056,7 +1056,7 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero, whoRef, setR
             {/* <Vignette /> */}
         <HeroText ref={subtitleTxtRef}>Passionate. Professional. Reliable.</HeroText>
         
-        <LoadingText ref={loadingTxtRef}>Loading...</LoadingText>
+        {/* <LoadingText ref={loadingTxtRef}>Loading...</LoadingText> */}
         
         <ContactBtnMain ref={contactBtnRef} id="button-8" onClick={clickToContact}>
             <span className='borderLine'></span>
