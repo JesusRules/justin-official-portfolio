@@ -14,7 +14,7 @@ const Container = styled.div`
     user-select: none;
 `
 
-const Image = styled.img`
+const SImage = styled.img`
     width: 100%;
     min-width: 3600px; //1200px
     text-align: center;
@@ -103,6 +103,7 @@ function NavBar({ scrollYGlobal,
     const [prevScrollPos, setPrevScrollPos] = useState(0);
     const [visible, setVisible] = useState(true);
     const [gifUrl, setGifUrl] = useState("/img/navbar/Banner-Render-2.gif");
+    const [gifReady, setGifReady] = useState(false);
     const menuItemsRef = useRef();
 
     useEffect(() => {
@@ -111,6 +112,12 @@ function NavBar({ scrollYGlobal,
             window.removeEventListener('mousemove', handleMouseMove);
         }
     }, [])
+
+    useEffect(() => {
+      const img = new Image();
+      img.src = "/img/navbar/Banner-Render-2.gif";
+      img.onload = () => setGifReady(true);
+    }, []);
 
     const handleMouseMove = (event) => {
         const mouseY = event.clientY;
@@ -165,15 +172,15 @@ function NavBar({ scrollYGlobal,
   return (
     <>
     <Container className={`nav ${visible ? 'visible' : 'hidden'}`}>
-        <Image  src="/img/navbar/NavBar.png" onClick={(e) => handleClick(e)}/>
+        <SImage  src="/img/navbar/NavBar.png" onClick={(e) => handleClick(e)}/>
     </Container>
 
     {menuEnabled && (
     <>
         <DarkBG onClick={() => setMenuEnabled(false)} />
         <MenuContainer>
-            {/* <MenuImage src="/img/navbar/Jesus-Banner.png" /> */}
-            <MenuImage src={gifUrl}/>
+            {/* <MenuImage src={gifUrl}/> */}
+            {gifReady && <MenuImage src={gifUrl} />}
             <MenuItems ref={menuItemsRef}>
                 <li>
                     <p onClick={() => {

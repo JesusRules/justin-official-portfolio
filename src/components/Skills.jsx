@@ -202,6 +202,7 @@ const imagesLanguages = [
     '/logos/languages/rust.png',
     '/logos/languages/kotlin.png',
     '/logos/languages/php.png',
+    '/logos/languages/python.png',
     '/logos/languages/solidity.png',
     '/logos/languages/swift.png',
     // DUPLICATE
@@ -215,6 +216,7 @@ const imagesLanguages = [
     '/logos/languages/rust.png',
     '/logos/languages/kotlin.png',
     '/logos/languages/php.png',
+    '/logos/languages/python.png',
     '/logos/languages/solidity.png',
     '/logos/languages/swift.png',
 ];
