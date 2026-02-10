@@ -102,9 +102,20 @@ function NavBar({ scrollYGlobal,
     const [menuEnabled, setMenuEnabled] = useState(false);
     const [prevScrollPos, setPrevScrollPos] = useState(0);
     const [visible, setVisible] = useState(true);
-    const [gifUrl, setGifUrl] = useState("/img/navbar/Banner-Render-2.gif");
+    // const [gifUrl, setGifUrl] = useState("/img/navbar/Banner-Render-2.gif");
     const [gifReady, setGifReady] = useState(false);
     const menuItemsRef = useRef();
+
+    const gifUrl = menuEnabled
+    ? "/img/navbar/Banner-Render-2-Faster.gif"
+    : "/img/navbar/Banner-Render-3.gif";
+
+    useEffect(() => {
+      setGifReady(false);
+      const img = new Image();
+      img.src = gifUrl;
+      img.onload = () => setGifReady(true);
+    }, [gifUrl]);
 
     useEffect(() => {
         window.addEventListener('mousemove', handleMouseMove);
@@ -156,18 +167,24 @@ function NavBar({ scrollYGlobal,
     }
     
     useEffect(() => {
-        if (menuEnabled === true) {
-            setGifUrl("/img/navbar/Banner-Render-2-Faster.gif")
-            gsap.to(menuItemsRef.current, {
-                opacity: 1,
-                duration: 1,
-            })
-        }
-        if (menuEnabled === false) {
-            setGifUrl("/img/navbar/Banner-Render-3.gif")
-        }
+      if (!menuEnabled) return;
+      gsap.set(menuItemsRef.current, { opacity: 0 });
+      gsap.to(menuItemsRef.current, { opacity: 1, duration: 1 });
+    }, [menuEnabled]);
+    
+    // useEffect(() => {
+    //     if (menuEnabled === true) {
+    //         setGifUrl("/img/navbar/Banner-Render-2-Faster.gif")
+    //         gsap.to(menuItemsRef.current, {
+    //             opacity: 1,
+    //             duration: 1,
+    //         })
+    //     }
+    //     if (menuEnabled === false) {
+    //         setGifUrl("/img/navbar/Banner-Render-3.gif")
+    //     }
         
-    }, [menuEnabled])
+    // }, [menuEnabled])
 
   return (
     <>
@@ -181,6 +198,7 @@ function NavBar({ scrollYGlobal,
         <MenuContainer>
             {/* <MenuImage src={gifUrl}/> */}
             {gifReady && <MenuImage src={gifUrl} />}
+            
             <MenuItems ref={menuItemsRef}>
                 <li>
                     <p onClick={() => {
