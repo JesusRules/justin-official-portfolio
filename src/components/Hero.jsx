@@ -465,6 +465,9 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero, whoRef, setR
     let startDelay = 1;
     const easeLoad = "power3.out";
 
+    // New
+    const navRef = useRef(null);
+
     // ALL OBJECT REFS
     const skyRef = useRef(null);
     const cloudMainBackRef = useRef(null);
@@ -540,38 +543,65 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero, whoRef, setR
     }
 
     useEffect(() => {
-        navElement = document.querySelector('.nav');
-        if (window.innerWidth <= 768) {
-            startDelay = 0;
-        } else {
-            startDelay = 0.75;
-        }
-        
-        scrollTo(0, 0);
-        update(0);
-        // gsapBeginning();
-        // Add event listener when the component mounts
-        document.addEventListener('mousemove', handleMouseMove);
-        document.addEventListener('touchmove', handleTouchMove);
-        // Clean up by removing event listener when the component unmounts
-        return () => {
-            document.removeEventListener('mousemove', handleMouseMove);
-            document.removeEventListener('touchmove', handleTouchMove);
-        };
-      }, []);
+      navRef.current = document.querySelector(".nav");
 
-      const handleMouseMove = (event) => {
-        const isCursorOverNav = navElement.contains(event.target); //??? works
-        if (!isCursorOverNav)
-        {
-            xValue = event.clientX - innerWidth / 2;
-            yValue = event.clientY - innerHeight / 2;
+      const onMouse = (e) => handleMouseMove(e);
+      const onTouch = (e) => handleTouchMove(e);
+
+      document.addEventListener("mousemove", onMouse, { passive: true });
+      document.addEventListener("touchmove", onTouch, { passive: true });
+
+      return () => {
+        document.removeEventListener("mousemove", onMouse);
+        document.removeEventListener("touchmove", onTouch);
+      };
+    }, []);
+
+    // useEffect(() => {
+    //     navElement = document.querySelector('.nav');
+    //     if (window.innerWidth <= 768) {
+    //         startDelay = 0;
+    //     } else {
+    //         startDelay = 0.75;
+    //     }
+        
+    //     scrollTo(0, 0);
+    //     update(0);
+    //     // gsapBeginning();
+    //     // Add event listener when the component mounts
+    //     document.addEventListener('mousemove', handleMouseMove);
+    //     document.addEventListener('touchmove', handleTouchMove);
+    //     // Clean up by removing event listener when the component unmounts
+    //     return () => {
+    //         document.removeEventListener('mousemove', handleMouseMove);
+    //         document.removeEventListener('touchmove', handleTouchMove);
+    //     };
+    //   }, []);
+
+    const handleMouseMove = (event) => {
+      const nav = navRef.current;
+      const isCursorOverNav = nav ? nav.contains(event.target) : false;
+
+      if (!isCursorOverNav) {
+        xValue = event.clientX - innerWidth / 2;
+        yValue = event.clientY - innerHeight / 2;
+        rotateDegree = (xValue / (innerWidth / 2)) * 20;
+        update(event.clientX);
+      }
+    };
+
+    //   const handleMouseMove = (event) => {
+    //     const isCursorOverNav = navElement.contains(event.target); //??? works
+    //     if (!isCursorOverNav)
+    //     {
+    //         xValue = event.clientX - innerWidth / 2;
+    //         yValue = event.clientY - innerHeight / 2;
             
-            rotateDegree = (xValue / (innerWidth / 2)) * 20;
+    //         rotateDegree = (xValue / (innerWidth / 2)) * 20;
                 
-            update(event.clientX);
-        }
-    }
+    //         update(event.clientX);
+    //     }
+    // }
 
     const handleTouchMove = (event) => {
         xValue = event.touches[0].clientX - innerWidth / 2;
