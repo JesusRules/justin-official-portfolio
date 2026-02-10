@@ -169,8 +169,10 @@ const imagesMedia = [
     '/logos/media-development/photon-fusion.webp',
     '/logos/media-development/photon-quantum.jpg',
     '/logos/media-development/photoshop.jpg',
+    '/logos/media-development/roblox-studio.png',
     '/logos/media-development/unity.jpg',
     '/logos/media-development/unreal-engine.png',
+    '/logos/media-development/uefn.jpg',
     '/logos/media-development/zbrush.png',
     // DUPLICATE
     '/logos/media-development/3dsmax.png',
@@ -186,8 +188,10 @@ const imagesMedia = [
     '/logos/media-development/photon-fusion.webp',
     '/logos/media-development/photon-quantum.jpg',
     '/logos/media-development/photoshop.jpg',
+    '/logos/media-development/roblox-studio.png',
     '/logos/media-development/unity.jpg',
     '/logos/media-development/unreal-engine.png',
+    '/logos/media-development/uefn.jpg',
     '/logos/media-development/zbrush.png',
 ];
 
