@@ -32,6 +32,7 @@ import CannabisClubhouse from './projects-modal/CannabisClubhouse';
 import GreyRockVIP from './projects-modal/GreyRockVIP';
 import FusionFPS from './projects-modal/FusionFPS';
 import GreyRockIncidentReport from './projects-modal/GreyRockIncidentReport';
+import BCR from './projects-modal/BCR';
 
 const ProjectInfoContainer = styled.div`
   position: relative;
@@ -49,7 +50,7 @@ const ProjectInfoModalDiv = styled.div`
   left: 0;
   right: 0;
 
-  top: ${({ $menuVisible }) => ($menuVisible ? '3.3rem' : '0rem')};
+  top: ${({ $menuVisible }) => ($menuVisible ? '3.7rem' : '0rem')};
   /* transition: top 0.3s ease; */
   transition: top 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 
@@ -300,6 +301,7 @@ function ProjectInfoModal(props) {
         {currentProject.id === "cannabis-clubhouse" && <CannabisClubhouse openModal={openModal} setOpenModal={setOpenModal} /> }
         {currentProject.id === "grey-rock-vip" && <GreyRockVIP openModal={openModal} setOpenModal={setOpenModal} /> }
         {currentProject.id === "incident-report-app" && <GreyRockIncidentReport openModal={openModal} setOpenModal={setOpenModal} /> }
+        {currentProject.id === "bcr-app" && <BCR openModal={openModal} setOpenModal={setOpenModal} /> }
     </ProjectInfoModalDiv>
     {/* </ProjectInfoContainer> */}
     </>
