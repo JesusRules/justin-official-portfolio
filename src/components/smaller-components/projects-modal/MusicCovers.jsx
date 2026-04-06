@@ -793,8 +793,6 @@ function MusicCovers({ openModal, setOpenModal, hideVideos }) {
                 </VideoDiv>
             </div>
 
-
-
             {/* Every 2 */}
             <div className='grid-item' 
                     style={{}}>
@@ -835,6 +833,212 @@ function MusicCovers({ openModal, setOpenModal, hideVideos }) {
                     loading="lazy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
                   </VideoDiv2>
                 </VideoDiv>
+            </div>
+
+            {/* Every 2 */}
+            <div className='grid-item'>
+              <VideoDiv>
+                <VideoDiv2>
+                  <iframe
+                    src="https://www.youtube.com/embed/8doTbY3Axhc"
+                    srcDoc={`
+                      <style>
+                        *{height:100%;padding:0;margin:0;overflow:hidden;}
+                        body,html{height:100%;}
+                        img,svg{
+                          object-fit:cover;
+                          position:absolute;
+                          width:100%;
+                          top:0;
+                          bottom:0;
+                          margin:auto;
+                        }
+                        svg{
+                          height:5rem;
+                          filter:drop-shadow(1px 1px 10px hsl(206.5,70.7%,8%));
+                          transition:all 250ms ease-in-out;
+                        }
+                        body:hover svg{
+                          filter:drop-shadow(1px 1px 10px hsl(206.5,0%,10%));
+                          transform:scale(1.2);
+                        }
+                      </style>
+
+                      <a href="https://www.youtube.com/embed/8doTbY3Axhc?autoplay=1">
+                        <img src="https://i.ytimg.com/vi/8doTbY3Axhc/hqdefault.jpg" alt="Performance Video"/>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="84" height="84" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                          <circle cx="12" cy="12" r="10"></circle>
+                          <polygon points="10 8 16 12 10 16 10 8"></polygon>
+                        </svg>
+                      </a>
+                    `}
+                    loading="lazy"
+                    title="YouTube video player"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </VideoDiv2>
+              </VideoDiv>
+            </div>
+            <div className='grid-item'>
+              <div className='info'>
+                <h3>Testament - Souls Of Black (Remixed)</h3>
+              </div>
+            </div>
+
+             <div className='grid-item'>
+              <div className='info'>
+                <h3>Halo 2 Mjolnir Mix</h3>
+              </div>
+            </div>
+            <div className='grid-item'>
+              <VideoDiv>
+                <VideoDiv2>
+                  <iframe
+                    src="https://www.youtube.com/embed/dHxEuICj7rc?controls=0"
+                    srcDoc={`
+                      <style>
+                        *{height:100%;padding:0;margin:0;overflow:hidden;}
+                        body,html{height:100%;}
+                        img,svg{
+                          object-fit:cover;
+                          position:absolute;
+                          width:100%;
+                          top:0;
+                          bottom:0;
+                          margin:auto;
+                        }
+                        svg{
+                          height:5rem;
+                          filter:drop-shadow(1px 1px 10px hsl(206.5,70.7%,8%));
+                          transition:all 250ms ease-in-out;
+                        }
+                        body:hover svg{
+                          filter:drop-shadow(1px 1px 10px hsl(206.5,0%,10%));
+                          transform:scale(1.2);
+                        }
+                      </style>
+
+                      <a href="https://www.youtube.com/embed/dHxEuICj7rc?autoplay=1&controls=0">
+                        <img src="https://i.ytimg.com/vi/dHxEuICj7rc/hqdefault.jpg" alt="Performance Video"/>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="84" height="84" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                          <circle cx="12" cy="12" r="10"></circle>
+                          <polygon points="10 8 16 12 10 16 10 8"></polygon>
+                        </svg>
+                      </a>
+                    `}
+                    loading="lazy"
+                    title="YouTube video player"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </VideoDiv2>
+              </VideoDiv>
+            </div>
+
+            {/* Every 2 */}
+            <div className='grid-item'>
+              <VideoDiv>
+                <VideoDiv2>
+                  <iframe
+                    src="https://www.youtube.com/embed/ma6dvx3aPZI"
+                    srcDoc={`
+                      <style>
+                        *{height:100%;padding:0;margin:0;overflow:hidden;}
+                        body,html{height:100%;}
+                        img,svg{
+                          object-fit:cover;
+                          position:absolute;
+                          width:100%;
+                          top:0;
+                          bottom:0;
+                          margin:auto;
+                        }
+                        svg{
+                          height:5rem;
+                          filter:drop-shadow(1px 1px 10px hsl(206.5,70.7%,8%));
+                          transition:all 250ms ease-in-out;
+                        }
+                        body:hover svg{
+                          filter:drop-shadow(1px 1px 10px hsl(206.5,0%,10%));
+                          transform:scale(1.2);
+                        }
+                      </style>
+
+                      <a href="https://www.youtube.com/embed/ma6dvx3aPZI?autoplay=1">
+                        <img src="https://i.ytimg.com/vi/ma6dvx3aPZI/hqdefault.jpg" alt="Performance Video"/>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="84" height="84" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                          <circle cx="12" cy="12" r="10"></circle>
+                          <polygon points="10 8 16 12 10 16 10 8"></polygon>
+                        </svg>
+                      </a>
+                    `}
+                    loading="lazy"
+                    title="YouTube video player"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </VideoDiv2>
+              </VideoDiv>
+            </div>
+            <div className='grid-item'>
+              <div className='info'>
+                <h3>Sweet Victory - David Glen Eisley</h3>
+              </div>
+            </div>
+
+            <div className='grid-item'>
+              <div className='info'>
+                <h3>Killswitch Engage - My Curse</h3>
+              </div>
+            </div>
+            <div className='grid-item'>
+              <VideoDiv>
+                <VideoDiv2>
+                  <iframe
+                    src="https://www.youtube.com/embed/dTQR0RWOnec?controls=0"
+                    srcDoc={`
+                      <style>
+                        *{height:100%;padding:0;margin:0;overflow:hidden;}
+                        body,html{height:100%;}
+                        img,svg{
+                          object-fit:cover;
+                          position:absolute;
+                          width:100%;
+                          top:0;
+                          bottom:0;
+                          margin:auto;
+                        }
+                        svg{
+                          height:5rem;
+                          filter:drop-shadow(1px 1px 10px hsl(206.5,70.7%,8%));
+                          transition:all 250ms ease-in-out;
+                        }
+                        body:hover svg{
+                          filter:drop-shadow(1px 1px 10px hsl(206.5,0%,10%));
+                          transform:scale(1.2);
+                        }
+                      </style>
+
+                      <a href="https://www.youtube.com/embed/dTQR0RWOnec?autoplay=1&controls=0">
+                        <img src="https://i.ytimg.com/vi/dTQR0RWOnec/hqdefault.jpg" alt="Performance Video"/>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="84" height="84" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                          <circle cx="12" cy="12" r="10"></circle>
+                          <polygon points="10 8 16 12 10 16 10 8"></polygon>
+                        </svg>
+                      </a>
+                    `}
+                    loading="lazy"
+                    title="YouTube video player"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </VideoDiv2>
+              </VideoDiv>
             </div>
             </>
           )}
