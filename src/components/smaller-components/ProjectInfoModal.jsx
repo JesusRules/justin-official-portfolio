@@ -40,7 +40,7 @@ const ProjectInfoContainer = styled.div`
 `;
 
 const ProjectInfoModalDiv = styled.div`
-  height: 88%; //88
+  height: 88%;
   width: 92%;
   max-width: 1000px;
   margin: auto;
@@ -48,19 +48,21 @@ const ProjectInfoModalDiv = styled.div`
   position: fixed;
   left: 0;
   right: 0;
-  top: 0;
+
+  top: ${({ $menuVisible }) => ($menuVisible ? '3.3rem' : '0rem')};
+  /* transition: top 0.3s ease; */
+  transition: top 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+
   bottom: 2.2rem;
   box-shadow: 5px 5px 5px black;
-  z-index: 10010;//scroll-snap-type
+  z-index: 10010;
   cursor: auto;
   background-color: #e6fbff;
   color: black;
   overflow-y: auto;
   display: none;
 
-  /* Allows scrolling within the modal */
   -webkit-overflow-scrolling: touch;
-  /* scroll-behavior: smooth; */
 
   h2 {
     border-bottom: 1px solid black;
@@ -68,6 +70,36 @@ const ProjectInfoModalDiv = styled.div`
     text-align: center;
   }
 `;
+
+// const ProjectInfoModalDiv = styled.div`
+//   height: 88%; //88
+//   width: 92%;
+//   max-width: 1000px;
+//   margin: auto;
+//   border-radius: 15px;
+//   position: fixed;
+//   left: 0;
+//   right: 0;
+//   top: 0;
+//   bottom: 2.2rem;
+//   box-shadow: 5px 5px 5px black;
+//   z-index: 10010;//scroll-snap-type
+//   cursor: auto;
+//   background-color: #e6fbff;
+//   color: black;
+//   overflow-y: auto;
+//   display: none;
+
+//   /* Allows scrolling within the modal */
+//   -webkit-overflow-scrolling: touch;
+//   /* scroll-behavior: smooth; */
+
+//   h2 {
+//     border-bottom: 1px solid black;
+//     padding: 1rem;
+//     text-align: center;
+//   }
+// `;
 
 const DarkBG = styled.div`
     z-index: 10005;
@@ -121,7 +153,7 @@ const GoToTopButton = styled.button`
 `
 
 function ProjectInfoModal(props) {
-    const { currentProject, openModal, setOpenModal} = props;
+    const { menuVisible, currentProject, openModal, setOpenModal} = props;
     const projectModalRef = useRef();
     const closeButtonRef = useRef();
     const [hideVideos, setHideVideos] = useState(true);
@@ -228,7 +260,11 @@ function ProjectInfoModal(props) {
       currentProject.id === "other-videos") && (
         <GoToTopButton onClick={scrollToTop}>Top</GoToTopButton>
         )}
-    <ProjectInfoModalDiv ref={projectModalRef} tabIndex='-1'>
+   <ProjectInfoModalDiv
+    ref={projectModalRef}
+    tabIndex='-1'
+    $menuVisible={menuVisible}
+  >
         {currentProject.id === "pokithedog" && <PokiTheDog openModal={openModal} setOpenModal={setOpenModal} /> }
         {currentProject.id === "my-portfolio-old" && <Portfolio_Old openModal={openModal} setOpenModal={setOpenModal} /> }
         {currentProject.id === "ottawa-rec-sports" && <OttawaRecSports openModal={openModal} setOpenModal={setOpenModal} /> }

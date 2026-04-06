@@ -45,6 +45,8 @@ function App() {
   const [scrollY, setScrollY] = useState(0);
   const [hideOverflow, setHideOverflow] = useState(false);
 
+  const [menuVisible, setMenuVisible] = useState(false);
+
   const containerRef = useRef(null);
   const heroRef = useRef(null);
   const whoRef = useRef(null);
@@ -92,7 +94,10 @@ function App() {
   return (
     // <Wrapper>
     <Container ref={containerRef} onScroll={handleScroll} hideOverflow={hideOverflow}>
-      <NavBar scrollYGlobal={scrollY} 
+      <NavBar 
+              menuVisible={menuVisible}
+              setMenuVisible={setMenuVisible}
+              scrollYGlobal={scrollY} 
               clickToWho={scrollToWho}
               clickToSkills={scrollToSkills}
               clickToPortfolio={scrollToPortfolio}
@@ -109,7 +114,9 @@ function App() {
               setRefReached={setRefReached}/>
       <Skills myRef={skillsRef} scrollYGlobal={scrollY} scrollToSkills={scrollToSkills}
                   setRefReached={setRefReached} />
-      <Projects myRef={portfolioRef} scrollYGlobal={scrollY} 
+      <Projects myRef={portfolioRef} 
+                menuVisible={menuVisible}
+                scrollYGlobal={scrollY} 
                 scrollToSkills={scrollToSkills} 
                 scrollToEducation={scrollToEducation}
                 setHideOverflow={setHideOverflow} 

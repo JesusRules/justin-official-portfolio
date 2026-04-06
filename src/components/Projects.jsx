@@ -356,7 +356,7 @@ var contentTitlesArray2 = [
 ]
 
 
-function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, setHideOverflow,
+function Projects({ myRef, menuVisible, scrollYGlobal, scrollToSkills, scrollToEducation, setHideOverflow,
                     scrollToPortfolio, setRefReached }) {
   const [animIndex, setAnimIndex] = useState(3); //IDLE
   const playerRef = useRef();
@@ -675,7 +675,7 @@ function Projects({ myRef, scrollYGlobal, scrollToSkills, scrollToEducation, set
           </ProjectPopup>
         )}
         
-        <ProjectInfoModal currentProject={currentProject} openModal={openModal} setOpenModal={setOpenModal} />
+        <ProjectInfoModal menuVisible={menuVisible} currentProject={currentProject} openModal={openModal} setOpenModal={setOpenModal} />
 
         <SpeechBubble ref={speechBubbleRef} src="/img/projects/misc/speech-bubble-portfolio.png"/>
         

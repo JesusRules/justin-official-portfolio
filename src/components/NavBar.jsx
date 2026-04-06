@@ -96,12 +96,12 @@ const MenuItems = styled.ul`
       }
 `
 
-function NavBar({ scrollYGlobal, 
+function NavBar({ scrollYGlobal, setMenuVisible, menuVisible,
                 clickToWho, clickToSkills, clickToPortfolio, clickToEducation, clickToContact}) {
     //FLAG
     const [menuEnabled, setMenuEnabled] = useState(false);
     const [prevScrollPos, setPrevScrollPos] = useState(0);
-    const [visible, setVisible] = useState(true);
+    // const [menuVisible, setMenuVisible] = useState(true);
     // const [gifUrl, setGifUrl] = useState("/img/navbar/Banner-Render-2.gif");
     const [gifReady, setGifReady] = useState(false);
     const menuItemsRef = useRef();
@@ -133,7 +133,7 @@ function NavBar({ scrollYGlobal,
     const handleMouseMove = (event) => {
         const mouseY = event.clientY;
         if (mouseY <= 10) {
-            setVisible(true);
+            setMenuVisible(true);
         }
     }
 
@@ -150,11 +150,11 @@ function NavBar({ scrollYGlobal,
         
         if (prevScrollPos > currentScrollPos) {
             // UP
-            setVisible(true);
+            setMenuVisible(true);
         } else if (prevScrollPos < currentScrollPos) {
             // DON
             setMenuEnabled(false);
-            setVisible(false);
+            setMenuVisible(false);
         }
 
         setPrevScrollPos(currentScrollPos);
@@ -188,7 +188,7 @@ function NavBar({ scrollYGlobal,
 
   return (
     <>
-    <Container className={`nav ${visible ? 'visible' : 'hidden'}`}>
+    <Container className={`nav ${menuVisible ? 'visible' : 'hidden'}`}>
         <SImage  src="/img/navbar/NavBar.png" onClick={(e) => handleClick(e)}/>
     </Container>
 
