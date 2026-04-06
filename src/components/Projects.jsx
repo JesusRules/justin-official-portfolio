@@ -347,7 +347,7 @@ var contentTitlesArray2 = [
   { name: "Cannabis Clubhouse", description: "An e-commerce website/app I made.", id: 'cannabis-clubhouse' },
   { name: "Grey Rock VIP", description: "An immersive calendar app that allows discounted reservations at the Grey Rock Casino.", id: 'grey-rock-vip' },
   { name: "Incident Report App", description: "A secure app built for generating incidental flash reports at the Grey Rock Casino", id: 'incident-report-app' },
-  { name: "", description: "", id: '' },
+  { name: "Band Council Resolution System", description: "A centralized system for managing Band Council Resolutions, enabling secure creation, tracking, and digital signing through integrated tools like DocuSign.", id: 'bcr-app' },
   { name: "", description: "", id: '' },
   { name: "", description: "", id: '' },
   { name: "", description: "", id: '' },
