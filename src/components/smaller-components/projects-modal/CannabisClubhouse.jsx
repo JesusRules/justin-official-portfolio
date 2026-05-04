@@ -60,12 +60,16 @@ function CannabisClubhouse({ openModal, setOpenModal }) {
 
         <HorizontalImageLoopProjects _images={images} _isReversed={false} openModal={openModal} _uniqueClassName={"images4"} />
 
-        <div style={{textAlign: 'center', margin: '1rem'}}>
-            {/* <h4 style={{fontWeight: 800, marginBottom: '.26rem'}}>Try it out!</h4> */}
+        {/* <div style={{textAlign: 'center', margin: '1rem'}}>
             <h4 style={{fontWeight: 800, marginBottom: '.26rem'}}>Try it out!</h4>
             <div style={{display: 'flex', alignItems: 'start', gap: '0.2rem', justifyContent: 'center'}}>
               <img onClick={(e) => handleUrl()} style={{width: '28%', maxWidth: '170px', cursor: 'pointer'}} src="/img/projects/misc/web-link.png"/>
-              {/* <img  style={{width: '28%', maxWidth: '170px', opacity: 0.5, cursor: 'not-allowed'}} src="/img/projects/misc/web-link.png"/> */}
+            </div>
+        </div> */}
+        <div style={{textAlign: 'center', margin: '1rem'}}>
+            <h4 style={{fontWeight: 800, marginBottom: '.26rem'}}>Currently not working</h4>
+            <div style={{display: 'flex', alignItems: 'start', gap: '0.2rem', justifyContent: 'center'}}>
+              <img draggable={false} style={{width: '28%', maxWidth: '170px', opacity: 0.4}} src="/img/projects/misc/web-link.png"/>
             </div>
         </div>
 

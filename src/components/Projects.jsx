@@ -346,8 +346,10 @@ var contentTitlesArray2 = [
   { name: "Go to Level 1", description: "", id: 'level-1' },
   { name: "Cannabis Clubhouse", description: "An e-commerce website/app I made.", id: 'cannabis-clubhouse' },
   { name: "Grey Rock VIP", description: "An immersive calendar app that allows discounted reservations at the Grey Rock Casino.", id: 'grey-rock-vip' },
-  { name: "Incident Report App", description: "A secure app built for generating incidental flash reports at the Grey Rock Casino", id: 'incident-report-app' },
-  { name: "Band Council Resolution System", description: "A centralized system for managing Band Council Resolutions, enabling secure creation, tracking, and digital signing through integrated tools like DocuSign.", id: 'bcr-app' },
+  // { name: "Incident Report App", description: "A secure app built for generating incidental flash reports at the Grey Rock Casino", id: 'incident-report-app' },
+  // { name: "Band Council Resolution System", description: "A centralized system for managing Band Council Resolutions, enabling secure creation, tracking, and digital signing through integrated tools like DocuSign.", id: 'bcr-app' },
+  { name: "", description: "", id: '' }, // Delete
+  { name: "", description: "", id: '' }, // Delete
   { name: "", description: "", id: '' },
   { name: "", description: "", id: '' },
   { name: "", description: "", id: '' },
@@ -694,9 +696,10 @@ function Projects({ myRef, menuVisible, scrollYGlobal, scrollToSkills, scrollToE
                   }} 
                   gl={{
                     outputColorSpace: THREE.SRGBColorSpace,
-                    // toneMapping: THREE.ReinhardToneMapping,
+                    // outputColorSpace: THREE.SRGBColorSpace,
                     toneMapping: THREE.ACESFilmicToneMapping,
                     toneMappingExposure: 1, // Adjust this value
+                    encoding: THREE.sRGBEncoding
                   }}
                   performance={{ min: 0.001, max: 0.001 }}
                   // devicePixelRatio={window.devicePixelRatio / 10}
