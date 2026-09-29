@@ -348,10 +348,12 @@ var contentTitlesArray2 = [
   { name: "Grey Rock VIP", description: "An immersive calendar app that allows discounted reservations at the Grey Rock Casino.", id: 'grey-rock-vip' },
   // { name: "Incident Report App", description: "A secure app built for generating incidental flash reports at the Grey Rock Casino", id: 'incident-report-app' },
   // { name: "Band Council Resolution System", description: "A centralized system for managing Band Council Resolutions, enabling secure creation, tracking, and digital signing through integrated tools like DocuSign.", id: 'bcr-app' },
+  // { name: "MMFN Registry App", description: "A registry system built for my native reserve, and deployed at the band's office.", id: 'mmfn-app' },
+  // { name: "Grey Rock Academy", description: "An academy learning system built for the Grey Rock Casino.", id: 'greyrock-academy' },
   { name: "", description: "", id: '' }, // Delete
   { name: "", description: "", id: '' }, // Delete
-  { name: "", description: "", id: '' },
-  { name: "", description: "", id: '' },
+  { name: "", description: "", id: '' }, // Delete
+  { name: "", description: "", id: '' }, // Delete
   { name: "", description: "", id: '' },
   { name: "", description: "", id: '' },
   { name: "", description: "", id: '' },

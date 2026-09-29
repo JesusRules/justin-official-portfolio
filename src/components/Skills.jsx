@@ -101,15 +101,15 @@ function Skills({ myRef, scrollYGlobal, scrollToSkills, setRefReached }) {
     
     {/* <div className="first-div" style={{opacity: 0, transform: 'translateY(40px)'}}> */}
     <div className="first-div" >
-        <Subtitle>Coding Languages</Subtitle>
+        <Subtitle>Programming & Web Languages</Subtitle>
         <HorizontalImageLoopComponent1 _images={imagesLanguages} _isReversed={false} />
     </div>
     <div className="first-div" >
-        <Subtitle>App development</Subtitle>
+        <Subtitle>Development, Data & Infrastructure</Subtitle>
         <HorizontalImageLoopComponent2 _images={imagesApps} _isReversed={true} />
     </div>
     <div className="first-div" >
-        <Subtitle>Media/Game creation</Subtitle>
+        <Subtitle>Media & Game Creation</Subtitle>
         <HorizontalImageLoopComponent3 _images={imagesMedia} _isReversed={false} />
     </div>
 
@@ -121,12 +121,14 @@ function Skills({ myRef, scrollYGlobal, scrollToSkills, setRefReached }) {
 
 
 const imagesApps = [
+    '/logos/app-development/access.png',
     '/logos/app-development/adobe-xd.png',
     '/logos/app-development/amplify.png',
     '/logos/app-development/android-studio.png',
     '/logos/app-development/asp.net.png',
     '/logos/app-development/aws-logo.png',
     '/logos/app-development/docusign.png',
+    '/logos/app-development/excel.png',
     '/logos/app-development/express.png',
     '/logos/app-development/figma.png',
     '/logos/app-development/firebase.png',
@@ -144,6 +146,7 @@ const imagesApps = [
     '/logos/app-development/postgres.png',
     '/logos/app-development/paypal.png',
     '/logos/app-development/stripe.png',
+    '/logos/app-development/raspberry-pi.png',
     '/logos/app-development/react-native.png',
     '/logos/app-development/react-redux.png',
     '/logos/app-development/react.png',
