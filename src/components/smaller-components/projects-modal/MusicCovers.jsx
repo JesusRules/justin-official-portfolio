@@ -1040,6 +1040,58 @@ function MusicCovers({ openModal, setOpenModal, hideVideos }) {
                 </VideoDiv2>
               </VideoDiv>
             </div>
+
+            {/* Every 2 */}
+            <div className='grid-item'>
+              <VideoDiv>
+                <VideoDiv2>
+                  <iframe
+                    src="https://www.youtube.com/embed/XmdrOug0p_I?si=B31utJBFcjkCe2gX"
+                    srcDoc={`
+                      <style>
+                        *{height:100%;padding:0;margin:0;overflow:hidden;}
+                        body,html{height:100%;}
+                        img,svg{
+                          object-fit:cover;
+                          position:absolute;
+                          width:100%;
+                          top:0;
+                          bottom:0;
+                          margin:auto;
+                        }
+                        svg{
+                          height:5rem;
+                          filter:drop-shadow(1px 1px 10px hsl(206.5,70.7%,8%));
+                          transition:all 250ms ease-in-out;
+                        }
+                        body:hover svg{
+                          filter:drop-shadow(1px 1px 10px hsl(206.5,0%,10%));
+                          transform:scale(1.2);
+                        }
+                      </style>
+
+                      <a href="https://www.youtube.com/embed/XmdrOug0p_I?autoplay=1">
+                        <img src="https://i.ytimg.com/vi/XmdrOug0p_I/hqdefault.jpg" alt="Performance Video"/>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="84" height="84" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                          <circle cx="12" cy="12" r="10"></circle>
+                          <polygon points="10 8 16 12 10 16 10 8"></polygon>
+                        </svg>
+                      </a>
+                    `}
+                    loading="lazy"
+                    title="YouTube video player"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </VideoDiv2>
+              </VideoDiv>
+            </div>
+            <div className='grid-item'>
+              <div className='info'>
+                <h3>Godfather Theme Tokyo 1992 - Slash</h3>
+              </div>
+            </div>
             </>
           )}
 
