@@ -60,8 +60,25 @@ function App() {
   const [heroReady, setHeroReady] = useState(false);
   const onHeroReady = useCallback(() => setHeroReady(true), []);
   const navigation = useRef(0);
+  const cancelPendingNavigation = useCallback(() => { navigation.current += 1; }, []);
 
   const [refReached, setRefReached] = useState(false);
+
+  useEffect(() => {
+    const onKeyDown = event => {
+      if (event.defaultPrevented || event.ctrlKey || event.metaKey || event.altKey) return;
+      const target = event.target;
+      if (target instanceof HTMLElement && (
+        target.isContentEditable || target.matches('input, textarea, select') ||
+        (event.key === ' ' && target.closest('button, a, [role="button"]'))
+      )) return;
+      if (['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' '].includes(event.key)) {
+        cancelPendingNavigation();
+      }
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [cancelPendingNavigation]);
 
   useEffect(() => {
     if (!heroReady) return;
@@ -78,17 +95,13 @@ function App() {
   }, [heroReady]);
 
   
-  // OLD //////////////////////////////
+  // Scroll notifications also come from smooth scrolling and browser snapping.
+  // Only new user input or another destination should cancel a pending menu jump.
   const handleScroll = (event) => {
-    const scrollTop = event.target.scrollTop;
-    navigation.current += 1;
-    setScrollY(scrollTop);
+    setScrollY(event.currentTarget.scrollTop);
   };
 
 
-  const scrollToHero = () => {
-    heroRef.current.scrollIntoView({ behavior: 'smooth' });
-  }
   const scrollToSection = async (section, loader) => {
     const request = ++navigation.current;
     // Direct navigation keeps the current screen until the destination is ready.
@@ -105,7 +118,10 @@ function App() {
 
   return (
     // <Wrapper>
-    <Container ref={containerRef} onScroll={handleScroll} hideOverflow={hideOverflow}>
+    <Container ref={containerRef} onScroll={handleScroll} hideOverflow={hideOverflow}
+              onWheelCapture={cancelPendingNavigation}
+              onTouchMoveCapture={cancelPendingNavigation}
+              onPointerDownCapture={cancelPendingNavigation}>
       <NavBar 
               menuVisible={menuVisible}
               setMenuVisible={setMenuVisible}
@@ -118,14 +134,12 @@ function App() {
               />
       <Hero myRef={heroRef} scrollYGlobal={scrollY} onReady={onHeroReady}
                             clickToContact={scrollToContact}
-                            scrollToHero={scrollToHero} 
                             whoRef={whoRef} 
                             setRefReached={setRefReached}/>
       <DeferredSection component={Who} label="About Me" myRef={whoRef} scrollYGlobal={scrollY}
               loadRef={whoLoadRef} canPrepare={heroReady} backdrop="/img/hero-banner/blue-sky-2.jpg"
-              scrollToWho={scrollToWho} 
               setRefReached={setRefReached}/>
-      <DeferredSection component={Skills} label="skills" myRef={skillsRef} scrollYGlobal={scrollY} scrollToSkills={scrollToSkills}
+      <DeferredSection component={Skills} label="skills" myRef={skillsRef} scrollYGlobal={scrollY}
                   loadRef={skillsLoadRef} canPrepare={heroReady} backdrop="/img/hero-banner/blue-sky-2.jpg"
                   setRefReached={setRefReached} />
       <DeferredSection component={Projects} label="projects" myRef={portfolioRef}

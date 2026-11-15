@@ -69,7 +69,7 @@ const CrucifixImage = styled.img`
     }
 `
 
-function Skills({ myRef, scrollYGlobal, scrollToSkills, setRefReached, onReady }) {
+function Skills({ myRef, scrollYGlobal, setRefReached, onReady }) {
     const { isVisible } = useSectionActivity(myRef);
     const readyRows = useRef(new Set());
     const onReadyRef = useRef(onReady);
@@ -82,7 +82,6 @@ function Skills({ myRef, scrollYGlobal, scrollToSkills, setRefReached, onReady }
     useEffect(() => {
         const divElement = myRef.current;
         if (Math.round(scrollYGlobal) == divElement.offsetTop) {
-            scrollToSkills();
             setRefReached(true);
         }
         if (scrollYGlobal >= divElement.offsetTop) {

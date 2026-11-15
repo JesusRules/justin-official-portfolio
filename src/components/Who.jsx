@@ -200,7 +200,7 @@ const ResumeButton = styled.a`
       }
 `
 
-function Who({ myRef, scrollYGlobal, scrollToWho, setRefReached, onReady }) {
+function Who({ myRef, scrollYGlobal, setRefReached, onReady }) {
   const { isVisible } = useSectionActivity(myRef);
   const [isMobile, setIsMobile] = useState(() => window.matchMedia('(max-width: 700px)').matches);
   const [readyForViewport, setReadyForViewport] = useState(null);
@@ -226,7 +226,6 @@ function Who({ myRef, scrollYGlobal, scrollToWho, setRefReached, onReady }) {
   useEffect(() => {
     const divElement = myRef.current;
     if (Math.round(scrollYGlobal) == divElement.offsetTop) {
-        scrollToWho();
         setRefReached(true);
     }
     // if (Math.round(scrollYGlobal) > divElement.offsetTop || Math.round(scrollYGlobal) < divElement.offsetTop) {

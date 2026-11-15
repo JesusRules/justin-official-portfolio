@@ -418,7 +418,6 @@ function Projects({ myRef, menuVisible, scrollYGlobal, scrollToSkills, scrollToE
       const divElement = myRef.current;
       const halfwayPoint = divElement.scrollHeight / 5;
       if (Math.round(scrollYGlobal) == divElement.offsetTop) {
-        scrollToPortfolio();
         setRefReached(true);
         // if (!showBubbleOnce) {
         //   setShowBubbleOnce(true);

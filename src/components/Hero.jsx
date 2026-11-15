@@ -454,7 +454,7 @@ const LoadingText = styled.h1`
     }
 `
 
-function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero, whoRef, setRefReached, onReady }) {
+function Hero({ scrollYGlobal, clickToContact, myRef, whoRef, setRefReached, onReady }) {
     // PARALLAX VARS
     let parallex_el;
     let xValue = 0, yValue = 0;
@@ -926,7 +926,6 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero, whoRef, setR
         useEffect(() => {
             const divElement = myRef.current;
             if (Math.round(scrollYGlobal) == divElement.offsetTop) {
-                scrollToHero();
                 setRefReached(true);
             }
             // if (Math.round(scrollYGlobal) > divElement.offsetTop || Math.round(scrollYGlobal) < divElement.offsetTop) {
