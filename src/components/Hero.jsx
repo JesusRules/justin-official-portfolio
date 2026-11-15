@@ -20,8 +20,8 @@ const Container = styled.div`
     /* scroll-behavior: smooth; */
     /* background-image: linear-gradient(rgba(255, 255, 255, 0.0), rgba(255, 255, 255, 0.6)),
                   url("/img/hero-banner/blue-sky-2.jpg"); */
-    background-image: url("/img/hero-banner/Sky.png");
-    /* background: radial-gradient(circle at center, white 0%, transparent 100%), url("/img/hero-banner/Sky.png"); */
+    background-image: url("/img/hero-banner/Sky.webp");
+    /* background: radial-gradient(circle at center, white 0%, transparent 100%), url("/img/hero-banner/Sky.webp"); */
     background-repeat: no-repeat;
     background-size: cover;
 `
@@ -542,21 +542,6 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero, whoRef, setR
         })
     }
 
-    useEffect(() => {
-      navRef.current = document.querySelector(".nav");
-
-      const onMouse = (e) => handleMouseMove(e);
-      const onTouch = (e) => handleTouchMove(e);
-
-      document.addEventListener("mousemove", onMouse, { passive: true });
-      document.addEventListener("touchmove", onTouch, { passive: true });
-
-      return () => {
-        document.removeEventListener("mousemove", onMouse);
-        document.removeEventListener("touchmove", onTouch);
-      };
-    }, []);
-
     // useEffect(() => {
     //     navElement = document.querySelector('.nav');
     //     if (window.innerWidth <= 768) {
@@ -1047,6 +1032,7 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero, whoRef, setR
 
     useEffect(() => {
       if (!allReady) return;
+      navRef.current = document.querySelector('.nav');
       const els = document.querySelectorAll(".parallax");
       const applyBase = () => {
         els.forEach((el) => {
@@ -1060,16 +1046,29 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero, whoRef, setR
 
       applyBase();
 
-      const onMouse = (e) => {
-        const overNav = document.querySelector('.nav')?.contains(e.target) ?? false;
-        if (!overNav) handleMouseMove(e);
+      let frame = 0;
+      let latestEvent;
+      let touching = false;
+      const scheduleUpdate = (event, isTouch) => {
+        // Pointer events elsewhere on the page should not animate the hidden hero.
+        if (myRef.current.parentElement.scrollTop >= myRef.current.offsetHeight) return;
+        latestEvent = event;
+        touching = isTouch;
+        if (frame) return;
+        frame = requestAnimationFrame(() => {
+          frame = 0;
+          if (touching) handleTouchMove(latestEvent);
+          else handleMouseMove(latestEvent);
+        });
       };
-      const onTouch = (e) => handleTouchMove(e);
+      const onMouse = (e) => scheduleUpdate(e, false);
+      const onTouch = (e) => scheduleUpdate(e, true);
 
       document.addEventListener('mousemove', onMouse, { passive: true });
       document.addEventListener('touchmove', onTouch, { passive: true });
 
       return () => {
+        cancelAnimationFrame(frame);
         document.removeEventListener('mousemove', onMouse);
         document.removeEventListener('touchmove', onTouch);
       };
@@ -1095,78 +1094,78 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero, whoRef, setR
             </div>
         </ContactBtnMain>
 
-        <Sky ref={skyRef} src="/img/hero-banner/Sky.png" data-speedx="0.33" data-speedy="0.33" data-speedz="0" data-rotation="0" className='parallax bg-img'
+        <Sky ref={skyRef} src="/img/hero-banner/Sky.webp" data-speedx="0.33" data-speedy="0.33" data-speedz="0" data-rotation="0" className='parallax bg-img'
                 draggable="false" alt='Sky' onLoad={(e) => imageLoaded(e.target)} onError={(e) => imageError(e)}/>
         
         {/* Cloud Main */}
-        <CloudMain_Back ref={cloudMainBackRef} src="/img/hero-banner/CloudMain-Back.png" data-speedx="0.15" data-speedy="0.16" data-speedz="0.125" data-rotation="0.01" className='parallax cloud-main-back'
+        <CloudMain_Back ref={cloudMainBackRef} src="/img/hero-banner/CloudMain-Back.webp" data-speedx="0.15" data-speedy="0.16" data-speedz="0.125" data-rotation="0.01" className='parallax cloud-main-back'
                 alt='CloudBack' onLoad={(e) => imageLoaded(e.target)} onError={(e) => imageError(e)} draggable="false"/>
-        <CloudMain_Front ref={cloudMainFrontRef} src="/img/hero-banner/CloudMain-Front.png" data-speedx="0.01" data-speedy="0.02" data-speedz="0.53" data-rotation="0.2" className='parallax cloud-main-front'
+        <CloudMain_Front ref={cloudMainFrontRef} src="/img/hero-banner/CloudMain-Front.webp" data-speedx="0.01" data-speedy="0.02" data-speedz="0.53" data-rotation="0.2" className='parallax cloud-main-front'
                 alt='CloudMain' onLoad={(e) => imageLoaded(e.target)} onError={(e) => imageError(e)} draggable="false"/>
         {/* Cloud Backgrounds */}
-        <CloudBG_4 ref={cloudBG4} src="/img/hero-banner/CloudBG-4.png" data-speedx="0.287" data-speedy="0.305" data-speedz="0.03" data-rotation="0" className='parallax cloud-bg-4'
+        <CloudBG_4 ref={cloudBG4} src="/img/hero-banner/CloudBG-4.webp" data-speedx="0.287" data-speedy="0.305" data-speedz="0.03" data-rotation="0" className='parallax cloud-bg-4'
                 alt='Cloud4' onLoad={(e) => imageLoaded(e.target)} onError={(e) => imageError(e)} draggable="false"/>
-        <CloudBG_3 ref={cloudBG3} src="/img/hero-banner/CloudBG-3.png" data-speedx="0.285" data-speedy="0.299" data-speedz="0.045" data-rotation="0" className='parallax cloud-bg-3'
+        <CloudBG_3 ref={cloudBG3} src="/img/hero-banner/CloudBG-3.webp" data-speedx="0.285" data-speedy="0.299" data-speedz="0.045" data-rotation="0" className='parallax cloud-bg-3'
                 alt='Cloud3' onLoad={(e) => imageLoaded(e.target)} onError={(e) => imageError(e)} draggable="false"/>
-        <CloudBG_2 ref={cloudBG2} src="/img/hero-banner/CloudBG-2.png" data-speedx="0.271" data-speedy="0.284" data-speedz="0.033" data-rotation="0" className='parallax cloud-bg-2'
+        <CloudBG_2 ref={cloudBG2} src="/img/hero-banner/CloudBG-2.webp" data-speedx="0.271" data-speedy="0.284" data-speedz="0.033" data-rotation="0" className='parallax cloud-bg-2'
                 alt='Cloud2' onLoad={(e) => imageLoaded(e.target)} onError={(e) => imageError(e)} draggable="false"/>
-        <CloudBG_1 ref={cloudBG1} src="/img/hero-banner/CloudBG-1.png" data-speedx="0.282" data-speedy="0.3" data-speedz="0.041" data-rotation="0" className='parallax cloud-bg-1'
+        <CloudBG_1 ref={cloudBG1} src="/img/hero-banner/CloudBG-1.webp" data-speedx="0.282" data-speedy="0.3" data-speedz="0.041" data-rotation="0" className='parallax cloud-bg-1'
                 alt='Cloud1' onLoad={(e) => imageLoaded(e.target)} onError={(e) => imageError(e)} draggable="false"/>
             {/* Items/Characters */}
         {/* <JesusFlag src="/img/JesusFlag.png" className='parallax jesus-flag'/> */}
-        <Haunter ref={haunterRef} src="/img/hero-banner/Haunter.png" data-speedx="0.215" data-speedy="0.301" data-speedz="0.1" data-rotation="0.01" className='parallax haunter'
+        <Haunter ref={haunterRef} src="/img/hero-banner/Haunter.webp" data-speedx="0.215" data-speedy="0.301" data-speedz="0.1" data-rotation="0.01" className='parallax haunter'
                 alt='Haunter' onLoad={(e) => imageLoaded(e.target)} onError={(e) => imageError(e)} draggable="false" onClick={() => haunterAudioRef.current.play()}/>
-        <Boo ref={booRef} src="/img/hero-banner/Boo.png" data-speedx="0.215" data-speedy="0.276" data-speedz="0.1" data-rotation="0.01" className='parallax boo'
+        <Boo ref={booRef} src="/img/hero-banner/Boo.webp" data-speedx="0.215" data-speedy="0.276" data-speedz="0.1" data-rotation="0.01" className='parallax boo'
                 alt='Boo' onLoad={(e) => imageLoaded(e.target)} onError={(e) => imageError(e)} draggable="false" onClick={() => booAudioRef.current.play()}/>
 
-        <Bernard_Txt ref={bernardTxtRef} src="/img/hero-banner/Bernard-Text.png" data-speedx="0.1" data-speedy="0.134" data-speedz="0.25" data-rotation="0.02" className='parallax bernard-txt'
+        <Bernard_Txt ref={bernardTxtRef} src="/img/hero-banner/Bernard-Text.webp" data-speedx="0.1" data-speedy="0.134" data-speedz="0.25" data-rotation="0.02" className='parallax bernard-txt'
                 alt='BernardTxt' onLoad={(e) => imageLoaded(e.target)} onError={(e) => imageError(e)} draggable="false"/>
-        <Justin_Txt ref={justinTxtRef} src="/img/hero-banner/Justin-Text.png" data-speedx="0.1" data-speedy="0.125" data-speedz="0.25" data-rotation="0.02"  className='parallax justin-txt'
+        <Justin_Txt ref={justinTxtRef} src="/img/hero-banner/Justin-Text.webp" data-speedx="0.1" data-speedy="0.125" data-speedz="0.25" data-rotation="0.02"  className='parallax justin-txt'
                 alt='JustinTxt' onLoad={(e) => imageLoaded(e.target)} onError={(e) => imageError(e)} draggable="false"/>
         
         <JesusFlag2 ref={jesusFlagRef} src="/img/hero-banner/JesusFlag.gif" data-speedx="0.125" data-speedy="0.137" data-speedz="0.175" data-rotation="0.09" className='parallax jesus-flag'
                 alt='JesusFlag2' onLoad={(e) => imageLoaded(e.target)} onError={(e) => imageError(e)} draggable="false"/>
-        <Pipe ref={pipeRef} src="/img/hero-banner/Pipe.png" data-speedx="0.11" data-speedy="0.134" data-speedz="0.3" data-rotation="0.1" className='parallax pipe'
+        <Pipe ref={pipeRef} src="/img/hero-banner/Pipe.webp" data-speedx="0.11" data-speedy="0.134" data-speedz="0.3" data-rotation="0.1" className='parallax pipe'
                 alt='Pipe' onLoad={(e) => imageLoaded(e.target)} onError={(e) => imageError(e)} draggable="false" onClick={() => pipeAudioRef.current.play()}/>
-        <HelloKitty ref={helloKittyRef} src="/img/hero-banner/HelloKitty.png" data-speedx="0.11" data-speedy="0.15" data-speedz="0.3" data-rotation="0.1" className='parallax hello-kitty'
+        <HelloKitty ref={helloKittyRef} src="/img/hero-banner/HelloKitty.webp" data-speedx="0.11" data-speedy="0.15" data-speedz="0.3" data-rotation="0.1" className='parallax hello-kitty'
                 alt='HelloKitty' onLoad={(e) => imageLoaded(e.target)} onError={(e) => imageError(e)} draggable="false"/>
-        <Toad ref={toadRef} src="/img/hero-banner/Toad.png" data-speedx="0.08" data-speedy="0.09" data-speedz="0.35" data-rotation="0.125" className='parallax toad'
+        <Toad ref={toadRef} src="/img/hero-banner/Toad.webp" data-speedx="0.08" data-speedy="0.09" data-speedz="0.35" data-rotation="0.125" className='parallax toad'
                 alt='Toad' onLoad={(e) => imageLoaded(e.target)} onError={(e) => imageError(e)} draggable="false" onClick={() => toadAudioRef.current.play()}/>
-        <Kart ref={kartRef} src="/img/hero-banner/Kart.png" data-speedx="0.08" data-speedy="0.088" data-speedz="0.35" data-rotation="0.125" className='parallax kart'
+        <Kart ref={kartRef} src="/img/hero-banner/Kart.webp" data-speedx="0.08" data-speedy="0.088" data-speedz="0.35" data-rotation="0.125" className='parallax kart'
                 alt='Kart' onLoad={(e) => imageLoaded(e.target)} onError={(e) => imageError(e)} draggable="false" onClick={() => kartAudioRef.current.play()}/>
-        <Joy ref={joyRef} src="/img/hero-banner/Joy.png" data-speedx="0.05" data-speedy="0.06" data-speedz="0.4" data-rotation="0.15" className='parallax joy'
+        <Joy ref={joyRef} src="/img/hero-banner/Joy.webp" data-speedx="0.05" data-speedy="0.06" data-speedz="0.4" data-rotation="0.15" className='parallax joy'
                 alt='Joy' onLoad={(e) => imageLoaded(e.target)} onError={(e) => imageError(e)} draggable="false"/>
-        <Pikachu ref={pikachuRef} src="/img/hero-banner/Pikachu.png" data-speedx="0.05" data-speedy="0.064" data-speedz="0.4" data-rotation="0.15" className='parallax pikachu'
+        <Pikachu ref={pikachuRef} src="/img/hero-banner/Pikachu.webp" data-speedx="0.05" data-speedy="0.064" data-speedz="0.4" data-rotation="0.15" className='parallax pikachu'
                 draggable="false" alt='Pikachu' onLoad={(e) => imageLoaded(e.target)} onError={(e) => imageError(e)} onClick={() => pikachuAudioRef.current.play()}/>
-        <Mario ref={marioRef} src="/img/hero-banner/Mario.png" data-speedx="0.03" data-speedy="0.032" data-speedz="0.45" data-rotation="0.175" className='parallax mario'
+        <Mario ref={marioRef} src="/img/hero-banner/Mario.webp" data-speedx="0.03" data-speedy="0.032" data-speedz="0.45" data-rotation="0.175" className='parallax mario'
                 draggable="false" alt='Mario' onLoad={(e) => imageLoaded(e.target)} onError={(e) => imageError(e)} onClick={() => safePlay(marioAudioRef.current)} onTouchStart={() => safePlay(marioAudioRef.current)} />
-        <MiniJesus ref={miniJesusRef} src="/img/hero-banner/MiniJesus.png" data-speedx="0.03" data-speedy="0.03" data-speedz="0.45" data-rotation="0.175" className='parallax mini-jesus'
+        <MiniJesus ref={miniJesusRef} src="/img/hero-banner/MiniJesus.webp" data-speedx="0.03" data-speedy="0.03" data-speedz="0.45" data-rotation="0.175" className='parallax mini-jesus'
                 draggable="false" alt='MiniJesus' onLoad={(e) => imageLoaded(e.target)} onError={(e) => imageError(e)} onClick={() => jesusAudioRef.current.play()} />
-        <Justin ref={justinRef} src="/img/hero-banner/Justin.png" data-speedx="0.01" data-speedy="0.02" data-speedz="0.53" data-rotation="0.2" className='parallax justin'
+        <Justin ref={justinRef} src="/img/hero-banner/Justin.webp" data-speedx="0.01" data-speedy="0.02" data-speedz="0.53" data-rotation="0.2" className='parallax justin'
                 draggable="false" alt='Justin' onLoad={(e) => imageLoaded(e.target)} onError={(e) => imageError(e)}/>
 
-        <audio ref={marioAudioRef} controls style={{display: 'none'}}>
+        <audio preload="none" ref={marioAudioRef} controls style={{display: 'none'}}>
             <source src="/audio/mario.mp3" type="audio/mpeg" />
         </audio>
-        <audio ref={booAudioRef} controls style={{display: 'none'}}>
+        <audio preload="none" ref={booAudioRef} controls style={{display: 'none'}}>
             <source src="/audio/boo.mp3" type="audio/mpeg" />
         </audio>
-        <audio ref={pikachuAudioRef} controls style={{display: 'none'}}>
+        <audio preload="none" ref={pikachuAudioRef} controls style={{display: 'none'}}>
             <source src="/audio/pikachu.mp3" type="audio/mpeg" />
         </audio>
-        <audio ref={kartAudioRef} controls style={{display: 'none'}}>
+        <audio preload="none" ref={kartAudioRef} controls style={{display: 'none'}}>
             <source src="/audio/kart.mp3" type="audio/mpeg" />
         </audio>
-        <audio ref={jesusAudioRef} controls style={{display: 'none'}}>
+        <audio preload="none" ref={jesusAudioRef} controls style={{display: 'none'}}>
             <source src="/audio/jesus.mp3" type="audio/mpeg" />
         </audio>
-        <audio ref={haunterAudioRef} controls style={{display: 'none'}}>
+        <audio preload="none" ref={haunterAudioRef} controls style={{display: 'none'}}>
             <source src="/audio/haunter.mp3" type="audio/mpeg" />
         </audio>
-        <audio ref={toadAudioRef} controls style={{display: 'none'}}>
+        <audio preload="none" ref={toadAudioRef} controls style={{display: 'none'}}>
             <source src="/audio/toad.mp3" type="audio/mpeg" />
         </audio>
-        <audio ref={pipeAudioRef} controls style={{display: 'none'}}>
+        <audio preload="none" ref={pipeAudioRef} controls style={{display: 'none'}}>
             <source src="/audio/pipe.mp3" type="audio/mpeg" />
         </audio>
 

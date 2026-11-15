@@ -112,10 +112,12 @@ function NavBar({ scrollYGlobal, setMenuVisible, menuVisible,
 
     useEffect(() => {
       setGifReady(false);
+      if (!menuEnabled) return;
       const img = new Image();
-      img.src = gifUrl;
       img.onload = () => setGifReady(true);
-    }, [gifUrl]);
+      img.src = gifUrl;
+      return () => { img.onload = null; };
+    }, [gifUrl, menuEnabled]);
 
     useEffect(() => {
         window.addEventListener('mousemove', handleMouseMove);
@@ -123,12 +125,6 @@ function NavBar({ scrollYGlobal, setMenuVisible, menuVisible,
             window.removeEventListener('mousemove', handleMouseMove);
         }
     }, [])
-
-    useEffect(() => {
-      const img = new Image();
-      img.src = "/img/navbar/Banner-Render-2.gif";
-      img.onload = () => setGifReady(true);
-    }, []);
 
     const handleMouseMove = (event) => {
         const mouseY = event.clientY;
@@ -189,7 +185,7 @@ function NavBar({ scrollYGlobal, setMenuVisible, menuVisible,
   return (
     <>
     <Container className={`nav ${menuVisible ? 'visible' : 'hidden'}`}>
-        <SImage  src="/img/navbar/NavBar.png" onClick={(e) => handleClick(e)}/>
+        <SImage  src="/img/navbar/NavBar.webp" onClick={(e) => handleClick(e)}/>
     </Container>
 
     {menuEnabled && (

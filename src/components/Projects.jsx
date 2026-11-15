@@ -2,7 +2,6 @@ import React, { useRef, useEffect, useState, Suspense, useMemo } from 'react'
 import { styled, keyframes  } from 'styled-components'
 import { Canvas, useFrame, useLoader, useThree, extend  } from '@react-three/fiber'
 import { OrbitControls, Html, Environment, Sky, PerspectiveCamera, Circle, useEnvironment, shaderMaterial, useProgress  } from '@react-three/drei';
-import { MiniJesus } from './threejsscripts/MiniJesus';
 import * as THREE from "three";
 import gsap from 'gsap';
 import ProjectInfoModal from './smaller-components/ProjectInfoModal';
@@ -12,9 +11,8 @@ import Skybox from './threejsscripts/Skybox';
 import { Bloom, DepthOfField, EffectComposer, Noise, Vignette } from '@react-three/postprocessing'
 import { Water } from 'three-stdlib';
 import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader.js'
-import MarioGuitar from './threejsscripts/mario-guitar/MarioGuitar';
 import { MiniJesusFBX } from './threejsscripts/MiniJesusFBX';
-import { MiniJesus2 } from './threejsscripts/MiniJesus2';
+import { useSectionActivity } from '../hooks/useSectionActivity';
 
 extend({ Water })
 
@@ -362,6 +360,7 @@ var contentTitlesArray2 = [
 
 function Projects({ myRef, menuVisible, scrollYGlobal, scrollToSkills, scrollToEducation, setHideOverflow,
                     scrollToPortfolio, setRefReached }) {
+  const { isVisible } = useSectionActivity(myRef);
   const [animIndex, setAnimIndex] = useState(3); //IDLE
   const playerRef = useRef();
   const speechBubbleRef = useRef();
@@ -381,9 +380,9 @@ function Projects({ myRef, menuVisible, scrollYGlobal, scrollToSkills, scrollToE
   // envMap.intensity = 2;
 
   const [isLoaded, setIsLoaded] = useState(false);
-  const [cameraPosition, setCameraPosition] = useState([1, 2, 1]);
+  // Camera movement changes every frame and does not need a React render.
+  const cameraPositionRef = useRef([1, 2, 1]);
   const [qualityCheck, setQualityCheck] = useState(false);
-  const [startUpCam, setStartUpCam] = useState(false); //MINI JESUS 
   
   const [showComponent, setShowComponent] = useState(false);
   const [showModels, setShowModels] = useState(false);
@@ -424,7 +423,6 @@ function Projects({ myRef, menuVisible, scrollYGlobal, scrollToSkills, scrollToE
       if (Math.round(scrollYGlobal) > divElement.offsetTop || Math.round(scrollYGlobal) < divElement.offsetTop) {
         // setShowComponent(false);
         setShowModels(false);
-        setStartUpCam(false);
       }
   }, [scrollYGlobal])
 
@@ -448,27 +446,13 @@ function Projects({ myRef, menuVisible, scrollYGlobal, scrollToSkills, scrollToE
       setupPositionSpots(contentTitlesArray1); //LEVEL 1
     }, []);
 
-    const setupPositionSpots = (_contentTitlesArray) => {
-      setObjectPoints([]);
-      for (let i = 0; i < _contentTitlesArray.length; i++) {
-        const angle = (i / _contentTitlesArray.length) * Math.PI * 2;
+    const setupPositionSpots = (content) => {
+      setObjectPoints(content.map((project, i) => {
+        const angle = (i / content.length) * Math.PI * 2;
         const x = Math.cos(-angle) * radius;
         const z = Math.sin(-angle) * radius;
-        const newObj = <CircleObject content={_contentTitlesArray[i]} key={i} position={[x, 0.1, z]} />; 
-        // setObjectPoints(objectPoints => [...objectPoints, newObj]);
-        setObjectPoints(objectPoints => {
-          return uniqueByKey([...objectPoints, newObj]);
-        });
-      }
-    }
-
-    const uniqueByKey = (items) => {
-      const set = new Set();
-      return items.filter((item) => {
-        const isDuplicate = set.has(item?.key);
-        set.add(item?.key);
-        return !isDuplicate;
-      })
+        return <CircleObject content={project} key={i} position={[x, 0.1, z]} />;
+      }));
     }
 
 
@@ -685,7 +669,8 @@ function Projects({ myRef, menuVisible, scrollYGlobal, scrollToSkills, scrollToE
         
         {showModels && (
           <>
-        <Canvas camera={{fov: 58, far: 1000, near: 0.1, position: [0, 1.75, 5]}}
+        <Canvas dpr={[1, 1.5]} frameloop={isVisible ? 'always' : 'never'}
+                camera={{fov: 58, far: 1000, near: 0.1, position: [0, 1.75, 5]}}
                   style={{  zIndex: 116,
                             overflow: 'hidden',
                             height: '100vh',
@@ -703,7 +688,6 @@ function Projects({ myRef, menuVisible, scrollYGlobal, scrollToSkills, scrollToE
                     toneMappingExposure: 1, // Adjust this value
                     encoding: THREE.sRGBEncoding
                   }}
-                  performance={{ min: 0.001, max: 0.001 }}
                   // devicePixelRatio={window.devicePixelRatio / 10}
                   // pixelRatio={window.devicePixelRatio / 10}
                   >
@@ -719,11 +703,8 @@ function Projects({ myRef, menuVisible, scrollYGlobal, scrollToSkills, scrollToE
                         setWithinProject={setWithinProject} 
                         idscroleStance={idleStance} 
                         setIdleStance={setIdleStance} 
-                        cameraPosition={cameraPosition} 
-                        setCameraPosition={setCameraPosition} 
+                        cameraPositionRef={cameraPositionRef}
                         setIsLoaded={setIsLoaded}
-                        startUpCam={startUpCam}
-                        setStartUpCam={setStartUpCam}
                         transitioning={transitioning}
                         />
                     {/* WAS HERE */}
@@ -744,7 +725,7 @@ function Projects({ myRef, menuVisible, scrollYGlobal, scrollToSkills, scrollToE
                       {/* <MarioGuitar rotation={[0,-1,0]} position={[-116.586, 0, 82]} scale={1.2} /> */}
                       </>
                     )}
-                    <EnvFBX1 scale={0.369} rotation={[0, 0, 0]} visible={levelState === 1} />
+                    {levelState === 1 && <EnvFBX1 scale={0.369} rotation={[0, 0, 0]} />}
                     
                     <ambientLight color='white' intensity={4} />
                     <directionalLight intensity={2}  castShadow  position={[-100, 30, 50]} />
@@ -765,7 +746,7 @@ function Projects({ myRef, menuVisible, scrollYGlobal, scrollToSkills, scrollToE
                     {levelState === 2 && (
                       <></>
                     )}
-                    <EnvFBX2 scale={0.369} rotation={[0, 0, 0]} visible={levelState === 2} />
+                    {levelState === 2 && <EnvFBX2 scale={0.369} rotation={[0, 0, 0]} />}
 
                     {objectPoints}
                     
@@ -774,7 +755,7 @@ function Projects({ myRef, menuVisible, scrollYGlobal, scrollToSkills, scrollToE
                       <EffectComposer>
                         {/* 3.3 */}
                         {/* 6 */}
-                      <Bloom luminanceThreshold={110} luminanceSmoothing={36} height={0} /> /
+                      <Bloom luminanceThreshold={110} luminanceSmoothing={36} height={0} />
                       </EffectComposer>
                       </>
                     )}
@@ -794,7 +775,7 @@ function Projects({ myRef, menuVisible, scrollYGlobal, scrollToSkills, scrollToE
 
 const CircleObject = ({ position }) => {
   return (
-    <mesh position={position}>
+    <mesh position={position} visible={false}>
       {/* Your object's geometry and appearance */}
       <sphereGeometry args={[1, 16, 16]} />
       <meshPhongMaterial color="#ff0000" opacity={0.0} transparent />
@@ -804,12 +785,12 @@ const CircleObject = ({ position }) => {
 
 function EnvFBX1(props) {
   const fbx = useLoader(FBXLoader, '/models/portfolio-environment.fbx');
-  return <primitive {...props} object={fbx} visible={props.visible} />;
+  return <primitive {...props} object={fbx} />;
 }
 
 function EnvFBX2(props) {
   const fbx = useLoader(FBXLoader, '/models/portfolio-environment-2.fbx');
-  return <primitive {...props} object={fbx} visible={props.visible} />;
+  return <primitive {...props} object={fbx} />;
 }
 function Ocean() {
   const ref = useRef();

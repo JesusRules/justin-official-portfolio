@@ -30,5 +30,3 @@ export function Church(props) {
     </group>
   )
 }
-
-useGLTF.preload('/models/Church-transformed.glb')

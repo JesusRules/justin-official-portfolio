@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { styled } from 'styled-components'
 import downloadSvg from "/svg/download-solid.svg?url";
 import { JustinHead } from './threejsscripts/JustinHead';
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls, Html, Environment } from '@react-three/drei';
 import PikaRun from './threejsscripts/PikaRun';
+import { useSectionActivity } from '../hooks/useSectionActivity';
 
 const Section = styled.div`
     background-color: lightblue;
@@ -198,6 +199,16 @@ const ResumeButton = styled.a`
 `
 
 function Who({ myRef, scrollYGlobal, scrollToWho, setRefReached }) {
+  const { isVisible, hasBeenVisible } = useSectionActivity(myRef);
+  const [isMobile, setIsMobile] = useState(() => window.matchMedia('(max-width: 700px)').matches);
+
+  useEffect(() => {
+    const query = window.matchMedia('(max-width: 700px)');
+    const update = () => setIsMobile(query.matches);
+    query.addEventListener('change', update);
+    return () => query.removeEventListener('change', update);
+  }, []);
+
   useEffect(() => {
     const divElement = myRef.current;
     if (Math.round(scrollYGlobal) == divElement.offsetTop) {
@@ -217,8 +228,8 @@ function Who({ myRef, scrollYGlobal, scrollToWho, setRefReached }) {
           <CrucifixImage style={{filter: 'blur(8px)'}} src="/img/jesus-effect/image-1-short.png"/>
         </CrucifixDiv> */}
 
-        <Left>
-            <Canvas camera={{fov: 25, position: [0, 0, 6]}}>
+        {hasBeenVisible && !isMobile && <Left>
+            <Canvas dpr={[1, 1.5]} frameloop={isVisible ? 'always' : 'never'} camera={{fov: 25, position: [0, 0, 6]}}>
                 <JustinHead />
                 <OrbitControls
                   enableRotate={false}
@@ -231,16 +242,16 @@ function Who({ myRef, scrollYGlobal, scrollToWho, setRefReached }) {
                 <ambientLight intensity={1}/>
                 <directionalLight position={[1, 2, 3]} />
             </Canvas>
-          </Left>
-          <LeftMobile>
-          <Canvas style={{pointerEvents: 'none'}} camera={{fov: 25, position: [0, 0, 1]}}>
+          </Left>}
+          {hasBeenVisible && isMobile && <LeftMobile>
+          <Canvas dpr={[1, 1.5]} frameloop={isVisible ? 'always' : 'never'} style={{pointerEvents: 'none'}} camera={{fov: 25, position: [0, 0, 1]}}>
               <PikaRun scale={1.25}/>
               <OrbitControls autoRotate={false} enableZoom={false} enablePan={false} enableRotate={false} />
               <Environment preset="lobby"/>
                 <ambientLight intensity={1} />
                 <directionalLight intensity={2} position={[1, 1, -2]} />
           </Canvas>
-          </LeftMobile>
+          </LeftMobile>}
             <Right className='about-me'>
               {/* <h1><span style={{color: 'black', fontWeight: 800}}>About</span> <span style={{color: 'black', fontWeight: 800}}>Me</span></h1> */}
               <h1>About Me</h1>
@@ -259,7 +270,7 @@ function Who({ myRef, scrollYGlobal, scrollToWho, setRefReached }) {
               </div>
 
             <ResumeButton href="/justin-bernard-resume.docx" target="_blank">
-              <div class="btn-resume">
+              <div className="btn-resume">
                 <img src={downloadSvg} alt="Logo" />
                 <span>Download my resume</span>
               </div>

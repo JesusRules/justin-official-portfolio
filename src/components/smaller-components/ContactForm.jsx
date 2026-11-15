@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { styled, keyframes  } from 'styled-components'
+import { useEffect, useRef, useState } from 'react';
+import { styled } from 'styled-components'
 import emailjs from "emailjs-com";
 import gsap from 'gsap';
 import '../../css/ContactForm.css'
@@ -11,7 +11,7 @@ const ContactContainer = styled.div`
     width: 100%;
 `;
 
-const ContactContent = styled.div`
+const ContactContent = styled.form`
     padding: 1rem 3rem;
     position: absolute;
     margin: auto;
@@ -94,6 +94,11 @@ const ContactContent = styled.div`
             font-weight: 500;
             box-shadow: none;
             transition: 0.5s;
+
+            &:disabled {
+                cursor: wait;
+                opacity: 0.7;
+            }
         }
     }
     /* .first-name {
@@ -240,17 +245,27 @@ function ContactForm({ contactForm }) {
     const errorModalRef = useRef();
     // ErrorMessage
     const [showErrorMessage, setShowErrorMessage] = useState(false);
-    const [errorMessage, setErrorMessage] = useState();
+    const [errorMessage, setErrorMessage] = useState('');
+    const [isSending, setIsSending] = useState(false);
+    const sendingRef = useRef(false);
     
-    const sendEmail = (e) => {
+    const sendEmail = async (e) => {
         e.preventDefault();
 
-        if (firstName === "" || lastName === "" || email === "" || subject === ""
-        || message === "")
+        if (sendingRef.current) return;
+
+        if (!firstName.trim() || !lastName.trim() || !email.trim() || !subject.trim()
+        || !message.trim())
         {
             setShowErrorMessage(true);
             return;
         }
+
+        sendingRef.current = true;
+        setIsSending(true);
+        setShowErrorMessage(false);
+        setErrorModal(false);
+        setSuccessModal(false);
         
         const emailService = 'service_np61i8q';
         const templateId = 'template_k7g7a9m';
@@ -263,9 +278,8 @@ function ContactForm({ contactForm }) {
             message: message,
         };
         
-        // / Send the email
-        emailjs.send(emailService, templateId, templateParams, publicKey)
-        .then((response) => {
+        try {
+            await emailjs.send(emailService, templateId, templateParams, publicKey);
             setRememberName(firstName);
             setSuccessModal(true);
             setFirstName('');
@@ -274,47 +288,39 @@ function ContactForm({ contactForm }) {
             setPhoneNumber('');
             setSubject('');
             setMessage('');
-            console.log('Email sent:', response);
-            // Reset the form or show a success message
-        })
-        .catch((error) => {
+        } catch (error) {
+            // EmailJS rejects with an object, which React cannot render as text.
+            // Keep provider details in the console and show visitors a readable message.
+            setErrorMessage('Your message could not be sent. Please try again later.');
             setErrorModal(true);
-            setErrorMessage(error);
             console.error('Email error:', error);
-        });
+        } finally {
+            sendingRef.current = false;
+            setIsSending(false);
+        }
     }
 
     useEffect(() => {
         if (successModal) {
-            gsap.to(successModalRef.current, {
-                onStart: () => {
-                    successModalRef.current.style.display = "block";
-                },
+            const tween = gsap.to(successModalRef.current, {
                 opacity: 0,
                 duration: 1,
                 delay: 7,
-                onComplete: () => {
-                    setSuccessModal(false);
-                    successModalRef.current.style.display = "none";
-                }
-            })
+                onComplete: () => setSuccessModal(false),
+            });
+            return () => tween.kill();
         }
     }, [successModal])
 
     useEffect(() => {
         if (errorModal) {
-            gsap.to(errorModalRef.current, {
-                onStart: () => {
-                    errorModalRef.current.style.display = "block";
-                },
+            const tween = gsap.to(errorModalRef.current, {
                 opacity: 0,
                 duration: 1,
                 delay: 7,
-                onComplete: () => {
-                    setErrorModal(false);
-                    errorModalRef.current.style.display = "none";
-                }
-            })
+                onComplete: () => setErrorModal(false),
+            });
+            return () => tween.kill();
         }
     }, [errorModal])
 
@@ -329,8 +335,8 @@ function ContactForm({ contactForm }) {
     return (
         <>
         {successModal && (
-            <SuccessModal ref={successModalRef}>
-                <img src="/svg/close-button.svg" onClick={(e) => setSuccessModal(false)}/>
+            <SuccessModal ref={successModalRef} role="status">
+                <img src="/svg/close-button.svg" alt="Close success message" onClick={() => setSuccessModal(false)}/>
                 <div className='content'>
                     <p style={{fontWeight: 400}}>Thank you <span style={{fontWeight: 900, fontStyle: 'italic'}}>{rememberName}!</span></p>
                     
@@ -340,50 +346,50 @@ function ContactForm({ contactForm }) {
         )}
 
         {errorModal && (
-            <ErrorModal ref={errorModalRef}>
-                <img src="/svg/close-button.svg" onClick={(e) => setErrorModal(false)}/>
+            <ErrorModal ref={errorModalRef} role="alert">
+                <img src="/svg/close-button.svg" alt="Close error message" onClick={() => setErrorModal(false)}/>
                 <div className='content'>
                     <p style={{fontWeight: 900}}>Error sending the message!</p>
-                    <p>The problem: {errorMessage}</p>
+                    <p>{errorMessage}</p>
                 </div>
             </ErrorModal>
         )}
 
         <ContactContainer>
-            <ContactContent ref={contactForm} className='contact-form'>
+            <ContactContent ref={contactForm} className='contact-form' onSubmit={sendEmail} aria-busy={isSending}>
                 <h2 style={{gridArea: 'one'}} className='title'>Contact Me!</h2>
                 <div className='names'>
                     <div style={{gridArea: 'two'}} className='inputBox first-name'>
-                        <input type="text" placeholder='First Name'
+                        <input type="text" placeholder='First Name' disabled={isSending}
                             value={firstName} onChange={(e) => setFirstName(e.target.value)}/>
                     </div>
                     <div style={{gridArea: 'three'}} className='inputBox last-name'>
-                        <input type="text" placeholder='Last Name'
+                        <input type="text" placeholder='Last Name' disabled={isSending}
                             value={lastName} onChange={(e) => setLastName(e.target.value)}/>
                     </div>
                 </div>
                 <div style={{gridArea: 'four'}} className='inputBox email'>
-                    <input type="email" placeholder='Email'
+                    <input type="email" placeholder='Email' disabled={isSending}
                             value={email} onChange={(e) => setEmail(e.target.value)}/>
                 </div>
                 <div style={{gridArea: 'five'}} className='inputBox phone-number'>
-                    <input type="tel" placeholder='Phone Number (Optional)'
+                    <input type="tel" placeholder='Phone Number (Optional)' disabled={isSending}
                             value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)}/>
                 </div>
                 <div style={{gridArea: 'six'}} className='inputBox subject'>
-                    <input type="tel" placeholder='Subject'
+                    <input type="text" placeholder='Subject' disabled={isSending}
                             value={subject} onChange={(e) => setSubject(e.target.value)}/>
                 </div>
                 <div style={{gridArea: 'seven'}} className="inputBox message" title="Your message">
-                  <textarea rows="6" type="text" placeholder="What Do You Need Done?"
+                  <textarea rows="6" placeholder="What Do You Need Done?" disabled={isSending}
                             value={message} onChange={(e) => setMessage(e.target.value)}></textarea>
                 </div>
 
                 {showErrorMessage && (
-                    <RequiredFieldsText>Please fillout all required fields!</RequiredFieldsText>
+                    <RequiredFieldsText>Please fill out all required fields!</RequiredFieldsText>
                 )}
                 <div style={{gridArea: 'eight',}} className='inputBox send-btn'>
-                    <input type="submit" value="Send" onClick={sendEmail} id="send-btn"/>
+                    <input type="submit" value={isSending ? 'Sending...' : 'Send'} disabled={isSending} id="send-btn"/>
                 </div>
             </ContactContent>
         </ContactContainer>

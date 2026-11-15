@@ -41,5 +41,3 @@ export function JustinHead(props) {
       </group>
   )
 }
-
-useGLTF.preload('/models/JustinHead-transformed.glb')

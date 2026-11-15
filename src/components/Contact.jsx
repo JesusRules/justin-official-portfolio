@@ -1,12 +1,12 @@
 import React, { useState, useRef, useEffect, Suspense } from 'react'
 import { styled } from 'styled-components'
-import { Canvas, useFrame, useLoader, useThree, extend  } from '@react-three/fiber'
+import { Canvas, useThree } from '@react-three/fiber'
 import { Church } from './threejsscripts/Church'
-import { OrbitControls, Html, Environment, Sky, PerspectiveCamera, Circle, useEnvironment, shaderMaterial, useProgress  } from '@react-three/drei';
-import { Euler, Vector3  } from 'three';
-import * as THREE from "three";
+import { Html, Environment, Sky, useProgress } from '@react-three/drei';
+import { Vector3 } from 'three';
 import gsap from 'gsap';
 import ContactForm from './smaller-components/ContactForm';
+import { useSectionActivity } from '../hooks/useSectionActivity';
 
 const Container = styled.div`
    position: relative;
@@ -76,9 +76,10 @@ z-index: 1111; //111
 `
 
 function Contact({ myRef, scrollYGlobal, educationRef, scrollToContact, setRefReached }) {
+  const { isVisible } = useSectionActivity(myRef);
   const [showComponent, setShowComponent] = useState(false);
   const [ticked, setTicked] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768);
 
   const contactForm = useRef();
   const footer1Ref = useRef();
@@ -204,7 +205,7 @@ function Contact({ myRef, scrollYGlobal, educationRef, scrollToContact, setRefRe
         {(showComponent && !ticked) && 
         (
         <>
-          <Canvas ref={canvasRef} camera={{fov: 95, far: 1000, near: 0.1, 
+          <Canvas ref={canvasRef} dpr={[1, 1.5]} frameloop={isVisible ? 'demand' : 'never'} camera={{fov: 95, far: 1000, near: 0.1,
             position: [0, 150, 35]}} 
             gl={{ antialias: false }} // Disable antialiasing for performance
             // pixelRatio={0.5} // Set the pixel ratio to half (adjust as needed)
@@ -218,11 +219,10 @@ function Contact({ myRef, scrollYGlobal, educationRef, scrollToContact, setRefRe
                 <ambientLight color='white' intensity={3} />
                 {/* <directionalLight intensity={2}  castShadow  position={[-100, 30, 50]} /> */}
                 {/* <directionalLight intensity={2}  castShadow position={[62, 40, -20]} /> */}
-                <OrbitControls enableZoom={false} enableRotate={false} enablePan={false} />
                 <Sky />
                 <Environment preset="night" />
                 <Church />
-                <CameraConsole showComponent={showComponent} />
+                <CameraConsole />
               </Suspense>
           </Canvas>
           </>
@@ -254,28 +254,21 @@ function Contact({ myRef, scrollYGlobal, educationRef, scrollToContact, setRefRe
   )
 }
 
-function CameraConsole({ showComponent }) {
-  let targetPosition = new Vector3(0, 110, 0);
-  const { camera } = useThree();
+function CameraConsole() {
+  const { camera, invalidate } = useThree();
 
-  useFrame((state) => {
-    state.camera.lookAt(targetPosition);
-    gsap.to(targetPosition, {
-      x: 0,
-      y: 30,
-      z: 0,
-      duration: 2,
-      onComplete: () => {
-        // setShowOnce2(true);
-      }
+  useEffect(() => {
+    const target = new Vector3(0, 110, 0);
+    const animation = gsap.timeline({
+      onUpdate: () => {
+        camera.lookAt(target);
+        invalidate();
+      },
     });
-    gsap.to(camera.position, {
-        x: 0,
-        y: 8, 
-        z: 35,
-        duration: 2,
-    });
-  })
+    animation.to(target, { y: 30, duration: 2 }, 0);
+    animation.to(camera.position, { x: 0, y: 8, z: 35, duration: 2 }, 0);
+    return () => animation.kill();
+  }, [camera, invalidate]);
 
   return null;
 }

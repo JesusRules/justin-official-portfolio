@@ -1,21 +1,19 @@
-import { useState, useEffect, useRef, useCallback  } from 'react'
+import { lazy, useState, useEffect, useRef } from 'react'
 import './css/App.css'
 import './css/Swiper.css'
 import './css/Switch.css'
 import './css/CloseButton.css'
 import './css/Education.css'
-import Skills from './components/Skills'
 import Hero from './components/Hero'
-import Who from './components/Who'
-import Education from './components/Education'
-import Contact from './components/Contact'
+import DeferredSection from './components/DeferredSection'
 import { styled } from 'styled-components'
-import Projects from './components/Projects'
 import NavBar from './components/NavBar'
-import Lenis from '@studio-freight/lenis'
-import WebgiViewer from './components/WebgiViewer'
-import gsap from 'gsap';
-import { useGLTF } from '@react-three/drei'
+
+const Who = lazy(() => import('./components/Who'));
+const Skills = lazy(() => import('./components/Skills'));
+const Projects = lazy(() => import('./components/Projects'));
+const Education = lazy(() => import('./components/Education'));
+const Contact = lazy(() => import('./components/Contact'));
 
 
 const Wrapper = styled.main`
@@ -109,12 +107,12 @@ function App() {
                             scrollToHero={scrollToHero} 
                             whoRef={whoRef} 
                             setRefReached={setRefReached}/>
-      <Who myRef={whoRef} scrollYGlobal={scrollY}
+      <DeferredSection component={Who} label="About Me" myRef={whoRef} scrollYGlobal={scrollY}
               scrollToWho={scrollToWho} 
               setRefReached={setRefReached}/>
-      <Skills myRef={skillsRef} scrollYGlobal={scrollY} scrollToSkills={scrollToSkills}
+      <DeferredSection component={Skills} label="skills" myRef={skillsRef} scrollYGlobal={scrollY} scrollToSkills={scrollToSkills}
                   setRefReached={setRefReached} />
-      <Projects myRef={portfolioRef} 
+      <DeferredSection component={Projects} label="projects" myRef={portfolioRef}
                 menuVisible={menuVisible}
                 scrollYGlobal={scrollY} 
                 scrollToSkills={scrollToSkills} 
@@ -123,13 +121,13 @@ function App() {
                 scrollToPortfolio={scrollToPortfolio}
                 setRefReached={setRefReached}
                 />
-      <Education myRef={educationRef} scrollYGlobal={scrollY} 
+      <DeferredSection component={Education} label="education" myRef={educationRef} scrollYGlobal={scrollY}
                   scrollToPortfolio={scrollToPortfolio}
                   scrollToEducation={scrollToEducation}
                   scrollToContact={scrollToContact}
                   setRefReached={setRefReached}
                   />
-      <Contact myRef={contactRef} educationRef={educationRef} 
+      <DeferredSection component={Contact} label="contact" myRef={contactRef} educationRef={educationRef}
                 scrollToContact={scrollToContact} scrollYGlobal={scrollY}
                 setRefReached={setRefReached} />
       {/* <WebgiViewer scrollYGlobal={scrollY}/> */}

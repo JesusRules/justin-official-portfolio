@@ -70,6 +70,12 @@ function Skybox({ imagePaths }) {
       // Cleanup on component unmount
       return () => {
         scene.remove(skybox);
+        skyboxRef.current = null;
+        skyboxGeo.dispose();
+        materialArray.forEach(material => {
+          material.map.dispose();
+          material.dispose();
+        });
       };
     }, [imagePaths]);
     

@@ -34,5 +34,3 @@ export default function PikaRun(props) {
     </group>
   )
 }
-
-useGLTF.preload('/models/PikaRun-transformed.glb')
