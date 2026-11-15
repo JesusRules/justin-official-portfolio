@@ -1,4 +1,4 @@
-import { lazy, useState, useEffect, useRef } from 'react'
+import { lazy, useState, useEffect, useRef, useCallback } from 'react'
 import './css/App.css'
 import './css/Swiper.css'
 import './css/Switch.css'
@@ -52,20 +52,36 @@ function App() {
   const portfolioRef = useRef(null);
   const educationRef = useRef(null);
   const contactRef = useRef(null);
+  const whoLoadRef = useRef(null);
+  const skillsLoadRef = useRef(null);
+  const portfolioLoadRef = useRef(null);
+  const educationLoadRef = useRef(null);
+  const contactLoadRef = useRef(null);
+  const [heroReady, setHeroReady] = useState(false);
+  const onHeroReady = useCallback(() => setHeroReady(true), []);
+  const navigation = useRef(0);
 
   const [refReached, setRefReached] = useState(false);
 
   useEffect(() => {
-    // devicePixelRatio = 0.001;
-    //   setTimeout(function(){
-    //     window.scrollTo(0, 1);
-    // }, 500);
-  }, [])
+    if (!heroReady) return;
+    let cancelled = false;
+    // Let the hero paint first, then prepare the small sections in order.
+    // Projects prepares on approach or when selected in the menu.
+    const timer = setTimeout(async () => {
+      for (const section of [whoLoadRef, skillsLoadRef, educationLoadRef]) {
+        if (cancelled) break;
+        await section.current.prepare();
+      }
+    }, 0);
+    return () => { cancelled = true; clearTimeout(timer); };
+  }, [heroReady]);
 
   
   // OLD //////////////////////////////
   const handleScroll = (event) => {
     const scrollTop = event.target.scrollTop;
+    navigation.current += 1;
     setScrollY(scrollTop);
   };
 
@@ -73,21 +89,19 @@ function App() {
   const scrollToHero = () => {
     heroRef.current.scrollIntoView({ behavior: 'smooth' });
   }
-  const scrollToWho = () => {
-    whoRef.current.scrollIntoView({ behavior: 'smooth' });
-  }
-  const scrollToSkills = () => {
-    skillsRef.current.scrollIntoView({ behavior: 'smooth' });
-  }
-  const scrollToPortfolio = () => {
-    portfolioRef.current.scrollIntoView({ behavior: 'smooth' });
-  }
-  const scrollToEducation = () => {
-    educationRef.current.scrollIntoView({ behavior: 'smooth' });
-  }
-  const scrollToContact = () => {
-    contactRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
+  const scrollToSection = async (section, loader) => {
+    const request = ++navigation.current;
+    // Direct navigation keeps the current screen until the destination is ready.
+    await loader.current.prepare();
+    if (navigation.current === request) {
+      section.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+  const scrollToWho = () => scrollToSection(whoRef, whoLoadRef);
+  const scrollToSkills = () => scrollToSection(skillsRef, skillsLoadRef);
+  const scrollToPortfolio = () => scrollToSection(portfolioRef, portfolioLoadRef);
+  const scrollToEducation = () => scrollToSection(educationRef, educationLoadRef);
+  const scrollToContact = () => scrollToSection(contactRef, contactLoadRef);
 
   return (
     // <Wrapper>
@@ -102,17 +116,20 @@ function App() {
               clickToEducation={scrollToEducation}
               clickToContact={scrollToContact}
               />
-      <Hero myRef={heroRef} scrollYGlobal={scrollY} 
+      <Hero myRef={heroRef} scrollYGlobal={scrollY} onReady={onHeroReady}
                             clickToContact={scrollToContact}
                             scrollToHero={scrollToHero} 
                             whoRef={whoRef} 
                             setRefReached={setRefReached}/>
       <DeferredSection component={Who} label="About Me" myRef={whoRef} scrollYGlobal={scrollY}
+              loadRef={whoLoadRef} canPrepare={heroReady} backdrop="/img/hero-banner/blue-sky-2.jpg"
               scrollToWho={scrollToWho} 
               setRefReached={setRefReached}/>
       <DeferredSection component={Skills} label="skills" myRef={skillsRef} scrollYGlobal={scrollY} scrollToSkills={scrollToSkills}
+                  loadRef={skillsLoadRef} canPrepare={heroReady} backdrop="/img/hero-banner/blue-sky-2.jpg"
                   setRefReached={setRefReached} />
       <DeferredSection component={Projects} label="projects" myRef={portfolioRef}
+                loadRef={portfolioLoadRef} canPrepare={heroReady} backdrop="/img/projects/misc/background.jpg"
                 menuVisible={menuVisible}
                 scrollYGlobal={scrollY} 
                 scrollToSkills={scrollToSkills} 
@@ -122,12 +139,14 @@ function App() {
                 setRefReached={setRefReached}
                 />
       <DeferredSection component={Education} label="education" myRef={educationRef} scrollYGlobal={scrollY}
+                  loadRef={educationLoadRef} canPrepare={heroReady} backdrop="/img/education/algonquin-college.jpg"
                   scrollToPortfolio={scrollToPortfolio}
                   scrollToEducation={scrollToEducation}
                   scrollToContact={scrollToContact}
                   setRefReached={setRefReached}
                   />
       <DeferredSection component={Contact} label="contact" myRef={contactRef} educationRef={educationRef}
+                loadRef={contactLoadRef} canPrepare={heroReady} backdrop="/img/contact/contact-background-blur.jpg"
                 scrollToContact={scrollToContact} scrollYGlobal={scrollY}
                 setRefReached={setRefReached} />
       {/* <WebgiViewer scrollYGlobal={scrollY}/> */}

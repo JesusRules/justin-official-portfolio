@@ -1,8 +1,7 @@
-import React, { useEffect, useRef, useLayoutEffect } from 'react'
+import React, { useCallback, useEffect, useRef, useLayoutEffect } from 'react'
 import { styled } from 'styled-components'
 import gsap from 'gsap';
-import InfiniteImageScroller from './threejsscripts/InfiniteImageScroller'
-import { Canvas } from '@react-three/fiber'
+import { useSectionActivity } from '../hooks/useSectionActivity';
 
 const Container = styled.div`
     background-color: #ceeeff;
@@ -70,8 +69,15 @@ const CrucifixImage = styled.img`
     }
 `
 
-function Skills({ myRef, scrollYGlobal, scrollToSkills, setRefReached }) {
-    let tl = gsap.timeline();
+function Skills({ myRef, scrollYGlobal, scrollToSkills, setRefReached, onReady }) {
+    const { isVisible } = useSectionActivity(myRef);
+    const readyRows = useRef(new Set());
+    const onReadyRef = useRef(onReady);
+    onReadyRef.current = onReady;
+    const markRowReady = useCallback((row) => {
+      readyRows.current.add(row);
+      if (readyRows.current.size === 3) onReadyRef.current?.();
+    }, []);
 
     useEffect(() => {
         const divElement = myRef.current;
@@ -102,15 +108,15 @@ function Skills({ myRef, scrollYGlobal, scrollToSkills, setRefReached }) {
     {/* <div className="first-div" style={{opacity: 0, transform: 'translateY(40px)'}}> */}
     <div className="first-div" >
         <Subtitle>Programming & Web Languages</Subtitle>
-        <HorizontalImageLoopComponent1 _images={imagesLanguages} _isReversed={false} />
+        <HorizontalImageLoopComponent1 _images={imagesLanguages} _isReversed={false} isVisible={isVisible} onReady={markRowReady} />
     </div>
     <div className="first-div" >
         <Subtitle>Development, Data & Infrastructure</Subtitle>
-        <HorizontalImageLoopComponent2 _images={imagesApps} _isReversed={true} />
+        <HorizontalImageLoopComponent2 _images={imagesApps} _isReversed={true} isVisible={isVisible} onReady={markRowReady} />
     </div>
     <div className="first-div" >
         <Subtitle>Media & Game Creation</Subtitle>
-        <HorizontalImageLoopComponent3 _images={imagesMedia} _isReversed={false} />
+        <HorizontalImageLoopComponent3 _images={imagesMedia} _isReversed={false} isVisible={isVisible} onReady={markRowReady} />
     </div>
 
       </Container2>
@@ -483,17 +489,30 @@ const imagesLanguages = [
 //       </div>
 //     );
 //   };
-const HorizontalImageLoopComponent1 = ({ _images, _isReversed }) => {
+// `play()` resets a reversed timeline to forward playback. Set direction first,
+// then use paused(false), both on initial reveal and when a drag ends.
+function useLoopPlayback(tlRef, isDownRef, isVisible, reversed) {
+  const visibleRef = useRef(isVisible);
+  visibleRef.current = isVisible;
+  const resume = useCallback(() => {
+    tlRef.current?.timeScale(reversed ? -1 : 1).paused(!visibleRef.current);
+  }, [tlRef, reversed]);
+
+  useLayoutEffect(() => {
+    tlRef.current?.timeScale(reversed ? -1 : 1).paused(!isVisible || isDownRef.current);
+  }, [tlRef, isDownRef, isVisible, reversed]);
+
+  return resume;
+}
+
+const HorizontalImageLoopComponent1 = ({ _images, _isReversed, isVisible, onReady }) => {
     const wrapperRef = useRef(null);
     const tlRef = useRef(null);
-    const inited = useRef(false);
     const isDownRef = useRef(false);
     const scrubStartAtRef = useRef(0);
+    const resume = useLoopPlayback(tlRef, isDownRef, isVisible, _isReversed);
 
     useLayoutEffect(() => {
-      if (inited.current) return; // React StrictMode guard (dev)
-      inited.current = true;
-
       const wrapper = wrapperRef.current;
       if (!wrapper) return;
 
@@ -504,8 +523,8 @@ const HorizontalImageLoopComponent1 = ({ _images, _isReversed }) => {
       const waitForImages = async () => {
         await Promise.all(
           imgs.map((img) => {
-            if (img.complete && img.naturalWidth) return;
             if (img.decode) return img.decode().catch(() => {});
+            if (img.complete) return;
             return new Promise((res) => {
               img.addEventListener("load", res, { once: true });
               img.addEventListener("error", res, { once: true });
@@ -524,9 +543,10 @@ const HorizontalImageLoopComponent1 = ({ _images, _isReversed }) => {
 
         // build loop (scope to wrapper)
         const items = wrapper.querySelectorAll(".images1");
-        const tl = horizontalLoop(items, { repeat: -1, speed: 1, snap: 1 });
+        const tl = horizontalLoop(items, { repeat: -1, speed: 1, snap: 1, paused: true });
         tlRef.current = tl;
-        if (_isReversed) tl.timeScale(-1);
+        resume();
+        onReady(1);
 
         // ---- Scrub handlers (mouse) ----
         const handleMouseDown = (e) => {
@@ -564,8 +584,7 @@ const HorizontalImageLoopComponent1 = ({ _images, _isReversed }) => {
           if (!tl) return;
           isDownRef.current = false;
           scrubStartAtRef.current = 0;
-          tl.play();
-          if (_isReversed) tl.timeScale(-1);
+          resume();
         };
 
         // ---- Touch handlers ----
@@ -606,8 +625,7 @@ const HorizontalImageLoopComponent1 = ({ _images, _isReversed }) => {
           if (!tl) return;
           isDownRef.current = false;
           scrubStartAtRef.current = 0;
-          tl.play();
-          if (_isReversed) tl.timeScale(-1);
+          resume();
         };
 
         // attach (scoped to wrapper)
@@ -640,9 +658,10 @@ const HorizontalImageLoopComponent1 = ({ _images, _isReversed }) => {
       })();
 
       return () => {
+        cancelled = true;
         tlRef.current?._cleanup?.();
       };
-    }, [_isReversed]);
+    }, [_isReversed, onReady, resume]);
 
     return (
       <div className="wrapper no-select" ref={wrapperRef}>
@@ -660,17 +679,14 @@ const HorizontalImageLoopComponent1 = ({ _images, _isReversed }) => {
     );
   };
 
-  const HorizontalImageLoopComponent2 = ({ _images, _isReversed }) => {
+  const HorizontalImageLoopComponent2 = ({ _images, _isReversed, isVisible, onReady }) => {
   const wrapperRef = useRef(null);
   const tlRef = useRef(null);
-  const inited = useRef(false);
   const isDownRef = useRef(false);
   const scrubStartAtRef = useRef(0);
+  const resume = useLoopPlayback(tlRef, isDownRef, isVisible, _isReversed);
 
   useLayoutEffect(() => {
-    if (inited.current) return; // React StrictMode guard
-    inited.current = true;
-
     const wrapper = wrapperRef.current;
     if (!wrapper) return;
 
@@ -680,8 +696,8 @@ const HorizontalImageLoopComponent1 = ({ _images, _isReversed }) => {
     const waitForImages = async () => {
       await Promise.all(
         imgs.map(img => {
-          if (img.complete && img.naturalWidth) return;
           if (img.decode) return img.decode().catch(() => {});
+          if (img.complete) return;
           return new Promise(res => {
             img.addEventListener("load", res, { once: true });
             img.addEventListener("error", res, { once: true });
@@ -700,19 +716,13 @@ const HorizontalImageLoopComponent1 = ({ _images, _isReversed }) => {
 
       // build loop (scoped!)
       const items = wrapper.querySelectorAll(".images2");
-      const tl = horizontalLoop(items, { repeat: -1, speed: 1, snap: 1 });
+      const tl = horizontalLoop(items, { repeat: -1, speed: 1, snap: 1, paused: true });
       tlRef.current = tl;
 
-      // iOS/Safari kick: nudge off exact 0 then play in desired direction
-      const d = tl.duration();
-      const epsilon = Math.max(d * 0.001, 0.02);
-      tl.pause(0).seek(_isReversed ? d - epsilon : epsilon, false);
-      tl.timeScale(_isReversed ? -1 : 1).play();
-
-      setTimeout(() => {
-        // WORKS!
-        handleMouseUp();
-      }, 1000 )
+      // Leave headroom before time zero so reverse playback starts immediately.
+      if (_isReversed) tl.totalTime(tl.duration() * 100, true);
+      resume();
+      onReady(2);
 
       // ---- Scrub handlers (mouse) ----
       const handleMouseDown = e => {
@@ -739,8 +749,7 @@ const HorizontalImageLoopComponent1 = ({ _images, _isReversed }) => {
         const tl = tlRef.current; if (!tl) return;
         isDownRef.current = false;
         scrubStartAtRef.current = 0;
-        tl.play();
-        tl.timeScale(_isReversed ? -1 : 1);
+        resume();
       };
 
       // ---- Touch handlers ----
@@ -770,8 +779,7 @@ const HorizontalImageLoopComponent1 = ({ _images, _isReversed }) => {
         const tl = tlRef.current; if (!tl) return;
         isDownRef.current = false;
         scrubStartAtRef.current = 0;
-        tl.play();
-        tl.timeScale(_isReversed ? -1 : 1);
+        resume();
       };
 
       // attach (scoped to wrapper)
@@ -800,8 +808,11 @@ const HorizontalImageLoopComponent1 = ({ _images, _isReversed }) => {
       tlRef.current._cleanup = cleanup;
     })();
 
-    return () => tlRef.current?._cleanup?.();
-  }, [_isReversed]);
+    return () => {
+      cancelled = true;
+      tlRef.current?._cleanup?.();
+    };
+  }, [_isReversed, onReady, resume]);
 
   return (
     <div className="wrapper no-select" ref={wrapperRef}>
@@ -1198,17 +1209,14 @@ const HorizontalImageLoopComponent1 = ({ _images, _isReversed }) => {
   //     </div>
   //   );
   // };
-  const HorizontalImageLoopComponent3 = ({ _images }) => {
+  const HorizontalImageLoopComponent3 = ({ _images, isVisible, onReady }) => {
   const wrapperRef = useRef(null);
   const tlRef = useRef(null);
-  const inited = useRef(false);
   const isDownRef = useRef(false);
   const scrubStartAtRef = useRef(0);
+  const resume = useLoopPlayback(tlRef, isDownRef, isVisible, false);
 
   useLayoutEffect(() => {
-    if (inited.current) return; // StrictMode guard
-    inited.current = true;
-
     const wrapper = wrapperRef.current;
     if (!wrapper) return;
 
@@ -1218,8 +1226,8 @@ const HorizontalImageLoopComponent1 = ({ _images, _isReversed }) => {
     const waitForImages = async () => {
       await Promise.all(
         imgs.map((img) => {
-          if (img.complete && img.naturalWidth) return;
           if (img.decode) return img.decode().catch(() => {});
+          if (img.complete) return;
           return new Promise((res) => {
             img.addEventListener("load", res, { once: true });
             img.addEventListener("error", res, { once: true });
@@ -1237,13 +1245,11 @@ const HorizontalImageLoopComponent1 = ({ _images, _isReversed }) => {
 
       // build loop (scoped to this wrapper)
       const items = wrapper.querySelectorAll(".images3");
-      const tl = horizontalLoop(items, { repeat: -1, speed: 1, snap: 1 });
+      const tl = horizontalLoop(items, { repeat: -1, speed: 1, snap: 1, paused: true });
       tlRef.current = tl;
 
-      // start moving immediately in the SAME (forward) direction as Component1
-      const d = tl.duration();
-      const eps = Math.max(d * 0.001, 0.02); // tiny nudge to avoid exact 0
-      tl.pause(0).seek(eps, false).timeScale(1).play(0);
+      resume();
+      onReady(3);
 
       // unified handlers (mouse + touch)
       const getX = (e) =>
@@ -1273,7 +1279,7 @@ const HorizontalImageLoopComponent1 = ({ _images, _isReversed }) => {
         const t = tlRef.current; if (!t || !isDownRef.current) return;
         isDownRef.current = false;
         scrubStartAtRef.current = 0;
-        t.play(); // keep forward direction
+        resume();
       };
 
       // attach listeners (scoped)
@@ -1301,8 +1307,11 @@ const HorizontalImageLoopComponent1 = ({ _images, _isReversed }) => {
       };
     })();
 
-    return () => tlRef.current?._cleanup?.();
-  }, []);
+    return () => {
+      cancelled = true;
+      tlRef.current?._cleanup?.();
+    };
+  }, [onReady, resume]);
 
   return (
     <div className="wrapper no-select" ref={wrapperRef}>

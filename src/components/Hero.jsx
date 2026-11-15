@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState, useLayoutEffect } from 'react'
 import styled, { keyframes } from 'styled-components';
 import gsap from 'gsap';
+import { imagesReady } from '../utils/imageReady';
 
 // NEW ATTEMPT!
 const ScrollableWrapper = styled.div`
@@ -453,7 +454,7 @@ const LoadingText = styled.h1`
     }
 `
 
-function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero, whoRef, setRefReached }) { 
+function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero, whoRef, setRefReached, onReady }) {
     // PARALLAX VARS
     let parallex_el;
     let xValue = 0, yValue = 0;
@@ -1005,24 +1006,21 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero, whoRef, setR
     //     }
     // }, [loadedImageCount])
 
-    // count what’s actually present in the hero container (no magic numbers)
+    // Decode the actual hero images before starting its intro or background work.
     useEffect(() => {
-      const imgs = Array.from(
-        document.querySelectorAll<HTMLImageElement>('#div1 img')
-      );
-      const expected = imgs.length;
+      let cancelled = false;
+      imagesReady(myRef.current).then(() => { if (!cancelled) setAllReady(true); });
+      return () => { cancelled = true; };
+    }, [myRef]);
 
-      const ready = () => requestAnimationFrame(() => setAllReady(true));
-
-      if (loadedImageCount >= expected &&
-          (document.readyState === 'complete' || document.readyState === 'interactive')) {
-        ready();
-      } else {
-        const onLoad = () => ready();
-        window.addEventListener('load', onLoad, { once: true });
-        return () => window.removeEventListener('load', onLoad);
-      }
-    }, [loadedImageCount]);
+    useEffect(() => {
+      if (!allReady) return;
+      let nextFrame;
+      const frame = requestAnimationFrame(() => {
+        nextFrame = requestAnimationFrame(() => onReady?.());
+      });
+      return () => { cancelAnimationFrame(frame); cancelAnimationFrame(nextFrame); };
+    }, [allReady, onReady]);
 
     // replace your original gsapBeginning call:
     // useEffect(() => {
@@ -1080,7 +1078,7 @@ function Hero({ scrollYGlobal, clickToContact, myRef, scrollToHero, whoRef, setR
     {/* <Loader /> */}
     {/* <ScrollableWrapper> */}
 
-        <Container ref={myRef} className='main-div' id='div1'>
+        <Container ref={myRef} className='main-div' id='div1' data-ready={allReady}>
             <GradientOverlayImage />
             {/* <Vignette /> */}
         <HeroText ref={subtitleTxtRef}>Passionate. Professional. Reliable.</HeroText>

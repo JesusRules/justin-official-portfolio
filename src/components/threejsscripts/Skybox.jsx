@@ -1,92 +1,44 @@
-import React, { useEffect, useRef } from 'react'
-import { useThree, useFrame } from "@react-three/fiber";
-// import { CubeTextureLoader, MeshBasicMaterial, DoubleSide, BoxGeometry, Mesh, AmbientLight } from 'three';
+import { useLayoutEffect, useRef } from 'react';
+import { useFrame, useLoader } from '@react-three/fiber';
 import * as THREE from 'three';
-import { useEnvironment } from '@react-three/drei';
 
-function Skybox({ imagePaths }) {
-    const { scene } = useThree();
-    let camera, renderer, skyboxGeo, skybox;
-    const skyboxRef = useRef();
+export default function Skybox({ imagePaths }) {
+  const skyboxRef = useRef();
+  // Suspend with the model until every face is decoded, avoiding a black sky.
+  const textures = useLoader(THREE.TextureLoader, imagePaths);
 
-    //GOOD
-    // useEffect(() => {
-    //   const materialArray = createMaterialArray(imagePaths);
-    //   const skyboxGeo = new THREE.BoxGeometry(1000, 1000, 1000);
-    //   const skybox = new THREE.Mesh(skyboxGeo, materialArray);
-    //   scene.add(skybox);
-    //   skyboxRef.current = skybox;
-    //   return () => {
-    //     scene.remove(skybox);
-    //   };
-    // }, [imagePaths]);
+  useLayoutEffect(() => {
+    textures.forEach(texture => {
+      texture.wrapS = texture.wrapT = THREE.ClampToEdgeWrapping;
+      texture.minFilter = texture.magFilter = THREE.LinearFilter;
+      texture.generateMipmaps = false;
+      // Match the original imperatively created sky materials. R3F otherwise
+      // assigns sRGB to JSX texture maps and changes the authored sky colors.
+      texture.colorSpace = THREE.NoColorSpace;
+      texture.needsUpdate = true;
+    });
+  }, [textures]);
 
-    // function createMaterialArray(paths) {
-    //   return paths.map(image => {
-    //     let texture = new THREE.TextureLoader().load(image);
-    //     texture.wrapS = THREE.ClampToEdgeWrapping;
-    //     texture.wrapT = THREE.ClampToEdgeWrapping;
-    //     texture.minFilter = THREE.LinearFilter;
-    //     texture.magFilter = THREE.LinearFilter;
-    //     texture.generateMipmaps = false;
-    //     return new THREE.MeshBasicMaterial({ map: texture, side: THREE.BackSide });
-    //   });
-    // }
-    //BAD
-    function createMaterialArray(paths) {
-      return paths.map(image => {
-        let texture = new THREE.TextureLoader().load(image);
-        texture.wrapS = THREE.ClampToEdgeWrapping;
-        texture.wrapT = THREE.ClampToEdgeWrapping;
-        texture.minFilter = THREE.LinearFilter;
-        texture.magFilter = THREE.LinearFilter;
-        texture.generateMipmaps = false;
-        return new THREE.MeshBasicMaterial({ map: texture, side: THREE.BackSide });
-      });
+  useLayoutEffect(() => {
+    const geometry = skyboxRef.current.geometry;
+    if (geometry.userData.uvInset) return;
+    geometry.userData.uvInset = true;
+    const uv = geometry.attributes.uv;
+    for (let i = 0; i < uv.count; i++) {
+      uv.setXY(i, uv.getX(i) * 0.98 + 0.01, uv.getY(i) * 0.98 + 0.01);
     }
-    function adjustUVs(geometry) {
-      const uv = geometry.attributes.uv;
-      for (let i = 0; i < uv.count; i++) {
-        const u = uv.getX(i);
-        const v = uv.getY(i);
-        
-        // Adjust UV coordinates by a small amount to overlap
-        uv.setXY(i, u * 0.98 + 0.01, v * 0.98 + 0.01); // Adjust these values as needed
-      }
-      uv.needsUpdate = true;
-    }
+    uv.needsUpdate = true;
+  }, []);
 
-    useEffect(() => {
-      const materialArray = createMaterialArray(imagePaths);
-      const skyboxGeo = new THREE.BoxGeometry(1000, 1000, 1000);
-      
-      // Adjust UVs to slightly overlap textures
-      adjustUVs(skyboxGeo);
-      
-      const skybox = new THREE.Mesh(skyboxGeo, materialArray);
-      scene.add(skybox);
-      skyboxRef.current = skybox;
-    
-      // Cleanup on component unmount
-      return () => {
-        scene.remove(skybox);
-        skyboxRef.current = null;
-        skyboxGeo.dispose();
-        materialArray.forEach(material => {
-          material.map.dispose();
-          material.dispose();
-        });
-      };
-    }, [imagePaths]);
-    
-                          
-  useFrame(() => {
-    if (skyboxRef.current) {
-      skyboxRef.current.rotation.y += 0.0001; // Adjust the rotation speed as needed
-    }
-  });
-  
-  return null;
+  useFrame(() => { skyboxRef.current.rotation.y += 0.0001; });
+
+  // R3F disposes its geometry/materials. Cached loader textures remain reusable.
+  return (
+    <mesh ref={skyboxRef}>
+      <boxGeometry args={[1000, 1000, 1000]} />
+      {textures.map((texture, index) => (
+        <meshBasicMaterial key={index} attach={`material-${index}`} map={texture} side={THREE.BackSide} />
+      ))}
+    </mesh>
+  );
 }
-
-export default Skybox

@@ -1,12 +1,13 @@
-import React, { useRef, useEffect, useState, Suspense, useMemo } from 'react'
+import React, { useRef, useEffect, useState, Suspense, useMemo, useCallback } from 'react'
 import { styled, keyframes  } from 'styled-components'
 import { Canvas, useFrame, useLoader, useThree, extend  } from '@react-three/fiber'
-import { OrbitControls, Html, Environment, Sky, PerspectiveCamera, Circle, useEnvironment, shaderMaterial, useProgress  } from '@react-three/drei';
+import { OrbitControls, Environment } from '@react-three/drei';
 import * as THREE from "three";
 import gsap from 'gsap';
 import ProjectInfoModal from './smaller-components/ProjectInfoModal';
 // import { PortfolioEnvironment } from './threejsscripts/PortfolioEnvironment';
-import { FBXLoader } from 'three/addons/loaders/FBXLoader';
+import ReadyFBXLoader from './threejsscripts/ReadyFBXLoader';
+import SceneReady from './threejsscripts/SceneReady';
 import Skybox from './threejsscripts/Skybox';
 import { Bloom, DepthOfField, EffectComposer, Noise, Vignette } from '@react-three/postprocessing'
 import { Water } from 'three-stdlib';
@@ -359,7 +360,7 @@ var contentTitlesArray2 = [
 
 
 function Projects({ myRef, menuVisible, scrollYGlobal, scrollToSkills, scrollToEducation, setHideOverflow,
-                    scrollToPortfolio, setRefReached }) {
+                    scrollToPortfolio, setRefReached, onReady }) {
   const { isVisible } = useSectionActivity(myRef);
   const [animIndex, setAnimIndex] = useState(3); //IDLE
   const playerRef = useRef();
@@ -384,14 +385,15 @@ function Projects({ myRef, menuVisible, scrollYGlobal, scrollToSkills, scrollToE
   const cameraPositionRef = useRef([1, 2, 1]);
   const [qualityCheck, setQualityCheck] = useState(false);
   
-  const [showComponent, setShowComponent] = useState(false);
-  const [showModels, setShowModels] = useState(false);
+  const [readyLevel, setReadyLevel] = useState(null);
 
   // Transitioning to levels stuff
   const blackOverlayRef = useRef(null);
   const [levelState, setLevelState] = useState(1);
+  const sceneReady = readyLevel === levelState;
   const [rotateSpeed, setRotateSpeed] = useState(0.145);
   const [transitioning, setTransitioning] = useState(false);
+  const levelTimer = useRef();
   const [skyboxImages, setSkyboxImages] = useState([
     '/img/sky/level-1/sky-left.jpg', 
     '/img/sky/level-1/sky-right.jpg', 
@@ -401,14 +403,22 @@ function Projects({ myRef, menuVisible, scrollYGlobal, scrollToSkills, scrollToE
     '/img/sky/level-1/sky-front.jpg'
   ]);
 
+  const handleSceneReady = useCallback(() => {
+    setReadyLevel(levelState);
+    setRotateSpeed(0.145);
+    setTransitioning(false);
+    blackOverlayRef.current.style.opacity = 0;
+  }, [levelState]);
+
+  useEffect(() => { onReady?.(sceneReady); }, [sceneReady, onReady]);
+  useEffect(() => () => clearTimeout(levelTimer.current), []);
+
   // SCROLLING
     useEffect(() => {
       const divElement = myRef.current;
       const halfwayPoint = divElement.scrollHeight / 5;
       if (Math.round(scrollYGlobal) == divElement.offsetTop) {
         scrollToPortfolio();
-        setShowComponent(true);
-        setShowModels(true);
         setRefReached(true);
         // if (!showBubbleOnce) {
         //   setShowBubbleOnce(true);
@@ -420,15 +430,11 @@ function Projects({ myRef, menuVisible, scrollYGlobal, scrollToSkills, scrollToE
         //   setAnimIndex(2); //7 alt Jumping happy
         // }
       }
-      if (Math.round(scrollYGlobal) > divElement.offsetTop || Math.round(scrollYGlobal) < divElement.offsetTop) {
-        // setShowComponent(false);
-        setShowModels(false);
-      }
   }, [scrollYGlobal])
 
   useEffect(() => {
-    if (!isLoaded) return;
-    setTimeout(() => {
+    if (!isLoaded || !sceneReady || !isVisible || showBubbleOnce) return;
+    const timer = setTimeout(() => {
       setAnimIndex(4); //FBX Jesus
       // setAnimIndex(2); //7 alt Jumping happy
       if (!showBubbleOnce) {
@@ -439,8 +445,9 @@ function Projects({ myRef, menuVisible, scrollYGlobal, scrollToSkills, scrollToE
           transform: 'translateY(0px)',
         });
       }
-    }, [330])
-  }, [isLoaded])
+    }, 330);
+    return () => clearTimeout(timer);
+  }, [isLoaded, sceneReady, isVisible, showBubbleOnce])
 
     useEffect(() => {
       setupPositionSpots(contentTitlesArray1); //LEVEL 1
@@ -504,23 +511,23 @@ function Projects({ myRef, menuVisible, scrollYGlobal, scrollToSkills, scrollToE
     }, [openModal])
 
     useEffect(() => {
-      if (!showModels) {
+      if (!isVisible) {
         if (projectRef.current) {
           projectRef.current.style.display = "none";
         }
       }
-      if (showModels) {
+      if (isVisible && withinProject) {
         if (projectRef.current) {
           projectRef.current.style.display = "block";
         }
       }
-      if (!showModels && showBubbleOnce) //move screen
+      if (!isVisible && showBubbleOnce) //move screen
       {
         if (speechBubbleRef.current) {
           speechBubbleRef.current.style.opacity = 0;
         }
       }
-    }, [showModels])
+    }, [isVisible, withinProject, showBubbleOnce])
 
     const clickProject = () => {
       if (idleStance && withinProject) {
@@ -549,7 +556,8 @@ function Projects({ myRef, menuVisible, scrollYGlobal, scrollToSkills, scrollToE
       blackOverlayRef.current.style.opacity = 1;
 
       // Perform your action after the fade-in
-      setTimeout(() => {
+      clearTimeout(levelTimer.current);
+      levelTimer.current = setTimeout(() => {
         // Do something, e.g., change the scene
         setLevelState(1);
         setSkyboxImages([
@@ -561,12 +569,7 @@ function Projects({ myRef, menuVisible, scrollYGlobal, scrollToSkills, scrollToE
           '/img/sky/level-1/sky-back.jpg',
         ]);
         setupPositionSpots(contentTitlesArray1); //LEVEL 1
-        setRotateSpeed(0.145);
-        setTransitioning(false);
         setAnimIndex(2);
-
-        // Fade out
-        blackOverlayRef.current.style.opacity = 0;
       }, 1000); // Wait 1 second for the fade-in to complete
     }
 
@@ -578,7 +581,8 @@ function Projects({ myRef, menuVisible, scrollYGlobal, scrollToSkills, scrollToE
       blackOverlayRef.current.style.opacity = 1;
 
       // Perform your action after the fade-in
-      setTimeout(() => {
+      clearTimeout(levelTimer.current);
+      levelTimer.current = setTimeout(() => {
         // Do something, e.g., change the scene
         setLevelState(2);
         setSkyboxImages([
@@ -590,12 +594,7 @@ function Projects({ myRef, menuVisible, scrollYGlobal, scrollToSkills, scrollToE
           '/img/sky/level-2/sky-back.jpg',
         ]);
         setupPositionSpots(contentTitlesArray2); //LEVEL 2
-        setRotateSpeed(0.145);
-        setTransitioning(false);
         setAnimIndex(2);
-
-        // Fade out
-        blackOverlayRef.current.style.opacity = 0;
       }, 1000); // Wait 1 second for the fade-in to complete
     }
     
@@ -603,10 +602,6 @@ function Projects({ myRef, menuVisible, scrollYGlobal, scrollToSkills, scrollToE
     <>  
     {/* Black overlay (transitioning levels) */}
     <BlackOverlayFade ref={blackOverlayRef} />
-
-    {!showModels && (
-      <BackgroundImage src="/img/projects/misc/background.jpg" alt="Background Image" />
-    )}
 
     <Container id='div4' ref={myRef} className='main-div'>
       <Arrows>
@@ -625,8 +620,6 @@ function Projects({ myRef, menuVisible, scrollYGlobal, scrollToSkills, scrollToE
     </label>
       </QualityToggle>
 
-      {showComponent && (
-        <>
         {currentProject.id === 'level-1' ? (
           <ProjectPopup ref={projectRef}>
               <div className='content-levels'>
@@ -667,11 +660,10 @@ function Projects({ myRef, menuVisible, scrollYGlobal, scrollToSkills, scrollToE
 
         <SpeechBubble ref={speechBubbleRef} src="/img/projects/misc/speech-bubble-portfolio.png"/>
         
-        {showModels && (
-          <>
-        <Canvas dpr={[1, 1.5]} frameloop={isVisible ? 'always' : 'never'}
+        <Canvas dpr={[1, 1.5]} frameloop={isVisible || !sceneReady ? 'always' : 'never'}
                 camera={{fov: 58, far: 1000, near: 0.1, position: [0, 1.75, 5]}}
                   style={{  zIndex: 116,
+                            visibility: sceneReady ? undefined : 'hidden',
                             overflow: 'hidden',
                             height: '100vh',
                             maxHeight: '100vh',
@@ -691,7 +683,7 @@ function Projects({ myRef, menuVisible, scrollYGlobal, scrollToSkills, scrollToE
                   // devicePixelRatio={window.devicePixelRatio / 10}
                   // pixelRatio={window.devicePixelRatio / 10}
                   >
-                    <Suspense fallback={<Loader />}>
+                    <Suspense fallback={null}>
                       <MiniJesusFBX scale={37} 
                         animIndex={animIndex} 
                         setAnimIndex={setAnimIndex} 
@@ -749,6 +741,7 @@ function Projects({ myRef, menuVisible, scrollYGlobal, scrollToSkills, scrollToE
                     {levelState === 2 && <EnvFBX2 scale={0.369} rotation={[0, 0, 0]} />}
 
                     {objectPoints}
+                    <SceneReady key={levelState} onReady={handleSceneReady} />
                     
                     {qualityCheck && (
                       <>
@@ -762,10 +755,6 @@ function Projects({ myRef, menuVisible, scrollYGlobal, scrollToSkills, scrollToE
                   {/* WAS HERE */}
                     </Suspense>
               </Canvas>
-                    </>
-                  )}
-              </>
-          )}
     </Container>
         {/* <Sky /> */}
         {/* <Noise opacity={0.02} /> */}
@@ -784,12 +773,12 @@ const CircleObject = ({ position }) => {
 }
 
 function EnvFBX1(props) {
-  const fbx = useLoader(FBXLoader, '/models/portfolio-environment.fbx');
+  const fbx = useLoader(ReadyFBXLoader, '/models/portfolio-environment.fbx');
   return <primitive {...props} object={fbx} />;
 }
 
 function EnvFBX2(props) {
-  const fbx = useLoader(FBXLoader, '/models/portfolio-environment-2.fbx');
+  const fbx = useLoader(ReadyFBXLoader, '/models/portfolio-environment-2.fbx');
   return <primitive {...props} object={fbx} />;
 }
 function Ocean() {
@@ -833,105 +822,4 @@ function Ocean() {
 //   return null;
 // }
 
-const CrossSection = styled.div`
-`
-const CrossContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  transform: translateY(0rem) scale(0.37);
-`
-
-const WaterCross = styled.div`
-    position: absolute;
-    /* top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); */
-    width: 330px;
-    height: 480px;
-    background: url('/img/projects/misc/wave5.png');
-    background-repeat: repeat-x;
-    animation: animate 1.5s linear infinite;
-    /* box-shadow: 0 0 0 6px #fff, 0 20px 35px rgba(0,0,0,1); */
-    mask: url('/img/projects/misc/cross-mask.svg');
-    -webkit-mask-image: url('/img/projects/misc/cross-mask.svg'); /* Use the mask image as a mask */
-    mask-image: url('/img/projects/misc/cross-mask.svg'); /* Use the mask image as a mask */
-    /* -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat; */
-    /* -webkit-mask-position: center; */
-    /* mask-position: center; */
-    /* background-position-y: -20px; // TOP */
-    background-position-y: 470px; // BOTTOM
-
-    @keyframes animate
-    {
-        0%{
-            /* background-position: 0 200px; */
-            background-position-x: 0;
-        }
-        100% {
-            /* background-position: 500px 0px; */
-            background-position-x: 1333px;
-        }
-    }
-`
-const CrossBackground = styled.div`
-    position: absolute;
-    /* top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); */
-    background-position: center;
-    width: 330px;
-    height: 480px;
-    background: url('/img/projects/misc/cross-mask.svg');
-    background-repeat: no-repeat;
-`
-
-
-function Loader() {
-  const { progress } = useProgress();
-  const waterRef = useRef();
-  const [newProgress, setNewProgress] = useState(0);
-
-  useEffect(() => {
-    if (progress > newProgress)
-    {
-      setNewProgress(progress);
-      const interpolatedY = (470 + ((-20 - 470) * (progress / 100)));
-      // console.log(interpolatedY);
-      if (waterRef.current) {
-        waterRef.current.style.backgroundPositionY = `${interpolatedY}px`;
-      }
-    }
-  }, [progress])
-  
-  return (
-    <>
-     <Html center>
-
-      <CrossSection>
-          <CrossContainer>
-              <CrossBackground />
-              <WaterCross ref={waterRef} />
-          </CrossContainer>
-      </CrossSection>
-          {/* <div style={{width: '100vw', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center',  margin: 'auto'}}>
-           <p style={{textAlign: 'center', fontSize: '2.2rem'}}>{parseInt(progress)} % Loaded</p>
-     </div> */}
-
-    </Html>
-    </>
-  )
-}
-
-// function Loader() {
-//   const { progress } = useProgress()
-//   return <Html center>
-//     <div style={{width: '100vw', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center',  margin: 'auto'}}>
-//     <p style={{textAlign: 'center', fontSize: '2.2rem'}}>{parseInt(progress)} % Loaded</p>
-//     </div>
-//     </Html>
-// }
-
-export default Projects
+export default Projects;

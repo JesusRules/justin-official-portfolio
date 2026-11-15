@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { styled } from 'styled-components'
 import gsap from 'gsap';
 
@@ -267,14 +267,15 @@ const Arrows = styled.div`
   }
   `
 
-function Education({ myRef, scrollYGlobal, scrollToPortfolio, scrollToEducation, scrollToContact, setRefReached }) {
+function Education({ myRef, scrollYGlobal, scrollToPortfolio, scrollToContact, setRefReached, onReady }) {
   const overlayRef = useRef(null);
   const backgroundImageRef = useRef(null);
   // Beginning Effect
   const text1Ref = useRef();
   const text2Ref = useRef();
   const educationPopupRef = useRef();
-  const [showBeginning, setShowBeginning] = useState(false);
+  const [assetsReady, setAssetsReady] = useState(false);
+  const introRef = useRef(null);
   // Main
   const floatingBoxRef = useRef();
   const floatingBoxContentRef = useRef();
@@ -286,61 +287,51 @@ function Education({ myRef, scrollYGlobal, scrollToPortfolio, scrollToEducation,
   const [gradesModal, setGradesModal] = useState(false);
 
   useEffect(() => {
-    const divElement = myRef.current;
-    const halfwayPoint = divElement.scrollHeight / 5;
-   
-      if (Math.round(scrollYGlobal) == divElement.offsetTop) {
-        scrollToEducation();
-        OnViewed();
-        setRefReached(true);
-        if (floatingBoxContentRef.current) {
-          floatingBoxContentRef.current.focus();
-        }
-      }
-      // if (scrollYGlobal > divElement.offsetTop || scrollYGlobal < divElement.offsetTop) {
-      // }
-    }, [scrollYGlobal])
+    let cancelled = false;
+    // The diploma card is initially hidden, but its images must be ready too.
+    const images = [...myRef.current.querySelectorAll('img')];
+    Promise.all(images.map(image => image.decode().catch(() => {}))).then(() => {
+      if (!cancelled) setAssetsReady(true);
+    });
+    return () => { cancelled = true; };
+  }, [myRef]);
 
-    const OnViewed = () => {
-      if (showBeginning) return;
-      setShowBeginning(true);
-      gsap.to(overlayRef.current, { opacity: 1, duration: 1.5, delay: 0 });
-      gsap.to(backgroundImageRef.current, { scale: 1.05, duration: 5 });
-      // Text effects
-      gsap.to(text1Ref.current, { opacity: 1, duration: 1.5, delay: 0 });
-      gsap.to(text2Ref.current, { opacity: 1, duration: 1.5, delay: 1.25 });
-      // Main
-      gsap.to(floatingBoxRef.current, 
-        { 
-          opacity: 1, 
-          duration: 1, 
-          delay: 3.5,
-          onStart: () => {
-            floatingBoxRef.current.style.display = 'block'
-          },
-        });
-        gsap.to(educationPopupRef.current, 
-          { 
-            opacity: 0, 
-            duration: 1, 
-            delay: 3.5,
-            onComplete: () => { 
-              educationPopupRef.current.style.display = 'none'
-          } });
-          gsap.to(overlayRef.current, { opacity: 0, duration: 1, delay: 3.5 });
-          gsap.to(backgroundImageRef.current, {  filter: 'blur(4px)', duration: 1, delay: 3.5 });
-          gsap.to(arrowsRef.current, { 
-            opacity: 0.82, 
-            duration: 1, 
-            delay: 3.5,
-          });
-          gsap.to(arrowsRef.current, {
-            onComplete: () => {
-              delay: 3.5,
-              arrowsRef.current.style.display = "flex";
-            }
-          });
-    }
+  useLayoutEffect(() => {
+    if (!assetsReady) return;
+    const context = gsap.context(() => {
+      const intro = gsap.timeline({ paused: true });
+      introRef.current = intro;
+      intro
+        .to(overlayRef.current, { opacity: 1, duration: 1.5 }, 0)
+        .to(backgroundImageRef.current, { scale: 1.05, duration: 5 }, 0)
+        .to(text1Ref.current, { opacity: 1, duration: 1.5 }, 0)
+        .to(text2Ref.current, { opacity: 1, duration: 1.5 }, 1.25)
+        .set(floatingBoxRef.current, { display: 'block' }, 3.5)
+        .to(floatingBoxRef.current, { opacity: 1, duration: 1 }, 3.5)
+        .to(educationPopupRef.current, { opacity: 0, duration: 1 }, 3.5)
+        .set(educationPopupRef.current, { display: 'none' }, 4.5)
+        .to(overlayRef.current, { opacity: 0, duration: 1 }, 3.5)
+        .to(backgroundImageRef.current, { filter: 'blur(4px)', duration: 1 }, 3.5)
+        .set(arrowsRef.current, { display: 'flex' }, 3.5)
+        .to(arrowsRef.current, { opacity: 0.82, duration: 1 }, 3.5);
+    }, myRef);
+    return () => {
+      introRef.current = null;
+      context.revert();
+    };
+  }, [assetsReady, myRef]);
+
+  useEffect(() => {
+    if (assetsReady) onReady?.();
+  }, [assetsReady, onReady]);
+
+  useEffect(() => {
+    if (!assetsReady || Math.abs(scrollYGlobal - myRef.current.offsetTop) > 1) return;
+    // Preparing this section in the background must not consume its introduction.
+    // play() resumes the same timeline and does not replay it on later visits.
+    introRef.current?.play();
+    setRefReached(true);
+  }, [assetsReady, scrollYGlobal, myRef, setRefReached]);
 
     // Image Scroll
     const imageStyle = {

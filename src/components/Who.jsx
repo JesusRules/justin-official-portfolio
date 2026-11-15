@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { Suspense, useCallback, useEffect, useState } from 'react'
 import { styled } from 'styled-components'
 import downloadSvg from "/svg/download-solid.svg?url";
 import { JustinHead } from './threejsscripts/JustinHead';
@@ -6,6 +6,8 @@ import { Canvas } from '@react-three/fiber'
 import { OrbitControls, Html, Environment } from '@react-three/drei';
 import PikaRun from './threejsscripts/PikaRun';
 import { useSectionActivity } from '../hooks/useSectionActivity';
+import SceneReady from './threejsscripts/SceneReady';
+import { imagesReady } from '../utils/imageReady';
 
 const Section = styled.div`
     background-color: lightblue;
@@ -36,7 +38,7 @@ const LeftMobile = styled.div`
   top: 40.5%; //45
   /* top: 55%; */
   bottom: 0;
-  @media only screen and (min-width: 700px) {
+  @media only screen and (min-width: 701px) {
       display: none;
     }
 `;
@@ -198,9 +200,21 @@ const ResumeButton = styled.a`
       }
 `
 
-function Who({ myRef, scrollYGlobal, scrollToWho, setRefReached }) {
-  const { isVisible, hasBeenVisible } = useSectionActivity(myRef);
+function Who({ myRef, scrollYGlobal, scrollToWho, setRefReached, onReady }) {
+  const { isVisible } = useSectionActivity(myRef);
   const [isMobile, setIsMobile] = useState(() => window.matchMedia('(max-width: 700px)').matches);
+  const [readyForViewport, setReadyForViewport] = useState(null);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
+  const sceneReady = readyForViewport === isMobile;
+  const onSceneReady = useCallback(() => setReadyForViewport(isMobile), [isMobile]);
+
+  useEffect(() => {
+    let cancelled = false;
+    imagesReady(myRef.current).then(() => { if (!cancelled) setImagesLoaded(true); });
+    return () => { cancelled = true; };
+  }, [myRef]);
+
+  useEffect(() => { onReady?.(sceneReady && imagesLoaded); }, [onReady, sceneReady, imagesLoaded]);
 
   useEffect(() => {
     const query = window.matchMedia('(max-width: 700px)');
@@ -222,14 +236,15 @@ function Who({ myRef, scrollYGlobal, scrollToWho, setRefReached }) {
 
   return (
     <Section ref={myRef} className='main-div' id='div2'>
-      <Container>
+      <Container style={{ visibility: sceneReady && imagesLoaded ? undefined : 'hidden' }}>
         
         {/* <CrucifixDiv>
           <CrucifixImage style={{filter: 'blur(8px)'}} src="/img/jesus-effect/image-1-short.png"/>
         </CrucifixDiv> */}
 
-        {hasBeenVisible && !isMobile && <Left>
-            <Canvas dpr={[1, 1.5]} frameloop={isVisible ? 'always' : 'never'} camera={{fov: 25, position: [0, 0, 6]}}>
+        {!isMobile && <Left>
+            <Canvas dpr={[1, 1.5]} frameloop={!sceneReady || isVisible ? 'always' : 'never'} camera={{fov: 25, position: [0, 0, 6]}}>
+              <Suspense fallback={null}>
                 <JustinHead />
                 <OrbitControls
                   enableRotate={false}
@@ -241,15 +256,20 @@ function Who({ myRef, scrollYGlobal, scrollToWho, setRefReached }) {
                 />
                 <ambientLight intensity={1}/>
                 <directionalLight position={[1, 2, 3]} />
+                <SceneReady onReady={onSceneReady} />
+              </Suspense>
             </Canvas>
           </Left>}
-          {hasBeenVisible && isMobile && <LeftMobile>
-          <Canvas dpr={[1, 1.5]} frameloop={isVisible ? 'always' : 'never'} style={{pointerEvents: 'none'}} camera={{fov: 25, position: [0, 0, 1]}}>
+          {isMobile && <LeftMobile>
+          <Canvas dpr={[1, 1.5]} frameloop={!sceneReady || isVisible ? 'always' : 'never'} style={{pointerEvents: 'none'}} camera={{fov: 25, position: [0, 0, 1]}}>
+              <Suspense fallback={null}>
               <PikaRun scale={1.25}/>
               <OrbitControls autoRotate={false} enableZoom={false} enablePan={false} enableRotate={false} />
               <Environment preset="lobby"/>
                 <ambientLight intensity={1} />
                 <directionalLight intensity={2} position={[1, 1, -2]} />
+                <SceneReady onReady={onSceneReady} />
+              </Suspense>
           </Canvas>
           </LeftMobile>}
             <Right className='about-me'>
