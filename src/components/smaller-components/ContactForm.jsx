@@ -66,6 +66,16 @@ const ContactContent = styled.form`
         position: relative;
         width: 90%;
         margin: 0 auto;
+        .required-marker {
+            position: absolute;
+            top: .8rem;
+            left: -.85rem;
+            color: #c40000;
+            font-size: 1.25rem;
+            font-weight: 700;
+            line-height: 1;
+            pointer-events: none;
+        }
         input, textarea {
             padding: .8rem;
             width: 91.5%; //91.5
@@ -141,6 +151,9 @@ const ContactContent = styled.form`
     }
     @media only screen and (max-width: 435px) {
         left: 49.25%;
+        .inputBox {
+            width: 86%;
+        }
     }
     @media only screen and (max-width: 325px) {
         left: 48.25%;
@@ -275,7 +288,9 @@ function ContactForm({ contactForm }) {
             email: email,
             phoneNumber: phoneNumber,
             subject: subject,
-            message: message,
+            // Use the existing template field so the source appears without a
+            // separate EmailJS dashboard change. Keep the visitor's input intact.
+            message: `${message}\n\nSent from https://justin-bernard.com`,
         };
         
         try {
@@ -360,28 +375,33 @@ function ContactForm({ contactForm }) {
                 <h2 style={{gridArea: 'one'}} className='title'>Contact Me!</h2>
                 <div className='names'>
                     <div style={{gridArea: 'two'}} className='inputBox first-name'>
-                        <input type="text" placeholder='First Name' disabled={isSending}
+                        <span className="required-marker" aria-hidden="true">*</span>
+                        <input type="text" placeholder='First Name' aria-label="First Name" aria-required="true" disabled={isSending}
                             value={firstName} onChange={(e) => setFirstName(e.target.value)}/>
                     </div>
                     <div style={{gridArea: 'three'}} className='inputBox last-name'>
-                        <input type="text" placeholder='Last Name' disabled={isSending}
+                        <span className="required-marker" aria-hidden="true">*</span>
+                        <input type="text" placeholder='Last Name' aria-label="Last Name" aria-required="true" disabled={isSending}
                             value={lastName} onChange={(e) => setLastName(e.target.value)}/>
                     </div>
                 </div>
                 <div style={{gridArea: 'four'}} className='inputBox email'>
-                    <input type="email" placeholder='Email' disabled={isSending}
+                    <span className="required-marker" aria-hidden="true">*</span>
+                    <input type="email" placeholder='Email' aria-label="Email" aria-required="true" disabled={isSending}
                             value={email} onChange={(e) => setEmail(e.target.value)}/>
                 </div>
                 <div style={{gridArea: 'five'}} className='inputBox phone-number'>
-                    <input type="tel" placeholder='Phone Number (Optional)' disabled={isSending}
+                    <input type="tel" placeholder='Phone Number' aria-label="Phone Number" disabled={isSending}
                             value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)}/>
                 </div>
                 <div style={{gridArea: 'six'}} className='inputBox subject'>
-                    <input type="text" placeholder='Subject' disabled={isSending}
+                    <span className="required-marker" aria-hidden="true">*</span>
+                    <input type="text" placeholder='Subject' aria-label="Subject" aria-required="true" disabled={isSending}
                             value={subject} onChange={(e) => setSubject(e.target.value)}/>
                 </div>
                 <div style={{gridArea: 'seven'}} className="inputBox message" title="Your message">
-                  <textarea rows="6" placeholder="What Do You Need Done?" disabled={isSending}
+                  <span className="required-marker" aria-hidden="true">*</span>
+                  <textarea rows="6" placeholder="What Do You Need Done?" aria-label="What Do You Need Done?" aria-required="true" disabled={isSending}
                             value={message} onChange={(e) => setMessage(e.target.value)}></textarea>
                 </div>
 
