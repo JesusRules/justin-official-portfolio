@@ -10,15 +10,6 @@
     padding: 4.5rem 1.5rem 3rem;
 }
 
-.contact-form-layer::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    background: rgba(16, 35, 64, 0.12);
-    pointer-events: none;
-}
-
 .contact-form {
     box-sizing: border-box;
     width: 100%;
